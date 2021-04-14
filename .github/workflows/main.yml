@@ -1,0 +1,40 @@
+name: Deploy Doxygen Documentation
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # - name: Install Tools
+    #   run: |
+    #     sudo apt-add-repository universe
+    #     sudo apt-get update
+    #     sudo apt-get install doxygen dia graphviz
+
+    # - name: Print Version
+    #   run: |
+    #     doxygen -v
+    #     dot -V
+    #     dia -v
+
+    - name: Run Doxygen
+    #   run: doxygen
+    #   working-directory: ./AFBR-S50
+      uses: mattnotmitt/doxygen-action@v1
+      with:
+        working-directory: './AFBR-S50/'
+        doxyfile-path: './Doxyfile'
+
+
+
+    - name: Deploy Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./AFBR-S50/Documentation/html

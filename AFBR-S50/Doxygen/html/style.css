@@ -1,0 +1,10 @@
+#projectlogo {
+		padding: 0.5em;
+}
+.image
+{
+   text-align: left;
+   margin: 1em;
+   /* width: 100%; */
+   max-width: 800px; 
+}
