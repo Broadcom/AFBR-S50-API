@@ -1,0 +1,13 @@
+<map id="Include/platform/argus_s2pi.h" name="Include/platform/argus_s2pi.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="422,5,573,47"/>
+<area shape="rect" id="node2" href="$argus__def_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="442,95,553,121"/>
+<area shape="rect" id="node3" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,169,112,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="231,244,295,271"/>
+<area shape="rect" id="node5" href="$argus__version_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="187,169,301,196"/>
+<area shape="rect" id="node6" href="$fp__def_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="325,169,427,196"/>
+<area shape="rect" id="node7" href="$time_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="452,169,543,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="501,244,576,271"/>
+<area shape="rect" id="node9" title=" " alt="" coords="618,169,686,196"/>
+<area shape="rect" id="node10" title=" " alt="" coords="710,169,778,196"/>
+<area shape="rect" id="node11" title=" " alt="" coords="803,169,867,196"/>
+</map>

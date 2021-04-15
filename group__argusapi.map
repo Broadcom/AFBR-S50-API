@@ -1,0 +1,10 @@
+<map id="AFBR&#45;S50 API" name="AFBR&#45;S50 API">
+<area shape="rect" id="node1" href="$group__argusmeas.html" title="Measurement/Device control module." alt="" coords="167,5,313,45"/>
+<area shape="rect" id="node2" href="$group__argusres.html" title="Measurement results data structures." alt="" coords="175,70,305,95"/>
+<area shape="rect" id="node3" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="5,169,115,194"/>
+<area shape="rect" id="node4" href="$group__arguscfg.html" title="Device configuration parameter definitions and API functions." alt="" coords="191,119,289,145"/>
+<area shape="rect" id="node5" href="$group__arguscal.html" title="Device calibration parameter definitions and API functions." alt="" coords="199,169,281,194"/>
+<area shape="rect" id="node6" href="$group__arguspba.html" title="Pixel Binning Algorithm (PBA) parameter definitions and API functions." alt="" coords="163,218,317,243"/>
+<area shape="rect" id="node7" href="$group__argusdca.html" title="Dynamic Configuration Adaption (DCA) parameter definitions and API functions." alt="" coords="165,268,315,308"/>
+<area shape="rect" id="node8" href="$group__version.html" title="API and library core version number." alt="" coords="195,333,285,358"/>
+</map>
