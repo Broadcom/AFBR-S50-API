@@ -185,7 +185,9 @@
 /* The UART to use for communication with the AFBR-S50 Explorer. */
 #define UART_INSTANCE				0U					/*!< UART Instance Number. */
 #define UART_BASEADDR				LPUART0				/*!< UART Instance Base Address. */
+#ifndef UART_BAUDRATE
 #define UART_BAUDRATE				115200U 			/*!< UART Baud Rate. */
+#endif
 #define UART_IRQn					LPUART0_IRQn		/*!< UART Interrupt Number. */
 #define UART_IRQ_HANDLER			LPUART0_IRQHandler	/*!< UART Interrupt Handler. */
 #define UART_CLKSRC					kCLOCK_CoreSysClk	/*!< UART Clock Source (Core System Clock). */
@@ -346,7 +348,9 @@
 /* The UART to use for communication with the AFBR-S50 Explorer. */
 #define UART_INSTANCE				0U					/*!< UART Instance Number. */
 #define UART_BASEADDR				UART0				/*!< UART Instance Base Address. */
+#ifndef UART_BAUDRATE
 #define UART_BAUDRATE				115200U 			/*!< UART Baud Rate. */
+#endif
 #define UART_IRQn					UART0_IRQn			/*!< UART Interrupt Number. */
 #define UART_IRQ_HANDLER			UART0_IRQHandler	/*!< UART Interrupt Handler. */
 #define UART_CLKSRC					kCLOCK_CoreSysClk	/*!< UART Clock Source (Core System Clock). */

@@ -6,6 +6,10 @@ The *AFBR-S50 API* is the appertaining software for the [AFBR-S50 Time-of-Flight
 
 The repository consists of the *AFBR-S50 Core Library*, a static ANSI-C library, and its accompanied header files and documentation. Additionally, example and demo projects are provided for certain processors and evaluation boards.
 
+## Documentation
+
+The API Reference Manual can be viewed [here](https://broadcom.github.io/AFBR-S50-API/).
+
 ## Overview
 
 ### File Structure
