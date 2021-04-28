@@ -19,7 +19,7 @@ If you still have to use one of these, make sure to read the [Binary Interoperab
 Application Note](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0487a/index.html) by ARM to understand the implications of mixing code from different toolchains.
 
 As mentioned above, the *AFBR-S50 Core Library* is build with *AEABI* compatibility enabled (i.e. with the *-library_interface=aeabi_clib* compiler flag). The following GNU toolchain settings are used to compile the libraries:
- - *-library_interface=aeabi_clib*: Specifies that the compiler output is *AEABI* complient.
+ - *-library_interface=aeabi_clib*: Specifies that the compiler output is *AEABI* compliant.
  - *-mfloat-abi=softfp*: Software floating-point Procedure Call Standard (PCS) and hardware floating point instructions.
  - *-fno-short-enums*: *enum* types are at least int width.
  - *-fno-short-wchar*: the *wchar_t* data type is 4-bytes wide.
@@ -28,7 +28,7 @@ As mentioned above, the *AFBR-S50 Core Library* is build with *AEABI* compatibil
 @note The *AFBR-S50* code does not use any floating-point nor *wchar_t* values at all.
 
 
-# Architectur Compatibility {#pg_architecture}
+# Architecture Compatibility {#pg_architecture}
 
 The *AFBR-S50 Core Library* is compatible with all [Arm Cortex-M Series Processors](https://developer.arm.com/ip-products/processors/cortex-m). The library is optimized for the smallest variants, the *Cortex-M0/M0+. However, the upwards compatibility of the Cortex-Mx family makes it easy to run the same library on higher architectures without effort as well. The library artifacts are compiled for the most common architectures. 
 
@@ -97,7 +97,7 @@ Minimum memory requirements:
 .
 
 @warning
-These requirements are the minumum values for the *AFBR-S50 Core Library and API* only! Additional memory for user application is not considered here and must be added accordingly.
+These requirements are the minimum values for the *AFBR-S50 Core Library and API* only! Additional memory for user application is not considered here and must be added accordingly.
 
 The following section gives a brief overview on the corresponding hardware layers.
 
@@ -114,19 +114,21 @@ The S2PI module is a combination of SPI and GPIO hardware. The communication wit
 
 In addition to the standard SPI interface, the corresponding pins must also be accessible in GPIO mode. This is required to access the EEPROM memory of the AFBR-S50 sensor device that holds calibration parameters. The EEPROM interface is connected to the SPI pins to decrease the complexity in pinning and wiring. The EEPROM interface is not compatible with any standard SPI interface and thus it is emulated in software using bit banging algorithms. A mechanism to switch forth and back between SPI and GPIO mode for the corresponding pins is incorporated into the S2PI module.
 
+@note The EEPROM read sequence (and herein the GPIO mode) is only executed once upon device initialization. This is, during the #Argus_Init API function. The EEPROM is not accessed while active distance measurements are executed and thus the GPIO toggle speed does not impact the device performance.
+
 ### S2PI Overview
 
 The module needs to provide two different modes of operation, both as SPI master:
 
-1.	*A fast SPI mode for accessing the device*
-
+1. *A fast SPI mode for accessing the device*
+	
 	The fast SPI mode is used for accessing the device for all purposes (initialization, configuration, calibration and measurement).
 	
 	Obviously, to allow a continuous data transfer on the SPI interface without creating a high load on the microcontroller itself, although not strictly required, it is strongly recommended to set up DMA transfer for the SPI interface. The following description assumes that DMA is used.
 
-2.  *A slow SPI mode for accessing the EEPROM*
+2. *A slow GPIO mode for accessing the EEPROM*
 
-	Calibration data is stored on a small EEPROM that needs to be read at a much lower speed. The readout is performed on the same interface as the fast SPI, but with a bit-banging mechanism that allows the control of all signals with a much slower timing as GPIOs.
+	Calibration data is stored on a small EEPROM that needs to be read upon device initialization at a much lower speed. The readout is performed on the same interface as the fast SPI, but with a bit-banging mechanism that allows the control of all signals with a much slower timing as GPIOs.
 
 	The bit-banging mechanism is already built into the library, so the hardware layer only has to provide:
 	-	A mechanism to switch between the two operation modes
@@ -134,44 +136,53 @@ The module needs to provide two different modes of operation, both as SPI master
 	
 	The EEPROM readout is performed only during initialization, so the speed does not negatively affect measurement performance.
 	
-### Initialization
+See the [S2PI module](@ref argus_s2pi) documentation for more details on the SPI interface.
+
+@note If EEPROM readout fails and the device shows bad performance, refer to the [troubleshooting section](@ref faq_eeprom) for additional info on how to debug the GPIO mode.
+
+
+### S2PI Initialization
 
 The SPI hardware layer is required to be initialized before the first call to the core library.
 
-#### Pin configuration
+#### S2PI Pin configuration
 
-1.	*SCLK, MOSI, MISO*
+1.	*CLK, MOSI, MISO*
 
-	The SPI communications requires the three standard pins SCLK (SPI clock), MOSI (master out, slave in) and MISO (master in, slave out) to be switchable between SPI and GPIO modes.
+	The SPI communications requires the three standard pins *CLK* (SPI clock), *MOSI* (master out, slave in) and *MISO* (master in, slave out) to be switchable between SPI and GPIO modes.
+
+	The *CLK* and *MOSI* lines are configured as output and the *MISO* is configured as input.
+	The *MISO* is actively driven by the device and thus no pull-up resistor is required.
 	
 2.	*CS*
 
-	Even though it is expected that the device is the only device on the SPI interface, a CS (chip select) signal is required to be asserted on every transfer.
-	Depending on the SPI capabilities, this may be either handled by the SPI implementation (hard CS) or as GPIO (soft CS).
+	Even though it is expected that the device is the only device on the SPI interface, a *CS* (chip select) signal is required to be asserted on every SPI transfer. Depending on the SPI capabilities, this may be either handled by the SPI peripheral (hard *CS*) or by GPIO toggling (soft *CS*).
 
-	This signal is active low, and must be reasserted to high between transfers.
+	This signal is active low and is asserted during transfers. The signal must be cycled to high between transfers.
 
 3.  *IRQ*
 
-	This is an input line that allows the device will signal that measurement data is available and ready for transfer.
+	This is an input line that allows the device to signal that measurement data is available and ready for transfer.
 	
 	This signal is active low and will be asserted until the next SPI transfer is started, which is assumed to pick up the data. The GPIO should be configured as input triggering an interrupt on the falling edge. Take care that a GPIO with a unique interrupt ID is picked for this line, or no other GPIO attached to the same interrupt ID is configured to trigger any interrupts. The IRQ line needs a pull-up resistor set.
 
 Be also careful with the initialization regarding:
--	The speed of GPIO changes (fast)
+-	The speed of GPIO changes: fast
 -	The type of output: push-pull
--	The signal level
+-	The signal level: 3V3
 
 The following table provides an overview over the GPIO configurations:
 
 |				| CLK			| MOSI			| MISO			| CS			| IRQ			|
 |-------------- | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
-| Direction		| Output		| Output		| Output		| Output		| Input			|
-| Drive Mode	| Push-Pull		| Push-Pull		| Push-Pull		| Push-Pull		| None			|
-| Pull-Up		| Not required	| Not required	| No 			| Not required	| Pull Up		|
-| Speed			| Fast			| Fast			| Fast			| Slow			| Fast			|
-| Mode for SPI  | SPI			| SPI			| SPI			| SPI or GPIO   | GPIO			|
-| Mode for GPIO | GPIO			| GPIO			| GPIO			| GPIO			| GPIO			|
+| Direction		| Output		| Output		| Input			| Output		| Input			|
+| Drive Mode	| Push-Pull		| Push-Pull		| -				| Push-Pull		| -				|
+| Pull-Up		| -				| -				| None 			| -				| Pull Up		|
+| Interrupt		| -				| - 			| - 			| - 			| Falling Edge	|
+| Speed			| Fast			| Fast			| Fast			| Fast			| Fast			|
+| Signal Level	| 3V3			| 3V3			| 3V3			| 3V3			| 3V3			|
+| Mode for SPI	| SPI			| SPI			| SPI			| SPI or GPIO	| GPIO			|
+| Mode for GPIO	| GPIO			| GPIO			| GPIO			| GPIO			| (not used)	|
 
 
 #### SPI Mode
@@ -189,35 +200,35 @@ It is therefore recommended to choose a high transfer speed that is still compat
 
 @note It may not be easy or even possible to set any SPI clock speed. Instead, the SPI speed is often directly coupled with the system clock via a divider. 
 
+@note In case of issues with SPI transfers, start with a lower SPI clock speed (e.g. 1 MHz) and increase successively.
 
-#### DMA
+#### DMA Channels
 
-For the DMA (direct memory access) transfer, usually two seperate channels need to be set up for the data read and write.
+For the DMA (direct memory access) transfer, usually two separate channels need to be set up for the data read and write.
 
 As the kind of operation always has to be specified by the master within the transfer, the SPI transfers have only two modes:
 -	Transmit only
 -	Transmit and receive
 
-Both kinds of transfer are started via the S2PI_TransferFrame() function. While the `txData` pointer always points to valid data, the `rxData` pointer is set to `0` if no data shall be transmitted.
+Both kinds of transfer are started via the #S2PI_TransferFrame() function. While the `txData` pointer always points to valid data, the `rxData` pointer is set to `0` if no data shall be transmitted.
 
-@note rxData and txData frequently point to the same address. While this should usually be no problem, as the memory byte needs to be read before and stored after the transmission, make sure that the DMA implementation of your MCU supports this. Otherwise, the receive data should be transferred to a temporary buffer and copied to the destination after reception.
+@note The #S2PI_TransferFrame() parameters `rxData` and `txData` frequently point to the same memory address. While this should usually be no problem, as the memory byte needs to be read before and stored after the transmission, make sure that the DMA implementation of your MCU supports this! Otherwise, the received data should be transferred to a temporary buffer and copied to the destination after reception.
 
 #### DMA Interrupts and Callback Function
 
 Usually, the SPI transmission requires a callback function to be triggered after the transmission is complete.
 
-Typically, in the DMA setup, the device provides DMA complete interrupts that can call the callback function. Also, if the CS signal is applied as GPIO (soft CS), it can be unasserted here.
+Typically, in the DMA setup, the device provides DMA complete interrupts that can call the callback function. Also, if the *CS* signal is applied as GPIO (soft *CS*), it can be unasserted here.
 
 However, this DMA complete callback function may already start the next SPI transfer immediately. So all cleanups required after the current SPI transfer needs to be performed before that. This may be complicated as two DMA channels may be involved in the transmit and receive case and perform cleanup on their individual channel only. The callback function must be triggered only after both channels are freed and cleaned up. Also, the CS must be unasserted before the callback function is called.
 
-On the other hand, in the transmit only case, make sure that the DMA interrupt does not call the callback function, or unassert CS, before the last byte is fully transmitted, especially if the SPI speed is slow.
+On the other hand, in the transmit only case, make sure that the DMA interrupt does not call the callback function, or unassert *CS*, before the last byte is fully transmitted, especially if the SPI speed is slow.
 
 #### DMA Interrupt Priority
 
 To make use of stable and high frame rates, the SPI interrupt should not be blocked by other possibly longer running interrupts, so the interrupt priority should be chosen sufficiently high. On the other hand, if the target application uses other interrupts for very time sensitive purposes, they should have higher priority, as the callback function may include preparing a new SPI transfer and therefore may take multiple microseconds to return.
 
 
-See the [S2PI module](@ref argus_s2pi) documentation for more details on the SPI interface.
 
 ## Timer Layer {#pg_timer}
 
@@ -291,13 +302,13 @@ In order to send debug and error messages, a *printf*-like function from the [De
 Note that errors are propagated using the #status_t enumeration of status and error codes. Any method within the API returns an error code that gives a hint on the execution status of the routine.
 
 
-# Step-by-step porting guide {#pg_guide}
+# Step-by-Step Porting Guide {#pg_guide}
 
 The following step-by-step guide leads through the basic process on getting the API running on any Cortex-M0 based development environment. The steps are demonstrated using the [MCUXpresso-IDE](
 https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE) and the [NXP FRDM-KL46Z](https://www.nxp.com/design/development-boards/freedom-development-boards/mcu-boards/freedom-development-platform-for-kinetis-kl3x-and-kl4x-mcus:FRDM-KL46Z) development platform from NXP that comes also with the AFBR-S50 evaluation kit. It should be an easy task for experienced embedded software developer to follow the steps on its dedicated development environment.
 
 @note
-This is a brief guide that shows the basic approach for porting the API only. An extensive porting guide to a Cortex-M4 architecture is available on the [Broadcom website](https://www.broadcom.com/products/optical-sensors/time-of-flight-3d-sensors). This document shows the full task of porting the *AFBR-S50 API* to a new processor platform on the example of a STM32F403RE Cortex-M4 microprocessor.
+This is a brief guide that shows the basic approach for porting the API only. An extensive porting guide to a Cortex-M4 architecture is available on the [Broadcom website](https://www.broadcom.com/products/optical-sensors/time-of-flight-3d-sensors) (select any Sensor and go to "Documentation" -> "Programming Guides"). This document shows the full task of porting the *AFBR-S50 API* to a new processor platform on the example of a STM32F403RE Cortex-M4 microprocessor.
 
 ## Create a new project in your environment {#pg_new_project}
 

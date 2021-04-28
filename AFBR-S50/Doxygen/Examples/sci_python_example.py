@@ -14,7 +14,9 @@
 # device. Type it to the "port" variable below, before starting the script.
 #
 # Use Python 3 to run the script. The script requires the pySerial module which
-# might need to be installed. See: https://pyserial.readthedocs.io/en/latest/index.html
+# might need to be installed. 
+# To install, run: "pip install pyserial"
+# See: https://pyserial.readthedocs.io/en/latest/index.html
 #
 #
 # The script sends configuration commands to set the data output mode to 1D data
@@ -34,6 +36,7 @@ import serial
 
 # input parameters
 port = "COM4"
+baudrate = 2000000
 sample_count = 100
 
 
@@ -87,7 +90,7 @@ def read():
 
 # open serial port w/ "11500,8,N,1", no timeout
 print("Open Serial Port " + port)
-with serial.Serial(port, 115200) as ser:
+with serial.Serial(port, baudrate) as ser:
     print("Serial Open " + port + ": " + str(ser.is_open))
 
     # discard old data

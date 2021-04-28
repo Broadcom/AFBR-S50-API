@@ -403,7 +403,7 @@ The following section contains the current command details as implemented in the
 | ------------------------- | ----- | ---- | ---- | -------------------------------------------------------------- |
 | Command                   | UINT8 | 1    |      | 0x61                                                           |
 | Measurement Mode Selector | ENUM8 | 1    | n/a  | The addressed measurement mode. See #argus_mode_t for details. |
-| Range Offset              | Q9.22 | 4    | m    | The global range offset in meters.                             |
+| Range Offset              | Q0.15 | 2    | m    | The global range offset in meters.                             |
 
 ## Pixel Range Offsets {#cmd_cal_offsets}
 

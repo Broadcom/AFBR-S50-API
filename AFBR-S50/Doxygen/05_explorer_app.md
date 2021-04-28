@@ -87,7 +87,7 @@ Besides the already build-in acknowledgment mechanism form the I2C protocol, the
 
 ## Command Protocols {#hw_api_cmd_protocols}
 
-### Master to slave transfer {#hw_api_cmd_m2s}#
+### Master-to-Slave Transfer {#hw_api_cmd_m2s}#
 
 @image html 5_3_sci_master_to_slave.png "Fig. 5.3: The master to slave communication. The left side shows the UART hardware and the right side the version for SPI/I2C hardware."
 @image latex 5_3_sci_master_to_slave.png "Fig. 5.3: The master to slave communication. The left side shows the UART hardware and the right side the version for SPI/I2C hardware."
@@ -96,7 +96,7 @@ In case of UART, the master simply send data via its Tx line. After processing, 
 
 In case of SPI or I2C, the slave can not send data without the master initiating the transfer. Thus, an additional IRQ is used to give the slave the chance to call the masters attention. In case of no IRQ available, the master must poll the slave on a regular basis. So after processing, the slave signals when he is ready to send the acknowledge or not-acknowledge signal and afterwards the master must initiate the transfer from slave to master.
 
-### Slave to master transfer {#hw_api_cmd_s2m}
+### Slave-to-Master Transfer {#hw_api_cmd_s2m}
 
 @image html 5_4_sci_slave_to_master.png "Fig. 5.4: The slave to master communication. The left side shows the UART hardware and the right side the version for SPI/I2C hardware."
 @image latex 5_4_sci_slave_to_master.png "Fig. 5.4: The slave to master communication. The left side shows the UART hardware and the right side the version for SPI/I2C hardware."
@@ -226,7 +226,7 @@ Go to:
 Go to: 
 \subpage hw_api_cmd_details
 
-# Python Example on using the SCI interface {#hw_example}
+# Python Example on Using the SCI Interface {#hw_example}
 
 Here is an example that sets some configuration parameters (i.e. data output = 1D data only; measurement frame rate = 5 Hz) and starts timer based measurements. The range is extracted from the received data structure and printed to the console.
 

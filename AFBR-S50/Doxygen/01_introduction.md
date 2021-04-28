@@ -17,7 +17,7 @@ There are example implementations of the *AFBR-S50 Software API* that serve, alo
 
 If you want to implement and utilize the *AFBR-S50 Core Library* and API within your own embedded environment, go to the the [getting started](@ref getting_started) section. Make sure to read about the examples and how to get them running with the free [MCUXpresso IDE from NXP](https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE) in the [how to build and run](@ref gs_mcuxpresso) section. Also see the [Software API](@ref sw_api) section for an brief overview of the API functionality.
 
-## Porting to a new MCU platform
+## Porting to a new MCU Platform
 
 If you want to use your own hardware to host and run the *AFBR-S50 Core Library*, refer to the [API Porting Guide](@ref porting_guide).
 

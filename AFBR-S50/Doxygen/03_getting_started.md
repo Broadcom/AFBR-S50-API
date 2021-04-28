@@ -4,7 +4,7 @@ The following section gives an brief overview on of the **AFBR-S50 Core Library 
 
 # AFBR-S50 API {#gs_api}
 
-@note All **AFBR-S50 API** related functions, definitions and constants have a prefix "**Argus**" which is essentially an alias or working title for the **AFBR-S50 Time-of-Flight Sensor** device.
+@note All **AFBR-S50 API** related functions, definitions and constants have a prefix `Argus` which is essentially an alias or working title for the **AFBR-S50 Time-of-Flight Sensor** device.
 
 The *AFBR-S50 Core Library* is provided as a static ANSI-C library file ("lib*.a") and the corresponding API is provided as ANSI-C header files ("*.h"). After setting up the linker to link the library, it is sufficient to include the main header in the "/include" folder, "argus.h":
 \code #include "argus.h"\endcode
@@ -24,19 +24,7 @@ Please note that the laser safety module might refuse to restart a measurement a
 
 The second way of operating the device is to leverage from an periodic interrupt time that invokes a callback to the API in periodic manner. The timer is implemented in the \link #argus_timer timer\endlink interface. Instead of calling the #Argus_TriggerMeasurement function periodically from the host application, the measurement restarts itself in an autonomous way. Every time, a new raw measurement data set is ready, the measurement data ready callback is invoked by the API. Similar to the previous method, the #Argus_EvaluateData function must be called before the data can be used. Note that not calling the function will lead to measurements are not restarted before the evaluation method is called and the data buffers is freed. In the same manner, a slow data evaluation or much user code to delay the data evaluation method might decrease the measurement frame rate. An example implementation is shown in the @ref gs_adv_example section.
 
-# Simple Example {#gs_simple_example}
-
-Here is an example of how to use the API in a simple loop with polling the module status to wait for the measurement data to be ready. The 1D range value of the obtained measurement data is streamed via an UART connection. Open a terminal (e.g. [Termite](https://www.compuphase.com/software_termite.htm)) and open a UART connection using 115200 bps, 8N1, no handshake connection. Range values will start to occur on the terminal as soon as the program starts its execution.
-
-\include 01_simple_example.c
-
-# Advanced Example {#gs_adv_example}
-
-Here is an example of how to use the API with the autonomous measurement triggering. The 1D range value of the obtained measurement data is streamed via an UART connection. Open a terminal (e.g. [Termite](https://www.compuphase.com/software_termite.htm)) and open a UART connection using 115200 bps, 8N1, no handshake connection. Range values will start to occur on the terminal as soon as the program starts its execution.
-
-\include 02_advanced_example.c
-
-# Build And Run the Examples using MCUXpresso IDE {#gs_mcuxpresso}
+# Build And Run the Examples using MCUXpresso {#gs_mcuxpresso}
 
 In order to run the provided example projects using the *MCUXpresso IDE*, execute the following steps. Please also refer to the getting started guide by NXP in case of any trouble: https://www.nxp.com/docs/en/user-guide/MCUXSDKGSUG.pdf
 
@@ -136,33 +124,22 @@ The example application is now up and running. It is a simple program that execu
 The evaluation kit is build on the FRDM-KL46z Evaluation Kit from NXP. So you may also refer https://www.nxp.com/frdm-kl46z for further information.
 
 
-# Troubleshooting {#gs_troubleshooting}
+# Simple Example {#gs_simple_example}
 
-## Error -101 (Device Not Connected)
-
-Problem: After calling the #Argus_Init() method, an error status -101 (#ERROR_ARGUS_NOT_CONNECTED) is returned.
-
-The first thing that happens in the initialization function are a few read/write cycles on the SPI interface in order to check the responsiveness of the device: first, a byte sequence (1,2,3,4,...,15) is written to the MOSI and the MISO data is ignored. Second, a sequence of 0's is written to the same register and the MISO is captured and compared to the pattern from the previous write cycle. Finally, another sequence of 0's is written and the received data is checked for being zero again. If the read pattern is not equal to the written one, the error #ERROR_ARGUS_NOT_CONNECTED is returned and the initialization process is canceled.
-
-In order to solve the issue, verify the following sequence in your SPI interface when calling the Argus_Init() function:
-
-1. Writing a test pattern to register address 0x04:
- - MOSI: 0x 04 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
- - MISO: 0x 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 (or any other, depending on the current state of your device)
- .
-2. Clearing the test pattern at register 0x04, read back of test pattern 1:
- - MOSI: 0x 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
- - MISO : 0x 00 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
- .
-3. Clearing the test pattern at register 0x04, read back of test pattern 2:
- - MOSI: 0x 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
- - MISO: 0x 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
- .
-
-Further check if the "spi_slave" parameter in the #Argus_Init function is not 0! This is reserved for error handling.
+Here is an example of how to use the API in a simple loop with polling the module status to wait for the measurement data to be ready. The 1D range value of the obtained measurement data is streamed via an UART connection. Open a terminal (e.g. [Termite](https://www.compuphase.com/software_termite.htm)) and open a UART connection using 115200 bps, 8N1, no handshake connection. Range values will start to occur on the terminal as soon as the program starts its execution.
 
 Please find the example files in "[INSTALL_DIR]\Device\Examples\" (default is "C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Examples\").
 
+\include 01_simple_example.c
+
+# Advanced Example {#gs_adv_example}
+
+Here is an example of how to use the API with the autonomous measurement triggering. The 1D range value of the obtained measurement data is streamed via an UART connection. Open a terminal (e.g. [Termite](https://www.compuphase.com/software_termite.htm)) and open a UART connection using 115200 bps, 8N1, no handshake connection. Range values will start to occur on the terminal as soon as the program starts its execution.
+
+Please find the example files in "[INSTALL_DIR]\Device\Examples\" (default is "C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Examples\").
+
+\include 02_advanced_example.c
+
+
 \example 01_simple_example.c
 \example 02_advanced_example.c
-
