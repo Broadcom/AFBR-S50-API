@@ -16,7 +16,7 @@ var searchData=
   ['afbr_5fs50mv85g_5fv3_13',['AFBR_S50MV85G_V3',['../group__argusapi.html#gga46f240b890cd62efe83bf2d095277470addaaf6b9cc172c456278d5d5038070f6',1,'argus_def.h']]],
   ['afbr_5fs50mv85i_5fv1_14',['AFBR_S50MV85I_V1',['../group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a6623b6590854eddb5a65aad685e9800e',1,'argus_def.h']]],
   ['afbr_5fs50sv85k_5fv1_15',['AFBR_S50SV85K_V1',['../group__argusapi.html#gga46f240b890cd62efe83bf2d095277470ab844937ee93fb6b8a2c8446dd89fd3d4',1,'argus_def.h']]],
-  ['amplitude_16',['Amplitude',['../structargus__pixel__t.html#ac6ce595baf90c1801cdd2d196afba306',1,'argus_pixel_t::Amplitude()'],['../structargus__results__bin__t.html#a918392407fcf45cadb280ebe502d633d',1,'argus_results_bin_t::Amplitude()']]],
+  ['amplitude_16',['Amplitude',['../structargus__results__bin__t.html#a918392407fcf45cadb280ebe502d633d',1,'argus_results_bin_t::Amplitude()'],['../structargus__pixel__t.html#ac6ce595baf90c1801cdd2d196afba306',1,'argus_pixel_t::Amplitude()']]],
   ['amplituderaw_17',['AmplitudeRaw',['../structargus__pixel__t.html#a288c43dbc8360f242babcc74f1746c52',1,'argus_pixel_t']]],
   ['analogintegrationdepth_18',['AnalogIntegrationDepth',['../structargus__meas__frame__t.html#a97d8aff21d43fd27f5d03baaa1c6625d',1,'argus_meas_frame_t']]],
   ['api_20version_19',['API Version',['../group__version.html',1,'']]],

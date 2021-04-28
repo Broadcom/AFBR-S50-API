@@ -1,6 +1,6 @@
 var hw_api =
 [
-    [ "Build And Run the ExplorerApp using MCUXpresso", "hw_api.html#hw_mcuxpresso", null ],
+    [ "Build And Run the ExplorerApp using MCUXpresso IDE", "hw_api.html#hw_mcuxpresso", null ],
     [ "Serial Communication Interface", "hw_api.html#hw_api_sci", [
       [ "Introduction", "hw_api.html#hw_api_sci_intro", null ],
       [ "Architecture", "hw_api.html#hw_api_sci_architecture", null ],
@@ -10,24 +10,24 @@ var hw_api =
         [ "I2C", "hw_api.html#hw_api_i2c", null ]
       ] ],
       [ "Command Protocols", "hw_api.html#hw_api_cmd_protocols", [
-        [ "Master to slave transfer", "hw_api.html#hw_api_cmd_m2s", null ],
-        [ "Slave to master transfer", "hw_api.html#hw_api_cmd_s2m", null ]
+        [ "Master-to-Slave Transfer", "hw_api.html#hw_api_cmd_m2s", null ],
+        [ "Slave-to-Master Transfer", "hw_api.html#hw_api_cmd_s2m", null ]
       ] ],
       [ "Command Byte Format", "hw_api.html#hw_api_cmd_format", null ],
       [ "Command Types", "hw_api.html#hw_api_cmd_types", null ],
       [ "Data Frame Format", "hw_api.html#hw_api_frame_format", [
         [ "Byte Stuffing Algorithm", "hw_api.html#hw_api_byte_stuffing", [
-          [ "Byte Stuffing Algorithm for Sending Data", "hw_api.html#autotoc_md17", null ],
-          [ "Byte Stuffing Algorithm for Receiving Data", "hw_api.html#autotoc_md18", null ]
+          [ "Byte Stuffing Algorithm for Sending Data", "hw_api.html#autotoc_md16", null ],
+          [ "Byte Stuffing Algorithm for Receiving Data", "hw_api.html#autotoc_md17", null ]
         ] ],
         [ "Error checking: 8-bit CRC", "hw_api.html#hw_api_crc", null ]
       ] ]
     ] ],
-    [ "Command Definitions", "hw_api.html#autotoc_md19", [
-      [ "Overview", "hw_api.html#autotoc_md20", null ],
-      [ "Details", "hw_api.html#autotoc_md21", null ]
+    [ "Command Definitions", "hw_api.html#autotoc_md18", [
+      [ "Overview", "hw_api.html#autotoc_md19", null ],
+      [ "Details", "hw_api.html#autotoc_md20", null ]
     ] ],
-    [ "Python Example on using the SCI interface", "hw_api.html#hw_example", null ],
+    [ "Python Example on Using the SCI Interface", "hw_api.html#hw_example", null ],
     [ "Command Overview", "hw_api_cmd_overview.html", [
       [ "Generic Commands", "hw_api_cmd_overview.html#hw_api_cmds_generic", null ],
       [ "Device Control Commands", "hw_api_cmd_overview.html#hw_api_cmds_ctrl", null ],
@@ -53,7 +53,7 @@ var hw_api =
         [ "Measurement: Start Auto", "hw_api_cmd_details.html#cmd_ctrl_start", null ],
         [ "Measurement: Stop", "hw_api_cmd_details.html#cmd_ctrl_stop", null ],
         [ "Run Calibration", "hw_api_cmd_details.html#cmd_ctrl_cal", [
-          [ "Calibration Sequence Enumerator", "hw_api_cmd_details.html#autotoc_md22", null ]
+          [ "Calibration Sequence Enumerator", "hw_api_cmd_details.html#autotoc_md21", null ]
         ] ],
         [ "Device Reinitialize", "hw_api_cmd_details.html#cmd_ctrl_reinit", null ]
       ] ],
@@ -68,16 +68,16 @@ var hw_api =
       ] ],
       [ "Configuration Commands", "hw_api_cmd_details.html#hw_api_cmd_cfg", [
         [ "Data Output Mode", "hw_api_cmd_details.html#cmd_cfg_output_mode", [
-          [ "Measurement Data Output Mode Enumerator", "hw_api_cmd_details.html#autotoc_md23", null ]
+          [ "Measurement Data Output Mode Enumerator", "hw_api_cmd_details.html#autotoc_md22", null ]
         ] ],
         [ "Measurement Mode", "hw_api_cmd_details.html#cmd_cfg_mode", null ],
         [ "Frame Time", "hw_api_cmd_details.html#cmd_cfg_frame_time", null ],
         [ "Dual Frequency Mode", "hw_api_cmd_details.html#cmd_cfg_dfm", [
-          [ "Dual Frequency Mode Enumerator", "hw_api_cmd_details.html#autotoc_md24", null ]
+          [ "Dual Frequency Mode Enumerator", "hw_api_cmd_details.html#autotoc_md23", null ]
         ] ],
         [ "Smart Power Save Mode", "hw_api_cmd_details.html#cmd_cfg_sps", null ],
         [ "Shot Noise Monitor Mode", "hw_api_cmd_details.html#cmd_cfg_snm", [
-          [ "Shot Noise Monitor Mode Enumerator", "hw_api_cmd_details.html#autotoc_md25", null ]
+          [ "Shot Noise Monitor Mode Enumerator", "hw_api_cmd_details.html#autotoc_md24", null ]
         ] ],
         [ "Dynamic Configuration Adaption", "hw_api_cmd_details.html#cmd_cfg_dca", null ],
         [ "Pixel Binning", "hw_api_cmd_details.html#cmd_cfg_pba", null ],

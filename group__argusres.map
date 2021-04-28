@@ -1,5 +1,5 @@
 <map id="Measurement Data" name="Measurement Data">
-<area shape="rect" id="node1" title="Measurement results data structures." alt="" coords="163,5,293,31"/>
-<area shape="rect" id="node3" href="$group__argusmap.html" title="Pixel ADC Channel (n) to x&#45;y&#45;Index Mapping." alt="" coords="341,5,492,31"/>
+<area shape="rect" id="node1" title="Measurement results data structures." alt="" coords="163,5,295,31"/>
+<area shape="rect" id="node3" href="$group__argusmap.html" title="Pixel ADC Channel (n) to x&#45;y&#45;Index Mapping." alt="" coords="343,5,496,31"/>
 <area shape="rect" id="node2" href="$group__argusapi.html" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="5,5,115,31"/>
 </map>

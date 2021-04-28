@@ -110,14 +110,14 @@ Toolchain Compatibility</h1>
 <p>The <em>AFBR-S50 Core Library</em> is build and tested using the <a href="https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain">GNU Embedded Toolchain for Arm</a>. However, any other toolchain that supports <em>AEABI</em> compatible library linking should work fine with the library files. Note that builds that utilize these toolchains are not tested nor verified and can not be officially supported!</p>
 <p>If you still have to use one of these, make sure to read the <a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0487a/index.html">Binary Interoperability Between Toolchains Application Note</a> by ARM to understand the implications of mixing code from different toolchains.</p>
 <p>As mentioned above, the <em>AFBR-S50 Core Library</em> is build with <em>AEABI</em> compatibility enabled (i.e. with the <em>-library_interface=aeabi_clib</em> compiler flag). The following GNU toolchain settings are used to compile the libraries:</p><ul>
-<li><em>-library_interface=aeabi_clib</em>: Specifies that the compiler output is <em>AEABI</em> complient.</li>
+<li><em>-library_interface=aeabi_clib</em>: Specifies that the compiler output is <em>AEABI</em> compliant.</li>
 <li><em>-mfloat-abi=softfp</em>: Software floating-point Procedure Call Standard (PCS) and hardware floating point instructions.</li>
 <li><em>-fno-short-enums</em>: <em>enum</em> types are at least int width.</li>
 <li><em>-fno-short-wchar</em>: the <em>wchar_t</em> data type is 4-bytes wide.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>The <em>AFBR-S50</em> code does not use any floating-point nor <em>wchar_t</em> values at all.</dd></dl>
 <h1><a class="anchor" id="pg_architecture"></a>
-Architectur Compatibility</h1>
+Architecture Compatibility</h1>
 <p>The <em>AFBR-S50 Core Library</em> is compatible with all <a href="https://developer.arm.com/ip-products/processors/cortex-m">Arm Cortex-M Series Processors</a>. The library is optimized for the smallest variants, the *Cortex-M0/M0+. However, the upwards compatibility of the Cortex-Mx family makes it easy to run the same library on higher architectures without effort as well. The library artifacts are compiled for the most common architectures.</p>
 <p>The following API variants are available:</p>
 <table class="markdownTable">
@@ -185,7 +185,7 @@ Hardware Compatibility</h1>
 <li>RAM: 8kByte (4kByte Heap + 4kByte Stack)</li>
 <li>ROM/Flash: 128 kByte</li>
 </ul>
-<dl class="section warning"><dt>Warning</dt><dd>These requirements are the minumum values for the <em>AFBR-S50 Core Library and API</em> only! Additional memory for user application is not considered here and must be added accordingly.</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>These requirements are the minimum values for the <em>AFBR-S50 Core Library and API</em> only! Additional memory for user application is not considered here and must be added accordingly.</dd></dl>
 <p>The following section gives a brief overview on the corresponding hardware layers.</p>
 <h1><a class="anchor" id="pg_hw_layers"></a>
 Hardware Layers</h1>
@@ -195,7 +195,8 @@ Hardware Layers</h1>
 S2PI (= SPI + GPIO) Layer</h2>
 <p>The S2PI module is a combination of SPI and GPIO hardware. The communication with the device requires an SPI peripheral. To increase speed and lower the CPU load, it is recommended to us a DMA module along with the SPI interface. The measurement data ready event occurs when the measurement cycle on the device is finished and the data is ready to read. A single GPIO IRQ invoking a callback to the API core is required and incorporated into the SPI module.</p>
 <p>In addition to the standard SPI interface, the corresponding pins must also be accessible in GPIO mode. This is required to access the EEPROM memory of the AFBR-S50 sensor device that holds calibration parameters. The EEPROM interface is connected to the SPI pins to decrease the complexity in pinning and wiring. The EEPROM interface is not compatible with any standard SPI interface and thus it is emulated in software using bit banging algorithms. A mechanism to switch forth and back between SPI and GPIO mode for the corresponding pins is incorporated into the S2PI module.</p>
-<h3><a class="anchor" id="autotoc_md5"></a>
+<dl class="section note"><dt>Note</dt><dd>The EEPROM read sequence (and herein the GPIO mode) is only executed once upon device initialization. This is, during the <a class="el" href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898" title="Initializes the API modules and the device with default parameters.">Argus_Init</a> API function. The EEPROM is not accessed while active distance measurements are executed and thus the GPIO toggle speed does not impact the device performance.</dd></dl>
+<h3><a class="anchor" id="autotoc_md4"></a>
 S2PI Overview</h3>
 <p>The module needs to provide two different modes of operation, both as SPI master:</p>
 <ol type="1">
@@ -203,8 +204,8 @@ S2PI Overview</h3>
 <p class="startli">The fast SPI mode is used for accessing the device for all purposes (initialization, configuration, calibration and measurement).</p>
 <p class="startli">Obviously, to allow a continuous data transfer on the SPI interface without creating a high load on the microcontroller itself, although not strictly required, it is strongly recommended to set up DMA transfer for the SPI interface. The following description assumes that DMA is used.</p>
 </li>
-<li><p class="startli"><em>A slow SPI mode for accessing the EEPROM</em></p>
-<p class="startli">Calibration data is stored on a small EEPROM that needs to be read at a much lower speed. The readout is performed on the same interface as the fast SPI, but with a bit-banging mechanism that allows the control of all signals with a much slower timing as GPIOs.</p>
+<li><p class="startli"><em>A slow GPIO mode for accessing the EEPROM</em></p>
+<p class="startli">Calibration data is stored on a small EEPROM that needs to be read upon device initialization at a much lower speed. The readout is performed on the same interface as the fast SPI, but with a bit-banging mechanism that allows the control of all signals with a much slower timing as GPIOs.</p>
 <p class="startli">The bit-banging mechanism is already built into the library, so the hardware layer only has to provide:</p><ul>
 <li>A mechanism to switch between the two operation modes</li>
 <li>A mechanism to set the GPIO pins to the required state</li>
@@ -212,86 +213,94 @@ S2PI Overview</h3>
 <p class="startli">The EEPROM readout is performed only during initialization, so the speed does not negatively affect measurement performance.</p>
 </li>
 </ol>
-<h3><a class="anchor" id="autotoc_md6"></a>
-Initialization</h3>
+<p>See the <a class="el" href="group__argus__s2pi.html">S2PI module</a> documentation for more details on the SPI interface.</p>
+<dl class="section note"><dt>Note</dt><dd>If EEPROM readout fails and the device shows bad performance, refer to the <a class="el" href="faq.html#faq_eeprom">troubleshooting section</a> for additional info on how to debug the GPIO mode.</dd></dl>
+<h3><a class="anchor" id="autotoc_md5"></a>
+S2PI Initialization</h3>
 <p>The SPI hardware layer is required to be initialized before the first call to the core library.</p>
-<h4><a class="anchor" id="autotoc_md7"></a>
-Pin configuration</h4>
+<h4><a class="anchor" id="autotoc_md6"></a>
+S2PI Pin configuration</h4>
 <ol type="1">
-<li><p class="startli"><em>SCLK, MOSI, MISO</em></p>
-<p class="startli">The SPI communications requires the three standard pins SCLK (SPI clock), MOSI (master out, slave in) and MISO (master in, slave out) to be switchable between SPI and GPIO modes.</p>
+<li><p class="startli"><em>CLK, MOSI, MISO</em></p>
+<p class="startli">The SPI communications requires the three standard pins <em>CLK</em> (SPI clock), <em>MOSI</em> (master out, slave in) and <em>MISO</em> (master in, slave out) to be switchable between SPI and GPIO modes.</p>
+<p class="startli">The <em>CLK</em> and <em>MOSI</em> lines are configured as output and the <em>MISO</em> is configured as input. The <em>MISO</em> is actively driven by the device and thus no pull-up resistor is required.</p>
 </li>
 <li><p class="startli"><em>CS</em></p>
-<p class="startli">Even though it is expected that the device is the only device on the SPI interface, a CS (chip select) signal is required to be asserted on every transfer. Depending on the SPI capabilities, this may be either handled by the SPI implementation (hard CS) or as GPIO (soft CS).</p>
-<p class="startli">This signal is active low, and must be reasserted to high between transfers.</p>
+<p class="startli">Even though it is expected that the device is the only device on the SPI interface, a <em>CS</em> (chip select) signal is required to be asserted on every SPI transfer. Depending on the SPI capabilities, this may be either handled by the SPI peripheral (hard <em>CS</em>) or by GPIO toggling (soft <em>CS</em>).</p>
+<p class="startli">This signal is active low and is asserted during transfers. The signal must be cycled to high between transfers.</p>
 </li>
 <li><p class="startli"><em>IRQ</em></p>
-<p class="startli">This is an input line that allows the device will signal that measurement data is available and ready for transfer.</p>
+<p class="startli">This is an input line that allows the device to signal that measurement data is available and ready for transfer.</p>
 <p class="startli">This signal is active low and will be asserted until the next SPI transfer is started, which is assumed to pick up the data. The GPIO should be configured as input triggering an interrupt on the falling edge. Take care that a GPIO with a unique interrupt ID is picked for this line, or no other GPIO attached to the same interrupt ID is configured to trigger any interrupts. The IRQ line needs a pull-up resistor set.</p>
 </li>
 </ol>
 <p>Be also careful with the initialization regarding:</p><ul>
-<li>The speed of GPIO changes (fast)</li>
+<li>The speed of GPIO changes: fast</li>
 <li>The type of output: push-pull</li>
-<li>The signal level</li>
+<li>The signal level: 3V3</li>
 </ul>
 <p>The following table provides an overview over the GPIO configurations:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone"></th><th class="markdownTableHeadCenter">CLK   </th><th class="markdownTableHeadCenter">MOSI   </th><th class="markdownTableHeadCenter">MISO   </th><th class="markdownTableHeadCenter">CS   </th><th class="markdownTableHeadCenter">IRQ    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Direction   </td><td class="markdownTableBodyCenter">Output   </td><td class="markdownTableBodyCenter">Output   </td><td class="markdownTableBodyCenter">Output   </td><td class="markdownTableBodyCenter">Output   </td><td class="markdownTableBodyCenter">Input    </td></tr>
+<td class="markdownTableBodyNone">Direction   </td><td class="markdownTableBodyCenter">Output   </td><td class="markdownTableBodyCenter">Output   </td><td class="markdownTableBodyCenter">Input   </td><td class="markdownTableBodyCenter">Output   </td><td class="markdownTableBodyCenter">Input    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Drive Mode   </td><td class="markdownTableBodyCenter">Push-Pull   </td><td class="markdownTableBodyCenter">Push-Pull   </td><td class="markdownTableBodyCenter">Push-Pull   </td><td class="markdownTableBodyCenter">Push-Pull   </td><td class="markdownTableBodyCenter">None    </td></tr>
+<td class="markdownTableBodyNone">Drive Mode   </td><td class="markdownTableBodyCenter">Push-Pull   </td><td class="markdownTableBodyCenter">Push-Pull   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter">Push-Pull   </td><td class="markdownTableBodyCenter">-    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Pull-Up   </td><td class="markdownTableBodyCenter">Not required   </td><td class="markdownTableBodyCenter">Not required   </td><td class="markdownTableBodyCenter">No   </td><td class="markdownTableBodyCenter">Not required   </td><td class="markdownTableBodyCenter">Pull Up    </td></tr>
+<td class="markdownTableBodyNone">Pull-Up   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter">None   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter">Pull Up    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Speed   </td><td class="markdownTableBodyCenter">Fast   </td><td class="markdownTableBodyCenter">Fast   </td><td class="markdownTableBodyCenter">Fast   </td><td class="markdownTableBodyCenter">Slow   </td><td class="markdownTableBodyCenter">Fast    </td></tr>
+<td class="markdownTableBodyNone">Interrupt   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter">Falling Edge    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Speed   </td><td class="markdownTableBodyCenter">Fast   </td><td class="markdownTableBodyCenter">Fast   </td><td class="markdownTableBodyCenter">Fast   </td><td class="markdownTableBodyCenter">Fast   </td><td class="markdownTableBodyCenter">Fast    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Signal Level   </td><td class="markdownTableBodyCenter">3V3   </td><td class="markdownTableBodyCenter">3V3   </td><td class="markdownTableBodyCenter">3V3   </td><td class="markdownTableBodyCenter">3V3   </td><td class="markdownTableBodyCenter">3V3    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Mode for SPI   </td><td class="markdownTableBodyCenter">SPI   </td><td class="markdownTableBodyCenter">SPI   </td><td class="markdownTableBodyCenter">SPI   </td><td class="markdownTableBodyCenter">SPI or GPIO   </td><td class="markdownTableBodyCenter">GPIO    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Mode for GPIO   </td><td class="markdownTableBodyCenter">GPIO   </td><td class="markdownTableBodyCenter">GPIO   </td><td class="markdownTableBodyCenter">GPIO   </td><td class="markdownTableBodyCenter">GPIO   </td><td class="markdownTableBodyCenter">GPIO   </td></tr>
+<td class="markdownTableBodyNone">Mode for GPIO   </td><td class="markdownTableBodyCenter">GPIO   </td><td class="markdownTableBodyCenter">GPIO   </td><td class="markdownTableBodyCenter">GPIO   </td><td class="markdownTableBodyCenter">GPIO   </td><td class="markdownTableBodyCenter">(not used)   </td></tr>
 </table>
-<h4><a class="anchor" id="autotoc_md8"></a>
+<h4><a class="anchor" id="autotoc_md7"></a>
 SPI Mode</h4>
 <p>The device works with CPOL=1 (clock polarity) and CPHA=1 (clock phase), meaning that the clock is pulled high in idle state and the data should be read on the rising clock edge. This is also frequently referred to SPI mode 3. This must be configured accordingly:</p><ul>
 <li>CPOL = 1</li>
 <li>CPHA = 1</li>
 </ul>
-<h4><a class="anchor" id="autotoc_md9"></a>
+<h4><a class="anchor" id="autotoc_md8"></a>
 SPI Speed</h4>
 <p>The speed is crucial to achieve a high frame rate when performing continuous measurements: As each measurement requires around 500 bytes of data, the data transfer alone will take 4000 times the SPI clock period, not including the measurement itself and the preparation of the SPI transfers.</p>
 <p>It is therefore recommended to choose a high transfer speed that is still compatible with the electrical requirements of the sensor as given in the data sheet and the environment in which it is built. An SPI clock frequency in the range of 10 to 12 MHz is a good starting point.</p>
-<dl class="section note"><dt>Note</dt><dd>It may not be easy or even possible to set any SPI clock speed. Instead, the SPI speed is often directly coupled with the system clock via a divider.</dd></dl>
-<h4><a class="anchor" id="autotoc_md10"></a>
-DMA</h4>
-<p>For the DMA (direct memory access) transfer, usually two seperate channels need to be set up for the data read and write.</p>
+<dl class="section note"><dt>Note</dt><dd>It may not be easy or even possible to set any SPI clock speed. Instead, the SPI speed is often directly coupled with the system clock via a divider.</dd>
+<dd>
+In case of issues with SPI transfers, start with a lower SPI clock speed (e.g. 1 MHz) and increase successively.</dd></dl>
+<h4><a class="anchor" id="autotoc_md9"></a>
+DMA Channels</h4>
+<p>For the DMA (direct memory access) transfer, usually two separate channels need to be set up for the data read and write.</p>
 <p>As the kind of operation always has to be specified by the master within the transfer, the SPI transfers have only two modes:</p><ul>
 <li>Transmit only</li>
 <li>Transmit and receive</li>
 </ul>
 <p>Both kinds of transfer are started via the <a class="el" href="group__argus__s2pi.html#ga0c8f883938de571dbd73033b4957a987" title="Transfers a single SPI frame asynchronously.">S2PI_TransferFrame()</a> function. While the <code>txData</code> pointer always points to valid data, the <code>rxData</code> pointer is set to <code>0</code> if no data shall be transmitted.</p>
-<dl class="section note"><dt>Note</dt><dd>rxData and txData frequently point to the same address. While this should usually be no problem, as the memory byte needs to be read before and stored after the transmission, make sure that the DMA implementation of your MCU supports this. Otherwise, the receive data should be transferred to a temporary buffer and copied to the destination after reception.</dd></dl>
-<h4><a class="anchor" id="autotoc_md11"></a>
+<dl class="section note"><dt>Note</dt><dd>The <a class="el" href="group__argus__s2pi.html#ga0c8f883938de571dbd73033b4957a987" title="Transfers a single SPI frame asynchronously.">S2PI_TransferFrame()</a> parameters <code>rxData</code> and <code>txData</code> frequently point to the same memory address. While this should usually be no problem, as the memory byte needs to be read before and stored after the transmission, make sure that the DMA implementation of your MCU supports this! Otherwise, the received data should be transferred to a temporary buffer and copied to the destination after reception.</dd></dl>
+<h4><a class="anchor" id="autotoc_md10"></a>
 DMA Interrupts and Callback Function</h4>
 <p>Usually, the SPI transmission requires a callback function to be triggered after the transmission is complete.</p>
-<p>Typically, in the DMA setup, the device provides DMA complete interrupts that can call the callback function. Also, if the CS signal is applied as GPIO (soft CS), it can be unasserted here.</p>
+<p>Typically, in the DMA setup, the device provides DMA complete interrupts that can call the callback function. Also, if the <em>CS</em> signal is applied as GPIO (soft <em>CS</em>), it can be unasserted here.</p>
 <p>However, this DMA complete callback function may already start the next SPI transfer immediately. So all cleanups required after the current SPI transfer needs to be performed before that. This may be complicated as two DMA channels may be involved in the transmit and receive case and perform cleanup on their individual channel only. The callback function must be triggered only after both channels are freed and cleaned up. Also, the CS must be unasserted before the callback function is called.</p>
-<p>On the other hand, in the transmit only case, make sure that the DMA interrupt does not call the callback function, or unassert CS, before the last byte is fully transmitted, especially if the SPI speed is slow.</p>
-<h4><a class="anchor" id="autotoc_md12"></a>
+<p>On the other hand, in the transmit only case, make sure that the DMA interrupt does not call the callback function, or unassert <em>CS</em>, before the last byte is fully transmitted, especially if the SPI speed is slow.</p>
+<h4><a class="anchor" id="autotoc_md11"></a>
 DMA Interrupt Priority</h4>
 <p>To make use of stable and high frame rates, the SPI interrupt should not be blocked by other possibly longer running interrupts, so the interrupt priority should be chosen sufficiently high. On the other hand, if the target application uses other interrupts for very time sensitive purposes, they should have higher priority, as the callback function may include preparing a new SPI transfer and therefore may take multiple microseconds to return.</p>
-<p>See the <a class="el" href="group__argus__s2pi.html">S2PI module</a> documentation for more details on the SPI interface.</p>
 <h2><a class="anchor" id="pg_timer"></a>
 Timer Layer</h2>
 <p>The <a class="el" href="group__argus__timer.html">Timer Interface</a> implements two timers: a lifetime counter (LTC) for time measurement duties and a periodic interrupt timer (PIT) for the triggering of measurements on a time based schedule.</p>
 <dl class="section warning"><dt>Warning</dt><dd>The lifetime counter is mandatory in order to heed the eye-safety limits. Note that this timer must be setup carefully in order to guarantee the laser safety to be within <em>Class 1</em>.</dd></dl>
-<h3><a class="anchor" id="autotoc_md13"></a>
+<h3><a class="anchor" id="autotoc_md12"></a>
 Lifetime Counter (LTC)</h3>
 <p>The lifetime counter should be set up to deliver the current time in microseconds. The timer resolution must be in the magnitude of 10 to 100 microseconds. This means, however, that the systick counter driven by the systick interrupt cannot be used, as it typically provides an accuracy in the range of milliseconds.</p>
 <p>Basically a hardware and a software approach can be chosen to implement the lifetime counter functionality. In any case, a first timer with at least 16-bit width is set to count the sub-seconds value and the prescaler is preferably set such that the timer wraps around after exactly 1 second. In case of a 16-bit counter the maximum achievable granularity is approximately 15 (1/65336) microseconds which is suitable for most applications.</p>
 <p>In a hardware based scenario, a second timer with 32-bits is chained to increase its value whenever the first counter wraps around and thus counting seconds. In a software based scenario, the first timer triggers an interrupt upon the wrap around. A 32-bit software counter representing the seconds is increased within the interrupt service routine.</p>
-<h3><a class="anchor" id="autotoc_md14"></a>
+<h3><a class="anchor" id="autotoc_md13"></a>
 Periodic Interrupt Timer (PIT)</h3>
 <p>Note that the periodic interrupt timer is mandatory only if the user requires the measurements to be started autonomously in the background on a time based schedule. Simple implementations may trigger measurements on demand from the foreground thread and thus the PIT is not required. A weak implementation is provided within the library so that it is not required to implement the interface if the PIT is not used.</p>
 <p>A different timer than the timer for the lifetime counter should be used. Usually, the maximum period that will be used can be reached by a combination of the timer reload value and the prescaler even on a 16-bit timer. Extending the period with software is also possible. This can be done by using an additional software counter that counts up every time the interrupts occurs and invokes the callback only after a given number has been reached.</p>
@@ -304,7 +313,7 @@ Interrupt Layer</h2>
 <li>GPIO Interrupt for Data Ready: A low indication on the IRQ line indicates that the requested data was collected on the device and is ready for transfer. This occurs usually twice per measurement (sensor and auxiliary data) and sets up the SPI transfer of the gathered data.</li>
 <li>Periodic Interrupt Timer: Periodic measurements are triggered from this interrupt. The callback initiates a new measurement, and therefore should happen only once per measurement cycle. If, however, there is no space to hold the measurement results as the previous results were not yet processed, no new measurement is started and the measurement cycle is delayed or skipped.</li>
 </ol>
-<h3><a class="anchor" id="autotoc_md15"></a>
+<h3><a class="anchor" id="autotoc_md14"></a>
 Interrupt Priority</h3>
 <p>All of these interrupts with their callbacks typically take several microseconds to complete. The callback functions within the API are designed to not induce considerable delays and return as fast as possible.</p>
 <p>If other interrupts within the microcontroller are used, their priority should be chosen in the following way:</p>
@@ -313,7 +322,7 @@ Interrupt Priority</h3>
 <li>Other interrupts that are very important or time critical below milliseconds should get a higher interrupt priority (typically a lower value).</li>
 <li>Other interrupts that are not as important or less time critical should get a lower interrupt priority (typically a higher value).</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md16"></a>
+<h3><a class="anchor" id="autotoc_md15"></a>
 Concurrency and Interrupt Locking</h3>
 <p>The callbacks from the interrupts above provide information or trigger new SPI transfers. In order to prevent concurrency issues, the program must be able to lock the occurrence of these interrupts in atomic or critical sections of the code. Therefore, the <a class="el" href="group__argus__irq.html">IRQ Interface</a> shall be implemented.</p>
 <p>In general, the IRQs are only locked for very short time (sub-microseconds) in order read the status and update it appropriately without the interruption from a higher priority thread. However a nested implementation of the locking mechanism is required for the library core to work correctly.</p>
@@ -329,9 +338,9 @@ Log Layer</h2>
 <p>In order to send debug and error messages, a <em>printf</em>-like function from the <a class="el" href="group__argus__log.html">Debug Interface</a> can be implemented. If not required, the implementation can be left out and and dummy default implementation will be used that does not send the error messages anywhere. However, implementing this interface may have an impact on the measurement performance, especially when it is slow (e. g. synchronous transfer over UART).</p>
 <p>Note that errors are propagated using the <a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092" title="Type used for all status and error return values.">status_t</a> enumeration of status and error codes. Any method within the API returns an error code that gives a hint on the execution status of the routine.</p>
 <h1><a class="anchor" id="pg_guide"></a>
-Step-by-step porting guide</h1>
+Step-by-Step Porting Guide</h1>
 <p>The following step-by-step guide leads through the basic process on getting the API running on any Cortex-M0 based development environment. The steps are demonstrated using the <a href="https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE">MCUXpresso-IDE</a> and the <a href="https://www.nxp.com/design/development-boards/freedom-development-boards/mcu-boards/freedom-development-platform-for-kinetis-kl3x-and-kl4x-mcus:FRDM-KL46Z">NXP FRDM-KL46Z</a> development platform from NXP that comes also with the AFBR-S50 evaluation kit. It should be an easy task for experienced embedded software developer to follow the steps on its dedicated development environment.</p>
-<dl class="section note"><dt>Note</dt><dd>This is a brief guide that shows the basic approach for porting the API only. An extensive porting guide to a Cortex-M4 architecture is available on the <a href="https://www.broadcom.com/products/optical-sensors/time-of-flight-3d-sensors">Broadcom website</a>. This document shows the full task of porting the <em>AFBR-S50 API</em> to a new processor platform on the example of a STM32F403RE Cortex-M4 microprocessor.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This is a brief guide that shows the basic approach for porting the API only. An extensive porting guide to a Cortex-M4 architecture is available on the <a href="https://www.broadcom.com/products/optical-sensors/time-of-flight-3d-sensors">Broadcom website</a> (select any Sensor and go to "Documentation" -&gt; "Programming Guides"). This document shows the full task of porting the <em>AFBR-S50 API</em> to a new processor platform on the example of a STM32F403RE Cortex-M4 microprocessor.</dd></dl>
 <h2><a class="anchor" id="pg_new_project"></a>
 Create a new project in your environment</h2>
 <p>The first step would be to create a new empty project or use an existing one. Usually this is done utilizing the provided platform specific SDK provided by the vendor. In case of the FRDM-KL46Z, the MCUXpresso-IDE and the MCUXpresso-SDK is used to create a project with at least SPI (with DMA mode), GPIO and PIT (periodic interrupt timer) support. The new project is tested using the "Hello World" print statement.</p>

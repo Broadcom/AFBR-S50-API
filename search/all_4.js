@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['enabled_219',['Enabled',['../structargus__cfg__pba__t.html#a14345a4440da75435ec0df15441d4811',1,'argus_cfg_pba_t::Enabled()'],['../structargus__cfg__dca__t.html#a7ce7ab1c1f0b93065b812441fdeb487a',1,'argus_cfg_dca_t::Enabled()'],['../structargus__cal__p2pxtalk__t.html#a3f74bc59de2a55b345ba0934a16c5660',1,'argus_cal_p2pxtalk_t::Enabled()']]],
+  ['enabled_219',['Enabled',['../structargus__cfg__dca__t.html#a7ce7ab1c1f0b93065b812441fdeb487a',1,'argus_cfg_dca_t::Enabled()'],['../structargus__cfg__pba__t.html#a14345a4440da75435ec0df15441d4811',1,'argus_cfg_pba_t::Enabled()'],['../structargus__cal__p2pxtalk__t.html#a3f74bc59de2a55b345ba0934a16c5660',1,'argus_cal_p2pxtalk_t::Enabled()']]],
   ['error_5faborted_220',['ERROR_ABORTED',['../group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba8b9327724f35561b5736edb14c5c3b91',1,'argus_status.h']]],
   ['error_5fargus_5fbgl_5fexceedance_221',['ERROR_ARGUS_BGL_EXCEEDANCE',['../group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baa2429754ac63d4b4f1bec46af4bf4c40',1,'argus_status.h']]],
   ['error_5fargus_5fbias_5fvoltage_5freinit_222',['ERROR_ARGUS_BIAS_VOLTAGE_REINIT',['../group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baf0e528520443a79c92959950049e7c4d',1,'argus_status.h']]],
