@@ -19,7 +19,7 @@ If you want to implement and utilize the *AFBR-S50 Core Library* and API within 
 
 ## Porting to a new MCU Platform
 
-If you want to use your own hardware to host and run the *AFBR-S50 Core Library*, refer to the [API Porting Guide](@ref porting_guide).
+If you want to use your own hardware to host and run the *AFBR-S50 Core Library*, refer to the [API Porting Guide](https://docs.broadcom.com/docs/AFBR-S50-SDK-Porting-Guide-to-Cortex-M4).
 
 ## Copyright and License
 
