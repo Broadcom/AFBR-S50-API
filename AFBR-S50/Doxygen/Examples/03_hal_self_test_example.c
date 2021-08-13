@@ -58,21 +58,6 @@
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-
-/*! Selector for simple/advanced demo:
- *  - 0: measurements are triggered in synchronously from the main thread.
- *  - 1: measurements are triggered asynchronously from the background. */
-#ifndef ADVANCED_DEMO
-#define ADVANCED_DEMO 1
-#endif
-
-/*! Selector for HAL test demo:
- *  - 0: no HAL tests are executed.
- *  - 1: HAL tests are executed before any API code is executed. */
-#ifndef RUN_HAL_TESTS
-#define RUN_HAL_TESTS 1
-#endif
-
 /*! Define the SPI slave (to be used in the SPI module). */
 #define SPI_SLAVE 1
 
@@ -163,12 +148,9 @@ int main(void)
 	 * for the API. */
 	hardware_init();
 
-
-#if RUN_HAL_TESTS
 	/* Running a sequence of test in order to verify the HAL implementation. */
 	status = Argus_VerifyHALImplementation(SPI_SLAVE);
 	handle_error(status, "HAL Implementation verification failed!");
-#endif
 
 
 	/* The API module handle that contains all data definitions that is
@@ -198,12 +180,7 @@ int main(void)
 	uint8_t c = value & 0xFFFFU;
 	uint32_t id = Argus_GetChipID(hnd);
 	argus_module_version_t mv = Argus_GetModuleVersion(hnd);
-
-#if ADVANCED_DEMO
 	print("\n##### AFBR-S50 API - Advanced Example ############\n"
-#else
-	print("\n##### AFBR-S50 API - Simple Example ##############\n"
-#endif
 		  "  API Version: v%d.%d.%d\n"
 		  "  Chip ID:     %d\n"
 		  "  Module:      %s\n"
@@ -222,8 +199,6 @@ int main(void)
 	/* Adjust some configuration parameters by invoking the dedicated API methods. */
 	status = Argus_SetConfigurationFrameTime( hnd, 100000 ); // 0.1 second = 10 Hz
 	handle_error(status, "Argus_SetConfigurationFrameTime failed!");
-
-#if ADVANCED_DEMO
 
 	/* Start the measurement timers within the API module.
 	 * The callback is invoked every time a measurement has been finished.
@@ -261,52 +236,6 @@ int main(void)
 			__asm("nop");
 		}
 	}
-
-#else
-
-	/* The program loop ... */
-	for (;;)
-	{
-		myData = 0;
-
-		/* Triggers a single measurement.
-		 * Note that due to the laser safety algorithms, the method might refuse
-		 * to restart a measurement when the appropriate time has not been elapsed
-		 * right now. The function returns with status #STATUS_ARGUS_POWERLIMIT and
-		 * the function must be called again later. Use the frame time configuration
-		 * in order to adjust the timing between two measurement frames. */
-		status = Argus_TriggerMeasurement(hnd, measurement_ready_callback);
-		handle_error(status, "Argus_StartMeasurementTimer failed!");
-
-		if (status == STATUS_ARGUS_POWERLIMIT)
-		{
-			/* Not ready (due to laser safety) to restart the measurement yet.
-			 * Come back later. */
-			continue;
-		}
-		else
-		{
-			/* Wait until measurement data is ready. */
-			do
-			{
-				status = Argus_GetStatus(hnd);
-			}
-			while (status == STATUS_BUSY);
-			handle_error(status, "Waiting for measurement data ready (Argus_GetStatus) failed!");
-
-			/* The measurement data structure. */
-			argus_results_t res;
-
-			/* Evaluate the raw measurement results. */
-			status = Argus_EvaluateData(hnd, &res, (void*) myData);
-			handle_error(status, "Argus_EvaluateData failed!");
-
-			/* Use the obtain results, e.g. print via UART. */
-			print_results(&res);
-		}
-	}
-
-#endif
 }
 
 static void print_results(argus_results_t const * res)

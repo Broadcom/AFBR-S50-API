@@ -302,6 +302,23 @@ In order to send debug and error messages, a *printf*-like function from the [De
 Note that errors are propagated using the #status_t enumeration of status and error codes. Any method within the API returns an error code that gives a hint on the execution status of the routine.
 
 
+# Verifying the ported code using the HAL Self Test {#hal_self_test}
+
+The *HAL Self Test* module is provide to help the user to verify its ported code on the new platform. 
+It runs a series of simple tests on the target platform and verifies things like SPI, GPIO and timer implementations.
+In case of timer tests, the connected AFBR-S50 sensor device is used as a reference clock in order to verify the correct timings.
+Please refer to the [HAL Self Test](@ref #argustest) module for a detailed documentations.
+
+Here is the modified [Advanced Example](@ref gs_adv_example) from the [Getting Started Section](@ref getting_started). The changes are basically an additional include directive and the call to the #Argus_VerifyHALImplementation function. The function call is placed after hardware initialization (i.e. `hardware_init`) and before device initialization (i.e. #Argus_Init).
+
+Please find the example files in "[INSTALL_DIR]\Device\Examples\" (default is "C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Examples\").
+
+The HAL self test header and source files are located under "[INSTALL_DIR]\Device\Examples\test" (default is "C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Examples\test").
+
+\include 03_hal_self_test_example.c
+
+
+
 # Step-by-Step Porting Guide {#pg_guide}
 
 The following step-by-step guide leads through the basic process on getting the API running on any Cortex-M0 based development environment. The steps are demonstrated using the [MCUXpresso-IDE](
@@ -402,3 +419,6 @@ Now that the platform layers are implemented, the library needs to be linked int
 ## Utilize the API {#pg_api}
 
 Now, the *AFBR-S50 API* is ready to use. Include the *argus.h* header and start coding your AFBR-S50 application. Refer to the [Getting Started Guide](@ref getting_started) to see an example implementation with basic measurements.
+
+
+\example 03_hal_self_test_example.c

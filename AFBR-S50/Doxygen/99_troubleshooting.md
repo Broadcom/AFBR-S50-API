@@ -1,6 +1,7 @@
 # Troubleshooting {#faq}
 
 The following section contains troubleshooting guidance for the most common issues.
+Please also refer to the [HAL Self Test](@ref hal_self_test) module that runs a few test cases in order to verify the HAL, e.g. after [porting the API to a new platform](@ref porting_guide).
 
 ## Device Initialization Yields Device Not Connected (Error Code -101)
 
