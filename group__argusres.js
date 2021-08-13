@@ -9,9 +9,14 @@ var group__argusres =
       [ "RangeWindow", "structargus__pixel__t.html#ac0816df3cf5b81397cd715919da1ce03", null ],
       [ "Status", "structargus__pixel__t.html#a1bab0aba97de4f50e10358c3cd2e3336", null ]
     ] ],
+    [ "argus_vector_t", "structargus__vector__t.html", [
+      [ "C", "structargus__vector__t.html#a709c335617e44b47d02304e7c393f883", null ],
+      [ "S", "structargus__vector__t.html#a1937758c5ce2d4255e3633cca98d68c8", null ]
+    ] ],
     [ "argus_results_bin_t", "structargus__results__bin__t.html", [
       [ "Amplitude", "structargus__results__bin__t.html#a918392407fcf45cadb280ebe502d633d", null ],
-      [ "Range", "structargus__results__bin__t.html#a830e9e333b9fece506f2e72b92087a51", null ]
+      [ "Range", "structargus__results__bin__t.html#a830e9e333b9fece506f2e72b92087a51", null ],
+      [ "SignalQuality", "structargus__results__bin__t.html#a032de48d823435330e13bc0d50934227", null ]
     ] ],
     [ "argus_results_aux_t", "structargus__results__aux__t.html", [
       [ "BGL", "structargus__results__aux__t.html#a0f03abb8681f3372d4187ab84bcc4fdd", null ],
@@ -29,6 +34,7 @@ var group__argusres =
       [ "Frame", "structargus__results__t.html#a4270d9561d3ea6518527dd3ff316dfae", null ],
       [ "Pixel", "structargus__results__t.html#a98f47fff1959f85bc941df9c6c850f31", null ],
       [ "PixelRef", "structargus__results__t.html#a7982d02b667ac86b2b7f2f89d2b07296", null ],
+      [ "Pixels", "structargus__results__t.html#a2bbdfd385d7949b21e3e5b195ac1aa02", null ],
       [ "Status", "structargus__results__t.html#a94a5adbd578f9e837e084cdd79a142ca", null ],
       [ "TimeStamp", "structargus__results__t.html#a91e1512faa059bf647021c9921f248df", null ]
     ] ],

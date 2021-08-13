@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Measurement/Device Control</title>
+<title>AFBR-S50 API Reference Manual: Measurement/Device Control</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -108,7 +108,7 @@ Collaboration diagram for Measurement/Device Control:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__argusmeas.png" border="0" usemap="#agroup____argusmeas" alt=""/></div>
 <map name="agroup____argusmeas" id="agroup____argusmeas">
-<area shape="rect" title="Measurement/Device control module." alt="" coords="163,5,305,45"/>
+<area shape="rect" title="Measurement/Device control module." alt="" coords="163,5,308,45"/>
 <area shape="rect" href="group__argusapi.html" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="5,13,115,38"/>
 </map>
 </div>
@@ -293,8 +293,8 @@ Functions</h2></td></tr>
 
 <p>Evaluate useful information from the raw measurement data. </p>
 <hr  />
-<p>This function is called with a pointer to the raw results obtained from the measurement cycle. It evaluates this data and creates useful information from it. Furthermore, calibration is applied to the data. Finally, the results are used in order to adapt the device configuration to the ambient conditions in order to achieve optimal device performance.<br  />
- Therefore, it consists of the following sub-functions:</p><ul>
+<p>This function is called with a pointer to the raw results obtained from the measurement cycle. It evaluates this data and creates useful information from it. Furthermore, calibration is applied to the data. Finally, the results are used in order to adapt the device configuration to the ambient conditions in order to achieve optimal device performance.</p>
+<p>Therefore, it consists of the following sub-functions:</p><ul>
 <li>Apply pre-calibration: Applies calibration steps before evaluating the data, i.e. calculations that are to the integration results directly.</li>
 <li>Evaluate data: Calculates measurement parameters such as range, amplitude or ambient light intensity, depending on the configurations.</li>
 <li>Apply post-calibration: Applies calibrations after evaluation of measurement data, i.e. calibrations applied to the calculated values such as range.</li>
@@ -310,7 +310,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the <a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status</a> (<a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a> on success). </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a10">01_simple_example.c</a>, and <a class="el" href="02_advanced_example_8c-example.html#a7">02_advanced_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a21">01_simple_example.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a18">02_advanced_example.c</a>, and <a class="el" href="03_hal_self_test_example_8c-example.html#a19">03_hal_self_test_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -365,11 +365,8 @@ Functions</h2></td></tr>
 <li>Relative (<a class="el" href="group__argusmeas.html#ga573729ed4cf412225029761cad04375d" title="Executes a relative range offset calibration measurement.">Argus_ExecuteRelativeRangeOffsetCalibrationSequence</a>): when the absolute distance is not essential or the distance to the calibration target is not known, the relative method can be used to compensate the relative pixel range offset w.r.t. the average range. The absolute or global range offset is not changed.</li>
 <li>Absolute (<a class="el" href="group__argusmeas.html#ga28f9a320fa562f2dfc65a97c80ca9b90" title="Executes an absolute range offset calibration measurement.">Argus_ExecuteAbsoluteRangeOffsetCalibrationSequence</a>): when the absolute distance is essential and the distance to the calibration target is known, the absolute method can be used to calibrate the absolute measured distance. Additionally, the relative pixel offset w.r.t. the average range is also compensated.</li>
 </ul>
-<pre class="fragment">After calibration has finished successfully, the obtained data is
-applied immediately and can be read from the API using the
-#Argus_GetCalibrationPixelRangeOffsets or
-#Argus_GetCalibrationGlobalRangeOffset function.
-</pre> <dl class="params"><dt>Parameters</dt><dd>
+<p>After calibration has finished successfully, the obtained data is applied immediately and can be read from the API using the <a class="el" href="group__arguscal.html#ga84b9ab66c5f8a79921bdff3bf806673f" title="Gets the relative pixel offset table from a specified device.">Argus_GetCalibrationPixelRangeOffsets</a> or <a class="el" href="group__arguscal.html#ga942c296d7224f1f6fbebe67ea0f4024a" title="Gets the global range offset value from a specified device.">Argus_GetCalibrationGlobalRangeOffset</a> function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hnd</td><td>The API handle; contains all internal states and data. </td></tr>
     <tr><td class="paramname">mode</td><td>The targeted measurement mode. </td></tr>
@@ -425,11 +422,8 @@ applied immediately and can be read from the API using the
 <li>Relative (<a class="el" href="group__argusmeas.html#ga573729ed4cf412225029761cad04375d" title="Executes a relative range offset calibration measurement.">Argus_ExecuteRelativeRangeOffsetCalibrationSequence</a>): when the absolute distance is not essential or the distance to the calibration target is not known, the relative method can be used to compensate the relative pixel range offset w.r.t. the average range. The absolute or global range offset is not changed.</li>
 <li>Absolute (<a class="el" href="group__argusmeas.html#ga28f9a320fa562f2dfc65a97c80ca9b90" title="Executes an absolute range offset calibration measurement.">Argus_ExecuteAbsoluteRangeOffsetCalibrationSequence</a>): when the absolute distance is essential and the distance to the calibration target is known, the absolute method can be used to calibrate the absolute measured distance. Additionally, the relative pixel offset w.r.t. the average range is also compensated.</li>
 </ul>
-<pre class="fragment">After calibration has finished successfully, the obtained data is
-applied immediately and can be read from the API using the
-#Argus_GetCalibrationPixelRangeOffsets or
-#Argus_GetCalibrationGlobalRangeOffset function.
-</pre> <dl class="params"><dt>Parameters</dt><dd>
+<p>After calibration has finished successfully, the obtained data is applied immediately and can be read from the API using the <a class="el" href="group__arguscal.html#ga84b9ab66c5f8a79921bdff3bf806673f" title="Gets the relative pixel offset table from a specified device.">Argus_GetCalibrationPixelRangeOffsets</a> or <a class="el" href="group__arguscal.html#ga942c296d7224f1f6fbebe67ea0f4024a" title="Gets the global range offset value from a specified device.">Argus_GetCalibrationGlobalRangeOffset</a> function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hnd</td><td>The API handle; contains all internal states and data. </td></tr>
     <tr><td class="paramname">mode</td><td>The targeted measurement mode. </td></tr>
@@ -500,29 +494,25 @@ applied immediately and can be read from the API using the
 
 <p>Checks the state of the device/driver. </p>
 <hr  />
-<p>Returns the current module state: </p><pre class="fragment">    Status:
-    - Idle/OK: Device and SPI interface are idle (== #STATUS_IDLE).
-        - Busy: Device or SPI interface are busy (== #STATUS_BUSY).
-        - Initializing: The modules and devices are currently initializing
-                        (== #STATUS_INITIALIZING).
-        .
-
-        Error:
-        - Not Initialized: The modules (or any submodule) has not been
-                           initialized yet (== #ERROR_NOT_INITIALIZED).
-        - Not Connected: No device has been connected (or connection errors
-                         have occured) (== #ERROR_ARGUS_NOT_CONNECTED).
-        - Timeout: A previous frame measurement has not finished within a
-                   specified time (== #ERROR_TIMEOUT).
-    .
-</pre> <dl class="params"><dt>Parameters</dt><dd>
+<p>Returns the current module status or error if any. See the following for a list of errors:</p>
+<p>Status:</p><ul>
+<li>Idle/OK: Device and SPI interface are idle (== <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba99ade6ecff7f9e1fb13b62be39b85d82">STATUS_IDLE</a>).</li>
+<li>Busy: Device or SPI interface are busy (== <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88">STATUS_BUSY</a>).</li>
+<li>Initializing: The modules and devices are currently initializing (== <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba32a2ccf8c51d77451df9288507a99a02">STATUS_INITIALIZING</a>).</li>
+</ul>
+<p>Error:</p><ul>
+<li>Not Initialized: The modules (or any submodule) has not been initialized yet (== <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba1828f808506ac0f1fa7cf7a9a659210d">ERROR_NOT_INITIALIZED</a>).</li>
+<li>Not Connected: No device has been connected (or connection errors have occurred) (== <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baa1e50bb51331e898a5b3a6662a770016">ERROR_ARGUS_NOT_CONNECTED</a>).</li>
+<li>Timeout: A previous frame measurement has not finished within a specified time (== <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba4d0f7be53b837f004379ac6bbd56f1e2">ERROR_TIMEOUT</a>).</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hnd</td><td>The API handle; contains all internal states and data. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the <a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status</a> (<a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a> on success). </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a7">01_simple_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a19">01_simple_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -584,16 +574,16 @@ applied immediately and can be read from the API using the
 
 <p>Starts the timer based measurement cycle asynchronously. </p>
 <hr  />
-<p>This function starts a timer based measurement cycle asynchronously. in the background. A periodic timer interrupt triggers the measurement frames on the ASIC and the data readout afterwards. When the frame is finished, a callback (which is passed as a parameter to the function) is invoked in order to inform the main thread to call the <a class="el" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239">data evaluation method</a>. This call is mandatory to release the data buffer for the next measurement cycle and it must not be invoked from the callback since it is within an interrupt service routine. Rather a flag should inform the main thread to invoke the evaluation as soon as possible in order to not introduce any unwanted delays to the next measurement frame. The next measurement frame will be started as soon as the pre- conditions are meet. These are:</p><ol type="1">
+<p>This function starts a timer based measurement cycle asynchronously in the background. A periodic timer interrupt triggers the measurement frames on the ASIC and the data readout afterwards.</p>
+<p>When the measurement has finished, a callback (which is passed as a parameter to the function) is invoked in order to inform the main thread to call the <a class="el" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239">data evaluation method</a>. This call is mandatory to release the data buffer for the next measurement and it must not be invoked directly from the callback since it is currently within an interrupt service routine. Rather a flag should inform the main thread or task scheduler to invoke the evaluation as soon as possible in order to not introduce any unwanted delays to the next measurement frame.</p>
+<p>The next measurement frame will be started as soon as the pre- conditions are meet. These are:</p><ol type="1">
 <li>timer flag set (i.e. a certain time has passed since the last measurement in order to fulfill eye-safety),</li>
 <li>device idle (i.e. no measurement currently ongoing) and</li>
-<li>data buffer ready (i.e. the previous data has been evaluated). Usually, the device idle and data buffer ready conditions are met before the timer tick occurs and thus the timer dictates the frame rate. <pre class="fragment">The callback function pointer will be invoked when the measurement
-frame has finished successfully or whenever an error, that cannot
-be handled internally, occurs.
-
-The periodic timer interrupts are used to check the measurement status
-</pre> for timeouts. An error is invoked when a measurement cycle have not finished within the specified time.</li>
+<li>data buffer ready (i.e. the previous data has been evaluated).</li>
 </ol>
+<p>Usually, the device idle and data buffer ready conditions are met before the timer tick occurs and thus the timer dictates the frame rate.</p>
+<p>The callback function pointer will be invoked when the measurement frame has finished successfully or whenever an error, that cannot be handled internally, occurs.</p>
+<p>The periodic timer interrupts are used to check the measurement status for timeouts. An error is invoked when a measurement cycle have not finished within the specified time.</p>
 <p>Use <a class="el" href="group__argusmeas.html#ga4c9933c83ea073d73d6108f64ea32e86" title="Stops the timer based measurement cycle.">Argus_StopMeasurementTimer</a> to stop the measurements.</p>
 <dl class="section note"><dt>Note</dt><dd>In order to use this function, the periodic interrupt timer module (see <a class="el" href="group__argus__timer.html">Timer: Hardware Timer Interface</a>) must be implemented!</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -604,7 +594,7 @@ The periodic timer interrupts are used to check the measurement status
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the <a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status</a> (<a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a> on success). </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="02_advanced_example_8c-example.html#a5">02_advanced_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="02_advanced_example_8c-example.html#a17">02_advanced_example.c</a>, and <a class="el" href="03_hal_self_test_example_8c-example.html#a18">03_hal_self_test_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -666,7 +656,9 @@ The periodic timer interrupts are used to check the measurement status
 
 <p>Triggers a single measurement frame asynchronously. </p>
 <hr  />
-<p>This function immediately triggers a single measurement frame asynchronously if all the pre-conditions are met. Otherwise it returns with a corresponding status. When the frame is finished, a callback (which is passed as a parameter to the function) is invoked in order to inform the main thread to call the <a class="el" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239">data evaluation method</a>. This call is mandatory to release the data buffer for the next measurement and it must not be invoked from the callback since it is within an interrupt service routine. Rather a flag should inform the main thread to invoke the evaluation. The pre-conditions for starting a measurement frame are:</p><ol type="1">
+<p>This function immediately triggers a single measurement frame asynchronously if all the pre-conditions are met. Otherwise it returns with a corresponding status (e.g. <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88">STATUS_BUSY</a> or <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba3ec68d249b5ffaa0da7e0a1170f592a2">STATUS_ARGUS_POWERLIMIT</a>).</p>
+<p>When the measurement has finished, a callback (which is passed as a parameter to the function) is invoked in order to inform the main thread to call the <a class="el" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239">data evaluation method</a>. This call is mandatory to release the data buffer for the next measurement and it must not be invoked directly from the callback since it is currently within an interrupt service routine. Rather a flag should inform the main thread or task scheduler to invoke the evaluation task.</p>
+<p>The pre-conditions for starting a measurement frame are:</p><ol type="1">
 <li>timer flag set (i.e. a certain time has passed since the last measurement in order to fulfill eye-safety),</li>
 <li>device idle (i.e. no measurement currently ongoing) and</li>
 <li><p class="startli">data buffer ready (i.e. the previous data has been evaluated).</p>
@@ -682,7 +674,7 @@ The periodic timer interrupts are used to check the measurement status
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the <a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status</a> (<a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a> on success). </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a5">01_simple_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a17">01_simple_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -691,10 +683,11 @@ The periodic timer interrupts are used to check the measurement status
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

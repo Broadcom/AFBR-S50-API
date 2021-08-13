@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Dynamic Configuration Adaption</title>
+<title>AFBR-S50 API Reference Manual: Dynamic Configuration Adaption</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -109,7 +109,7 @@ Collaboration diagram for Dynamic Configuration Adaption:</div>
 <div class="center"><img src="group__argusdca.png" border="0" usemap="#agroup____argusdca" alt=""/></div>
 <map name="agroup____argusdca" id="agroup____argusdca">
 <area shape="rect" href="group__argusapi.html" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="5,13,115,38"/>
-<area shape="rect" title="Dynamic Configuration Adaption (DCA) parameter definitions and API functions." alt="" coords="163,5,315,45"/>
+<area shape="rect" title="Dynamic Configuration Adaption (DCA) parameter definitions and API functions." alt="" coords="163,5,313,45"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -149,25 +149,19 @@ Macros</h2></td></tr>
 <tr class="separator:gad9cae5a3cbef70e6b66e286fff79f88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4e35c8bb631c014707fd456cdcc73326"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#ga4e35c8bb631c014707fd456cdcc73326">ARGUS_STATE_DCA_GAIN_GET</a>(state)&#160;&#160;&#160;	(((state) &gt;&gt; <a class="el" href="group__argusdca.html#gad9cae5a3cbef70e6b66e286fff79f88b">ARGUS_STATE_DCA_GAIN_SHIFT</a>) &amp; <a class="el" href="group__argusdca.html#ga306e8dd98141ca151a1f38ddbc5fcb11">ARGUS_STATE_DCA_GAIN_MASK</a>)</td></tr>
 <tr class="separator:ga4e35c8bb631c014707fd456cdcc73326"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadd2e521eb1823ec7c6b4aead711d900d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#gadd2e521eb1823ec7c6b4aead711d900d">ARGUS_DCA_POWER_STAGE_COUNT</a>&#160;&#160;&#160;(4U)</td></tr>
+<tr class="memitem:gadd2e521eb1823ec7c6b4aead711d900d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#gadd2e521eb1823ec7c6b4aead711d900d">ARGUS_DCA_POWER_STAGE_COUNT</a>&#160;&#160;&#160;(2U)</td></tr>
 <tr class="separator:gadd2e521eb1823ec7c6b4aead711d900d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4ef870e66fb5a4cef6c372fdded3ca94"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#ga4ef870e66fb5a4cef6c372fdded3ca94">ARGUS_STATE_DCA_POWER_MASK</a>&#160;&#160;&#160;(0x03U)</td></tr>
+<tr class="memitem:ga4ef870e66fb5a4cef6c372fdded3ca94"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#ga4ef870e66fb5a4cef6c372fdded3ca94">ARGUS_STATE_DCA_POWER_MASK</a>&#160;&#160;&#160;(0x01U)</td></tr>
 <tr class="separator:ga4ef870e66fb5a4cef6c372fdded3ca94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga90d0e689533da73dab5031fddfe4510d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#ga90d0e689533da73dab5031fddfe4510d">ARGUS_STATE_DCA_POWER_SHIFT</a>&#160;&#160;&#160;(12U)</td></tr>
+<tr class="memitem:ga90d0e689533da73dab5031fddfe4510d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#ga90d0e689533da73dab5031fddfe4510d">ARGUS_STATE_DCA_POWER_SHIFT</a>&#160;&#160;&#160;(13U)</td></tr>
 <tr class="separator:ga90d0e689533da73dab5031fddfe4510d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga09b2ff16e88770e9a3d7f81b62137b38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#ga09b2ff16e88770e9a3d7f81b62137b38">ARGUS_STATE_DCA_POWER_GET</a>(state)&#160;&#160;&#160;	(((state) &gt;&gt; <a class="el" href="group__argusdca.html#ga90d0e689533da73dab5031fddfe4510d">ARGUS_STATE_DCA_POWER_SHIFT</a>) &amp; <a class="el" href="group__argusdca.html#ga4ef870e66fb5a4cef6c372fdded3ca94">ARGUS_STATE_DCA_POWER_MASK</a>)</td></tr>
 <tr class="separator:ga09b2ff16e88770e9a3d7f81b62137b38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab559a17160d3c7418362b53605082a65"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#gab559a17160d3c7418362b53605082a65">ARGUS_STATE_DCA_DEPTH_SHFT_MASK</a>&#160;&#160;&#160;(0x0FU)</td></tr>
-<tr class="separator:gab559a17160d3c7418362b53605082a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga498dcc6306fe76a567e705a9543787ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#ga498dcc6306fe76a567e705a9543787ae">ARGUS_STATE_DCA_DEPTH_SHFT_SHIFT</a>&#160;&#160;&#160;(8U)</td></tr>
-<tr class="separator:ga498dcc6306fe76a567e705a9543787ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gada4a3cf1cc76c0882490dd0d220b4cc6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#gada4a3cf1cc76c0882490dd0d220b4cc6">ARGUS_STATE_DCA_DEPTH_SHFT_GET</a>(state)&#160;&#160;&#160;	(((state) &gt;&gt; <a class="el" href="group__argusdca.html#ga498dcc6306fe76a567e705a9543787ae">ARGUS_STATE_DCA_DEPTH_SHFT_SHIFT</a>) &amp; <a class="el" href="group__argusdca.html#gab559a17160d3c7418362b53605082a65">ARGUS_STATE_DCA_DEPTH_SHFT_MASK</a>)</td></tr>
-<tr class="separator:gada4a3cf1cc76c0882490dd0d220b4cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ga6c841af5b41e4703611e988458753985"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#ga6c841af5b41e4703611e988458753985">argus_dca_enable_t</a> { <br />
-&#160;&#160;<a class="el" href="group__argusdca.html#gga6c841af5b41e4703611e988458753985ad762237921ea67ecdc0f3dd7218b9235">DCA_ENABLE_OFF</a> = 0
+&#160;&#160;<b>DCA_ENABLE_OFF</b> = 0
 , <br />
 &#160;&#160;<a class="el" href="group__argusdca.html#gga6c841af5b41e4703611e988458753985aee8c3220a5dd69f22f068d658f13a0cc">DCA_ENABLE_DYNAMIC</a> = 1
 , <br />
@@ -176,14 +170,20 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ga6c841af5b41e4703611e988458753985"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dynamic configuration algorithm enable flags.  <a href="group__argusdca.html#ga6c841af5b41e4703611e988458753985">More...</a><br /></td></tr>
 <tr class="separator:ga6c841af5b41e4703611e988458753985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadbdf132d9dfb8842fe53edc85cf049e8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#gadbdf132d9dfb8842fe53edc85cf049e8">argus_dca_amplitude_mode_t</a> { <br />
+&#160;&#160;<a class="el" href="group__argusdca.html#ggadbdf132d9dfb8842fe53edc85cf049e8a54b87e09570dcadbe2a5337b73d99158">DCA_AMPLITUDE_MAX</a> = 1U
+, <br />
+&#160;&#160;<a class="el" href="group__argusdca.html#ggadbdf132d9dfb8842fe53edc85cf049e8abfd83b35ec92d67717d5fc91366ffefe">DCA_AMPLITUDE_AVG</a> = 2U
+<br />
+ }</td></tr>
+<tr class="memdesc:gadbdf132d9dfb8842fe53edc85cf049e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The DCA amplitude evaluation method.  <a href="group__argusdca.html#gadbdf132d9dfb8842fe53edc85cf049e8">More...</a><br /></td></tr>
+<tr class="separator:gadbdf132d9dfb8842fe53edc85cf049e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4e785a5fd11ff02355ee46179ebf0a95"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html#ga4e785a5fd11ff02355ee46179ebf0a95">argus_dca_power_t</a> { <br />
 &#160;&#160;<a class="el" href="group__argusdca.html#gga4e785a5fd11ff02355ee46179ebf0a95ab65f8b1889322d5ffd5fbc6397eb9717">DCA_POWER_LOW</a> = 0
 , <br />
-&#160;&#160;<a class="el" href="group__argusdca.html#gga4e785a5fd11ff02355ee46179ebf0a95a8c3d732db059716e73811975bf6712e7">DCA_POWER_MEDIUM_LOW</a> = 1
+&#160;&#160;<a class="el" href="group__argusdca.html#gga4e785a5fd11ff02355ee46179ebf0a95a49561ebc3f6ccc79f7cdbcb16b53b3da">DCA_POWER_HIGH</a> = 1
 , <br />
-&#160;&#160;<a class="el" href="group__argusdca.html#gga4e785a5fd11ff02355ee46179ebf0a95ae72ab9fe786474d20b78d2446e28dd18">DCA_POWER_MEDIUM_HIGH</a> = 2
-, <br />
-&#160;&#160;<a class="el" href="group__argusdca.html#gga4e785a5fd11ff02355ee46179ebf0a95a49561ebc3f6ccc79f7cdbcb16b53b3da">DCA_POWER_HIGH</a> = 3
+&#160;&#160;<a class="el" href="group__argusdca.html#gga4e785a5fd11ff02355ee46179ebf0a95a3bfdb664c28bdd73f2d64f472905c725">DCA_POWER_AUTO</a> = 2
 <br />
  }</td></tr>
 <tr class="memdesc:ga4e785a5fd11ff02355ee46179ebf0a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dynamic configuration algorithm Optical Output Power stages enumerator.  <a href="group__argusdca.html#ga4e785a5fd11ff02355ee46179ebf0a95">More...</a><br /></td></tr>
@@ -211,7 +211,7 @@ Enumerations</h2></td></tr>
 , <br />
 &#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a9386f5d56e8f8e8c8a233e9fc10aa4d7">ARGUS_STATE_DEBUG_MODE</a> = 1U &lt;&lt; 3U
 , <br />
-&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a3f3f5ad211b664f890262a0067387938">ARGUS_STATE_GOLDEN_PIXEL_MODE</a> = 1U &lt;&lt; 4U
+&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ad45cdfdeda33746fcd6892d5ef324428">ARGUS_STATE_WEAK_SIGNAL</a> = 1U &lt;&lt; 4U
 , <br />
 &#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a5c045d26a29f06cc32fc757b51578e25">ARGUS_STATE_BGL_WARNING</a> = 1U &lt;&lt; 5U
 , <br />
@@ -219,13 +219,17 @@ Enumerations</h2></td></tr>
 , <br />
 &#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a16fc51e9f4fbcac26cde19df56175fe6">ARGUS_STATE_PLL_LOCKED</a> = 1U &lt;&lt; 7U
 , <br />
-&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a155ba2189c4ef152152c0678a181efd1">ARGUS_STATE_DCA_POWER_LOW</a> = DCA_GAIN_LOW &lt;&lt; ARGUS_STATE_DCA_POWER_SHIFT
+&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a18e6057c1cc1b93c234d1b97ee3a9467">ARGUS_STATE_LASER_WARNING</a> = 1U &lt;&lt; 8U
 , <br />
-&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ae28b59eaad774ee807ac563a6efe9a3e">ARGUS_STATE_DCA_POWER_MED_LOW</a> = DCA_GAIN_MEDIUM_LOW &lt;&lt; ARGUS_STATE_DCA_POWER_SHIFT
+&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a8924beb0ddafc36ab0b0938b0c6061c6">ARGUS_STATE_LASER_ERROR</a> = 1U &lt;&lt; 9U
 , <br />
-&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a4a3b9343657793d00049f3431ce1525c">ARGUS_STATE_DCA_POWER_MED_HIGH</a> = DCA_GAIN_MEDIUM_HIGH &lt;&lt; ARGUS_STATE_DCA_POWER_SHIFT
+&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a73cf53cfb562f799547d64e4daa829f7">ARGUS_STATE_HAS_DATA</a> = 1U &lt;&lt; 10U
 , <br />
-&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a3d4fb1c8b690467c224297e9b86d5222">ARGUS_STATE_DCA_POWER_HIGH</a> = DCA_GAIN_HIGH &lt;&lt; ARGUS_STATE_DCA_POWER_SHIFT
+&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a606d162a9326a4e797b6f3867498912c">ARGUS_STATE_HAS_AUX_DATA</a> = 1U &lt;&lt; 11U
+, <br />
+&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a552601d1c54f5ed7b06464e4dd21f42d">ARGUS_STATE_DCA_MAX</a> = 1U &lt;&lt; 12U
+, <br />
+&#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a3d4fb1c8b690467c224297e9b86d5222">ARGUS_STATE_DCA_POWER_HIGH</a> = DCA_POWER_HIGH &lt;&lt; ARGUS_STATE_DCA_POWER_SHIFT
 , <br />
 &#160;&#160;<a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ae89fcf01db86e04f6e002ef2f50d8594">ARGUS_STATE_DCA_GAIN_LOW</a> = DCA_GAIN_LOW &lt;&lt; ARGUS_STATE_DCA_GAIN_SHIFT
 , <br />
@@ -324,7 +328,7 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The maximum optical output power, i.e. the maximum VCSEL 1 high current in LSB. </p>
+<p>The maximum optical output power, i.e. the maximum VCSEL high current in LSB. </p>
 
 </div>
 </div>
@@ -339,7 +343,7 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The maximum optical output power, i.e. the maximum VCSEL 1 high current in LSB. </p>
+<p>The maximum optical output power, i.e. the maximum VCSEL high current in LSB. </p>
 
 </div>
 </div>
@@ -354,7 +358,7 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The minimum optical output power, i.e. the minimum VCSEL 1 high current in mA. </p>
+<p>The minimum optical output power, i.e. the minimum VCSEL high current in mA. </p>
 
 </div>
 </div>
@@ -369,7 +373,7 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The minimum optical output power, i.e. the minimum VCSEL 1 high current in mA. </p>
+<p>The minimum optical output power, i.e. the minimum VCSEL high current in mA. </p>
 
 </div>
 </div>
@@ -425,60 +429,11 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define ARGUS_DCA_POWER_STAGE_COUNT&#160;&#160;&#160;(4U)</td>
+          <td class="memname">#define ARGUS_DCA_POWER_STAGE_COUNT&#160;&#160;&#160;(2U)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>The dynamic configuration algorithm Optical Output Power stage count. </p>
-
-</div>
-</div>
-<a id="gada4a3cf1cc76c0882490dd0d220b4cc6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gada4a3cf1cc76c0882490dd0d220b4cc6">&#9670;&nbsp;</a></span>ARGUS_STATE_DCA_DEPTH_SHFT_GET</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ARGUS_STATE_DCA_DEPTH_SHFT_GET</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">state</td><td>)</td>
-          <td>&#160;&#160;&#160;	(((state) &gt;&gt; <a class="el" href="group__argusdca.html#ga498dcc6306fe76a567e705a9543787ae">ARGUS_STATE_DCA_DEPTH_SHFT_SHIFT</a>) &amp; <a class="el" href="group__argusdca.html#gab559a17160d3c7418362b53605082a65">ARGUS_STATE_DCA_DEPTH_SHFT_MASK</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Getter for the dynamic configuration algorithm Max. Analog Integration Depth shift value. </p>
-
-</div>
-</div>
-<a id="gab559a17160d3c7418362b53605082a65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab559a17160d3c7418362b53605082a65">&#9670;&nbsp;</a></span>ARGUS_STATE_DCA_DEPTH_SHFT_MASK</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ARGUS_STATE_DCA_DEPTH_SHFT_MASK&#160;&#160;&#160;(0x0FU)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The dynamic configuration algorithm state mask for the Max. Analog Integration Depth shift value. </p>
-
-</div>
-</div>
-<a id="ga498dcc6306fe76a567e705a9543787ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga498dcc6306fe76a567e705a9543787ae">&#9670;&nbsp;</a></span>ARGUS_STATE_DCA_DEPTH_SHFT_SHIFT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ARGUS_STATE_DCA_DEPTH_SHFT_SHIFT&#160;&#160;&#160;(8U)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The dynamic configuration algorithm state mask for the Max. Analog Integration Depth shift value. </p>
 
 </div>
 </div>
@@ -557,7 +512,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define ARGUS_STATE_DCA_POWER_MASK&#160;&#160;&#160;(0x03U)</td>
+          <td class="memname">#define ARGUS_STATE_DCA_POWER_MASK&#160;&#160;&#160;(0x01U)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -572,7 +527,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define ARGUS_STATE_DCA_POWER_SHIFT&#160;&#160;&#160;(12U)</td>
+          <td class="memname">#define ARGUS_STATE_DCA_POWER_SHIFT&#160;&#160;&#160;(13U)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -581,6 +536,29 @@ Enumerations</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="gadbdf132d9dfb8842fe53edc85cf049e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadbdf132d9dfb8842fe53edc85cf049e8">&#9670;&nbsp;</a></span>argus_dca_amplitude_mode_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__argusdca.html#gadbdf132d9dfb8842fe53edc85cf049e8">argus_dca_amplitude_mode_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The DCA amplitude evaluation method. </p>
+<hr  />
+ <table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggadbdf132d9dfb8842fe53edc85cf049e8a54b87e09570dcadbe2a5337b73d99158"></a>DCA_AMPLITUDE_MAX&#160;</td><td class="fielddoc"><p>Evaluate the DCA amplitude as the maximum of all valid amplitudes. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggadbdf132d9dfb8842fe53edc85cf049e8abfd83b35ec92d67717d5fc91366ffefe"></a>DCA_AMPLITUDE_AVG&#160;</td><td class="fielddoc"><p>Evaluate the DCA amplitude as the average of all valid amplitudes. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="ga6c841af5b41e4703611e988458753985"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga6c841af5b41e4703611e988458753985">&#9670;&nbsp;</a></span>argus_dca_enable_t</h2>
 
@@ -596,9 +574,7 @@ Enumerations</h2></td></tr>
 <p>The dynamic configuration algorithm enable flags. </p>
 <hr  />
  <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga6c841af5b41e4703611e988458753985ad762237921ea67ecdc0f3dd7218b9235"></a>DCA_ENABLE_OFF&#160;</td><td class="fielddoc"><p>DCA is disabled and will be completely skipped. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="gga6c841af5b41e4703611e988458753985aee8c3220a5dd69f22f068d658f13a0cc"></a>DCA_ENABLE_DYNAMIC&#160;</td><td class="fielddoc"><p>DCA is enabled and will dynamically adjust the device configuration. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga6c841af5b41e4703611e988458753985aee8c3220a5dd69f22f068d658f13a0cc"></a>DCA_ENABLE_DYNAMIC&#160;</td><td class="fielddoc"><p>DCA is enabled and will dynamically adjust the device configuration. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga6c841af5b41e4703611e988458753985ade972b84e434a6e2d39faae22b653135"></a>DCA_ENABLE_STATIC&#160;</td><td class="fielddoc"><p>DCA is enabled and will apply the static (nominal) values to the device. </p>
 </td></tr>
@@ -648,13 +624,11 @@ Enumerations</h2></td></tr>
 <p>The dynamic configuration algorithm Optical Output Power stages enumerator. </p>
 <hr  />
  <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga4e785a5fd11ff02355ee46179ebf0a95ab65f8b1889322d5ffd5fbc6397eb9717"></a>DCA_POWER_LOW&#160;</td><td class="fielddoc"><p>Low output power stage. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga4e785a5fd11ff02355ee46179ebf0a95ab65f8b1889322d5ffd5fbc6397eb9717"></a>DCA_POWER_LOW&#160;</td><td class="fielddoc"><p>Use low output power stage. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga4e785a5fd11ff02355ee46179ebf0a95a8c3d732db059716e73811975bf6712e7"></a>DCA_POWER_MEDIUM_LOW&#160;</td><td class="fielddoc"><p>Medium low output power stage. </p>
+<tr><td class="fieldname"><a id="gga4e785a5fd11ff02355ee46179ebf0a95a49561ebc3f6ccc79f7cdbcb16b53b3da"></a>DCA_POWER_HIGH&#160;</td><td class="fielddoc"><p>Use high output power stage. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga4e785a5fd11ff02355ee46179ebf0a95ae72ab9fe786474d20b78d2446e28dd18"></a>DCA_POWER_MEDIUM_HIGH&#160;</td><td class="fielddoc"><p>Medium high output power stage. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="gga4e785a5fd11ff02355ee46179ebf0a95a49561ebc3f6ccc79f7cdbcb16b53b3da"></a>DCA_POWER_HIGH&#160;</td><td class="fielddoc"><p>High output power stage. </p>
+<tr><td class="fieldname"><a id="gga4e785a5fd11ff02355ee46179ebf0a95a3bfdb664c28bdd73f2d64f472905c725"></a>DCA_POWER_AUTO&#160;</td><td class="fielddoc"><p>Use low and high output power stages automatically. </p>
 </td></tr>
 </table>
 
@@ -675,100 +649,99 @@ Enumerations</h2></td></tr>
 <p>State flags for the current frame. </p>
 <hr  />
 <p>State flags determine the current state of the measurement frame:</p><ul>
-<li>[0]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a1483eeb28356f4e2ac4ba8474ad07fe9">ARGUS_STATE_MEASUREMENT_MODE</a>: Measurement Mode:<ul>
-<li>0: Mode A</li>
-<li>1: Mode B</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>[1]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91afd66ce64e66b21146762a75d2a64e7d4">ARGUS_STATE_DUAL_FREQ_MODE</a>: Dual Frequency Mode Enabled Flag<ul>
-<li>0: Disabled, measurements w/ base frequency only</li>
-<li>1: Enabled, measurements w/ detuned frequency</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>[2]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ac026afa99d6bc6435a417995007ef116">ARGUS_STATE_MEASUREMENT_FREQ</a>: Measurement Frequency for Dual Frequency Mode, (only valid if <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91afd66ce64e66b21146762a75d2a64e7d4">ARGUS_STATE_DUAL_FREQ_MODE</a> flag is set)<ul>
-<li>0: A-Frame w/ detuned frequency</li>
-<li>1: B-Frame w/ detuned frequency</li>
-</ul>
-</li>
-</ul>
-<ul>
+<li>[0]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a1483eeb28356f4e2ac4ba8474ad07fe9">ARGUS_STATE_MEASUREMENT_MODE</a></li>
+<li>[1]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91afd66ce64e66b21146762a75d2a64e7d4">ARGUS_STATE_DUAL_FREQ_MODE</a></li>
+<li>[2]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ac026afa99d6bc6435a417995007ef116">ARGUS_STATE_MEASUREMENT_FREQ</a></li>
 <li>[3]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a9386f5d56e8f8e8c8a233e9fc10aa4d7">ARGUS_STATE_DEBUG_MODE</a></li>
-<li>[4]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a3f3f5ad211b664f890262a0067387938">ARGUS_STATE_GOLDEN_PIXEL_MODE</a></li>
+<li>[4]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ad45cdfdeda33746fcd6892d5ef324428">ARGUS_STATE_WEAK_SIGNAL</a></li>
 <li>[5]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a5c045d26a29f06cc32fc757b51578e25">ARGUS_STATE_BGL_WARNING</a></li>
 <li>[6]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ae9ead618b9e201b0114575a975cd7c99">ARGUS_STATE_BGL_ERROR</a></li>
-<li>[7]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a16fc51e9f4fbcac26cde19df56175fe6">ARGUS_STATE_PLL_LOCKED</a><ul>
-<li>0: PLL_LOCKED bit was not set at start of integration;</li>
-<li>0: PLL_LOCKED bit was set at start of integration;</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>[8-11]: Max. Depth Shift Value</li>
-<li>[12-13]: Power Stages</li>
-<li>[14-15]: Gain Stages</li>
+<li>[7]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a16fc51e9f4fbcac26cde19df56175fe6">ARGUS_STATE_PLL_LOCKED</a></li>
+<li>[8]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a18e6057c1cc1b93c234d1b97ee3a9467">ARGUS_STATE_LASER_WARNING</a></li>
+<li>[9]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a8924beb0ddafc36ab0b0938b0c6061c6">ARGUS_STATE_LASER_ERROR</a></li>
+<li>[10]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a73cf53cfb562f799547d64e4daa829f7">ARGUS_STATE_HAS_DATA</a></li>
+<li>[11]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a606d162a9326a4e797b6f3867498912c">ARGUS_STATE_HAS_AUX_DATA</a></li>
+<li>[12]: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a552601d1c54f5ed7b06464e4dd21f42d">ARGUS_STATE_DCA_MAX</a></li>
+<li>[13]: DCA Power Stage</li>
+<li>[14-15]: DCA Gain Stages</li>
 </ul>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a39a26d0859b7585feec4b8319225aad4"></a>ARGUS_STATE_NONE&#160;</td><td class="fielddoc"><p>No state flag set. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a1483eeb28356f4e2ac4ba8474ad07fe9"></a>ARGUS_STATE_MEASUREMENT_MODE&#160;</td><td class="fielddoc"><p>0x01: Measurement Mode.</p><ul>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a1483eeb28356f4e2ac4ba8474ad07fe9"></a>ARGUS_STATE_MEASUREMENT_MODE&#160;</td><td class="fielddoc"><p>0x0001: Measurement Mode.</p><ul>
 <li>0: Mode A: Long Range / Medium Precision</li>
 <li>1: Mode B: Short Range / High Precision </li>
 </ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91afd66ce64e66b21146762a75d2a64e7d4"></a>ARGUS_STATE_DUAL_FREQ_MODE&#160;</td><td class="fielddoc"><p>0x02: Dual Frequency Mode Enabled.</p><ul>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91afd66ce64e66b21146762a75d2a64e7d4"></a>ARGUS_STATE_DUAL_FREQ_MODE&#160;</td><td class="fielddoc"><p>0x0002: Dual Frequency Mode Enabled.</p><ul>
 <li>0: Disabled: measurements with base frequency,</li>
 <li>1: Enabled: measurement with detuned frequency. </li>
 </ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91ac026afa99d6bc6435a417995007ef116"></a>ARGUS_STATE_MEASUREMENT_FREQ&#160;</td><td class="fielddoc"><p>0x04: Measurement Frequency for Dual Frequency Mode (only if <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91afd66ce64e66b21146762a75d2a64e7d4">ARGUS_STATE_DUAL_FREQ_MODE</a> flag is set).</p><ul>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91ac026afa99d6bc6435a417995007ef116"></a>ARGUS_STATE_MEASUREMENT_FREQ&#160;</td><td class="fielddoc"><p>0x0004: Measurement Frequency for Dual Frequency Mode (only if <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91afd66ce64e66b21146762a75d2a64e7d4">ARGUS_STATE_DUAL_FREQ_MODE</a> flag is set).</p><ul>
 <li>0: A-Frame w/ detuned frequency,</li>
 <li>1: B-Frame w/ detuned frequency </li>
 </ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a9386f5d56e8f8e8c8a233e9fc10aa4d7"></a>ARGUS_STATE_DEBUG_MODE&#160;</td><td class="fielddoc"><p>0x08: Debug Mode. If set, the range value of erroneous pixels are not cleared or reset.</p><ul>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a9386f5d56e8f8e8c8a233e9fc10aa4d7"></a>ARGUS_STATE_DEBUG_MODE&#160;</td><td class="fielddoc"><p>0x0008: Debug Mode. If set, the range value of erroneous pixels are not cleared or reset.</p><ul>
 <li>0: Disabled (default).</li>
 <li>1: Enabled. </li>
 </ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a3f3f5ad211b664f890262a0067387938"></a>ARGUS_STATE_GOLDEN_PIXEL_MODE&#160;</td><td class="fielddoc"><p>0x10: Golden Pixel Mode Flag. Set whenever the Pixel Binning Algorithm is operating in the Golden Pixel Mode.</p><ul>
-<li>0: Normal Pixel Binning Mode.</li>
-<li>1: Golden Pixel Mode. </li>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91ad45cdfdeda33746fcd6892d5ef324428"></a>ARGUS_STATE_WEAK_SIGNAL&#160;</td><td class="fielddoc"><p>0x0010: Weak Signal Flag. Set whenever the Pixel Binning Algorithm is detecting a weak signal, i.e. if the amplitude dies not reach its (absolute) threshold. If the Golden Pixel is enabled, this also indicates that the Pixel Binning Algorithm falls back to the Golden Pixel.</p><ul>
+<li>0: Normal Signal.</li>
+<li>1: Weak Signal or Golden Pixel Mode. </li>
 </ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a5c045d26a29f06cc32fc757b51578e25"></a>ARGUS_STATE_BGL_WARNING&#160;</td><td class="fielddoc"><p>0x20: Background Light Warning Flag. Set whenever the background light is very high and the measurement data might be unreliable.</p><ul>
-<li>0: No Warning Background Light is within valid range.</li>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a5c045d26a29f06cc32fc757b51578e25"></a>ARGUS_STATE_BGL_WARNING&#160;</td><td class="fielddoc"><p>0x0020: Background Light Warning Flag. Set whenever the background light is very high and the measurement data might be unreliable.</p><ul>
+<li>0: No Warning: Background Light is within valid range.</li>
 <li>1: Warning: Background Light is very high. </li>
 </ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91ae9ead618b9e201b0114575a975cd7c99"></a>ARGUS_STATE_BGL_ERROR&#160;</td><td class="fielddoc"><p>0x40: Background Light Error Flag. Set whenever the background light is too high and the measurement data is unreliable or invalid.</p><ul>
-<li>0: No Error, Background Light is within valid range.</li>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91ae9ead618b9e201b0114575a975cd7c99"></a>ARGUS_STATE_BGL_ERROR&#160;</td><td class="fielddoc"><p>0x0040: Background Light Error Flag. Set whenever the background light is too high and the measurement data is unreliable or invalid.</p><ul>
+<li>0: No Error: Background Light is within valid range.</li>
 <li>1: Error: Background Light is too high. </li>
 </ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a16fc51e9f4fbcac26cde19df56175fe6"></a>ARGUS_STATE_PLL_LOCKED&#160;</td><td class="fielddoc"><p>0x80: PLL_LOCKED bit.</p><ul>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a16fc51e9f4fbcac26cde19df56175fe6"></a>ARGUS_STATE_PLL_LOCKED&#160;</td><td class="fielddoc"><p>0x0080: PLL_LOCKED bit.</p><ul>
 <li>0: PLL not locked at start of integration.</li>
 <li>1: PLL locked at start of integration. </li>
 </ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a155ba2189c4ef152152c0678a181efd1"></a>ARGUS_STATE_DCA_POWER_LOW&#160;</td><td class="fielddoc"><p>DCA is in low Optical Output Power stage. </p>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a18e6057c1cc1b93c234d1b97ee3a9467"></a>ARGUS_STATE_LASER_WARNING&#160;</td><td class="fielddoc"><p>0x0100: Laser Failure Warning Flag. Set whenever the an invalid system condition is detected. (i.e. DCA at max state but no amplitude on any (incl. reference) pixel, not amplitude but any saturated pixel).</p><ul>
+<li>0: No Warning: Laser is operating properly.</li>
+<li>1: Warning: Invalid laser conditions detected. If the invalid condition stays, a laser malfunction error is raised. </li>
+</ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91ae28b59eaad774ee807ac563a6efe9a3e"></a>ARGUS_STATE_DCA_POWER_MED_LOW&#160;</td><td class="fielddoc"><p>DCA is in medium-low Optical Output Power stage. </p>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a8924beb0ddafc36ab0b0938b0c6061c6"></a>ARGUS_STATE_LASER_ERROR&#160;</td><td class="fielddoc"><p>0x0200: Laser Failure Error Flag. Set whenever a laser malfunction error is raised and the system is put into a safe state.</p><ul>
+<li>0: No Error: Laser is operating properly.</li>
+<li>1: Error: Invalid laser conditions are detected for a certain soak time and the system is put into a safe state. </li>
+</ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a4a3b9343657793d00049f3431ce1525c"></a>ARGUS_STATE_DCA_POWER_MED_HIGH&#160;</td><td class="fielddoc"><p>DCA is in medium-high Optical Output Power stage. </p>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a73cf53cfb562f799547d64e4daa829f7"></a>ARGUS_STATE_HAS_DATA&#160;</td><td class="fielddoc"><p>0x0400: Set if current frame has distance measurement data available.</p><ul>
+<li>0: No measurement data available, all values are 0 or stalled.</li>
+<li>1: Measurement data is available and correctly evaluated. </li>
+</ul>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a3d4fb1c8b690467c224297e9b86d5222"></a>ARGUS_STATE_DCA_POWER_HIGH&#160;</td><td class="fielddoc"><p>DCA is in high Optical Output Power stage. </p>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a606d162a9326a4e797b6f3867498912c"></a>ARGUS_STATE_HAS_AUX_DATA&#160;</td><td class="fielddoc"><p>0x0800: Set if current frame has auxiliary measurement data available.</p><ul>
+<li>0: No auxiliary data available, all values are 0 or stalled.</li>
+<li>1: Auxiliary data is available and correctly evaluated. </li>
+</ul>
+</td></tr>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a552601d1c54f5ed7b06464e4dd21f42d"></a>ARGUS_STATE_DCA_MAX&#160;</td><td class="fielddoc"><p>0x1000: DCA Maximum State Flag. Set whenever the DCA has extended all its parameters to their maximum values and can not increase the integration energy any further.</p><ul>
+<li>0: DCA has not yet reached its maximum state.</li>
+<li>1: DCA has reached its maximum state and can not increase any further. </li>
+</ul>
+</td></tr>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a3d4fb1c8b690467c224297e9b86d5222"></a>ARGUS_STATE_DCA_POWER_HIGH&#160;</td><td class="fielddoc"><p>0x2000: DCA is in high Optical Output Power stage. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91ae89fcf01db86e04f6e002ef2f50d8594"></a>ARGUS_STATE_DCA_GAIN_LOW&#160;</td><td class="fielddoc"><p>DCA is in low Pixel Input Gain stage. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a03cd021210ebdabe24a06e83b63e37c9"></a>ARGUS_STATE_DCA_GAIN_MED_LOW&#160;</td><td class="fielddoc"><p>DCA is in medium-low Pixel Input Gain stage. </p>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a03cd021210ebdabe24a06e83b63e37c9"></a>ARGUS_STATE_DCA_GAIN_MED_LOW&#160;</td><td class="fielddoc"><p>0x4000: DCA is in medium-low Pixel Input Gain stage. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a974525ea8ada042ffa5b3faef4498f37"></a>ARGUS_STATE_DCA_GAIN_MED_HIGH&#160;</td><td class="fielddoc"><p>DCA is in medium-high Pixel Input Gain stage. </p>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a974525ea8ada042ffa5b3faef4498f37"></a>ARGUS_STATE_DCA_GAIN_MED_HIGH&#160;</td><td class="fielddoc"><p>0x8000: DCA is in medium-high Pixel Input Gain stage. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a4ad11dc9c4ad55ab183317d251a42eb5"></a>ARGUS_STATE_DCA_GAIN_HIGH&#160;</td><td class="fielddoc"><p>DCA is in high Pixel Input Gain stage. </p>
+<tr><td class="fieldname"><a id="ggada1413643a68f3cd36f6c0a1d0b61e91a4ad11dc9c4ad55ab183317d251a42eb5"></a>ARGUS_STATE_DCA_GAIN_HIGH&#160;</td><td class="fielddoc"><p>0xC000: DCA is in high Pixel Input Gain stage. </p>
 </td></tr>
 </table>
 
@@ -778,10 +751,11 @@ Enumerations</h2></td></tr>
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

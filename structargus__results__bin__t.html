@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: argus_results_bin_t Struct Reference</title>
+<title>AFBR-S50 API Reference Manual: argus_results_bin_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -110,11 +110,13 @@ Data Fields</h2></td></tr>
 <tr class="separator:a830e9e333b9fece506f2e72b92087a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a918392407fcf45cadb280ebe502d633d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fixedpoint.html#gaf770481ddcfcfa8b525d1e4388a5214e">uq12_4_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structargus__results__bin__t.html#a918392407fcf45cadb280ebe502d633d">Amplitude</a></td></tr>
 <tr class="separator:a918392407fcf45cadb280ebe502d633d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a032de48d823435330e13bc0d50934227"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structargus__results__bin__t.html#a032de48d823435330e13bc0d50934227">SignalQuality</a></td></tr>
+<tr class="separator:a032de48d823435330e13bc0d50934227"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The 1d measurement results data structure. </p>
 <hr  />
-<p>The 1d measurement results obtained by the pixel binning algorithm. </p>
+<p>The 1d measurement results obtained by the Pixel Binning Algorithm. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a918392407fcf45cadb280ebe502d633d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a918392407fcf45cadb280ebe502d633d">&#9670;&nbsp;</a></span>Amplitude</h2>
@@ -127,7 +129,10 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The 1D amplitude in LSB (Q12.4 format). The (maximum) amplitude obtained by the pixel binning algorithm from the current measurement frame. Special value: 0 == No/Invalid Result. </p>
+<p>The 1D amplitude in LSB (Q12.4 format). The (maximum) amplitude obtained by the Pixel Binning Algorithm from the current measurement frame.<br  />
+Special value: 0 == No/Invalid Result. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a25">01_simple_example.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a22">02_advanced_example.c</a>, and <a class="el" href="03_hal_self_test_example_8c-example.html#a23">03_hal_self_test_example.c</a>.</dd>
+</dl>
 
 </div>
 </div>
@@ -142,8 +147,30 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Raw 1D range value in meter (Q9.22 format). The distance obtained by the pixel binning algorithm from the current measurement frame. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a12">01_simple_example.c</a>, and <a class="el" href="02_advanced_example_8c-example.html#a9">02_advanced_example.c</a>.</dd>
+<p>Raw 1D range value in meter (Q9.22 format). The distance obtained by the Pixel Binning Algorithm from the current measurement frame. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a23">01_simple_example.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a20">02_advanced_example.c</a>, and <a class="el" href="03_hal_self_test_example_8c-example.html#a21">03_hal_self_test_example.c</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a032de48d823435330e13bc0d50934227"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a032de48d823435330e13bc0d50934227">&#9670;&nbsp;</a></span>SignalQuality</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t argus_results_bin_t::SignalQuality</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The current signal quality metric of the 1D range value in percentage:<br  />
+</p><ul>
+<li>0: n/a,</li>
+<li>1: bad signal,</li>
+<li>100: good signal. </li>
+</ul>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a27">01_simple_example.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a24">02_advanced_example.c</a>, and <a class="el" href="03_hal_self_test_example_8c-example.html#a25">03_hal_self_test_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -155,11 +182,12 @@ Data Fields</h2></td></tr>
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
 		<li class="navelem"><a class="el" href="structargus__results__bin__t.html">argus_results_bin_t</a></li>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

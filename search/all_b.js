@@ -1,7 +1,12 @@
 var searchData=
 [
-  ['nvm_3a_20non_2dvolatile_20memory_20layer_295',['NVM: Non-Volatile Memory Layer',['../group__argus__nvm.html',1,'']]],
-  ['nvm_5finit_296',['NVM_Init',['../group__argus__nvm.html#ga1d4158a840a27f7b260bd2d8d0bf64a3',1,'argus_nvm.h']]],
-  ['nvm_5fread_297',['NVM_Read',['../group__argus__nvm.html#ga077b4b7bcb2efdfc2040dfaa58487e85',1,'argus_nvm.h']]],
-  ['nvm_5fwrite_298',['NVM_Write',['../group__argus__nvm.html#ga2463d0812d4465d27e03447e725c321f',1,'argus_nvm.h']]]
+  ['make_5fversion_301',['MAKE_VERSION',['../group__version.html#ga812138aa3315b0c6953c1a26130bcc37',1,'argus_version.h']]],
+  ['max_302',['MAX',['../group__misc.html#gafa99ec4acc4ecb2dc3c2d05da15d0e3f',1,'int_math.h']]],
+  ['mcu_20porting_20guide_303',['MCU Porting Guide',['../porting_guide.html',1,'']]],
+  ['measurement_20data_304',['Measurement Data',['../group__argusres.html',1,'']]],
+  ['measurement_2fdevice_20control_305',['Measurement/Device Control',['../group__argusmeas.html',1,'']]],
+  ['min_306',['MIN',['../group__misc.html#ga3acffbd305ee72dcd4593c0d8af64a4f',1,'int_math.h']]],
+  ['miscellaneous_20math_307',['Miscellaneous Math',['../group__misc.html',1,'']]],
+  ['module_5fnone_308',['MODULE_NONE',['../group__argusapi.html#gga46f240b890cd62efe83bf2d095277470aaa900f50762d9ace21be7cfdf0b175b4',1,'argus_def.h']]],
+  ['muldw_2eh_309',['muldw.h',['../muldw_8h.html',1,'']]]
 ];

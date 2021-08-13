@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Include/platform/argus_irq.h Source File</title>
+<title>AFBR-S50 API Reference Manual: Include/platform/argus_irq.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -107,7 +107,7 @@ $(document).ready(function(){initNavTree('argus__irq_8h_source.html',''); initRe
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> * @brief       Global Interrupt Control Layer</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment"> * @details     This module provides functionality to globally enable/disable</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> *              interrupts by turning the I-bit in the CPSR on/off.</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> *              interrupts in a nested way.</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"> *              Here is a simple example implementation using the CMSIS functions</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"> *              &quot;__enable_irq()&quot; and &quot;__disable_irq()&quot;. An integer counter is</span></div>
@@ -143,47 +143,58 @@ $(document).ready(function(){initNavTree('argus__irq_8h_source.html',''); initRe
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"> *              instruction only. It does NOT lock interrupts for considerable</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"> *              amounts of time.</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"> * @note        The interrupts utilized by the AFBR-S50 API can be interrupted</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"> *              by other, higher prioritized interrupts, e.g. some system</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"> *              critical interrupts. In this case, the IRQ_LOCK/IRQ_UNLOCK</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> *              mechanism can be implemented such that only the interrupts</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> *              required for the AFBR-S50 API are locked. The above example is</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> *              dedicated to a ARM Corex-M0 architecture, where interrupts</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"> *              can only disabled at a global scope. Other architectures like</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"> *              ARM Cortex-M4 allow selective disabling of interrupts.</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"> * @addtogroup  argus_irq</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"> * @{</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> * @brief   Enable IRQ Interrupts</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"> * @details Enables IRQ interrupts by clearing the I-bit in the CPSR.</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"> *          Can only be executed in Privileged modes.</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="group__argus__irq.html#ga41f0d51315c5971183de8750606eab22">  102</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__argus__irq.html#ga41f0d51315c5971183de8750606eab22">IRQ_UNLOCK</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"> * @brief   Disable IRQ Interrupts</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"> * @details Disables IRQ interrupts by setting the I-bit in the CPSR.</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment"> *          Can only be executed in Privileged modes.</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="group__argus__irq.html#ga7eb2f9c9e40114afd7d079ace7c152e7">  110</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__argus__irq.html#ga7eb2f9c9e40114afd7d079ace7c152e7">IRQ_LOCK</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// ARGUS_IRQ_H</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"> * @note        The IRQ_LOCK might get called multiple times. Therefore, the</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"> *              API expects that the IRQ_UNLOCK must be called as many times as</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"> *              the IRQ_LOCK was called before the interrupts are enabled.</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> * @note        The interrupts utilized by the AFBR-S50 API can be interrupted</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> *              by other, higher prioritized interrupts, e.g. some system</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"> *              critical interrupts. In this case, the IRQ_LOCK/IRQ_UNLOCK</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"> *              mechanism can be implemented such that only the interrupts</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"> *              required for the AFBR-S50 API are locked. The above example is</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"> *              dedicated to a ARM Corex-M0 architecture, where interrupts</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"> *              can only disabled at a global scope. Other architectures like</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"> *              ARM Cortex-M4 allow selective disabling of interrupts.</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"> * @addtogroup  argus_irq</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> * @{</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"> * @brief   Enable IRQ Interrupts</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"> * @details Enables IRQ interrupts and enters an atomic or critical section.</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"> * @note    The IRQ_LOCK might get called multiple times. Therefore, the</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"> *          API expects that the IRQ_UNLOCK must be called as many times as</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"> *          the IRQ_LOCK was called before the interrupts are enabled.</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="group__argus__irq.html#ga41f0d51315c5971183de8750606eab22">  109</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__argus__irq.html#ga41f0d51315c5971183de8750606eab22">IRQ_UNLOCK</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment"> * @brief   Disable IRQ Interrupts</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"> * @details Disables IRQ interrupts and leaves the atomic or critical section.</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"> * @note    The IRQ_LOCK might get called multiple times. Therefore, the</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"> *          API expects that the IRQ_UNLOCK must be called as many times as</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"> *          the IRQ_LOCK was called before the interrupts are enabled.</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="group__argus__irq.html#ga7eb2f9c9e40114afd7d079ace7c152e7">  120</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__argus__irq.html#ga7eb2f9c9e40114afd7d079ace7c152e7">IRQ_LOCK</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// ARGUS_IRQ_H</span></div>
 <div class="ttc" id="agroup__argus__irq_html_ga41f0d51315c5971183de8750606eab22"><div class="ttname"><a href="group__argus__irq.html#ga41f0d51315c5971183de8750606eab22">IRQ_UNLOCK</a></div><div class="ttdeci">void IRQ_UNLOCK(void)</div><div class="ttdoc">Enable IRQ Interrupts.</div></div>
 <div class="ttc" id="agroup__argus__irq_html_ga7eb2f9c9e40114afd7d079ace7c152e7"><div class="ttname"><a href="group__argus__irq.html#ga7eb2f9c9e40114afd7d079ace7c152e7">IRQ_LOCK</a></div><div class="ttdeci">void IRQ_LOCK(void)</div><div class="ttdoc">Disable IRQ Interrupts.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="navelem"><a class="el" href="dir_856524284ebe840938865dc061f982fb.html">Include</a></li><li class="navelem"><a class="el" href="dir_f11895cfbdf5c2a7e76dbe0f21966fb5.html">platform</a></li><li class="navelem"><a class="el" href="argus__irq_8h.html">argus_irq.h</a></li>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="navelem"><a class="el" href="dir_82027cc1cfaf56e8782fb3fde083c666.html">Include</a></li><li class="navelem"><a class="el" href="dir_5136a263eb50257db537a02a265f38f0.html">platform</a></li><li class="navelem"><a class="el" href="argus__irq_8h.html">argus_irq.h</a></li>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

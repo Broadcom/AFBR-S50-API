@@ -40,11 +40,12 @@ var hw_api =
         [ "Invalid Command", "hw_api_cmd_details.html#cmd_invalid", null ],
         [ "Acknowledge", "hw_api_cmd_details.html#cmd_ack", null ],
         [ "Not Acknowledge", "hw_api_cmd_details.html#cmd_nak", null ],
+        [ "Ping Command", "hw_api_cmd_details.html#cmd_ping", null ],
         [ "Log Message", "hw_api_cmd_details.html#cmd_log", null ],
         [ "Test Message", "hw_api_cmd_details.html#cmd_test", null ],
         [ "MCU/Software Reset", "hw_api_cmd_details.html#cmd_reset", null ],
         [ "Software Version", "hw_api_cmd_details.html#cmd_sw", null ],
-        [ "Module Type", "hw_api_cmd_details.html#cmd_module", null ],
+        [ "Module Type / Version", "hw_api_cmd_details.html#cmd_module", null ],
         [ "Module UID", "hw_api_cmd_details.html#cmd_uid", null ],
         [ "Software Information / Identification", "hw_api_cmd_details.html#cmd_info", null ]
       ] ],
@@ -81,16 +82,17 @@ var hw_api =
         ] ],
         [ "Dynamic Configuration Adaption", "hw_api_cmd_details.html#cmd_cfg_dca", null ],
         [ "Pixel Binning", "hw_api_cmd_details.html#cmd_cfg_pba", null ],
-        [ "SPI Configuration", "hw_api_cmd_details.html#cmd_cfg_spi", null ]
+        [ "SPI Configuration", "hw_api_cmd_details.html#cmd_cfg_spi", null ],
+        [ "UART Configuration", "hw_api_cmd_details.html#cmd_cfg_uart", null ]
       ] ],
       [ "Calibration Commands", "hw_api_cmd_details.html#hw_api_cmd_cal", [
         [ "Global Range Offset", "hw_api_cmd_details.html#cmd_cal_range_offset", null ],
         [ "Pixel Range Offsets", "hw_api_cmd_details.html#cmd_cal_offsets", null ],
-        [ "Pixel Range Offsets - Reset Table", "hw_api_cmd_details.html#cmd_cal_offsets_rst", null ],
-        [ "Range Offsets Calibration Sequence - Sample Count", "hw_api_cmd_details.html#cmd_cal_offsets_smpl_ct", null ],
+        [ "Pixel Range Offsets - Reset Offset Table", "hw_api_cmd_details.html#cmd_cal_offsets_rst", null ],
+        [ "Range Offsets Calibration Sequence - Sample Time", "hw_api_cmd_details.html#cmd_cal_offsets_smpl_time", null ],
         [ "Crosstalk Compensation - Vector Table", "hw_api_cmd_details.html#cmd_cal_xtalk_vec", null ],
         [ "Crosstalk Compensation - Reset Vector Table", "hw_api_cmd_details.html#cmd_cal_xtalk_rst", null ],
-        [ "Crosstalk Calibration Sequence - Sample Count", "hw_api_cmd_details.html#cmd_cal_xtalk_smpl_ct", null ],
+        [ "Crosstalk Calibration Sequence - Sample Time", "hw_api_cmd_details.html#cmd_cal_xtalk_smpl_time", null ],
         [ "Crosstalk Calibration Sequence - Maximum Amplitude Threshold", "hw_api_cmd_details.html#cmd_cal_xtalk_max_ampl", null ],
         [ "Pixel-2-Pixel Crosstalk Compensation Parameters", "hw_api_cmd_details.html#cmd_cal_xtalk_p2p", null ]
       ] ]

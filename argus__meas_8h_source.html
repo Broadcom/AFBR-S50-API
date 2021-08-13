@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Include/api/argus_meas.h Source File</title>
+<title>AFBR-S50 API Reference Manual: Include/api/argus_meas.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -131,48 +131,61 @@ $(document).ready(function(){initNavTree('argus__meas_8h_source.html',''); initR
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html">   73</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#af5e3edeb721a1da4ef410bbba9058ca6">   79</a></span>&#160;    uint32_t <a class="code" href="structargus__meas__frame__t.html#af5e3edeb721a1da4ef410bbba9058ca6">PxEnMask</a>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a260b63262f7887f4d8e5061d80ff4a74">   85</a></span>&#160;    uint32_t <a class="code" href="structargus__meas__frame__t.html#a260b63262f7887f4d8e5061d80ff4a74">ChEnMask</a>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a97d8aff21d43fd27f5d03baaa1c6625d">   89</a></span>&#160;    <a class="code" href="group__fixedpoint.html#ga73367988e46406696b11bc9a9fbe0cfd">uq10_6_t</a> <a class="code" href="structargus__meas__frame__t.html#a97d8aff21d43fd27f5d03baaa1c6625d">AnalogIntegrationDepth</a>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21">   93</a></span>&#160;    uint16_t <a class="code" href="structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21">DigitalIntegrationDepth</a>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a4aad62a4d40928a3907b8ae569a740b2">   97</a></span>&#160;    <a class="code" href="group__fixedpoint.html#gaf770481ddcfcfa8b525d1e4388a5214e">uq12_4_t</a> <a class="code" href="structargus__meas__frame__t.html#a4aad62a4d40928a3907b8ae569a740b2">OutputPower</a>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a97bf107da6872375d7dd1325cf6deba2">  101</a></span>&#160;    uint8_t <a class="code" href="structargus__meas__frame__t.html#a97bf107da6872375d7dd1325cf6deba2">PixelGain</a>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a5a247a6fd0c611eddbc488a6e10cefda">  105</a></span>&#160;    int8_t <a class="code" href="structargus__meas__frame__t.html#a5a247a6fd0c611eddbc488a6e10cefda">PllOffset</a>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#ae6b3817cf5561c10c83421c1ca9794c0">  114</a></span>&#160;    <a class="code" href="group__argusdca.html#gada1413643a68f3cd36f6c0a1d0b61e91">argus_state_t</a> <a class="code" href="structargus__meas__frame__t.html#ae6b3817cf5561c10c83421c1ca9794c0">State</a>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;} <a class="code" href="structargus__meas__frame__t.html">argus_meas_frame_t</a>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ARGUS_MEAS_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#ab76bd3b7bb6308b3ebada44c63ea399c">   82</a></span>&#160;    uint32_t <a class="code" href="structargus__meas__frame__t.html#ab76bd3b7bb6308b3ebada44c63ea399c">IntegrationTime</a>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#af5e3edeb721a1da4ef410bbba9058ca6">   88</a></span>&#160;    uint32_t <a class="code" href="structargus__meas__frame__t.html#af5e3edeb721a1da4ef410bbba9058ca6">PxEnMask</a>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a260b63262f7887f4d8e5061d80ff4a74">   94</a></span>&#160;    uint32_t <a class="code" href="structargus__meas__frame__t.html#a260b63262f7887f4d8e5061d80ff4a74">ChEnMask</a>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#ae6b3817cf5561c10c83421c1ca9794c0">  103</a></span>&#160;    <a class="code" href="group__argusdca.html#gada1413643a68f3cd36f6c0a1d0b61e91">argus_state_t</a> <a class="code" href="structargus__meas__frame__t.html#ae6b3817cf5561c10c83421c1ca9794c0">State</a>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a97d8aff21d43fd27f5d03baaa1c6625d">  107</a></span>&#160;    <a class="code" href="group__fixedpoint.html#ga73367988e46406696b11bc9a9fbe0cfd">uq10_6_t</a> <a class="code" href="structargus__meas__frame__t.html#a97d8aff21d43fd27f5d03baaa1c6625d">AnalogIntegrationDepth</a>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21">  111</a></span>&#160;    uint16_t <a class="code" href="structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21">DigitalIntegrationDepth</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a4aad62a4d40928a3907b8ae569a740b2">  115</a></span>&#160;    <a class="code" href="group__fixedpoint.html#gaf770481ddcfcfa8b525d1e4388a5214e">uq12_4_t</a> <a class="code" href="structargus__meas__frame__t.html#a4aad62a4d40928a3907b8ae569a740b2">OutputPower</a>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#ae6dda188598e56db1185d2b7ecb1ef9c">  118</a></span>&#160;    <a class="code" href="group__fixedpoint.html#gaf770481ddcfcfa8b525d1e4388a5214e">uq12_4_t</a> <a class="code" href="structargus__meas__frame__t.html#ae6dda188598e56db1185d2b7ecb1ef9c">DCAAmplitude</a>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a51fcd65f0a3f54cb09e2859ba09f686f">  121</a></span>&#160;    uint8_t <a class="code" href="structargus__meas__frame__t.html#a51fcd65f0a3f54cb09e2859ba09f686f">BiasCurrent</a>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a97bf107da6872375d7dd1325cf6deba2">  125</a></span>&#160;    uint8_t <a class="code" href="structargus__meas__frame__t.html#a97bf107da6872375d7dd1325cf6deba2">PixelGain</a>;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#a5a247a6fd0c611eddbc488a6e10cefda">  129</a></span>&#160;    int8_t <a class="code" href="structargus__meas__frame__t.html#a5a247a6fd0c611eddbc488a6e10cefda">PllOffset</a>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="structargus__meas__frame__t.html#ae510f4c489d70191ae80e6d6cde4d97e">  132</a></span>&#160;    uint8_t <a class="code" href="structargus__meas__frame__t.html#ae510f4c489d70191ae80e6d6cde4d97e">PllCtrlCur</a>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;} <a class="code" href="structargus__meas__frame__t.html">argus_meas_frame_t</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ARGUS_MEAS_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aargus__dca_8h_html"><div class="ttname"><a href="argus__dca_8h.html">argus_dca.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 API.</div></div>
 <div class="ttc" id="aargus__def_8h_html"><div class="ttname"><a href="argus__def_8h.html">argus_def.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 hardware API.</div></div>
-<div class="ttc" id="agroup__argusdca_html_gada1413643a68f3cd36f6c0a1d0b61e91"><div class="ttname"><a href="group__argusdca.html#gada1413643a68f3cd36f6c0a1d0b61e91">argus_state_t</a></div><div class="ttdeci">argus_state_t</div><div class="ttdoc">State flags for the current frame.</div><div class="ttdef"><b>Definition:</b> argus_dca.h:242</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_ga73367988e46406696b11bc9a9fbe0cfd"><div class="ttname"><a href="group__fixedpoint.html#ga73367988e46406696b11bc9a9fbe0cfd">uq10_6_t</a></div><div class="ttdeci">uint16_t uq10_6_t</div><div class="ttdoc">Unsigned fixed point number: UQ10.6.</div><div class="ttdef"><b>Definition:</b> fp_def.h:196</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_gaf770481ddcfcfa8b525d1e4388a5214e"><div class="ttname"><a href="group__fixedpoint.html#gaf770481ddcfcfa8b525d1e4388a5214e">uq12_4_t</a></div><div class="ttdeci">uint16_t uq12_4_t</div><div class="ttdoc">Unsigned fixed point number: UQ12.4.</div><div class="ttdef"><b>Definition:</b> fp_def.h:157</div></div>
+<div class="ttc" id="agroup__argusdca_html_gada1413643a68f3cd36f6c0a1d0b61e91"><div class="ttname"><a href="group__argusdca.html#gada1413643a68f3cd36f6c0a1d0b61e91">argus_state_t</a></div><div class="ttdeci">argus_state_t</div><div class="ttdoc">State flags for the current frame.</div><div class="ttdef"><b>Definition:</b> argus_dca.h:233</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_ga73367988e46406696b11bc9a9fbe0cfd"><div class="ttname"><a href="group__fixedpoint.html#ga73367988e46406696b11bc9a9fbe0cfd">uq10_6_t</a></div><div class="ttdeci">uint16_t uq10_6_t</div><div class="ttdoc">Unsigned fixed point number: UQ10.6.</div><div class="ttdef"><b>Definition:</b> fp_def.h:244</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_gaf770481ddcfcfa8b525d1e4388a5214e"><div class="ttname"><a href="group__fixedpoint.html#gaf770481ddcfcfa8b525d1e4388a5214e">uq12_4_t</a></div><div class="ttdeci">uint16_t uq12_4_t</div><div class="ttdoc">Unsigned fixed point number: UQ12.4.</div><div class="ttdef"><b>Definition:</b> fp_def.h:224</div></div>
 <div class="ttc" id="astructargus__meas__frame__t_html"><div class="ttname"><a href="structargus__meas__frame__t.html">argus_meas_frame_t</a></div><div class="ttdoc">The device measurement configuration structure.</div><div class="ttdef"><b>Definition:</b> argus_meas.h:74</div></div>
-<div class="ttc" id="astructargus__meas__frame__t_html_a260b63262f7887f4d8e5061d80ff4a74"><div class="ttname"><a href="structargus__meas__frame__t.html#a260b63262f7887f4d8e5061d80ff4a74">argus_meas_frame_t::ChEnMask</a></div><div class="ttdeci">uint32_t ChEnMask</div><div class="ttdef"><b>Definition:</b> argus_meas.h:85</div></div>
-<div class="ttc" id="astructargus__meas__frame__t_html_a43faca48324c90f7aecf4bfe52aa4e21"><div class="ttname"><a href="structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21">argus_meas_frame_t::DigitalIntegrationDepth</a></div><div class="ttdeci">uint16_t DigitalIntegrationDepth</div><div class="ttdef"><b>Definition:</b> argus_meas.h:93</div></div>
-<div class="ttc" id="astructargus__meas__frame__t_html_a4aad62a4d40928a3907b8ae569a740b2"><div class="ttname"><a href="structargus__meas__frame__t.html#a4aad62a4d40928a3907b8ae569a740b2">argus_meas_frame_t::OutputPower</a></div><div class="ttdeci">uq12_4_t OutputPower</div><div class="ttdef"><b>Definition:</b> argus_meas.h:97</div></div>
-<div class="ttc" id="astructargus__meas__frame__t_html_a5a247a6fd0c611eddbc488a6e10cefda"><div class="ttname"><a href="structargus__meas__frame__t.html#a5a247a6fd0c611eddbc488a6e10cefda">argus_meas_frame_t::PllOffset</a></div><div class="ttdeci">int8_t PllOffset</div><div class="ttdef"><b>Definition:</b> argus_meas.h:105</div></div>
-<div class="ttc" id="astructargus__meas__frame__t_html_a97bf107da6872375d7dd1325cf6deba2"><div class="ttname"><a href="structargus__meas__frame__t.html#a97bf107da6872375d7dd1325cf6deba2">argus_meas_frame_t::PixelGain</a></div><div class="ttdeci">uint8_t PixelGain</div><div class="ttdef"><b>Definition:</b> argus_meas.h:101</div></div>
-<div class="ttc" id="astructargus__meas__frame__t_html_a97d8aff21d43fd27f5d03baaa1c6625d"><div class="ttname"><a href="structargus__meas__frame__t.html#a97d8aff21d43fd27f5d03baaa1c6625d">argus_meas_frame_t::AnalogIntegrationDepth</a></div><div class="ttdeci">uq10_6_t AnalogIntegrationDepth</div><div class="ttdef"><b>Definition:</b> argus_meas.h:89</div></div>
-<div class="ttc" id="astructargus__meas__frame__t_html_ae6b3817cf5561c10c83421c1ca9794c0"><div class="ttname"><a href="structargus__meas__frame__t.html#ae6b3817cf5561c10c83421c1ca9794c0">argus_meas_frame_t::State</a></div><div class="ttdeci">argus_state_t State</div><div class="ttdef"><b>Definition:</b> argus_meas.h:114</div></div>
-<div class="ttc" id="astructargus__meas__frame__t_html_af5e3edeb721a1da4ef410bbba9058ca6"><div class="ttname"><a href="structargus__meas__frame__t.html#af5e3edeb721a1da4ef410bbba9058ca6">argus_meas_frame_t::PxEnMask</a></div><div class="ttdeci">uint32_t PxEnMask</div><div class="ttdef"><b>Definition:</b> argus_meas.h:79</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_a260b63262f7887f4d8e5061d80ff4a74"><div class="ttname"><a href="structargus__meas__frame__t.html#a260b63262f7887f4d8e5061d80ff4a74">argus_meas_frame_t::ChEnMask</a></div><div class="ttdeci">uint32_t ChEnMask</div><div class="ttdef"><b>Definition:</b> argus_meas.h:94</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_a43faca48324c90f7aecf4bfe52aa4e21"><div class="ttname"><a href="structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21">argus_meas_frame_t::DigitalIntegrationDepth</a></div><div class="ttdeci">uint16_t DigitalIntegrationDepth</div><div class="ttdef"><b>Definition:</b> argus_meas.h:111</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_a4aad62a4d40928a3907b8ae569a740b2"><div class="ttname"><a href="structargus__meas__frame__t.html#a4aad62a4d40928a3907b8ae569a740b2">argus_meas_frame_t::OutputPower</a></div><div class="ttdeci">uq12_4_t OutputPower</div><div class="ttdef"><b>Definition:</b> argus_meas.h:115</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_a51fcd65f0a3f54cb09e2859ba09f686f"><div class="ttname"><a href="structargus__meas__frame__t.html#a51fcd65f0a3f54cb09e2859ba09f686f">argus_meas_frame_t::BiasCurrent</a></div><div class="ttdeci">uint8_t BiasCurrent</div><div class="ttdef"><b>Definition:</b> argus_meas.h:121</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_a5a247a6fd0c611eddbc488a6e10cefda"><div class="ttname"><a href="structargus__meas__frame__t.html#a5a247a6fd0c611eddbc488a6e10cefda">argus_meas_frame_t::PllOffset</a></div><div class="ttdeci">int8_t PllOffset</div><div class="ttdef"><b>Definition:</b> argus_meas.h:129</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_a97bf107da6872375d7dd1325cf6deba2"><div class="ttname"><a href="structargus__meas__frame__t.html#a97bf107da6872375d7dd1325cf6deba2">argus_meas_frame_t::PixelGain</a></div><div class="ttdeci">uint8_t PixelGain</div><div class="ttdef"><b>Definition:</b> argus_meas.h:125</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_a97d8aff21d43fd27f5d03baaa1c6625d"><div class="ttname"><a href="structargus__meas__frame__t.html#a97d8aff21d43fd27f5d03baaa1c6625d">argus_meas_frame_t::AnalogIntegrationDepth</a></div><div class="ttdeci">uq10_6_t AnalogIntegrationDepth</div><div class="ttdef"><b>Definition:</b> argus_meas.h:107</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_ab76bd3b7bb6308b3ebada44c63ea399c"><div class="ttname"><a href="structargus__meas__frame__t.html#ab76bd3b7bb6308b3ebada44c63ea399c">argus_meas_frame_t::IntegrationTime</a></div><div class="ttdeci">uint32_t IntegrationTime</div><div class="ttdef"><b>Definition:</b> argus_meas.h:82</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_ae510f4c489d70191ae80e6d6cde4d97e"><div class="ttname"><a href="structargus__meas__frame__t.html#ae510f4c489d70191ae80e6d6cde4d97e">argus_meas_frame_t::PllCtrlCur</a></div><div class="ttdeci">uint8_t PllCtrlCur</div><div class="ttdef"><b>Definition:</b> argus_meas.h:132</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_ae6b3817cf5561c10c83421c1ca9794c0"><div class="ttname"><a href="structargus__meas__frame__t.html#ae6b3817cf5561c10c83421c1ca9794c0">argus_meas_frame_t::State</a></div><div class="ttdeci">argus_state_t State</div><div class="ttdef"><b>Definition:</b> argus_meas.h:103</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_ae6dda188598e56db1185d2b7ecb1ef9c"><div class="ttname"><a href="structargus__meas__frame__t.html#ae6dda188598e56db1185d2b7ecb1ef9c">argus_meas_frame_t::DCAAmplitude</a></div><div class="ttdeci">uq12_4_t DCAAmplitude</div><div class="ttdef"><b>Definition:</b> argus_meas.h:118</div></div>
+<div class="ttc" id="astructargus__meas__frame__t_html_af5e3edeb721a1da4ef410bbba9058ca6"><div class="ttname"><a href="structargus__meas__frame__t.html#af5e3edeb721a1da4ef410bbba9058ca6">argus_meas_frame_t::PxEnMask</a></div><div class="ttdeci">uint32_t PxEnMask</div><div class="ttdef"><b>Definition:</b> argus_meas.h:88</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="navelem"><a class="el" href="dir_856524284ebe840938865dc061f982fb.html">Include</a></li><li class="navelem"><a class="el" href="dir_93789b764323378c9e465e7f672157d0.html">api</a></li><li class="navelem"><a class="el" href="argus__meas_8h.html">argus_meas.h</a></li>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="navelem"><a class="el" href="dir_82027cc1cfaf56e8782fb3fde083c666.html">Include</a></li><li class="navelem"><a class="el" href="dir_4db4e13b7f5dcbc9bb37f4d90f81a669.html">api</a></li><li class="navelem"><a class="el" href="argus__meas_8h.html">argus_meas.h</a></li>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

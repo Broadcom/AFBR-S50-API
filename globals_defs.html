@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Globals</title>
+<title>AFBR-S50 API Reference Manual: Globals</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -154,16 +154,19 @@ $(document).ready(function(){initNavTree('globals_defs.html',''); initResizable(
 : <a class="el" href="group__argusdca.html#ga330be2c5629652346db2eb5476595ab7">argus_dca.h</a>
 </li>
 <li>CHANNEL_COUNT
-: <a class="el" href="group__argusmap.html#ga875ebafabfb32c77eed1e81e9f4bc802">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#ga875ebafabfb32c77eed1e81e9f4bc802">argus_map.h</a>
 </li>
 <li>CHANNELN_DISABLE
-: <a class="el" href="group__argusmap.html#gabfef3d1a313dbd8f722e248e225848a1">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#gabfef3d1a313dbd8f722e248e225848a1">argus_map.h</a>
 </li>
 <li>CHANNELN_ENABLE
-: <a class="el" href="group__argusmap.html#gac14bac78f94bf611f7351d73596482e8">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#gac14bac78f94bf611f7351d73596482e8">argus_map.h</a>
 </li>
 <li>CHANNELN_ISENABLED
-: <a class="el" href="group__argusmap.html#ga5dd380bdac8d9b17bc2920a29f5e90ea">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#ga5dd380bdac8d9b17bc2920a29f5e90ea">argus_map.h</a>
+</li>
+<li>CLAMP
+: <a class="el" href="group__misc.html#ga33bd933f5d4895b3b6d18c2d5fed91a0">int_math.h</a>
 </li>
 </ul>
 
@@ -180,6 +183,13 @@ $(document).ready(function(){initNavTree('globals_defs.html',''); initResizable(
 </li>
 <li>ARGUS_DFM_MODE_COUNT
 : <a class="el" href="group__argusdfm.html#gadbc34cda337c64408bb9ac6c2f2e8e7b">argus_dfm.h</a>
+</li>
+</ul>
+
+
+<h3><a id="index_e"></a>- e -</h3><ul>
+<li>error_log
+: <a class="el" href="argus__hal__test_8c.html#ad9aa36016956a22b772d409089f0867d">argus_hal_test.c</a>
 </li>
 </ul>
 
@@ -236,40 +246,70 @@ $(document).ready(function(){initNavTree('globals_defs.html',''); initResizable(
 <li>ARGUS_PIXELS_Y
 : <a class="el" href="group__argusapi.html#ga17627acf84a462e4500a28f8ada462d4">argus_def.h</a>
 </li>
+<li>PIXEL_CH2N
+: <a class="el" href="group__argusmap.html#ga3145cc4d8ed8ddd105808c4eb9d56bdd">argus_map.h</a>
+</li>
+<li>PIXEL_CH2X
+: <a class="el" href="group__argusmap.html#gafa8ab6f7ada9cf0d147863e46a98576c">argus_map.h</a>
+</li>
+<li>PIXEL_CH2Y
+: <a class="el" href="group__argusmap.html#ga8dd45f24e2c1365372cc11268f2fdee5">argus_map.h</a>
+</li>
 <li>PIXEL_COUNT
-: <a class="el" href="group__argusmap.html#gaea5f0e8181e0d6841a6bd28ae4b7ab79">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#gaea5f0e8181e0d6841a6bd28ae4b7ab79">argus_map.h</a>
+</li>
+<li>PIXEL_N2CH
+: <a class="el" href="group__argusmap.html#gaaa2a207e9a8ff00f1786726ae88fe01c">argus_map.h</a>
 </li>
 <li>PIXEL_N2X
-: <a class="el" href="group__argusmap.html#ga0625fb7d617136607d401ff196bc2810">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#ga0625fb7d617136607d401ff196bc2810">argus_map.h</a>
 </li>
 <li>PIXEL_N2Y
-: <a class="el" href="group__argusmap.html#gaa474884aabfac83ea7c2e0bf8015b471">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#gaa474884aabfac83ea7c2e0bf8015b471">argus_map.h</a>
+</li>
+<li>PIXEL_XY2CH
+: <a class="el" href="group__argusmap.html#ga5f934d66bfd613d8928b3f94d831707a">argus_map.h</a>
 </li>
 <li>PIXEL_XY2N
-: <a class="el" href="group__argusmap.html#gacd9a85d1dcb0dc86a87f313aa864973c">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#gacd9a85d1dcb0dc86a87f313aa864973c">argus_map.h</a>
+</li>
+<li>PIXELCH_DISABLE
+: <a class="el" href="group__argusmap.html#ga3d7cf748c2db341a24cb3f016bddd57c">argus_map.h</a>
+</li>
+<li>PIXELCH_ENABLE
+: <a class="el" href="group__argusmap.html#ga5a24ea85779702aee04bf2fa260db833">argus_map.h</a>
+</li>
+<li>PIXELCH_ISENABLED
+: <a class="el" href="group__argusmap.html#ga1bf138d6fadff2f28dfd8792c51687da">argus_map.h</a>
 </li>
 <li>PIXELN_DISABLE
-: <a class="el" href="group__argusmap.html#gacecfce1898fbdbd0af80e9e86feb7de6">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#ga91c078d2261a261e89c5cc15f8d95ea9">argus_map.h</a>
 </li>
 <li>PIXELN_ENABLE
-: <a class="el" href="group__argusmap.html#gaa439f6c89ecdd59d5bc0c884bc964346">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#ga52036de87980ad18c03e32030c461492">argus_map.h</a>
 </li>
 <li>PIXELN_ISENABLED
-: <a class="el" href="group__argusmap.html#ga184f17280595228be427ec3959d95206">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#gac988f6a8ec90ed0977066e8cc8d9eaea">argus_map.h</a>
 </li>
 <li>PIXELXY_DISABLE
-: <a class="el" href="group__argusmap.html#ga7a40569c2bf00c02841b1eff390ba659">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#ga7a40569c2bf00c02841b1eff390ba659">argus_map.h</a>
 </li>
 <li>PIXELXY_ENABLE
-: <a class="el" href="group__argusmap.html#gae32b946e334dbc39181bac75790064dc">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#gae32b946e334dbc39181bac75790064dc">argus_map.h</a>
 </li>
 <li>PIXELXY_ISENABLED
-: <a class="el" href="group__argusmap.html#gaa51a0ce9b1e5dd179fbeaedfc4dd80e6">argus_msk.h</a>
+: <a class="el" href="group__argusmap.html#gaa51a0ce9b1e5dd179fbeaedfc4dd80e6">argus_map.h</a>
 </li>
 </ul>
 
 
 <h3><a id="index_q"></a>- q -</h3><ul>
+<li>Q0_15_MAX
+: <a class="el" href="group__fixedpoint.html#gaeccdff75966511188d8497c661041f78">fp_def.h</a>
+</li>
+<li>Q0_15_MIN
+: <a class="el" href="group__fixedpoint.html#ga7233e0fa0e201c3c100378f80d6c3bd7">fp_def.h</a>
+</li>
 <li>Q11_4_MAX
 : <a class="el" href="group__fixedpoint.html#ga30d601b51bcfd26418405ccce4cd5de8">fp_def.h</a>
 </li>
@@ -285,11 +325,41 @@ $(document).ready(function(){initNavTree('globals_defs.html',''); initResizable(
 <li>Q15_16_ONE
 : <a class="el" href="group__fixedpoint.html#ga1593525fda7a2dcd5e22ea95625128c3">fp_def.h</a>
 </li>
+<li>Q1_6_MAX
+: <a class="el" href="group__fixedpoint.html#ga7807a6e329ab0dd52ce91c8a23a15b70">fp_def.h</a>
+</li>
+<li>Q1_6_MIN
+: <a class="el" href="group__fixedpoint.html#gaa3a3e90950253b1738b5db0589dcdabb">fp_def.h</a>
+</li>
 <li>Q27_4_MAX
 : <a class="el" href="group__fixedpoint.html#gabea3dd652af875ebe8fa29d44e20af3f">fp_def.h</a>
 </li>
 <li>Q27_4_MIN
 : <a class="el" href="group__fixedpoint.html#gae6f4561de45e616fbadd055aa59671aa">fp_def.h</a>
+</li>
+<li>Q3_12_MAX
+: <a class="el" href="group__fixedpoint.html#gaec89b112510dfdb6df661d581604e20b">fp_def.h</a>
+</li>
+<li>Q3_12_MIN
+: <a class="el" href="group__fixedpoint.html#ga363c985c253269657d7f5ef6780af2f1">fp_def.h</a>
+</li>
+<li>Q3_12_ONE
+: <a class="el" href="group__fixedpoint.html#gafb48190929bba1d7105446736199d6fc">fp_def.h</a>
+</li>
+<li>Q3_4_MAX
+: <a class="el" href="group__fixedpoint.html#ga4ea79f39140ababeb1fe4c897d84f633">fp_def.h</a>
+</li>
+<li>Q3_4_MIN
+: <a class="el" href="group__fixedpoint.html#ga008554d1c14e3eb2faa9ac3b1dba88ee">fp_def.h</a>
+</li>
+<li>Q7_8_MAX
+: <a class="el" href="group__fixedpoint.html#gaba7df2b612021d383d165f936601e56f">fp_def.h</a>
+</li>
+<li>Q7_8_MIN
+: <a class="el" href="group__fixedpoint.html#ga3d89f578ad44bfd03d03cf3ee3e145df">fp_def.h</a>
+</li>
+<li>Q7_8_ONE
+: <a class="el" href="group__fixedpoint.html#ga3c4ecf04354e9def956d46579d20c67c">fp_def.h</a>
 </li>
 <li>Q9_22_MAX
 : <a class="el" href="group__fixedpoint.html#ga0155b7a785f8c5c58461dc4400430ffe">fp_def.h</a>
@@ -317,15 +387,6 @@ $(document).ready(function(){initNavTree('globals_defs.html',''); initResizable(
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
-<li>ARGUS_STATE_DCA_DEPTH_SHFT_GET
-: <a class="el" href="group__argusdca.html#gada4a3cf1cc76c0882490dd0d220b4cc6">argus_dca.h</a>
-</li>
-<li>ARGUS_STATE_DCA_DEPTH_SHFT_MASK
-: <a class="el" href="group__argusdca.html#gab559a17160d3c7418362b53605082a65">argus_dca.h</a>
-</li>
-<li>ARGUS_STATE_DCA_DEPTH_SHFT_SHIFT
-: <a class="el" href="group__argusdca.html#ga498dcc6306fe76a567e705a9543787ae">argus_dca.h</a>
-</li>
 <li>ARGUS_STATE_DCA_GAIN_GET
 : <a class="el" href="group__argusdca.html#ga4e35c8bb631c014707fd456cdcc73326">argus_dca.h</a>
 </li>
@@ -351,11 +412,14 @@ $(document).ready(function(){initNavTree('globals_defs.html',''); initResizable(
 <li>UQ0_16_MAX
 : <a class="el" href="group__fixedpoint.html#ga913c4847ed4f93046dcd56a615def973">fp_def.h</a>
 </li>
-<li>UQ0_16_ONE
-: <a class="el" href="group__fixedpoint.html#ga2104cee58a9ae3b8e8edf73a338b6c49">fp_def.h</a>
-</li>
 <li>UQ0_8_MAX
 : <a class="el" href="group__fixedpoint.html#ga6544382d8f6ff807aa64c99f4d96c523">fp_def.h</a>
+</li>
+<li>UQ10_22_MAX
+: <a class="el" href="group__fixedpoint.html#ga05e7d1f108e53ed8552c7352a8692f57">fp_def.h</a>
+</li>
+<li>UQ10_22_ONE
+: <a class="el" href="group__fixedpoint.html#gac1c46363cf7bdfb5218b85f172aa292b">fp_def.h</a>
 </li>
 <li>UQ10_6_MAX
 : <a class="el" href="group__fixedpoint.html#gaa2950f144d4e9643b3883adbc7690403">fp_def.h</a>
@@ -387,6 +451,15 @@ $(document).ready(function(){initNavTree('globals_defs.html',''); initResizable(
 <li>UQ1_15_ONE
 : <a class="el" href="group__fixedpoint.html#gac4d01f9711340dd274aee704512c1fba">fp_def.h</a>
 </li>
+<li>UQ1_6_ONE
+: <a class="el" href="group__fixedpoint.html#gab49cb0082421ded1eb71dc9f9707b8cd">fp_def.h</a>
+</li>
+<li>UQ1_7_MAX
+: <a class="el" href="group__fixedpoint.html#gafcc378f807d710aeef351d73cacca872">fp_def.h</a>
+</li>
+<li>UQ1_7_ONE
+: <a class="el" href="group__fixedpoint.html#ga085fcf847cab9a36abe41613fbabc58c">fp_def.h</a>
+</li>
 <li>UQ27_4_ONE
 : <a class="el" href="group__fixedpoint.html#ga975c967d1617752c591d1e28c4a4f9bd">fp_def.h</a>
 </li>
@@ -396,8 +469,14 @@ $(document).ready(function(){initNavTree('globals_defs.html',''); initResizable(
 <li>UQ28_4_ONE
 : <a class="el" href="group__fixedpoint.html#gaee40669e3551faf5e8e7f29072ba87b6">fp_def.h</a>
 </li>
+<li>UQ2_6_MAX
+: <a class="el" href="group__fixedpoint.html#gab96cf8a21365890924d3d54d670116fe">fp_def.h</a>
+</li>
 <li>UQ2_6_ONE
 : <a class="el" href="group__fixedpoint.html#ga70eb9334281911fa9226715b0d0beefb">fp_def.h</a>
+</li>
+<li>UQ3_4_ONE
+: <a class="el" href="group__fixedpoint.html#ga7e88214a197ca729aa127fcda259b4a0">fp_def.h</a>
 </li>
 <li>UQ4_4_MAX
 : <a class="el" href="group__fixedpoint.html#ga7a5708d5106e12155ad78c28333b8005">fp_def.h</a>
@@ -405,15 +484,28 @@ $(document).ready(function(){initNavTree('globals_defs.html',''); initResizable(
 <li>UQ4_4_ONE
 : <a class="el" href="group__fixedpoint.html#gae4881159987f1d9e20a3c8f904812592">fp_def.h</a>
 </li>
+<li>UQ6_2_MAX
+: <a class="el" href="group__fixedpoint.html#ga35fe7f8361f126c16318f8c432c5b61d">fp_def.h</a>
+</li>
+<li>UQ6_2_ONE
+: <a class="el" href="group__fixedpoint.html#ga5f056e76262d09ec9c2ede391f064f06">fp_def.h</a>
+</li>
+<li>USE_64BIT_MUL
+: <a class="el" href="group__fixedpoint.html#ga50ca969d3b1e1149be3813fbf2bac9f4">fp_mul.h</a>
+</li>
+<li>USE_HW_DIV
+: <a class="el" href="group__fixedpoint.html#ga96544080e89132cef49989b12bc5c838">fp_div.h</a>
+</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

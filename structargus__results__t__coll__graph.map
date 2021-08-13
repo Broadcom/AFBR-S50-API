@@ -1,8 +1,8 @@
 <map id="argus_results_t" name="argus_results_t">
-<area shape="rect" id="node1" title="The measurement results data structure." alt="" coords="211,109,322,136"/>
+<area shape="rect" id="node1" title="The measurement results data structure." alt="" coords="211,124,322,151"/>
 <area shape="rect" id="node2" href="$structargus__pixel__t.html" title="The evaluated measurement results per pixel." alt="" coords="5,5,104,32"/>
 <area shape="rect" id="node3" href="$structltc__t.html" title="A data structure to represent current time." alt="" coords="129,5,175,32"/>
 <area shape="rect" id="node4" href="$structargus__results__bin__t.html" title="The 1d measurement results data structure." alt="" coords="199,5,334,32"/>
 <area shape="rect" id="node5" href="$structargus__results__aux__t.html" title="The auxiliary measurement results data structure." alt="" coords="359,5,497,32"/>
-<area shape="rect" id="node6" href="$structargus__meas__frame__t.html" title="The device measurement configuration structure." alt="" coords="522,5,665,32"/>
+<area shape="rect" id="node6" href="$structargus__meas__frame__t.html" title="The device measurement configuration structure." alt="" coords="521,5,665,32"/>
 </map>

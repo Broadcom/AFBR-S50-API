@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Getting Started</title>
+<title>AFBR-S50 API Reference Manual: Getting Started</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -104,10 +104,12 @@ AFBR-S50 API</h1>
 </div><!-- fragment --><p>The API utilizes an abstract handler object that contains all internal states for a single time-of-flight sensor device. In this way, it is possible to use the same API with more than a single device. Note, however, that this feature is not fully implemented in the current version and is planned for a future release! After including the header file, the handler object must be created by calling the <a class="el" href="group__argusapi.html#ga0c81d41a6c8aecceca64b54c724b6a2d" title="Creates a new device data handle object to store all internal states.">Argus_CreateHandle</a> function to obtain a pointer to the newly allocated object. This is done via the standard library function: </p><div class="fragment"><div class="line">void * malloc(size_t size) </div>
 </div><!-- fragment --><p> If it is required to use a different function, create and overwrite the weakly linked method and implement your own memory allocation algorithm: </p><div class="fragment"><div class="line">void * Argus_Malloc(size_t size) { /* ... */ } </div>
 </div><!-- fragment --><p>After creation of the handler object, the <em>AFBR-S50</em> module must be initialized with the corresponding handler object: </p><div class="fragment"><div class="line">status_t status = Argus_Init(hnd, SPI_SLAVE); </div>
-</div><!-- fragment --><p> Note that all peripheral modules must be ready to be used before executing any API function. So make sure to initialize the board and its peripherals before. Now the device is ready to run and has setup with default configuration and calibration data. Use the provided API functions to customize the given default configuration to the needs and requirements of the application.</p>
-<p>From then, there are two possibilities to operate the device. First, the simple polling method. The measurements are triggered by the main program via calling the <a class="el" href="group__argusmeas.html#ga92c7d4e2cdfccff38bf6689935e088a5" title="Triggers a single measurement frame asynchronously.">Argus_TriggerMeasurement</a> function any time a new measurement should be started. A new measurement frame is started and after reading the data from the device, the callback is invoked to inform the host application about the data ready event. In the meantime, the host application can poll the module status or execute other tasks. After finishing the measurement, the <a class="el" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239" title="Evaluate useful information from the raw measurement data.">Argus_EvaluateData</a> function must be called to obtain measurement data like range from the raw readout data. It is mandatory to call the evaluation method. Otherwise, the raw data buffer is kept occupied and no new measurement can be started anymore. The module contains however a double buffer architecture, which allows to start the next measurement and evaluate the current measurement data while the device executes a new measurement frame. After evaluation, the <a class="el" href="structargus__results__t.html" title="The measurement results data structure.">argus_results_t</a> data structure is filled with all measurement results that can be processed now be processed by the host application depending on the users needs. An example implementation is shown in the <a class="el" href="getting_started.html#gs_simple_example">Simple Example</a> section.</p>
-<p>Please note that the laser safety module might refuse to restart a measurement at the time the function is called. This is due to timing constraints dictated by the laser safety rules. The frame time and similar parameters can be adjusted with the configuration API methods.</p>
-<p>The second way of operating the device is to leverage from an periodic interrupt time that invokes a callback to the API in periodic manner. The timer is implemented in the <a class="el" href="group__argus__timer.html">timer</a> interface. Instead of calling the <a class="el" href="group__argusmeas.html#ga92c7d4e2cdfccff38bf6689935e088a5" title="Triggers a single measurement frame asynchronously.">Argus_TriggerMeasurement</a> function periodically from the host application, the measurement restarts itself in an autonomous way. Every time, a new raw measurement data set is ready, the measurement data ready callback is invoked by the API. Similar to the previous method, the <a class="el" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239" title="Evaluate useful information from the raw measurement data.">Argus_EvaluateData</a> function must be called before the data can be used. Note that not calling the function will lead to measurements are not restarted before the evaluation method is called and the data buffers is freed. In the same manner, a slow data evaluation or much user code to delay the data evaluation method might decrease the measurement frame rate. An example implementation is shown in the <a class="el" href="getting_started.html#gs_adv_example">Advanced Example</a> section.</p>
+</div><!-- fragment --><p>Note that all peripheral modules must be ready to be used before executing any API function. So make sure to initialize the board and its peripherals before initializing the API via <code>Argus_Init</code>.</p>
+<p>After calling <code>Argus_Init</code>, the device is ready to run and has been setup with default configuration and calibration data. Use the provided API functions to customize the given default configuration to the needs and requirements of the application.</p>
+<p>Note that <code>Argus_Init</code> returns <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a> on successful initialization. In case of any non-zero return value, refer to the <a class="el" href="faq.html">Troubleshooting</a> section</p>
+<p>There are two possibilities to operate the device. First, the simple polling method. The measurements are triggered by the main program via calling the <a class="el" href="group__argusmeas.html#ga92c7d4e2cdfccff38bf6689935e088a5" title="Triggers a single measurement frame asynchronously.">Argus_TriggerMeasurement</a> function any time a new measurement should be started. A new measurement frame is started and after reading the data from the device, the callback is invoked to inform the host application about the data ready event. In the meantime, the host application can poll the module status or execute other tasks. After finishing the measurement, the <a class="el" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239" title="Evaluate useful information from the raw measurement data.">Argus_EvaluateData</a> function must be called to obtain measurement data like range from the raw readout data. It is mandatory to call the evaluation method. Otherwise, the raw data buffer is kept occupied and no new measurements can be triggered anymore. The module contains a double buffer architecture, which allows to start the next measurement and evaluate the current measurement data while the device already executes the next measurement frame. After evaluation, the <a class="el" href="structargus__results__t.html" title="The measurement results data structure.">argus_results_t</a> data structure is filled with all measurement results that can be processed now be processed by the host application depending on the users needs. An example implementation is shown in the <a class="el" href="getting_started.html#gs_simple_example">Simple Example</a> section.</p>
+<p>Please note that the laser safety module might refuse to restart a measurement at the time the function is called. This is due to timing constraints dictated by the laser safety rules. In this case, the function does return with <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba3ec68d249b5ffaa0da7e0a1170f592a2">STATUS_ARGUS_POWERLIMIT</a> instead. Use the <a class="el" href="group__arguscfg.html#gaa6d970c42ac21e56907247f58a029472">frame time </a> and similar parameters to adjust the required pause times via the <a class="el" href="group__arguscfg.html">configuration API methods</a>.</p>
+<p>The second way of operating the device is to leverage from an periodic interrupt time that invokes a callback to the API in periodic manner. The timer is implemented in the <a class="el" href="group__argus__timer.html">timer</a> interface. Instead of calling the trigger measurement function periodically from the host application, the measurement restarts itself in an autonomous way. Every time, a new raw measurement data set is ready, the measurement data ready callback is invoked by the API. Similar to the previous method, the <a class="el" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239" title="Evaluate useful information from the raw measurement data.">Argus_EvaluateData</a> function must be called before the data can be used. Note that not calling the function will lead to measurements are not restarted before the evaluation method is called and the data buffers is freed. In the same manner, a slow data evaluation or much user code to delay the data evaluation method might decrease the measurement frame rate. An example implementation is shown in the <a class="el" href="getting_started.html#gs_adv_example">Advanced Example</a> section.</p>
 <h1><a class="anchor" id="gs_mcuxpresso"></a>
 Build And Run the Examples using MCUXpresso</h1>
 <p>In order to run the provided example projects using the <em>MCUXpresso IDE</em>, execute the following steps. Please also refer to the getting started guide by NXP in case of any trouble: <a href="https://www.nxp.com/docs/en/user-guide/MCUXSDKGSUG.pdf">https://www.nxp.com/docs/en/user-guide/MCUXSDKGSUG.pdf</a></p>
@@ -164,8 +166,8 @@ Fig. 3.3: Disable the check at "Copy projects into workspace" before importing a
 Fig. 3.3: Import the project archive into the MCUXpresso IDE.</div></div>
  </li>
 <li><p class="startli">Build the projects:</p><ul>
-<li>Go to MCUXpresso IDE -&gt; Quickstart Panel</li>
-<li>Click on "Build"</li>
+<li>Go to MCUXpresso IDE -&gt; Project Explorer and select the project to build.</li>
+<li>Go to Quickstart Panel and click on "Build"</li>
 </ul>
 <div class="image">
 <img src="3_4_build.jpg" alt="" width="800px"/>
@@ -218,21 +220,28 @@ Fig. 3.8: The serial terminal is used to display the received measurement result
 Simple Example</h1>
 <p>Here is an example of how to use the API in a simple loop with polling the module status to wait for the measurement data to be ready. The 1D range value of the obtained measurement data is streamed via an UART connection. Open a terminal (e.g. <a href="https://www.compuphase.com/software_termite.htm">Termite</a>) and open a UART connection using 115200 bps, 8N1, no handshake connection. Range values will start to occur on the terminal as soon as the program starts its execution.</p>
 <p>Please find the example files in "[INSTALL_DIR]\Device\Examples\" (default is "C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Examples\").</p>
-<div class="fragment"><div class="line"><span class="comment">/*******************************************************************************</span></div>
+<div class="fragment"><div class="line"><span class="comment">/*************************************************************************/</span></div>
+<div class="line"><span class="comment">/*******************************************************************************</span></div>
 <div class="line"><span class="comment"> * Include Files</span></div>
 <div class="line"><span class="comment"> ******************************************************************************/</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="argus_8h.html">argus.h</a>&quot;</span></div>
+<div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &quot;board/clock_config.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/cop.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;driver/gpio.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/s2pi.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/uart.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/timer.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#if defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL17Z256VFM4)</span></div>
+<div class="line"><span class="preprocessor">#elif defined(STM32F401xE)</span></div>
+<div class="line"><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#else</span></div>
+<div class="line"><span class="preprocessor">#error No target specified!</span></div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*******************************************************************************</span></div>
 <div class="line"><span class="comment"> * Defines</span></div>
 <div class="line"><span class="comment"> ******************************************************************************/</span></div>
-<div class="line"> </div>
 <div class="line"><span class="preprocessor">#define SPI_SLAVE 1</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#define SPI_BAUD_RATE 6000000</span></div>
@@ -256,32 +265,49 @@ Simple Example</h1>
 <div class="line"><span class="comment"> *          Open an UART connection with 115200 bps, 8N1, no handshake to</span></div>
 <div class="line"><span class="comment"> *          receive the data on a computer.</span></div>
 <div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @param   fmt_s : The usual printf parameters.</span></div>
+<div class="line"><span class="comment"> * @param   fmt_s The usual printf parameters.</span></div>
 <div class="line"><span class="comment"> *</span></div>
 <div class="line"><span class="comment"> * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).</span></div>
 <div class="line"><span class="comment"> *****************************************************************************/</span></div>
 <div class="line"><span class="keyword">extern</span> <a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> <a class="code" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>  *fmt_s, ...);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*!***************************************************************************</span></div>
-<div class="line"><span class="comment"> * @brief   Initialization routine for board hardware and peripherals.</span></div>
+<div class="line"><span class="comment"> * @brief   Prints measurement results via UART.</span></div>
 <div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @return  -</span></div>
+<div class="line"><span class="comment"> * @details Prints some measurement data via UART in the following format:</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *          Range: 123456 mm;  Amplitude: 1234 LSB  Status: 0</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * @param   res A pointer to the latest measurement results structure.</span></div>
+<div class="line"><span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> print_results(<a class="code" href="structargus__results__t.html">argus_results_t</a> <span class="keyword">const</span> * res);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><span class="comment"> * @brief   Initialization routine for board hardware and peripherals.</span></div>
 <div class="line"><span class="comment"> *****************************************************************************/</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> hardware_init(<span class="keywordtype">void</span>);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*!***************************************************************************</span></div>
 <div class="line"><span class="comment"> * @brief   Measurement data ready callback function.</span></div>
 <div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @details</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @param   status :</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @param   data :</span></div>
-<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * @param   status The measurement/device status from the last measurement cycle.</span></div>
+<div class="line"><span class="comment"> * @param   data A pointer to the raw measurement data results that need to be</span></div>
+<div class="line"><span class="comment"> *               passed to the #Argus_EvaluateData function.</span></div>
 <div class="line"><span class="comment"> * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).</span></div>
 <div class="line"><span class="comment"> *****************************************************************************/</span></div>
 <div class="line"><a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> measurement_ready_callback(<a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <span class="keywordtype">void</span> * data);</div>
 <div class="line"> </div>
+<div class="line"><span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><span class="comment"> * @brief   A very brief example for error handling.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * @details Checks the specified status for errors (i.e. negative values) and</span></div>
+<div class="line"><span class="comment"> *          prints a specified error message if any. An endless loop is entered</span></div>
+<div class="line"><span class="comment"> *          to halt program execution.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * @param   status The specified status to be checked for errors.</span></div>
+<div class="line"><span class="comment"> * @param   msg The associated error message to be printed in case of errors.</span></div>
+<div class="line"><span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> handle_error(<a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <span class="keywordtype">char</span> <span class="keyword">const</span> * msg);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*******************************************************************************</span></div>
 <div class="line"><span class="comment"> * Code</span></div>
@@ -293,24 +319,23 @@ Simple Example</h1>
 <div class="line"><span class="comment"> * @details The main function of the program, called after startup code</span></div>
 <div class="line"><span class="comment"> *          This function should never be exited.</span></div>
 <div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @return  -</span></div>
+<div class="line"><span class="comment"> * @return  Never returns anything...</span></div>
 <div class="line"><span class="comment"> *****************************************************************************/</span></div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
 <div class="line">{</div>
+<div class="line">    <a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status = <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Initialize the platform hardware including the required peripherals</span></div>
+<div class="line"><span class="comment">     * for the API. */</span></div>
+<div class="line">    hardware_init();</div>
+<div class="line"> </div>
 <div class="line">    <span class="comment">/* The API module handle that contains all data definitions that is</span></div>
 <div class="line"><span class="comment">     * required within the API module for the corresponding hardware device.</span></div>
 <div class="line"><span class="comment">     * Every call to an API function requires the passing of a pointer to this</span></div>
 <div class="line"><span class="comment">     * data structure. */</span></div>
 <div class="line">    <a class="code" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> * hnd = <a class="code" href="group__argusapi.html#ga0c81d41a6c8aecceca64b54c724b6a2d">Argus_CreateHandle</a>();</div>
+<div class="line">    handle_error(hnd ? <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a> : <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba841c3e4e3ac94c0005f107140e184276">ERROR_FAIL</a>, <span class="stringliteral">&quot;Argus_CreateHandle failed!&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (hnd == 0)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">/* Error Handling ...*/</span></div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">/* Initialize the platform hardware including the required peripherals</span></div>
-<div class="line"><span class="comment">     * for the API. */</span></div>
-<div class="line">    hardware_init();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Initialize the API with default values.</span></div>
 <div class="line"><span class="comment">     * This implicitly calls the initialization functions</span></div>
@@ -320,18 +345,39 @@ Simple Example</h1>
 <div class="line"><span class="comment">     * to the S2PI module. This piece of information can be utilized in</span></div>
 <div class="line"><span class="comment">     * order to determine the addressed SPI slave and enabled the usage</span></div>
 <div class="line"><span class="comment">     * of multiple devices on a single SPI peripheral. */</span></div>
-<div class="line">    <a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status = <a class="code" href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898">Argus_Init</a>(hnd, SPI_SLAVE);</div>
+<div class="line">    status = <a class="code" href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898">Argus_Init</a>(hnd, SPI_SLAVE);</div>
+<div class="line">    handle_error(status, <span class="stringliteral">&quot;Argus_Init failed!&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (status != <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">/* Error Handling ...*/</span></div>
-<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Print some information about current API and connected device. */</span></div>
+<div class="line">    uint32_t value = <a class="code" href="group__argusapi.html#gabec8f8d2fd8e05e1b4dc6158bffe1f23">Argus_GetAPIVersion</a>();</div>
+<div class="line">    uint8_t a = (value &gt;&gt; 24) &amp; 0xFFU;</div>
+<div class="line">    uint8_t b = (value &gt;&gt; 16) &amp; 0xFFU;</div>
+<div class="line">    uint8_t c = value &amp; 0xFFFFU;</div>
+<div class="line">    uint32_t <span class="keywordtype">id</span> = <a class="code" href="group__argusapi.html#ga809f5916407f49eebf87933cfed30e2d">Argus_GetChipID</a>(hnd);</div>
+<div class="line">    <a class="code" href="group__argusapi.html#ga46f240b890cd62efe83bf2d095277470">argus_module_version_t</a> mv = <a class="code" href="group__argusapi.html#ga3f0b238436afb09796762fb47e9125b3">Argus_GetModuleVersion</a>(hnd);</div>
+<div class="line">    <a class="code" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="stringliteral">&quot;\n##### AFBR-S50 API - Simple Example ##############\n&quot;</span></div>
+<div class="line">          <span class="stringliteral">&quot;  API Version: v%d.%d.%d\n&quot;</span></div>
+<div class="line">          <span class="stringliteral">&quot;  Chip ID:     %d\n&quot;</span></div>
+<div class="line">          <span class="stringliteral">&quot;  Module:      %s\n&quot;</span></div>
+<div class="line">          <span class="stringliteral">&quot;##################################################\n&quot;</span>,</div>
+<div class="line">          a, b, c, <span class="keywordtype">id</span>,</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470aadb20086dac739d81b418ed885e13eac">AFBR_S50MV85G_V1</a> ? <span class="stringliteral">&quot;AFBR-S50MV85G (v1)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a2e11c996b63ce7373b0adfc0e7d2b054">AFBR_S50MV85G_V2</a> ? <span class="stringliteral">&quot;AFBR-S50MV85G (v2)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470addaaf6b9cc172c456278d5d5038070f6">AFBR_S50MV85G_V3</a> ? <span class="stringliteral">&quot;AFBR-S50MV85G (v3)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a07a3ca0afd476a77d18af9cac7e8ca57">AFBR_S50LV85D_V1</a> ? <span class="stringliteral">&quot;AFBR-S50LV85D (v1)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a8c26ad1349762515f29bc9a417bbadbf">AFBR_S50MV68B_V1</a> ? <span class="stringliteral">&quot;AFBR-S50MV68B (v1)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a6623b6590854eddb5a65aad685e9800e">AFBR_S50MV85I_V1</a> ? <span class="stringliteral">&quot;AFBR-S50MV85I (v1)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470ab844937ee93fb6b8a2c8446dd89fd3d4">AFBR_S50SV85K_V1</a> ? <span class="stringliteral">&quot;AFBR-S50SV85K (v1)&quot;</span> :</div>
+<div class="line">          <span class="stringliteral">&quot;unknown&quot;</span>);</div>
+<div class="line"> </div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Adjust some configuration parameters by invoking the dedicated API methods. */</span></div>
-<div class="line">    <a class="code" href="group__arguscfg.html#gaa6d970c42ac21e56907247f58a029472">Argus_SetConfigurationFrameTime</a>(hnd, 100000); <span class="comment">// 0.1 second = 10 Hz</span></div>
+<div class="line">    status = <a class="code" href="group__arguscfg.html#gaa6d970c42ac21e56907247f58a029472">Argus_SetConfigurationFrameTime</a>( hnd, 100000 ); <span class="comment">// 0.1 second = 10 Hz</span></div>
+<div class="line">    handle_error(status, <span class="stringliteral">&quot;Argus_SetConfigurationFrameTime failed!&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* The program loop ... */</span></div>
-<div class="line">    <span class="keywordflow">for</span>(;;)</div>
+<div class="line">    <span class="keywordflow">for</span> (;;)</div>
 <div class="line">    {</div>
 <div class="line">        myData = 0;</div>
 <div class="line"> </div>
@@ -342,15 +388,13 @@ Simple Example</h1>
 <div class="line"><span class="comment">         * the function must be called again later. Use the frame time configuration</span></div>
 <div class="line"><span class="comment">         * in order to adjust the timing between two measurement frames. */</span></div>
 <div class="line">        status = <a class="code" href="group__argusmeas.html#ga92c7d4e2cdfccff38bf6689935e088a5">Argus_TriggerMeasurement</a>(hnd, measurement_ready_callback);</div>
+<div class="line">        handle_error(status, <span class="stringliteral">&quot;Argus_StartMeasurementTimer failed!&quot;</span>);</div>
+<div class="line"> </div>
 <div class="line">        <span class="keywordflow">if</span> (status == <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba3ec68d249b5ffaa0da7e0a1170f592a2">STATUS_ARGUS_POWERLIMIT</a>)</div>
 <div class="line">        {</div>
 <div class="line">            <span class="comment">/* Not ready (due to laser safety) to restart the measurement yet.</span></div>
 <div class="line"><span class="comment">             * Come back later. */</span></div>
-<div class="line">            __asm(<span class="stringliteral">&quot;nop&quot;</span>);</div>
-<div class="line">        }</div>
-<div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (status != <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
-<div class="line">        {</div>
-<div class="line">            <span class="comment">/* Error Handling ...*/</span></div>
+<div class="line">            <span class="keywordflow">continue</span>;</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">else</span></div>
 <div class="line">        {</div>
@@ -358,36 +402,43 @@ Simple Example</h1>
 <div class="line">            <span class="keywordflow">do</span></div>
 <div class="line">            {</div>
 <div class="line">                status = <a class="code" href="group__argusmeas.html#gaa80d0b10b2366f0ade05b4d7b9243497">Argus_GetStatus</a>(hnd);</div>
-<div class="line">                __asm(<span class="stringliteral">&quot;nop&quot;</span>);</div>
 <div class="line">            }</div>
-<div class="line">            <span class="keywordflow">while</span>(status == <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88">STATUS_BUSY</a>);</div>
+<div class="line">            <span class="keywordflow">while</span> (status == <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88">STATUS_BUSY</a>);</div>
+<div class="line">            handle_error(status, <span class="stringliteral">&quot;Waiting for measurement data ready (Argus_GetStatus) failed!&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">            <span class="keywordflow">if</span> (status != <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
-<div class="line">            {</div>
-<div class="line">                <span class="comment">/* Error Handling ...*/</span></div>
-<div class="line">            }</div>
+<div class="line">            <span class="comment">/* The measurement data structure. */</span></div>
+<div class="line">            <a class="code" href="structargus__results__t.html">argus_results_t</a> res;</div>
 <div class="line"> </div>
-<div class="line">            <span class="keywordflow">else</span></div>
-<div class="line">            {</div>
-<div class="line">                <span class="comment">/* The measurement data structure. */</span></div>
-<div class="line">                <a class="code" href="structargus__results__t.html">argus_results_t</a> res;</div>
+<div class="line">            <span class="comment">/* Evaluate the raw measurement results. */</span></div>
+<div class="line">            status = <a class="code" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239">Argus_EvaluateData</a>(hnd, &amp;res, (<span class="keywordtype">void</span>*) myData);</div>
+<div class="line">            handle_error(status, <span class="stringliteral">&quot;Argus_EvaluateData failed!&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">                <span class="comment">/* Evaluate the raw measurement results. */</span></div>
-<div class="line">                status = <a class="code" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239">Argus_EvaluateData</a>(hnd, &amp;res, (<span class="keywordtype">void</span>*)myData);</div>
-<div class="line"> </div>
-<div class="line">                <span class="keywordflow">if</span> (status != <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
-<div class="line">                {</div>
-<div class="line">                    <span class="comment">/* Error Handling ...*/</span></div>
-<div class="line">                }</div>
-<div class="line"> </div>
-<div class="line">                <span class="keywordflow">else</span></div>
-<div class="line">                {</div>
-<div class="line">                    <span class="comment">/* Use the recent measurement results</span></div>
-<div class="line"><span class="comment">                     * (converting the Q9.22 value to float and print or display it). */</span></div>
-<div class="line">                    <a class="code" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="stringliteral">&quot;Range: %d mm\n&quot;</span>, res.<a class="code" href="structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e">Bin</a>.<a class="code" href="structargus__results__bin__t.html#a830e9e333b9fece506f2e72b92087a51">Range</a> / (<a class="code" href="group__fixedpoint.html#gae92e284f44eb56820cf5a1d330ce4c0f">Q9_22_ONE</a> / 1000));</div>
-<div class="line">                }</div>
-<div class="line">            }</div>
+<div class="line">            <span class="comment">/* Use the obtain results, e.g. print via UART. */</span></div>
+<div class="line">            print_results(&amp;res);</div>
 <div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> print_results(<a class="code" href="structargus__results__t.html">argus_results_t</a> <span class="keyword">const</span> * res)</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">/* Print the recent measurement results:</span></div>
+<div class="line"><span class="comment">     * 1. Range in mm (converting the Q9.22 value to mm)</span></div>
+<div class="line"><span class="comment">     * 2. Amplitude in LSB (converting the UQ12.4 value to LSB)</span></div>
+<div class="line"><span class="comment">     * 3. Status (0: OK, &lt;0: Error, &gt;0: Warning */</span></div>
+<div class="line">    <a class="code" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="stringliteral">&quot;Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n&quot;</span>,</div>
+<div class="line">          res-&gt;<a class="code" href="structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e">Bin</a>.<a class="code" href="structargus__results__bin__t.html#a830e9e333b9fece506f2e72b92087a51">Range</a> / (<a class="code" href="group__fixedpoint.html#gae92e284f44eb56820cf5a1d330ce4c0f">Q9_22_ONE</a> / 1000),</div>
+<div class="line">          res-&gt;<a class="code" href="structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e">Bin</a>.<a class="code" href="structargus__results__bin__t.html#a918392407fcf45cadb280ebe502d633d">Amplitude</a> / <a class="code" href="group__fixedpoint.html#gaaeaf2ed93a297c9d70f88eb356fd16e6">UQ12_4_ONE</a>,</div>
+<div class="line">          res-&gt;<a class="code" href="structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e">Bin</a>.<a class="code" href="structargus__results__bin__t.html#a032de48d823435330e13bc0d50934227">SignalQuality</a>,</div>
+<div class="line">          res-&gt;<a class="code" href="structargus__results__t.html#a94a5adbd578f9e837e084cdd79a142ca">Status</a>);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> handle_error(<a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <span class="keywordtype">char</span> <span class="keyword">const</span> * msg)</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">/* Check for status &lt; 0 and print message and halt the program execution. */</span></div>
+<div class="line">    <span class="keywordflow">if</span> (status &lt; <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
+<div class="line">    {</div>
+<div class="line">        <a class="code" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="stringliteral">&quot;ERROR: %s\nError Code: %d&quot;</span>, msg, status);</div>
+<div class="line">        <span class="keywordflow">while</span> (1) __asm(<span class="stringliteral">&quot;nop&quot;</span>); <span class="comment">// stop!</span></div>
 <div class="line">    }</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -398,9 +449,6 @@ Simple Example</h1>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Disable the watchdog timer. */</span></div>
 <div class="line">    COP_Disable();</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">/* Init GPIO ports. */</span></div>
-<div class="line">    GPIO_Init();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Initialize timer required by the API. */</span></div>
 <div class="line">    Timer_Init();</div>
@@ -414,59 +462,76 @@ Simple Example</h1>
 <div class="line"> </div>
 <div class="line"><a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> measurement_ready_callback(<a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <span class="keywordtype">void</span> * data)</div>
 <div class="line">{</div>
-<div class="line">    <span class="keywordflow">if</span> (status != <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">/* Error Handling ...*/</span></div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">else</span></div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">/* Inform the main task about new data ready.</span></div>
-<div class="line"><span class="comment">         * Note: do not call the evaluate measurement method</span></div>
-<div class="line"><span class="comment">         * from within this callback since it is invoked in</span></div>
-<div class="line"><span class="comment">         * a interrupt service routine and should return as</span></div>
-<div class="line"><span class="comment">         * soon as possible. */</span></div>
-<div class="line">        myData = data;</div>
-<div class="line">    }</div>
+<div class="line">    handle_error(status, <span class="stringliteral">&quot;Measurement Ready Callback received error!&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Inform the main task about new data ready.</span></div>
+<div class="line"><span class="comment">     * Note: do not call the evaluate measurement method</span></div>
+<div class="line"><span class="comment">     * from within this callback since it is invoked in</span></div>
+<div class="line"><span class="comment">     * a interrupt service routine and should return as</span></div>
+<div class="line"><span class="comment">     * soon as possible. */</span></div>
+<div class="line">    assert(myData == 0);</div>
+<div class="line">    myData = data;</div>
 <div class="line">    <span class="keywordflow">return</span> status;</div>
 <div class="line">}</div>
 <div class="ttc" id="aargus_8h_html"><div class="ttname"><a href="argus_8h.html">argus.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 API.</div></div>
 <div class="ttc" id="agroup__argus__log_html_gaf623b0ecc471d68c31c110c6f9abd7d2"><div class="ttname"><a href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a></div><div class="ttdeci">status_t print(const char *fmt_s,...)</div><div class="ttdoc">A printf-like function to print formated data to an debugging interface.</div></div>
 <div class="ttc" id="agroup__argusapi_html_ga0c81d41a6c8aecceca64b54c724b6a2d"><div class="ttname"><a href="group__argusapi.html#ga0c81d41a6c8aecceca64b54c724b6a2d">Argus_CreateHandle</a></div><div class="ttdeci">argus_hnd_t * Argus_CreateHandle(void)</div><div class="ttdoc">Creates a new device data handle object to store all internal states.</div></div>
-<div class="ttc" id="agroup__argusapi_html_ga0ff472df08ed31ebbc16d3c6cf0c6564"><div class="ttname"><a href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a></div><div class="ttdeci">void argus_hnd_t</div><div class="ttdef"><b>Definition:</b> argus_api.h:60</div></div>
+<div class="ttc" id="agroup__argusapi_html_ga0ff472df08ed31ebbc16d3c6cf0c6564"><div class="ttname"><a href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a></div><div class="ttdeci">void argus_hnd_t</div><div class="ttdef"><b>Definition:</b> argus_api.h:62</div></div>
+<div class="ttc" id="agroup__argusapi_html_ga3f0b238436afb09796762fb47e9125b3"><div class="ttname"><a href="group__argusapi.html#ga3f0b238436afb09796762fb47e9125b3">Argus_GetModuleVersion</a></div><div class="ttdeci">argus_module_version_t Argus_GetModuleVersion(argus_hnd_t *hnd)</div><div class="ttdoc">Gets the version/variant of the module.</div></div>
+<div class="ttc" id="agroup__argusapi_html_ga46f240b890cd62efe83bf2d095277470"><div class="ttname"><a href="group__argusapi.html#ga46f240b890cd62efe83bf2d095277470">argus_module_version_t</a></div><div class="ttdeci">argus_module_version_t</div><div class="ttdoc">The AFBR-S50 module types.</div><div class="ttdef"><b>Definition:</b> argus_def.h:85</div></div>
 <div class="ttc" id="agroup__argusapi_html_ga7d724a6657138f112bff554f7db2a898"><div class="ttname"><a href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898">Argus_Init</a></div><div class="ttdeci">status_t Argus_Init(argus_hnd_t *hnd, s2pi_slave_t spi_slave)</div><div class="ttdoc">Initializes the API modules and the device with default parameters.</div></div>
+<div class="ttc" id="agroup__argusapi_html_ga809f5916407f49eebf87933cfed30e2d"><div class="ttname"><a href="group__argusapi.html#ga809f5916407f49eebf87933cfed30e2d">Argus_GetChipID</a></div><div class="ttdeci">uint32_t Argus_GetChipID(argus_hnd_t *hnd)</div><div class="ttdoc">Gets the unique identification number of the chip.</div></div>
+<div class="ttc" id="agroup__argusapi_html_gabec8f8d2fd8e05e1b4dc6158bffe1f23"><div class="ttname"><a href="group__argusapi.html#gabec8f8d2fd8e05e1b4dc6158bffe1f23">Argus_GetAPIVersion</a></div><div class="ttdeci">uint32_t Argus_GetAPIVersion(void)</div><div class="ttdoc">Gets the version number of the current API library.</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470a07a3ca0afd476a77d18af9cac7e8ca57"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a07a3ca0afd476a77d18af9cac7e8ca57">AFBR_S50LV85D_V1</a></div><div class="ttdeci">@ AFBR_S50LV85D_V1</div><div class="ttdef"><b>Definition:</b> argus_def.h:111</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470a2e11c996b63ce7373b0adfc0e7d2b054"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a2e11c996b63ce7373b0adfc0e7d2b054">AFBR_S50MV85G_V2</a></div><div class="ttdeci">@ AFBR_S50MV85G_V2</div><div class="ttdef"><b>Definition:</b> argus_def.h:99</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470a6623b6590854eddb5a65aad685e9800e"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a6623b6590854eddb5a65aad685e9800e">AFBR_S50MV85I_V1</a></div><div class="ttdeci">@ AFBR_S50MV85I_V1</div><div class="ttdef"><b>Definition:</b> argus_def.h:123</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470a8c26ad1349762515f29bc9a417bbadbf"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a8c26ad1349762515f29bc9a417bbadbf">AFBR_S50MV68B_V1</a></div><div class="ttdeci">@ AFBR_S50MV68B_V1</div><div class="ttdef"><b>Definition:</b> argus_def.h:117</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470aadb20086dac739d81b418ed885e13eac"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470aadb20086dac739d81b418ed885e13eac">AFBR_S50MV85G_V1</a></div><div class="ttdeci">@ AFBR_S50MV85G_V1</div><div class="ttdef"><b>Definition:</b> argus_def.h:93</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470ab844937ee93fb6b8a2c8446dd89fd3d4"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470ab844937ee93fb6b8a2c8446dd89fd3d4">AFBR_S50SV85K_V1</a></div><div class="ttdeci">@ AFBR_S50SV85K_V1</div><div class="ttdef"><b>Definition:</b> argus_def.h:129</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470addaaf6b9cc172c456278d5d5038070f6"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470addaaf6b9cc172c456278d5d5038070f6">AFBR_S50MV85G_V3</a></div><div class="ttdeci">@ AFBR_S50MV85G_V3</div><div class="ttdef"><b>Definition:</b> argus_def.h:105</div></div>
 <div class="ttc" id="agroup__arguscfg_html_gaa6d970c42ac21e56907247f58a029472"><div class="ttname"><a href="group__arguscfg.html#gaa6d970c42ac21e56907247f58a029472">Argus_SetConfigurationFrameTime</a></div><div class="ttdeci">status_t Argus_SetConfigurationFrameTime(argus_hnd_t *hnd, uint32_t value)</div><div class="ttdoc">Sets the frame time to a specified device.</div></div>
 <div class="ttc" id="agroup__argusmeas_html_ga39cbc3ebea33bbc497cadd393254c239"><div class="ttname"><a href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239">Argus_EvaluateData</a></div><div class="ttdeci">status_t Argus_EvaluateData(argus_hnd_t *hnd, argus_results_t *res, void *raw)</div><div class="ttdoc">Evaluate useful information from the raw measurement data.</div></div>
 <div class="ttc" id="agroup__argusmeas_html_ga92c7d4e2cdfccff38bf6689935e088a5"><div class="ttname"><a href="group__argusmeas.html#ga92c7d4e2cdfccff38bf6689935e088a5">Argus_TriggerMeasurement</a></div><div class="ttdeci">status_t Argus_TriggerMeasurement(argus_hnd_t *hnd, argus_callback_t cb)</div><div class="ttdoc">Triggers a single measurement frame asynchronously.</div></div>
 <div class="ttc" id="agroup__argusmeas_html_gaa80d0b10b2366f0ade05b4d7b9243497"><div class="ttname"><a href="group__argusmeas.html#gaa80d0b10b2366f0ade05b4d7b9243497">Argus_GetStatus</a></div><div class="ttdeci">status_t Argus_GetStatus(argus_hnd_t *hnd)</div><div class="ttdoc">Checks the state of the device/driver.</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_gae92e284f44eb56820cf5a1d330ce4c0f"><div class="ttname"><a href="group__fixedpoint.html#gae92e284f44eb56820cf5a1d330ce4c0f">Q9_22_ONE</a></div><div class="ttdeci">#define Q9_22_ONE</div><div class="ttdef"><b>Definition:</b> fp_def.h:398</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_gaaeaf2ed93a297c9d70f88eb356fd16e6"><div class="ttname"><a href="group__fixedpoint.html#gaaeaf2ed93a297c9d70f88eb356fd16e6">UQ12_4_ONE</a></div><div class="ttdeci">#define UQ12_4_ONE</div><div class="ttdef"><b>Definition:</b> fp_def.h:230</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_gae92e284f44eb56820cf5a1d330ce4c0f"><div class="ttname"><a href="group__fixedpoint.html#gae92e284f44eb56820cf5a1d330ce4c0f">Q9_22_ONE</a></div><div class="ttdeci">#define Q9_22_ONE</div><div class="ttdef"><b>Definition:</b> fp_def.h:520</div></div>
 <div class="ttc" id="agroup__status_html_gaaabdaf7ee58ca7269bd4bf24efcde092"><div class="ttname"><a href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a></div><div class="ttdeci">int32_t status_t</div><div class="ttdoc">Type used for all status and error return values.</div><div class="ttdef"><b>Definition:</b> argus_status.h:63</div></div>
 <div class="ttc" id="agroup__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88"><div class="ttname"><a href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88">STATUS_BUSY</a></div><div class="ttdeci">@ STATUS_BUSY</div><div class="ttdef"><b>Definition:</b> argus_status.h:82</div></div>
 <div class="ttc" id="agroup__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70ba3ec68d249b5ffaa0da7e0a1170f592a2"><div class="ttname"><a href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba3ec68d249b5ffaa0da7e0a1170f592a2">STATUS_ARGUS_POWERLIMIT</a></div><div class="ttdeci">@ STATUS_ARGUS_POWERLIMIT</div><div class="ttdef"><b>Definition:</b> argus_status.h:160</div></div>
 <div class="ttc" id="agroup__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566"><div class="ttname"><a href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a></div><div class="ttdeci">@ STATUS_OK</div><div class="ttdef"><b>Definition:</b> argus_status.h:73</div></div>
+<div class="ttc" id="agroup__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70ba841c3e4e3ac94c0005f107140e184276"><div class="ttname"><a href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba841c3e4e3ac94c0005f107140e184276">ERROR_FAIL</a></div><div class="ttdeci">@ ERROR_FAIL</div><div class="ttdef"><b>Definition:</b> argus_status.h:88</div></div>
+<div class="ttc" id="astructargus__results__bin__t_html_a032de48d823435330e13bc0d50934227"><div class="ttname"><a href="structargus__results__bin__t.html#a032de48d823435330e13bc0d50934227">argus_results_bin_t::SignalQuality</a></div><div class="ttdeci">uint8_t SignalQuality</div><div class="ttdef"><b>Definition:</b> argus_res.h:82</div></div>
 <div class="ttc" id="astructargus__results__bin__t_html_a830e9e333b9fece506f2e72b92087a51"><div class="ttname"><a href="structargus__results__bin__t.html#a830e9e333b9fece506f2e72b92087a51">argus_results_bin_t::Range</a></div><div class="ttdeci">q9_22_t Range</div><div class="ttdef"><b>Definition:</b> argus_res.h:71</div></div>
-<div class="ttc" id="astructargus__results__t_html"><div class="ttname"><a href="structargus__results__t.html">argus_results_t</a></div><div class="ttdoc">The measurement results data structure.</div><div class="ttdef"><b>Definition:</b> argus_res.h:141</div></div>
-<div class="ttc" id="astructargus__results__t_html_aff9b50b61955470fa1d349b4fb17ff1e"><div class="ttname"><a href="structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e">argus_results_t::Bin</a></div><div class="ttdeci">argus_results_bin_t Bin</div><div class="ttdef"><b>Definition:</b> argus_res.h:167</div></div>
+<div class="ttc" id="astructargus__results__bin__t_html_a918392407fcf45cadb280ebe502d633d"><div class="ttname"><a href="structargus__results__bin__t.html#a918392407fcf45cadb280ebe502d633d">argus_results_bin_t::Amplitude</a></div><div class="ttdeci">uq12_4_t Amplitude</div><div class="ttdef"><b>Definition:</b> argus_res.h:76</div></div>
+<div class="ttc" id="astructargus__results__t_html"><div class="ttname"><a href="structargus__results__t.html">argus_results_t</a></div><div class="ttdoc">The measurement results data structure.</div><div class="ttdef"><b>Definition:</b> argus_res.h:160</div></div>
+<div class="ttc" id="astructargus__results__t_html_a94a5adbd578f9e837e084cdd79a142ca"><div class="ttname"><a href="structargus__results__t.html#a94a5adbd578f9e837e084cdd79a142ca">argus_results_t::Status</a></div><div class="ttdeci">status_t Status</div><div class="ttdef"><b>Definition:</b> argus_res.h:165</div></div>
+<div class="ttc" id="astructargus__results__t_html_aff9b50b61955470fa1d349b4fb17ff1e"><div class="ttname"><a href="structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e">argus_results_t::Bin</a></div><div class="ttdeci">argus_results_bin_t Bin</div><div class="ttdef"><b>Definition:</b> argus_res.h:216</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="gs_adv_example"></a>
 Advanced Example</h1>
 <p>Here is an example of how to use the API with the autonomous measurement triggering. The 1D range value of the obtained measurement data is streamed via an UART connection. Open a terminal (e.g. <a href="https://www.compuphase.com/software_termite.htm">Termite</a>) and open a UART connection using 115200 bps, 8N1, no handshake connection. Range values will start to occur on the terminal as soon as the program starts its execution.</p>
 <p>Please find the example files in "[INSTALL_DIR]\Device\Examples\" (default is "C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Examples\").</p>
-<div class="fragment"><div class="line"><span class="comment">/*******************************************************************************</span></div>
+<div class="fragment"><div class="line"><span class="comment">/*************************************************************************/</span></div>
+<div class="line"><span class="comment">/*******************************************************************************</span></div>
 <div class="line"><span class="comment"> * Include Files</span></div>
 <div class="line"><span class="comment"> ******************************************************************************/</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="argus_8h.html">argus.h</a>&quot;</span></div>
+<div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &quot;board/clock_config.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/cop.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;driver/gpio.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/s2pi.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/uart.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;driver/timer.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#if defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL17Z256VFM4)</span></div>
+<div class="line"><span class="preprocessor">#elif defined(STM32F401xE)</span></div>
+<div class="line"><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><span class="preprocessor">#else</span></div>
+<div class="line"><span class="preprocessor">#error No target specified!</span></div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*******************************************************************************</span></div>
 <div class="line"><span class="comment"> * Defines</span></div>
 <div class="line"><span class="comment"> ******************************************************************************/</span></div>
-<div class="line"> </div>
-<div class="line"><span class="preprocessor">#define ADVANCED_DEMO 1</span></div>
-<div class="line"> </div>
 <div class="line"><span class="preprocessor">#define SPI_SLAVE 1</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#define SPI_BAUD_RATE 6000000</span></div>
@@ -490,33 +555,49 @@ Advanced Example</h1>
 <div class="line"><span class="comment"> *          Open an UART connection with 115200 bps, 8N1, no handshake to</span></div>
 <div class="line"><span class="comment"> *          receive the data on a computer.</span></div>
 <div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @param   fmt_s : The usual printf parameters.</span></div>
+<div class="line"><span class="comment"> * @param   fmt_s The usual printf parameters.</span></div>
 <div class="line"><span class="comment"> *</span></div>
 <div class="line"><span class="comment"> * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).</span></div>
 <div class="line"><span class="comment"> *****************************************************************************/</span></div>
 <div class="line"><span class="keyword">extern</span> <a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> <a class="code" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>  *fmt_s, ...);</div>
 <div class="line"> </div>
+<div class="line"><span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><span class="comment"> * @brief   Prints measurement results via UART.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * @details Prints some measurement data via UART in the following format:</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *          Range: 123456 mm;  Amplitude: 1234 LSB  Status: 0</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * @param   res A pointer to the latest measurement results structure.</span></div>
+<div class="line"><span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> print_results(<a class="code" href="structargus__results__t.html">argus_results_t</a> <span class="keyword">const</span> * res);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*!***************************************************************************</span></div>
 <div class="line"><span class="comment"> * @brief   Initialization routine for board hardware and peripherals.</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @return  -</span></div>
 <div class="line"><span class="comment"> *****************************************************************************/</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> hardware_init(<span class="keywordtype">void</span>);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*!***************************************************************************</span></div>
 <div class="line"><span class="comment"> * @brief   Measurement data ready callback function.</span></div>
 <div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @details</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @param   status :</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @param   data :</span></div>
-<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * @param   status The measurement/device status from the last measurement cycle.</span></div>
+<div class="line"><span class="comment"> * @param   data A pointer to the raw measurement data results that need to be</span></div>
+<div class="line"><span class="comment"> *               passed to the #Argus_EvaluateData function.</span></div>
 <div class="line"><span class="comment"> * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).</span></div>
 <div class="line"><span class="comment"> *****************************************************************************/</span></div>
 <div class="line"><a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> measurement_ready_callback(<a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <span class="keywordtype">void</span> * data);</div>
 <div class="line"> </div>
+<div class="line"><span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><span class="comment"> * @brief   A very brief example for error handling.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * @details Checks the specified status for errors (i.e. negative values) and</span></div>
+<div class="line"><span class="comment"> *          prints a specified error message if any. An endless loop is entered</span></div>
+<div class="line"><span class="comment"> *          to halt program execution.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * @param   status The specified status to be checked for errors.</span></div>
+<div class="line"><span class="comment"> * @param   msg The associated error message to be printed in case of errors.</span></div>
+<div class="line"><span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> handle_error(<a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <span class="keywordtype">char</span> <span class="keyword">const</span> * msg);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*******************************************************************************</span></div>
 <div class="line"><span class="comment"> * Code</span></div>
@@ -528,24 +609,23 @@ Advanced Example</h1>
 <div class="line"><span class="comment"> * @details The main function of the program, called after startup code</span></div>
 <div class="line"><span class="comment"> *          This function should never be exited.</span></div>
 <div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * @return  -</span></div>
+<div class="line"><span class="comment"> * @return  Never returns anything...</span></div>
 <div class="line"><span class="comment"> *****************************************************************************/</span></div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
 <div class="line">{</div>
+<div class="line">    <a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status = <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Initialize the platform hardware including the required peripherals</span></div>
+<div class="line"><span class="comment">     * for the API. */</span></div>
+<div class="line">    hardware_init();</div>
+<div class="line"> </div>
 <div class="line">    <span class="comment">/* The API module handle that contains all data definitions that is</span></div>
 <div class="line"><span class="comment">     * required within the API module for the corresponding hardware device.</span></div>
 <div class="line"><span class="comment">     * Every call to an API function requires the passing of a pointer to this</span></div>
 <div class="line"><span class="comment">     * data structure. */</span></div>
 <div class="line">    <a class="code" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> * hnd = <a class="code" href="group__argusapi.html#ga0c81d41a6c8aecceca64b54c724b6a2d">Argus_CreateHandle</a>();</div>
+<div class="line">    handle_error(hnd ? <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a> : <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba841c3e4e3ac94c0005f107140e184276">ERROR_FAIL</a>, <span class="stringliteral">&quot;Argus_CreateHandle failed!&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (hnd == 0)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">/* Error Handling ...*/</span></div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">/* Initialize the platform hardware including the required peripherals</span></div>
-<div class="line"><span class="comment">     * for the API. */</span></div>
-<div class="line">    hardware_init();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Initialize the API with default values.</span></div>
 <div class="line"><span class="comment">     * This implicitly calls the initialization functions</span></div>
@@ -555,15 +635,36 @@ Advanced Example</h1>
 <div class="line"><span class="comment">     * to the S2PI module. This piece of information can be utilized in</span></div>
 <div class="line"><span class="comment">     * order to determine the addressed SPI slave and enabled the usage</span></div>
 <div class="line"><span class="comment">     * of multiple devices on a single SPI peripheral. */</span></div>
-<div class="line">    <a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status = <a class="code" href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898">Argus_Init</a>(hnd, SPI_SLAVE);</div>
+<div class="line">    status = <a class="code" href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898">Argus_Init</a>(hnd, SPI_SLAVE);</div>
+<div class="line">    handle_error(status, <span class="stringliteral">&quot;Argus_Init failed!&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (status != <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">/* Error Handling ...*/</span></div>
-<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Print some information about current API and connected device. */</span></div>
+<div class="line">    uint32_t value = <a class="code" href="group__argusapi.html#gabec8f8d2fd8e05e1b4dc6158bffe1f23">Argus_GetAPIVersion</a>();</div>
+<div class="line">    uint8_t a = (value &gt;&gt; 24) &amp; 0xFFU;</div>
+<div class="line">    uint8_t b = (value &gt;&gt; 16) &amp; 0xFFU;</div>
+<div class="line">    uint8_t c = value &amp; 0xFFFFU;</div>
+<div class="line">    uint32_t <span class="keywordtype">id</span> = <a class="code" href="group__argusapi.html#ga809f5916407f49eebf87933cfed30e2d">Argus_GetChipID</a>(hnd);</div>
+<div class="line">    <a class="code" href="group__argusapi.html#ga46f240b890cd62efe83bf2d095277470">argus_module_version_t</a> mv = <a class="code" href="group__argusapi.html#ga3f0b238436afb09796762fb47e9125b3">Argus_GetModuleVersion</a>(hnd);</div>
+<div class="line">    <a class="code" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="stringliteral">&quot;\n##### AFBR-S50 API - Advanced Example ############\n&quot;</span></div>
+<div class="line">          <span class="stringliteral">&quot;  API Version: v%d.%d.%d\n&quot;</span></div>
+<div class="line">          <span class="stringliteral">&quot;  Chip ID:     %d\n&quot;</span></div>
+<div class="line">          <span class="stringliteral">&quot;  Module:      %s\n&quot;</span></div>
+<div class="line">          <span class="stringliteral">&quot;##################################################\n&quot;</span>,</div>
+<div class="line">          a, b, c, <span class="keywordtype">id</span>,</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470aadb20086dac739d81b418ed885e13eac">AFBR_S50MV85G_V1</a> ? <span class="stringliteral">&quot;AFBR-S50MV85G (v1)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a2e11c996b63ce7373b0adfc0e7d2b054">AFBR_S50MV85G_V2</a> ? <span class="stringliteral">&quot;AFBR-S50MV85G (v2)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470addaaf6b9cc172c456278d5d5038070f6">AFBR_S50MV85G_V3</a> ? <span class="stringliteral">&quot;AFBR-S50MV85G (v3)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a07a3ca0afd476a77d18af9cac7e8ca57">AFBR_S50LV85D_V1</a> ? <span class="stringliteral">&quot;AFBR-S50LV85D (v1)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a8c26ad1349762515f29bc9a417bbadbf">AFBR_S50MV68B_V1</a> ? <span class="stringliteral">&quot;AFBR-S50MV68B (v1)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a6623b6590854eddb5a65aad685e9800e">AFBR_S50MV85I_V1</a> ? <span class="stringliteral">&quot;AFBR-S50MV85I (v1)&quot;</span> :</div>
+<div class="line">          mv == <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470ab844937ee93fb6b8a2c8446dd89fd3d4">AFBR_S50SV85K_V1</a> ? <span class="stringliteral">&quot;AFBR-S50SV85K (v1)&quot;</span> :</div>
+<div class="line">          <span class="stringliteral">&quot;unknown&quot;</span>);</div>
+<div class="line"> </div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Adjust some configuration parameters by invoking the dedicated API methods. */</span></div>
-<div class="line">    <a class="code" href="group__arguscfg.html#gaa6d970c42ac21e56907247f58a029472">Argus_SetConfigurationFrameTime</a>(hnd, 100000); <span class="comment">// 0.1 second = 10 Hz</span></div>
+<div class="line">    status = <a class="code" href="group__arguscfg.html#gaa6d970c42ac21e56907247f58a029472">Argus_SetConfigurationFrameTime</a>( hnd, 100000 ); <span class="comment">// 0.1 second = 10 Hz</span></div>
+<div class="line">    handle_error(status, <span class="stringliteral">&quot;Argus_SetConfigurationFrameTime failed!&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Start the measurement timers within the API module.</span></div>
 <div class="line"><span class="comment">     * The callback is invoked every time a measurement has been finished.</span></div>
@@ -572,16 +673,14 @@ Advanced Example</h1>
 <div class="line"><span class="comment">     * Note that the timer based measurement is not implemented for multiple</span></div>
 <div class="line"><span class="comment">     * instance yet! */</span></div>
 <div class="line">    status = <a class="code" href="group__argusmeas.html#gae1682b01c1ed1b837fd7d763d81e857c">Argus_StartMeasurementTimer</a>(hnd, measurement_ready_callback);</div>
+<div class="line">    handle_error(status, <span class="stringliteral">&quot;Argus_StartMeasurementTimer failed!&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (status != <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">/* Error Handling ...*/</span></div>
-<div class="line">    }</div>
 <div class="line"> </div>
+<div class="line">    <span class="comment">/* The program loop ... */</span></div>
 <div class="line">    <span class="keywordflow">for</span>(;;)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">/* Check if new measurement data is ready. */</span></div>
-<div class="line">        <span class="keywordflow">if</span>(myData != 0)</div>
+<div class="line">        <span class="keywordflow">if</span> (myData != 0)</div>
 <div class="line">        {</div>
 <div class="line">            <span class="comment">/* Release for next measurement data. */</span></div>
 <div class="line">            <span class="keywordtype">void</span> * data = (<span class="keywordtype">void</span> *) myData;</div>
@@ -592,24 +691,39 @@ Advanced Example</h1>
 <div class="line"> </div>
 <div class="line">            <span class="comment">/* Evaluate the raw measurement results. */</span></div>
 <div class="line">            status = <a class="code" href="group__argusmeas.html#ga39cbc3ebea33bbc497cadd393254c239">Argus_EvaluateData</a>(hnd, &amp;res, data);</div>
+<div class="line">            handle_error(status, <span class="stringliteral">&quot;Argus_EvaluateData failed!&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">            <span class="keywordflow">if</span> (status != <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
-<div class="line">            {</div>
-<div class="line">                <span class="comment">/* Error Handling ...*/</span></div>
-<div class="line">            }</div>
-<div class="line"> </div>
-<div class="line">            <span class="keywordflow">else</span></div>
-<div class="line">            {</div>
-<div class="line">                <span class="comment">/* Use the recent measurement results</span></div>
-<div class="line"><span class="comment">                 * (converting the Q9.22 value to float and print or display it). */</span></div>
-<div class="line">                <a class="code" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="stringliteral">&quot;Range: %d mm\n&quot;</span>, res.<a class="code" href="structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e">Bin</a>.<a class="code" href="structargus__results__bin__t.html#a830e9e333b9fece506f2e72b92087a51">Range</a> / (<a class="code" href="group__fixedpoint.html#gae92e284f44eb56820cf5a1d330ce4c0f">Q9_22_ONE</a> / 1000));</div>
-<div class="line">            }</div>
+<div class="line">            <span class="comment">/* Use the obtain results, e.g. print via UART. */</span></div>
+<div class="line">            print_results(&amp;res);</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">else</span></div>
 <div class="line">        {</div>
 <div class="line">            <span class="comment">/* User code here... */</span></div>
 <div class="line">            __asm(<span class="stringliteral">&quot;nop&quot;</span>);</div>
 <div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> print_results(<a class="code" href="structargus__results__t.html">argus_results_t</a> <span class="keyword">const</span> * res)</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">/* Print the recent measurement results:</span></div>
+<div class="line"><span class="comment">     * 1. Range in mm (converting the Q9.22 value to mm)</span></div>
+<div class="line"><span class="comment">     * 2. Amplitude in LSB (converting the UQ12.4 value to LSB)</span></div>
+<div class="line"><span class="comment">     * 3. Status (0: OK, &lt;0: Error, &gt;0: Warning */</span></div>
+<div class="line">    <a class="code" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="stringliteral">&quot;Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n&quot;</span>,</div>
+<div class="line">          res-&gt;<a class="code" href="structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e">Bin</a>.<a class="code" href="structargus__results__bin__t.html#a830e9e333b9fece506f2e72b92087a51">Range</a> / (<a class="code" href="group__fixedpoint.html#gae92e284f44eb56820cf5a1d330ce4c0f">Q9_22_ONE</a> / 1000),</div>
+<div class="line">          res-&gt;<a class="code" href="structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e">Bin</a>.<a class="code" href="structargus__results__bin__t.html#a918392407fcf45cadb280ebe502d633d">Amplitude</a> / <a class="code" href="group__fixedpoint.html#gaaeaf2ed93a297c9d70f88eb356fd16e6">UQ12_4_ONE</a>,</div>
+<div class="line">          res-&gt;<a class="code" href="structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e">Bin</a>.<a class="code" href="structargus__results__bin__t.html#a032de48d823435330e13bc0d50934227">SignalQuality</a>,</div>
+<div class="line">          res-&gt;<a class="code" href="structargus__results__t.html#a94a5adbd578f9e837e084cdd79a142ca">Status</a>);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> handle_error(<a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <span class="keywordtype">char</span> <span class="keyword">const</span> * msg)</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">/* Check for status &lt; 0 and print message and halt the program execution. */</span></div>
+<div class="line">    <span class="keywordflow">if</span> (status &lt; <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
+<div class="line">    {</div>
+<div class="line">        <a class="code" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="stringliteral">&quot;ERROR: %s\nError Code: %d&quot;</span>, msg, status);</div>
+<div class="line">        <span class="keywordflow">while</span> (1) __asm(<span class="stringliteral">&quot;nop&quot;</span>); <span class="comment">// stop!</span></div>
 <div class="line">    }</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -620,9 +734,6 @@ Advanced Example</h1>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Disable the watchdog timer. */</span></div>
 <div class="line">    COP_Disable();</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">/* Init GPIO ports. */</span></div>
-<div class="line">    GPIO_Init();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Initialize timer required by the API. */</span></div>
 <div class="line">    Timer_Init();</div>
@@ -636,19 +747,15 @@ Advanced Example</h1>
 <div class="line"> </div>
 <div class="line"><a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> measurement_ready_callback(<a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <span class="keywordtype">void</span> * data)</div>
 <div class="line">{</div>
-<div class="line">    <span class="keywordflow">if</span> (status != <a class="code" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>)</div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">/* Error Handling ...*/</span></div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">else</span></div>
-<div class="line">    {</div>
-<div class="line">        <span class="comment">/* Inform the main task about new data ready.</span></div>
-<div class="line"><span class="comment">         * Note: do not call the evaluate measurement method</span></div>
-<div class="line"><span class="comment">         * from within this callback since it is invoked in</span></div>
-<div class="line"><span class="comment">         * a interrupt service routine and should return as</span></div>
-<div class="line"><span class="comment">         * soon as possible. */</span></div>
-<div class="line">        myData = data;</div>
-<div class="line">    }</div>
+<div class="line">    handle_error(status, <span class="stringliteral">&quot;Measurement Ready Callback received error!&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">/* Inform the main task about new data ready.</span></div>
+<div class="line"><span class="comment">     * Note: do not call the evaluate measurement method</span></div>
+<div class="line"><span class="comment">     * from within this callback since it is invoked in</span></div>
+<div class="line"><span class="comment">     * a interrupt service routine and should return as</span></div>
+<div class="line"><span class="comment">     * soon as possible. */</span></div>
+<div class="line">    assert(myData == 0);</div>
+<div class="line">    myData = data;</div>
 <div class="line">    <span class="keywordflow">return</span> status;</div>
 <div class="line">}</div>
 <div class="ttc" id="agroup__argusmeas_html_gae1682b01c1ed1b837fd7d763d81e857c"><div class="ttname"><a href="group__argusmeas.html#gae1682b01c1ed1b837fd7d763d81e857c">Argus_StartMeasurementTimer</a></div><div class="ttdeci">status_t Argus_StartMeasurementTimer(argus_hnd_t *hnd, argus_callback_t cb)</div><div class="ttdoc">Starts the timer based measurement cycle asynchronously.</div></div>
@@ -657,10 +764,11 @@ Advanced Example</h1>
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

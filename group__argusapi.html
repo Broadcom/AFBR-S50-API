@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: AFBR-S50 API</title>
+<title>AFBR-S50 API Reference Manual: AFBR-S50 API</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -110,14 +110,16 @@ Collaboration diagram for AFBR-S50 API:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__argusapi.png" border="0" usemap="#agroup____argusapi" alt=""/></div>
 <map name="agroup____argusapi" id="agroup____argusapi">
-<area shape="rect" href="group__argusmeas.html" title="Measurement/Device control module." alt="" coords="170,5,313,45"/>
-<area shape="rect" href="group__argusres.html" title="Measurement results data structures." alt="" coords="175,70,307,95"/>
-<area shape="rect" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="5,169,115,194"/>
-<area shape="rect" href="group__arguscfg.html" title="Device configuration parameter definitions and API functions." alt="" coords="193,119,290,145"/>
-<area shape="rect" href="group__arguscal.html" title="Device calibration parameter definitions and API functions." alt="" coords="200,169,283,194"/>
-<area shape="rect" href="group__arguspba.html" title="Pixel Binning Algorithm (PBA) parameter definitions and API functions." alt="" coords="163,218,320,243"/>
-<area shape="rect" href="group__argusdca.html" title="Dynamic Configuration Adaption (DCA) parameter definitions and API functions." alt="" coords="165,268,317,308"/>
-<area shape="rect" href="group__version.html" title="API and library core version number." alt="" coords="196,333,287,358"/>
+<area shape="rect" href="group__argusmeas.html" title="Measurement/Device control module." alt="" coords="167,5,313,45"/>
+<area shape="rect" href="group__argusres.html" title="Measurement results data structures." alt="" coords="175,70,305,95"/>
+<area shape="rect" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="5,218,115,243"/>
+<area shape="rect" href="group__arguscfg.html" title="Device configuration parameter definitions and API functions." alt="" coords="191,119,289,145"/>
+<area shape="rect" href="group__arguscal.html" title="Device calibration parameter definitions and API functions." alt="" coords="199,169,281,194"/>
+<area shape="rect" href="group__arguspba.html" title="Pixel Binning Algorithm (PBA) parameter definitions and API functions." alt="" coords="163,218,317,243"/>
+<area shape="rect" href="group__argusdca.html" title="Dynamic Configuration Adaption (DCA) parameter definitions and API functions." alt="" coords="165,268,315,308"/>
+<area shape="rect" href="group__version.html" title="API and library core version number." alt="" coords="195,333,285,358"/>
+<area shape="rect" href="group__argusdfm.html" title="Dual Frequency Mode (DFM) parameter definitions and API functions." alt="" coords="167,382,313,407"/>
+<area shape="rect" href="group__argussnm.html" title="Shot Noise Monitor (SNM) parameter definitions and API functions." alt="" coords="174,431,306,457"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -132,6 +134,9 @@ Modules</h2></td></tr>
 <tr class="memitem:group__argusdca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdca.html">Dynamic Configuration Adaption</a></td></tr>
 <tr class="memdesc:group__argusdca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dynamic Configuration Adaption (DCA) parameter definitions and API functions. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__argusdfm"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusdfm.html">Dual Frequency Mode</a></td></tr>
+<tr class="memdesc:group__argusdfm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dual Frequency Mode (DFM) parameter definitions and API functions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__argusmeas"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusmeas.html">Measurement/Device Control</a></td></tr>
 <tr class="memdesc:group__argusmeas"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measurement/Device control module. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,6 +145,9 @@ Modules</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__argusres"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusres.html">Measurement Data</a></td></tr>
 <tr class="memdesc:group__argusres"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measurement results data structures. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__argussnm"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argussnm.html">Shot Noise Monitor</a></td></tr>
+<tr class="memdesc:group__argussnm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shot Noise Monitor (SNM) parameter definitions and API functions. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__version"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__version.html">API Version</a></td></tr>
 <tr class="memdesc:group__version"><td class="mdescLeft">&#160;</td><td class="mdescRight">API and library core version number. <br /></td></tr>
@@ -192,7 +200,7 @@ Enumerations</h2></td></tr>
 , <br />
 &#160;&#160;<a class="el" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470ab844937ee93fb6b8a2c8446dd89fd3d4">AFBR_S50SV85K_V1</a> = 6
 , <br />
-&#160;&#160;<a class="el" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a6136a0872216f91100b42ea04333af70">Reserved</a> = 0b111111
+&#160;&#160;<a class="el" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a6136a0872216f91100b42ea04333af70">Reserved</a> = 0x3F
 <br />
  }</td></tr>
 <tr class="memdesc:ga46f240b890cd62efe83bf2d095277470"><td class="mdescLeft">&#160;</td><td class="mdescRight">The AFBR-S50 module types.  <a href="group__argusapi.html#ga46f240b890cd62efe83bf2d095277470">More...</a><br /></td></tr>
@@ -205,6 +213,8 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088cab397e4de9cd7aaa96e9dcd158f9fb1a3">LASER_H_V2</a> = 2
 , <br />
 &#160;&#160;<a class="el" href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca59af409963e474593f4628805e2ecdf3">LASER_R_V1</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca90d582a8e79ccf35566b16c949eec154">LASER_H_V2X</a> = 4
 <br />
  }</td></tr>
 <tr class="memdesc:gaea8d743b35717312c964154cbfe1088c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The AFBR-S50 laser configurations.  <a href="group__argusapi.html#gaea8d743b35717312c964154cbfe1088c">More...</a><br /></td></tr>
@@ -212,11 +222,15 @@ Enumerations</h2></td></tr>
 <tr class="memitem:ga9ad67917cc6683009a92174f75f1a0c5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argusapi.html#ga9ad67917cc6683009a92174f75f1a0c5">argus_chip_version_t</a> { <br />
 &#160;&#160;<a class="el" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d">ADS0032_NONE</a> = 0
 , <br />
-&#160;&#160;<a class="el" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5ab4f16621a650dedb173eb5f135b2ffb2">ADS0032_V1_0</a> = 1
+&#160;&#160;<a class="el" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5abda0918bc13344766b74238f4197b6bb">ADS0032_V1A</a> = 1
 , <br />
-&#160;&#160;<a class="el" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a0b627f633992b10ba97e37f06661b091">ADS0032_V1_1</a> = 2
+&#160;&#160;<a class="el" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5aee6e2adc408dd6386e2f36ce172a1342">ADS0032_V1B</a> = 2
 , <br />
-&#160;&#160;<a class="el" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a8c0583652326e8cf1534d81a39e41212">ADS0032_V1_2</a> = 3
+&#160;&#160;<a class="el" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5ae2443e3144cfa98f47bffd85795c869d">ADS0032_V1C</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a5433aff977cde39a667eeb5e79e79130">ADS0032_V1D</a> = 4
+, <br />
+&#160;&#160;<a class="el" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5abec74a1f85859993a292471ef31a73ef">ADS0032_V1E</a> = 5
 <br />
  }</td></tr>
 <tr class="memdesc:ga9ad67917cc6683009a92174f75f1a0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The AFBR-S50 chip versions.  <a href="group__argusapi.html#ga9ad67917cc6683009a92174f75f1a0c5">More...</a><br /></td></tr>
@@ -272,7 +286,8 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>The main module of the API from the AFBR-S50 SDK. </p>
 <hr  />
-<p>General API for the AFBR-S50 time-of-flight sensor device family.</p>
+<p>General API for the AFBR-S50 time-of-flight sensor device family.<br  />
+ See the <a class="el" href="getting_started.html">Getting Started</a> Guide for a detailed description on how to use the module/API.</p>
 <hr  />
 <p> Include files</p>
 <hr  />
@@ -437,11 +452,15 @@ Functions</h2></td></tr>
  <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d"></a>ADS0032_NONE&#160;</td><td class="fielddoc"><p>No device connected or not recognized. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga9ad67917cc6683009a92174f75f1a0c5ab4f16621a650dedb173eb5f135b2ffb2"></a>ADS0032_V1_0&#160;</td><td class="fielddoc"><p>ADS0032 v1.0 </p>
+<tr><td class="fieldname"><a id="gga9ad67917cc6683009a92174f75f1a0c5abda0918bc13344766b74238f4197b6bb"></a>ADS0032_V1A&#160;</td><td class="fielddoc"><p>ADS0032 v1a </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga9ad67917cc6683009a92174f75f1a0c5a0b627f633992b10ba97e37f06661b091"></a>ADS0032_V1_1&#160;</td><td class="fielddoc"><p>ADS0032 v1.1 </p>
+<tr><td class="fieldname"><a id="gga9ad67917cc6683009a92174f75f1a0c5aee6e2adc408dd6386e2f36ce172a1342"></a>ADS0032_V1B&#160;</td><td class="fielddoc"><p>ADS0032 v1b </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga9ad67917cc6683009a92174f75f1a0c5a8c0583652326e8cf1534d81a39e41212"></a>ADS0032_V1_2&#160;</td><td class="fielddoc"><p>ADS0032 v1.2 </p>
+<tr><td class="fieldname"><a id="gga9ad67917cc6683009a92174f75f1a0c5ae2443e3144cfa98f47bffd85795c869d"></a>ADS0032_V1C&#160;</td><td class="fielddoc"><p>ADS0032 v1c </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9ad67917cc6683009a92174f75f1a0c5a5433aff977cde39a667eeb5e79e79130"></a>ADS0032_V1D&#160;</td><td class="fielddoc"><p>ADS0032 v1d </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9ad67917cc6683009a92174f75f1a0c5abec74a1f85859993a292471ef31a73ef"></a>ADS0032_V1E&#160;</td><td class="fielddoc"><p>ADS0032 v1e </p>
 </td></tr>
 </table>
 
@@ -469,6 +488,8 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="ggaea8d743b35717312c964154cbfe1088cab397e4de9cd7aaa96e9dcd158f9fb1a3"></a>LASER_H_V2&#160;</td><td class="fielddoc"><p>850nm Infra-Red VCSEL v2 </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggaea8d743b35717312c964154cbfe1088ca59af409963e474593f4628805e2ecdf3"></a>LASER_R_V1&#160;</td><td class="fielddoc"><p>680nm Red VCSEL v1 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaea8d743b35717312c964154cbfe1088ca90d582a8e79ccf35566b16c949eec154"></a>LASER_H_V2X&#160;</td><td class="fielddoc"><p>850nm Infra-Red VCSEL v2 /w extended mode. </p>
 </td></tr>
 </table>
 
@@ -555,10 +576,12 @@ Functions</h2></td></tr>
 <hr  />
 <p>The function must be called to obtain a new device handle object. The handle is basically an abstract object in memory that contains all the internal states and settings of the API module. The handle is passed to all the API methods in order to address the specified device. This allows to use the API with more than a single measurement device.</p>
 <p>The handler is created by calling the memory allocation method from the standard library:</p><div class="fragment"><div class="line"><span class="keywordtype">void</span> * malloc(<span class="keywordtype">size_t</span> size) </div>
-</div><!-- fragment --><p> In order to implement an individual memory allocation method, define and implement the following weakly binded method and return a pointer to the newly allocated memory. * </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> * Argus_Malloc (<span class="keywordtype">size_t</span> size) </div>
-</div><!-- fragment --><p> Also see the <a class="el" href="group__argusapi.html#gaa4cd58d375a30c98d5fc1e5f0515ef85" title="Destroys a given device data handle object.">Argus_DestroyHandle</a> method for the corresponding deallocation of the allocated memory.</p>
+</div><!-- fragment --><p> In order to implement an individual memory allocation method, define and implement the following weakly binded method and return a pointer to the newly allocated memory. *</p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> * Argus_Malloc (<span class="keywordtype">size_t</span> size) </div>
+</div><!-- fragment --><p>Also see the <a class="el" href="group__argusapi.html#gaa4cd58d375a30c98d5fc1e5f0515ef85" title="Destroys a given device data handle object.">Argus_DestroyHandle</a> method for the corresponding deallocation of the allocated memory.</p>
+<dl class="section note"><dt>Note</dt><dd>Although the method is using memory allocated on the heap, it is eventually no dynamic memory allocation, since the block of memory is kept all the time and no memory blocks are dynamically freed and re-allocated. If the usage of heap must be avoided, one can always implement its own version of the <code>Argus_Malloc</code> function to create the memory elsewhere.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the newly allocated device handler object. Returns a null pointer if the allocation failed! </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a1">01_simple_example.c</a>, and <a class="el" href="02_advanced_example_8c-example.html#a1">02_advanced_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a3">01_simple_example.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a3">02_advanced_example.c</a>, and <a class="el" href="03_hal_self_test_example_8c-example.html#a4">03_hal_self_test_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -581,7 +604,7 @@ Functions</h2></td></tr>
 
 <p>Deinitializes the API modules and the device. </p>
 <hr  />
-<p>The function deinitializes the device and clear all internal states. Can be used to cleanup before releaseing the memory. The device can not be used any more and must be initialized again prior to next usage.</p>
+<p>The function deinitializes the device and clear all internal states. Can be used to cleanup before releasing the memory. The device can not be used any more and must be initialized again prior to next usage.</p>
 <p>Note that the <a class="el" href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898" title="Initializes the API modules and the device with default parameters.">Argus_Init</a> function must be called first! Otherwise, the function will return an error if it is called for an yet uninitialized device/handle.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -616,7 +639,8 @@ Functions</h2></td></tr>
 <p>The handler is destroyed by freeing the corresponding memory with the method from the standard library,</p><div class="fragment"><div class="line"><span class="keywordtype">void</span> free(<span class="keywordtype">void</span> * ptr) </div>
 </div><!-- fragment --><p>. In order to implement an individual memory deallocation method, define and implement the following weakly binded method and free the memory object passed to the method by a pointer.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> Argus_Free (<span class="keywordtype">void</span> * ptr) </div>
-</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><p>Also see the <a class="el" href="group__argusapi.html#ga0c81d41a6c8aecceca64b54c724b6a2d" title="Creates a new device data handle object to store all internal states.">Argus_CreateHandle</a> method for the corresponding allocation of the required memory.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hnd</td><td>The device handle object to be deallocated. </td></tr>
   </table>
@@ -659,6 +683,8 @@ Functions</h2></td></tr>
 <div class="line">uint8_t c = value &amp; 0xFFFFU;</div>
 <div class="ttc" id="agroup__argusapi_html_gabec8f8d2fd8e05e1b4dc6158bffe1f23"><div class="ttname"><a href="group__argusapi.html#gabec8f8d2fd8e05e1b4dc6158bffe1f23">Argus_GetAPIVersion</a></div><div class="ttdeci">uint32_t Argus_GetAPIVersion(void)</div><div class="ttdoc">Gets the version number of the current API library.</div></div>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>Returns the current version number. </dd></dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a6">01_simple_example.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a6">02_advanced_example.c</a>, and <a class="el" href="03_hal_self_test_example_8c-example.html#a7">03_hal_self_test_example.c</a>.</dd>
+</dl>
 
 </div>
 </div>
@@ -709,6 +735,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the unique identification number. </dd></dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a7">01_simple_example.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a7">02_advanced_example.c</a>, and <a class="el" href="03_hal_self_test_example_8c-example.html#a8">03_hal_self_test_example.c</a>.</dd>
+</dl>
 
 </div>
 </div>
@@ -793,6 +821,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the current module number. </dd></dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a8">01_simple_example.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a8">02_advanced_example.c</a>, and <a class="el" href="03_hal_self_test_example_8c-example.html#a9">03_hal_self_test_example.c</a>.</dd>
+</dl>
 
 </div>
 </div>
@@ -868,7 +898,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the <a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status</a> (<a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a> on success). </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a2">01_simple_example.c</a>, and <a class="el" href="02_advanced_example_8c-example.html#a2">02_advanced_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a5">01_simple_example.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a5">02_advanced_example.c</a>, and <a class="el" href="03_hal_self_test_example_8c-example.html#a6">03_hal_self_test_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -907,10 +937,11 @@ Functions</h2></td></tr>
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

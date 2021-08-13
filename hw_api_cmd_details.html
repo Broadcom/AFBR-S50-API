@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Command Details</title>
+<title>AFBR-S50 API Reference Manual: Command Details</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -96,22 +96,21 @@ $(document).ready(function(){initNavTree('hw_api_cmd_details.html',''); initResi
 <div class="title">Command Details </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_Doxygen_05_hw_api_details"></a></p>
-<p>The following section contains the current command details as implemented in the <em>ExplorerApp</em>. The implementation can be found in the "Sources\explorer_app\api" folder of the "AFBR_S50_ExplorerApp_KL46z" project. See also <a class="el" href="hw_api.html">Explorer App (API Demo)</a>.</p>
+<div class="textblock"><p><a class="anchor" id="md_Doxygen_05_hw_api_details"></a> The following section contains the current command details as implemented in the <em>ExplorerApp</em>. The implementation can be found in the "Sources\explorer_app\api" folder of the "AFBR_S50_ExplorerApp_KL46z" project. See also <a class="el" href="hw_api.html">Explorer App (API Demo)</a>.</p>
 <h1><a class="anchor" id="hw_api_cmd_generic"></a>
 Generic Commands</h1>
 <h2><a class="anchor" id="cmd_invalid"></a>
 Invalid Command</h2>
+<p>Reserved! Invalid Command;</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x00    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Status   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1 / 0   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Slave to Master only   </td></tr>
+<td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x00   </td></tr>
 </table>
 <h2><a class="anchor" id="cmd_ack"></a>
 Acknowledge</h2>
+<p>Slave does acknowledge the successful reception of the last command.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -122,6 +121,7 @@ Acknowledge</h2>
 </table>
 <h2><a class="anchor" id="cmd_nak"></a>
 Not Acknowledge</h2>
+<p>Slave does not-acknowledge the successful reception of the last command.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -132,8 +132,18 @@ Not Acknowledge</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Serial Status / Reason for NAK   </td><td class="markdownTableBodyNone">UINT16   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
 </table>
+<h2><a class="anchor" id="cmd_ping"></a>
+Ping Command</h2>
+<p>A ping message the is sent from the master and reflected by the slave. Used to establish or test the UART connection.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x01   </td></tr>
+</table>
 <h2><a class="anchor" id="cmd_log"></a>
 Log Message</h2>
+<p>An event/debug log message sent from the slave to inform the user.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -148,6 +158,7 @@ Log Message</h2>
 </table>
 <h2><a class="anchor" id="cmd_test"></a>
 Test Message</h2>
+<p>Sending a test message to the slave that will be echoed in order to test the interface. The slave will echo the exact message including the CRC values from the original message.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -158,6 +169,7 @@ Test Message</h2>
 </table>
 <h2><a class="anchor" id="cmd_reset"></a>
 MCU/Software Reset</h2>
+<p>Invokes the software reset.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -168,6 +180,7 @@ MCU/Software Reset</h2>
 </table>
 <h2><a class="anchor" id="cmd_sw"></a>
 Software Version</h2>
+<p>Gets the current software version number.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -179,8 +192,14 @@ Software Version</h2>
 <td class="markdownTableBodyNone">Software Build Number String   </td><td class="markdownTableBodyNone">CHAR[14] (= UINT8[14])   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">(Added in v1.2.0) Software Build Number as String (14 Digits; e.g. "20200101123456")   </td></tr>
 </table>
 <dl class="section note"><dt>Note</dt><dd>This command can be used to determine the current software version of the connected device. However, the command has changed as the build number was added to the command for v1.2.0 and newer versions. In order to determine the version, it is sufficient to encode only the version number. If the version is at least v1.2.0, the build number can also be extracted from the command data array.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argusapi.html#gabec8f8d2fd8e05e1b4dc6158bffe1f23" title="Gets the version number of the current API library.">Argus_GetAPIVersion</a></li>
+<li><a class="el" href="group__argusapi.html#ga7dbe41a3e38c27321a2225c4ecdee705" title="Gets the build number of the current API library.">Argus_GetBuildNumber</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_module"></a>
-Module Type</h2>
+Module Type / Version</h2>
+<p>Gets the module information, incl. module type with version number, chip version and laser type.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -193,8 +212,15 @@ Module Type</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Laser Type   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Module type number. See <a class="el" href="group__argusapi.html#gaea8d743b35717312c964154cbfe1088c" title="The AFBR-S50 laser configurations.">argus_laser_type_t</a>   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argusapi.html#ga3f0b238436afb09796762fb47e9125b3" title="Gets the version/variant of the module.">Argus_GetModuleVersion</a></li>
+<li><a class="el" href="group__argusapi.html#ga50e0ba6c18c3c96f048f15d8f2576697" title="Gets the version number of the chip.">Argus_GetChipVersion</a></li>
+<li><a class="el" href="group__argusapi.html#ga0b7fdb05d63ed757610504935e589e12" title="Gets the type number of the device laser.">Argus_GetLaserType</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_uid"></a>
 Module UID</h2>
+<p>Gets the chip/module unique identification number.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -203,8 +229,13 @@ Module UID</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Module UID   </td><td class="markdownTableBodyNone">UINT24   </td><td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Unique Identification Number   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argusapi.html#ga809f5916407f49eebf87933cfed30e2d" title="Gets the unique identification number of the chip.">Argus_GetChipID</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_info"></a>
 Software Information / Identification</h2>
+<p>Software Information / Identification Gets the information about current software and device (e.g. version, device id, device family, ...)</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -213,7 +244,7 @@ Software Information / Identification</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Version Software (Explorer App)   </td><td class="markdownTableBodyNone">UINT32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Major [31:24], Minor [23:16], Bugfix [15:0]    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Version Argus API   </td><td class="markdownTableBodyNone">UINT32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Major [31:24], Minor [23:16], Bugfix [15:0]    </td></tr>
+<td class="markdownTableBodyNone">Version AFBR-S50 API   </td><td class="markdownTableBodyNone">UINT32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Major [31:24], Minor [23:16], Bugfix [15:0]    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Module Type/Version   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Module type number. See <a class="el" href="group__argusapi.html#ga46f240b890cd62efe83bf2d095277470" title="The AFBR-S50 module types.">argus_module_version_t</a>    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -226,34 +257,59 @@ Software Information / Identification</h2>
 <td class="markdownTableBodyNone">Software ID String   </td><td class="markdownTableBodyNone">CHAR[] (= UINT8[])   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Software ID String incl. Build Number (Format: "AFBR-S50 Explorer App - [BuildNumber]"; w/ build number containing 14 digits, e.g. "20200101123456")   </td></tr>
 </table>
 <dl class="section note"><dt>Note</dt><dd>This command can be used to determine the current software version of the connected device. However, the command has changed, e.g. the build number was added to the command for v1.2.0 and newer versions. In order to determine the version, it is sufficient to encode only the first version number. If the version is not current, the remaining command may differ. In case of different version, please refer to the corresponding API documentation to find the correct command formats.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argusapi.html#gabec8f8d2fd8e05e1b4dc6158bffe1f23" title="Gets the version number of the current API library.">Argus_GetAPIVersion</a></li>
+<li><a class="el" href="group__argusapi.html#ga7dbe41a3e38c27321a2225c4ecdee705" title="Gets the build number of the current API library.">Argus_GetBuildNumber</a></li>
+<li><a class="el" href="group__argusapi.html#ga3f0b238436afb09796762fb47e9125b3" title="Gets the version/variant of the module.">Argus_GetModuleVersion</a></li>
+<li><a class="el" href="group__argusapi.html#ga0b7fdb05d63ed757610504935e589e12" title="Gets the type number of the device laser.">Argus_GetLaserType</a></li>
+<li><a class="el" href="group__argusapi.html#ga50e0ba6c18c3c96f048f15d8f2576697" title="Gets the version number of the chip.">Argus_GetChipVersion</a></li>
+<li><a class="el" href="group__argusapi.html#ga809f5916407f49eebf87933cfed30e2d" title="Gets the unique identification number of the chip.">Argus_GetChipID</a></li>
+</ul>
 <h1><a class="anchor" id="hw_api_cmd_ctrl"></a>
 Device Control Commands</h1>
 <h2><a class="anchor" id="cmd_ctrl_trigger"></a>
 Measurement: Trigger Single Shot</h2>
+<p>Executes a single shot measurement.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x10   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argusmeas.html#ga92c7d4e2cdfccff38bf6689935e088a5" title="Triggers a single measurement frame asynchronously.">Argus_TriggerMeasurement</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_ctrl_start"></a>
 Measurement: Start Auto</h2>
+<p>Starts the automatic, time-scheduled measurements with given frame rate.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x11   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argusmeas.html#gae1682b01c1ed1b837fd7d763d81e857c" title="Starts the timer based measurement cycle asynchronously.">Argus_StartMeasurementTimer</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_ctrl_stop"></a>
 Measurement: Stop</h2>
+<p>Stops the time-scheduled measurements (after the current frame finishes).</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x12   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argusmeas.html#ga4c9933c83ea073d73d6108f64ea32e86" title="Stops the timer based measurement cycle.">Argus_StopMeasurementTimer</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_ctrl_cal"></a>
 Run Calibration</h2>
+<p>Command triggers a specified calibration sequence.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -264,6 +320,12 @@ Run Calibration</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Optional Parameters   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">&gt;=0   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Optional parameters for the individual calibration sequences. See table below.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argusmeas.html#ga1a67d4d71122497b67d6c1b8645fe838" title="Executes a crosstalk calibration measurement.">Argus_ExecuteXtalkCalibrationSequence</a></li>
+<li><a class="el" href="group__argusmeas.html#ga28f9a320fa562f2dfc65a97c80ca9b90" title="Executes an absolute range offset calibration measurement.">Argus_ExecuteAbsoluteRangeOffsetCalibrationSequence</a></li>
+<li><a class="el" href="group__argusmeas.html#ga573729ed4cf412225029761cad04375d" title="Executes a relative range offset calibration measurement.">Argus_ExecuteRelativeRangeOffsetCalibrationSequence</a></li>
+</ul>
 <h3><a class="anchor" id="autotoc_md21"></a>
 Calibration Sequence Enumerator</h3>
 <table class="markdownTable">
@@ -280,16 +342,23 @@ Calibration Sequence Enumerator</h3>
 </table>
 <h2><a class="anchor" id="cmd_ctrl_reinit"></a>
 Device Reinitialize</h2>
+<p>Invokes the device (re-)initialization command. Resets and reinitialize the API + ASIC with given config. (e.g. after unintended power cycle).</p>
+<dl class="section note"><dt>Note</dt><dd>Does not perform a MCU reset! Use the <a class="el" href="hw_api_cmd_details.html#cmd_reset">MCU/Software Reset</a> if a complete MCU reset is desired.</dd></dl>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x19   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argusapi.html#gab1dd6c99418b2e470a29b85721edc93f" title="Reinitializes the API modules and the device with default parameters.">Argus_Reinit</a></li>
+</ul>
 <h1><a class="anchor" id="hw_api_cmd_data"></a>
 Measurement Data Commands</h1>
 <h2><a class="anchor" id="cmd_data_raw"></a>
 Raw Measurement Data Set</h2>
+<p>Gets a raw measurement data set containing the raw device readout samples.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -310,16 +379,19 @@ Raw Measurement Data Set</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Pixel Gain   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The pixel gain determines the sensitivity of the ToF cells.    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Bias Current   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The BIAS laser current in LSB.    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Enabled Pixel Mask   </td><td class="markdownTableBodyNone">HEX32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the <a class="el" href="group__argusmap.html">pixel mapping</a> for the corresponding x-y-indices.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Enabled ADC Channel Mask   </td><td class="markdownTableBodyNone">HEX32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The ADC channel enabled mask determines the misc. ADC channels that are enabled and converted by the ADC muxing. The mask is channel based (starting from channel 32), i.e. the n-th bit represents the n-th ADC channel. See the channel mapping for the corresponding channel purpose.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Phase Count   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">#   </td><td class="markdownTableBodyNone">Number of phase steps.    </td></tr>
+<td class="markdownTableBodyNone">Enabled ADC Channel Mask   </td><td class="markdownTableBodyNone">HEX32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The ADC channel enabled mask determines the misc. ADC channels that are enabled and converted by the ADC muxing. The mask is channel based (starting from channel 32), i.e. the n-th bit represents the n-th ADC channel. See the channel mapping for the corresponding channel purpose.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Phase Count   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">#   </td><td class="markdownTableBodyNone">Number of phase steps.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">ADC Samples   </td><td class="markdownTableBodyNone">UINT24[]   </td><td class="markdownTableBodyNone">396   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Raw sampling data from the pixel field. The 22 LSBs determine the raw 22-bit ADC readouts and the two MSBs determine the saturation flags. The values are ordered in increasing channel number where different phase steps are gathered (i.e. \(idx = 4 n + p\)). Disabled values (see Enabled Pixel Mask and Enabled ADC Channel Mask) are skipped.   </td></tr>
 </table>
 <h2><a class="anchor" id="cmd_data_full_dbg"></a>
 Measurement Data Set (1D + 3D) - Debug</h2>
+<p>Gets a measurement data set containing all the available data.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -340,33 +412,37 @@ Measurement Data Set (1D + 3D) - Debug</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Pixel Gain   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The pixel gain determines the sensitivity of the ToF cells.    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Bias Current   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The BIAS laser current in LSB.    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Enabled Pixel Mask   </td><td class="markdownTableBodyNone">HEX32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the <a class="el" href="group__argusmap.html">pixel mapping</a> for the corresponding x-y-indices.    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Enabled ADC Channel Mask   </td><td class="markdownTableBodyNone">HEX32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The ADC channel enabled mask determines the misc. ADC channels that are enabled and converted by the ADC muxing. The mask is channel based (starting from channel 32), i.e. the n-th bit represents the n-th ADC channel. See the channel mapping for the corresponding channel purpuse.    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Phase Count   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">#   </td><td class="markdownTableBodyNone">Number of phase steps.    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">ADC Samples   </td><td class="markdownTableBodyNone">UINT24[]   </td><td class="markdownTableBodyNone">396   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Raw sampling data from the pixel field. The 22 LSBs determine the raw 22-bit ADC readouts and the two MSBs determine the saturation flags. The values are ordered in increasing channel number where different phase steps are gathered (i.e. \(idx = 4 n + p\)). Disabled values (see Enabled Pixel Mask and Enabled ADC Channel Mask) are skipped.    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Status (x, y)   </td><td class="markdownTableBodyNone">HEX8[,]   </td><td class="markdownTableBodyNone">32   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Status flags for each enabled pixel, see <a class="el" href="group__argusres.html#ga51d96e2b693d2566698b7beaa4b0911e" title="Status flags for the evaluated pixel structure.">argus_px_status_t</a>. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Range (x, y)   </td><td class="markdownTableBodyNone">Q9.14[,]   </td><td class="markdownTableBodyNone">96   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Range values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Amplitude (x, y)   </td><td class="markdownTableBodyNone">UQ12.4[,]   </td><td class="markdownTableBodyNone">64   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Amplitude values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Phase (x, y)   </td><td class="markdownTableBodyNone">UQ1.15[,]   </td><td class="markdownTableBodyNone">64   </td><td class="markdownTableBodyNone">?   </td><td class="markdownTableBodyNone">Phase values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Status (ref)   </td><td class="markdownTableBodyNone">HEX8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Status flags (see <a class="el" href="group__argusres.html#ga51d96e2b693d2566698b7beaa4b0911e" title="Status flags for the evaluated pixel structure.">argus_px_status_t</a>) for the reference pixel (Skipped if disabled, see Enabled ADC Channel Mask).    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Range (ref)   </td><td class="markdownTableBodyNone">Q9.14   </td><td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Range for the reference pixel (Skipped if disabled, see Enabled ADC Channel Mask).    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Amplitude (ref)   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Amplitude for the reference pixel (Skipped if disabled, see Enabled ADC Channel Mask).    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Phase (ref)   </td><td class="markdownTableBodyNone">UQ1.15   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">?   </td><td class="markdownTableBodyNone">Phase for the reference pixel (Skipped if disabled, see Enabled ADC Channel Mask).    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">1D Range (binned)   </td><td class="markdownTableBodyNone">Q9.14   </td><td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">1D range as determined by the binning algorithm.    </td></tr>
+<td class="markdownTableBodyNone">Phase (ref)   </td><td class="markdownTableBodyNone">UQ1.15   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">?   </td><td class="markdownTableBodyNone">Phase for the reference pixel (Skipped if disabled, see Enabled ADC Channel Mask).    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">1D Range (binned)   </td><td class="markdownTableBodyNone">Q9.14   </td><td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">1D range as determined by the binning algorithm.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">1D Amplitude (binned)   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">1D amplitude as determined by the binning algorithm.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Signal Quality   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">%   </td><td class="markdownTableBodyNone">The signal quality indicator in % (0-100). 0%: invalid or not available; 1%: very bad signal, ...., 100%: perfect signal    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Auxiliary measurement results for VDD    </td></tr>
 <tr class="markdownTableRowEven">
@@ -378,10 +454,19 @@ Measurement Data Set (1D + 3D) - Debug</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">TEMP   </td><td class="markdownTableBodyNone">Q11.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">°C   </td><td class="markdownTableBodyNone">Auxiliary measurement results for TEMP    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">BGL   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Auxiliary estimation of the background light value.   </td></tr>
+<td class="markdownTableBodyNone">BGL   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Auxiliary estimation of the background light value.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SNA   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Auxiliary estimation of the shot noise amplitude value.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Integration Time   </td><td class="markdownTableBodyNone">UINT32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">µsec   </td><td class="markdownTableBodyNone">The actual device integration time in microseconds (used for debugging only).    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">DCA Amplitude   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The internal amplitude used by the DCA algorithm to set up integration energy (used for debugging only).    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">PLL Control Current   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The internal register value of the PLL_CTRL_CUR register (used for debugging only).   </td></tr>
 </table>
 <h2><a class="anchor" id="cmd_data_full"></a>
 Measurement Data Set (1D + 3D)</h2>
+<p>Gets a measurement data set containing the essential data.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -402,17 +487,21 @@ Measurement Data Set (1D + 3D)</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Pixel Gain   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The pixel gain determines the sensitivity of the ToF cells.    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Bias Current   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The BIAS laser current in LSB.    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Enabled Pixel Mask   </td><td class="markdownTableBodyNone">HEX32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the <a class="el" href="group__argusmap.html">pixel mapping</a> for the corresponding x-y-indices.    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Status (x, y)   </td><td class="markdownTableBodyNone">HEX8[,]   </td><td class="markdownTableBodyNone">32   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Status flags for each enabled pixel, see <a class="el" href="group__argusres.html#ga51d96e2b693d2566698b7beaa4b0911e" title="Status flags for the evaluated pixel structure.">argus_px_status_t</a>. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Range (x, y)   </td><td class="markdownTableBodyNone">Q9.14[,]   </td><td class="markdownTableBodyNone">96   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Range values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Amplitude (x, y)   </td><td class="markdownTableBodyNone">UQ12.4[,]   </td><td class="markdownTableBodyNone">64   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Amplitude values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">1D Range (binned)   </td><td class="markdownTableBodyNone">Q9.14   </td><td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">1D range as determined by the binning algorithm.    </td></tr>
+<td class="markdownTableBodyNone">Amplitude (x, y)   </td><td class="markdownTableBodyNone">UQ12.4[,]   </td><td class="markdownTableBodyNone">64   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Amplitude values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">1D Range (binned)   </td><td class="markdownTableBodyNone">Q9.14   </td><td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">1D range as determined by the binning algorithm.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">1D Amplitude (binned)   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">1D amplitude as determined by the binning algorithm.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Signal Quality   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">%   </td><td class="markdownTableBodyNone">The signal quality indicator in % (0-100). 0%: invalid or not available; 1%: very bad signal, ...., 100%: perfect signal    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Auxiliary measurement results for VDD    </td></tr>
 <tr class="markdownTableRowEven">
@@ -424,10 +513,19 @@ Measurement Data Set (1D + 3D)</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">TEMP   </td><td class="markdownTableBodyNone">Q11.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">°C   </td><td class="markdownTableBodyNone">Auxiliary measurement results for TEMP    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">BGL   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Auxiliary estimation of the background light value.   </td></tr>
+<td class="markdownTableBodyNone">BGL   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Auxiliary estimation of the background light value.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SNA   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Auxiliary estimation of the shot noise amplitude value.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Integration Time   </td><td class="markdownTableBodyNone">UINT32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">µsec   </td><td class="markdownTableBodyNone">The actual device integration time in microseconds (used for debugging only).    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">DCA Amplitude   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The internal amplitude used by the DCA algorithm to set up integration energy (used for debugging only).    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">PLL Control Current   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The internal register value of the PLL_CTRL_CUR register (used for debugging only).   </td></tr>
 </table>
 <h2><a class="anchor" id="cmd_data_3d_dbg"></a>
 3D Measurement Data Set - Debug</h2>
+<p>Gets a 3D measurement data set containing all the available data per pixel.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -448,18 +546,21 @@ Measurement Data Set (1D + 3D)</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Pixel Gain   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The pixel gain determines the sensitivity of the ToF cells.    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Bias Current   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The BIAS laser current in LSB.    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Enabled Pixel Mask   </td><td class="markdownTableBodyNone">HEX32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the <a class="el" href="group__argusmap.html">pixel mapping</a> for the corresponding x-y-indices.    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Status (x, y)   </td><td class="markdownTableBodyNone">HEX8[,]   </td><td class="markdownTableBodyNone">32   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Status flags for each enabled pixel, see <a class="el" href="group__argusres.html#ga51d96e2b693d2566698b7beaa4b0911e" title="Status flags for the evaluated pixel structure.">argus_px_status_t</a>. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Range (x, y)   </td><td class="markdownTableBodyNone">Q9.14[,]   </td><td class="markdownTableBodyNone">96   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Range values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Amplitude (x, y)   </td><td class="markdownTableBodyNone">UQ12.4[,]   </td><td class="markdownTableBodyNone">64   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Amplitude values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
+<td class="markdownTableBodyNone">Range (x, y)   </td><td class="markdownTableBodyNone">Q9.14[,]   </td><td class="markdownTableBodyNone">96   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Range values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Amplitude (x, y)   </td><td class="markdownTableBodyNone">UQ12.4[,]   </td><td class="markdownTableBodyNone">64   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Amplitude values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Phase (x, y)   </td><td class="markdownTableBodyNone">UQ1.15[,]   </td><td class="markdownTableBodyNone">64   </td><td class="markdownTableBodyNone">?   </td><td class="markdownTableBodyNone">Phase values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.   </td></tr>
 </table>
 <h2><a class="anchor" id="cmd_data_3d"></a>
 3D Measurement Data Set</h2>
+<p>Gets a 3D measurement data set containing the essential data per pixel.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -480,16 +581,19 @@ Measurement Data Set (1D + 3D)</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Pixel Gain   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The pixel gain determines the sensitivity of the ToF cells.    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Bias Current   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The BIAS laser current in LSB.    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Enabled Pixel Mask   </td><td class="markdownTableBodyNone">HEX32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the <a class="el" href="group__argusmap.html">pixel mapping</a> for the corresponding x-y-indices.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Status (x, y)   </td><td class="markdownTableBodyNone">HEX8[,]   </td><td class="markdownTableBodyNone">32   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Status flags for each enabled pixel, see <a class="el" href="group__argusres.html#ga51d96e2b693d2566698b7beaa4b0911e" title="Status flags for the evaluated pixel structure.">argus_px_status_t</a>. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Range (x, y)   </td><td class="markdownTableBodyNone">Q9.14[,]   </td><td class="markdownTableBodyNone">96   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Range values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
+<td class="markdownTableBodyNone">Status (x, y)   </td><td class="markdownTableBodyNone">HEX8[,]   </td><td class="markdownTableBodyNone">32   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Status flags for each enabled pixel, see <a class="el" href="group__argusres.html#ga51d96e2b693d2566698b7beaa4b0911e" title="Status flags for the evaluated pixel structure.">argus_px_status_t</a>. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Range (x, y)   </td><td class="markdownTableBodyNone">Q9.14[,]   </td><td class="markdownTableBodyNone">96   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">Range values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Amplitude (x, y)   </td><td class="markdownTableBodyNone">UQ12.4[,]   </td><td class="markdownTableBodyNone">64   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Amplitude values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \(n = 4 x + y\)). Disabled values (see Enabled Pixel Mask) are skipped.   </td></tr>
 </table>
 <h2><a class="anchor" id="cmd_data_1d_dbg"></a>
 1D Measurement Data Set - Debug</h2>
+<p>Gets a 1D measurement data set containing all the available distance measurement data.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -510,6 +614,10 @@ Measurement Data Set (1D + 3D)</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Pixel Gain   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The pixel gain determines the sensitivity of the ToF cells.    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Bias Current   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The BIAS laser current in LSB.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Enabled Pixel Mask   </td><td class="markdownTableBodyNone">HEX32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the <a class="el" href="group__argusmap.html">pixel mapping</a> for the corresponding x-y-indices.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">1D Pixel Count   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">#   </td><td class="markdownTableBodyNone">The number of pixels considered for the 1D range value.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Saturated Pixel Count   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">#   </td><td class="markdownTableBodyNone">The number of pixels with saturation flags set.    </td></tr>
@@ -518,10 +626,13 @@ Measurement Data Set (1D + 3D)</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">1D Amplitude (binned)   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">1D amplitude as determined by the binning algorithm.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">1D Phase (binned)   </td><td class="markdownTableBodyNone">UQ1.15   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">?   </td><td class="markdownTableBodyNone">1D phase as determined by the binning algorithm.   </td></tr>
+<td class="markdownTableBodyNone">1D Phase (binned)   </td><td class="markdownTableBodyNone">UQ1.15   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">?   </td><td class="markdownTableBodyNone">1D phase as determined by the binning algorithm.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Signal Quality   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">%   </td><td class="markdownTableBodyNone">The signal quality indicator in % (0-100). 0%: invalid or not available; 1%: very bad signal, ...., 100%: perfect signal   </td></tr>
 </table>
 <h2><a class="anchor" id="cmd_data_1d"></a>
 1D Measurement Data Set</h2>
+<p>Gets a 1D measurement data set containing the essential distance measurement data.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -536,12 +647,15 @@ Measurement Data Set (1D + 3D)</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">1D Range (binned)   </td><td class="markdownTableBodyNone">Q9.14   </td><td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">1D range as determined by the binning algorithm.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">1D Amplitude (binned)   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">1D amplitude as determined by the binning algorithm.   </td></tr>
+<td class="markdownTableBodyNone">1D Amplitude (binned)   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">1D amplitude as determined by the binning algorithm.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Signal Quality   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">%   </td><td class="markdownTableBodyNone">The signal quality indicator in % (0-100). 0%: invalid or not available; 1%: very bad signal, ...., 100%: perfect signal   </td></tr>
 </table>
 <h1><a class="anchor" id="hw_api_cmd_cfg"></a>
 Configuration Commands</h1>
 <h2><a class="anchor" id="cmd_cfg_output_mode"></a>
 Data Output Mode</h2>
+<p>The measurement data output mode. (Hardware API only)</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -556,32 +670,39 @@ Measurement Data Output Mode Enumerator</h3>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Value   </th><th class="markdownTableHeadNone">Name   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">Streaming Raw Data   </td><td class="markdownTableBodyNone">When in 'Raw Data Streaming Mode', the software is streaming the raw measurement data only, i.e. the raw correlation samples per pixel.    </td></tr>
+<td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_data_raw">Streaming Raw Data</a>   </td><td class="markdownTableBodyNone">When in 'Raw Data Streaming Mode', the software is streaming the raw measurement data only, i.e. the raw correlation samples per pixel.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">Streaming Debug Data   </td><td class="markdownTableBodyNone">When in 'Debug Data Streaming Mode', the software is streaming all available measurement data from the 1D and 3D measurements, i.e. raw correlation sampling data as well as the range, phase and amplitude values per pixel (3D) and from the pixel binning algorithm (1D). Additional information about the measurement frame is also provided. If enabled, also the reference pixel results are available.    </td></tr>
+<td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_data_full_dbg">Streaming Debug Data</a>   </td><td class="markdownTableBodyNone">When in 'Debug Data Streaming Mode', the software is streaming all available measurement data from the 1D and 3D measurements, i.e. raw correlation sampling data as well as the range, phase and amplitude values per pixel (3D) and from the pixel binning algorithm (1D). Additional information about the measurement frame is also provided. If enabled, also the reference pixel results are available.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">Streaming Full Data   </td><td class="markdownTableBodyNone">When in 'Full Data Streaming Mode', the software is streaming all essential measurement data from the 1D and 3D measurements, i.e. range and amplitude values per pixel (3D) as well as from the pixel binning algorithm (1D). Additional information about the measurement frame is also provided.    </td></tr>
+<td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_data_full">Streaming Full Data</a>   </td><td class="markdownTableBodyNone">When in 'Full Data Streaming Mode', the software is streaming all essential measurement data from the 1D and 3D measurements, i.e. range and amplitude values per pixel (3D) as well as from the pixel binning algorithm (1D). Additional information about the measurement frame is also provided.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">Streaming 3D Debug Data   </td><td class="markdownTableBodyNone">When in '3D Debug Data Streaming Mode', the software is streaming all available measurement data from the 3D measurements, i.e. the range, phase and amplitude values per pixel (3D). Additional information about the measurement frame is also provided.    </td></tr>
+<td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_data_3d_dbg">Streaming 3D Debug Data</a>   </td><td class="markdownTableBodyNone">When in '3D Debug Data Streaming Mode', the software is streaming all available measurement data from the 3D measurements, i.e. the range, phase and amplitude values per pixel (3D). Additional information about the measurement frame is also provided.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">5   </td><td class="markdownTableBodyNone">Streaming 3D Data   </td><td class="markdownTableBodyNone">When in '3D Data Streaming Mode', the software is streaming all essential measurement data from the 3D measurements, i.e. range and amplitude values per pixel (3D). Additional information about the measurement frame is also provided.    </td></tr>
+<td class="markdownTableBodyNone">5   </td><td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_data_3d">Streaming 3D Data</a>   </td><td class="markdownTableBodyNone">When in '3D Data Streaming Mode', the software is streaming all essential measurement data from the 3D measurements, i.e. range and amplitude values per pixel (3D). Additional information about the measurement frame is also provided.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">6   </td><td class="markdownTableBodyNone">Streaming 1D Debug Data   </td><td class="markdownTableBodyNone">When in '1D Debug Data Streaming Mode', the software is streaming all available measurement data from the 1D measurements, i.e. the range, phase and amplitude values from the pixel binning algorithm (1D). Additional information about the measurement frame is also provided.    </td></tr>
+<td class="markdownTableBodyNone">6   </td><td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_data_1d_dbg">Streaming 1D Debug Data</a>   </td><td class="markdownTableBodyNone">When in '1D Debug Data Streaming Mode', the software is streaming all available measurement data from the 1D measurements, i.e. the range, phase and amplitude values from the pixel binning algorithm (1D). Additional information about the measurement frame is also provided.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">7   </td><td class="markdownTableBodyNone">Streaming 1D Data   </td><td class="markdownTableBodyNone">When in '1D Data Streaming Mode', the software is streaming all essential measurement data from the 1D measurements, i.e. range and amplitude values from the pixel binning algorithm (1D).   </td></tr>
+<td class="markdownTableBodyNone">7   </td><td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_data_1d">Streaming 1D Data</a>   </td><td class="markdownTableBodyNone">When in '1D Data Streaming Mode', the software is streaming all essential measurement data from the 1D measurements, i.e. range and amplitude values from the pixel binning algorithm (1D).   </td></tr>
 </table>
 <h2><a class="anchor" id="cmd_cfg_mode"></a>
 Measurement Mode</h2>
+<p>Gets or sets the measurement mode.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x42    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Measurement Mode   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Gets or sets the measurement mode. See <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b" title="The measurement modes.">argus_mode_t</a> for details.   </td></tr>
+<td class="markdownTableBodyNone">Measurement Mode   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The measurement mode. See <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b" title="The measurement modes.">argus_mode_t</a> for details.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscfg.html#gab85255e2ca9db701580bb00c8405c894" title="Gets the measurement mode from a specified device.">Argus_GetConfigurationMeasurementMode</a></li>
+<li><a class="el" href="group__arguscfg.html#ga8df95c21bd4b7b58bf1940fc996df39f" title="Sets the measurement mode to a specified device.">Argus_SetConfigurationMeasurementMode</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cfg_frame_time"></a>
 Frame Time</h2>
+<p>Gets or sets the measurement frame time or the inverse measurement frame rate.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -590,8 +711,14 @@ Frame Time</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Frame Time (inverse Frame Rate)   </td><td class="markdownTableBodyNone">UINT32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">µsec   </td><td class="markdownTableBodyNone">The measurement frame time (1 / "frame rate") in usec. The interval to trigger measurement frames.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscfg.html#ga210026e703f70594366957a3414e6fe5" title="Gets the frame time from a specified device.">Argus_GetConfigurationFrameTime</a></li>
+<li><a class="el" href="group__arguscfg.html#gaa6d970c42ac21e56907247f58a029472" title="Sets the frame time to a specified device.">Argus_SetConfigurationFrameTime</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cfg_dfm"></a>
 Dual Frequency Mode</h2>
+<p>Gets or sets the Dual Frequency Mode configuration.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -602,6 +729,11 @@ Dual Frequency Mode</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Dual Frequency Mode   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Selects the Dual-Frequency Mode (DFM). See See <a class="el" href="group__argusdfm.html#ga7bc09bd5d6bc9fdfd24106382efc15b1">argus_dfm_mode_t</a> or the table below for details.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscfg.html#ga61be0664f4418ac27dc4caf8b9bd8adf" title="Gets the Dual Frequency Mode (DFM) from a specified device.">Argus_GetConfigurationDFMMode</a></li>
+<li><a class="el" href="group__arguscfg.html#ga146a149ac03f493cb13508e47f1581c9" title="Sets the Dual Frequency Mode (DFM) to a specified device.">Argus_SetConfigurationDFMMode</a></li>
+</ul>
 <h3><a class="anchor" id="autotoc_md23"></a>
 Dual Frequency Mode Enumerator</h3>
 <table class="markdownTable">
@@ -616,6 +748,7 @@ Dual Frequency Mode Enumerator</h3>
 </table>
 <h2><a class="anchor" id="cmd_cfg_sps"></a>
 Smart Power Save Mode</h2>
+<p>Gets or sets the smart power saving feature enabled flag.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -626,8 +759,14 @@ Smart Power Save Mode</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Smart Power Save Enabled   </td><td class="markdownTableBodyNone">BOOL8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Enables the Smart Power Save Feature.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscfg.html#ga227b11bad216f4bbeef8c94c741b39fd" title="Gets the smart power save enabled flag from a specified device.">Argus_GetConfigurationSmartPowerSaveEnabled</a></li>
+<li><a class="el" href="group__arguscfg.html#ga19b5c489d596be819c892ba2abc25201" title="Sets the smart power save enabled flag to a specified device.">Argus_SetConfigurationSmartPowerSaveEnabled</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cfg_snm"></a>
 Shot Noise Monitor Mode</h2>
+<p>Gets or sets the shot noise monitor mode.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -638,6 +777,11 @@ Shot Noise Monitor Mode</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Shot Noise Monitor Mode   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Selects the Shot-Noise-Monitor (SNM) mode. See <a class="el" href="group__argussnm.html#gaeebf2186c1d70c697e08ed8d70d11ea4">argus_snm_mode_t</a> or the table below for details.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscfg.html#ga8e692d95e163d9da8bce0cc7a5b2606f" title="Gets the Shot Noise Montor (SNM) mode from a specified device.">Argus_GetConfigurationShotNoiseMonitorMode</a></li>
+<li><a class="el" href="group__arguscfg.html#ga92ecf421ae8e55880577758d89751aec" title="Sets the Shot Noise Monitor (SNM) mode to a specified device.">Argus_SetConfigurationShotNoiseMonitorMode</a></li>
+</ul>
 <h3><a class="anchor" id="autotoc_md24"></a>
 Shot Noise Monitor Mode Enumerator</h3>
 <table class="markdownTable">
@@ -652,6 +796,7 @@ Shot Noise Monitor Mode Enumerator</h3>
 </table>
 <h2><a class="anchor" id="cmd_cfg_dca"></a>
 Dynamic Configuration Adaption</h2>
+<p>Gets or sets the setting parameters of the Dynamic Configuration Adaption (DCA) algorithm.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -660,7 +805,7 @@ Dynamic Configuration Adaption</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Measurement Mode Selector   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The addressed measurement mode. See <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b" title="The measurement modes.">argus_mode_t</a> for details.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Enabled Flags   </td><td class="markdownTableBodyNone">HEX8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">DCA features enable flags. Bit 0: DCA feature enable, Bit 1: use average amplitude    </td></tr>
+<td class="markdownTableBodyNone">DCA Enabled Flags   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">DCA feature enable flags. See <a class="el" href="group__argusdca.html#ga6c841af5b41e4703611e988458753985" title="The dynamic configuration algorithm enable flags.">argus_dca_enable_t</a> for details.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Saturated Pixel Threshold for Linear Response   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">#   </td><td class="markdownTableBodyNone">The maximum allowed overflow pixels before the DCA will invoke an linear decrease of integration energy.    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -674,26 +819,33 @@ Dynamic Configuration Adaption</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">High Amplitude Threshold   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The maximum allowed amplitude before the integration energy will be decreased.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Amplitude Mode   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The amplitude evaluation mode for the DCA algorithm. Either maximum or average amplitude can be used. See <a class="el" href="group__argusdca.html#gadbdf132d9dfb8842fe53edc85cf049e8" title="The DCA amplitude evaluation method.">argus_dca_amplitude_mode_t</a> for details.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Nominal Integration Depth   </td><td class="markdownTableBodyNone">UQ10.6   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">#   </td><td class="markdownTableBodyNone">The nominal analog integration depth. This determines the start value or the static value depending on the Enabled setting.    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Min. Integration Depth   </td><td class="markdownTableBodyNone">UQ10.6   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">#   </td><td class="markdownTableBodyNone">The minimum analog integration depth, i.e. the minimum pattern count per sample.    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Max. Integration Depth   </td><td class="markdownTableBodyNone">UQ10.6   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">#   </td><td class="markdownTableBodyNone">The maximum analog integration depth, i.e. the maximum pattern count per sample.    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Nominal Optical Power   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">mA   </td><td class="markdownTableBodyNone">The nominal optical output power.This determines the start value or the static value depending on the Enabled setting.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Min. Optical Power   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">mA   </td><td class="markdownTableBodyNone">The minimum optical output power, i.e. the minimum OMA value.    </td></tr>
+<td class="markdownTableBodyNone">Optical Power   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The optical output power stages. See <a class="el" href="group__argusdca.html#ga4e785a5fd11ff02355ee46179ebf0a95" title="The dynamic configuration algorithm Optical Output Power stages enumerator.">argus_dca_power_t</a> for details.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Nominal Pixel Gain   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The nominal pixel gain value for the default DCA gain stage. This determines the start value or the static value depending on the Enabled setting.    </td></tr>
+<td class="markdownTableBodyNone">Nominal Pixel Gain   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The nominal pixel gain value for the default DCA gain stage. This determines the start value or the static value depending on the Enabled setting. See <a class="el" href="group__argusdca.html#ga60f551db45dd085d6008f683012c4c39" title="The dynamic configuration algorithm Pixel Input Gain stages enumerator.">argus_dca_gain_t</a> for details.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Low Pixel Gain   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The low pixel gain value for the DCA low gain stage.    </td></tr>
+<td class="markdownTableBodyNone">Low Pixel Gain   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The low pixel gain value for the DCA low gain stage. See <a class="el" href="group__argusdca.html#ga60f551db45dd085d6008f683012c4c39" title="The dynamic configuration algorithm Pixel Input Gain stages enumerator.">argus_dca_gain_t</a> for details.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">High Pixel Gain   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The high pixel gain value for the DCA high gain stage.    </td></tr>
+<td class="markdownTableBodyNone">High Pixel Gain   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The high pixel gain value for the DCA high gain stage. See <a class="el" href="group__argusdca.html#ga60f551db45dd085d6008f683012c4c39" title="The dynamic configuration algorithm Pixel Input Gain stages enumerator.">argus_dca_gain_t</a> for details.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Power Saving Ratio   </td><td class="markdownTableBodyNone">UQ0.8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Determines the percentage of the full available frame time that is not exploited for digital integration. Thus the device is idle within the specified portion of the frame time and does consume less energy.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscfg.html#gac2694d6e81df89bb5b5ded34d56f793b" title="Gets the # from a specified device.">Argus_GetConfigurationDynamicAdaption</a></li>
+<li><a class="el" href="group__arguscfg.html#ga9cfd77bb5e749a0e8a8ac1a1f85a7a9a" title="Sets the full DCA module configuration to a specified device.">Argus_SetConfigurationDynamicAdaption</a></li>
+<li><a class="el" href="structargus__cfg__dca__t.html" title="Dynamic Configuration Adaption (DCA) Parameters.">argus_cfg_dca_t</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cfg_pba"></a>
 Pixel Binning</h2>
+<p>Gets or sets the setting parameters of the Pixel Binning (PBA) algorithm.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -702,9 +854,9 @@ Pixel Binning</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Measurement Mode Selector   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The addressed measurement mode. See <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b" title="The measurement modes.">argus_mode_t</a> for details.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Enabled Flags   </td><td class="markdownTableBodyNone">HEX8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Enables/disables the pixel binning (features). See <a class="el" href="group__arguspba.html#gaf88e08ab98d98662ae52e5b997a012e3" title="Enable flags for the pixel binning algorithm.">argus_pba_flags_t</a> for details.    </td></tr>
+<td class="markdownTableBodyNone">PBA Enabled Flags   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Enables/disables the pixel binning (features). See <a class="el" href="group__arguspba.html#gaf88e08ab98d98662ae52e5b997a012e3" title="Enable flags for the pixel binning algorithm.">argus_pba_flags_t</a> for details.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Averaging Mode   </td><td class="markdownTableBodyNone">HEX8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Selects the averaging mode for the PBA. See <a class="el" href="group__arguspba.html#gab9850b698d5327e8bca0c99c1626362f" title="The averaging modes for the pixel binning algorithm.">argus_pba_averaging_mode_t</a> for details.    </td></tr>
+<td class="markdownTableBodyNone">Averaging Mode   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Selects the averaging mode for the PBA. See <a class="el" href="group__arguspba.html#gab9850b698d5327e8bca0c99c1626362f" title="The averaging modes for the pixel binning algorithm.">argus_pba_averaging_mode_t</a> for details.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Pre-filter Mask   </td><td class="markdownTableBodyNone">HEX32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The pixel pre-filter mask determines the pixels that are dismissed by the PBA. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the <a class="el" href="group__argusmap.html">pixel mapping</a> for the corresponding x-y-indices.    </td></tr>
 <tr class="markdownTableRowEven">
@@ -716,22 +868,57 @@ Pixel Binning</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Relative Minimum Distance Scope   </td><td class="markdownTableBodyNone">UQ0.8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">%   </td><td class="markdownTableBodyNone">Relative Minimum Distance Scope Filter Threshold Value in % of the current minimum distance. Distances with larger values (compared to current minimum distance) are dismissed   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscfg.html#gaba75f7e0220fcf665269f142757dd4f3" title="Gets the pixel binning configuration parameters from a specified device.">Argus_GetConfigurationPixelBinning</a></li>
+<li><a class="el" href="group__arguscfg.html#gaebb3a2a6d02bb664692ebe82d7200835" title="Sets the pixel binning configuration parameters to a specified device.">Argus_SetConfigurationPixelBinning</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cfg_spi"></a>
 SPI Configuration</h2>
+<p>Gets or sets the SPI configuration parameters.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x58    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">SPI Slave   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">SPI Slave Enumeration: 0: intern, 1: extern,    </td></tr>
+<td class="markdownTableBodyNone">SPI Slave   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">SPI Slave Enumeration: -1: auto-detect, 1: intern, 2: extern slave.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">SPI Baud Rate   </td><td class="markdownTableBodyNone">UINT32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">Baud Rate in BaudPerSeconds.   </td></tr>
 </table>
+<dl class="section note"><dt>Note</dt><dd>The available baud rates for SPI interfaces depend on the platform.</dd></dl>
+<p>Available Baud Rates:</p>
+<ul>
+<li>NXP MKL46z Baud Rates: e.g. 12 MHz, 6 MHz, 3 MHz, 1.5 MHz, ...</li>
+<li>NXP MKL17z Baud Rates: e.g. 6 MHz, 3 MHz, 1.5 MHz, ...</li>
+<li>STM32F401RE Baud Rates: e.g. 21 MHz, 10.5 MHz, 5.25 MHz, ...</li>
+</ul>
+<h2><a class="anchor" id="cmd_cfg_uart"></a>
+UART Configuration</h2>
+<p>Gets or sets the UART configuration (e.g. baud rate).</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x59    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">UART Baud Rate   </td><td class="markdownTableBodyNone">UINT32   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">Baud Rate in BaudPerSeconds.   </td></tr>
+</table>
+<dl class="section note"><dt>Note</dt><dd>The device responds with an acknowledge before changing the UART baud rate.</dd>
+<dd>
+The UART configuration is only available for the STM32F401RE Evaluation Board. The board is initialized with 1 Mbps upon reset.</dd></dl>
+<p>Available Baud Rates:</p>
+<ul>
+<li>115200 bps</li>
+<li>500000 bps</li>
+<li>1000000 bps (1 Mbps), default after MCU reset/power on.</li>
+<li>2000000 bps (2 Mbps)</li>
+</ul>
 <h1><a class="anchor" id="hw_api_cmd_cal"></a>
 Calibration Commands</h1>
 <h2><a class="anchor" id="cmd_cal_range_offset"></a>
 Global Range Offset</h2>
+<p>Gets or sets the global range offset for a selected measurement mode.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -742,8 +929,14 @@ Global Range Offset</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Range Offset   </td><td class="markdownTableBodyNone">Q0.15   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">m   </td><td class="markdownTableBodyNone">The global range offset in meters.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscal.html#ga942c296d7224f1f6fbebe67ea0f4024a" title="Gets the global range offset value from a specified device.">Argus_GetCalibrationGlobalRangeOffset</a></li>
+<li><a class="el" href="group__arguscal.html#ga1aa2e7818001664ed5c30c229d4ccbda" title="Sets the global range offset value to a specified device.">Argus_SetCalibrationGlobalRangeOffset</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cal_offsets"></a>
 Pixel Range Offsets</h2>
+<p>Gets or sets the pixel-to-pixel range offset table.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -759,8 +952,14 @@ Pixel Range Offsets</h2>
 <li>x: The pixel x-index (0-7)</li>
 <li>y: The pixel y-index (0-3)</li>
 </ul>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscal.html#ga84b9ab66c5f8a79921bdff3bf806673f" title="Gets the relative pixel offset table from a specified device.">Argus_GetCalibrationPixelRangeOffsets</a></li>
+<li><a class="el" href="group__arguscal.html#ga7f868d2b40e90d24f698fd7f231505f7" title="Sets the relative pixel offset table to a specified device.">Argus_SetCalibrationPixelRangeOffsets</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cal_offsets_rst"></a>
-Pixel Range Offsets - Reset Table</h2>
+Pixel Range Offsets - Reset Offset Table</h2>
+<p>Command to reset the range offset table to the factory calibrated default values.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -769,18 +968,29 @@ Pixel Range Offsets - Reset Table</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Measurement Mode Selector   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The addressed measurement mode. See <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b" title="The measurement modes.">argus_mode_t</a> for details.   </td></tr>
 </table>
-<h2><a class="anchor" id="cmd_cal_offsets_smpl_ct"></a>
-Range Offsets Calibration Sequence - Sample Count</h2>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscal.html#ga081ad50bc953f4f18883ac4869037b72" title="Resets the relative pixel offset values for the specified device to the factory calibrated default va...">Argus_ResetCalibrationPixelRangeOffsets</a></li>
+</ul>
+<h2><a class="anchor" id="cmd_cal_offsets_smpl_time"></a>
+Range Offsets Calibration Sequence - Sample Time</h2>
+<p>Gets or sets the range offset calibration sequence sample time.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x69    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Sample Count   </td><td class="markdownTableBodyNone">UINT16   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The number of sample per offset calibration measurement.   </td></tr>
+<td class="markdownTableBodyNone">Sample Time   </td><td class="markdownTableBodyNone">UINT16   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The measurement sample acquisition time for executing the offset calibration sequence and generate the offset data. Units: msec.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscal.html#gad85825948391a4e4d6f6f12aa2f18bf4" title="Gets the sample time for the range offset calibration sequence.">Argus_GetCalibrationRangeOffsetSequenceSampleTime</a></li>
+<li><a class="el" href="group__arguscal.html#gaa28e50e19b04858fdeed50f0ba62da74" title="Sets the sample time for the range offset calibration sequence.">Argus_SetCalibrationRangeOffsetSequenceSampleTime</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cal_xtalk_vec"></a>
 Crosstalk Compensation - Vector Table</h2>
+<p>Gets or sets the crosstalk compensation vector table.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -789,7 +999,7 @@ Crosstalk Compensation - Vector Table</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Measurement Mode Selector   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The addressed measurement mode. See <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b" title="The measurement modes.">argus_mode_t</a> for details.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Crosstalk Vector (f, x, y, a)   </td><td class="markdownTableBodyNone">Q9.22   </td><td class="markdownTableBodyNone">256   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The crosstalk vector table. Ordering: Frequency Index (A/B) -&gt; X Index -&gt; Y Index -&gt; Sin/Cos Index.   </td></tr>
+<td class="markdownTableBodyNone">Crosstalk Vector (f, x, y, a)   </td><td class="markdownTableBodyNone">Q11.4   </td><td class="markdownTableBodyNone">256   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The crosstalk vector table. Ordering: Frequency Index (A/B) -&gt; X Index -&gt; Y Index -&gt; Sin/Cos Index.   </td></tr>
 </table>
 <p>Note on indices:</p>
 <ul>
@@ -798,8 +1008,14 @@ Crosstalk Compensation - Vector Table</h2>
 <li>y: The pixel y-index (0-3)</li>
 <li>a: The sin/cos index (sin = 0; cos = 1)</li>
 </ul>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscal.html#ga0bb4baab9a55413cd20d54cee81734b3" title="Gets the custom crosstalk vector table from a specified device.">Argus_GetCalibrationCrosstalkVectorTable</a></li>
+<li><a class="el" href="group__arguscal.html#gae4f321bcfe9b1feb0998b8837f425075" title="Sets the custom crosstalk vector table to a specified device.">Argus_SetCalibrationCrosstalkVectorTable</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cal_xtalk_rst"></a>
 Crosstalk Compensation - Reset Vector Table</h2>
+<p>Command to reset the crosstalk vector table to the factory calibrated default values.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -808,18 +1024,29 @@ Crosstalk Compensation - Reset Vector Table</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Measurement Mode Selector   </td><td class="markdownTableBodyNone">ENUM8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The addressed measurement mode. See <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b" title="The measurement modes.">argus_mode_t</a> for details.   </td></tr>
 </table>
-<h2><a class="anchor" id="cmd_cal_xtalk_smpl_ct"></a>
-Crosstalk Calibration Sequence - Sample Count</h2>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscal.html#ga2156b9d709a853a01402bb2cd7cc05d1" title="Resets the crosstalk vector table for the specified device to the factory calibrated default values.">Argus_ResetCalibrationCrosstalkVectorTable</a></li>
+</ul>
+<h2><a class="anchor" id="cmd_cal_xtalk_smpl_time"></a>
+Crosstalk Calibration Sequence - Sample Time</h2>
+<p>Gets or sets the crosstalk calibration sequence sample time.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x64    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Sample Count   </td><td class="markdownTableBodyNone">UINT16   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The number of sample per crosstalk calibration measurement.   </td></tr>
+<td class="markdownTableBodyNone">Sample Time   </td><td class="markdownTableBodyNone">UINT16   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The measurement sample acquisition time for executing the crosstalk calibration sequence and generate the crosstalk data. Units: msec.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscal.html#ga3985e0361a2c36f6ece44d01128f9172" title="Gets the sample time for the crosstalk calibration sequence.">Argus_GetCalibrationCrosstalkSequenceSampleTime</a></li>
+<li><a class="el" href="group__arguscal.html#gabe0df6b7bcfe6257bb4393006a4a9e80" title="Sets the sample time for the crosstalk calibration sequence.">Argus_SetCalibrationCrosstalkSequenceSampleTime</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cal_xtalk_max_ampl"></a>
 Crosstalk Calibration Sequence - Maximum Amplitude Threshold</h2>
+<p>Gets or sets the crosstalk calibration sequence maximum amplitude threshold.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -828,8 +1055,14 @@ Crosstalk Calibration Sequence - Maximum Amplitude Threshold</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Maximum Amplitude Threshold   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The maximum amplitude threshold for crosstalk calibration sequence.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscal.html#ga90700de2284030b4cfecac13236e1319" title="Gets the max. amplitude threshold for the crosstalk calibration sequence.">Argus_GetCalibrationCrosstalkSequenceAmplitudeThreshold</a></li>
+<li><a class="el" href="group__arguscal.html#ga2fb94b409af2e883a020da92a333decd" title="Sets the max. amplitude threshold for the crosstalk calibration sequence.">Argus_SetCalibrationCrosstalkSequenceAmplitudeThreshold</a></li>
+</ul>
 <h2><a class="anchor" id="cmd_cal_xtalk_p2p"></a>
 Pixel-2-Pixel Crosstalk Compensation Parameters</h2>
+<p>Gets or sets the pixel-2-pixel crosstalk calibration parameter values.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -840,22 +1073,34 @@ Pixel-2-Pixel Crosstalk Compensation Parameters</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Enabled   </td><td class="markdownTableBodyNone">BOOL8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Enables/disables the pixel-2-pixel crosstalk compensation algorithm.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Kc Factor   </td><td class="markdownTableBodyNone">UQ0.8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The Kc factor that determines the amount of the total signal on all pixels influences the individual signal of each pixel.    </td></tr>
+<td class="markdownTableBodyNone">Kc Factor - Sine Component   </td><td class="markdownTableBodyNone">Q3.12   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The sine component of the Kc factor that determines the amount of the total signal on all pixels influences the individual signal of each pixel.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Relative Threshold   </td><td class="markdownTableBodyNone">UQ0.8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The relative threshold determines when the compensation is active for each individual pixel.    </td></tr>
+<td class="markdownTableBodyNone">Kc Factor - Cosine Component   </td><td class="markdownTableBodyNone">Q3.12   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The cosine component of the Kc factor that determines the amount of the total signal on all pixels influences the individual signal of each pixel.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Ref. Pixel Kc Factor - Sine Component   </td><td class="markdownTableBodyNone">Q3.12   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The sine component of the Kc factor that determines the amount of the total signal on all pixels influences the individual signal of each pixel. Value for reference pixel only.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Ref. Pixel Kc Factor - Cosine Component   </td><td class="markdownTableBodyNone">Q3.12   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The cosine component of the Kc factor that determines the amount of the total signal on all pixels influences the individual signal of each pixel. Value for reference pixel only.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Relative Threshold   </td><td class="markdownTableBodyNone">UQ0.8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The relative threshold determines when the compensation is active for each individual pixel.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Absolute Threshold   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">The absolute threshold determines the minimum total crosstalk amplitude that is required for the compensation to become active.   </td></tr>
 </table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__arguscal.html#ga36c96cf72cd2ac41ee71f5bdda00ea06" title="Gets the pixel-to-pixel crosstalk compensation parameters from a specified device.">Argus_GetCalibrationCrosstalkPixel2Pixel</a></li>
+<li><a class="el" href="group__arguscal.html#ga30fc5e3fc8861b106cc2b336ea88ea4f" title="Sets the pixel-to-pixel crosstalk compensation parameters to a specified device.">Argus_SetCalibrationCrosstalkPixel2Pixel</a> </li>
+</ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
 		<li class="navelem"><a class="el" href="hw_api.html">Explorer App (API Demo)</a></li>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

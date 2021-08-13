@@ -1,5 +1,6 @@
 var structargus__cfg__dca__t =
 [
+    [ "AmplitudeMode", "structargus__cfg__dca__t.html#af19edb2c33ed1564b8e7513c656b3304", null ],
     [ "Atarget", "structargus__cfg__dca__t.html#aaa8a6b9deabce8d1f6c23521545671e0", null ],
     [ "AthHigh", "structargus__cfg__dca__t.html#a61a15fe1d4975e829b89b968268cc31a", null ],
     [ "AthLow", "structargus__cfg__dca__t.html#ab4389df420746c4189b721b4774fd8f8", null ],
@@ -10,8 +11,7 @@ var structargus__cfg__dca__t =
     [ "GainMax", "structargus__cfg__dca__t.html#a7f815d2cd78eb2327764c12504894d26", null ],
     [ "GainMin", "structargus__cfg__dca__t.html#acac44d7912bd6112ae8120810176ddf7", null ],
     [ "GainNom", "structargus__cfg__dca__t.html#af2c2305d2d4b9d20885b12db2407d817", null ],
-    [ "PowerMin", "structargus__cfg__dca__t.html#a4a8548909b67898b79c3189f8e4b96f4", null ],
-    [ "PowerNom", "structargus__cfg__dca__t.html#a10631838900283e9cd39ca98cb6f8ffb", null ],
+    [ "Power", "structargus__cfg__dca__t.html#af366e7ba3e2c4a7ae80fdaef5f993aa3", null ],
     [ "PowerSavingRatio", "structargus__cfg__dca__t.html#acc776da7a4920d53f4e19035435b2c89", null ],
     [ "SatPxThExp", "structargus__cfg__dca__t.html#ae97dae6ab6665545d70ea90f176d2dae", null ],
     [ "SatPxThLin", "structargus__cfg__dca__t.html#ab11dcd89f98b7629faff9f6389b576c9", null ],

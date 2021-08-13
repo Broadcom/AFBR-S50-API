@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Globals</title>
+<title>AFBR-S50 API Reference Manual: Globals</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -122,20 +122,20 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 <li>Argus_SetCalibrationCrosstalkSequenceAmplitudeThreshold()
 : <a class="el" href="group__arguscal.html#ga2fb94b409af2e883a020da92a333decd">argus_api.h</a>
 </li>
-<li>Argus_SetCalibrationCrosstalkSequenceSampleCount()
-: <a class="el" href="group__arguscal.html#gac968cb78fbb1a623f84733391ea36223">argus_api.h</a>
+<li>Argus_SetCalibrationCrosstalkSequenceSampleTime()
+: <a class="el" href="group__arguscal.html#gabe0df6b7bcfe6257bb4393006a4a9e80">argus_api.h</a>
 </li>
 <li>Argus_SetCalibrationCrosstalkVectorTable()
 : <a class="el" href="group__arguscal.html#gae4f321bcfe9b1feb0998b8837f425075">argus_api.h</a>
 </li>
 <li>Argus_SetCalibrationGlobalRangeOffset()
-: <a class="el" href="group__arguscal.html#ga69dc360188f099d578d8ed1bc4522a9e">argus_api.h</a>
+: <a class="el" href="group__arguscal.html#ga1aa2e7818001664ed5c30c229d4ccbda">argus_api.h</a>
 </li>
 <li>Argus_SetCalibrationPixelRangeOffsets()
 : <a class="el" href="group__arguscal.html#ga7f868d2b40e90d24f698fd7f231505f7">argus_api.h</a>
 </li>
-<li>Argus_SetCalibrationRangeOffsetSequenceSampleCount()
-: <a class="el" href="group__arguscal.html#ga1de7df1afeba737e1e25589bb70dcb14">argus_api.h</a>
+<li>Argus_SetCalibrationRangeOffsetSequenceSampleTime()
+: <a class="el" href="group__arguscal.html#gaa28e50e19b04858fdeed50f0ba62da74">argus_api.h</a>
 </li>
 <li>Argus_SetCalibrationVsubSequenceSampleCount()
 : <a class="el" href="group__arguscal.html#gaa4b1718877a229e69357d001b49b01d0">argus_api.h</a>
@@ -173,15 +173,6 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 <li>ARGUS_STATE_BGL_WARNING
 : <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a5c045d26a29f06cc32fc757b51578e25">argus_dca.h</a>
 </li>
-<li>ARGUS_STATE_DCA_DEPTH_SHFT_GET
-: <a class="el" href="group__argusdca.html#gada4a3cf1cc76c0882490dd0d220b4cc6">argus_dca.h</a>
-</li>
-<li>ARGUS_STATE_DCA_DEPTH_SHFT_MASK
-: <a class="el" href="group__argusdca.html#gab559a17160d3c7418362b53605082a65">argus_dca.h</a>
-</li>
-<li>ARGUS_STATE_DCA_DEPTH_SHFT_SHIFT
-: <a class="el" href="group__argusdca.html#ga498dcc6306fe76a567e705a9543787ae">argus_dca.h</a>
-</li>
 <li>ARGUS_STATE_DCA_GAIN_GET
 : <a class="el" href="group__argusdca.html#ga4e35c8bb631c014707fd456cdcc73326">argus_dca.h</a>
 </li>
@@ -203,23 +194,17 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 <li>ARGUS_STATE_DCA_GAIN_SHIFT
 : <a class="el" href="group__argusdca.html#gad9cae5a3cbef70e6b66e286fff79f88b">argus_dca.h</a>
 </li>
+<li>ARGUS_STATE_DCA_MAX
+: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a552601d1c54f5ed7b06464e4dd21f42d">argus_dca.h</a>
+</li>
 <li>ARGUS_STATE_DCA_POWER_GET
 : <a class="el" href="group__argusdca.html#ga09b2ff16e88770e9a3d7f81b62137b38">argus_dca.h</a>
 </li>
 <li>ARGUS_STATE_DCA_POWER_HIGH
 : <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a3d4fb1c8b690467c224297e9b86d5222">argus_dca.h</a>
 </li>
-<li>ARGUS_STATE_DCA_POWER_LOW
-: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a155ba2189c4ef152152c0678a181efd1">argus_dca.h</a>
-</li>
 <li>ARGUS_STATE_DCA_POWER_MASK
 : <a class="el" href="group__argusdca.html#ga4ef870e66fb5a4cef6c372fdded3ca94">argus_dca.h</a>
-</li>
-<li>ARGUS_STATE_DCA_POWER_MED_HIGH
-: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a4a3b9343657793d00049f3431ce1525c">argus_dca.h</a>
-</li>
-<li>ARGUS_STATE_DCA_POWER_MED_LOW
-: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ae28b59eaad774ee807ac563a6efe9a3e">argus_dca.h</a>
 </li>
 <li>ARGUS_STATE_DCA_POWER_SHIFT
 : <a class="el" href="group__argusdca.html#ga90d0e689533da73dab5031fddfe4510d">argus_dca.h</a>
@@ -230,8 +215,17 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 <li>ARGUS_STATE_DUAL_FREQ_MODE
 : <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91afd66ce64e66b21146762a75d2a64e7d4">argus_dca.h</a>
 </li>
-<li>ARGUS_STATE_GOLDEN_PIXEL_MODE
-: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a3f3f5ad211b664f890262a0067387938">argus_dca.h</a>
+<li>ARGUS_STATE_HAS_AUX_DATA
+: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a606d162a9326a4e797b6f3867498912c">argus_dca.h</a>
+</li>
+<li>ARGUS_STATE_HAS_DATA
+: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a73cf53cfb562f799547d64e4daa829f7">argus_dca.h</a>
+</li>
+<li>ARGUS_STATE_LASER_ERROR
+: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a8924beb0ddafc36ab0b0938b0c6061c6">argus_dca.h</a>
+</li>
+<li>ARGUS_STATE_LASER_WARNING
+: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a18e6057c1cc1b93c234d1b97ee3a9467">argus_dca.h</a>
 </li>
 <li>ARGUS_STATE_MEASUREMENT_FREQ
 : <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ac026afa99d6bc6435a417995007ef116">argus_dca.h</a>
@@ -247,6 +241,9 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 </li>
 <li>argus_state_t
 : <a class="el" href="group__argusdca.html#gada1413643a68f3cd36f6c0a1d0b61e91">argus_dca.h</a>
+</li>
+<li>ARGUS_STATE_WEAK_SIGNAL
+: <a class="el" href="group__argusdca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ad45cdfdeda33746fcd6892d5ef324428">argus_dca.h</a>
 </li>
 <li>Argus_StopMeasurementTimer()
 : <a class="el" href="group__argusmeas.html#ga4c9933c83ea073d73d6108f64ea32e86">argus_api.h</a>
@@ -348,14 +345,14 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 <li>STATUS_ARGUS_NO_OBJECT
 : <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba8b3eea66a1c0d1206be51867e04fbdd6">argus_status.h</a>
 </li>
+<li>STATUS_ARGUS_PLL_NOT_LOCKED
+: <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba6e84f220a48174bca4f68c91b9cf103a">argus_status.h</a>
+</li>
 <li>STATUS_ARGUS_POWERLIMIT
 : <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba3ec68d249b5ffaa0da7e0a1170f592a2">argus_status.h</a>
 </li>
 <li>STATUS_ARGUS_STARTING
 : <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba083e5907c8c528607783350b760ca0bb">argus_status.h</a>
-</li>
-<li>STATUS_ARGUS_UNDERFLOW
-: <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba1d87a7c9a5d8f09f579df26c1466530f">argus_status.h</a>
 </li>
 <li>STATUS_BUSY
 : <a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88">argus_status.h</a>
@@ -383,10 +380,11 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

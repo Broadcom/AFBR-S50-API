@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Include/utility/time.h Source File</title>
+<title>AFBR-S50 API Reference Manual: Include/utility/time.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -161,7 +161,7 @@ $(document).ready(function(){initNavTree('time_8h_source.html',''); initResizabl
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"> * @param   t_elapsed Returns the elapsed time since t_start.</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"> * @param   t_start Start time point.</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="group__time.html#ga0efea11ede0e404e9348b365f4e4dbd1">  103</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__time.html#ga0efea11ede0e404e9348b365f4e4dbd1">Time_GetElapsed</a>(<a class="code" href="structltc__t.html">ltc_t</a> * t_elapsed, <a class="code" href="structltc__t.html">ltc_t</a> * <span class="keyword">const</span> t_start);</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="group__time.html#ga42404d284dee0cd0c534d7229e026736">  103</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__time.html#ga42404d284dee0cd0c534d7229e026736">Time_GetElapsed</a>(<a class="code" href="structltc__t.html">ltc_t</a> * t_elapsed, <a class="code" href="structltc__t.html">ltc_t</a> <span class="keyword">const</span> * t_start);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"> * @brief   Obtains the elapsed microseconds since a given time point.</span></div>
@@ -169,7 +169,7 @@ $(document).ready(function(){initNavTree('time_8h_source.html',''); initResizabl
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment"> * @param   t_start Start time point.</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"> * @return  Elapsed microseconds since t_start as uint32_t.</span></div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__time.html#ga6b09cf88fd4ddb01eabd2c15218c8992">  111</a></span>&#160;uint32_t <a class="code" href="group__time.html#ga6b09cf88fd4ddb01eabd2c15218c8992">Time_GetElapsedUSec</a>(<a class="code" href="structltc__t.html">ltc_t</a> * <span class="keyword">const</span> t_start);</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__time.html#gad2a08b3468d8fe4c8ce2f0b6759985f6">  111</a></span>&#160;uint32_t <a class="code" href="group__time.html#gad2a08b3468d8fe4c8ce2f0b6759985f6">Time_GetElapsedUSec</a>(<a class="code" href="structltc__t.html">ltc_t</a> <span class="keyword">const</span> * t_start);</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"> * @brief   Obtains the elapsed milliseconds since a given time point.</span></div>
@@ -177,14 +177,14 @@ $(document).ready(function(){initNavTree('time_8h_source.html',''); initResizabl
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"> * @param   t_start Start time point.</span></div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"> * @return  Elapsed milliseconds since t_start as uint32_t.</span></div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="group__time.html#ga09d72f718a48342a05afe0a97c1b5e2f">  119</a></span>&#160;uint32_t <a class="code" href="group__time.html#ga09d72f718a48342a05afe0a97c1b5e2f">Time_GetElapsedMSec</a>(<a class="code" href="structltc__t.html">ltc_t</a> * <span class="keyword">const</span> t_start);</div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="group__time.html#ga569fa4edff096903c0001ddc146b6fea">  119</a></span>&#160;uint32_t <a class="code" href="group__time.html#ga569fa4edff096903c0001ddc146b6fea">Time_GetElapsedMSec</a>(<a class="code" href="structltc__t.html">ltc_t</a> <span class="keyword">const</span> * t_start);</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"> * @brief   Obtains the elapsed seconds since a given time point.</span></div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"> * @param   t_start Start time point.</span></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"> * @return  Elapsed seconds since t_start as uint32_t.</span></div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group__time.html#ga275eb2730f3b936a4690f1b77a233ee5">  126</a></span>&#160;uint32_t <a class="code" href="group__time.html#ga275eb2730f3b936a4690f1b77a233ee5">Time_GetElapsedSec</a>(<a class="code" href="structltc__t.html">ltc_t</a> * <span class="keyword">const</span> t_start);</div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group__time.html#ga20d346fe4cf55f954d965a2a86a2fe31">  126</a></span>&#160;uint32_t <a class="code" href="group__time.html#ga20d346fe4cf55f954d965a2a86a2fe31">Time_GetElapsedSec</a>(<a class="code" href="structltc__t.html">ltc_t</a> <span class="keyword">const</span> * t_start);</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"> * @brief   Obtains the time difference between two given time points.</span></div>
@@ -350,20 +350,19 @@ $(document).ready(function(){initNavTree('time_8h_source.html',''); initResizabl
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TIME_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="agroup__time_html_ga01d011b353ba60c218cae5f13d69e04a"><div class="ttname"><a href="group__time.html#ga01d011b353ba60c218cae5f13d69e04a">Time_DelaySec</a></div><div class="ttdeci">void Time_DelaySec(uint32_t dt_sec)</div><div class="ttdoc">Time delay for a given time period in seconds.</div></div>
-<div class="ttc" id="agroup__time_html_ga09d72f718a48342a05afe0a97c1b5e2f"><div class="ttname"><a href="group__time.html#ga09d72f718a48342a05afe0a97c1b5e2f">Time_GetElapsedMSec</a></div><div class="ttdeci">uint32_t Time_GetElapsedMSec(ltc_t *const t_start)</div><div class="ttdoc">Obtains the elapsed milliseconds since a given time point.</div></div>
-<div class="ttc" id="agroup__time_html_ga0efea11ede0e404e9348b365f4e4dbd1"><div class="ttname"><a href="group__time.html#ga0efea11ede0e404e9348b365f4e4dbd1">Time_GetElapsed</a></div><div class="ttdeci">void Time_GetElapsed(ltc_t *t_elapsed, ltc_t *const t_start)</div><div class="ttdoc">Obtains the elapsed time since a given time point.</div></div>
 <div class="ttc" id="agroup__time_html_ga1154f7922357ffada4f68b2a903f3e93"><div class="ttname"><a href="group__time.html#ga1154f7922357ffada4f68b2a903f3e93">Time_CheckTimeout</a></div><div class="ttdeci">bool Time_CheckTimeout(ltc_t const *t_start, ltc_t const *t_timeout)</div><div class="ttdoc">Checks if timeout is reached from a given starting time.</div></div>
 <div class="ttc" id="agroup__time_html_ga1470e7681d6a7f04ea1b782cb0c4b677"><div class="ttname"><a href="group__time.html#ga1470e7681d6a7f04ea1b782cb0c4b677">Time_Diff</a></div><div class="ttdeci">void Time_Diff(ltc_t *t_diff, ltc_t const *t_start, ltc_t const *t_end)</div><div class="ttdoc">Obtains the time difference between two given time points.</div></div>
 <div class="ttc" id="agroup__time_html_ga1857b3ff41a9a4364eb9add8eac079b3"><div class="ttname"><a href="group__time.html#ga1857b3ff41a9a4364eb9add8eac079b3">Time_GetNowUSec</a></div><div class="ttdeci">uint32_t Time_GetNowUSec(void)</div><div class="ttdoc">Obtains the elapsed microseconds since MCU startup.</div></div>
 <div class="ttc" id="agroup__time_html_ga1ac5b5862aa1a54ede3c34fa7b9e5376"><div class="ttname"><a href="group__time.html#ga1ac5b5862aa1a54ede3c34fa7b9e5376">Time_ToSec</a></div><div class="ttdeci">uint32_t Time_ToSec(ltc_t const *t)</div><div class="ttdoc">Converts ltc_t to seconds (uint32_t).</div></div>
-<div class="ttc" id="agroup__time_html_ga275eb2730f3b936a4690f1b77a233ee5"><div class="ttname"><a href="group__time.html#ga275eb2730f3b936a4690f1b77a233ee5">Time_GetElapsedSec</a></div><div class="ttdeci">uint32_t Time_GetElapsedSec(ltc_t *const t_start)</div><div class="ttdoc">Obtains the elapsed seconds since a given time point.</div></div>
+<div class="ttc" id="agroup__time_html_ga20d346fe4cf55f954d965a2a86a2fe31"><div class="ttname"><a href="group__time.html#ga20d346fe4cf55f954d965a2a86a2fe31">Time_GetElapsedSec</a></div><div class="ttdeci">uint32_t Time_GetElapsedSec(ltc_t const *t_start)</div><div class="ttdoc">Obtains the elapsed seconds since a given time point.</div></div>
 <div class="ttc" id="agroup__time_html_ga2922686d3283478fb39d6c9dd1b9fadc"><div class="ttname"><a href="group__time.html#ga2922686d3283478fb39d6c9dd1b9fadc">Time_DelayMSec</a></div><div class="ttdeci">void Time_DelayMSec(uint32_t dt_msec)</div><div class="ttdoc">Time delay for a given time period in milliseconds.</div></div>
 <div class="ttc" id="agroup__time_html_ga3125b8a727a32ce9a97d9ef644d70ef2"><div class="ttname"><a href="group__time.html#ga3125b8a727a32ce9a97d9ef644d70ef2">Time_AddMSec</a></div><div class="ttdeci">void Time_AddMSec(ltc_t *t, ltc_t const *t1, uint32_t t2_msec)</div><div class="ttdoc">Adds a given time in milliseconds to an ltc_t value.</div></div>
 <div class="ttc" id="agroup__time_html_ga350108b80063accd495c1ed82776310e"><div class="ttname"><a href="group__time.html#ga350108b80063accd495c1ed82776310e">Time_AddUSec</a></div><div class="ttdeci">void Time_AddUSec(ltc_t *t, ltc_t const *t1, uint32_t t2_usec)</div><div class="ttdoc">Adds a given time in microseconds to an ltc_t value.</div></div>
 <div class="ttc" id="agroup__time_html_ga379e770091453be75a074c6b52e86cb9"><div class="ttname"><a href="group__time.html#ga379e770091453be75a074c6b52e86cb9">Time_DiffUSec</a></div><div class="ttdeci">uint32_t Time_DiffUSec(ltc_t const *t_start, ltc_t const *t_end)</div><div class="ttdoc">Obtains the time difference between two given time points in microseconds.</div></div>
 <div class="ttc" id="agroup__time_html_ga3e29206efa32955921c7013c7b94e630"><div class="ttname"><a href="group__time.html#ga3e29206efa32955921c7013c7b94e630">Time_DelayUSec</a></div><div class="ttdeci">void Time_DelayUSec(uint32_t dt_usec)</div><div class="ttdoc">Time delay for a given time period in microseconds.</div></div>
+<div class="ttc" id="agroup__time_html_ga42404d284dee0cd0c534d7229e026736"><div class="ttname"><a href="group__time.html#ga42404d284dee0cd0c534d7229e026736">Time_GetElapsed</a></div><div class="ttdeci">void Time_GetElapsed(ltc_t *t_elapsed, ltc_t const *t_start)</div><div class="ttdoc">Obtains the elapsed time since a given time point.</div></div>
+<div class="ttc" id="agroup__time_html_ga569fa4edff096903c0001ddc146b6fea"><div class="ttname"><a href="group__time.html#ga569fa4edff096903c0001ddc146b6fea">Time_GetElapsedMSec</a></div><div class="ttdeci">uint32_t Time_GetElapsedMSec(ltc_t const *t_start)</div><div class="ttdoc">Obtains the elapsed milliseconds since a given time point.</div></div>
 <div class="ttc" id="agroup__time_html_ga64b63b980cce3aa18fcf4d254069d617"><div class="ttname"><a href="group__time.html#ga64b63b980cce3aa18fcf4d254069d617">Time_GetNowMSec</a></div><div class="ttdeci">uint32_t Time_GetNowMSec(void)</div><div class="ttdoc">Obtains the elapsed milliseconds since MCU startup.</div></div>
-<div class="ttc" id="agroup__time_html_ga6b09cf88fd4ddb01eabd2c15218c8992"><div class="ttname"><a href="group__time.html#ga6b09cf88fd4ddb01eabd2c15218c8992">Time_GetElapsedUSec</a></div><div class="ttdeci">uint32_t Time_GetElapsedUSec(ltc_t *const t_start)</div><div class="ttdoc">Obtains the elapsed microseconds since a given time point.</div></div>
 <div class="ttc" id="agroup__time_html_ga750cbafad2fa021f9eecd51a0d255cbb"><div class="ttname"><a href="group__time.html#ga750cbafad2fa021f9eecd51a0d255cbb">Time_DiffSec</a></div><div class="ttdeci">uint32_t Time_DiffSec(ltc_t const *t_start, ltc_t const *t_end)</div><div class="ttdoc">Obtains the time difference between two given time points in seconds.</div></div>
 <div class="ttc" id="agroup__time_html_ga82e7f62a178be15752103c423187612b"><div class="ttname"><a href="group__time.html#ga82e7f62a178be15752103c423187612b">Time_ToMSec</a></div><div class="ttdeci">uint32_t Time_ToMSec(ltc_t const *t)</div><div class="ttdoc">Converts ltc_t to milliseconds (uint32_t).</div></div>
 <div class="ttc" id="agroup__time_html_ga955c3d11802a3f4c3b5800cb59e87557"><div class="ttname"><a href="group__time.html#ga955c3d11802a3f4c3b5800cb59e87557">Time_ToUSec</a></div><div class="ttdeci">uint32_t Time_ToUSec(ltc_t const *t)</div><div class="ttdoc">Converts ltc_t to microseconds (uint32_t).</div></div>
@@ -373,6 +372,7 @@ $(document).ready(function(){initNavTree('time_8h_source.html',''); initResizabl
 <div class="ttc" id="agroup__time_html_gab4092f9308ed442af06a461d6a7d56d8"><div class="ttname"><a href="group__time.html#gab4092f9308ed442af06a461d6a7d56d8">Time_DiffMSec</a></div><div class="ttdeci">uint32_t Time_DiffMSec(ltc_t const *t_start, ltc_t const *t_end)</div><div class="ttdoc">Obtains the time difference between two given time points in milliseconds.</div></div>
 <div class="ttc" id="agroup__time_html_gab94ebed81fe762e4577c3c3605bebad1"><div class="ttname"><a href="group__time.html#gab94ebed81fe762e4577c3c3605bebad1">Time_Add</a></div><div class="ttdeci">void Time_Add(ltc_t *t, ltc_t const *t1, ltc_t const *t2)</div><div class="ttdoc">Adds two ltc_t values.</div></div>
 <div class="ttc" id="agroup__time_html_gac1f376927aa0473d554256a45e5f7585"><div class="ttname"><a href="group__time.html#gac1f376927aa0473d554256a45e5f7585">Time_CheckTimeoutUSec</a></div><div class="ttdeci">bool Time_CheckTimeoutUSec(ltc_t const *t_start, uint32_t const t_timeout_usec)</div><div class="ttdoc">Checks if timeout is reached from a given starting time.</div></div>
+<div class="ttc" id="agroup__time_html_gad2a08b3468d8fe4c8ce2f0b6759985f6"><div class="ttname"><a href="group__time.html#gad2a08b3468d8fe4c8ce2f0b6759985f6">Time_GetElapsedUSec</a></div><div class="ttdeci">uint32_t Time_GetElapsedUSec(ltc_t const *t_start)</div><div class="ttdoc">Obtains the elapsed microseconds since a given time point.</div></div>
 <div class="ttc" id="agroup__time_html_gaef1b4982d3b99691ff5e5ddb4e433221"><div class="ttname"><a href="group__time.html#gaef1b4982d3b99691ff5e5ddb4e433221">Time_CheckTimeoutSec</a></div><div class="ttdeci">bool Time_CheckTimeoutSec(ltc_t const *t_start, uint32_t const t_timeout_sec)</div><div class="ttdoc">Checks if timeout is reached from a given starting time.</div></div>
 <div class="ttc" id="agroup__time_html_gaf9c537a3b8a5c0d47c0fff88397c9ec2"><div class="ttname"><a href="group__time.html#gaf9c537a3b8a5c0d47c0fff88397c9ec2">Time_CheckTimeoutMSec</a></div><div class="ttdeci">bool Time_CheckTimeoutMSec(ltc_t const *t_start, uint32_t const t_timeout_msec)</div><div class="ttdoc">Checks if timeout is reached from a given starting time.</div></div>
 <div class="ttc" id="agroup__time_html_gafc9de83fc5decb9528df7108b099197e"><div class="ttname"><a href="group__time.html#gafc9de83fc5decb9528df7108b099197e">Time_Delay</a></div><div class="ttdeci">void Time_Delay(ltc_t const *dt)</div><div class="ttdoc">Time delay for a given time period.</div></div>
@@ -383,11 +383,12 @@ $(document).ready(function(){initNavTree('time_8h_source.html',''); initResizabl
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="navelem"><a class="el" href="dir_856524284ebe840938865dc061f982fb.html">Include</a></li><li class="navelem"><a class="el" href="dir_60b1f8d522dfeff1a8d23106ed6bdec7.html">utility</a></li><li class="navelem"><a class="el" href="time_8h.html">time.h</a></li>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="navelem"><a class="el" href="dir_82027cc1cfaf56e8782fb3fde083c666.html">Include</a></li><li class="navelem"><a class="el" href="dir_730351516a1c90995cef5395f7cc67c7.html">utility</a></li><li class="navelem"><a class="el" href="time_8h.html">time.h</a></li>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

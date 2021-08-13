@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: IRQ: Global Interrupt Control Layer</title>
+<title>AFBR-S50 API Reference Manual: IRQ: Global Interrupt Control Layer</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -106,7 +106,7 @@ Collaboration diagram for IRQ: Global Interrupt Control Layer:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__argus__irq.png" border="0" usemap="#agroup____argus____irq" alt=""/></div>
 <map name="agroup____argus____irq" id="agroup____argus____irq">
-<area shape="rect" title="Global Interrupt Control Layer." alt="" coords="193,5,333,45"/>
+<area shape="rect" title="Global Interrupt Control Layer." alt="" coords="193,5,332,45"/>
 <area shape="rect" href="group__argus__platform.html" title="Collection of all interfaces for the Platform Abstraction Layers (HAL)." alt="" coords="5,5,145,45"/>
 </map>
 </div>
@@ -123,7 +123,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Global Interrupt Control Layer. </p>
 <hr  />
-<p>This module provides functionality to globally enable/disable interrupts by turning the I-bit in the CPSR on/off.</p>
+<p>This module provides functionality to globally enable/disable interrupts in a nested way.</p>
 <p>Here is a simple example implementation using the CMSIS functions "__enable_irq()" and "__disable_irq()". An integer counter is used to achieve nested interrupt disabling:</p>
 <div class="fragment"><div class="line"><span class="comment">// Global lock level counter value.</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keywordtype">int</span> g_irq_lock_ct;</div>
@@ -149,6 +149,8 @@ Functions</h2></td></tr>
 <div class="ttc" id="agroup__argus__irq_html_ga7eb2f9c9e40114afd7d079ace7c152e7"><div class="ttname"><a href="group__argus__irq.html#ga7eb2f9c9e40114afd7d079ace7c152e7">IRQ_LOCK</a></div><div class="ttdeci">void IRQ_LOCK(void)</div><div class="ttdoc">Disable IRQ Interrupts.</div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The IRQ locking mechanism is used to create atomic sections (within the scope of the AFBR-S50 API) that are very few processor instruction only. It does NOT lock interrupts for considerable amounts of time.</dd>
 <dd>
+The IRQ_LOCK might get called multiple times. Therefore, the API expects that the IRQ_UNLOCK must be called as many times as the IRQ_LOCK was called before the interrupts are enabled.</dd>
+<dd>
 The interrupts utilized by the AFBR-S50 API can be interrupted by other, higher prioritized interrupts, e.g. some system critical interrupts. In this case, the IRQ_LOCK/IRQ_UNLOCK mechanism can be implemented such that only the interrupts required for the AFBR-S50 API are locked. The above example is dedicated to a ARM Corex-M0 architecture, where interrupts can only disabled at a global scope. Other architectures like ARM Cortex-M4 allow selective disabling of interrupts. </dd></dl>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga7eb2f9c9e40114afd7d079ace7c152e7"></a>
@@ -169,7 +171,8 @@ The interrupts utilized by the AFBR-S50 API can be interrupted by other, higher 
 
 <p>Disable IRQ Interrupts. </p>
 <hr  />
-<p>Disables IRQ interrupts by setting the I-bit in the CPSR. Can only be executed in Privileged modes. </p>
+<p>Disables IRQ interrupts and leaves the atomic or critical section.</p>
+<dl class="section note"><dt>Note</dt><dd>The IRQ_LOCK might get called multiple times. Therefore, the API expects that the IRQ_UNLOCK must be called as many times as the IRQ_LOCK was called before the interrupts are enabled. </dd></dl>
 
 </div>
 </div>
@@ -191,7 +194,8 @@ The interrupts utilized by the AFBR-S50 API can be interrupted by other, higher 
 
 <p>Enable IRQ Interrupts. </p>
 <hr  />
-<p>Enables IRQ interrupts by clearing the I-bit in the CPSR. Can only be executed in Privileged modes. </p>
+<p>Enables IRQ interrupts and enters an atomic or critical section.</p>
+<dl class="section note"><dt>Note</dt><dd>The IRQ_LOCK might get called multiple times. Therefore, the API expects that the IRQ_UNLOCK must be called as many times as the IRQ_LOCK was called before the interrupts are enabled. </dd></dl>
 
 </div>
 </div>
@@ -199,10 +203,11 @@ The interrupts utilized by the AFBR-S50 API can be interrupted by other, higher 
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

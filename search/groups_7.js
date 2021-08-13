@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pixel_20binning_20algorithm_869',['Pixel Binning Algorithm',['../group__arguspba.html',1,'']]],
-  ['platform_20abstraction_20layers_870',['Platform Abstraction Layers',['../group__argus__platform.html',1,'']]]
+  ['nvm_3a_20non_2dvolatile_20memory_20layer_937',['NVM: Non-Volatile Memory Layer',['../group__argus__nvm.html',1,'']]]
 ];

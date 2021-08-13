@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Troubleshooting</title>
+<title>AFBR-S50 API Reference Manual: Troubleshooting</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -96,13 +96,13 @@ $(document).ready(function(){initNavTree('faq.html',''); initResizable(); });
 <div class="title">Troubleshooting </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_Doxygen_99_troubleshooting"></a> </p>
+<div class="textblock"><p><a class="anchor" id="md_Doxygen_99_troubleshooting"></a> The following section contains troubleshooting guidance for the most common issues. Please also refer to the <a class="el" href="porting_guide.html#hal_self_test">HAL Self Test</a> module that runs a few test cases in order to verify the HAL, e.g. after <a class="el" href="porting_guide.html">porting the API to a new platform</a>.</p>
 <h1><a class="anchor" id="autotoc_md25"></a>
 Device Initialization Yields Device Not Connected (Error Code -101)</h1>
 <p><b>Problem</b>: After calling the <a class="el" href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898" title="Initializes the API modules and the device with default parameters.">Argus_Init()</a> method, an error status -101 (<a class="el" href="group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baa1e50bb51331e898a5b3a6662a770016">ERROR_ARGUS_NOT_CONNECTED</a>) is returned.</p>
 <p><b>Information</b>: The first thing that happens in the initialization function are a few read/write cycles on the SPI interface in order to check the responsiveness of the device:</p>
 <ul>
-<li>First, a byte sequence (1,2,3,4,...,15) is written to the MOSI and the MISO data is ignored.</li>
+<li>First, a byte sequence (1,2,3,4,...,16) is written to the MOSI and the MISO data is ignored.</li>
 <li>Second, a sequence of 0's is written to the same register and the MISO is captured and compared to the pattern from the previous write cycle.</li>
 <li>Finally, another sequence of 0's is written and the received data is checked for being zero again.</li>
 </ul>
@@ -110,13 +110,13 @@ Device Initialization Yields Device Not Connected (Error Code -101)</h1>
 <p><b>Solution</b>: In order to solve the issue, verify the following sequence in your SPI interface when calling the <a class="el" href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898" title="Initializes the API modules and the device with default parameters.">Argus_Init()</a> function:</p>
 <ol type="1">
 <li>Writing a test pattern to register address 0x04:<ul>
-<li>MOSI: <code>0x 04 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F</code></li>
+<li>MOSI: <code>0x 04 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10</code></li>
 <li>MISO: <code>0x 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</code> (or any other, depending on the current state of your device)</li>
 </ul>
 </li>
 <li>Clearing the test pattern at register 0x04, read back of test pattern 1:<ul>
 <li>MOSI: <code>0x 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</code></li>
-<li>MISO: <code>0x 00 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F</code></li>
+<li>MISO: <code>0x 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10</code></li>
 </ul>
 </li>
 <li>Clearing the test pattern at register 0x04, read back of test pattern 2:<ul>
@@ -213,10 +213,11 @@ The Measurement Finished Callback Yield a Timeout Error (Error Code -6)</h2>
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

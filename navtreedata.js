@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "AFBR-S50 SDK - Argus API Reference Manual", "index.html", [
+  [ "AFBR-S50 API Reference Manual", "index.html", [
     [ "Introduction", "index.html", [
       [ "API Overview", "index.html#autotoc_md0", null ],
       [ "Getting Started", "index.html#autotoc_md1", null ],
@@ -70,6 +70,7 @@ var NAVTREE =
         [ "NVM Layer", "porting_guide.html#pg_nvm", null ],
         [ "Log Layer", "porting_guide.html#pg_log", null ]
       ] ],
+      [ "Verifying the ported code using the HAL Self Test", "porting_guide.html#hal_self_test", null ],
       [ "Step-by-Step Porting Guide", "porting_guide.html#pg_guide", [
         [ "Create a new project in your environment", "porting_guide.html#pg_new_project", null ],
         [ "Implement hardware interfaces", "porting_guide.html#pg_hw_interface", null ],
@@ -117,10 +118,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "01_simple_example_8c-example.html",
-"group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca59af409963e474593f4628805e2ecdf3",
-"group__argusmeas.html#ga92c7d4e2cdfccff38bf6689935e088a5",
-"group__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70bab61c5ef368fbf03fdc1fb566c63f2f9a",
-"structargus__meas__frame__t.html#a5a247a6fd0c611eddbc488a6e10cefda"
+"group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d",
+"group__argusmap.html#gacd9a85d1dcb0dc86a87f313aa864973c",
+"group__misc.html#gae3d0f9e10d0232b7f9fa6d29854fcf09",
+"hw_api_cmd_overview.html#hw_api_cmds_cal"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

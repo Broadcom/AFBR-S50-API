@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['time_20utility_874',['Time Utility',['../group__time.html',1,'']]],
-  ['timer_3a_20hardware_20timer_20interface_875',['Timer: Hardware Timer Interface',['../group__argus__timer.html',1,'']]]
+  ['s2pi_3a_20serial_20peripheral_20interface_940',['S2PI: Serial Peripheral Interface',['../group__argus__s2pi.html',1,'']]],
+  ['shot_20noise_20monitor_941',['Shot Noise Monitor',['../group__argussnm.html',1,'']]],
+  ['status_20codes_942',['Status Codes',['../group__status.html',1,'']]]
 ];

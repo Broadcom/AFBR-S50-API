@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Calibration</title>
+<title>AFBR-S50 API Reference Manual: Calibration</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -123,12 +123,12 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga69dc360188f099d578d8ed1bc4522a9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#ga69dc360188f099d578d8ed1bc4522a9e">Argus_SetCalibrationGlobalRangeOffset</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a> mode, <a class="el" href="group__fixedpoint.html#ga4e4672c3c10d176533bee2b770b1b3f3">q9_22_t</a> value)</td></tr>
-<tr class="memdesc:ga69dc360188f099d578d8ed1bc4522a9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the global range offset value to a specified device.  <a href="group__arguscal.html#ga69dc360188f099d578d8ed1bc4522a9e">More...</a><br /></td></tr>
-<tr class="separator:ga69dc360188f099d578d8ed1bc4522a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacdca501ccc8cb165b18b76da753fec01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#gacdca501ccc8cb165b18b76da753fec01">Argus_GetCalibrationGlobalRangeOffset</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a> mode, <a class="el" href="group__fixedpoint.html#ga4e4672c3c10d176533bee2b770b1b3f3">q9_22_t</a> *value)</td></tr>
-<tr class="memdesc:gacdca501ccc8cb165b18b76da753fec01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the global range offset value from a specified device.  <a href="group__arguscal.html#gacdca501ccc8cb165b18b76da753fec01">More...</a><br /></td></tr>
-<tr class="separator:gacdca501ccc8cb165b18b76da753fec01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1aa2e7818001664ed5c30c229d4ccbda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#ga1aa2e7818001664ed5c30c229d4ccbda">Argus_SetCalibrationGlobalRangeOffset</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a> mode, <a class="el" href="group__fixedpoint.html#ga691a6a4ad9903499ab691c5c00095b42">q0_15_t</a> value)</td></tr>
+<tr class="memdesc:ga1aa2e7818001664ed5c30c229d4ccbda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the global range offset value to a specified device.  <a href="group__arguscal.html#ga1aa2e7818001664ed5c30c229d4ccbda">More...</a><br /></td></tr>
+<tr class="separator:ga1aa2e7818001664ed5c30c229d4ccbda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga942c296d7224f1f6fbebe67ea0f4024a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#ga942c296d7224f1f6fbebe67ea0f4024a">Argus_GetCalibrationGlobalRangeOffset</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a> mode, <a class="el" href="group__fixedpoint.html#ga691a6a4ad9903499ab691c5c00095b42">q0_15_t</a> *value)</td></tr>
+<tr class="memdesc:ga942c296d7224f1f6fbebe67ea0f4024a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the global range offset value from a specified device.  <a href="group__arguscal.html#ga942c296d7224f1f6fbebe67ea0f4024a">More...</a><br /></td></tr>
+<tr class="separator:ga942c296d7224f1f6fbebe67ea0f4024a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7f868d2b40e90d24f698fd7f231505f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#ga7f868d2b40e90d24f698fd7f231505f7">Argus_SetCalibrationPixelRangeOffsets</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a> mode, <a class="el" href="group__fixedpoint.html#ga691a6a4ad9903499ab691c5c00095b42">q0_15_t</a> value[<a class="el" href="group__argusapi.html#ga9228747d6ab08e18b28c3787c5cf5810">ARGUS_PIXELS_X</a>][<a class="el" href="group__argusapi.html#ga17627acf84a462e4500a28f8ada462d4">ARGUS_PIXELS_Y</a>])</td></tr>
 <tr class="memdesc:ga7f868d2b40e90d24f698fd7f231505f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative pixel offset table to a specified device.  <a href="group__arguscal.html#ga7f868d2b40e90d24f698fd7f231505f7">More...</a><br /></td></tr>
 <tr class="separator:ga7f868d2b40e90d24f698fd7f231505f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,12 +144,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gac597964967aa7a542398b031c7086af1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#gac597964967aa7a542398b031c7086af1">Argus_GetExternalPixelRangeOffsets_Callback</a> (<a class="el" href="group__fixedpoint.html#ga691a6a4ad9903499ab691c5c00095b42">q0_15_t</a> offsets[<a class="el" href="group__argusapi.html#ga9228747d6ab08e18b28c3787c5cf5810">ARGUS_PIXELS_X</a>][<a class="el" href="group__argusapi.html#ga17627acf84a462e4500a28f8ada462d4">ARGUS_PIXELS_Y</a>], <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a> mode)</td></tr>
 <tr class="memdesc:gac597964967aa7a542398b031c7086af1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback that returns the external pixel range offsets.  <a href="group__arguscal.html#gac597964967aa7a542398b031c7086af1">More...</a><br /></td></tr>
 <tr class="separator:gac597964967aa7a542398b031c7086af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1de7df1afeba737e1e25589bb70dcb14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#ga1de7df1afeba737e1e25589bb70dcb14">Argus_SetCalibrationRangeOffsetSequenceSampleCount</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, uint16_t value)</td></tr>
-<tr class="memdesc:ga1de7df1afeba737e1e25589bb70dcb14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sample count for the range offset calibration sequence.  <a href="group__arguscal.html#ga1de7df1afeba737e1e25589bb70dcb14">More...</a><br /></td></tr>
-<tr class="separator:ga1de7df1afeba737e1e25589bb70dcb14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga703bc313f1d04afe2563915c96b5293e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#ga703bc313f1d04afe2563915c96b5293e">Argus_GetCalibrationRangeOffsetSequenceSampleCount</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, uint16_t *value)</td></tr>
-<tr class="memdesc:ga703bc313f1d04afe2563915c96b5293e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the sample count for the range offset calibration sequence.  <a href="group__arguscal.html#ga703bc313f1d04afe2563915c96b5293e">More...</a><br /></td></tr>
-<tr class="separator:ga703bc313f1d04afe2563915c96b5293e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa28e50e19b04858fdeed50f0ba62da74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#gaa28e50e19b04858fdeed50f0ba62da74">Argus_SetCalibrationRangeOffsetSequenceSampleTime</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, uint16_t value)</td></tr>
+<tr class="memdesc:gaa28e50e19b04858fdeed50f0ba62da74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sample time for the range offset calibration sequence.  <a href="group__arguscal.html#gaa28e50e19b04858fdeed50f0ba62da74">More...</a><br /></td></tr>
+<tr class="separator:gaa28e50e19b04858fdeed50f0ba62da74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad85825948391a4e4d6f6f12aa2f18bf4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#gad85825948391a4e4d6f6f12aa2f18bf4">Argus_GetCalibrationRangeOffsetSequenceSampleTime</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, uint16_t *value)</td></tr>
+<tr class="memdesc:gad85825948391a4e4d6f6f12aa2f18bf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the sample time for the range offset calibration sequence.  <a href="group__arguscal.html#gad85825948391a4e4d6f6f12aa2f18bf4">More...</a><br /></td></tr>
+<tr class="separator:gad85825948391a4e4d6f6f12aa2f18bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga30fc5e3fc8861b106cc2b336ea88ea4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#ga30fc5e3fc8861b106cc2b336ea88ea4f">Argus_SetCalibrationCrosstalkPixel2Pixel</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a> mode, <a class="el" href="structargus__cal__p2pxtalk__t.html">argus_cal_p2pxtalk_t</a> const *value)</td></tr>
 <tr class="memdesc:ga30fc5e3fc8861b106cc2b336ea88ea4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel-to-pixel crosstalk compensation parameters to a specified device.  <a href="group__arguscal.html#ga30fc5e3fc8861b106cc2b336ea88ea4f">More...</a><br /></td></tr>
 <tr class="separator:ga30fc5e3fc8861b106cc2b336ea88ea4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,12 +168,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2156b9d709a853a01402bb2cd7cc05d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#ga2156b9d709a853a01402bb2cd7cc05d1">Argus_ResetCalibrationCrosstalkVectorTable</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, <a class="el" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a> mode)</td></tr>
 <tr class="memdesc:ga2156b9d709a853a01402bb2cd7cc05d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the crosstalk vector table for the specified device to the factory calibrated default values.  <a href="group__arguscal.html#ga2156b9d709a853a01402bb2cd7cc05d1">More...</a><br /></td></tr>
 <tr class="separator:ga2156b9d709a853a01402bb2cd7cc05d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac968cb78fbb1a623f84733391ea36223"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#gac968cb78fbb1a623f84733391ea36223">Argus_SetCalibrationCrosstalkSequenceSampleCount</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, uint16_t value)</td></tr>
-<tr class="memdesc:gac968cb78fbb1a623f84733391ea36223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sample count for the crosstalk calibration sequence.  <a href="group__arguscal.html#gac968cb78fbb1a623f84733391ea36223">More...</a><br /></td></tr>
-<tr class="separator:gac968cb78fbb1a623f84733391ea36223"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac8b3340b49aeba2cc677930f7d5d2396"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#gac8b3340b49aeba2cc677930f7d5d2396">Argus_GetCalibrationCrosstalkSequenceSampleCount</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, uint16_t *value)</td></tr>
-<tr class="memdesc:gac8b3340b49aeba2cc677930f7d5d2396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the sample count for the crosstalk calibration sequence.  <a href="group__arguscal.html#gac8b3340b49aeba2cc677930f7d5d2396">More...</a><br /></td></tr>
-<tr class="separator:gac8b3340b49aeba2cc677930f7d5d2396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabe0df6b7bcfe6257bb4393006a4a9e80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#gabe0df6b7bcfe6257bb4393006a4a9e80">Argus_SetCalibrationCrosstalkSequenceSampleTime</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, uint16_t value)</td></tr>
+<tr class="memdesc:gabe0df6b7bcfe6257bb4393006a4a9e80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sample time for the crosstalk calibration sequence.  <a href="group__arguscal.html#gabe0df6b7bcfe6257bb4393006a4a9e80">More...</a><br /></td></tr>
+<tr class="separator:gabe0df6b7bcfe6257bb4393006a4a9e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3985e0361a2c36f6ece44d01128f9172"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#ga3985e0361a2c36f6ece44d01128f9172">Argus_GetCalibrationCrosstalkSequenceSampleTime</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, uint16_t *value)</td></tr>
+<tr class="memdesc:ga3985e0361a2c36f6ece44d01128f9172"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the sample time for the crosstalk calibration sequence.  <a href="group__arguscal.html#ga3985e0361a2c36f6ece44d01128f9172">More...</a><br /></td></tr>
+<tr class="separator:ga3985e0361a2c36f6ece44d01128f9172"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2fb94b409af2e883a020da92a333decd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__arguscal.html#ga2fb94b409af2e883a020da92a333decd">Argus_SetCalibrationCrosstalkSequenceAmplitudeThreshold</a> (<a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *hnd, <a class="el" href="group__fixedpoint.html#gaf770481ddcfcfa8b525d1e4388a5214e">uq12_4_t</a> value)</td></tr>
 <tr class="memdesc:ga2fb94b409af2e883a020da92a333decd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the max. amplitude threshold for the crosstalk calibration sequence.  <a href="group__arguscal.html#ga2fb94b409af2e883a020da92a333decd">More...</a><br /></td></tr>
 <tr class="separator:ga2fb94b409af2e883a020da92a333decd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -288,14 +288,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gac8b3340b49aeba2cc677930f7d5d2396"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac8b3340b49aeba2cc677930f7d5d2396">&#9670;&nbsp;</a></span>Argus_GetCalibrationCrosstalkSequenceSampleCount()</h2>
+<a id="ga3985e0361a2c36f6ece44d01128f9172"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3985e0361a2c36f6ece44d01128f9172">&#9670;&nbsp;</a></span>Argus_GetCalibrationCrosstalkSequenceSampleTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> Argus_GetCalibrationCrosstalkSequenceSampleCount </td>
+          <td class="memname"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> Argus_GetCalibrationCrosstalkSequenceSampleTime </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *&#160;</td>
           <td class="paramname"><em>hnd</em>, </td>
@@ -314,12 +314,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the sample count for the crosstalk calibration sequence. </p>
+<p>Gets the sample time for the crosstalk calibration sequence. </p>
 <hr  />
+<p>Gets the measurement sample acquisition time for executing the crosstalk calibration sequence and generate the crosstalk data.<br  />
+ Units: msec.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hnd</td><td>The API handle; contains all internal states and data. </td></tr>
-    <tr><td class="paramname">value</td><td>The current crosstalk calibration sequence sample count. </td></tr>
+    <tr><td class="paramname">value</td><td>The current crosstalk calibration sequence sample time. </td></tr>
   </table>
   </dd>
 </dl>
@@ -380,8 +382,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gacdca501ccc8cb165b18b76da753fec01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacdca501ccc8cb165b18b76da753fec01">&#9670;&nbsp;</a></span>Argus_GetCalibrationGlobalRangeOffset()</h2>
+<a id="ga942c296d7224f1f6fbebe67ea0f4024a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga942c296d7224f1f6fbebe67ea0f4024a">&#9670;&nbsp;</a></span>Argus_GetCalibrationGlobalRangeOffset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -401,7 +403,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group__fixedpoint.html#ga4e4672c3c10d176533bee2b770b1b3f3">q9_22_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="group__fixedpoint.html#ga691a6a4ad9903499ab691c5c00095b42">q0_15_t</a> *&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -419,7 +421,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">hnd</td><td>The API handle; contains all internal states and data. </td></tr>
     <tr><td class="paramname">mode</td><td>The targeted measurement mode. </td></tr>
-    <tr><td class="paramname">value</td><td>The current global range offset in meter and Q9.22 format. </td></tr>
+    <tr><td class="paramname">value</td><td>The current global range offset in meter and Q0.15 format. </td></tr>
   </table>
   </dd>
 </dl>
@@ -479,14 +481,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga703bc313f1d04afe2563915c96b5293e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga703bc313f1d04afe2563915c96b5293e">&#9670;&nbsp;</a></span>Argus_GetCalibrationRangeOffsetSequenceSampleCount()</h2>
+<a id="gad85825948391a4e4d6f6f12aa2f18bf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad85825948391a4e4d6f6f12aa2f18bf4">&#9670;&nbsp;</a></span>Argus_GetCalibrationRangeOffsetSequenceSampleTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> Argus_GetCalibrationRangeOffsetSequenceSampleCount </td>
+          <td class="memname"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> Argus_GetCalibrationRangeOffsetSequenceSampleTime </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *&#160;</td>
           <td class="paramname"><em>hnd</em>, </td>
@@ -505,12 +507,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the sample count for the range offset calibration sequence. </p>
+<p>Gets the sample time for the range offset calibration sequence. </p>
 <hr  />
+<p>Gets the measurement sample acquisition time for executing the range offset calibration sequence and generate the ooffset data.<br  />
+ Units: msec.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hnd</td><td>The API handle; contains all internal states and data. </td></tr>
-    <tr><td class="paramname">value</td><td>The current range offset calibration sequence sample count. </td></tr>
+    <tr><td class="paramname">value</td><td>The current range offset calibration sequence sample time. </td></tr>
   </table>
   </dd>
 </dl>
@@ -710,7 +714,7 @@ Functions</h2></td></tr>
 <div class="line">}</div>
 <div class="ttc" id="agroup__argusapi_html_ga17627acf84a462e4500a28f8ada462d4"><div class="ttname"><a href="group__argusapi.html#ga17627acf84a462e4500a28f8ada462d4">ARGUS_PIXELS_Y</a></div><div class="ttdeci">#define ARGUS_PIXELS_Y</div><div class="ttdoc">The device pixel field size in y direction (short edge).</div><div class="ttdef"><b>Definition:</b> argus_def.h:74</div></div>
 <div class="ttc" id="agroup__argusapi_html_ga9228747d6ab08e18b28c3787c5cf5810"><div class="ttname"><a href="group__argusapi.html#ga9228747d6ab08e18b28c3787c5cf5810">ARGUS_PIXELS_X</a></div><div class="ttdeci">#define ARGUS_PIXELS_X</div><div class="ttdoc">The device pixel field size in x direction (long edge).</div><div class="ttdef"><b>Definition:</b> argus_def.h:69</div></div>
-<div class="ttc" id="agroup__argusapi_html_gabe8846d7abef63b75e8147f4f142708b"><div class="ttname"><a href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a></div><div class="ttdeci">argus_mode_t</div><div class="ttdoc">The measurement modes.</div><div class="ttdef"><b>Definition:</b> argus_def.h:185</div></div>
+<div class="ttc" id="agroup__argusapi_html_gabe8846d7abef63b75e8147f4f142708b"><div class="ttname"><a href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a></div><div class="ttdeci">argus_mode_t</div><div class="ttdoc">The measurement modes.</div><div class="ttdef"><b>Definition:</b> argus_def.h:194</div></div>
 <div class="ttc" id="agroup__arguscal_html_ga20c063bcfecaec714be820553bd6ace7"><div class="ttname"><a href="group__arguscal.html#ga20c063bcfecaec714be820553bd6ace7">Argus_GetExternalCrosstalkVectorTable_Callback</a></div><div class="ttdeci">void Argus_GetExternalCrosstalkVectorTable_Callback(xtalk_t xtalk[ARGUS_DFM_FRAME_COUNT][ARGUS_PIXELS_X][ARGUS_PIXELS_Y], argus_mode_t mode)</div><div class="ttdoc">A callback that returns the external crosstalk vector table.</div></div>
 <div class="ttc" id="agroup__argusdfm_html_ga4cdc2f697753df8d7aab471335e94eb8"><div class="ttname"><a href="group__argusdfm.html#ga4cdc2f697753df8d7aab471335e94eb8">ARGUS_DFM_FRAME_COUNT</a></div><div class="ttdeci">#define ARGUS_DFM_FRAME_COUNT</div><div class="ttdef"><b>Definition:</b> argus_dfm.h:61</div></div>
 <div class="ttc" id="agroup__status_html_gaaabdaf7ee58ca7269bd4bf24efcde092"><div class="ttname"><a href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a></div><div class="ttdeci">int32_t status_t</div><div class="ttdoc">Type used for all status and error return values.</div><div class="ttdef"><b>Definition:</b> argus_status.h:63</div></div>
@@ -770,7 +774,7 @@ Functions</h2></td></tr>
 <div class="line">}</div>
 <div class="ttc" id="agroup__argusapi_html_gac8cf1aeb912a212770cb1a1e05f952a3"><div class="ttname"><a href="group__argusapi.html#gac8cf1aeb912a212770cb1a1e05f952a3">ARGUS_PIXELS</a></div><div class="ttdeci">#define ARGUS_PIXELS</div><div class="ttdoc">The total device pixel count.</div><div class="ttdef"><b>Definition:</b> argus_def.h:79</div></div>
 <div class="ttc" id="agroup__arguscal_html_gac597964967aa7a542398b031c7086af1"><div class="ttname"><a href="group__arguscal.html#gac597964967aa7a542398b031c7086af1">Argus_GetExternalPixelRangeOffsets_Callback</a></div><div class="ttdeci">void Argus_GetExternalPixelRangeOffsets_Callback(q0_15_t offsets[ARGUS_PIXELS_X][ARGUS_PIXELS_Y], argus_mode_t mode)</div><div class="ttdoc">A callback that returns the external pixel range offsets.</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_ga691a6a4ad9903499ab691c5c00095b42"><div class="ttname"><a href="group__fixedpoint.html#ga691a6a4ad9903499ab691c5c00095b42">q0_15_t</a></div><div class="ttdeci">int16_t q0_15_t</div><div class="ttdoc">Signed fixed point number: Q0.15.</div><div class="ttdef"><b>Definition:</b> fp_def.h:232</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_ga691a6a4ad9903499ab691c5c00095b42"><div class="ttname"><a href="group__fixedpoint.html#ga691a6a4ad9903499ab691c5c00095b42">q0_15_t</a></div><div class="ttdeci">int16_t q0_15_t</div><div class="ttdoc">Signed fixed point number: Q0.15.</div><div class="ttdef"><b>Definition:</b> fp_def.h:374</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">offsets</td><td>The pixel range offsets in meter and Q0.15 format; to be filled with data. </td></tr>
@@ -950,14 +954,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gac968cb78fbb1a623f84733391ea36223"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac968cb78fbb1a623f84733391ea36223">&#9670;&nbsp;</a></span>Argus_SetCalibrationCrosstalkSequenceSampleCount()</h2>
+<a id="gabe0df6b7bcfe6257bb4393006a4a9e80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabe0df6b7bcfe6257bb4393006a4a9e80">&#9670;&nbsp;</a></span>Argus_SetCalibrationCrosstalkSequenceSampleTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> Argus_SetCalibrationCrosstalkSequenceSampleCount </td>
+          <td class="memname"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> Argus_SetCalibrationCrosstalkSequenceSampleTime </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *&#160;</td>
           <td class="paramname"><em>hnd</em>, </td>
@@ -976,12 +980,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets the sample count for the crosstalk calibration sequence. </p>
+<p>Sets the sample time for the crosstalk calibration sequence. </p>
 <hr  />
+<p>Sets the measurement sample acquisition time for executing the crosstalk calibration sequence and generate the crosstalk data.<br  />
+ Units: msec.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hnd</td><td>The API handle; contains all internal states and data. </td></tr>
-    <tr><td class="paramname">value</td><td>The new crosstalk calibration sequence sample count. </td></tr>
+    <tr><td class="paramname">value</td><td>The new crosstalk calibration sequence sample time. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1044,8 +1050,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga69dc360188f099d578d8ed1bc4522a9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga69dc360188f099d578d8ed1bc4522a9e">&#9670;&nbsp;</a></span>Argus_SetCalibrationGlobalRangeOffset()</h2>
+<a id="ga1aa2e7818001664ed5c30c229d4ccbda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1aa2e7818001664ed5c30c229d4ccbda">&#9670;&nbsp;</a></span>Argus_SetCalibrationGlobalRangeOffset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1065,7 +1071,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group__fixedpoint.html#ga4e4672c3c10d176533bee2b770b1b3f3">q9_22_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__fixedpoint.html#ga691a6a4ad9903499ab691c5c00095b42">q0_15_t</a>&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -1083,7 +1089,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">hnd</td><td>The API handle; contains all internal states and data. </td></tr>
     <tr><td class="paramname">mode</td><td>The targeted measurement mode. </td></tr>
-    <tr><td class="paramname">value</td><td>The new global range offset in meter and Q9.22 format. </td></tr>
+    <tr><td class="paramname">value</td><td>The new global range offset in meter and Q0.15 format. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1145,14 +1151,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga1de7df1afeba737e1e25589bb70dcb14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1de7df1afeba737e1e25589bb70dcb14">&#9670;&nbsp;</a></span>Argus_SetCalibrationRangeOffsetSequenceSampleCount()</h2>
+<a id="gaa28e50e19b04858fdeed50f0ba62da74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa28e50e19b04858fdeed50f0ba62da74">&#9670;&nbsp;</a></span>Argus_SetCalibrationRangeOffsetSequenceSampleTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> Argus_SetCalibrationRangeOffsetSequenceSampleCount </td>
+          <td class="memname"><a class="el" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> Argus_SetCalibrationRangeOffsetSequenceSampleTime </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__argusapi.html#ga0ff472df08ed31ebbc16d3c6cf0c6564">argus_hnd_t</a> *&#160;</td>
           <td class="paramname"><em>hnd</em>, </td>
@@ -1171,12 +1177,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets the sample count for the range offset calibration sequence. </p>
+<p>Sets the sample time for the range offset calibration sequence. </p>
 <hr  />
+<p>Gets the measurement sample acquisition time for executing the range offset calibration sequence and generate the offset data.<br  />
+ Units: msec.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hnd</td><td>The API handle; contains all internal states and data. </td></tr>
-    <tr><td class="paramname">value</td><td>The new range offset calibration sequence sample count. </td></tr>
+    <tr><td class="paramname">value</td><td>The new range offset calibration sequence sample time. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1227,10 +1235,11 @@ Functions</h2></td></tr>
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

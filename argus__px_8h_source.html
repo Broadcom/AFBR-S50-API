@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Include/api/argus_px.h Source File</title>
+<title>AFBR-S50 API Reference Manual: Include/api/argus_px.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -166,8 +166,18 @@ $(document).ready(function(){initNavTree('argus__px_8h_source.html',''); initRes
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;} <a class="code" href="structargus__pixel__t.html">argus_pixel_t</a>;</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ARGUS_PX_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment"> * @brief Representation of a correlation vector containing sine/cosine components.</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="structargus__vector__t.html">  146</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;{</div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="structargus__vector__t.html#a1937758c5ce2d4255e3633cca98d68c8">  149</a></span>&#160;    <a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> <a class="code" href="structargus__vector__t.html#a1937758c5ce2d4255e3633cca98d68c8">S</a>;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="structargus__vector__t.html#a709c335617e44b47d02304e7c393f883">  152</a></span>&#160;    <a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> <a class="code" href="structargus__vector__t.html#a709c335617e44b47d02304e7c393f883">C</a>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;} <a class="code" href="structargus__vector__t.html">argus_vector_t</a>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ARGUS_PX_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="agroup__argusres_html_ga51d96e2b693d2566698b7beaa4b0911e"><div class="ttname"><a href="group__argusres.html#ga51d96e2b693d2566698b7beaa4b0911e">argus_px_status_t</a></div><div class="ttdeci">argus_px_status_t</div><div class="ttdoc">Status flags for the evaluated pixel structure.</div><div class="ttdef"><b>Definition:</b> argus_px.h:67</div></div>
 <div class="ttc" id="agroup__argusres_html_gga51d96e2b693d2566698b7beaa4b0911ea1a604198fe7718c99adea9ffda66108f"><div class="ttname"><a href="group__argusres.html#gga51d96e2b693d2566698b7beaa4b0911ea1a604198fe7718c99adea9ffda66108f">PIXEL_AMPL_MIN</a></div><div class="ttdeci">@ PIXEL_AMPL_MIN</div><div class="ttdef"><b>Definition:</b> argus_px.h:83</div></div>
 <div class="ttc" id="agroup__argusres_html_gga51d96e2b693d2566698b7beaa4b0911ea3a9cca52ba3afd66cd03b7585e76da55"><div class="ttname"><a href="group__argusres.html#gga51d96e2b693d2566698b7beaa4b0911ea3a9cca52ba3afd66cd03b7585e76da55">PIXEL_NO_SIGNAL</a></div><div class="ttdeci">@ PIXEL_NO_SIGNAL</div><div class="ttdef"><b>Definition:</b> argus_px.h:92</div></div>
@@ -178,9 +188,10 @@ $(document).ready(function(){initNavTree('argus__px_8h_source.html',''); initRes
 <div class="ttc" id="agroup__argusres_html_gga51d96e2b693d2566698b7beaa4b0911eaa26c2f90a5f25cd796cd097fb559c2a7"><div class="ttname"><a href="group__argusres.html#gga51d96e2b693d2566698b7beaa4b0911eaa26c2f90a5f25cd796cd097fb559c2a7">PIXEL_BIN_EXCL</a></div><div class="ttdeci">@ PIXEL_BIN_EXCL</div><div class="ttdef"><b>Definition:</b> argus_px.h:79</div></div>
 <div class="ttc" id="agroup__argusres_html_gga51d96e2b693d2566698b7beaa4b0911eab0d555b3e70ec26fe736ad17d9db6eca"><div class="ttname"><a href="group__argusres.html#gga51d96e2b693d2566698b7beaa4b0911eab0d555b3e70ec26fe736ad17d9db6eca">PIXEL_OK</a></div><div class="ttdeci">@ PIXEL_OK</div><div class="ttdef"><b>Definition:</b> argus_px.h:69</div></div>
 <div class="ttc" id="agroup__argusres_html_gga51d96e2b693d2566698b7beaa4b0911eaba2732d43fc71aacaefc97a362804636"><div class="ttname"><a href="group__argusres.html#gga51d96e2b693d2566698b7beaa4b0911eaba2732d43fc71aacaefc97a362804636">PIXEL_STALLED</a></div><div class="ttdeci">@ PIXEL_STALLED</div><div class="ttdef"><b>Definition:</b> argus_px.h:108</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_ga4e4672c3c10d176533bee2b770b1b3f3"><div class="ttname"><a href="group__fixedpoint.html#ga4e4672c3c10d176533bee2b770b1b3f3">q9_22_t</a></div><div class="ttdeci">int32_t q9_22_t</div><div class="ttdoc">Signed fixed point number: Q9.22.</div><div class="ttdef"><b>Definition:</b> fp_def.h:395</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_gab90f3f594d2c37c63d36dc3176176a18"><div class="ttname"><a href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a></div><div class="ttdeci">uint16_t uq1_15_t</div><div class="ttdoc">Unsigned fixed point number: UQ1.15.</div><div class="ttdef"><b>Definition:</b> fp_def.h:214</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_gaf770481ddcfcfa8b525d1e4388a5214e"><div class="ttname"><a href="group__fixedpoint.html#gaf770481ddcfcfa8b525d1e4388a5214e">uq12_4_t</a></div><div class="ttdeci">uint16_t uq12_4_t</div><div class="ttdoc">Unsigned fixed point number: UQ12.4.</div><div class="ttdef"><b>Definition:</b> fp_def.h:157</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_ga4e4672c3c10d176533bee2b770b1b3f3"><div class="ttname"><a href="group__fixedpoint.html#ga4e4672c3c10d176533bee2b770b1b3f3">q9_22_t</a></div><div class="ttdeci">int32_t q9_22_t</div><div class="ttdoc">Signed fixed point number: Q9.22.</div><div class="ttdef"><b>Definition:</b> fp_def.h:511</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_gab90f3f594d2c37c63d36dc3176176a18"><div class="ttname"><a href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a></div><div class="ttdeci">uint16_t uq1_15_t</div><div class="ttdoc">Unsigned fixed point number: UQ1.15.</div><div class="ttdef"><b>Definition:</b> fp_def.h:264</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_gad963efc4d2f99840d0652cea5db213e6"><div class="ttname"><a href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a></div><div class="ttdeci">int32_t q15_16_t</div><div class="ttdoc">Signed fixed point number: Q15.16.</div><div class="ttdef"><b>Definition:</b> fp_def.h:488</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_gaf770481ddcfcfa8b525d1e4388a5214e"><div class="ttname"><a href="group__fixedpoint.html#gaf770481ddcfcfa8b525d1e4388a5214e">uq12_4_t</a></div><div class="ttdeci">uint16_t uq12_4_t</div><div class="ttdoc">Unsigned fixed point number: UQ12.4.</div><div class="ttdef"><b>Definition:</b> fp_def.h:224</div></div>
 <div class="ttc" id="astructargus__pixel__t_html"><div class="ttname"><a href="structargus__pixel__t.html">argus_pixel_t</a></div><div class="ttdoc">The evaluated measurement results per pixel.</div><div class="ttdef"><b>Definition:</b> argus_px.h:118</div></div>
 <div class="ttc" id="astructargus__pixel__t_html_a1ade498f949bc4bdbde43d6d16b782a2"><div class="ttname"><a href="structargus__pixel__t.html#a1ade498f949bc4bdbde43d6d16b782a2">argus_pixel_t::Phase</a></div><div class="ttdeci">uq1_15_t Phase</div><div class="ttdef"><b>Definition:</b> argus_px.h:124</div></div>
 <div class="ttc" id="astructargus__pixel__t_html_a1bab0aba97de4f50e10358c3cd2e3336"><div class="ttname"><a href="structargus__pixel__t.html#a1bab0aba97de4f50e10358c3cd2e3336">argus_pixel_t::Status</a></div><div class="ttdeci">argus_px_status_t Status</div><div class="ttdef"><b>Definition:</b> argus_px.h:133</div></div>
@@ -188,15 +199,19 @@ $(document).ready(function(){initNavTree('argus__px_8h_source.html',''); initRes
 <div class="ttc" id="astructargus__pixel__t_html_a6498b19c7b89e59ebad243c16199f364"><div class="ttname"><a href="structargus__pixel__t.html#a6498b19c7b89e59ebad243c16199f364">argus_pixel_t::Range</a></div><div class="ttdeci">q9_22_t Range</div><div class="ttdef"><b>Definition:</b> argus_px.h:121</div></div>
 <div class="ttc" id="astructargus__pixel__t_html_ac0816df3cf5b81397cd715919da1ce03"><div class="ttname"><a href="structargus__pixel__t.html#ac0816df3cf5b81397cd715919da1ce03">argus_pixel_t::RangeWindow</a></div><div class="ttdeci">int8_t RangeWindow</div><div class="ttdef"><b>Definition:</b> argus_px.h:136</div></div>
 <div class="ttc" id="astructargus__pixel__t_html_ac6ce595baf90c1801cdd2d196afba306"><div class="ttname"><a href="structargus__pixel__t.html#ac6ce595baf90c1801cdd2d196afba306">argus_pixel_t::Amplitude</a></div><div class="ttdeci">uq12_4_t Amplitude</div><div class="ttdef"><b>Definition:</b> argus_px.h:128</div></div>
+<div class="ttc" id="astructargus__vector__t_html"><div class="ttname"><a href="structargus__vector__t.html">argus_vector_t</a></div><div class="ttdoc">Representation of a correlation vector containing sine/cosine components.</div><div class="ttdef"><b>Definition:</b> argus_px.h:147</div></div>
+<div class="ttc" id="astructargus__vector__t_html_a1937758c5ce2d4255e3633cca98d68c8"><div class="ttname"><a href="structargus__vector__t.html#a1937758c5ce2d4255e3633cca98d68c8">argus_vector_t::S</a></div><div class="ttdeci">q15_16_t S</div><div class="ttdef"><b>Definition:</b> argus_px.h:149</div></div>
+<div class="ttc" id="astructargus__vector__t_html_a709c335617e44b47d02304e7c393f883"><div class="ttname"><a href="structargus__vector__t.html#a709c335617e44b47d02304e7c393f883">argus_vector_t::C</a></div><div class="ttdeci">q15_16_t C</div><div class="ttdef"><b>Definition:</b> argus_px.h:152</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="navelem"><a class="el" href="dir_856524284ebe840938865dc061f982fb.html">Include</a></li><li class="navelem"><a class="el" href="dir_93789b764323378c9e465e7f672157d0.html">api</a></li><li class="navelem"><a class="el" href="argus__px_8h.html">argus_px.h</a></li>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="navelem"><a class="el" href="dir_82027cc1cfaf56e8782fb3fde083c666.html">Include</a></li><li class="navelem"><a class="el" href="dir_4db4e13b7f5dcbc9bb37f4d90f81a669.html">api</a></li><li class="navelem"><a class="el" href="argus__px_8h.html">argus_px.h</a></li>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

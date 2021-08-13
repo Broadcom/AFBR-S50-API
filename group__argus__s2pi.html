@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: S2PI: Serial Peripheral Interface</title>
+<title>AFBR-S50 API Reference Manual: S2PI: Serial Peripheral Interface</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -108,7 +108,7 @@ Collaboration diagram for S2PI: Serial Peripheral Interface:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__argus__s2pi.png" border="0" usemap="#agroup____argus____s2pi" alt=""/></div>
 <map name="agroup____argus____s2pi" id="agroup____argus____s2pi">
-<area shape="rect" title="S2PI: SPI incl. GPIO Hardware Layer Module." alt="" coords="193,5,347,45"/>
+<area shape="rect" title="S2PI: SPI incl. GPIO Hardware Layer Module." alt="" coords="193,5,344,45"/>
 <area shape="rect" href="group__argus__platform.html" title="Collection of all interfaces for the Platform Abstraction Layers (HAL)." alt="" coords="5,5,145,45"/>
 </map>
 </div>
@@ -178,14 +178,16 @@ Functions</h2></td></tr>
 <hr  />
 <p>The S2PI module consists of a standard SPI interface plus a single GPIO interrupt line. Furthermore, the SPI pins are accessible via GPIO control to allow a software emulation of additional protocols using the same pins.</p>
 <p><b>SPI interface:</b></p>
-<p>The SPI interface is based on a single function:</p>
+<p>The SPI interface is based around a single functionality:</p>
 <p><a class="el" href="group__argus__s2pi.html#ga0c8f883938de571dbd73033b4957a987" title="Transfers a single SPI frame asynchronously.">S2PI_TransferFrame</a>. This function transfers a specified number of bytes via the interfaces MOSI line and simultaneously reads the incoming data on the MOSI line. The read can also be skipped. The transfer happen asynchronously, e.g. via a DMA request. After finishing the transfer, the provided callback is invoked with the status of the transfer and the provided abstract parameter. Furthermore, the functions receives a slave parameter that can be used to connect multiple slaves, each with its individual chip select line.</p>
 <p>The interface also provides functionality to change the SPI baud rate. An additional abort method is used to cancel the ongoing transfer.</p>
 <p><b>GPIO interface:</b></p>
-<p>The GPIO interface handles the measurement finished interrupt from the device. When the device invokes the interrupt, it pulls the interrupt line to low. Thus the interrupt must trigger when a transition from high to low occurs on the interrupt line.</p>
-<p>The module simply invokes a callback when this interrupt the pending. The <a class="el" href="group__argus__s2pi.html#ga8e2c5cf733c131a0856ee3c3d073b29c" title="Set a callback for the GPIO IRQ for a specified S2PI slave.">S2PI_SetIrqCallback</a> method is used to install the callback for a specified slave. Each slave will have its own interrupt line. An additional callback parameter can be set that would be passed to the callback function.</p>
-<p>In addition to the interrupt, all SPI pins need to be accessible as GPIO pins through the interface. One basic operation would be to cycle the chip select pin which resets the device. Additional, the device contains an EEPROM that is connected to the SPI pins but requires a different protocol that is not compatible to any standard SPI interface. Therefore, the interface provides the possibility to switch to GPIO control that allows to emulate the EEPROM protocol via software bit banging. Two methods are provided to switch forth and back between SPI and GPIO control. In GPIO mode, several functions are used to read and write the individual GPIO pins.</p>
-<p>Note that the GPIO mode is only required to readout the EEPROM at initialization of the device, i.e. during execution of the <a class="el" href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898" title="Initializes the API modules and the device with default parameters.">Argus_Init</a> or <a class="el" href="group__argusapi.html#gab1dd6c99418b2e470a29b85721edc93f" title="Reinitializes the API modules and the device with default parameters.">Argus_Reinit</a> method. The GPIO mode is not used during measurements. </p>
+<p>The GPIO part of the S2PI interface has two distinct concerns:</p>
+<p>First, the GPIO interface handles the measurement finished interrupt from the device. When the device invokes the interrupt, it pulls the interrupt line to low. Thus the interrupt must trigger when a transition from high to low occurs on the interrupt line.</p>
+<p>The module simply invokes a callback when this interrupt occurs. The <a class="el" href="group__argus__s2pi.html#ga8e2c5cf733c131a0856ee3c3d073b29c" title="Set a callback for the GPIO IRQ for a specified S2PI slave.">S2PI_SetIrqCallback</a> method is used to install the callback for a specified slave. Each slave will have its own interrupt line. An additional callback parameter can be set that would be passed to the callback function.</p>
+<p>In addition to the interrupt, all SPI pins need to be accessible as GPIO pins through this interface. This is required to read the EEPROM memory on the device hat is connected to the SPI pins but requires a different protocol that is not compatible to any standard SPI interface. Therefore, the interface provides the possibility to switch to GPIO control mode that allows to emulate the EEPROM protocol via software bit banging.</p>
+<p>Two methods are provided to switch forth and back between SPI and GPIO control. In GPIO mode, several functions are used to read and write the individual GPIO pins.</p>
+<p>Note that the GPIO mode is only required to readout the EEPROM upon initialization of the device, i.e. during execution of the <a class="el" href="group__argusapi.html#ga7d724a6657138f112bff554f7db2a898" title="Initializes the API modules and the device with default parameters.">Argus_Init</a> or <a class="el" href="group__argusapi.html#gab1dd6c99418b2e470a29b85721edc93f" title="Reinitializes the API modules and the device with default parameters.">Argus_Reinit</a> methods. The GPIO mode is not used during measurements. </p>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="ga0146c4f3ef32320d6fc869b9018ffeeb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga0146c4f3ef32320d6fc869b9018ffeeb">&#9670;&nbsp;</a></span>s2pi_callback_t</h2>
@@ -422,7 +424,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">slave</td><td>The specified S2PI slave. </td></tr>
     <tr><td class="paramname">pin</td><td>The specified S2PI pin. </td></tr>
-    <tr><td class="paramname">value</td><td>The GPIO pin state to read (0 = low, 1 = high). </td></tr>
+    <tr><td class="paramname">value</td><td>The GPIO pin state to read (0 = low, GND level, 1 = high, VCC level). </td></tr>
   </table>
   </dd>
 </dl>
@@ -667,10 +669,11 @@ This function is only called during device initialization!</dd></dl>
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Command Overview</title>
+<title>AFBR-S50 API Reference Manual: Command Overview</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -96,8 +96,7 @@ $(document).ready(function(){initNavTree('hw_api_cmd_overview.html',''); initRes
 <div class="title">Command Overview </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_Doxygen_05_hw_api_overview"></a></p>
-<p>The following section contains the current command overview as implemented in the <em>ExplorerApp</em>. The implementation can be found in the "Sources\explorer_app\api" folder of the "AFBR_S50_ExplorerApp_KL46z" project. See also <a class="el" href="hw_api.html">Explorer App (API Demo)</a>.</p>
+<div class="textblock"><p><a class="anchor" id="md_Doxygen_05_hw_api_overview"></a> The following section contains the current command overview as implemented in the <em>ExplorerApp</em>. The implementation can be found in the "Sources\explorer_app\api" folder of the "AFBR_S50_ExplorerApp_KL46z" project. See also <a class="el" href="hw_api.html">Explorer App (API Demo)</a>.</p>
 <h1><a class="anchor" id="hw_api_cmds_generic"></a>
 Generic Commands</h1>
 <table class="markdownTable">
@@ -110,18 +109,20 @@ Generic Commands</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_nak">Not Acknowledge (NAK)</a>   </td><td class="markdownTableBodyNone">0x0B   </td><td class="markdownTableBodyNone">auto/push   </td><td class="markdownTableBodyNone">Slave does not-acknowledge the successful reception of the last command.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_ping">Ping Command</a>   </td><td class="markdownTableBodyNone">0x01   </td><td class="markdownTableBodyNone">get   </td><td class="markdownTableBodyNone">A ping message the is sent from the master and reflected by the slave. Used to establish or test the UART connection.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_log">Log Message</a>   </td><td class="markdownTableBodyNone">0x06   </td><td class="markdownTableBodyNone">auto/push   </td><td class="markdownTableBodyNone">An event/debug log message sent from the slave to inform the user.    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_test">Test Message</a>   </td><td class="markdownTableBodyNone">0x04   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Sending a test message to the slave that will be echoed in order to test the interface. The slave will echo the exact message including the CRC values from the original message.    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_reset">MCU/Software Reset</a>   </td><td class="markdownTableBodyNone">0x08   </td><td class="markdownTableBodyNone">cmd   </td><td class="markdownTableBodyNone">Invokes the software reset command.    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_sw">Software Version</a>   </td><td class="markdownTableBodyNone">0x0C   </td><td class="markdownTableBodyNone">get   </td><td class="markdownTableBodyNone">Gets the current software version number.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_module">Module Type</a>   </td><td class="markdownTableBodyNone">0x0E   </td><td class="markdownTableBodyNone">get   </td><td class="markdownTableBodyNone">Gets the module information, incl. module type with version number, chip version and laser type.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_uid">Module UID</a>   </td><td class="markdownTableBodyNone">0x0F   </td><td class="markdownTableBodyNone">get   </td><td class="markdownTableBodyNone">Gets the chip/module unique identification number.    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_module">Module Type</a>   </td><td class="markdownTableBodyNone">0x0E   </td><td class="markdownTableBodyNone">get   </td><td class="markdownTableBodyNone">Gets the module information, incl. module type with version number, chip version and laser type.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_uid">Module UID</a>   </td><td class="markdownTableBodyNone">0x0F   </td><td class="markdownTableBodyNone">get   </td><td class="markdownTableBodyNone">Gets the chip/module unique identification number.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_info">Software Information / Identification</a>   </td><td class="markdownTableBodyNone">0x05   </td><td class="markdownTableBodyNone">get   </td><td class="markdownTableBodyNone">Gets the information about current software and device (e.g. version, device id, device family, ...)   </td></tr>
 </table>
 <h1><a class="anchor" id="hw_api_cmds_ctrl"></a>
@@ -142,7 +143,7 @@ Device Control Commands</h1>
 </table>
 <h1><a class="anchor" id="hw_api_cmds_data"></a>
 Measurement Data Commands</h1>
-<p>Two modes of streaming measurement data: on request or whenever a new data set is available. The actual data might depend on device configuration and calibration.</p>
+<p>The modes of measurement data streaming. The actual data might depend on device configuration and calibration.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption   </th><th class="markdownTableHeadNone">Byte   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -183,7 +184,9 @@ Configuration Commands</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cfg_pba">Pixel Binning Algorithm</a>   </td><td class="markdownTableBodyNone">0x54   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the pixel binning feature configuration.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cfg_spi">SPI Configuration</a>   </td><td class="markdownTableBodyNone">0x58   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the SPI configuration (baud rate, slave instance).   </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cfg_spi">SPI Configuration</a>   </td><td class="markdownTableBodyNone">0x58   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the SPI configuration (baud rate, slave instance).    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cfg_uart">UART Configuration</a>   </td><td class="markdownTableBodyNone">0x59   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the UART configuration (e.g. baud rate). Only for UART version.   </td></tr>
 </table>
 <h1><a class="anchor" id="hw_api_cmds_cal"></a>
 Calibration Commands</h1>
@@ -193,17 +196,17 @@ Calibration Commands</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_range_offset">Global Range Offset</a>   </td><td class="markdownTableBodyNone">0x61   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the global range offset calibration parameter.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_offsets">Pixel Range Offsets</a>   </td><td class="markdownTableBodyNone">0x67   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the crosstalk compensation vector table.    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_offsets">Pixel Range Offsets</a>   </td><td class="markdownTableBodyNone">0x67   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the pixel-to-pixel range offset table.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_offsets_rst">Pixel Range Offsets - Reset</a>   </td><td class="markdownTableBodyNone">0x68   </td><td class="markdownTableBodyNone">cmd   </td><td class="markdownTableBodyNone">Resets the crosstalk compensation vector table to factory calibrated default values.    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_offsets_rst">Pixel Range Offsets - Reset</a>   </td><td class="markdownTableBodyNone">0x68   </td><td class="markdownTableBodyNone">cmd   </td><td class="markdownTableBodyNone">Resets the pixel-to-pixel range offset table to factory calibrated default values.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_offsets_smpl_ct">Range Offsets Cal. Sequence - Sample Count</a>   </td><td class="markdownTableBodyNone">0x69   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the crosstalk calibration sequence sample count.    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_offsets_smpl_time">Range Offsets Cal. Sequence - Sample Time</a>   </td><td class="markdownTableBodyNone">0x69   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the range offset calibration sequence sample time.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_xtalk_vec">Crosstalk Compensation - Vector Table</a>   </td><td class="markdownTableBodyNone">0x62   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the crosstalk compensation vector table.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_xtalk_rst">Crosstalk Compensation - Reset</a>   </td><td class="markdownTableBodyNone">0x63   </td><td class="markdownTableBodyNone">cmd   </td><td class="markdownTableBodyNone">Resets the crosstalk compensation vector table to factory calibrated default values.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_xtalk_smpl_ct">Crosstalk Cal. Sequence - Sample Count</a>   </td><td class="markdownTableBodyNone">0x64   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the crosstalk calibration sequence sample count.    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_xtalk_smpl_time">Crosstalk Cal. Sequence - Sample Time</a>   </td><td class="markdownTableBodyNone">0x64   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the crosstalk calibration sequence sample time.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="hw_api_cmd_details.html#cmd_cal_xtalk_max_ampl">Crosstalk Cal. Sequence - Max. Amplitude</a>   </td><td class="markdownTableBodyNone">0x65   </td><td class="markdownTableBodyNone">set / get   </td><td class="markdownTableBodyNone">Gets or sets the crosstalk calibration sequence maximum amplitude threshold.    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -214,11 +217,12 @@ Calibration Commands</h1>
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
 		<li class="navelem"><a class="el" href="hw_api.html">Explorer App (API Demo)</a></li>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

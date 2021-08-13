@@ -1,5 +1,7 @@
 <map id="Include/api/argus_api.h" name="Include/api/argus_api.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,5,160,32"/>
-<area shape="rect" id="node2" href="$argus_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="27,80,138,107"/>
-<area shape="rect" id="node3" href="$argus__nvm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="8,155,157,196"/>
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="98,5,253,32"/>
+<area shape="rect" id="node2" href="$argus_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="120,80,231,107"/>
+<area shape="rect" id="node3" href="$argus__nvm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,162,156,203"/>
+<area shape="rect" id="node5" href="$argus__hal__test_8h_source.html" title=" " alt="" coords="180,155,360,211"/>
+<area shape="rect" id="node4" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="85,259,265,315"/>
 </map>

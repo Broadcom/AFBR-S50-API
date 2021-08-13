@@ -1,4 +1,4 @@
 <map id="Timer: Hardware Timer Interface" name="Timer: Hardware Timer Interface">
 <area shape="rect" id="node1" href="$group__argus__platform.html" title="Collection of all interfaces for the Platform Abstraction Layers (HAL)." alt="" coords="5,5,145,45"/>
-<area shape="rect" id="node2" title="Timer implementations for lifetime counting as well as periodic callback." alt="" coords="193,5,345,45"/>
+<area shape="rect" id="node2" title="Timer implementations for lifetime counting as well as periodic callback." alt="" coords="193,5,347,45"/>
 </map>

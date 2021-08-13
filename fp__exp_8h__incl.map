@@ -1,11 +1,11 @@
 <map id="Include/utility/fp_exp.h" name="Include/utility/fp_exp.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="153,5,265,47"/>
-<area shape="rect" id="node2" href="$fp__def_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="229,244,296,271"/>
-<area shape="rect" id="node4" href="$fp__rnd_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="15,169,118,196"/>
-<area shape="rect" id="node6" href="$fp__mul_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="111,95,217,121"/>
-<area shape="rect" id="node8" href="$fp__div_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="295,95,395,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="174,319,239,345"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,244,75,271"/>
-<area shape="rect" id="node7" href="$muldw_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="99,244,205,271"/>
-<area shape="rect" id="node9" href="$int__math_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="345,169,428,196"/>
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="174,5,287,47"/>
+<area shape="rect" id="node2" href="$fp__def_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="149,244,217,271"/>
+<area shape="rect" id="node4" href="$fp__rnd_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="125,169,227,196"/>
+<area shape="rect" id="node6" href="$fp__mul_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="43,95,149,121"/>
+<area shape="rect" id="node8" href="$fp__div_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="303,95,404,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="151,319,215,345"/>
+<area shape="rect" id="node5" title=" " alt="" coords="267,244,335,271"/>
+<area shape="rect" id="node7" href="$muldw_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,244,109,271"/>
+<area shape="rect" id="node9" href="$int__math_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="353,169,436,196"/>
 </map>

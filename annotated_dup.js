@@ -8,6 +8,7 @@ var annotated_dup =
     [ "argus_results_aux_t", "structargus__results__aux__t.html", "structargus__results__aux__t" ],
     [ "argus_results_bin_t", "structargus__results__bin__t.html", "structargus__results__bin__t" ],
     [ "argus_results_t", "structargus__results__t.html", "structargus__results__t" ],
+    [ "argus_vector_t", "structargus__vector__t.html", "structargus__vector__t" ],
     [ "ltc_t", "structltc__t.html", "structltc__t" ],
     [ "xtalk_t", "structxtalk__t.html", "structxtalk__t" ]
 ];

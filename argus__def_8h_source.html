@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Include/api/argus_def.h Source File</title>
+<title>AFBR-S50 API Reference Manual: Include/api/argus_def.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -162,7 +162,7 @@ $(document).ready(function(){initNavTree('argus__def_8h_source.html',''); initRe
 <div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470ab844937ee93fb6b8a2c8446dd89fd3d4">  129</a></span>&#160;    <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470ab844937ee93fb6b8a2c8446dd89fd3d4">AFBR_S50SV85K_V1</a> = 6,</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a6136a0872216f91100b42ea04333af70">Reserved</a> = 0b111111</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a6136a0872216f91100b42ea04333af70">Reserved</a> = 0x3F</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
 <div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a6136a0872216f91100b42ea04333af70">  135</a></span>&#160;} <a class="code" href="group__argusapi.html#ga46f240b890cd62efe83bf2d095277470">argus_module_version_t</a>;</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
@@ -179,62 +179,68 @@ $(document).ready(function(){initNavTree('argus__def_8h_source.html',''); initRe
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
 <div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca59af409963e474593f4628805e2ecdf3">  152</a></span>&#160;    <a class="code" href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca59af409963e474593f4628805e2ecdf3">LASER_R_V1</a> = 3,</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;} <a class="code" href="group__argusapi.html#gaea8d743b35717312c964154cbfe1088c">argus_laser_type_t</a>;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment"> * @brief   The AFBR-S50 chip versions.</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="group__argusapi.html#ga9ad67917cc6683009a92174f75f1a0c5">  159</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;{</div>
-<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d">  162</a></span>&#160;    <a class="code" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d">ADS0032_NONE</a> = 0,</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5ab4f16621a650dedb173eb5f135b2ffb2">  165</a></span>&#160;    <a class="code" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5ab4f16621a650dedb173eb5f135b2ffb2">ADS0032_V1_0</a> = 1,</div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca90d582a8e79ccf35566b16c949eec154">  155</a></span>&#160;    <a class="code" href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca90d582a8e79ccf35566b16c949eec154">LASER_H_V2X</a> = 4,</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;} <a class="code" href="group__argusapi.html#gaea8d743b35717312c964154cbfe1088c">argus_laser_type_t</a>;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment"> * @brief   The AFBR-S50 chip versions.</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="group__argusapi.html#ga9ad67917cc6683009a92174f75f1a0c5">  162</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;{</div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d">  165</a></span>&#160;    <a class="code" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d">ADS0032_NONE</a> = 0,</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a0b627f633992b10ba97e37f06661b091">  168</a></span>&#160;    <a class="code" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a0b627f633992b10ba97e37f06661b091">ADS0032_V1_1</a> = 2,</div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5abda0918bc13344766b74238f4197b6bb">  168</a></span>&#160;    <a class="code" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5abda0918bc13344766b74238f4197b6bb">ADS0032_V1A</a> = 1,</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a8c0583652326e8cf1534d81a39e41212">  171</a></span>&#160;    <a class="code" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a8c0583652326e8cf1534d81a39e41212">ADS0032_V1_2</a> = 3,</div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5aee6e2adc408dd6386e2f36ce172a1342">  171</a></span>&#160;    <a class="code" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5aee6e2adc408dd6386e2f36ce172a1342">ADS0032_V1B</a> = 2,</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;} <a class="code" href="group__argusapi.html#ga9ad67917cc6683009a92174f75f1a0c5">argus_chip_version_t</a>;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment"> * @brief   The number of measurement modes with distinct configuration and</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment"> *          calibration records.</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="group__argusapi.html#gab6c12778ea85d87b67ffbcdc74d3e754">  179</a></span>&#160;<span class="preprocessor">#define ARGUS_MODE_COUNT (2)</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment"> * @brief   The measurement modes.</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">  184</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;{</div>
-<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708baf9e4186b737a5b7e99dd84183995d0da">  187</a></span>&#160;    <a class="code" href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708baf9e4186b737a5b7e99dd84183995d0da">ARGUS_MODE_A</a> = 1,</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708bab44113bca79337ed4a46eec5768dbb87">  190</a></span>&#160;    <a class="code" href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708bab44113bca79337ed4a46eec5768dbb87">ARGUS_MODE_B</a> = 2,</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;} <a class="code" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a>;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment"> * @brief   Generic API callback function.</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"> * @details Invoked by the API. The content of the abstract data pointer</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment"> *          depends upon the context.</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment"> * @param   status The module status that caused the callback. #STATUS_OK if</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment"> *                   everything was as expected.</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment"> * @param   data   An abstract pointer to an user defined data. This will</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment"> *                   usually be passed to the function that also takes the</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment"> *                   callback as an parameter. Otherwise it has a special</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment"> *                   meaning such as configuration or calibration data.</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment"> * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="group__argusapi.html#gab4bba20440f2237b639941554f1e3851">  206</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> (*<a class="code" href="group__argusapi.html#gab4bba20440f2237b639941554f1e3851">argus_callback_t</a>)(<a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <span class="keywordtype">void</span> * data);</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ARGUS_DEF_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5ae2443e3144cfa98f47bffd85795c869d">  174</a></span>&#160;    <a class="code" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5ae2443e3144cfa98f47bffd85795c869d">ADS0032_V1C</a> = 3,</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a5433aff977cde39a667eeb5e79e79130">  177</a></span>&#160;    <a class="code" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a5433aff977cde39a667eeb5e79e79130">ADS0032_V1D</a> = 4,</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5abec74a1f85859993a292471ef31a73ef">  180</a></span>&#160;    <a class="code" href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5abec74a1f85859993a292471ef31a73ef">ADS0032_V1E</a> = 5,</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;} <a class="code" href="group__argusapi.html#ga9ad67917cc6683009a92174f75f1a0c5">argus_chip_version_t</a>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment"> * @brief   The number of measurement modes with distinct configuration and</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment"> *          calibration records.</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="group__argusapi.html#gab6c12778ea85d87b67ffbcdc74d3e754">  188</a></span>&#160;<span class="preprocessor">#define ARGUS_MODE_COUNT (2)</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment"> * @brief   The measurement modes.</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">  193</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;{</div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708baf9e4186b737a5b7e99dd84183995d0da">  196</a></span>&#160;    <a class="code" href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708baf9e4186b737a5b7e99dd84183995d0da">ARGUS_MODE_A</a> = 1,</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno"><a class="line" href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708bab44113bca79337ed4a46eec5768dbb87">  199</a></span>&#160;    <a class="code" href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708bab44113bca79337ed4a46eec5768dbb87">ARGUS_MODE_B</a> = 2,</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;} <a class="code" href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a>;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment"> * @brief   Generic API callback function.</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment"> * @details Invoked by the API. The content of the abstract data pointer</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment"> *          depends upon the context.</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment"> * @param   status The module status that caused the callback. #STATUS_OK if</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment"> *                 everything was as expected.</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment"> * @param   data An abstract pointer to an user defined data. This will usually</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment"> *               be passed to the function that also takes the callback as an</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment"> *               parameter. Otherwise it has a special meaning such as</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment"> *               configuration or calibration data.</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment"> * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno"><a class="line" href="group__argusapi.html#gab4bba20440f2237b639941554f1e3851">  215</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> (*<a class="code" href="group__argusapi.html#gab4bba20440f2237b639941554f1e3851">argus_callback_t</a>)(<a class="code" href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <span class="keywordtype">void</span> * data);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ARGUS_DEF_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aargus__status_8h_html"><div class="ttname"><a href="argus__status_8h.html">argus_status.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 API.</div></div>
 <div class="ttc" id="aargus__version_8h_html"><div class="ttname"><a href="argus__version_8h.html">argus_version.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 API.</div></div>
 <div class="ttc" id="afp__def_8h_html"><div class="ttname"><a href="fp__def_8h.html">fp_def.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 API.</div></div>
 <div class="ttc" id="agroup__argusapi_html_ga46f240b890cd62efe83bf2d095277470"><div class="ttname"><a href="group__argusapi.html#ga46f240b890cd62efe83bf2d095277470">argus_module_version_t</a></div><div class="ttdeci">argus_module_version_t</div><div class="ttdoc">The AFBR-S50 module types.</div><div class="ttdef"><b>Definition:</b> argus_def.h:85</div></div>
-<div class="ttc" id="agroup__argusapi_html_ga9ad67917cc6683009a92174f75f1a0c5"><div class="ttname"><a href="group__argusapi.html#ga9ad67917cc6683009a92174f75f1a0c5">argus_chip_version_t</a></div><div class="ttdeci">argus_chip_version_t</div><div class="ttdoc">The AFBR-S50 chip versions.</div><div class="ttdef"><b>Definition:</b> argus_def.h:160</div></div>
-<div class="ttc" id="agroup__argusapi_html_gab4bba20440f2237b639941554f1e3851"><div class="ttname"><a href="group__argusapi.html#gab4bba20440f2237b639941554f1e3851">argus_callback_t</a></div><div class="ttdeci">status_t(* argus_callback_t)(status_t status, void *data)</div><div class="ttdoc">Generic API callback function.</div><div class="ttdef"><b>Definition:</b> argus_def.h:206</div></div>
-<div class="ttc" id="agroup__argusapi_html_gabe8846d7abef63b75e8147f4f142708b"><div class="ttname"><a href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a></div><div class="ttdeci">argus_mode_t</div><div class="ttdoc">The measurement modes.</div><div class="ttdef"><b>Definition:</b> argus_def.h:185</div></div>
+<div class="ttc" id="agroup__argusapi_html_ga9ad67917cc6683009a92174f75f1a0c5"><div class="ttname"><a href="group__argusapi.html#ga9ad67917cc6683009a92174f75f1a0c5">argus_chip_version_t</a></div><div class="ttdeci">argus_chip_version_t</div><div class="ttdoc">The AFBR-S50 chip versions.</div><div class="ttdef"><b>Definition:</b> argus_def.h:163</div></div>
+<div class="ttc" id="agroup__argusapi_html_gab4bba20440f2237b639941554f1e3851"><div class="ttname"><a href="group__argusapi.html#gab4bba20440f2237b639941554f1e3851">argus_callback_t</a></div><div class="ttdeci">status_t(* argus_callback_t)(status_t status, void *data)</div><div class="ttdoc">Generic API callback function.</div><div class="ttdef"><b>Definition:</b> argus_def.h:215</div></div>
+<div class="ttc" id="agroup__argusapi_html_gabe8846d7abef63b75e8147f4f142708b"><div class="ttname"><a href="group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b">argus_mode_t</a></div><div class="ttdeci">argus_mode_t</div><div class="ttdoc">The measurement modes.</div><div class="ttdef"><b>Definition:</b> argus_def.h:194</div></div>
 <div class="ttc" id="agroup__argusapi_html_gaea8d743b35717312c964154cbfe1088c"><div class="ttname"><a href="group__argusapi.html#gaea8d743b35717312c964154cbfe1088c">argus_laser_type_t</a></div><div class="ttdeci">argus_laser_type_t</div><div class="ttdoc">The AFBR-S50 laser configurations.</div><div class="ttdef"><b>Definition:</b> argus_def.h:141</div></div>
 <div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470a07a3ca0afd476a77d18af9cac7e8ca57"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a07a3ca0afd476a77d18af9cac7e8ca57">AFBR_S50LV85D_V1</a></div><div class="ttdeci">@ AFBR_S50LV85D_V1</div><div class="ttdef"><b>Definition:</b> argus_def.h:111</div></div>
 <div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470a2e11c996b63ce7373b0adfc0e7d2b054"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470a2e11c996b63ce7373b0adfc0e7d2b054">AFBR_S50MV85G_V2</a></div><div class="ttdeci">@ AFBR_S50MV85G_V2</div><div class="ttdef"><b>Definition:</b> argus_def.h:99</div></div>
@@ -245,14 +251,17 @@ $(document).ready(function(){initNavTree('argus__def_8h_source.html',''); initRe
 <div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470aadb20086dac739d81b418ed885e13eac"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470aadb20086dac739d81b418ed885e13eac">AFBR_S50MV85G_V1</a></div><div class="ttdeci">@ AFBR_S50MV85G_V1</div><div class="ttdef"><b>Definition:</b> argus_def.h:93</div></div>
 <div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470ab844937ee93fb6b8a2c8446dd89fd3d4"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470ab844937ee93fb6b8a2c8446dd89fd3d4">AFBR_S50SV85K_V1</a></div><div class="ttdeci">@ AFBR_S50SV85K_V1</div><div class="ttdef"><b>Definition:</b> argus_def.h:129</div></div>
 <div class="ttc" id="agroup__argusapi_html_gga46f240b890cd62efe83bf2d095277470addaaf6b9cc172c456278d5d5038070f6"><div class="ttname"><a href="group__argusapi.html#gga46f240b890cd62efe83bf2d095277470addaaf6b9cc172c456278d5d5038070f6">AFBR_S50MV85G_V3</a></div><div class="ttdeci">@ AFBR_S50MV85G_V3</div><div class="ttdef"><b>Definition:</b> argus_def.h:105</div></div>
-<div class="ttc" id="agroup__argusapi_html_gga9ad67917cc6683009a92174f75f1a0c5a0b627f633992b10ba97e37f06661b091"><div class="ttname"><a href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a0b627f633992b10ba97e37f06661b091">ADS0032_V1_1</a></div><div class="ttdeci">@ ADS0032_V1_1</div><div class="ttdef"><b>Definition:</b> argus_def.h:168</div></div>
-<div class="ttc" id="agroup__argusapi_html_gga9ad67917cc6683009a92174f75f1a0c5a8c0583652326e8cf1534d81a39e41212"><div class="ttname"><a href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a8c0583652326e8cf1534d81a39e41212">ADS0032_V1_2</a></div><div class="ttdeci">@ ADS0032_V1_2</div><div class="ttdef"><b>Definition:</b> argus_def.h:171</div></div>
-<div class="ttc" id="agroup__argusapi_html_gga9ad67917cc6683009a92174f75f1a0c5ab4f16621a650dedb173eb5f135b2ffb2"><div class="ttname"><a href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5ab4f16621a650dedb173eb5f135b2ffb2">ADS0032_V1_0</a></div><div class="ttdeci">@ ADS0032_V1_0</div><div class="ttdef"><b>Definition:</b> argus_def.h:165</div></div>
-<div class="ttc" id="agroup__argusapi_html_gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d"><div class="ttname"><a href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d">ADS0032_NONE</a></div><div class="ttdeci">@ ADS0032_NONE</div><div class="ttdef"><b>Definition:</b> argus_def.h:162</div></div>
-<div class="ttc" id="agroup__argusapi_html_ggabe8846d7abef63b75e8147f4f142708bab44113bca79337ed4a46eec5768dbb87"><div class="ttname"><a href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708bab44113bca79337ed4a46eec5768dbb87">ARGUS_MODE_B</a></div><div class="ttdeci">@ ARGUS_MODE_B</div><div class="ttdef"><b>Definition:</b> argus_def.h:190</div></div>
-<div class="ttc" id="agroup__argusapi_html_ggabe8846d7abef63b75e8147f4f142708baf9e4186b737a5b7e99dd84183995d0da"><div class="ttname"><a href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708baf9e4186b737a5b7e99dd84183995d0da">ARGUS_MODE_A</a></div><div class="ttdeci">@ ARGUS_MODE_A</div><div class="ttdef"><b>Definition:</b> argus_def.h:187</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga9ad67917cc6683009a92174f75f1a0c5a5433aff977cde39a667eeb5e79e79130"><div class="ttname"><a href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a5433aff977cde39a667eeb5e79e79130">ADS0032_V1D</a></div><div class="ttdeci">@ ADS0032_V1D</div><div class="ttdef"><b>Definition:</b> argus_def.h:177</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga9ad67917cc6683009a92174f75f1a0c5abda0918bc13344766b74238f4197b6bb"><div class="ttname"><a href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5abda0918bc13344766b74238f4197b6bb">ADS0032_V1A</a></div><div class="ttdeci">@ ADS0032_V1A</div><div class="ttdef"><b>Definition:</b> argus_def.h:168</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga9ad67917cc6683009a92174f75f1a0c5abec74a1f85859993a292471ef31a73ef"><div class="ttname"><a href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5abec74a1f85859993a292471ef31a73ef">ADS0032_V1E</a></div><div class="ttdeci">@ ADS0032_V1E</div><div class="ttdef"><b>Definition:</b> argus_def.h:180</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga9ad67917cc6683009a92174f75f1a0c5ae2443e3144cfa98f47bffd85795c869d"><div class="ttname"><a href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5ae2443e3144cfa98f47bffd85795c869d">ADS0032_V1C</a></div><div class="ttdeci">@ ADS0032_V1C</div><div class="ttdef"><b>Definition:</b> argus_def.h:174</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga9ad67917cc6683009a92174f75f1a0c5aee6e2adc408dd6386e2f36ce172a1342"><div class="ttname"><a href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5aee6e2adc408dd6386e2f36ce172a1342">ADS0032_V1B</a></div><div class="ttdeci">@ ADS0032_V1B</div><div class="ttdef"><b>Definition:</b> argus_def.h:171</div></div>
+<div class="ttc" id="agroup__argusapi_html_gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d"><div class="ttname"><a href="group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d">ADS0032_NONE</a></div><div class="ttdeci">@ ADS0032_NONE</div><div class="ttdef"><b>Definition:</b> argus_def.h:165</div></div>
+<div class="ttc" id="agroup__argusapi_html_ggabe8846d7abef63b75e8147f4f142708bab44113bca79337ed4a46eec5768dbb87"><div class="ttname"><a href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708bab44113bca79337ed4a46eec5768dbb87">ARGUS_MODE_B</a></div><div class="ttdeci">@ ARGUS_MODE_B</div><div class="ttdef"><b>Definition:</b> argus_def.h:199</div></div>
+<div class="ttc" id="agroup__argusapi_html_ggabe8846d7abef63b75e8147f4f142708baf9e4186b737a5b7e99dd84183995d0da"><div class="ttname"><a href="group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708baf9e4186b737a5b7e99dd84183995d0da">ARGUS_MODE_A</a></div><div class="ttdeci">@ ARGUS_MODE_A</div><div class="ttdef"><b>Definition:</b> argus_def.h:196</div></div>
 <div class="ttc" id="agroup__argusapi_html_ggaea8d743b35717312c964154cbfe1088ca0c0b6147f10e1b580e38abbdbe21e52f"><div class="ttname"><a href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca0c0b6147f10e1b580e38abbdbe21e52f">LASER_H_V1</a></div><div class="ttdeci">@ LASER_H_V1</div><div class="ttdef"><b>Definition:</b> argus_def.h:146</div></div>
 <div class="ttc" id="agroup__argusapi_html_ggaea8d743b35717312c964154cbfe1088ca59af409963e474593f4628805e2ecdf3"><div class="ttname"><a href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca59af409963e474593f4628805e2ecdf3">LASER_R_V1</a></div><div class="ttdeci">@ LASER_R_V1</div><div class="ttdef"><b>Definition:</b> argus_def.h:152</div></div>
+<div class="ttc" id="agroup__argusapi_html_ggaea8d743b35717312c964154cbfe1088ca90d582a8e79ccf35566b16c949eec154"><div class="ttname"><a href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca90d582a8e79ccf35566b16c949eec154">LASER_H_V2X</a></div><div class="ttdeci">@ LASER_H_V2X</div><div class="ttdef"><b>Definition:</b> argus_def.h:155</div></div>
 <div class="ttc" id="agroup__argusapi_html_ggaea8d743b35717312c964154cbfe1088ca9c1e9659e75fa79040a779276d4c74c9"><div class="ttname"><a href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca9c1e9659e75fa79040a779276d4c74c9">LASER_NONE</a></div><div class="ttdeci">@ LASER_NONE</div><div class="ttdef"><b>Definition:</b> argus_def.h:143</div></div>
 <div class="ttc" id="agroup__argusapi_html_ggaea8d743b35717312c964154cbfe1088cab397e4de9cd7aaa96e9dcd158f9fb1a3"><div class="ttname"><a href="group__argusapi.html#ggaea8d743b35717312c964154cbfe1088cab397e4de9cd7aaa96e9dcd158f9fb1a3">LASER_H_V2</a></div><div class="ttdeci">@ LASER_H_V2</div><div class="ttdef"><b>Definition:</b> argus_def.h:149</div></div>
 <div class="ttc" id="agroup__status_html_gaaabdaf7ee58ca7269bd4bf24efcde092"><div class="ttname"><a href="group__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a></div><div class="ttdeci">int32_t status_t</div><div class="ttdoc">Type used for all status and error return values.</div><div class="ttdef"><b>Definition:</b> argus_status.h:63</div></div>
@@ -261,11 +270,12 @@ $(document).ready(function(){initNavTree('argus__def_8h_source.html',''); initRe
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="navelem"><a class="el" href="dir_856524284ebe840938865dc061f982fb.html">Include</a></li><li class="navelem"><a class="el" href="dir_93789b764323378c9e465e7f672157d0.html">api</a></li><li class="navelem"><a class="el" href="argus__def_8h.html">argus_def.h</a></li>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="navelem"><a class="el" href="dir_82027cc1cfaf56e8782fb3fde083c666.html">Include</a></li><li class="navelem"><a class="el" href="dir_4db4e13b7f5dcbc9bb37f4d90f81a669.html">api</a></li><li class="navelem"><a class="el" href="argus__def_8h.html">argus_def.h</a></li>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

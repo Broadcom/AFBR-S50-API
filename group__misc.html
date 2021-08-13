@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Miscellaneous Math</title>
+<title>AFBR-S50 API Reference Manual: Miscellaneous Math</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -106,7 +106,7 @@ Collaboration diagram for Miscellaneous Math:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__misc.png" border="0" usemap="#agroup____misc" alt=""/></div>
 <map name="agroup____misc" id="agroup____misc">
-<area shape="rect" title="Miscellaneous math utility functions utilized within the API." alt="" coords="108,5,247,31"/>
+<area shape="rect" title="Miscellaneous math utility functions utilized within the API." alt="" coords="108,5,245,31"/>
 <area shape="rect" href="group__argusutil.html" title="Utility library containing useful functions." alt="" coords="5,5,60,31"/>
 </map>
 </div>
@@ -121,6 +121,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ga3acffbd305ee72dcd4593c0d8af64a4f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__misc.html#ga3acffbd305ee72dcd4593c0d8af64a4f">MIN</a>(a,  b)&#160;&#160;&#160;((a) &lt; (b) ? (a) : (b))</td></tr>
 <tr class="memdesc:ga3acffbd305ee72dcd4593c0d8af64a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the minimum of two values.  <a href="group__misc.html#ga3acffbd305ee72dcd4593c0d8af64a4f">More...</a><br /></td></tr>
 <tr class="separator:ga3acffbd305ee72dcd4593c0d8af64a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga33bd933f5d4895b3b6d18c2d5fed91a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__misc.html#ga33bd933f5d4895b3b6d18c2d5fed91a0">CLAMP</a>(x,  min,  max)&#160;&#160;&#160;(<a class="el" href="group__misc.html#ga3acffbd305ee72dcd4593c0d8af64a4f">MIN</a>(<a class="el" href="group__misc.html#gafa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>(x, min), max))</td></tr>
+<tr class="memdesc:ga33bd933f5d4895b3b6d18c2d5fed91a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clamps a value between a minimum and maximum boundary.  <a href="group__misc.html#ga33bd933f5d4895b3b6d18c2d5fed91a0">More...</a><br /></td></tr>
+<tr class="separator:ga33bd933f5d4895b3b6d18c2d5fed91a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Miscellaneous math utility functions utilized within the API. </p>
@@ -131,6 +134,54 @@ Macros</h2></td></tr>
 </ul>
 <hr  />
  <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga33bd933f5d4895b3b6d18c2d5fed91a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga33bd933f5d4895b3b6d18c2d5fed91a0">&#9670;&nbsp;</a></span>CLAMP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CLAMP</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">min, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">max&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(<a class="el" href="group__misc.html#ga3acffbd305ee72dcd4593c0d8af64a4f">MIN</a>(<a class="el" href="group__misc.html#gafa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>(x, min), max))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clamps a value between a minimum and maximum boundary. </p>
+<hr  />
+<p>Clamps the values such that the condition min &lt;= x &lt;= max is true.</p>
+<dl class="section note"><dt>Note</dt><dd>The condition <code>min</code> &lt;= <code>max</code> must hold!!!</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The input parameter to be clamped. </td></tr>
+    <tr><td class="paramname">min</td><td>The minimum or lower boundary. </td></tr>
+    <tr><td class="paramname">max</td><td>The maximum or upper boundary. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The clamped value of the input parameter within [min,max]. </dd></dl>
+
+</div>
+</div>
 <a id="gae3d0f9e10d0232b7f9fa6d29854fcf09"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gae3d0f9e10d0232b7f9fa6d29854fcf09">&#9670;&nbsp;</a></span>INT_SQRT</h2>
 
@@ -228,10 +279,11 @@ Macros</h2></td></tr>
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

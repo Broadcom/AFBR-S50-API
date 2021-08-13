@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mode_664',['Mode',['../structargus__cfg__pba__t.html#a1beb96c88598e7d087ded27adb7ec7c0',1,'argus_cfg_pba_t']]]
+  ['outputpower_720',['OutputPower',['../structargus__meas__frame__t.html#a4aad62a4d40928a3907b8ae569a740b2',1,'argus_meas_frame_t']]]
 ];

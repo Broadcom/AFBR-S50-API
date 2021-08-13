@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: Include/utility/fp_ema.h Source File</title>
+<title>AFBR-S50 API Reference Manual: Include/utility/fp_ema.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -142,86 +142,97 @@ $(document).ready(function(){initNavTree('fp__ema_8h_source.html',''); initResiz
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"> * @param   weight The EMA weight in UQ0.7 format.</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"> * @return  The new mean value in UQ1.15 format.</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a> fp_ema15c(<a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a> mean, <a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a> x, <a class="code" href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a> weight);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"> * @brief   Exponentially weighted moving average using the Q11.4 format.</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> * @details Evaluates the moving average (exponentially weighted) for data in</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"> *          Q11.4 format.</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"> * @param   mean The previous mean value in Q11.4 format.</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"> * @param   x The current value to be added to the average Q11.4 format.</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"> * @param   weight The EMA weight in UQ0.7 format.</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"> * @return  The new mean value in Q11.4 format.</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a> fp_ema4(<a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a> mean, <a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a> x, <a class="code" href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a> weight);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> * @brief   Exponentially weighted moving average using the Q15.16 format.</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"> * @details Evaluates the moving average (exponentially weighted) for data in</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"> *          Q15.16 format.</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"> * @param   mean The previous mean value in Q15.16 format.</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"> * @param   x The current value to be added to the average Q15.16 format.</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment"> * @param   weight The EMA weight in UQ0.7 format.</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment"> * @return  The new mean value in Q15.16 format.</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> fp_ema16(<a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> mean, <a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> x, <a class="code" href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a> weight);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a> fp_ema15c(<a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a> mean, <a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a> x, <a class="code" href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a> weight)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">if</span> (!weight) <span class="keywordflow">return</span> x;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// Heeds the wrap around effect by casting dx to int16:</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    int16_t dx = (int16_t)(x - mean);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    int32_t diff = fp_rnds(weight * dx, 8U);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a>)(mean + diff);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"> * @brief   Exponentially weighted moving average using the Q11.4 format.</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"> * @details Evaluates the moving average (exponentially weighted) for data in</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment"> *          Q11.4 format.</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> * @param   mean The previous mean value in Q11.4 format.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> * @param   x The current value to be added to the average Q11.4 format.</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment"> * @param   weight The EMA weight in UQ0.7 format.</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"> * @return  The new mean value in Q11.4 format.</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a> fp_ema4(<a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a> mean, <a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a> x, <a class="code" href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a> weight)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">if</span> (!weight) <span class="keywordflow">return</span> x;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    int32_t dx = x - mean;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    int32_t diff = fp_rnds(weight * dx, 8U);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a>)(mean + diff);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a> fp_ema15c(<a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a> mean, <a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a> x, <a class="code" href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a> weight)</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">if</span> (!weight) <span class="keywordflow">return</span> x;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="comment">// Heeds the wrap around effect by casting dx to int16:</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    int16_t dx = (int16_t)(x - mean);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    int32_t diff = fp_rnds(weight * dx, 8U);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a>)(mean + diff);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a> fp_ema4(<a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a> mean, <a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a> x, <a class="code" href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a> weight)</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;{</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">if</span> (!weight) <span class="keywordflow">return</span> x;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    int32_t dx = x - mean;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    int32_t diff = fp_rnds(weight * dx, 8U);</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a>)(mean + diff);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> fp_ema16(<a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> mean, <a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> x, <a class="code" href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a> weight)</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">if</span> (!weight) <span class="keywordflow">return</span> x;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">if</span> (x &gt; mean)</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        uint32_t dx = x - mean;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        uint32_t diff = fp_mulu(weight, dx, 8U);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a>) (mean + diff);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    {</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        uint32_t dx = mean - x;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        uint32_t diff = fp_mulu(weight, dx, 8U);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a>) (mean - diff);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;}</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FP_EMA_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment"> * @brief   Exponentially weighted moving average using the Q7.8 format.</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"> * @details Evaluates the moving average (exponentially weighted) for data in</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"> *          Q7.8 format.</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment"> * @param   mean The previous mean value in Q7.8 format.</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment"> * @param   x The current value to be added to the average Q7.8 format.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"> * @param   weight The EMA weight in UQ0.7 format.</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"> * @return  The new mean value in Q7.8 format.</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__fixedpoint.html#gad8ed699f00daceb253208670ab0d406a">q7_8_t</a> fp_ema8(<a class="code" href="group__fixedpoint.html#gad8ed699f00daceb253208670ab0d406a">q7_8_t</a> mean, <a class="code" href="group__fixedpoint.html#gad8ed699f00daceb253208670ab0d406a">q7_8_t</a> x, <a class="code" href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a> weight)</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="group__fixedpoint.html#gad8ed699f00daceb253208670ab0d406a">q7_8_t</a>)fp_ema4(mean, x, weight);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">/*!***************************************************************************</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"> * @brief   Exponentially weighted moving average using the Q15.16 format.</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"> * @details Evaluates the moving average (exponentially weighted) for data in</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"> *          Q15.16 format.</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment"> * @param   mean The previous mean value in Q15.16 format.</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment"> * @param   x The current value to be added to the average Q15.16 format.</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment"> * @param   weight The EMA weight in UQ0.7 format.</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment"> * @return  The new mean value in Q15.16 format.</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"> *****************************************************************************/</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> fp_ema16(<a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> mean, <a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a> x, <a class="code" href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a> weight)</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;{</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordflow">if</span> (!weight) <span class="keywordflow">return</span> x;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordflow">if</span> (x &gt; mean)</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        uint32_t dx = x - mean;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        uint32_t diff = fp_mulu(weight, dx, 8U);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a>) (mean + diff);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        uint32_t dx = mean - x;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        uint32_t diff = fp_mulu(weight, dx, 8U);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a>) (mean - diff);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;}</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FP_EMA_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="afp__def_8h_html"><div class="ttname"><a href="fp__def_8h.html">fp_def.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 API.</div></div>
 <div class="ttc" id="afp__mul_8h_html"><div class="ttname"><a href="fp__mul_8h.html">fp_mul.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 API.</div></div>
 <div class="ttc" id="afp__rnd_8h_html"><div class="ttname"><a href="fp__rnd_8h.html">fp_rnd.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 API.</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_ga62f2d753ec9b11a87302284f7a2e5efe"><div class="ttname"><a href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a></div><div class="ttdeci">uint8_t uq0_8_t</div><div class="ttdoc">Signed fixed point number: Q0.7.</div><div class="ttdef"><b>Definition:</b> fp_def.h:142</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_gab90f3f594d2c37c63d36dc3176176a18"><div class="ttname"><a href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a></div><div class="ttdeci">uint16_t uq1_15_t</div><div class="ttdoc">Unsigned fixed point number: UQ1.15.</div><div class="ttdef"><b>Definition:</b> fp_def.h:214</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_gad963efc4d2f99840d0652cea5db213e6"><div class="ttname"><a href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a></div><div class="ttdeci">int32_t q15_16_t</div><div class="ttdoc">Signed fixed point number: Q15.16.</div><div class="ttdef"><b>Definition:</b> fp_def.h:362</div></div>
-<div class="ttc" id="agroup__fixedpoint_html_gafffb45418d92d4d24e63a3fb2c999fa5"><div class="ttname"><a href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a></div><div class="ttdeci">int16_t q11_4_t</div><div class="ttdoc">Signed fixed point number: Q11.4.</div><div class="ttdef"><b>Definition:</b> fp_def.h:175</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_ga62f2d753ec9b11a87302284f7a2e5efe"><div class="ttname"><a href="group__fixedpoint.html#ga62f2d753ec9b11a87302284f7a2e5efe">uq0_8_t</a></div><div class="ttdeci">uint8_t uq0_8_t</div><div class="ttdoc">Unsigned fixed point number: UQ0.8.</div><div class="ttdef"><b>Definition:</b> fp_def.h:155</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_gab90f3f594d2c37c63d36dc3176176a18"><div class="ttname"><a href="group__fixedpoint.html#gab90f3f594d2c37c63d36dc3176176a18">uq1_15_t</a></div><div class="ttdeci">uint16_t uq1_15_t</div><div class="ttdoc">Unsigned fixed point number: UQ1.15.</div><div class="ttdef"><b>Definition:</b> fp_def.h:264</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_gad8ed699f00daceb253208670ab0d406a"><div class="ttname"><a href="group__fixedpoint.html#gad8ed699f00daceb253208670ab0d406a">q7_8_t</a></div><div class="ttdeci">int16_t q7_8_t</div><div class="ttdoc">Signed fixed point number: Q7.8.</div><div class="ttdef"><b>Definition:</b> fp_def.h:328</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_gad963efc4d2f99840d0652cea5db213e6"><div class="ttname"><a href="group__fixedpoint.html#gad963efc4d2f99840d0652cea5db213e6">q15_16_t</a></div><div class="ttdeci">int32_t q15_16_t</div><div class="ttdoc">Signed fixed point number: Q15.16.</div><div class="ttdef"><b>Definition:</b> fp_def.h:488</div></div>
+<div class="ttc" id="agroup__fixedpoint_html_gafffb45418d92d4d24e63a3fb2c999fa5"><div class="ttname"><a href="group__fixedpoint.html#gafffb45418d92d4d24e63a3fb2c999fa5">q11_4_t</a></div><div class="ttdeci">int16_t q11_4_t</div><div class="ttdoc">Signed fixed point number: Q11.4.</div><div class="ttdef"><b>Definition:</b> fp_def.h:305</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
-		<li class="navelem"><a class="el" href="dir_856524284ebe840938865dc061f982fb.html">Include</a></li><li class="navelem"><a class="el" href="dir_60b1f8d522dfeff1a8d23106ed6bdec7.html">utility</a></li><li class="navelem"><a class="el" href="fp__ema_8h.html">fp_ema.h</a></li>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="navelem"><a class="el" href="dir_82027cc1cfaf56e8782fb3fde083c666.html">Include</a></li><li class="navelem"><a class="el" href="dir_730351516a1c90995cef5395f7cc67c7.html">utility</a></li><li class="navelem"><a class="el" href="fp__ema_8h.html">fp_ema.h</a></li>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>

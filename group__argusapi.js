@@ -3,9 +3,11 @@ var group__argusapi =
     [ "Configuration", "group__arguscfg.html", "group__arguscfg" ],
     [ "Calibration", "group__arguscal.html", "group__arguscal" ],
     [ "Dynamic Configuration Adaption", "group__argusdca.html", "group__argusdca" ],
+    [ "Dual Frequency Mode", "group__argusdfm.html", "group__argusdfm" ],
     [ "Measurement/Device Control", "group__argusmeas.html", "group__argusmeas" ],
     [ "Pixel Binning Algorithm", "group__arguspba.html", "group__arguspba" ],
     [ "Measurement Data", "group__argusres.html", "group__argusres" ],
+    [ "Shot Noise Monitor", "group__argussnm.html", "group__argussnm" ],
     [ "API Version", "group__version.html", "group__version" ],
     [ "ARGUS_MODE_COUNT", "group__argusapi.html#gab6c12778ea85d87b67ffbcdc74d3e754", null ],
     [ "ARGUS_PHASECOUNT", "group__argusapi.html#gac9bb947b66b7f597ca744f947f1c95f1", null ],
@@ -17,15 +19,18 @@ var group__argusapi =
     [ "s2pi_slave_t", "group__argusapi.html#gaa236b64d7430965890e9c6834e24c317", null ],
     [ "argus_chip_version_t", "group__argusapi.html#ga9ad67917cc6683009a92174f75f1a0c5", [
       [ "ADS0032_NONE", "group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d", null ],
-      [ "ADS0032_V1_0", "group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5ab4f16621a650dedb173eb5f135b2ffb2", null ],
-      [ "ADS0032_V1_1", "group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a0b627f633992b10ba97e37f06661b091", null ],
-      [ "ADS0032_V1_2", "group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a8c0583652326e8cf1534d81a39e41212", null ]
+      [ "ADS0032_V1A", "group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5abda0918bc13344766b74238f4197b6bb", null ],
+      [ "ADS0032_V1B", "group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5aee6e2adc408dd6386e2f36ce172a1342", null ],
+      [ "ADS0032_V1C", "group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5ae2443e3144cfa98f47bffd85795c869d", null ],
+      [ "ADS0032_V1D", "group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5a5433aff977cde39a667eeb5e79e79130", null ],
+      [ "ADS0032_V1E", "group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5abec74a1f85859993a292471ef31a73ef", null ]
     ] ],
     [ "argus_laser_type_t", "group__argusapi.html#gaea8d743b35717312c964154cbfe1088c", [
       [ "LASER_NONE", "group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca9c1e9659e75fa79040a779276d4c74c9", null ],
       [ "LASER_H_V1", "group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca0c0b6147f10e1b580e38abbdbe21e52f", null ],
       [ "LASER_H_V2", "group__argusapi.html#ggaea8d743b35717312c964154cbfe1088cab397e4de9cd7aaa96e9dcd158f9fb1a3", null ],
-      [ "LASER_R_V1", "group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca59af409963e474593f4628805e2ecdf3", null ]
+      [ "LASER_R_V1", "group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca59af409963e474593f4628805e2ecdf3", null ],
+      [ "LASER_H_V2X", "group__argusapi.html#ggaea8d743b35717312c964154cbfe1088ca90d582a8e79ccf35566b16c949eec154", null ]
     ] ],
     [ "argus_mode_t", "group__argusapi.html#gabe8846d7abef63b75e8147f4f142708b", [
       [ "ARGUS_MODE_A", "group__argusapi.html#ggabe8846d7abef63b75e8147f4f142708baf9e4186b737a5b7e99dd84183995d0da", null ],

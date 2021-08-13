@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['utility_876',['Utility',['../group__argusutil.html',1,'']]]
+  ['time_20utility_943',['Time Utility',['../group__time.html',1,'']]],
+  ['timer_3a_20hardware_20timer_20interface_944',['Timer: Hardware Timer Interface',['../group__argus__timer.html',1,'']]]
 ];

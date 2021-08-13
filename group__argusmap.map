@@ -1,4 +1,4 @@
 <map id="ADC Channel Mapping" name="ADC Channel Mapping">
-<area shape="rect" id="node1" href="$group__argusres.html" title="Measurement results data structures." alt="" coords="5,5,137,31"/>
-<area shape="rect" id="node2" title="Pixel ADC Channel (n) to x&#45;y&#45;Index Mapping." alt="" coords="185,5,339,31"/>
+<area shape="rect" id="node1" href="$group__argusres.html" title="Measurement results data structures." alt="" coords="5,5,136,31"/>
+<area shape="rect" id="node2" title="Pixel ADC Channel Mapping." alt="" coords="184,5,335,31"/>
 </map>

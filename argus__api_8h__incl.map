@@ -1,21 +1,21 @@
 <map id="Include/api/argus_api.h" name="Include/api/argus_api.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="435,5,590,32"/>
-<area shape="rect" id="node2" href="$argus__def_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="455,304,544,331"/>
-<area shape="rect" id="node12" href="$argus__res_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="343,80,434,107"/>
-<area shape="rect" id="node16" href="$argus__pba_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="609,155,702,181"/>
-<area shape="rect" id="node17" href="$argus__dfm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="509,80,602,107"/>
-<area shape="rect" id="node18" href="$argus__snm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="627,80,724,107"/>
-<area shape="rect" id="node19" href="$argus__xtalk_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="701,229,801,256"/>
-<area shape="rect" id="node3" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,379,113,405"/>
-<area shape="rect" id="node4" title=" " alt="" coords="232,453,297,480"/>
-<area shape="rect" id="node5" href="$argus__version_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="189,379,301,405"/>
-<area shape="rect" id="node6" href="$fp__def_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="325,379,428,405"/>
-<area shape="rect" id="node7" href="$time_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="453,379,546,405"/>
-<area shape="rect" id="node8" title=" " alt="" coords="503,453,578,480"/>
-<area shape="rect" id="node9" title=" " alt="" coords="621,379,690,405"/>
-<area shape="rect" id="node10" title=" " alt="" coords="715,379,783,405"/>
-<area shape="rect" id="node11" title=" " alt="" coords="807,379,872,405"/>
-<area shape="rect" id="node13" href="$argus__px_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="369,155,456,181"/>
-<area shape="rect" id="node14" href="$argus__meas_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="481,155,585,181"/>
-<area shape="rect" id="node15" href="$argus__dca_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="495,229,589,256"/>
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="607,5,761,32"/>
+<area shape="rect" id="node2" href="$argus__def_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="453,304,542,331"/>
+<area shape="rect" id="node12" href="$argus__res_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="450,80,539,107"/>
+<area shape="rect" id="node16" href="$argus__pba_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="610,229,702,256"/>
+<area shape="rect" id="node17" href="$argus__dfm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="680,80,773,107"/>
+<area shape="rect" id="node18" href="$argus__snm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="797,80,893,107"/>
+<area shape="rect" id="node19" href="$argus__xtalk_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="780,155,879,181"/>
+<area shape="rect" id="node3" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,379,112,405"/>
+<area shape="rect" id="node4" title=" " alt="" coords="231,453,295,480"/>
+<area shape="rect" id="node5" href="$argus__version_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="187,379,301,405"/>
+<area shape="rect" id="node6" href="$fp__def_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="325,379,427,405"/>
+<area shape="rect" id="node7" href="$time_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="452,379,543,405"/>
+<area shape="rect" id="node8" title=" " alt="" coords="501,453,576,480"/>
+<area shape="rect" id="node9" title=" " alt="" coords="618,379,686,405"/>
+<area shape="rect" id="node10" title=" " alt="" coords="710,379,778,405"/>
+<area shape="rect" id="node11" title=" " alt="" coords="803,379,867,405"/>
+<area shape="rect" id="node13" href="$argus__px_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="394,155,478,181"/>
+<area shape="rect" id="node14" href="$argus__meas_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="502,155,605,181"/>
+<area shape="rect" id="node15" href="$argus__dca_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="494,229,586,256"/>
 </map>

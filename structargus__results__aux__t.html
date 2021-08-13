@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AFBR-S50 SDK - Argus API Reference Manual: argus_results_aux_t Struct Reference</title>
+<title>AFBR-S50 API Reference Manual: argus_results_aux_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
     jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
-<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -34,8 +34,8 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AFBR-S50 SDK - Argus API Reference Manual
-   &#160;<span id="projectnumber">v1.2.3</span>
+   <div id="projectname">AFBR-S50 API Reference Manual
+   &#160;<span id="projectnumber">v1.3.5</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -124,7 +124,8 @@ Data Fields</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The auxiliary measurement results data structure. </p>
 <hr  />
-<p>The auxiliary measurement results obtained by the auxiliary task. Special values, i.e. 0xFFFFU, indicate no readout value available. </p>
+<p>The auxiliary measurement results obtained by the auxiliary task.<br  />
+ Special values, i.e. 0xFFFFU, indicate no readout value available. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a0f03abb8681f3372d4187ab84bcc4fdd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0f03abb8681f3372d4187ab84bcc4fdd">&#9670;&nbsp;</a></span>BGL</h2>
@@ -137,7 +138,9 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Background Light Value in arbitrary. units, estimated by the substrate voltage control task. Special Value if no value is available: Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
+<p>Background Light Value in arbitrary. units, estimated by the substrate voltage control task.<br  />
+Special Value if no value is available:<br  />
+Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
 
 </div>
 </div>
@@ -152,7 +155,9 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>APD current ADC Channel readout value. Special Value if no value has been measured: Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
+<p>APD current ADC Channel readout value.<br  />
+Special Value if no value has been measured:<br  />
+Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
 
 </div>
 </div>
@@ -167,7 +172,9 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Shot Noise Amplitude in LSB units, estimated by the shot noise monitor task from the average amplitude of the passive pixels. Special Value if no value is available: Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
+<p>Shot Noise Amplitude in LSB units, estimated by the shot noise monitor task from the average amplitude of the passive pixels.<br  />
+Special Value if no value is available:<br  />
+Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
 
 </div>
 </div>
@@ -182,7 +189,9 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Temperature sensor ADC channel readout value. Special Value if no value has been measured: Invalid/NotAvailable = 0x7FFFU (Q11_4_MAX) </p>
+<p>Temperature sensor ADC channel readout value.<br  />
+Special Value if no value has been measured:<br  />
+Invalid/NotAvailable = 0x7FFFU (Q11_4_MAX) </p>
 
 </div>
 </div>
@@ -197,7 +206,9 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>VDD ADC channel readout value. Special Value if no value has been measured: Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
+<p>VDD ADC channel readout value.<br  />
+Special Value if no value has been measured:<br  />
+Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
 
 </div>
 </div>
@@ -212,7 +223,9 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>VDD VCSEL ADC channel readout value. Special Value if no value has been measured: Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
+<p>VDD VCSEL ADC channel readout value.<br  />
+Special Value if no value has been measured:<br  />
+Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
 
 </div>
 </div>
@@ -227,7 +240,9 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Substrate Voltage ADC Channel readout value. Special Value if no value has been measured: Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
+<p>Substrate Voltage ADC Channel readout value.<br  />
+Special Value if no value has been measured:<br  />
+Invalid/NotAvailable = 0xFFFFU (UQ12_4_MAX) </p>
 
 </div>
 </div>
@@ -238,11 +253,12 @@ Data Fields</h2></td></tr>
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+<div id="nav-path" class="navpath">
+	<!-- id is needed for treeview function! -->
 	<ul>
 		<li class="navelem"><a class="el" href="structargus__results__aux__t.html">argus_results_aux_t</a></li>
-		<li class="footer">
-            <a href="https://www.broadcom.com/">Broadcom Inc.</a>
+		<li class="footer"> 
+			<a href="https://www.broadcom.com/">Broadcom Inc.</a>
 		</li>
 	</ul>
 </div>
