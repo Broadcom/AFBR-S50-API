@@ -41,7 +41,6 @@
 
 #include "board/clock_config.h"
 #include "driver/cop.h"
-#include "driver/gpio.h"
 #include "driver/s2pi.h"
 #include "driver/uart.h"
 #include "driver/timer.h"
@@ -62,7 +61,7 @@
  *  - 0: measurements are triggered in synchronously from the main thread.
  *  - 1: measurements are triggered asynchronously from the background. */
 #ifndef ADVANCED_DEMO
-#define ADVANCED_DEMO 0
+#define ADVANCED_DEMO 1
 #endif
 
 /*! Define the SPI slave (to be used in the SPI module). */
@@ -98,6 +97,17 @@ static volatile void * myData = 0;
 extern status_t print(const char  *fmt_s, ...);
 
 /*!***************************************************************************
+ * @brief	Prints measurement results via UART.
+ *
+ * @details Prints some measurement data via UART in the following format:
+ *
+ * 			Range: 123456 mm;  Amplitude: 1234 LSB  Status: 0
+ *
+ * @param	res A pointer to the latest measurement results structure.
+ *****************************************************************************/
+static void print_results(argus_results_t const * res);
+
+/*!***************************************************************************
  * @brief	Initialization routine for board hardware and peripherals.
  *****************************************************************************/
 static void hardware_init(void);
@@ -105,14 +115,24 @@ static void hardware_init(void);
 /*!***************************************************************************
  * @brief	Measurement data ready callback function.
  *
- * @details
- *
- * @param	status *
- * @param	data *
+ * @param	status The measurement/device status from the last measurement cycle.
+ * @param	data A pointer to the raw measurement data results that need to be
+ * 				 passed to the #Argus_EvaluateData function.
  * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t measurement_ready_callback(status_t status, void * data);
 
+/*!***************************************************************************
+ * @brief	A very brief example for error handling.
+ *
+ * @details	Checks the specified status for errors (i.e. negative values) and
+ * 			prints a specified error message if any. An endless loop is entered
+ * 			to halt program execution.
+ *
+ * @param	status The specified status to be checked for errors.
+ * @param	msg The associated error message to be printed in case of errors.
+ *****************************************************************************/
+static void handle_error(status_t status, char const * msg);
 
 /*******************************************************************************
  * Code
@@ -123,23 +143,25 @@ status_t measurement_ready_callback(status_t status, void * data);
  *
  * @details	The main function of the program, called after startup code
  * 			This function should never be exited.
+ *
+ * @return	Never returns anything...
  *****************************************************************************/
 int main(void)
 {
+	status_t status = STATUS_OK;
+
+	/* Initialize the platform hardware including the required peripherals
+	 * for the API. */
+	hardware_init();
+
+
 	/* The API module handle that contains all data definitions that is
 	 * required within the API module for the corresponding hardware device.
 	 * Every call to an API function requires the passing of a pointer to this
 	 * data structure. */
 	argus_hnd_t * hnd = Argus_CreateHandle();
+	handle_error(hnd ? STATUS_OK : ERROR_FAIL, "Argus_CreateHandle failed!");
 
-	if (hnd == 0)
-	{
-		/* Error Handling ...*/
-	}
-
-	/* Initialize the platform hardware including the required peripherals
-	 * for the API. */
-	hardware_init();
 
 	/* Initialize the API with default values.
 	 * This implicitly calls the initialization functions
@@ -149,12 +171,9 @@ int main(void)
 	 * to the S2PI module. This piece of information can be utilized in
 	 * order to determine the addressed SPI slave and enabled the usage
 	 * of multiple devices on a single SPI peripheral. */
-	status_t status = Argus_Init(hnd, SPI_SLAVE);
+	status = Argus_Init(hnd, SPI_SLAVE);
+	handle_error(status, "Argus_Init failed!");
 
-	if (status != STATUS_OK)
-	{
-		/* Error Handling ...*/
-	}
 
 	/* Print some information about current API and connected device. */
 	uint32_t value = Argus_GetAPIVersion();
@@ -183,8 +202,10 @@ int main(void)
 		  mv == AFBR_S50SV85K_V1 ? "AFBR-S50SV85K (v1)" :
 		  "unknown");
 
+
 	/* Adjust some configuration parameters by invoking the dedicated API methods. */
-	Argus_SetConfigurationFrameTime( hnd, 100000 ); // 0.1 second = 10 Hz
+	status = Argus_SetConfigurationFrameTime( hnd, 100000 ); // 0.1 second = 10 Hz
+	handle_error(status, "Argus_SetConfigurationFrameTime failed!");
 
 #if ADVANCED_DEMO
 
@@ -195,18 +216,16 @@ int main(void)
 	 * Note that the timer based measurement is not implemented for multiple
 	 * instance yet! */
 	status = Argus_StartMeasurementTimer(hnd, measurement_ready_callback);
+	handle_error(status, "Argus_StartMeasurementTimer failed!");
 
-	if (status != STATUS_OK)
-	{
-		/* Error Handling ...*/
-	}
 
+	/* The program loop ... */
 	for(;;)
 	{
 		/* Check if new measurement data is ready. */
-		if(myData != 0)
+		if (myData != 0)
 		{
-		/* Release for next measurement data. */
+			/* Release for next measurement data. */
 			void * data = (void *) myData;
 			myData = 0;
 
@@ -214,19 +233,11 @@ int main(void)
 			argus_results_t res;
 
 			/* Evaluate the raw measurement results. */
-		    status = Argus_EvaluateData( hnd, &res, data );
+		    status = Argus_EvaluateData(hnd, &res, data);
+		    handle_error(status, "Argus_EvaluateData failed!");
 
-			if (status != STATUS_OK)
-			{
-				/* Error Handling ...*/
-			}
-
-			else
-			{
-				/* Use the recent measurement results
-				 * (converting the Q9.22 value to float and print or display it). */
-				print("Range: %d mm\n", res.Bin.Range / (Q9_22_ONE / 1000));
-			}
+			/* Use the obtain results, e.g. print via UART. */
+			print_results(&res);
 		}
 		else
 		{
@@ -235,10 +246,10 @@ int main(void)
 		}
 	}
 
-
 #else
+
 	/* The program loop ... */
-	for(;;)
+	for (;;)
 	{
 		myData = 0;
 
@@ -249,15 +260,13 @@ int main(void)
 		 * the function must be called again later. Use the frame time configuration
 		 * in order to adjust the timing between two measurement frames. */
 		status = Argus_TriggerMeasurement(hnd, measurement_ready_callback);
+		handle_error(status, "Argus_StartMeasurementTimer failed!");
+
 		if (status == STATUS_ARGUS_POWERLIMIT)
 		{
 			/* Not ready (due to laser safety) to restart the measurement yet.
 			 * Come back later. */
-			__asm("nop");
-		}
-		else if (status != STATUS_OK)
-		{
-			/* Error Handling ...*/
+			continue;
 		}
 		else
 		{
@@ -265,38 +274,46 @@ int main(void)
 			do
 			{
 				status = Argus_GetStatus(hnd);
-				__asm("nop");
 			}
-			while(status == STATUS_BUSY);
+			while (status == STATUS_BUSY);
+			handle_error(status, "Waiting for measurement data ready (Argus_GetStatus) failed!");
 
-			if (status != STATUS_OK)
-			{
-				/* Error Handling ...*/
-			}
+			/* The measurement data structure. */
+			argus_results_t res;
 
-			else
-			{
-				/* The measurement data structure. */
-				argus_results_t res;
+			/* Evaluate the raw measurement results. */
+			status = Argus_EvaluateData(hnd, &res, (void*) myData);
+			handle_error(status, "Argus_EvaluateData failed!");
 
-				/* Evaluate the raw measurement results. */
-				status = Argus_EvaluateData(hnd, &res, (void*)myData);
-
-				if (status != STATUS_OK)
-				{
-					/* Error Handling ...*/
-				}
-
-				else
-				{
-					/* Use the recent measurement results
-					 * (converting the Q9.22 value to float and print or display it). */
-					print("Range: %d mm\n", res.Bin.Range / (Q9_22_ONE / 1000));
-				}
-			}
+			/* Use the obtain results, e.g. print via UART. */
+			print_results(&res);
 		}
 	}
+
 #endif
+}
+
+static void print_results(argus_results_t const * res)
+{
+	/* Print the recent measurement results:
+	 * 1. Range in mm (converting the Q9.22 value to mm)
+	 * 2. Amplitude in LSB (converting the UQ12.4 value to LSB)
+	 * 3. Status (0: OK, <0: Error, >0: Warning */
+	print("Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n",
+		  res->Bin.Range / (Q9_22_ONE / 1000),
+		  res->Bin.Amplitude / UQ12_4_ONE,
+		  res->Bin.SignalQuality,
+		  res->Status);
+}
+
+static void handle_error(status_t status, char const * msg)
+{
+	/* Check for status < 0 and print message and halt the program execution. */
+	if (status < STATUS_OK)
+	{
+		print("ERROR: %s\nError Code: %d", msg, status);
+		while (1) __asm("nop"); // stop!
+	}
 }
 
 static void hardware_init(void)
@@ -306,9 +323,6 @@ static void hardware_init(void)
 
 	/* Disable the watchdog timer. */
 	COP_Disable();
-
-	/* Init GPIO ports. */
-	GPIO_Init();
 
 	/* Initialize timer required by the API. */
 	Timer_Init();
@@ -322,20 +336,14 @@ static void hardware_init(void)
 
 status_t measurement_ready_callback(status_t status, void * data)
 {
-	if (status != STATUS_OK)
-	{
-		/* Error Handling ...*/
-	}
-	else
-	{
-		/* Inform the main task about new data ready.
-		 * Note: do not call the evaluate measurement method
-		 * from within this callback since it is invoked in
-		 * a interrupt service routine and should return as
-		 * soon as possible. */
-		assert(myData == 0);
+	handle_error(status, "Measurement Ready Callback received error!");
 
-		myData = data;
-	}
+	/* Inform the main task about new data ready.
+	 * Note: do not call the evaluate measurement method
+	 * from within this callback since it is invoked in
+	 * a interrupt service routine and should return as
+	 * soon as possible. */
+	assert(myData == 0);
+	myData = data;
 	return status;
 }

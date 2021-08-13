@@ -41,8 +41,6 @@
 
 #include "driver/flash.h"
 
-#if !(defined(AFBR_FMT_BUILD) && AFBR_FMT_BUILD)
-
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -70,44 +68,33 @@
  * Code
  ******************************************************************************/
 
+
 status_t NVM_Init(uint32_t size)
 {
-	if (size > NVM_FLASH_SECTOR_COUNT * FLASH_SECTOR_SIZE)
+	if (size > FLASH_API_SIZE)
 		return ERROR_NVM_OUT_OF_RANGE;
 
 	return STATUS_OK;
 }
 
-status_t NVM_Clear(void)
-{
-	status_t
-	status = Flash_Clear(NVM_FLASH_INDEX_1, 0, FLASH_SECTOR_SIZE);
-	if (status < STATUS_OK) return status;
-	status = Flash_Clear(NVM_FLASH_INDEX_2, 0, FLASH_SECTOR_SIZE);
-	if (status < STATUS_OK) return status;
-	status = Flash_Clear(NVM_FLASH_INDEX_3, 0, FLASH_SECTOR_SIZE);
-	if (status < STATUS_OK) return status;
-	return status;
-}
-
 status_t NVM_Write(uint32_t offset, uint32_t size, uint8_t const * buf)
 {
-	if (offset + size > NVM_FLASH_SECTOR_COUNT * FLASH_SECTOR_SIZE)
+	if (offset + size > FLASH_API_SIZE)
 		return ERROR_NVM_OUT_OF_RANGE;
 
 	status_t status = STATUS_OK;
 	uint32_t idx = NVM_FLASH_INDEX_1;
-	while (offset >= FLASH_SECTOR_SIZE)
+	while (offset >= FLASH_BLOCK_SIZE)
 	{
 		idx++;
-		offset -= FLASH_SECTOR_SIZE;
+		offset -= FLASH_BLOCK_SIZE;
 	}
 
 	while (size)
 	{
 		uint32_t size2 = size;
-		if (offset + size > FLASH_SECTOR_SIZE)
-			size2 = FLASH_SECTOR_SIZE - offset;
+		if (offset + size > FLASH_BLOCK_SIZE)
+			size2 = FLASH_BLOCK_SIZE - offset;
 
 		status = Flash_Write(idx, offset, buf, size2);
 		if (status < STATUS_OK) return status;
@@ -123,22 +110,22 @@ status_t NVM_Write(uint32_t offset, uint32_t size, uint8_t const * buf)
 
 status_t NVM_Read(uint32_t offset, uint32_t size, uint8_t * buf)
 {
-	if (offset + size > NVM_FLASH_SECTOR_COUNT * FLASH_SECTOR_SIZE)
+	if (offset + size > FLASH_API_SIZE)
 		return ERROR_NVM_OUT_OF_RANGE;
 
 	status_t status = STATUS_OK;
 	uint32_t idx = NVM_FLASH_INDEX_1;
-	while (offset >= FLASH_SECTOR_SIZE)
+	while (offset >= FLASH_BLOCK_SIZE)
 	{
 		idx++;
-		offset -= FLASH_SECTOR_SIZE;
+		offset -= FLASH_BLOCK_SIZE;
 	}
 
 	while (size)
 	{
 		uint32_t size2 = size;
-		if (offset + size > FLASH_SECTOR_SIZE)
-			size2 = FLASH_SECTOR_SIZE - offset;
+		if (offset + size > FLASH_BLOCK_SIZE)
+			size2 = FLASH_BLOCK_SIZE - offset;
 
 		status = Flash_Read(idx, offset, buf, size2);
 		if (status < STATUS_OK) return status;
@@ -151,11 +138,15 @@ status_t NVM_Read(uint32_t offset, uint32_t size, uint8_t * buf)
 
 	return status;
 }
-#else
 
 status_t NVM_Clear(void)
 {
-	return STATUS_OK;
+	status_t
+	status = Flash_Clear(NVM_FLASH_INDEX_1, 0, FLASH_BLOCK_SIZE);
+	if (status < STATUS_OK) return status;
+	status = Flash_Clear(NVM_FLASH_INDEX_2, 0, FLASH_BLOCK_SIZE);
+	if (status < STATUS_OK) return status;
+	status = Flash_Clear(NVM_FLASH_INDEX_3, 0, FLASH_BLOCK_SIZE);
+	if (status < STATUS_OK) return status;
+	return status;
 }
-
-#endif /* AFBR_FMT_BUILD */

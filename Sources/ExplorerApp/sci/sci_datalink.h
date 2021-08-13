@@ -98,18 +98,32 @@ status_t SCI_DataLink_CheckRxFrame(sci_frame_t * frame);
 /*!***************************************************************************
  * @brief	Releases the frame queue.
  * @param	frame The frame queue to be released.
- * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-status_t SCI_DataLink_ReleaseFrames(sci_frame_t * frame);
+void SCI_DataLink_ReleaseFrames(sci_frame_t * frame);
+
+/*!***************************************************************************
+ * @brief	Resets the read pointer of a frame.
+ * @param	frame The frame queue to be reseted.
+ *****************************************************************************/
+void SCI_DataLink_ResetRxFrames(sci_frame_t * frame);
+
+/*!***************************************************************************
+ * @brief	Returns whether the TX line is currently busy and data is being sent.
+ * @return	Returns true if the TX line is busy sending data.
+ *****************************************************************************/
+bool SCI_DataLink_IsTxBusy(void);
 
 /*!***************************************************************************
  * @brief	Trigger the data transfer and releases the Tx buffers.
  * @details	Before the frame is transfered, a stop byte is added to the end
  * 			of the data buffer.
  * @param	frame The frame to be sent.
+ * @param	high_priority If set, the frame is queued right after the current
+ *                        frame. If not set, the frame is queued at the very
+ *                        end of the frame queue.
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-status_t SCI_DataLink_SendTxFrame(sci_frame_t * frame);
+status_t SCI_DataLink_SendTxFrame(sci_frame_t * frame, bool high_priority);
 
 /*!***************************************************************************
  * @brief	Find an unused Tx buffer from the queue and prepare it with a start

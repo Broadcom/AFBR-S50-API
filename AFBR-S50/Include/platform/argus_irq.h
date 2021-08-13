@@ -44,7 +44,7 @@
  * @brief		Global Interrupt Control Layer
  *
  * @details		This module provides functionality to globally enable/disable
- *				interrupts by turning the I-bit in the CPSR on/off.
+ *				interrupts in a nested way.
  *
  *				Here is a simple example implementation using the CMSIS functions
  *				"__enable_irq()" and "__disable_irq()". An integer counter is
@@ -80,6 +80,10 @@
  * 				instruction only. It does NOT lock interrupts for considerable
  * 				amounts of time.
  *
+ * @note 		The IRQ_LOCK might get called multiple times. Therefore, the
+ * 				API expects that the IRQ_UNLOCK must be called as many times as
+ * 				the IRQ_LOCK was called before the interrupts are enabled.
+ *
  * @note		The interrupts utilized by the AFBR-S50 API can be interrupted
  * 				by other, higher prioritized interrupts, e.g. some system
  * 				critical interrupts. In this case, the IRQ_LOCK/IRQ_UNLOCK
@@ -96,16 +100,22 @@
 /*!***************************************************************************
  * @brief	Enable IRQ Interrupts
  *
- * @details	Enables IRQ interrupts by clearing the I-bit in the CPSR.
- * 			Can only be executed in Privileged modes.
+ * @details	Enables IRQ interrupts and enters an atomic or critical section.
+ *
+ * @note 	The IRQ_LOCK might get called multiple times. Therefore, the
+ * 			API expects that the IRQ_UNLOCK must be called as many times as
+ * 			the IRQ_LOCK was called before the interrupts are enabled.
  *****************************************************************************/
 void IRQ_UNLOCK(void);
 
 /*!***************************************************************************
  * @brief	Disable IRQ Interrupts
  *
- * @details	Disables IRQ interrupts by setting the I-bit in the CPSR.
- * 			Can only be executed in Privileged modes.
+ * @details	Disables IRQ interrupts and leaves the atomic or critical section.
+ *
+ * @note 	The IRQ_LOCK might get called multiple times. Therefore, the
+ * 			API expects that the IRQ_UNLOCK must be called as many times as
+ * 			the IRQ_LOCK was called before the interrupts are enabled.
  *****************************************************************************/
 void IRQ_LOCK(void);
 

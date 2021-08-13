@@ -40,6 +40,7 @@
  ******************************************************************************/
 #include "explorer_api_data.h"
 
+#include "api/argus_map.h"
 #include "utility/fp_rnd.h"
 #include "utility/int_math.h"
 
@@ -68,6 +69,7 @@ static void Serialize_MeasurementData_FrameConfig(sci_frame_t * frame, argus_res
 	SCI_Frame_Queue16u(frame, (uint16_t) res->Frame.AnalogIntegrationDepth);
 	SCI_Frame_Queue16u(frame, (uint16_t) res->Frame.OutputPower);
 	SCI_Frame_Queue08u(frame, (uint8_t) res->Frame.PixelGain);
+	SCI_Frame_Queue08u(frame, (uint8_t) res->Frame.BiasCurrent);
 }
 static void Serialize_MeasurementData_RawData(sci_frame_t * frame, argus_results_t const * res)
 {
@@ -185,24 +187,18 @@ static void Serialize_MeasurementData_1D(sci_frame_t * frame, argus_results_t co
 {
 	if (type == CMD_MEASUREMENT_DATA_1D_DEBUG)
 	{
-		uint8_t px_count = 0;
-		uint8_t sat_count = 0;
-		for (uint_fast8_t x = 0; x < ARGUS_PIXELS_X; ++x)
+		uint32_t bin_msk = 0xFFFFFFFFU;
+		uint32_t sat_msk = 0x00000000U;
+		uint8_t n = 0;
+		for (const argus_pixel_t * px = res->Pixels; px < &res->PixelRef; ++px, ++n)
 		{
-			for (uint_fast8_t y = 0; y < ARGUS_PIXELS_Y; ++y)
-			{
-				if (!(res->Pixel[x][y].Status & (PIXEL_OFF | PIXEL_BIN_EXCL)))
-				{
-					px_count++;
-				}
-				if (res->Pixel[x][y].Status & PIXEL_SAT)
-				{
-					sat_count++;
-				}
-			}
+			if (!(px->Status & (PIXEL_OFF | PIXEL_BIN_EXCL)))
+				PIXELN_DISABLE(bin_msk, n);
+			if (px->Status & PIXEL_SAT)
+				PIXELN_ENABLE(sat_msk, n);
 		}
-		SCI_Frame_Queue08u(frame, px_count);
-		SCI_Frame_Queue08u(frame, sat_count);
+		SCI_Frame_Queue32u(frame, bin_msk);
+		SCI_Frame_Queue32u(frame, sat_msk);
 	}
 
 	if (res->Bin.Range == ARGUS_RANGE_MAX)
@@ -215,6 +211,7 @@ static void Serialize_MeasurementData_1D(sci_frame_t * frame, argus_results_t co
 	}
 
 	SCI_Frame_Queue16u(frame, res->Bin.Amplitude);
+	SCI_Frame_Queue08u(frame, res->Bin.SignalQuality);
 }
 static void Serialize_MeasurementData_Aux(sci_frame_t * frame, argus_results_t const * res, sci_cmd_t type)
 {
@@ -231,25 +228,11 @@ static void Serialize_MeasurementData(sci_frame_t * frame, argus_results_t const
 {
 	SCI_Frame_Queue16u(frame, res->Status);
 	SCI_Frame_Queue_Time(frame, &res->TimeStamp);
-
 	SCI_Frame_Queue16u(frame, res->Frame.State);
 
-	if (type == CMD_MEASUREMENT_DATA_RAW ||
-	    type == CMD_MEASUREMENT_DATA_DEBUG ||
-	    type == CMD_MEASUREMENT_DATA_FULL ||
-	    type == CMD_MEASUREMENT_DATA_3D_DEBUG ||
-	    type == CMD_MEASUREMENT_DATA_3D ||
-	    type == CMD_MEASUREMENT_DATA_1D_DEBUG)
+	if (type != CMD_MEASUREMENT_DATA_1D)
 	{
 		Serialize_MeasurementData_FrameConfig(frame, res);
-	}
-
-	if (type == CMD_MEASUREMENT_DATA_RAW ||
-	    type == CMD_MEASUREMENT_DATA_DEBUG ||
-	    type == CMD_MEASUREMENT_DATA_FULL ||
-	    type == CMD_MEASUREMENT_DATA_3D_DEBUG ||
-	    type == CMD_MEASUREMENT_DATA_3D)
-	{
 		SCI_Frame_Queue32u(frame, (uint32_t) res->Frame.PxEnMask);
 	}
 
@@ -280,6 +263,9 @@ static void Serialize_MeasurementData(sci_frame_t * frame, argus_results_t const
 	    type == CMD_MEASUREMENT_DATA_FULL)
 	{
 		Serialize_MeasurementData_Aux(frame, res, type);
+		SCI_Frame_Queue32u(frame, res->Frame.IntegrationTime);
+		SCI_Frame_Queue16u(frame, res->Frame.DCAAmplitude);
+		SCI_Frame_Queue08u(frame, res->Frame.PllCtrlCur);
 	}
 }
 

@@ -62,14 +62,10 @@
  * @param	x The input parameter in unsigned fixed point format Q15.16.
  * @return	Result y = ln(x) in the UQ16.16 format.
  *****************************************************************************/
-static inline q15_16_t fp_log16(uq16_16_t x);
-
 static inline q15_16_t fp_log16(uq16_16_t x)
 {
 	if (x == UQ16_16_ONE) return 0;
 	if (x == UQ16_16_E) return Q15_16_ONE;
-
-	/* https://www.quinapalus.com/efunc.html */
 
 	int32_t t = 0;
 	int32_t y = 0x0A65AF68; // log(2^15) in Q7.24

@@ -56,6 +56,10 @@
 #include "devices/MKL46Z/MKL46Z4.h"
 #include "devices/MKL46Z/MKL46Z4_features.h"
 
+#elif defined(STM32F401xE)
+
+
+
 #endif
 
 
@@ -89,19 +93,19 @@
  * Board GPIO configuration
  *****************************************************************************/
 
-/* PTA1 (LPUART0_RX, DATA_READY) */
-#define BOARD_PTA01_PORT		PORTA				/*!< PTA1 - Port. */
-#define BOARD_PTA01_GPIO		GPIOA				/*!< PTA1 - GPIO. */
-#define BOARD_PTA01_GPIO_PIN	1U					/*!< PTA1 - Pin Number. */
-#define BOARD_PTA01_MUX_GPIO	0U					/*!< PTA1 - Pin Muxing for GPIO mode. */
-#define BOARD_PTA01_MUX_UART	2U					/*!< PTA1 - Pin Muxing for UART mode. */
-
-/* PTA2 (LPUART0_TX, MUX) */
-#define BOARD_PTA02_PORT		PORTA				/*!< PTA2 - Port. */
-#define BOARD_PTA02_GPIO		GPIOA				/*!< PTA2 - GPIO. */
-#define BOARD_PTA02_GPIO_PIN	2U					/*!< PTA2 - Pin Number. */
-#define BOARD_PTA01_MUX_GPIO	0U					/*!< PTA2 - Pin Muxing for GPIO mode. */
-#define BOARD_PTA01_MUX_UART	2U					/*!< PTA2 - Pin Muxing for UART mode. */
+///* PTA1 (LPUART0_RX, DATA_READY) */
+//#define BOARD_PTA01_PORT		PORTA				/*!< PTA1 - Port. */
+//#define BOARD_PTA01_GPIO		GPIOA				/*!< PTA1 - GPIO. */
+//#define BOARD_PTA01_GPIO_PIN	1U					/*!< PTA1 - Pin Number. */
+//#define BOARD_PTA01_MUX_GPIO	0U					/*!< PTA1 - Pin Muxing for GPIO mode. */
+//#define BOARD_PTA01_MUX_UART	2U					/*!< PTA1 - Pin Muxing for UART mode. */
+//
+///* PTA2 (LPUART0_TX, MUX) */
+//#define BOARD_PTA02_PORT		PORTA				/*!< PTA2 - Port. */
+//#define BOARD_PTA02_GPIO		GPIOA				/*!< PTA2 - GPIO. */
+//#define BOARD_PTA02_GPIO_PIN	2U					/*!< PTA2 - Pin Number. */
+//#define BOARD_PTA01_MUX_GPIO	0U					/*!< PTA2 - Pin Muxing for GPIO mode. */
+//#define BOARD_PTA01_MUX_UART	2U					/*!< PTA2 - Pin Muxing for UART mode. */
 
 /* PTE16 (SPI0_CS, MUX) */
 #define BOARD_PTE16_PORT		PORTE				/*!< PTE16 - Port. */
@@ -169,7 +173,14 @@
 
 /* SPI instance */
 #define S2PI_BASE					SPI1				/*!< S2PI Instance Base Address. */
-#define SPI_BAUD_RATE_MAX 			6000000U			/*! S2PI Baud Rate Maximum in bps for KL17z. */
+
+#ifndef SPI_MAX_BAUDRATE
+#define SPI_MAX_BAUDRATE 			6000000U			/*! S2PI Baud Rate Maximum in bps for KL17z. */
+#endif
+
+#ifndef SPI_BAUDRATE
+#define SPI_BAUDRATE		SPI_MAX_BAUDRATE	/*!< S2PI default Baud Rate in pbs for KL17z. */
+#endif
 
 /* DMA Channels (0..3) */
 #define DMA_CHANNEL_SPI_TX 			0U					/*!< DMA Channel 0: SPI transmit */
@@ -185,12 +196,12 @@
 /* The UART to use for communication with the AFBR-S50 Explorer. */
 #define UART_INSTANCE				0U					/*!< UART Instance Number. */
 #define UART_BASEADDR				LPUART0				/*!< UART Instance Base Address. */
-#ifndef UART_BAUDRATE
-#define UART_BAUDRATE				115200U 			/*!< UART Baud Rate. */
-#endif
 #define UART_IRQn					LPUART0_IRQn		/*!< UART Interrupt Number. */
 #define UART_IRQ_HANDLER			LPUART0_IRQHandler	/*!< UART Interrupt Handler. */
 #define UART_CLKSRC					kCLOCK_CoreSysClk	/*!< UART Clock Source (Core System Clock). */
+#ifndef UART_BAUDRATE
+#define UART_BAUDRATE				115200U 			/*!< UART Baud Rate. */
+#endif
 
 
 #elif defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
@@ -331,7 +342,12 @@
 
 /* SPI instance */
 #define S2PI_BASE					SPI0				/*!< S2PI Instance Base Address. */
-#define SPI_BAUD_RATE_MAX 			12000000U			/*! S2PI Baud Rate Maximum in bps for KL46z. */
+#ifndef SPI_MAX_BAUDRATE
+#define SPI_MAX_BAUDRATE 			12000000U			/*!< S2PI Baud Rate Maximum in bps for KL46z. */
+#endif
+#ifndef SPI_BAUDRATE
+#define SPI_BAUDRATE		SPI_MAX_BAUDRATE	/*!< S2PI default Baud Rate in pbs for KL46z. */
+#endif
 
 /* DMA Channels (0..3) */
 #define DMA_CHANNEL_SPI_TX 			0U					/*!< DMA Channel 0: SPI transmit */
@@ -348,18 +364,19 @@
 /* The UART to use for communication with the AFBR-S50 Explorer. */
 #define UART_INSTANCE				0U					/*!< UART Instance Number. */
 #define UART_BASEADDR				UART0				/*!< UART Instance Base Address. */
-#ifndef UART_BAUDRATE
-#define UART_BAUDRATE				115200U 			/*!< UART Baud Rate. */
-#endif
 #define UART_IRQn					UART0_IRQn			/*!< UART Interrupt Number. */
 #define UART_IRQ_HANDLER			UART0_IRQHandler	/*!< UART Interrupt Handler. */
 #define UART_CLKSRC					kCLOCK_CoreSysClk	/*!< UART Clock Source (Core System Clock). */
+#ifndef UART_BAUDRATE
+#define UART_BAUDRATE				115200U 			/*!< UART Baud Rate. */
+#endif
 
 
 /* The UART2 to use for communication with the AFBR-S50 reference board . */
-#define UART2_BAUDRATE				115200U 			/*!< UART Baud Rate. */
-#define UART2_CLKSRC				kCLOCK_BusClk		/*!< UART Clock Source (bus Clock). */
-
+#define UART2_CLKSRC				kCLOCK_BusClk		/*!< UART2 Clock Source (bus Clock). */
+#ifndef UART2_BAUDRATE
+#define UART2_BAUDRATE				UART_BAUDRATE		/*!< UART2 Baud Rate. */
+#endif
 
 #endif
 

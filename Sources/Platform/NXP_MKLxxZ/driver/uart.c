@@ -67,22 +67,10 @@
 static status_t SetBaudRate2(uint32_t baudRate_Bps, uint32_t srcClock_Hz);
 static void TxDMACallbackFunction2(status_t status);
 #endif
-static status_t SetBaudRate(uint32_t baudRate_Bps, uint32_t srcClock_Hz);
+static status_t SetBaudRate(uart_baud_rates_t baudRate, uint32_t srcClock_Hz);
 static void TxDMACallbackFunction(status_t status);
 static int PutChar(void * buf, int a);
 status_t print(const char  *fmt_s, ...);
-
-/*!***************************************************************************
- * @brief	A vprintf() function for the uart connection.
- * @details	This function is similar to #UART_Printf except that, instead of
- * 			taking a variable number of arguments directly, it takes an
- * 			argument list pointer ap. Requires a call to #va_start(ap, fmt_s);
- * 			before and va_end(ap); after this function.
- * @param	fmt_s The printf() format string.
- * @param	ap The argument list.
- * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
- *****************************************************************************/
-static inline status_t vprint(const char  *fmt_s, va_list * ap);
 
 /*******************************************************************************
  * Variables
@@ -106,6 +94,7 @@ static void * myTxCallbackState = 0;
 static volatile bool isTxOnGoing = false;
 static uint8_t myDebugConsole_Buffer[DEBUGCONSOLE_BUFFERSIZE] = {0};
 static uint8_t * myDebugConsole_WritePtr = 0;
+static uart_baud_rates_t myBaudRate = UART_INVALID_BPS;
 
 /*******************************************************************************
  * Code
@@ -343,7 +332,82 @@ status_t UART_Init(void)
 }
 
 
-static status_t SetBaudRate(uint32_t baudRate_Bps, uint32_t srcClock_Hz)
+uart_baud_rates_t UART_GetBaudRate(void)
+{
+	return myBaudRate;
+}
+status_t UART_CheckBaudRate(uart_baud_rates_t baudRate)
+{
+	(void) baudRate;
+	return ERROR_NOT_SUPPORTED;
+#if 0
+	if(!isInitialized) return ERROR_NOT_INITIALIZED;
+
+	switch (baudRate)
+	{
+		case UART_115200_BPS:
+		case UART_500000_BPS:
+		case UART_2000000_BPS:
+			return STATUS_OK;
+
+		case UART_INVALID_BPS:
+		default:
+			return ERROR_UART_BAUDRATE_NOT_SUPPORTED;
+	}
+#endif
+}
+status_t UART_SetBaudRate(uart_baud_rates_t baudRate)
+{
+	(void) baudRate;
+	return ERROR_NOT_SUPPORTED;
+#if 0
+	if(!isInitialized) return ERROR_NOT_INITIALIZED;
+
+	status_t status = UART_CheckBaudRate(baudRate);
+	if (status != STATUS_OK) return status;
+
+	/* Check that we're not busy.*/
+	IRQ_LOCK();
+	if(isTxOnGoing)
+	{
+		IRQ_UNLOCK();
+		return STATUS_BUSY;
+	}
+	isTxOnGoing = true;
+	IRQ_UNLOCK();
+
+	/* remove callback and disable RX line. */
+	uart_rx_callback_t callback = myRxCallback;
+	UART_SetRxCallback(0);
+
+	/* Disable TX RX before setting. */
+#if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
+	UART->C2 &= (uint8_t) (~(UART_C2_TE_MASK | UART0_C2_RE_MASK));
+#elif defined (CPU_MKL17Z256VFM4)
+	UART->CTRL &= ~(LPUART_CTRL_TE_MASK | LPUART_CTRL_RE_MASK);
+#endif
+
+	status = SetBaudRate(baudRate, CLOCK_GetFreq(UART_CLKSRC));
+	if (status != STATUS_OK) return status;
+
+	/* Enable TX/RX. */
+#if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
+	UART->C2 |= UART0_C2_TE_MASK | UART0_C2_RE_MASK;
+#elif defined (CPU_MKL17Z256VFM4)
+	UART->CTRL |= LPUART_CTRL_TE_MASK | LPUART_CTRL_RE_MASK;
+#endif
+
+	/* Add callback and enable RX line again. */
+	UART_SetRxCallback(callback);
+
+	isTxOnGoing = false;
+
+	return STATUS_OK;
+#endif
+}
+
+
+static status_t SetBaudRate(uart_baud_rates_t baudRate, uint32_t srcClock_Hz)
 {
 	/* This LPSCI instantiation uses a slightly different baud rate calculation
 	 * The idea is to use the best OSR (over-sampling rate) possible
@@ -353,12 +417,12 @@ static status_t SetBaudRate(uint32_t baudRate_Bps, uint32_t srcClock_Hz)
 
 	uint16_t sbr = 0;
 	uint32_t osr = 0;
-	uint32_t baudDiff = baudRate_Bps;
+	uint32_t baudDiff = baudRate;
 
 	for (uint32_t osrTemp = 4; osrTemp <= 32; osrTemp++)
 	{
 		/* calculate the temporary sbr value   */
-		uint16_t sbrTemp = (uint16_t) (srcClock_Hz / (baudRate_Bps * osrTemp));
+		uint16_t sbrTemp = (uint16_t) (srcClock_Hz / (baudRate * osrTemp));
 
 		/* set sbrTemp to 1 if the sourceClockInHz can not satisfy the desired baud rate */
 		if (sbrTemp == 0) sbrTemp = 1;
@@ -366,12 +430,12 @@ static status_t SetBaudRate(uint32_t baudRate_Bps, uint32_t srcClock_Hz)
 		/* Calculate the baud rate based on the temporary OSR and SBR values */
 		uint32_t calculatedBaud = (srcClock_Hz / (osrTemp * sbrTemp));
 
-		uint32_t tempDiff = calculatedBaud - baudRate_Bps;
+		uint32_t tempDiff = calculatedBaud - baudRate;
 
 		/* Select the better value between srb and (sbr + 1) */
-		if (tempDiff > (baudRate_Bps - (srcClock_Hz / (osrTemp * (sbrTemp + 1U)))))
+		if (tempDiff > (baudRate - (srcClock_Hz / (osrTemp * (sbrTemp + 1U)))))
 		{
-			tempDiff = baudRate_Bps - (srcClock_Hz / (osrTemp * (sbrTemp + 1U)));
+			tempDiff = baudRate - (srcClock_Hz / (osrTemp * (sbrTemp + 1U)));
 			sbrTemp++;
 		}
 
@@ -385,7 +449,7 @@ static status_t SetBaudRate(uint32_t baudRate_Bps, uint32_t srcClock_Hz)
 
 	/* next, check to see if actual baud rate is within 3% of desired baud rate
 	 * based on the best calculate OSR value */
-	if (baudDiff > ((baudRate_Bps / 100U) * 3U))
+	if (baudDiff > ((baudRate / 100U) * 3U))
 	{
 		/* Unacceptable baud rate difference of more than 3%*/
 		return ERROR_UART_BAUDRATE_NOT_SUPPORTED;
@@ -429,6 +493,7 @@ static status_t SetBaudRate(uint32_t baudRate_Bps, uint32_t srcClock_Hz)
 
 #endif
 
+	myBaudRate = baudRate;
     return STATUS_OK;
 }
 
@@ -477,16 +542,21 @@ status_t UART_SendBuffer(uint8_t const * txBuff, size_t txSize, uart_tx_callback
 	/* Debug: only send log entries from threads with lower priority
 	 * than the UART irq priority. */
 //	assert(GET_IPSR() == 0 || GET_IPSR() > 15); // cannot send from exceptions!!
-
-	/* Check that we're not busy.*/
 	if(!isInitialized) return ERROR_NOT_INITIALIZED;
-	if(isTxOnGoing) return STATUS_BUSY;
 
 	/* Verify arguments. */
 	if(!txBuff || !txSize) return ERROR_INVALID_ARGUMENT;
 
-	/* Set Tx Busy Status. */
+	/* Check that we're not busy.*/
+	IRQ_LOCK();
+	if(isTxOnGoing)
+	{
+		IRQ_UNLOCK();
+		return STATUS_BUSY;
+	}
 	isTxOnGoing = true;
+	IRQ_UNLOCK();
+
 	myTxCallback = f;
 	myTxCallbackState = state;
 
@@ -511,7 +581,7 @@ bool UART_IsTxBusy(void)
  * Debug Console Functions
  ******************************************************************************/
 
-static int PutChar(void * buf, int a)
+static int PutChar(void *buf, int a)
 {
 	(void) buf; // buf not used here.
 	if (myDebugConsole_WritePtr < (myDebugConsole_Buffer + DEBUGCONSOLE_BUFFERSIZE))
@@ -521,31 +591,21 @@ static int PutChar(void * buf, int a)
 	return 0;
 }
 
-static inline status_t vprint(const char *fmt_s, va_list * ap)
-{
-	assert(ap != 0);
-	if (!isInitialized) return ERROR_NOT_INITIALIZED;
-
-    myDebugConsole_WritePtr = myDebugConsole_Buffer;
-    PrintfFormattedData(&PutChar, 0, fmt_s, ap);
-
-	if (*myDebugConsole_WritePtr != (uint8_t) '\n') PutChar(0, '\n');
-
-    status_t status = UART_SendBuffer(myDebugConsole_Buffer, (size_t)(myDebugConsole_WritePtr - myDebugConsole_Buffer), 0, 0);
-    while(UART_IsTxBusy());
-    return status;
-}
-
 __attribute__((weak)) status_t print(const char *fmt_s, ...)
 {
 	if (!isInitialized) return ERROR_NOT_INITIALIZED;
 
+	/* Wait for IDLE line */
+	while (UART_IsTxBusy()) __asm("nop");
+
 	va_list ap;
 	va_start(ap, fmt_s);
-	status_t status = vprint(fmt_s, &ap);
+	myDebugConsole_WritePtr = myDebugConsole_Buffer;
+	int len = PrintfFormattedData(&PutChar, 0, fmt_s, &ap);
 	va_end(ap);
 
-	return status;
+	if (len < 0) return ERROR_FAIL;
+	return UART_SendBuffer(myDebugConsole_Buffer, len, 0, 0);
 }
 
 /*******************************************************************************
@@ -674,7 +734,8 @@ void UART0_IRQHandler(void)
 	if (s1 & UART0_S1_RDRF_MASK)
 	{
 		/* Get data and invoke callback. */
-		myRxCallback(UART->D);
+		const uint8_t data = UART->D;
+		myRxCallback(&data, 1);
 		return;
 	}
 
@@ -744,7 +805,8 @@ void LPUART0_IRQHandler(void)
 	if(s1 & LPUART_STAT_RDRF_MASK)
 	{
 		/* Get data and invoke callback. */
-		myRxCallback(UART->DATA);
+		uint8_t data = UART->DATA;
+		myRxCallback(&data, 1);
 		return;
 	}
 

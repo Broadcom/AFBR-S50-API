@@ -126,7 +126,7 @@ uint32_t S2PI_GetBaudRate(void);
  * @param	baudRate_Bps The default SPI baud rate in bauds-per-second.
  * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  * 			- #STATUS_OK on success
- * 			- #ERROR_S2PI_INVALID_BAUD_RATE on invalid baud rate value.
+ * 			- #ERROR_S2PI_INVALID_BAUDRATE on invalid baud rate value.
  *****************************************************************************/
 status_t S2PI_SetBaudRate(uint32_t baudRate_Bps);
 

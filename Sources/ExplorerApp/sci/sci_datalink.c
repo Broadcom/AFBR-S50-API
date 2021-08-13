@@ -97,7 +97,7 @@
  ******************************************************************************/
 
 static void ErrCallback(status_t status);
-static void RxCallback(uint8_t receivedByte);
+static void RxCallback(uint8_t const * data, uint32_t size);
 static void TxCallback(status_t status, sci_frame_t * frame);
 
 static sci_frame_t * SCI_DataLink_RequestFrame(sci_frame_queue_t * queue);
@@ -197,152 +197,156 @@ void ErrCallback(status_t status)
 
 
 /* Interrupt service routine for the receiving data from the serial port; */
-static void RxCallback(uint8_t receivedByte)
+static void RxCallback(uint8_t const *data, uint32_t size)
 {
 	static bool escapeNextByte = false; /*!< Flag for byte stuffing */
-	static sci_frame_t * f = 0; /*!< the current buffer in the queue. */
-	static sci_frame_t * f0 = 0; /*!< the first buffer in the queue. */
+	static sci_frame_t *f = 0; /*!< the current buffer in the queue. */
+	static sci_frame_t *f0 = 0; /*!< the first buffer in the queue. */
 
-	if (escapeNextByte)
+	for (uint8_t const *d = data; d < data + size; ++d)
 	{
-		escapeNextByte = false;
-
-		/* Error Handling for the escape byte */
-		receivedByte = (uint8_t) (~receivedByte);
-		if (f0)
+		uint8_t rx = *d;
+		if (escapeNextByte)
 		{
-			if ((receivedByte != SCI_ESCAPE_BYTE) &&
-				(receivedByte != SCI_START_BYTE) &&
-				(receivedByte != SCI_STOP_BYTE))
-			{
-				/* Reset f0 */
-				SCI_DataLink_ReleaseFrames(f0);
-				f0 = 0;
-				f = 0;
+			escapeNextByte = false;
 
-				/* send an NAK with error code to the host */
-				SCI_SendNotAcknowledge(CMD_INVALID, ERROR_SCI_INVALID_ESCAPE_BYTE);
-
-				ErrCallback(ERROR_SCI_INVALID_ESCAPE_BYTE);
-				return;
-			}
-		}
-	}
-	else
-	{
-		if (receivedByte == SCI_ESCAPE_BYTE)
-		{
-			/* Escape byte: ignore following control bytes. */
-			escapeNextByte = true;
-			return;
-		}
-		else if (receivedByte == SCI_START_BYTE)
-		{
-			/* Start byte: start a new command. */
+			/* Error Handling for the escape byte */
+			rx = (uint8_t)(~rx);
 			if (f0)
 			{
-				/* Reset f0 */
-				SCI_DataLink_ReleaseFrames(f0);
-				f0 = 0;
-				f = 0;
-
-				/* send an NAK with error code to the host */
-				SCI_SendNotAcknowledge(CMD_INVALID, ERROR_SCI_INVALID_START_BYTE);
-
-				ErrCallback(ERROR_SCI_INVALID_START_BYTE);
-				return;
-			}
-
-			f0 = SCI_DataLink_RequestFrame(&SCI_RxFrameQueue);
-
-			if (!f0)
-			{
-				/* send an NAK with error code to the host */
-				SCI_SendNotAcknowledge(CMD_INVALID, ERROR_SCI_RX_BUFFER_FULL);
-
-				ErrCallback(ERROR_SCI_RX_BUFFER_FULL);
-				return;
-			}
-
-			f = f0;
-			return;
-		}
-		else if (receivedByte == SCI_STOP_BYTE)
-		{
-			/* Stop byte: command completed. */
-			if (!f0)
-			{
-				/* Invalid stop byte outside of an active frame received: ignore */
-				return;
-			}
-
-			/* check data length minimal 2 bytes (command + crc) */
-			if (f0->WrPtr - f0->Buffer < 2)
-			{
-				/* Release the frame*/
-				SCI_DataLink_ReleaseFrames(f0);
-				f0 = 0;
-				f = 0;
-
-				/* send an NAK with error code to the host */
-				SCI_SendNotAcknowledge(CMD_INVALID, ERROR_SCI_FRAME_TOO_SHORT);
-
-				ErrCallback(ERROR_SCI_FRAME_TOO_SHORT);
-				return;
-			}
-
-			if (SCI_RxCallback)
-			{
-				/* Invoke callback. */
-				if (SCI_RxCallback(f0) != STATUS_OK)
+				if ((rx != SCI_ESCAPE_BYTE) &&
+					(rx != SCI_START_BYTE) &&
+					(rx != SCI_STOP_BYTE))
 				{
+					/* Reset f0 */
 					SCI_DataLink_ReleaseFrames(f0);
+					f0 = 0;
+					f = 0;
+
+					/* send an NAK with error code to the host */
+					SCI_SendNotAcknowledge(CMD_INVALID, ERROR_SCI_INVALID_ESCAPE_BYTE);
+
+					ErrCallback(ERROR_SCI_INVALID_ESCAPE_BYTE);
+					continue;
 				}
 			}
-			else
-			{
-				/* Invoke command directly if no callback. */
-				status_t status = SCI_InvokeRxCommand(f0);
-				if (status != STATUS_OK)
-				{
-					SCI_DataLink_ReleaseFrames(f0);
-					ErrCallback(status);
-				}
-			}
-
-			f0 = 0;
-			f = 0;
-			return;
 		}
-	}
-
-	if (f)
-	{
-		/* Check if frame is full and queue another frame. */
-		if (f->WrPtr - f->Buffer == SCI_FRAME_SIZE)
+		else
 		{
-			f->Next = SCI_DataLink_RequestFrame(&SCI_RxFrameQueue);
-
-			if (!f->Next)
+			if (rx == SCI_ESCAPE_BYTE)
 			{
-				/* Reset f0 */
-				SCI_DataLink_ReleaseFrames(f0);
+				/* Escape byte: ignore following control bytes. */
+				escapeNextByte = true;
+				continue;
+			}
+			else if (rx == SCI_START_BYTE)
+			{
+				/* Start byte: start a new command. */
+				if (f0)
+				{
+					/* Reset f0 */
+					SCI_DataLink_ReleaseFrames(f0);
+					f0 = 0;
+					f = 0;
+
+					/* send an NAK with error code to the host */
+					SCI_SendNotAcknowledge(CMD_INVALID, ERROR_SCI_INVALID_START_BYTE);
+
+					ErrCallback(ERROR_SCI_INVALID_START_BYTE);
+					continue;
+				}
+
+				f0 = SCI_DataLink_RequestFrame(&SCI_RxFrameQueue);
+
+				if (!f0)
+				{
+					/* send an NAK with error code to the host */
+					SCI_SendNotAcknowledge(CMD_INVALID, ERROR_SCI_RX_BUFFER_FULL);
+
+					ErrCallback(ERROR_SCI_RX_BUFFER_FULL);
+					continue;
+				}
+
+				f = f0;
+				continue;
+			}
+			else if (rx == SCI_STOP_BYTE)
+			{
+				/* Stop byte: command completed. */
+				if (!f0)
+				{
+					/* Invalid stop byte outside of an active frame received: ignore */
+					continue;
+				}
+
+				/* check data length minimal 2 bytes (command + crc) */
+				if (f0->WrPtr - f0->Buffer < 2)
+				{
+					/* Release the frame*/
+					SCI_DataLink_ReleaseFrames(f0);
+					f0 = 0;
+					f = 0;
+
+					/* send an NAK with error code to the host */
+					SCI_SendNotAcknowledge(CMD_INVALID, ERROR_SCI_FRAME_TOO_SHORT);
+
+					ErrCallback(ERROR_SCI_FRAME_TOO_SHORT);
+					continue;
+				}
+
+				if (SCI_RxCallback)
+				{
+					/* Invoke callback. */
+					if (SCI_RxCallback(f0) != STATUS_OK)
+					{
+						SCI_DataLink_ReleaseFrames(f0);
+					}
+				}
+				else
+				{
+					/* Invoke command directly if no callback. */
+					status_t status = SCI_InvokeRxCommand(f0);
+					if (status != STATUS_OK)
+					{
+						SCI_DataLink_ReleaseFrames(f0);
+						ErrCallback(status);
+					}
+				}
+
 				f0 = 0;
 				f = 0;
-
-				/* send an NAK with error code to the host */
-				SCI_SendNotAcknowledge(CMD_INVALID, ERROR_SCI_RX_BUFFER_FULL);
-
-				ErrCallback(ERROR_SCI_RX_BUFFER_FULL);
-				return;
+				continue;
 			}
-
-			f = f->Next;
 		}
 
-		/* Save byte into command buffer. */
-		assert(f->WrPtr - f->Buffer < SCI_FRAME_SIZE);
-		*(f->WrPtr++) = receivedByte;
+		if (f)
+		{
+			/* Check if frame is full and queue another frame. */
+			if (f->WrPtr - f->Buffer == SCI_FRAME_SIZE)
+			{
+				f->Next = SCI_DataLink_RequestFrame(&SCI_RxFrameQueue);
+
+				if (!f->Next)
+				{
+					/* Reset f0 */
+					SCI_DataLink_ReleaseFrames(f0);
+					f0 = 0;
+					f = 0;
+
+					/* send an NAK with error code to the host */
+					SCI_SendNotAcknowledge(CMD_INVALID, ERROR_SCI_RX_BUFFER_FULL);
+
+					ErrCallback(ERROR_SCI_RX_BUFFER_FULL);
+					continue;
+				}
+
+				f = f->Next;
+			}
+
+			/* Save byte into command buffer. */
+			assert(f->WrPtr - f->Buffer < SCI_FRAME_SIZE);
+			*(f->WrPtr++) = rx;
+		}
 	}
 }
 
@@ -355,14 +359,13 @@ status_t SCI_DataLink_CheckRxFrame(sci_frame_t * frame)
 	assert(frame->RdPtr <= frame->WrPtr);
 	assert(frame->WrPtr <= frame->Buffer + SCI_FRAME_SIZE);
 
-	uint32_t CRC_r = SCI_DataLink_GetCRC(frame);
-	uint32_t CRC_c = SCI_DataLink_CalcCRC(frame);
+	const uint32_t CRC_r = SCI_DataLink_GetCRC(frame);
+	const uint32_t CRC_c = SCI_DataLink_CalcCRC(frame);
 
 	if (CRC_c != CRC_r)
 	{
-		error_log("received command %02x, CRC failed! %08x != %08x",
-				  frame->Buffer[0],
-				  CRC_r, CRC_c);
+//		error_log("received command %02x, CRC failed! %08x != %08x",
+//				  frame->Buffer[0], CRC_r, CRC_c);
 		return ERROR_SCI_CRC_FAILED;
 	}
 
@@ -394,13 +397,8 @@ static inline void SCI_DataLink_ReleaseFrame(sci_frame_t * frame)
 	IRQ_UNLOCK();
 }
 
-status_t SCI_DataLink_ReleaseFrames(sci_frame_t * frame)
+void SCI_DataLink_ReleaseFrames(sci_frame_t * frame)
 {
-	if (frame == 0)
-	{
-		return ERROR_INVALID_ARGUMENT;
-	}
-
 	sci_frame_t * fnext;
 	while (frame != 0)
 	{
@@ -408,8 +406,15 @@ status_t SCI_DataLink_ReleaseFrames(sci_frame_t * frame)
 		SCI_DataLink_ReleaseFrame(frame);
 		frame = fnext;
 	}
+}
 
-	return STATUS_OK;
+void SCI_DataLink_ResetRxFrames(sci_frame_t * frame)
+{
+	while (frame != 0)
+	{
+		frame->RdPtr = frame->Buffer;
+		frame = frame->Next;
+	}
 }
 
 static sci_frame_t * SCI_DataLink_RequestFrame(sci_frame_queue_t * queue)
@@ -544,11 +549,20 @@ static inline status_t SCI_DataLink_SendFrame(sci_frame_t * frame)
 #endif
 }
 
-status_t SCI_DataLink_SendTxFrame(sci_frame_t * frame)
+bool SCI_DataLink_IsTxBusy(void)
+{
+#if AFBR_SCI_USB
+	return (SCI_CurrentTxFrame != 0) || USB_IsTxBusy();
+#else
+	return (SCI_CurrentTxFrame != 0) || UART_IsTxBusy();
+#endif
+}
+
+status_t SCI_DataLink_SendTxFrame(sci_frame_t * frame, bool high_priority)
 {
 	assert(frame != 0);
 	assert(frame->Buffer == frame->RdPtr);
-	assert(frame->RdPtr <= frame->WrPtr);
+	assert(frame->RdPtr < frame->WrPtr);
 	assert(frame->WrPtr <= frame->Buffer + SCI_FRAME_SIZE);
 
 	status_t status = STATUS_OK;
@@ -562,14 +576,40 @@ status_t SCI_DataLink_SendTxFrame(sci_frame_t * frame)
 	IRQ_LOCK();
 	if (SCI_CurrentTxFrame != 0)
 	{
-		/* find end of queue. */
 		sci_frame_t * last_frame = (sci_frame_t*) SCI_CurrentTxFrame;
+
+		if (high_priority)
+		{
+			/* find end of current frame */
+			while ((*(last_frame->WrPtr - 1) != SCI_STOP_BYTE) && (last_frame->Next != 0))
+			{
+				last_frame = last_frame->Next;
+			}
+
+			assert(last_frame != 0);
+			assert(last_frame->Buffer == last_frame->RdPtr);
+			assert(last_frame->RdPtr < last_frame->WrPtr);
+			assert(last_frame->WrPtr <= last_frame->Buffer + SCI_FRAME_SIZE);
+
+			sci_frame_t * next_frame = last_frame->Next;
+
+			/* Enqueue frame to the end of the current frame. */
+			last_frame->Next = frame;
+
+			/* set remaining frame to be queued. */
+			frame = next_frame;
+		}
+
+
+		/* find end of queue . */
 		while (last_frame->Next != 0)
+		{
 			last_frame = last_frame->Next;
+		}
 
 		assert(last_frame != 0);
 		assert(last_frame->Buffer == last_frame->RdPtr);
-		assert(last_frame->RdPtr <= last_frame->WrPtr);
+		assert(last_frame->RdPtr < last_frame->WrPtr);
 		assert(last_frame->WrPtr <= last_frame->Buffer + SCI_FRAME_SIZE);
 
 		/* Enqueue frame to the queue. */
@@ -577,7 +617,7 @@ status_t SCI_DataLink_SendTxFrame(sci_frame_t * frame)
 	}
 	else
 	{
-		/* Send data if tx line is free. */
+		/* Send data if TX line is free. */
 		SCI_CurrentTxFrame = frame;
 		status = SCI_DataLink_SendFrame(frame);
 		if (status < STATUS_OK)
@@ -622,12 +662,12 @@ static uint8_t SCI_DataLink_CalcCRC(sci_frame_t * frame)
 	/* Total frame length (- CRC length). */
 	int32_t len_data = SCI_Frame_TotalFrameLength(frame) - 1;
 
-	/* Consistency check for total frame length. */
-	if (len_data < 0)
-	{
-		error_log("received command %#02x, data size to short! %08x != %08x",
-				  frame->Buffer[0]);
-	}
+//	/* Consistency check for total frame length. */
+//	if (len_data < 0)
+//	{
+//		error_log("received command %#02x, data size to short! %08x != %08x",
+//				  frame->Buffer[0]);
+//	}
 
 	/* Calculate the CRC for all frames in the queue. */
 	uint8_t crc = 0;

@@ -62,6 +62,8 @@
 
 void Debug_CheckReset(void)
 {
+#if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4) || \
+    defined(CPU_MKL17Z128VFM4) || defined(CPU_MKL17Z128VFT4) || defined(CPU_MKL17Z128VLH4) || defined(CPU_MKL17Z128VMP4)
 	// Check what reset has occurred
     uint32_t srs0 = (uint32_t)RCM->SRS0;
     uint32_t srs1 = (uint32_t)RCM->SRS1;
@@ -115,6 +117,7 @@ void Debug_CheckReset(void)
     {
 		error_log(" >>> Reset due to a \"Stop Mode Acknowledge Error Reset\"! <<< ");
     }
+#endif
 }
 
 #ifndef NDEBUG
@@ -158,24 +161,29 @@ void __assertion_failed(char *_Expr)
 #elif(defined(__GNUC__))
 void __assert_func(const char *file, int line, const char *func, const char *failedExpr)
 {
+	static bool is_asserting = false;
+	if (!is_asserting)
+	{
+		is_asserting = true;
+
 #if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
-	/* Display error on LCD. */
-	SLCD_DisplayError(0xAA);
+		/* Display error on LCD. */
+		SLCD_DisplayError(0xAA);
 #endif
 
-	/* Try to send printf message. */
-	print("ASSERT: expression \"%s\" failed;\n"
-			"file \"%s\";\n"
-			"line \"%d\";\n"
-			"function \"%s\";\n",
-			failedExpr, file, line, func);
+		/* Try to send printf message. */
+		print("ASSERT: expression \"%s\" failed;\n"
+			  "file \"%s\";\n"
+			  "line \"%d\";\n"
+			  "function \"%s\";\n",
+			  failedExpr, file, line, func);
 
-	/* Wait for sending print statement */
-	for (volatile uint32_t i = 0; i < 1000000; i++) __asm("nop");
+		/* Wait for sending print statement */
+		for (volatile uint32_t i = 0; i < 1000000; i++) __asm("nop");
+	}
 
 	/* Stop. */
-	for (;;)
-		BREAKPOINT();
+	for (;;) BREAKPOINT();
 
 }
 #endif /* (defined(__CC_ARM)) ||  (defined (__ICCARM__)) */

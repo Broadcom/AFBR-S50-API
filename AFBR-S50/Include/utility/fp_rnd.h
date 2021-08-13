@@ -54,21 +54,15 @@
  * 			    e.g. UQ8.8 -> UQ12.4 => n = 8 - 4 = 4.
  * @return	The rounded value in (U)Qx.n2 format.
  *****************************************************************************/
-static inline uint32_t fp_rndu(uint32_t Q, uint_fast8_t n);
 static inline uint32_t fp_rndu(uint32_t Q, uint_fast8_t n)
 {
-	if (n == 0)
-		return Q;
-	else if (n == 32U)
-		return Q > 0x7FFFFFFFU ? 1U : 0U;
-	else if (n > 32U)
-		return 0;
+	if (n == 0) return Q;
+	else if (n > 32U) return 0;
 
-	uint32_t tmp = (1U << (n - 1U));
-	if (Q > UINT32_MAX - tmp)
-		return (Q >> n) + 1U;
-	else
-		return ((Q + tmp) >> n);
+	// Shift by n>=32 yields undefined behavior! Thus, this extra first
+	// step is essential to prevent issues.
+	Q >>= n - 1;
+	return (Q >> 1) + (Q & 1U);
 }
 
 /*!***************************************************************************
@@ -80,7 +74,6 @@ static inline uint32_t fp_rndu(uint32_t Q, uint_fast8_t n)
  * 			    e.g. Q7.8 -> Q11.4 => n = 8 - 4 = 4.
  * @return	The rounded value in (U)Qx.n2 format.
  *****************************************************************************/
-static inline int32_t fp_rnds(int32_t Q, uint_fast8_t n);
 static inline int32_t fp_rnds(int32_t Q, uint_fast8_t n)
 {
 	return (Q < 0) ? -fp_rndu(-Q, n) : fp_rndu(Q, n);

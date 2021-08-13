@@ -66,30 +66,6 @@ static argus_hnd_t * myArgusPtr;
 /*******************************************************************************
  * Generic Commands
  ******************************************************************************/
-static status_t RxCmd_DebugMode(sci_frame_t * frame)
-{
-	if(SCI_Frame_BytesToRead(frame) > 1)
-	{	/* Master sending data... */
-		explorer_cfg_t cfg;
-		status_t status = ExplorerApp_GetConfiguration(&cfg);
-		if(status < STATUS_OK) return status;
-		cfg.DebugMode = SCI_Frame_Dequeue08u(frame);
-		return ExplorerApp_SetConfiguration(&cfg);
-	}
-	else
-	{	/* Master is requesting data... */
-		return SCI_SendCommand(CMD_DEBUG_MODE, 0, 0);
-	}
-}
-static status_t TxCmd_DebugMode(sci_frame_t * frame, sci_param_t param, sci_data_t data)
-{
-	(void)param;
-	(void)data;
-	explorer_cfg_t cfg;
-	status_t status = ExplorerApp_GetConfiguration(&cfg);
-	SCI_Frame_Queue08u(frame, cfg.DebugMode);
-	return status;
-}
 
 /*******************************************************************************
  * Software Information Commands
@@ -114,12 +90,12 @@ static status_t TxCmd_SoftwareInfo(sci_frame_t * frame, sci_param_t param, sci_d
 	SCI_Frame_Queue24u(frame, Argus_GetChipID(myArgusPtr));
 
 	char const * name = "AFBR-S50 Explorer App - ";
-	for(char const * c = name; *c != '\0'; c++)
+	for (char const *c = name; *c != '\0'; c++)
 	{
 		SCI_Frame_PutChar(frame, (int)*c);
 	}
 	char const * build = Argus_GetBuildNumber();
-	for(char const * c = build; *c != '\0'; c++)
+	for (char const *c = build; *c != '\0'; c++)
 	{
 		SCI_Frame_PutChar(frame, (int)*c);
 	}
@@ -224,6 +200,7 @@ static status_t RxCmd_DeviceReinit(sci_frame_t * frame)
 	return ExplorerApp_DeviceReinit();
 }
 
+
 /*******************************************************************************
  * Init Code
  ******************************************************************************/
@@ -245,13 +222,13 @@ status_t ExplorerApp_InitCommands(argus_hnd_t * argus)
 	status = ExplorerAPI_InitCal(argus);
 	if(status < STATUS_OK) return status;
 
-	status = SCI_SetCommand(CMD_SOFTWARE_INFO, RxCmd_SoftwareInfo, (sci_tx_cmd_fct_t)TxCmd_SoftwareInfo);
+	status = SCI_SetRxTxCommand(CMD_SOFTWARE_INFO, RxCmd_SoftwareInfo, (sci_tx_cmd_fct_t)TxCmd_SoftwareInfo);
 	if(status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_SOFTWARE_VERSION, RxCmd_SoftwareVersion, (sci_tx_cmd_fct_t)TxCmd_SoftwareVersion);
+	status = SCI_SetRxTxCommand(CMD_SOFTWARE_VERSION, RxCmd_SoftwareVersion, (sci_tx_cmd_fct_t)TxCmd_SoftwareVersion);
 	if(status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_MODULE_TYPE, RxCmd_ModuleType, (sci_tx_cmd_fct_t)TxCmd_ModuleType);
+	status = SCI_SetRxTxCommand(CMD_MODULE_TYPE, RxCmd_ModuleType, (sci_tx_cmd_fct_t)TxCmd_ModuleType);
 	if(status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_MODULE_UID, RxCmd_ModuleUID, (sci_tx_cmd_fct_t)TxCmd_ModuleUID);
+	status = SCI_SetRxTxCommand(CMD_MODULE_UID, RxCmd_ModuleUID, (sci_tx_cmd_fct_t)TxCmd_ModuleUID);
 	if(status < STATUS_OK) return status;
 
 	status = SCI_SetRxCommand(CMD_MEASUREMENT_STOP, RxCmd_MeasurementStop);
@@ -263,9 +240,6 @@ status_t ExplorerApp_InitCommands(argus_hnd_t * argus)
 	status = SCI_SetRxCommand(CMD_MEASUREMENT_CALIBRATION, RxCmd_MeasurementCalibration);
 	if(status < STATUS_OK) return status;
 	status = SCI_SetRxCommand(CMD_DEVICE_REINIT, RxCmd_DeviceReinit);
-	if(status < STATUS_OK) return status;
-
-	status = SCI_SetCommand(CMD_DEBUG_MODE, RxCmd_DebugMode, TxCmd_DebugMode);
 	if(status < STATUS_OK) return status;
 
 	return status;

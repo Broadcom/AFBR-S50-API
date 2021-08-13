@@ -47,31 +47,20 @@
 #include "utility/muldw.h"
 
 /*!***************************************************************************
- * @brief	64-bit implementation of an multiplication with fixed point format.
- *
- * @details	Algorithm to evaluate a*b, where a and b are arbitrary fixed point
- * 			number of 32-bit width. The algorithm ins considering the sign of
- * 			the input values. The multiplication is done in 64-bit and the
- * 			result is shifted down by the passed shift parameter. The shift
- * 			is executed with correct rounding.
- *
- * 			Note that the result must fit into the 32-bit value. An assertion
- * 			error occurs otherwise (or undefined behavior of no assert available).
- *
- * @param	u The left parameter in Qx1.y1 format
- * @param	v The right parameter in Qx2.y2 format
- * @param	shift The final right shift (rounding) value.
- * @return	Result = (a*b)>>shift in Qx.(y1+y2-shift) format.
+ * Set to use hardware division (Cortex-M3/4) over software division (Cortex-M0/1).
  *****************************************************************************/
-static inline int32_t fp_muls(int32_t u, int32_t v, uint_fast8_t shift);
+#ifndef USE_64BIT_MUL
+#define USE_64BIT_MUL 0
+#endif
 
 /*!***************************************************************************
- * @brief	64-bit implementation of an multiplication with fixed point format.
+ * @brief	64-bit implementation of an unsigned multiplication with fixed point format.
  *
  * @details	Algorithm to evaluate a*b, where a and b are arbitrary fixed point
  * 			number of 32-bit width. The multiplication is done in 64-bit and
- * 			the result is shifted down by the passed shift parameter. The shift
- * 			is executed with correct rounding.
+ * 			the result is shifted down by the passed shift parameter in order
+ * 			to return a 32-bit value.
+ * 			The shift is executed with correct rounding.
  *
  * 			Note that the result must fit into the 32-bit value. An assertion
  * 			error occurs otherwise (or undefined behavior of no assert available).
@@ -81,14 +70,76 @@ static inline int32_t fp_muls(int32_t u, int32_t v, uint_fast8_t shift);
  * @param	shift The final right shift (rounding) value.
  * @return	Result = (a*b)>>shift in UQx.(y1+y2-shift) format.
  *****************************************************************************/
-static inline uint32_t fp_mulu(uint32_t u, uint32_t v, uint_fast8_t shift);
+static inline uint32_t fp_mulu(uint32_t u, uint32_t v, uint_fast8_t shift)
+{
+	assert(shift <= 32);
+#if USE_64BIT_MUL
+	uint64_t w = (uint64_t)u * (uint64_t)v;
+	return (w >> shift) + ((w >> (shift-1)) & 1U);
+#else
+	uint32_t tmp[2] = {0};
+	muldwu(tmp, u, v);
 
-static inline uint32_t fp_mul_u32_u16(uint32_t u, uint16_t v, uint_fast8_t shift);
+	assert(shift ? tmp[0] <= (UINT32_MAX >> (32-shift)) : tmp[0] == 0);
 
-static inline int32_t fp_mul_s32_u16(int32_t u, uint16_t v, uint_fast8_t shift);
+	if(32-shift)
+		return ((tmp[0] << (32-shift)) + fp_rndu(tmp[1], shift));
+	else
+		return tmp[1] > (UINT32_MAX>>1) ? tmp[0] + 1 : tmp[0];
+#endif
+}
 
 
+/*!***************************************************************************
+ * @brief	64-bit implementation of a signed multiplication with fixed point format.
+ *
+ * @details	Algorithm to evaluate a*b, where a and b are arbitrary fixed point
+ * 			number of 32-bit width. The multiplication is done in 64-bit and
+ * 			the result is shifted down by the passed shift parameter in order
+ * 			to return a 32-bit value.
+ * 			The shift is executed with correct rounding.
+ *
+ * 			Note that the result must fit into the 32-bit value. An assertion
+ * 			error occurs otherwise (or undefined behavior of no assert available).
+ *
+ * @param	u The left parameter in Qx1.y1 format
+ * @param	v The right parameter in Qx2.y2 format
+ * @param	shift The final right shift (rounding) value.
+ * @return	Result = (a*b)>>shift in Qx.(y1+y2-shift) format.
+ *****************************************************************************/
+static inline int32_t fp_muls(int32_t u, int32_t v, uint_fast8_t shift)
+{
+	int_fast8_t sign = 1;
 
+	uint32_t u2, v2;
+	if(u < 0) { u2 = -u; sign = -sign; } else { u2 = u; }
+	if(v < 0) { v2 = -v; sign = -sign; } else { v2 = v; }
+
+	uint32_t res = fp_mulu(u2, v2, shift);
+
+	assert(sign > 0 ? res <= 0x7FFFFFFFU : res <= 0x80000000U);
+
+	return sign > 0 ? res : -res;
+}
+
+
+/*!***************************************************************************
+ * @brief	48-bit implementation of a unsigned multiplication with fixed point format.
+ *
+ * @details	Algorithm to evaluate a*b, where a and b are arbitrary fixed point
+ * 			numbers with 32-bit unsigned and 16-bit unsigned format respectively.
+ * 			The multiplication is done in two 16x16-bit operations and the
+ * 			result is shifted down by the passed shift parameter in order to
+ * 			return a 32-bit value.
+ *
+ * 			Note that the result must fit into the 32-bit value. An assertion
+ * 			error occurs otherwise (or undefined behavior of no assert available).
+ *
+ * @param	u The left parameter in Qx1.y1 format
+ * @param	v The right parameter in Qx2.y2 format
+ * @param	shift The final right shift (rounding) value.
+ * @return	Result = (a*b)>>shift in Qx.(y1+y2-shift) format.
+ *****************************************************************************/
 static inline uint32_t fp_mul_u32_u16(uint32_t u, uint16_t v, uint_fast8_t shift)
 {
 	assert(shift <= 48);
@@ -109,39 +160,27 @@ static inline uint32_t fp_mul_u32_u16(uint32_t u, uint16_t v, uint_fast8_t shift
 	}
 }
 
+/*!***************************************************************************
+ * @brief	48-bit implementation of an unsigned/signed multiplication with fixed point format.
+ *
+ * @details	Algorithm to evaluate a*b, where a and b are arbitrary fixed point
+ * 			numbers with 32-bit signed and 16-bit unsigned format respectively.
+ * 			The multiplication is done in two 16x16-bit operations and the
+ * 			result is shifted down by the passed shift parameter in order to
+ * 			return a 32-bit value.
+ * 			The shift is executed with correct rounding.
+ *
+ * 			Note that the result must fit into the 32-bit value. An assertion
+ * 			error occurs otherwise (or undefined behavior of no assert available).
+ *
+ * @param	u The left parameter in Qx1.y1 format
+ * @param	v The right parameter in Qx2.y2 format
+ * @param	shift The final right shift (rounding) value.
+ * @return	Result = (a*b)>>shift in Qx.(y1+y2-shift) format.
+ *****************************************************************************/
 static inline int32_t fp_mul_s32_u16(int32_t u, uint16_t v, uint_fast8_t shift)
 {
 	return u >= 0 ? fp_mul_u32_u16(u, v, shift) : - fp_mul_u32_u16(-u, v, shift);
-}
-
-static inline uint32_t fp_mulu(uint32_t u, uint32_t v, uint_fast8_t shift)
-{
-	assert(shift <= 32);
-
-	uint32_t tmp[2] = {0};
-	muldwu(tmp, u, v);
-
-	assert(shift ? tmp[0] <= (UINT32_MAX >> (32-shift)) : tmp[0] == 0);
-
-	if(32-shift)
-		return ((tmp[0] << (32-shift)) + fp_rndu(tmp[1], shift));
-	else
-		return tmp[1] > (UINT32_MAX>>1) ? tmp[0] + 1 : tmp[0];
-}
-
-static inline int32_t fp_muls(int32_t u, int32_t v, uint_fast8_t shift)
-{
-	int_fast8_t sign = 1;
-
-	uint32_t u2, v2;
-	if(u < 0) { u2 = -u; sign = -sign; } else { u2 = u; }
-	if(v < 0) { v2 = -v; sign = -sign; } else { v2 = v; }
-
-	uint32_t res = fp_mulu(u2, v2, shift);
-
-	assert(sign > 0 ? res <= 0x7FFFFFFFU : res <= 0x80000000U);
-
-	return sign > 0 ? res : -res;
 }
 
 /*! @} */

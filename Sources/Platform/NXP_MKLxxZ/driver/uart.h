@@ -83,32 +83,49 @@ enum StatusUART
 
 	/*! Transmitting error stemming from the DMA module. */
 	ERROR_UART_TX_DMA_ERR = -75,
+
+	/*! Receiving error stemming from the DMA module. */
+	ERROR_UART_RX_DMA_ERR = -75,
 };
 
+typedef enum
+{
+	UART_INVALID_BPS = 0,
+	UART_115200_BPS = 115200,
+	UART_500000_BPS = 500000,
+	UART_1000000_BPS = 1000000,
+	UART_2000000_BPS = 2000000,
+} uart_baud_rates_t;
 
 /*!***************************************************************************
- * @brief	UART received byte callback function type.
- * @param	rxByte The received byte.
+ * @brief	SCI physical layer received byte callback function type.
+ * @details	Callback that is invoked whenever data has been received via the
+ * 			physical layer.
+ * @param	data The received data as byte (uint8_t) array.
+ * @param	size The size of the received data.
  * @return 	-
  *****************************************************************************/
-typedef void (* uart_rx_callback_t)(uint8_t rxByte);
+typedef void (*uart_rx_callback_t)(uint8_t const * data, uint32_t const size);
 
 /*!***************************************************************************
- * @brief	UART transmit done callback function type.
+ * @brief	SCI physical layer transmit done callback function type.
+ * @details	Callback that is invoked whenever the physical layer has finished
+ * 			transmitting the current data buffer.
  * @param	status The \link #status_t status\endlink of the transmitter;
  *       			 (#STATUS_OK on success).
  * @param	state A pointer to the state that was passed to the Tx function.
  * @return 	-
  *****************************************************************************/
-typedef void (* uart_tx_callback_t)(status_t status, void * state);
+typedef void (*uart_tx_callback_t)(status_t status, void *state);
 
 /*!***************************************************************************
- * @brief	UART layer error callback function type.
- * @param	status The error \link #status_t status\endlink that yielded to
- * 					 the callback.
+ * @brief	SCI error callback function type.
+ * @detail	Callback that is invoked whenever a error occurs.
+ * @param	status The error \link #status_t status\endlink that invoked the
+ * 				   callback.
  * @return 	-
  *****************************************************************************/
-typedef void (* uart_error_callback_t)(status_t status);
+typedef void (*uart_error_callback_t)(status_t status);
 
 /*!***************************************************************************
  * @brief	Initialize the Universal Asynchronous Receiver/Transmitter
@@ -125,6 +142,10 @@ status_t UART2_Init(void);
  * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t UART_Init(void);
+
+status_t UART_CheckBaudRate(uart_baud_rates_t baudRate);
+status_t UART_SetBaudRate(uart_baud_rates_t baudRate);
+uart_baud_rates_t UART_GetBaudRate(void);
 
 /*!***************************************************************************
  * @brief	Writes several bytes to the UART connection.

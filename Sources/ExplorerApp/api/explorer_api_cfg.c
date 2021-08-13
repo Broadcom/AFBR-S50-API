@@ -41,6 +41,7 @@
 #include "explorer_api_cfg.h"
 #include "explorer_app.h"
 #include "explorer_flash.h"
+#include "driver/uart.h"
 
 #include "argus.h"
 
@@ -78,11 +79,11 @@ static void Serialize_Cfg_DCA(sci_frame_t * frame, argus_cfg_dca_t const * dcacf
 	SCI_Frame_Queue16u(frame, dcacfg->Atarget);
 	SCI_Frame_Queue16u(frame, dcacfg->AthLow);
 	SCI_Frame_Queue16u(frame, dcacfg->AthHigh);
+	SCI_Frame_Queue08u(frame, dcacfg->AmplitudeMode);
 	SCI_Frame_Queue16u(frame, dcacfg->DepthNom);
 	SCI_Frame_Queue16u(frame, dcacfg->DepthMin);
 	SCI_Frame_Queue16u(frame, dcacfg->DepthMax);
-	SCI_Frame_Queue16u(frame, dcacfg->PowerNom);
-	SCI_Frame_Queue16u(frame, dcacfg->PowerMin);
+	SCI_Frame_Queue08u(frame, dcacfg->Power);
 	SCI_Frame_Queue08u(frame, dcacfg->GainNom);
 	SCI_Frame_Queue08u(frame, dcacfg->GainMin);
 	SCI_Frame_Queue08u(frame, dcacfg->GainMax);
@@ -102,11 +103,11 @@ static void Deserialize_Cfg_DCA(sci_frame_t * frame, argus_cfg_dca_t * dcacfg)
 	dcacfg->Atarget = SCI_Frame_Dequeue16u(frame);
 	dcacfg->AthLow = SCI_Frame_Dequeue16u(frame);
 	dcacfg->AthHigh = SCI_Frame_Dequeue16u(frame);
+	dcacfg->AmplitudeMode = SCI_Frame_Dequeue08u(frame);
 	dcacfg->DepthNom = SCI_Frame_Dequeue16u(frame);
 	dcacfg->DepthMin = SCI_Frame_Dequeue16u(frame);
 	dcacfg->DepthMax = SCI_Frame_Dequeue16u(frame);
-	dcacfg->PowerNom = SCI_Frame_Dequeue16u(frame);
-	dcacfg->PowerMin = SCI_Frame_Dequeue16u(frame);
+	dcacfg->Power = SCI_Frame_Dequeue08u(frame);
 	dcacfg->GainNom = SCI_Frame_Dequeue08u(frame);
 	dcacfg->GainMin = SCI_Frame_Dequeue08u(frame);
 	dcacfg->GainMax = SCI_Frame_Dequeue08u(frame);
@@ -119,7 +120,7 @@ static void Serialize_Cfg_PBA(sci_frame_t * frame, argus_cfg_pba_t const * pba)
 	assert(pba != 0);
 
 	SCI_Frame_Queue08u(frame, pba->Enabled);
-	SCI_Frame_Queue08u(frame, pba->Mode);
+	SCI_Frame_Queue08u(frame, pba->AveragingMode);
 	SCI_Frame_Queue32u(frame, pba->PrefilterMask);
 	SCI_Frame_Queue16u(frame, pba->AbsAmplThreshold);
 	SCI_Frame_Queue08u(frame, pba->RelAmplThreshold);
@@ -132,7 +133,7 @@ static void Deserialize_Cfg_PBA(sci_frame_t * frame, argus_cfg_pba_t * pba)
 	assert(pba != 0);
 
 	pba->Enabled = SCI_Frame_Dequeue08u(frame);
-	pba->Mode = SCI_Frame_Dequeue08u(frame);
+	pba->AveragingMode = SCI_Frame_Dequeue08u(frame);
 	pba->PrefilterMask = SCI_Frame_Dequeue32u(frame);
 	pba->AbsAmplThreshold = SCI_Frame_Dequeue16u(frame);
 	pba->RelAmplThreshold = SCI_Frame_Dequeue08u(frame);
@@ -152,8 +153,7 @@ static status_t RxCmd_CfgDataOutputMode(sci_frame_t * frame)
 	if(SCI_Frame_BytesToRead(frame) > 1)
 	{	/* Master sending data... */
 		explorer_cfg_t cfg;
-		status_t status = ExplorerApp_GetConfiguration(&cfg);
-		if(status < STATUS_OK) return status;
+		ExplorerApp_GetConfiguration(&cfg);
 		cfg.DataOutputMode = SCI_Frame_Dequeue08u(frame);
 		return ExplorerApp_SetConfiguration(&cfg);
 	}
@@ -167,9 +167,9 @@ static status_t TxCmd_CfgDataOutputMode(sci_frame_t * frame, sci_param_t param, 
 	(void)param;
 	(void)data;
 	explorer_cfg_t cfg;
-	status_t status = ExplorerApp_GetConfiguration(&cfg);
+	ExplorerApp_GetConfiguration(&cfg);
 	SCI_Frame_Queue08u(frame, cfg.DataOutputMode);
-	return status;
+	return STATUS_OK;
 }
 
 static status_t RxCmd_CfgMeasurementMode(sci_frame_t * frame)
@@ -427,8 +427,7 @@ static status_t RxCmd_CfgSpi(sci_frame_t * frame)
 	if(SCI_Frame_BytesToRead(frame) > 1)
 	{	/* Master sending data... */
 		explorer_cfg_t cfg;
-		status_t status = ExplorerApp_GetConfiguration(&cfg);
-		if(status < STATUS_OK) return status;
+		ExplorerApp_GetConfiguration(&cfg);
 		cfg.SPISlave = SCI_Frame_Dequeue08s(frame);
 		cfg.SPIBaudRate = SCI_Frame_Dequeue32u(frame);
 		return ExplorerApp_SetConfiguration(&cfg);
@@ -443,10 +442,60 @@ static status_t TxCmd_CfgSpi(sci_frame_t * frame, sci_param_t param, sci_data_t 
 	(void)param;
 	(void)data;
 	explorer_cfg_t cfg;
-	status_t status = ExplorerApp_GetConfiguration(&cfg);
+	ExplorerApp_GetConfiguration(&cfg);
 	SCI_Frame_Queue08s(frame, cfg.SPISlave);
 	SCI_Frame_Queue32u(frame, cfg.SPIBaudRate);
-	return status;
+	return STATUS_OK;
+}
+
+static status_t RxCmd_CfgUart(sci_frame_t * frame)
+{
+#if AFBR_SCI_USB
+	(void) frame;
+	return ERROR_NOT_SUPPORTED;
+#else
+	if(SCI_Frame_BytesToRead(frame) > 1)
+	{	/* Master sending data... */
+		const uint32_t baudRate = SCI_Frame_Dequeue32u(frame);
+		return UART_CheckBaudRate(baudRate);
+	}
+	else
+	{	/* Master is requesting data... */
+		return SCI_SendCommand(CMD_CONFIGURATION_UART, 0, 0);
+	}
+#endif
+}
+static status_t PrxCmd_CfgUart(sci_frame_t *frame)
+{
+#if AFBR_SCI_USB
+	(void) frame;
+	return ERROR_NOT_SUPPORTED;
+#else
+	if (SCI_Frame_BytesToRead(frame) > 1)
+	{ /* Master sending data... */
+		const uint32_t baudRate = SCI_Frame_Dequeue32u(frame);
+		status_t status = STATUS_BUSY;
+		while (status == STATUS_BUSY)
+		{
+			status = UART_SetBaudRate(baudRate);
+		}
+		assert(status == STATUS_OK);
+	}
+	return STATUS_OK;
+#endif
+}
+static status_t TxCmd_CfgUart(sci_frame_t * frame, sci_param_t param, sci_data_t data)
+{
+	(void) param;
+	(void) data;
+#if AFBR_SCI_USB
+	(void) frame;
+	return ERROR_NOT_SUPPORTED;
+#else
+	const uint32_t baudRate = UART_GetBaudRate();
+	SCI_Frame_Queue32u(frame, baudRate);
+	return STATUS_OK;
+#endif
 }
 
 /*******************************************************************************
@@ -458,24 +507,27 @@ status_t ExplorerAPI_InitCfg(argus_hnd_t * argus)
 	myArgusPtr = argus;
 
 	status_t
-	status = SCI_SetCommand(CMD_CONFIGURATION_DATA_OUTPUT_MODE, RxCmd_CfgDataOutputMode, TxCmd_CfgDataOutputMode);
+	status = SCI_SetRxTxCommand(CMD_CONFIGURATION_DATA_OUTPUT_MODE, RxCmd_CfgDataOutputMode, TxCmd_CfgDataOutputMode);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CONFIGURATION_MEASUREMENT_MODE, RxCmd_CfgMeasurementMode, TxCmd_CfgMeasurementMode);
+	status = SCI_SetRxTxCommand(CMD_CONFIGURATION_MEASUREMENT_MODE, RxCmd_CfgMeasurementMode, TxCmd_CfgMeasurementMode);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CONFIGURATION_FRAME_TIME, RxCmd_CfgFrameTime, TxCmd_CfgFrameTime);
+	status = SCI_SetRxTxCommand(CMD_CONFIGURATION_FRAME_TIME, RxCmd_CfgFrameTime, TxCmd_CfgFrameTime);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CONFIGURATION_DUAL_FREQUENCY_MODE, RxCmd_CfgDualFrequencyMode, TxCmd_CfgDualFrequencyMode);
+	status = SCI_SetRxTxCommand(CMD_CONFIGURATION_DUAL_FREQUENCY_MODE, RxCmd_CfgDualFrequencyMode, TxCmd_CfgDualFrequencyMode);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CONFIGURATION_SHOT_NOISE_MONITOR_MODE, RxCmd_CfgShotNoiseMonitor, TxCmd_CfgShotNoiseMonitor);
+	status = SCI_SetRxTxCommand(CMD_CONFIGURATION_SHOT_NOISE_MONITOR_MODE, RxCmd_CfgShotNoiseMonitor, TxCmd_CfgShotNoiseMonitor);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CONFIGURATION_SMART_POWER_SAVE, RxCmd_CfgSmartPowerSaveEnabled, TxCmd_CfgSmartPowerSaveEnabled);
+	status = SCI_SetRxTxCommand(CMD_CONFIGURATION_SMART_POWER_SAVE, RxCmd_CfgSmartPowerSaveEnabled, TxCmd_CfgSmartPowerSaveEnabled);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CONFIGURATION_DCA, RxCmd_CfgDca, TxCmd_CfgDca);
+	status = SCI_SetRxTxCommand(CMD_CONFIGURATION_DCA, RxCmd_CfgDca, TxCmd_CfgDca);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CONFIGURATION_PBA, RxCmd_CfgPba, TxCmd_CfgPba);
+	status = SCI_SetRxTxCommand(CMD_CONFIGURATION_PBA, RxCmd_CfgPba, TxCmd_CfgPba);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CONFIGURATION_SPI, RxCmd_CfgSpi, TxCmd_CfgSpi);
+	status = SCI_SetRxTxCommand(CMD_CONFIGURATION_SPI, RxCmd_CfgSpi, TxCmd_CfgSpi);
 	if (status < STATUS_OK) return status;
+	status = SCI_SetCommand(CMD_CONFIGURATION_UART, RxCmd_CfgUart, TxCmd_CfgUart, PrxCmd_CfgUart);
+	if(status < STATUS_OK) return status;
+
 
 	return status;
 }

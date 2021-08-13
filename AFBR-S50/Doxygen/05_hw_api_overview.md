@@ -1,5 +1,4 @@
-Command Overview {#hw_api_cmd_overview}
-=======================================
+# Command Overview {#hw_api_cmd_overview}
 
 The following section contains the current command overview as implemented in the _ExplorerApp_. The implementation can be found in the "Sources\explorer_app\api" folder of the "AFBR_S50_ExplorerApp_KL46z" project. See also @ref hw_api.
 
@@ -10,6 +9,7 @@ The following section contains the current command overview as implemented in th
 | [Invalid Command](@ref cmd_invalid)                    | 0x00 | -         | Reserved! Invalid Command;                                                                                                                                                        |
 | [Acknowledge (ACK)](@ref cmd_ack)                      | 0x0A | auto/push | Slave does acknowledge the successful reception of the last command.                                                                                                              |
 | [Not Acknowledge (NAK)](@ref cmd_nak)                  | 0x0B | auto/push | Slave does not-acknowledge the successful reception of the last command.                                                                                                          |
+| [Ping Command](@ref cmd_ping)                          | 0x01 | get       | A ping message the is sent from the master and reflected by the slave. Used to establish or test the UART connection.                                                             |
 | [Log Message](@ref cmd_log)                            | 0x06 | auto/push | An event/debug log message sent from the slave to inform the user.                                                                                                                |
 | [Test Message](@ref cmd_test)                          | 0x04 | set / get | Sending a test message to the slave that will be echoed in order to test the interface. The slave will echo the exact message including the CRC values from the original message. |
 | [MCU/Software Reset](@ref cmd_reset)                   | 0x08 | cmd       | Invokes the software reset command.                                                                                                                                               |
@@ -30,7 +30,7 @@ The following section contains the current command overview as implemented in th
 
 # Measurement Data Commands {#hw_api_cmds_data}
 
-Two modes of streaming measurement data: on request or whenever a new data set is available.
+The modes of measurement data streaming.
 The actual data might depend on device configuration and calibration.
 
 | Caption                                                          | Byte | Type            | Comment                                                                                |
@@ -45,28 +45,29 @@ The actual data might depend on device configuration and calibration.
 
 # Configuration Commands {#hw_api_cmds_cfg}
 
-| Caption                                            | Byte | Type      | Comment                                                            |
-| -------------------------------------------------- | ---- | --------- | ------------------------------------------------------------------ |
-| [Data Output Mode](@ref cmd_cfg_output_mode)       | 0x41 | set / get | The measurement data output mode. (Hardware API only)              |
-| [Measurement Mode](@ref cmd_cfg_mode)              | 0x42 | set / get | Gets or sets the measurement mode.                                 |
-| [Frame Time (Frame Rate)](@ref cmd_cfg_frame_time) | 0x43 | set / get | Gets or sets the measurement frame time (i.e. inverse frame rate). |
-| [Dual Frequency Mode](@ref cmd_cfg_dfm)            | 0x44 | set / get | Gets or sets the dual frequency mode.                              |
-| [Smart Power Save Mode](@ref cmd_cfg_sps)          | 0x45 | set / get | Gets or sets the smart power saving feature enabled flag.          |
-| [Shot Noise Monitor Mode](@ref cmd_cfg_snm)        | 0x46 | set / get | Gets or sets the shot noise monitor mode.                          |
-| [Dynamic Configuration Adaption](@ref cmd_cfg_dca) | 0x52 | set / get | Gets or sets the full DCA feature configuration set.               |
-| [Pixel Binning Algorithm](@ref cmd_cfg_pba)        | 0x54 | set / get | Gets or sets the pixel binning feature configuration.              |
-| [SPI Configuration](@ref cmd_cfg_spi)              | 0x58 | set / get | Gets or sets the SPI configuration (baud rate, slave instance).    |
+| Caption                                            | Byte | Type      | Comment                                                                      |
+| -------------------------------------------------- | ---- | --------- | ---------------------------------------------------------------------------- |
+| [Data Output Mode](@ref cmd_cfg_output_mode)       | 0x41 | set / get | The measurement data output mode. (Hardware API only)                        |
+| [Measurement Mode](@ref cmd_cfg_mode)              | 0x42 | set / get | Gets or sets the measurement mode.                                           |
+| [Frame Time (Frame Rate)](@ref cmd_cfg_frame_time) | 0x43 | set / get | Gets or sets the measurement frame time (i.e. inverse frame rate).           |
+| [Dual Frequency Mode](@ref cmd_cfg_dfm)            | 0x44 | set / get | Gets or sets the dual frequency mode.                                        |
+| [Smart Power Save Mode](@ref cmd_cfg_sps)          | 0x45 | set / get | Gets or sets the smart power saving feature enabled flag.                    |
+| [Shot Noise Monitor Mode](@ref cmd_cfg_snm)        | 0x46 | set / get | Gets or sets the shot noise monitor mode.                                    |
+| [Dynamic Configuration Adaption](@ref cmd_cfg_dca) | 0x52 | set / get | Gets or sets the full DCA feature configuration set.                         |
+| [Pixel Binning Algorithm](@ref cmd_cfg_pba)        | 0x54 | set / get | Gets or sets the pixel binning feature configuration.                        |
+| [SPI Configuration](@ref cmd_cfg_spi)              | 0x58 | set / get | Gets or sets the SPI configuration (baud rate, slave instance).              |
+| [UART Configuration](@ref cmd_cfg_uart)            | 0x59 | set / get | Gets or sets the UART configuration (e.g. baud rate). Only for UART version. |
 
 # Calibration Commands {#hw_api_cmds_cal}
 
-| Caption                                                                    | Byte | Type      | Comment                                                                              |
-| -------------------------------------------------------------------------- | ---- | --------- | ------------------------------------------------------------------------------------ |
-| [Global Range Offset](@ref cmd_cal_range_offset)                           | 0x61 | set / get | Gets or sets the global range offset calibration parameter.                          |
-| [Pixel Range Offsets](@ref cmd_cal_offsets)                                | 0x67 | set / get | Gets or sets the crosstalk compensation vector table.                                |
-| [Pixel Range Offsets - Reset](@ref cmd_cal_offsets_rst)                    | 0x68 | cmd       | Resets the crosstalk compensation vector table to factory calibrated default values. |
-| [Range Offsets Cal. Sequence - Sample Count](@ref cmd_cal_offsets_smpl_ct) | 0x69 | set / get | Gets or sets the crosstalk calibration sequence sample count.                        |
-| [Crosstalk Compensation - Vector Table](@ref cmd_cal_xtalk_vec)            | 0x62 | set / get | Gets or sets the crosstalk compensation vector table.                                |
-| [Crosstalk Compensation - Reset](@ref cmd_cal_xtalk_rst)                   | 0x63 | cmd       | Resets the crosstalk compensation vector table to factory calibrated default values. |
-| [Crosstalk Cal. Sequence - Sample Count](@ref cmd_cal_xtalk_smpl_ct)       | 0x64 | set / get | Gets or sets the crosstalk calibration sequence sample count.                        |
-| [Crosstalk Cal. Sequence - Max. Amplitude](@ref cmd_cal_xtalk_max_ampl)    | 0x65 | set / get | Gets or sets the crosstalk calibration sequence maximum amplitude threshold.         |
-| [Pixel-2-Pixel Crosstalk Compensation](@ref cmd_cal_xtalk_p2p)             | 0x66 | set / get | Gets or sets the pixel-2-pixel crosstalk calibration parameter values.               |
+| Caption                                                                     | Byte | Type      | Comment                                                                              |
+| --------------------------------------------------------------------------- | ---- | --------- | ------------------------------------------------------------------------------------ |
+| [Global Range Offset](@ref cmd_cal_range_offset)                            | 0x61 | set / get | Gets or sets the global range offset calibration parameter.                          |
+| [Pixel Range Offsets](@ref cmd_cal_offsets)                                 | 0x67 | set / get | Gets or sets the pixel-to-pixel range offset table.                                  |
+| [Pixel Range Offsets - Reset](@ref cmd_cal_offsets_rst)                     | 0x68 | cmd       | Resets the pixel-to-pixel range offset table to factory calibrated default values.   |
+| [Range Offsets Cal. Sequence - Sample Time](@ref cmd_cal_offsets_smpl_time) | 0x69 | set / get | Gets or sets the range offset calibration sequence sample time.                      |
+| [Crosstalk Compensation - Vector Table](@ref cmd_cal_xtalk_vec)             | 0x62 | set / get | Gets or sets the crosstalk compensation vector table.                                |
+| [Crosstalk Compensation - Reset](@ref cmd_cal_xtalk_rst)                    | 0x63 | cmd       | Resets the crosstalk compensation vector table to factory calibrated default values. |
+| [Crosstalk Cal. Sequence - Sample Time](@ref cmd_cal_xtalk_smpl_time)       | 0x64 | set / get | Gets or sets the crosstalk calibration sequence sample time.                         |
+| [Crosstalk Cal. Sequence - Max. Amplitude](@ref cmd_cal_xtalk_max_ampl)     | 0x65 | set / get | Gets or sets the crosstalk calibration sequence maximum amplitude threshold.         |
+| [Pixel-2-Pixel Crosstalk Compensation](@ref cmd_cal_xtalk_p2p)              | 0x66 | set / get | Gets or sets the pixel-2-pixel crosstalk calibration parameter values.               |

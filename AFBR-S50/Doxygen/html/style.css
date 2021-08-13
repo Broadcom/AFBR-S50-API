@@ -1,10 +1,13 @@
-#projectlogo {
-		padding: 0.5em;
+div.contents{
+   max-width: 960px;
 }
-.image
-{
-   text-align: left;
-   margin: 1em;
-   /* width: 100%; */
-   max-width: 800px; 
+#projectlogo {
+  padding: 0.5em;
+}
+.image {
+  text-align: left;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  /* width: 100%; */
+  /* max-width: 800px; */
 }

@@ -4,24 +4,24 @@
  * @details		This file contains current Explorer Application version number.
  *
  * @copyright
- * 
+ *
  * Copyright (c) 2021, Broadcom Inc
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * 1. Redistributions of source code must retain the above copyright notice, this
  *    list of conditions and the following disclaimer.
- * 
+ *
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 
+ *
  * 3. Neither the name of the copyright holder nor the names of its
  *    contributors may be used to endorse or promote products derived from
  *    this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -50,13 +50,13 @@
 #define EXPLORER_VERSION_MAJOR    1
 
 /*! @brief Minor version number of the platform code. */
-#define EXPLORER_VERSION_MINOR    2
+#define EXPLORER_VERSION_MINOR    3
 
 /*! @brief Bugfix version number of the platform code. */
-#define EXPLORER_VERSION_BUGFIX   3
+#define EXPLORER_VERSION_BUGFIX   5
 
 /*! Build version nunber of the AFBR-S50 API. */
-#define EXPLORER_VERSION_BUILD    "20201120091253"
+#define EXPLORER_VERSION_BUILD    "20210812171515"
 
 /*****************************************************************************/
 

@@ -79,7 +79,7 @@ uint32_t Time_GetSec(ltc_t const * t) __attribute__((weak));
 uint32_t Time_GetUSec(ltc_t const * t) __attribute__((weak));
 #endif
 
-extern status_t SCI_DataLink_SendTxFrame(sci_frame_t * frame);
+extern status_t SCI_DataLink_SendTxFrame(sci_frame_t * frame, bool high_priority);
 extern sci_frame_t * SCI_DataLink_RequestTxFrame(bool queueStartByte);
 /*! @endcond */
 
@@ -128,7 +128,7 @@ static inline status_t vprint(const char *fmt_s, va_list * ap)
 
     PrintfFormattedData(SCI_Frame_PutChar, frame, fmt_s, ap);
 
-    return SCI_DataLink_SendTxFrame(frame);
+    return SCI_DataLink_SendTxFrame(frame, false);
 }
 
 /*! @cond */

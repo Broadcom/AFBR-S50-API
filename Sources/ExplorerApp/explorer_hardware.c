@@ -38,7 +38,6 @@
 
 #include "board/clock_config.h"
 #include "driver/cop.h"
-#include "driver/gpio.h"
 #include "driver/flash.h"
 #include "driver/timer.h"
 #include "driver/s2pi.h"
@@ -48,18 +47,7 @@
 #include "driver/MKL46Z/slcd.h"
 #endif
 
-#include <assert.h>
-
-
-#if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
-#define DEFAULT_SLAVE S2PI_PINS_LOW
-#else
-#define DEFAULT_SLAVE S2PI_S1
-#endif
-
-#define DEFAULT_BAUD_RATE 1000000U
-
-status_t ExplorerApp_InitHardware(void)
+status_t ExplorerApp_InitHardware(explorer_cfg_t * cfg)
 {
 #if WATCHDOG_ENABLED
 	COP_Init();
@@ -68,7 +56,6 @@ status_t ExplorerApp_InitHardware(void)
 #endif
 
 	BOARD_ClockInit();
-	GPIO_Init();
 #if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
 	SLCD_Init();
 	SLCD_DisplayBar();
@@ -76,7 +63,7 @@ status_t ExplorerApp_InitHardware(void)
 	Timer_Init();
 
 	/* Initialize the S2PI hardware. */
-	status_t status = S2PI_Init(DEFAULT_SLAVE, DEFAULT_BAUD_RATE);
+	status_t status = S2PI_Init(cfg->SPISlave < 0 ? S2PI_PINS_LOW : cfg->SPISlave, cfg->SPIBaudRate);
 	if (status < STATUS_OK)
 	{
 		error_log("SPI driver 'initialization' failed, "

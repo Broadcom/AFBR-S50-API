@@ -1,12 +1,14 @@
 # Troubleshooting {#faq}
 
+The following section contains troubleshooting guidance for the most common issues.
+
 ## Device Initialization Yields Device Not Connected (Error Code -101)
 
 **Problem**: After calling the #Argus_Init() method, an error status -101 (#ERROR_ARGUS_NOT_CONNECTED) is returned.
 
 **Information**: The first thing that happens in the initialization function are a few read/write cycles on the SPI interface in order to check the responsiveness of the device: 
 
-- First, a byte sequence (1,2,3,4,...,15) is written to the MOSI and the MISO data is ignored. 
+- First, a byte sequence (1,2,3,4,...,16) is written to the MOSI and the MISO data is ignored. 
 - Second, a sequence of 0's is written to the same register and the MISO is captured and compared to the pattern from the previous write cycle. 
 - Finally, another sequence of 0's is written and the received data is checked for being zero again. 
 
@@ -15,11 +17,11 @@ If the read pattern is not equal to the written one, the error #ERROR_ARGUS_NOT_
 **Solution**: In order to solve the issue, verify the following sequence in your SPI interface when calling the #Argus_Init() function:
 
 1. Writing a test pattern to register address 0x04:
-   - MOSI: `0x 04 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F`
+   - MOSI: `0x 04 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10`
    - MISO: `0x 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00` (or any other, depending on the current state of your device)
 2. Clearing the test pattern at register 0x04, read back of test pattern 1:
    - MOSI: `0x 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00`
-   - MISO: `0x 00 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F`
+   - MISO: `0x 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10`
 3. Clearing the test pattern at register 0x04, read back of test pattern 2:
    - MOSI: `0x 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00`
    - MISO: `0x 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00`

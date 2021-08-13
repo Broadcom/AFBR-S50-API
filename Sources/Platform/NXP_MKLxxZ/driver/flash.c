@@ -42,12 +42,20 @@
 #include "driver/fsl_flash.h"
 #include "driver/irq.h"
 
+#include <assert.h>
+
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+
+__attribute__((__section__(".user_data"))) const volatile uint8_t userConfig[FLASH_TOTAL_SIZE];
+
+/*! Address of first flash sector. */
+#define FLASH_SECTOR_0_ADDRESS ((uint32_t)(userConfig))
+
 /*! Macro to determine the address vector of a specified flash sector by its index. */
 #define FLASH_SECTOR_ADDRESS(index) \
-	((uint32_t)(((FLASH_BLOCK_TOTAL_SIZE) - ((index) + 1U) * (FLASH_SECTOR_SIZE))))
+	(((uint32_t)(FLASH_SECTOR_0_ADDRESS)) + ((index) * (FLASH_BLOCK_SIZE)) )
 
 /*******************************************************************************
  * Prototypes
@@ -67,6 +75,12 @@ static flash_config_t s_flashDriver;
 
 status_t Flash_Init(void)
 {
+	/* User flash is located at the end of the 256kByte Flash and aligned to the
+	 * start of a flash sector. This assertions check if the project has been setup
+	 * correctly and the userConfig is correctly located and aligned. */
+	assert(((uint32_t)(userConfig) & 0x03FF) == 0); // Check if user flash is aligned to flash sectors (1024 bytes)!
+	assert((uint32_t)(&userConfig[FLASH_TOTAL_SIZE]) == 0x40000); // Check if The userConfig is located at end of flash memory!
+
 	 /* Clean up Flash driver Structure*/
 	memset(&s_flashDriver, 0, sizeof(flash_config_t));
 
@@ -83,7 +97,7 @@ static status_t Flash_EraseSector(uint32_t index)
 	status_t status = FLASH_Erase(
 			&s_flashDriver,
 			FLASH_SECTOR_ADDRESS(index),
-			FLASH_SECTOR_SIZE,
+			FLASH_BLOCK_SIZE,
 			kFLASH_ApiEraseKey);
 	if(status < STATUS_OK) return status;
 
@@ -91,7 +105,7 @@ static status_t Flash_EraseSector(uint32_t index)
 	status = FLASH_VerifyErase(
 			&s_flashDriver,
 			FLASH_SECTOR_ADDRESS(index),
-			FLASH_SECTOR_SIZE,
+			FLASH_BLOCK_SIZE,
 			kFLASH_MarginValueUser);
 	if(status < STATUS_OK) return status;
 
@@ -103,7 +117,7 @@ status_t Flash_Read(uint32_t index, uint32_t offset,
 {
 	if (data == 0) return ERROR_INVALID_ARGUMENT;
 	if (size == 0) return ERROR_INVALID_ARGUMENT;
-	if (offset + size > FLASH_SECTOR_SIZE)
+	if (offset + size > FLASH_BLOCK_SIZE)
 		return ERROR_OUT_OF_RANGE;
 
 	memcpy(data, (uint8_t*)(FLASH_SECTOR_ADDRESS(index) + offset), size);
@@ -115,14 +129,14 @@ status_t Flash_Write(uint32_t index, uint32_t offset,
 {
 	if (data == 0) return ERROR_INVALID_ARGUMENT;
 	if (size == 0) return ERROR_INVALID_ARGUMENT;
-	if (offset + size > FLASH_SECTOR_SIZE)
+	if (offset + size > FLASH_BLOCK_SIZE)
 		return ERROR_OUT_OF_RANGE;
 
 	IRQ_LOCK(); // prevent read-while-write violation
 
 	/* Read the current data: */
-	uint8_t sector [FLASH_SECTOR_SIZE];
-	status_t status = Flash_Read(index, 0, sector, FLASH_SECTOR_SIZE);
+	uint8_t sector[FLASH_BLOCK_SIZE];
+	status_t status = Flash_Read(index, 0, sector, FLASH_BLOCK_SIZE);
 	if (status < STATUS_OK)
 	{
 		IRQ_UNLOCK();
@@ -142,7 +156,7 @@ status_t Flash_Write(uint32_t index, uint32_t offset,
 
 	/* Write back the data: */
 	status = FLASH_Program(&s_flashDriver, FLASH_SECTOR_ADDRESS(index),
-						   (uint32_t*)sector, FLASH_SECTOR_SIZE);
+						   (uint32_t*)sector, FLASH_BLOCK_SIZE);
 	if (status < STATUS_OK)
 	{
 		IRQ_UNLOCK();
@@ -151,7 +165,7 @@ status_t Flash_Write(uint32_t index, uint32_t offset,
 
 	/* Verify the program process */
 	uint32_t failAddr, failDat;
-	status = FLASH_VerifyProgram(&s_flashDriver, FLASH_SECTOR_ADDRESS(index), FLASH_SECTOR_SIZE,
+	status = FLASH_VerifyProgram(&s_flashDriver, FLASH_SECTOR_ADDRESS(index), FLASH_BLOCK_SIZE,
 			(const uint32_t *)sector, kFLASH_MarginValueUser, &failAddr, &failDat);
 	if (status < STATUS_OK)
 	{
@@ -166,14 +180,15 @@ status_t Flash_Write(uint32_t index, uint32_t offset,
 status_t Flash_Clear(uint32_t index, uint32_t offset, uint32_t size)
 {
 	if (size == 0) return ERROR_INVALID_ARGUMENT;
-	if (offset + size > FLASH_SECTOR_SIZE)
+	if (offset + size > FLASH_BLOCK_SIZE)
 		return ERROR_OUT_OF_RANGE;
 
 	IRQ_LOCK(); // prevent read-while-write violation
 
 	/* Read the current data: */
-	uint8_t sector [FLASH_SECTOR_SIZE];
-	status_t status = Flash_Read(index, 0, sector, FLASH_SECTOR_SIZE);
+	uint8_t sector[FLASH_BLOCK_SIZE];
+
+	status_t status = Flash_Read(index, 0, sector, FLASH_BLOCK_SIZE);
 	if (status < STATUS_OK)
 	{
 		IRQ_UNLOCK();
@@ -193,7 +208,8 @@ status_t Flash_Clear(uint32_t index, uint32_t offset, uint32_t size)
 
 	/* Write back the data: */
 	status = FLASH_Program(&s_flashDriver, FLASH_SECTOR_ADDRESS(index),
-						   (uint32_t*)sector, FLASH_SECTOR_SIZE);
+						   (uint32_t*)sector,
+						   FLASH_BLOCK_SIZE);
 	if (status < STATUS_OK)
 	{
 		IRQ_UNLOCK();
@@ -202,8 +218,9 @@ status_t Flash_Clear(uint32_t index, uint32_t offset, uint32_t size)
 
 	/* Verify the program process */
 	uint32_t failAddr, failDat;
-	status = FLASH_VerifyProgram(&s_flashDriver, FLASH_SECTOR_ADDRESS(index), FLASH_SECTOR_SIZE,
-			(const uint32_t *)sector, kFLASH_MarginValueUser, &failAddr, &failDat);
+	status = FLASH_VerifyProgram(&s_flashDriver, FLASH_SECTOR_ADDRESS(index), FLASH_BLOCK_SIZE,
+								 (const uint32_t*)sector,
+								 kFLASH_MarginValueUser, &failAddr, &failDat);
 	if (status < STATUS_OK)
 	{
 		IRQ_UNLOCK();
@@ -214,3 +231,13 @@ status_t Flash_Clear(uint32_t index, uint32_t offset, uint32_t size)
 	return status;
 }
 
+status_t Flash_ClearAll(void)
+{
+	status_t status = STATUS_OK;
+	for (uint8_t idx = 0; idx < FLASH_BLOCK_COUNT; idx++)
+	{
+		status = Flash_Clear(idx, 0, FLASH_BLOCK_SIZE);
+		if (status != STATUS_OK) return status;
+	}
+	return status;
+}

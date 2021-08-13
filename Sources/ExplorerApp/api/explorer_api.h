@@ -69,24 +69,13 @@ enum ExplorerApp_SerialCommandCodes
 	CMD_MEASUREMENT_START = 0x11,
 	/*! Stops the time-scheduled measurements (after the current frame finishes). */
 	CMD_MEASUREMENT_STOP = 0x12,
+	/*! Reinitializes the device with default configuration. */
+	CMD_DEVICE_REINIT = 0x15,
 	/*! Executes the calibration measurement sequence. */
 	CMD_MEASUREMENT_CALIBRATION = 0x18,
-    /*! Reinitializes the device with default configuration. */
-    CMD_DEVICE_REINIT = 0x15,
 
-	/*! Gets or sets the software debug mode flag. */
-	CMD_DEBUG_MODE = 0x16,
-
-	/*! Direct SPI Write command for debugging. */
-	CMD_SPI_WRITE = 0x1A,
-	/*! Direct SPI Read (+ writing 0) command for debugging. */
-	CMD_SPI_READ = 0x1C,
-	/*! Direct SPI Read + Write command for debugging. */
-	CMD_SPI_TRANSFER = 0x1D,
-	/*! Response from previous read command. */
-	CMD_SPI_RESPONSE = 0x1E,
-	/*! Disables (i.e. pulls all pins to low) the SPI interface. */
-	CMD_SPI_DISABLE = 0x1F,
+	/*! Executed a flash read/write/clear command. */
+	CMD_FLASH = 0x19,
 
 	/*! Gets a raw measurement data set containing the raw device readout samples. */
 	CMD_MEASUREMENT_DATA_RAW = 0x30,
@@ -102,6 +91,7 @@ enum ExplorerApp_SerialCommandCodes
 	CMD_MEASUREMENT_DATA_1D_DEBUG = 0x35,
 	/*! Gets a 1D measurement data set including a single distance and amplitude value. */
 	CMD_MEASUREMENT_DATA_1D = 0x36,
+
 	/*! Gets or sets the configuration of the measurement data output mode   */
 	CMD_CONFIGURATION_DATA_OUTPUT_MODE = 0x41,
 	/*! Gets or sets the configuration of the measurement data evaluation method */
@@ -119,23 +109,25 @@ enum ExplorerApp_SerialCommandCodes
 	CMD_CONFIGURATION_DCA = 0x52,
 	/*! Gets or sets a full PBA (Pixel Binning Algorithm) configuration set. */
 	CMD_CONFIGURATION_PBA = 0x54,
-	/*! Gets or sets a fill SPI configuration set. */
+	/*! Gets or sets a full SPI configuration set. */
 	CMD_CONFIGURATION_SPI = 0x58,
+	/*!< Gets or sets the UART configuration, i.e. the baud rate. */
+	CMD_CONFIGURATION_UART = 0x59,
 	/*! Gets or sets the global range offset. */
 	CMD_CALIBRATION_GLOBAL_RANGE_OFFSET = 0x61,
 	/*! Gets or sets the custom pixel range offsets. */
 	CMD_CALIBRATION_PIXEL_RANGE_OFFSETS = 0x67,
 	/*! Resets the custom pixel range offsets. */
 	CMD_CALIBRATION_PIXEL_RANGE_OFFSETS_RESET = 0x68,
-	/*! Gets or sets the range offset calibration sequence sample count. */
-	CMD_CALIBRATION_RANGE_OFFSET_SAMPLE_COUNT = 0x69,
+	/*! Gets or sets the range offset calibration sequence sample time. */
+	CMD_CALIBRATION_RANGE_OFFSET_SAMPLE_TIME = 0x69,
 
 	/*! Gets or sets the custom crosstalk vector table. */
 	CMD_CALIBRATION_XTALK_VECTOR_TABLE = 0x62,
 	/*! Resets the custom crosstalk vector table. */
 	CMD_CALIBRATION_XTALK_RESET_VECTOR_TABLE = 0x63,
-	/*! Gets or sets the crosstalk calibration sequence sample count. */
-	CMD_CALIBRATION_XTALK_SAMPLE_COUNT = 0x64,
+	/*! Gets or sets the crosstalk calibration sequence sample time. */
+	CMD_CALIBRATION_XTALK_SAMPLE_TIME = 0x64,
 	/*! Gets or sets the crosstalk calibration sequence maximum amplitude threshold. */
 	CMD_CALIBRATION_XTALK_MAX_AMPLITUDE = 0x65,
 	/*! Gets or sets the pixel-to-pixel crosstalk compensation parameters. */
@@ -144,20 +136,27 @@ enum ExplorerApp_SerialCommandCodes
 
 };
 
+/*! Flash sub-commands. */
+typedef enum
+{
+
+	/*! Clears all (API) user (i.e. actual) values from the non-volatile flash memory. */
+	CMD_FLASH_CLEAR_USER_CALIBRATION = 0x44,
+
+	/*! Clears all data from the non-volatile flash memory. */
+	CMD_FLASH_CLEAR_ALL = 0xFF,
+
+} flash_cmd_t;
+
 /*! Calibration sequences for SCI interface. */
 typedef enum
 {
-	/*! Substrate voltage calibration sequence. */
-	CALIBRATION_SEQUENCE_VSUB = 1,
 
 	/*! Crosstalk calibration sequence for measurement mode A. */
 	CALIBRATION_SEQUENCE_XTALK_MODE_A = 2,
 
 	/*! Crosstalk calibration sequence for measurement mode B. */
 	CALIBRATION_SEQUENCE_XTALK_MODE_B = 3,
-
-	/*! Pll calibration sequence. */
-	CALIBRATION_SEQUENCE_PLL = 4,
 
 	/*! Range offsets calibration sequence for measurement mode A. */
 	CALIBRATION_SEQUENCE_OFFSETS_MODE_A = 5,
@@ -171,7 +170,7 @@ typedef enum
 typedef enum
 {
 	/*! Data output on request. */
-	DATA_OUTPUT_ON_REQUEST = 0,
+	//DATA_OUTPUT_ON_REQUEST = 0, // not implemented
 
 	/*! Streaming data output of raw measurement data (i.e. correlation sampling values). */
 	DATA_OUTPUT_STREAMING_RAW = 1,

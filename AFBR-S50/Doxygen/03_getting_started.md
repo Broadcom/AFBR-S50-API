@@ -16,13 +16,19 @@ If it is required to use a different function, create and overwrite the weakly l
 
 After creation of the handler object, the *AFBR-S50* module must be initialized with the corresponding handler object:
 \code status_t status = Argus_Init(hnd, SPI_SLAVE); \endcode
-Note that all peripheral modules must be ready to be used before executing any API function. So make sure to initialize the board and its peripherals before. Now the device is ready to run and has setup with default configuration and calibration data. Use the provided API functions to customize the given default configuration to the needs and requirements of the application. 
 
-From then, there are two possibilities to operate the device. First, the simple polling method. The measurements are triggered by the main program via calling the #Argus_TriggerMeasurement function any time a new measurement should be started. A new measurement frame is started and after reading the data from the device, the callback is invoked to inform the host application about the data ready event. In the meantime, the host application can poll the module status or execute other tasks. After finishing the measurement, the #Argus_EvaluateData function must be called to obtain measurement data like range from the raw readout data. It is mandatory to call the evaluation method. Otherwise, the raw data buffer is kept occupied and no new measurement can be started anymore. The module contains however a double buffer architecture, which allows to start the next measurement and evaluate the current measurement data while the device executes a new measurement frame. After evaluation, the #argus_results_t data structure is filled with all measurement results that can be processed now be processed by the host application depending on the users needs. An example implementation is shown in the @ref gs_simple_example section.
+Note that all peripheral modules must be ready to be used before executing any API function. So make sure to initialize the board and its peripherals before initializing the API via `Argus_Init`. 
 
-Please note that the laser safety module might refuse to restart a measurement at the time the function is called. This is due to timing constraints dictated by the laser safety rules. The frame time and similar parameters can be adjusted with the configuration API methods.
+After calling `Argus_Init`, the device is ready to run and has been setup with default configuration and calibration data. Use the provided API functions to customize the given default configuration to the needs and requirements of the application. 
 
-The second way of operating the device is to leverage from an periodic interrupt time that invokes a callback to the API in periodic manner. The timer is implemented in the \link #argus_timer timer\endlink interface. Instead of calling the #Argus_TriggerMeasurement function periodically from the host application, the measurement restarts itself in an autonomous way. Every time, a new raw measurement data set is ready, the measurement data ready callback is invoked by the API. Similar to the previous method, the #Argus_EvaluateData function must be called before the data can be used. Note that not calling the function will lead to measurements are not restarted before the evaluation method is called and the data buffers is freed. In the same manner, a slow data evaluation or much user code to delay the data evaluation method might decrease the measurement frame rate. An example implementation is shown in the @ref gs_adv_example section.
+Note that `Argus_Init` returns #STATUS_OK on successful initialization. In case of any non-zero return value, refer to the \ref faq section
+
+There are two possibilities to operate the device. First, the simple polling method. The measurements are triggered by the main program via calling the #Argus_TriggerMeasurement function any time a new measurement should be started. A new measurement frame is started and after reading the data from the device, the callback is invoked to inform the host application about the data ready event. In the meantime, the host application can poll the module status or execute other tasks. After finishing the measurement, the #Argus_EvaluateData function must be called to obtain measurement data like range from the raw readout data. It is mandatory to call the evaluation method. Otherwise, the raw data buffer is kept occupied and no new measurements can be triggered anymore. The module contains a double buffer architecture, which allows to start the next measurement and evaluate the current measurement data while the device already executes the next measurement frame. After evaluation, the #argus_results_t data structure is filled with all measurement results that can be processed now be processed by the host application depending on the users needs. An example implementation is shown in the @ref gs_simple_example section. 
+
+
+Please note that the laser safety module might refuse to restart a measurement at the time the function is called. This is due to timing constraints dictated by the laser safety rules. In this case, the function does return with #STATUS_ARGUS_POWERLIMIT instead. Use the \link #Argus_SetConfigurationFrameTime frame time \endlink and similar parameters to adjust the required pause times via the \link #arguscfg configuration API methods\endlink.
+
+The second way of operating the device is to leverage from an periodic interrupt time that invokes a callback to the API in periodic manner. The timer is implemented in the \link #argus_timer timer\endlink interface. Instead of calling the trigger measurement function periodically from the host application, the measurement restarts itself in an autonomous way. Every time, a new raw measurement data set is ready, the measurement data ready callback is invoked by the API. Similar to the previous method, the #Argus_EvaluateData function must be called before the data can be used. Note that not calling the function will lead to measurements are not restarted before the evaluation method is called and the data buffers is freed. In the same manner, a slow data evaluation or much user code to delay the data evaluation method might decrease the measurement frame rate. An example implementation is shown in the @ref gs_adv_example section.
 
 # Build And Run the Examples using MCUXpresso {#gs_mcuxpresso}
 
@@ -79,8 +85,8 @@ In order to run provided project, execute the following steps:
 
 4. Build the projects:
 
-	- Go to MCUXpresso IDE -> Quickstart Panel
-	- Click on "Build"
+	- Go to MCUXpresso IDE -> Project Explorer and select the project to build.
+	- Go to Quickstart Panel and click on "Build"
 	
 	@image html 3_4_build.jpg "Fig. 3.4: Build the project." width=800px
 	@image latex 3_4_build.jpg "Fig. 3.4: Build the project."

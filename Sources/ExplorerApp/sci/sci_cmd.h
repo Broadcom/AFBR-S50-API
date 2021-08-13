@@ -59,12 +59,12 @@ enum GenericSerialCommandCodes
 	CMD_INVALID				= 0x00, /*!< Program internal marker for invalid/erroneous commands. */
 
 	/* Generic commands. */
+	CMD_PING				= 0x01, /*! Simple ping message that will just acknowledge if successfully received. */
 	CMD_LOG_MESSAGE 		= 0x06, /*!< An event/debug log message. */
 	CMD_STATUS_REPORT		= 0x07, /*!< Software status/error report (running, pause, error, ...) from MCU or request from PC. */
+	CMD_SYSTEM_RESET 		= 0x08, /*!< Command to reset the MCU. */
 	CMD_ACKNOWLEDGE 		= 0x0A, /*!< Acknowledge of the previous command. */
 	CMD_NOT_ACKNOWLEDGE		= 0x0B, /*!< Not-acknowledge of the previous command. */
-	CMD_SYSTEM_RESET 		= 0x08, /*!< Command to reset the MCU. */
-	CMD_BOOTLOADER			= 0x09, /*!< Enters the bootloader mode. */
 
 	/* Misc. commands. */
 	CMD_TEST_MESSAGE		= 0x04, /*!< Test message send to the slave. The slave will reflect the message back to the master. */

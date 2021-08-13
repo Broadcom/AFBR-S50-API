@@ -71,8 +71,8 @@ typedef enum
 
 #if defined(CPU_MKL17Z256VFM4)
 
-extern gpio_pin_t Pin_PTA01;			/*!< Pin: Port A, Pin 1 */
-extern gpio_pin_t Pin_PTA02;			/*!< Pin: Port A, Pin 2 */
+//extern gpio_pin_t Pin_PTA01;			/*!< Pin: Port A, Pin 1 */
+//extern gpio_pin_t Pin_PTA02;			/*!< Pin: Port A, Pin 2 */
 
 extern gpio_pin_t Pin_PTE16;			/*!< Pin: Port E, Pin 16 */
 extern gpio_pin_t Pin_PTE17;			/*!< Pin: Port E, Pin 17 */

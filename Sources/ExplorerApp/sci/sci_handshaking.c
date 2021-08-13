@@ -69,7 +69,7 @@ status_t SCI_SendAcknowledge(sci_cmd_t cmd)
 	if(!frame) return ERROR_SCI_BUFFER_FULL;
 	SCI_Frame_Queue08u(frame, CMD_ACKNOWLEDGE);
 	SCI_Frame_Queue08u(frame, cmd);
-	return SCI_DataLink_SendTxFrame(frame);
+	return SCI_DataLink_SendTxFrame(frame, true);
 }
 
 status_t SCI_SendNotAcknowledge(sci_cmd_t cmd, status_t reason)
@@ -79,5 +79,5 @@ status_t SCI_SendNotAcknowledge(sci_cmd_t cmd, status_t reason)
 	SCI_Frame_Queue08u(frame, CMD_NOT_ACKNOWLEDGE);
 	SCI_Frame_Queue08u(frame, cmd);
 	SCI_Frame_Queue16s(frame, (int16_t)reason);
-	return SCI_DataLink_SendTxFrame(frame);
+	return SCI_DataLink_SendTxFrame(frame, true);
 }

@@ -129,9 +129,8 @@ status_t ExplorerApp_QueueTask(explorer_task_t task);
  * @param	cfg A pointer to the \link #explorer_cfg_t software
  * 				  configuration\endlink data structure that will be filled with
  * 				  the current configuration data.
- * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-status_t ExplorerApp_GetConfiguration(explorer_cfg_t * cfg);
+void ExplorerApp_GetConfiguration(explorer_cfg_t * cfg);
 
 /*!***************************************************************************
  * @brief	Setter for the software configuration.

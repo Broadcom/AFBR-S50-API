@@ -104,7 +104,7 @@ static status_t RxCmd_CalGlobalRangeOffset(sci_frame_t * frame)
 		argus_mode_t mode = SCI_Frame_Dequeue08u(frame);
 		if (SCI_Frame_BytesToRead(frame) > 1)
 		{ /* Master sending data... */
-			q9_22_t offset = SCI_Frame_Dequeue32s(frame);
+			q0_15_t offset = SCI_Frame_Dequeue16s(frame);
 			return Argus_SetCalibrationGlobalRangeOffset(myArgusPtr, mode, offset);
 		}
 		else
@@ -125,9 +125,9 @@ static status_t TxCmd_CalGlobalRangeOffset(sci_frame_t * frame, sci_param_t para
 	if (param == 0) return ERROR_SCI_INVALID_CMD_PARAMETER;
 	argus_mode_t mode = (argus_mode_t) param;
 	SCI_Frame_Queue08u(frame, mode);
-	q9_22_t offset;
+	q0_15_t offset;
 	status = Argus_GetCalibrationGlobalRangeOffset(myArgusPtr, mode, &offset);
-	SCI_Frame_Queue32s(frame, offset);
+	SCI_Frame_Queue16s(frame, offset);
 	return status;
 }
 
@@ -184,27 +184,27 @@ static status_t RxCmd_CalResetPixelRangeOffsets(sci_frame_t * frame)
 	return Argus_ResetCalibrationPixelRangeOffsets(myArgusPtr, mode);
 }
 
-static status_t RxCmd_CalRangeOffsetSeqSampleCount(sci_frame_t * frame)
+static status_t RxCmd_CalRangeOffsetSeqSampleTime(sci_frame_t * frame)
 {
 	if (SCI_Frame_BytesToRead(frame) > 1)
 	{ /* Master sending data... */
-		uint16_t count = SCI_Frame_Dequeue16u(frame);
-		return Argus_SetCalibrationRangeOffsetSequenceSampleCount(myArgusPtr, count);
+		uint16_t time = SCI_Frame_Dequeue16u(frame);
+		return Argus_SetCalibrationRangeOffsetSequenceSampleTime(myArgusPtr, time);
 	}
 	else
 	{ /* Master is requesting data... */
-		return SCI_SendCommand(CMD_CALIBRATION_RANGE_OFFSET_SAMPLE_COUNT, 0, 0);
+		return SCI_SendCommand(CMD_CALIBRATION_RANGE_OFFSET_SAMPLE_TIME, 0, 0);
 	}
 }
-static status_t TxCmd_CalRangeOffsetSeqSampleCount(sci_frame_t * frame, sci_param_t param, sci_data_t data)
+static status_t TxCmd_CalRangeOffsetSeqSampleTime(sci_frame_t * frame, sci_param_t param, sci_data_t data)
 {
 	(void) data;
 	(void) param;
 	assert(frame != 0);
 	status_t status = STATUS_OK;
-	uint16_t count;
-	status = Argus_GetCalibrationRangeOffsetSequenceSampleCount(myArgusPtr, &count);
-	SCI_Frame_Queue16u(frame, count);
+	uint16_t time;
+	status = Argus_GetCalibrationRangeOffsetSequenceSampleTime(myArgusPtr, &time);
+	SCI_Frame_Queue16u(frame, time);
 	return status;
 }
 
@@ -307,27 +307,27 @@ static status_t RxCmd_CalXtalkResetVectorTable(sci_frame_t * frame)
 	return Argus_ResetCalibrationCrosstalkVectorTable(myArgusPtr, mode);
 }
 
-static status_t RxCmd_CalXtalkSeqSampleCount(sci_frame_t * frame)
+static status_t RxCmd_CalXtalkSeqSampleTime(sci_frame_t * frame)
 {
 	if (SCI_Frame_BytesToRead(frame) > 1)
 	{ /* Master sending data... */
-		uint16_t count = SCI_Frame_Dequeue16u(frame);
-		return Argus_SetCalibrationCrosstalkSequenceSampleCount(myArgusPtr, count);
+		uint16_t time = SCI_Frame_Dequeue16u(frame);
+		return Argus_SetCalibrationCrosstalkSequenceSampleTime(myArgusPtr, time);
 	}
 	else
 	{ /* Master is requesting data... */
-		return SCI_SendCommand(CMD_CALIBRATION_XTALK_SAMPLE_COUNT, 0, 0);
+		return SCI_SendCommand(CMD_CALIBRATION_XTALK_SAMPLE_TIME, 0, 0);
 	}
 }
-static status_t TxCmd_CalXtalkSeqSampleCount(sci_frame_t * frame, sci_param_t param, sci_data_t data)
+static status_t TxCmd_CalXtalkSeqSampleTime(sci_frame_t * frame, sci_param_t param, sci_data_t data)
 {
 	(void) data;
 	(void) param;
 	assert(frame != 0);
 	status_t status = STATUS_OK;
-	uint16_t count;
-	status = Argus_GetCalibrationCrosstalkSequenceSampleCount(myArgusPtr, &count);
-	SCI_Frame_Queue16u(frame, count);
+	uint16_t time;
+	status = Argus_GetCalibrationCrosstalkSequenceSampleTime(myArgusPtr, &time);
+	SCI_Frame_Queue16u(frame, time);
 	return status;
 }
 
@@ -364,23 +364,23 @@ status_t ExplorerAPI_InitCal(argus_hnd_t * argus)
 	myArgusPtr = argus;
 
 	status_t
-	status = SCI_SetCommand(CMD_CALIBRATION_GLOBAL_RANGE_OFFSET, RxCmd_CalGlobalRangeOffset, TxCmd_CalGlobalRangeOffset);
+	status = SCI_SetRxTxCommand(CMD_CALIBRATION_GLOBAL_RANGE_OFFSET, RxCmd_CalGlobalRangeOffset, TxCmd_CalGlobalRangeOffset);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CALIBRATION_PIXEL_RANGE_OFFSETS, RxCmd_CalPixelRangeOffsets, TxCmd_CalPixelRangeOffsets);
+	status = SCI_SetRxTxCommand(CMD_CALIBRATION_PIXEL_RANGE_OFFSETS, RxCmd_CalPixelRangeOffsets, TxCmd_CalPixelRangeOffsets);
 	if (status < STATUS_OK) return status;
 	status = SCI_SetRxCommand(CMD_CALIBRATION_PIXEL_RANGE_OFFSETS_RESET, RxCmd_CalResetPixelRangeOffsets);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CALIBRATION_RANGE_OFFSET_SAMPLE_COUNT, RxCmd_CalRangeOffsetSeqSampleCount, TxCmd_CalRangeOffsetSeqSampleCount);
+	status = SCI_SetRxTxCommand(CMD_CALIBRATION_RANGE_OFFSET_SAMPLE_TIME, RxCmd_CalRangeOffsetSeqSampleTime, TxCmd_CalRangeOffsetSeqSampleTime);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CALIBRATION_XTALK_VECTOR_TABLE, RxCmd_CalXtalkVectorTable, TxCmd_CalXtalkVectorTable);
+	status = SCI_SetRxTxCommand(CMD_CALIBRATION_XTALK_VECTOR_TABLE, RxCmd_CalXtalkVectorTable, TxCmd_CalXtalkVectorTable);
 	if (status < STATUS_OK) return status;
 	status = SCI_SetRxCommand(CMD_CALIBRATION_XTALK_RESET_VECTOR_TABLE, RxCmd_CalXtalkResetVectorTable);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CALIBRATION_XTALK_SAMPLE_COUNT, RxCmd_CalXtalkSeqSampleCount, TxCmd_CalXtalkSeqSampleCount);
+	status = SCI_SetRxTxCommand(CMD_CALIBRATION_XTALK_SAMPLE_TIME, RxCmd_CalXtalkSeqSampleTime, TxCmd_CalXtalkSeqSampleTime);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CALIBRATION_XTALK_MAX_AMPLITUDE, RxCmd_CalXtalkSeqMaxAmplitude, TxCmd_CalXtalkSeqMaxAmplitude);
+	status = SCI_SetRxTxCommand(CMD_CALIBRATION_XTALK_MAX_AMPLITUDE, RxCmd_CalXtalkSeqMaxAmplitude, TxCmd_CalXtalkSeqMaxAmplitude);
 	if (status < STATUS_OK) return status;
-	status = SCI_SetCommand(CMD_CALIBRATION_XTALK_PIXEL_2_PIXEL, RxCmd_CalXtalkPixel2Pixel, TxCmd_CalXtalkPixel2Pixel);
+	status = SCI_SetRxTxCommand(CMD_CALIBRATION_XTALK_PIXEL_2_PIXEL, RxCmd_CalXtalkPixel2Pixel, TxCmd_CalXtalkPixel2Pixel);
 	if (status < STATUS_OK) return status;
 
 

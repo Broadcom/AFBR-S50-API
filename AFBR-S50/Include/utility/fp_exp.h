@@ -49,18 +49,18 @@
 
 /*! The maximum number for the input of the fp_exp16 function that gives a
  *  result still larger than 0 (in UQ16.16 representation). */
-#define FP_EXP16_MAX (0x000B1721)
+#define FP_EXP16_MAX (726817)
 
 /*! The minimum number for the input of the fp_exp16 function that gives a
     result smaller than the maximum of the UQ16.16 format.  */
-#define FP_EXP16_MIN (-0x000BC894)
+#define FP_EXP16_MIN (-FP_EXP16_MAX)
 
 /*! The maximum number for the input of the fp_exp24 function that gives a
  *  result still larger than 0 (in UQ08.24 representation). */
-#define FP_EXP24_MAX (0x058B90BF)
+#define FP_EXP24_MAX (93032639)
 
 /*!***************************************************************************
- * @brief	Calculates the exponential of an fixed point number.
+ * @brief	Calculates the exponential of an fixed point number in UQ8.24 format.
  *
  * @details Calculates y = exp(x) in fixed point representation.
  *
@@ -69,13 +69,9 @@
  *
  * 			@see https://www.quinapalus.com/efunc.html
  *
- * @param	x The input parameter in unsigned fixed point format Q15.16.
- * @return	Result y = exp(x) in the UQ16.16 format.
+ * @param	x The input parameter in unsigned fixed point UQ8.24 format.
+ * @return	Result y = exp(x) in unsigned fixed point UQ8.24 format.
  *****************************************************************************/
-static inline uq16_16_t fp_exp16(q15_16_t x);
-
-
-
 static inline uint32_t fp_exp24(uint32_t x)
 {
 	/* https://www.quinapalus.com/efunc.html */
@@ -114,6 +110,19 @@ static inline uint32_t fp_exp24(uint32_t x)
 	return y;
 }
 
+/*!***************************************************************************
+ * @brief	Calculates the exponential of an fixed point number Q15.16 format.
+ *
+ * @details Calculates y = exp(x) in fixed point representation.
+ *
+ *			Note that the result might not be 100 % accurate and might contain
+ *			a small error!
+ *
+ * 			@see https://www.quinapalus.com/efunc.html
+ *
+ * @param	x The input parameter in unsigned fixed point format Q15.16.
+ * @return	Result y = exp(x) in the UQ16.16 format.
+ *****************************************************************************/
 static inline uq16_16_t fp_exp16(q15_16_t x)
 {
 	if (x == 0) return Q15_16_ONE;

@@ -114,7 +114,7 @@ static void USB_DeviceIsrEnable(void);
 void USB_DeviceTaskFn(void *deviceHandle);
 #endif
 
-static void SCI_USB_DataReceivedCallback(uint8_t *data,uint32_t size);
+static void SCI_USB_DataReceivedCallback(uint8_t const * data, uint32_t size);
 
 static usb_status_t USB_DeviceSCISetConfigure(usb_device_handle handle, uint8_t configure);
 
@@ -334,12 +334,10 @@ void USB_DeviceTaskFn(void *deviceHandle)
 }
 #endif
 
-static void SCI_USB_DataReceivedCallback(uint8_t *data, uint32_t size)
+static void SCI_USB_DataReceivedCallback(uint8_t const * data, uint32_t size)
 {
-	for (uint32_t i = 0; i < size; ++i)
-	{
-		myRxCallback(data[i]);
-	}
+	if (myRxCallback)
+		myRxCallback(data, size);
 }
 
 static usb_status_t USB_DeviceSCIBulkInCallback(usb_device_handle handle,
@@ -375,6 +373,7 @@ static usb_status_t USB_DeviceSCIBulkInCallback(usb_device_handle handle,
 
 	if (status != STATUS_OK && status != ERROR_ABORTED)
 	{
+		if (myErrorCallback)
 		myErrorCallback(ERROR_USB);
 	}
 	else if (cb != 0)

@@ -40,7 +40,9 @@
 
 /*!***************************************************************************
  * @defgroup	sci SCI: Systems Communication Interface
+ *
  * @brief		Systems Communication Interface
+ *
  * @details		The systems communication interface module provides a high
  * 				level protocol for information exchange between several systems.
  * 				Basically it is a two point interface containing a single master
@@ -90,24 +92,30 @@ typedef void const * sci_data_t;
 
 /*!***************************************************************************
  * @brief 	Received command invocation function definition.
+ *
  * @details This function pointer represents a command that is invoked whenever
  * 			the corresponding data frame has been received via the SCI module.
+ *
  * @param	frame Pointer to the received data frame.
+ *
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 typedef status_t (*sci_rx_cmd_fct_t)(sci_frame_t * frame);
 
 /*!***************************************************************************
  * @brief 	Transmitting command function definition.
+ *
  * @details This function pointer represents a command that is invoked whenever
  * 			the corresponding data frame will be sent via the SCI module. It
  * 			contains a pointer to the data that must serialized into the data
  * 			frame structure.
+ *
  * @param	frame Pointer to the data frame that will be transmitted.
  * @param	param An optional abstract parameter to be used in the command
  *                  function.
  * @param	data An optional abstract pointer to the data to be serialize.
  *                 The pointer van be null.
+ *
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 typedef status_t (*sci_tx_cmd_fct_t)(sci_frame_t * frame, sci_param_t param,
@@ -115,35 +123,43 @@ typedef status_t (*sci_tx_cmd_fct_t)(sci_frame_t * frame, sci_param_t param,
 
 /*!***************************************************************************
  * @brief 	Callback function type for received SCI data frames.
+ *
  * @param	frame Pointer to the received data frame.
+ *
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 typedef status_t (*sci_rx_cmd_cb_t)(sci_frame_t * frame);
 
 /*!***************************************************************************
  * @brief 	Callback function type for SCI error.
+ *
  * @param	status The corresponding error code.
  *****************************************************************************/
 typedef void (*sci_error_cb_t)(status_t satus);
 
 /*!***************************************************************************
  * @brief	Initialize the SCI module.
+ *
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t SCI_Init(void);
 
 /*!***************************************************************************
  * @brief	Installs a callback routine for command received event.
+ *
  * @details	Installs a callback function that will be called after a command
  * 			has been received successfully. This call is determined to inform
  * 			about an new Rx data frame has been received and the corresponding
  * 			command shall be invoked. Thus, after the callback, invoke the
  * 			#SCI_InvokeRxCommand() function.
+ *
  * 			If no callback is set, the commands are invoked directly from the
  * 			interrupt services routine. Therefore, it is highly recommended to
  * 			install a callback and invoke the commands from the main thread/task.
+ *
  * @warning	The callback function is called	from the interrupt service routine
  * 			and should return within an appropriate time!
+ *
  * @param	cb The callback functions to be called
  *****************************************************************************/
 void SCI_SetRxCommandCallback(sci_rx_cmd_cb_t cb);
@@ -155,12 +171,13 @@ void SCI_RemoveRxCommandCallback(void);
 
 /*!***************************************************************************
  * @brief	Installs a callback routine for the error event.
+ *
  * @details	Installs a callback function that will be called after an error
  * 			has occurred.
- *			TODO: Describe how to handle errors...
  *
  * @warning	The callback function is called	from the interrupt service routine
  * 			and should return within an appropriate time!
+ *
  * @param	cb The callback functions to be called
  *****************************************************************************/
 void SCI_SetErrorCallback(sci_error_cb_t cb);
@@ -172,68 +189,129 @@ void SCI_RemoveErrorCallback(void);
 
 /*!***************************************************************************
  * @brief 	Sends a command via the SCI module.
+ *
  * @details	The corresponding command function will be called in order to
  * 			serialize the data from into a data frame. The frame is sent
  * 			afterwards.
+ *
  * @param	cmd  The command code / keyword.
  * @param	param An optional abstract parameter to be used in the command
  *                  function.
  * @param	data An optional abstract pointer to the data to be serialize.
  *                 The pointer van be null.
+ *
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t SCI_SendCommand(sci_cmd_t cmd, sci_param_t param, sci_data_t data);
 
 /*!***************************************************************************
  * @brief	Sets a Rx command function in the list of available commands.
+ *
  * @details	Registers the command code to the SCI module. If already set, the
  * 			corresponding Rx function is replaced by the specified one. The Tx
  * 			function will not be changed.
+ *
  * @param	cmd	The command code / keyword.
  * @param	fct The function to be called when a command is received.
+ *
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t SCI_SetRxCommand(sci_cmd_t cmd, sci_rx_cmd_fct_t fct);
 
 /*!***************************************************************************
+ * @brief	Sets Rx and post Rx command functions in the list of available commands.
+ *
+ * @details	Registers the command code to the SCI module. If already set, the
+ * 			corresponding Rx function is replaced by the specified one. The Tx
+ * 			function will not be changed.
+ *
+ * 			An optional post RX function can be passed that will be called
+ * 			after the RX command has finished. This is after the ACK has been
+ * 			sent and the TX line has become idle. Note that this might block
+ * 			the MCU for some time.
+ *
+ * @param	cmd	The command code / keyword.
+ * @param	rxfct The function to be called when a command is received.
+ * @param	pfct  The function to be called when a command is received but after
+ *                the ACK/NAK has been invoked.
+ *
+ * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
+ *****************************************************************************/
+status_t SCI_SetPostRxCommand(sci_cmd_t cmd, sci_rx_cmd_fct_t rxfct, sci_rx_cmd_fct_t pfct);
+
+/*!***************************************************************************
  * @brief	Sets a Tx command function in the list of available commands.
+ *
  * @details	Registers the command code to the SCIs module. If already set, the
  * 			corresponding Tx function is replaced by the specified one. The Rx
  * 			function will not be changed.
+ *
  * @param	cmd	The command code / keyword.
- * @param	fct The function to be called when a command is sent.
+ * @param	txfct The function to be called when a command is sent.
+ *
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-status_t SCI_SetTxCommand(sci_cmd_t cmd, sci_tx_cmd_fct_t fct);
+status_t SCI_SetTxCommand(sci_cmd_t cmd, sci_tx_cmd_fct_t txfct);
 
 /*!***************************************************************************
  * @brief	Sets the Rx and Tx command functions in the list of available commands.
+ *
  * @details	Registers the command code to the SCI module. If already set, the
  * 			corresponding Tx and Rx functions are replaced by the specified ones.
+ *
  * @param	cmd	  The command code / keyword.
  * @param	rxfct The function to be called when a command is received.
  * @param	txfct The function to be called when a command is sent.
+ *
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-status_t SCI_SetCommand(sci_cmd_t cmd, sci_rx_cmd_fct_t rxfct, sci_tx_cmd_fct_t txfct);
+status_t SCI_SetRxTxCommand(sci_cmd_t cmd, sci_rx_cmd_fct_t rxfct, sci_tx_cmd_fct_t txfct);
+
+/*!***************************************************************************
+ * @brief	Sets the Rx and Tx command functions in the list of available commands.
+ *
+ * @details	Registers the command code to the SCI module. If already set, the
+ * 			corresponding Tx and Rx functions are replaced by the specified ones.
+ *
+ * 			An optional post RX function can be passed that will be called
+ * 			after the RX command has finished. This is after the ACK has been
+ * 			sent and the TX line has become idle. Note that this might block
+ * 			the MCU for some time.
+ *
+ * @param	cmd	  The command code / keyword.
+ * @param	rxfct The function to be called when a command is received.
+ * @param	txfct The function to be called when a command is sent.
+ * @param	pfct  The function to be called when a command is received but
+ *                after the ACK/NAK has been invoked.
+ *
+ * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
+ *****************************************************************************/
+status_t SCI_SetCommand(sci_cmd_t cmd, sci_rx_cmd_fct_t rxfct,
+						sci_tx_cmd_fct_t txfct, sci_rx_cmd_fct_t pfct);
 
 /*!***************************************************************************
  * @brief	Unsets a command from the list of available commands.
+ *
  * @details	Removes the command code from the SCI module, i.e. it deletes the
  * 			corresponding Tx and Rx functions. If not set, the function returns
  * 			with #ERROR_SCI_UNKNOWN_COMMAND.
+ *
  * @param	cmd	The command code / keyword.
+ *
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t SCI_UnsetCommand(sci_cmd_t cmd);
 
 /*!***************************************************************************
  * @brief	Invokes the previously received user command.
+ *
  * @details	Parses and executes the previously received command. To be called
  * 			after Command Received Handler has been invoked.
+ *
  * @param	frame The previously received SCI frame (parameter of
  * 					"RxFrameCallback") with the command code and parameter
  * 					 buffer.
+ *
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t SCI_InvokeRxCommand(sci_frame_t * frame);

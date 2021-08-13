@@ -86,8 +86,8 @@ static inline void GPIO_InitIrqPin(gpio_pin_struct * const pin);
 
 #if defined(CPU_MKL17Z256VFM4)
 
-static gpio_pin_struct myPin_PTA01			= GPIO_MAKE_PIN(BOARD_PTA01);
-static gpio_pin_struct myPin_PTA02			= GPIO_MAKE_PIN(BOARD_PTA02);
+//static gpio_pin_struct myPin_PTA01			= GPIO_MAKE_PIN(BOARD_PTA01);
+//static gpio_pin_struct myPin_PTA02			= GPIO_MAKE_PIN(BOARD_PTA02);
 static gpio_pin_struct myPin_PTE16			= GPIO_MAKE_PIN(BOARD_PTE16);
 static gpio_pin_struct myPin_PTE17			= GPIO_MAKE_PIN(BOARD_PTE17);
 static gpio_pin_struct myPin_PTE18			= GPIO_MAKE_PIN(BOARD_PTE18);
@@ -130,8 +130,8 @@ static gpio_pin_struct myPin_S2PI_CS4		= GPIO_MAKE_PIN(S2PI_CS4);
 #endif
 
 #if defined(CPU_MKL17Z256VFM4)
-gpio_pin_t Pin_PTA01						= &myPin_PTA01;			/* PortA Pin1 */
-gpio_pin_t Pin_PTA02						= &myPin_PTA02;			/* PortA Pin2 */
+//gpio_pin_t Pin_PTA01						= &myPin_PTA01;			/* PortA Pin1 */
+//gpio_pin_t Pin_PTA02						= &myPin_PTA02;			/* PortA Pin2 */
 gpio_pin_t Pin_PTE16						= &myPin_PTE16;			/* PortE Pin16 */
 gpio_pin_t Pin_PTE17						= &myPin_PTE17;			/* PortB Pin17 */
 gpio_pin_t Pin_PTE18						= &myPin_PTE18;			/* PortB Pin18 */
@@ -225,8 +225,8 @@ gpio_pin_struct * myPins[] = {
 		&myPin_PTC2,
 
 #elif defined(CPU_MKL17Z256VFM4)
-		&myPin_PTA01,
-		&myPin_PTA02,
+//		&myPin_PTA01,
+//		&myPin_PTA02,
 
 		/* Temporary debug pins */
 		&myPin_PTE16,

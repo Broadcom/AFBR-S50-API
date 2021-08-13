@@ -42,6 +42,9 @@
 //#include "sci/sci_frame.h"
 #include <stdint.h>
 
+/*******************************************************************************
+ * Definitions
+ ******************************************************************************/
 
 /*! @brief Return status for the USB driver.
  *  @ingroup status */
@@ -58,37 +61,35 @@ enum StatusUSB
 
 };
 
-/*******************************************************************************
- * Definitions
- ******************************************************************************/
-
-
 /*!***************************************************************************
- * @brief	UART received byte callback function type.
- * @param	rxByte The received byte.
+ * @brief	SCI physical layer received byte callback function type.
+ * @details	Callback that is invoked whenever data has been received via the
+ * 			physical layer.
+ * @param	data The received data as byte (uint8_t) array.
+ * @param	size The size of the received data.
  * @return 	-
  *****************************************************************************/
-typedef void (*usb_rx_callback_t)(uint8_t rxByte);
-
+typedef void (*usb_rx_callback_t)(uint8_t const * data, uint32_t const size);
 
 /*!***************************************************************************
- * @brief	USB transmit done callback function type.
+ * @brief	SCI physical layer transmit done callback function type.
+ * @details	Callback that is invoked whenever the physical layer has finished
+ * 			transmitting the current data buffer.
  * @param	status The \link #status_t status\endlink of the transmitter;
  *       			 (#STATUS_OK on success).
  * @param	state A pointer to the state that was passed to the Tx function.
  * @return 	-
  *****************************************************************************/
-typedef void (*usb_tx_callback_t)(status_t status, void * state);
-
+typedef void (*usb_tx_callback_t)(status_t status, void *state);
 
 /*!***************************************************************************
- * @brief	USB layer error callback function type.
- * @param	status The error \link #status_t status\endlink that yielded to
- * 					 the callback.
+ * @brief	SCI error callback function type.
+ * @detail	Callback that is invoked whenever a error occurs.
+ * @param	status The error \link #status_t status\endlink that invoked the
+ * 				   callback.
  * @return 	-
  *****************************************************************************/
 typedef void (*usb_error_callback_t)(status_t status);
-
 
 /*******************************************************************************
  * API

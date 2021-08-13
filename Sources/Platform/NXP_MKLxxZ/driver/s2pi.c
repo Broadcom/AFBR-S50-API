@@ -192,7 +192,7 @@ static s2pi_handle_t myS2PIHnd = {0};
 #include "utility/debug.h"
 #if S2PI_LOGGING
 #include <stdio.h>
-#define S2PI_LOG_BUFFER_SIZE 0x200
+#define S2PI_LOG_BUFFER_SIZE 0x300
 static uint8_t const * myRxPtr;
 static size_t myFrameSize;
 static char myString[S2PI_LOG_BUFFER_SIZE];
@@ -1078,9 +1078,9 @@ status_t S2PI_SetBaudRate(uint32_t baudRate_Bps)
 {
     status_t status = STATUS_OK;
 
-	if(baudRate_Bps > SPI_BAUD_RATE_MAX)
+	if(baudRate_Bps > SPI_MAX_BAUDRATE)
 	{
-		return ERROR_S2PI_INVALID_BAUD_RATE;
+		return ERROR_S2PI_INVALID_BAUDRATE;
 	}
 
     // Baud Rate Register can be written at any time
@@ -1139,7 +1139,7 @@ status_t S2PI_SetBaudRate(uint32_t baudRate_Bps)
     S2PI->BR = (uint8_t)(SPI_BR_SPR(bestDivisor) | SPI_BR_SPPR(bestPrescaler));
 
     /* Check if the actual baud rate is within 10 % of the desired baud rate. */
-    if(min_diff > baudRate_Bps / 10) status = ERROR_S2PI_INVALID_BAUD_RATE;
+    if(min_diff > baudRate_Bps / 10) status = ERROR_S2PI_INVALID_BAUDRATE;
 
 //    myS2PIHnd.Status = STATUS_IDLE;
     return status;

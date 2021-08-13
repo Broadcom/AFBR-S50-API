@@ -67,6 +67,13 @@ extern status_t GetSystemStatus(void);
 status_t SCI_CMD_Init(void);
 
 /*!***************************************************************************
+ * @brief	Receiving Ping Command
+ * @param	frame Pointer to data frame.
+ * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
+ *****************************************************************************/
+static status_t RxCmd_Ping(sci_frame_t * frame);
+
+/*!***************************************************************************
  * @brief	Receiving Test Message Command
  * @param	frame Pointer to data frame.
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
@@ -105,34 +112,17 @@ static status_t TxCmd_StatusReport(sci_frame_t * frame, sci_param_t param, statu
  *****************************************************************************/
 static status_t RxCmd_SystemReset(sci_frame_t * frame);
 
-/*!***************************************************************************
- * @brief	Enters the bootloader mode.
- * @param	frame Pointer to data frame.
- * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
- *****************************************************************************/
-static status_t RxCmd_EnterBootloader(sci_frame_t * frame);
-
-
 /*******************************************************************************
  * Code
  ******************************************************************************/
-status_t SCI_CMD_Init(void)
+
+/*******************************************************************************
+ * Ping Message Command
+ ******************************************************************************/
+static status_t RxCmd_Ping(sci_frame_t * frame)
 {
-	status_t status = STATUS_OK;
-
-	status = SCI_SetCommand(CMD_TEST_MESSAGE, RxCmd_TestMessage, (sci_tx_cmd_fct_t)TxCmd_TestMessage);
-	if(status < STATUS_OK) return status;
-
-	status = SCI_SetRxCommand(CMD_SYSTEM_RESET, RxCmd_SystemReset);
-	if(status < STATUS_OK) return status;
-
-	status = SCI_SetRxCommand(CMD_BOOTLOADER, RxCmd_EnterBootloader);
-	if(status < STATUS_OK) return status;
-
-	status = SCI_SetCommand(CMD_STATUS_REPORT, RxCmd_StatusReport, (sci_tx_cmd_fct_t)TxCmd_StatusReport);
-	if(status < STATUS_OK) return status;
-
-	return status;
+	(void) frame;
+	return STATUS_OK; // do nothing, just send an acknowledge
 }
 
 /*******************************************************************************
@@ -172,7 +162,7 @@ static status_t RxCmd_TestMessage(sci_frame_t * frame)
 static status_t TxCmd_TestMessage(sci_frame_t * frame, sci_param_t param, sci_frame_t * msg)
 {
 	(void)param;
-	while(SCI_Frame_BytesToRead(msg) > 1)
+	while (SCI_Frame_BytesToRead(msg) > 1)
 		SCI_Frame_Queue08u(frame, SCI_Frame_Dequeue08u(msg));
 
 	return STATUS_OK;
@@ -189,64 +179,35 @@ static status_t RxCmd_SystemReset(sci_frame_t * frame)
 	{
 		return ERROR_SCI_INVALID_CMD_PARAMETER;
 	}
-
-	ltc_t start = {0};
-	Time_GetNow(&start);
-
-	// send the acknowledge before resetting
-	frame = SCI_DataLink_RequestTxFrame(1);
-	if(frame)
-	{
-		SCI_Frame_Queue08u(frame, CMD_ACKNOWLEDGE);
-		SCI_Frame_Queue08u(frame, CMD_SYSTEM_RESET);
-		SCI_DataLink_SendTxFrame(frame);
-		while(SCI_Frame_BytesToRead(frame)
-				&& !Time_CheckTimeoutMSec(&start, 1000))
-		{
-			Time_DelayMSec(1);
-		}
-		Time_DelayMSec(10);
-	}
+	return STATUS_OK;
+}
+static status_t PrxCmd_SystemReset(sci_frame_t * frame)
+{
+	(void) frame;
+	Time_DelayMSec(10);
 	COP_ResetSystem();
-
 	return STATUS_OK;
 }
 
 
 /*******************************************************************************
- * Enter the bootloader mode
+ * Initialization
  ******************************************************************************/
-#if defined(CPU_MKL17Z256VFM4)
-#include "driver/MKL17Z/bootloader.h"
-#endif
-static status_t RxCmd_EnterBootloader(sci_frame_t * frame)
+status_t SCI_CMD_Init(void)
 {
-	if(0x6B636667 != SCI_Frame_Dequeue32u(frame))
-	{
-		return ERROR_SCI_INVALID_CMD_PARAMETER;
-	}
+	status_t status = STATUS_OK;
 
-#if defined(CPU_MKL17Z256VFM4)
-	ltc_t start = {0};
-	Time_GetNow(&start);
+	status = SCI_SetRxCommand(CMD_PING, RxCmd_Ping);
+	if (status < STATUS_OK) return status;
 
-	// send the acknowledge before resetting
-	frame = SCI_DataLink_RequestTxFrame(1);
-	if(frame)
-	{
-		SCI_Frame_Queue08u(frame, CMD_ACKNOWLEDGE);
-		SCI_Frame_Queue08u(frame, CMD_BOOTLOADER);
-		SCI_DataLink_SendTxFrame(frame);
-		while(SCI_Frame_BytesToRead(frame)
-				&& !Time_CheckTimeoutMSec(&start, 1000))
-		{
-			Time_DelayMSec(1);
-		}
-		Time_DelayMSec(10);
-	}
+	status = SCI_SetRxTxCommand(CMD_TEST_MESSAGE, RxCmd_TestMessage, (sci_tx_cmd_fct_t)TxCmd_TestMessage);
+	if (status < STATUS_OK) return status;
 
-	return EnterBootloader();
-#else
-	return ERROR_NOT_SUPPORTED;
-#endif
+	status = SCI_SetPostRxCommand(CMD_SYSTEM_RESET, RxCmd_SystemReset, PrxCmd_SystemReset);
+	if (status < STATUS_OK) return status;
+
+	status = SCI_SetRxTxCommand(CMD_STATUS_REPORT, RxCmd_StatusReport, (sci_tx_cmd_fct_t)TxCmd_StatusReport);
+	if (status < STATUS_OK) return status;
+
+	return status;
 }

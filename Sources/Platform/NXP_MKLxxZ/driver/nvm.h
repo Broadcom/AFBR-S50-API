@@ -54,11 +54,5 @@
 
 #include "platform/argus_nvm.h"
 
-/*!*****************************************************************************
- * @brief	Clears the NVM memory with zeros.
- * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
- *****************************************************************************/
-status_t NVM_Clear(void);
-
 /*! @} */
 #endif /* NVM_H */

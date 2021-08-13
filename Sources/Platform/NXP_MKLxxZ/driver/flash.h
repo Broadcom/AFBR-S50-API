@@ -58,11 +58,47 @@
  * Definitions
  ******************************************************************************/
 
-/*! The total size of all flash blocks. */
-#define FLASH_BLOCK_TOTAL_SIZE		0x40000
-
 /*! The size of a single flash sector. */
-#define FLASH_SECTOR_SIZE			0x400
+#define FLASH_BLOCK_SIZE 0x400
+
+/*! The number of flash sectors. */
+#define FLASH_BLOCK_COUNT 5
+
+/*! The total size in bytes of all flash sectors. */
+#define FLASH_TOTAL_SIZE (FLASH_BLOCK_COUNT * FLASH_BLOCK_SIZE)
+
+
+/*! The index of the configuration flash sector. */
+#define FLASH_CFG_INDEX (0)
+
+/*! The offset in bytes of the configuration flash sector. */
+#define FLASH_CFG_OFFSET (FLASH_SECTOR_CFG_INDEX * FLASH_BLOCK_SIZE)
+
+/*! The size in bytes of the configuration flash sector. */
+#define FLASH_CFG_SIZE   (FLASH_BLOCK_SIZE)
+
+
+/*! The index of the calibration flash sector. */
+#define FLASH_CAL_INDEX (1)
+
+/*! The offset in bytes of the calibration flash sector. */
+#define FLASH_CAL_OFFSET (FLASH_SECTOR_CAL_INDEX * FLASH_BLOCK_SIZE)
+
+/*! The size in bytes of the calibrationo flash sector. */
+#define FLASH_CAL_SIZE   (FLASH_BLOCK_SIZE)
+
+
+/*! The index of the API data flash sector. */
+#define FLASH_API_INDEX (2)
+
+/*! The offset in bytes of the API data flash sector. */
+#define FLASH_API_OFFSET (FLASH_API_INDEX * FLASH_BLOCK_SIZE)
+
+/*! The size in bytes of the API data flash sector. */
+#define FLASH_API_SIZE   (3 * FLASH_BLOCK_SIZE)
+
+
+
 
 
 /*******************************************************************************
@@ -80,7 +116,7 @@ status_t Flash_Init(void);
  * @param	index The flash sector index from the end of memory.
  * @param	offset The start address relative to the sector start.
  * @param	data Pointer to the destination data buffer.
- * @param	sizeThe size of data to be read.
+ * @param	size The size of data to be read.
  * 				  Maximum is #FLASH_SECTOR_SIZE - offset.
  * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
@@ -92,7 +128,7 @@ status_t Flash_Read(uint32_t index, uint32_t offset,
  * @param	index The flash sector index from the end of memory.
  * @param	offset The start address relative to the sector start.
  * @param	data Pointer to the source data buffer.
- * @param	sizeThe size of data to be written.
+ * @param	size The size of data to be written.
  * 				  Maximum is #FLASH_SECTOR_SIZE - offset.
  * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
@@ -103,11 +139,17 @@ status_t Flash_Write(uint32_t index, uint32_t offset,
  * @brief	Clears flash with zeros from a specified flash sector.
  * @param	index The flash sector index from the end of memory.
  * @param	offset The start address relative to the sector start.
- * @param	sizeThe size of data to be cleared.
+ * @param	size The size of data to be cleared.
  * 				  Maximum is #FLASH_SECTOR_SIZE - offset.
  * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t Flash_Clear(uint32_t index, uint32_t offset, uint32_t size);
+
+/*!*****************************************************************************
+ * @brief	Clears complete user flash with zeros.
+ * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
+ *****************************************************************************/
+status_t Flash_ClearAll(void);
 
 /*! @} */
 #endif /* FLASH_H */

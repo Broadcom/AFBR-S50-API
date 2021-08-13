@@ -39,7 +39,7 @@
 #include <assert.h>
 
 /*! Global lock level counter value. */
-static volatile int g_irq_lock_ct;
+static volatile int g_irq_lock_ct = 0;
 
 void IRQ_UNLOCK(void)
 {

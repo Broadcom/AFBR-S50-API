@@ -61,10 +61,10 @@
  * 			- SPI
  * 			- Flash
  * 			.
- *
+ * @param	cfg The configuration containing SPI parameters.
  * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-status_t ExplorerApp_InitHardware(void);
+status_t ExplorerApp_InitHardware(explorer_cfg_t * cfg);
 
 
 

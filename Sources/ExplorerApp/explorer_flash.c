@@ -38,3 +38,38 @@
  * Include Files
  ******************************************************************************/
 #include "explorer_flash.h"
+#include "explorer_app.h"
+#include "driver/flash.h"
+#include "utility/debug.h"
+#include <assert.h>
+
+
+/*******************************************************************************
+ * Definitions
+ ******************************************************************************/
+/*! The flash block index dedicated for the configuration data. */
+#define EXPLORER_FLASH_CFG_INDEX 0
+
+/*! The flash block index dedicated for the calibration data. */
+#define EXPLORER_FLASH_CAL_INDEX 1
+
+/*******************************************************************************
+ * Prototypes
+ ******************************************************************************/
+
+/******************************************************************************
+ * Variables
+ ******************************************************************************/
+
+/*******************************************************************************
+ * Code
+ ******************************************************************************/
+
+status_t ExplorerApp_ClearFlash(void)
+{
+	status_t status = Flash_ClearAll();
+	if (status != STATUS_OK) return status;
+
+	print("Successfully cleared complete flash memory!");
+	return STATUS_OK;
+}

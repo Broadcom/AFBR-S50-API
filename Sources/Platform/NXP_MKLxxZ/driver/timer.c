@@ -51,6 +51,7 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+//#define DISABLE_PIT
 
 /*! PIT clock source frequency. */
 #define PIT_Freq 			24000000U
@@ -72,6 +73,8 @@ void SysTick_Handler(void);
 /*! External definition of the system timer core clock. */
 extern uint32_t SystemCoreClock;
 
+#ifndef DISABLE_PIT
+
 /*! A pointer to the ISR function to be called when the timer has elapsed. */
 static timer_cb_t myISR = 0;
 
@@ -84,7 +87,7 @@ static volatile uint32_t myReloadValue = 0;
 /*! The current system timer tick counter values. */
 static volatile uint32_t myCounter = 0;
 
-static volatile uint32_t myIntervallMSec = 0;
+#endif
 
 /*******************************************************************************
  * Code
@@ -121,6 +124,7 @@ void Timer_Init(void)
 		PIT->CHANNEL[1].TCTRL |= PIT_TCTRL_TEN_MASK;
 		PIT->CHANNEL[0].TCTRL |= PIT_TCTRL_TEN_MASK;
 
+#ifndef DISABLE_PIT
 		/******************************************************************
 		 ***  Initialize the SysTick timer as periodic interrupt timer. ***
 		 ******************************************************************/
@@ -139,6 +143,7 @@ void Timer_Init(void)
 
 		/* Set Priority. */
 		NVIC_SetPriority(SysTick_IRQn, IRQPRIO_SYSTICK);
+#endif
 
 	    isInitialized = true;
 	}
@@ -200,6 +205,7 @@ void Timer_GetCounterValue(uint32_t * hct, uint32_t * lct)
 	*lct = ((LTMR64L >> 9U) * 21845U) >> 10U;
 }
 
+#ifndef DISABLE_PIT
 status_t Timer_SetCallback(timer_cb_t f)
 {
 	myISR = f;
@@ -208,58 +214,44 @@ status_t Timer_SetCallback(timer_cb_t f)
 
 status_t Timer_SetInterval(uint32_t dt_microseconds, void * param)
 {
-	if(dt_microseconds)
+	assert(dt_microseconds == 0 || dt_microseconds > 100);
+	if (dt_microseconds)
 	{
-		myParam = param;
+		const uint32_t ticks = SystemCoreClock / 1000000U;
+		const uint32_t max_dt = (SysTick_VAL_CURRENT_Msk + 1U) / ticks;
 
-		if(dt_microseconds == myIntervallMSec) return STATUS_OK;
-
-		uint32_t ticks = SystemCoreClock / 1000000U;
-		uint32_t max_dt = (SysTick_VAL_CURRENT_Msk + 1U) / ticks;
-
-		IRQ_LOCK();
-
-		myReloadValue = 1U;
-		while(dt_microseconds > max_dt)
+		uint32_t reloadValue = 1U;
+		while (dt_microseconds > max_dt)
 		{
 			dt_microseconds >>= 1U;
 			myReloadValue <<= 1U;
 		}
 
-		myCounter = myReloadValue;
-		ticks *= dt_microseconds;
-		SysTick->LOAD  = (uint32_t)(ticks - 1);
-
-		myIntervallMSec = dt_microseconds;
-
+		IRQ_LOCK();
+		myReloadValue = reloadValue;
+		myCounter = reloadValue;
+		myParam = param;
+		SysTick->LOAD = (uint32_t) ((ticks * dt_microseconds) - 1);
 		IRQ_UNLOCK();
 	}
 	else
 	{
-		SysTick->LOAD  = 0;
+		IRQ_LOCK();
+		myReloadValue = 0;
 		myCounter = 0;
 		myParam = 0;
-		myIntervallMSec = 0;
+		SysTick->LOAD = 0;
+		IRQ_UNLOCK();
 	}
 	return STATUS_OK;
 }
 
-status_t Timer_Start(uint32_t dt_microseconds, void * param)
-{
-	myIntervallMSec = 0;
-	return Timer_SetInterval(dt_microseconds, param);
-}
-
-status_t Timer_Stop(void * param)
-{
-	return Timer_SetInterval(0, param);
-}
-
 void SysTick_Handler(void)
 {
-	if(!(--myCounter))
+	if (!(--myCounter))
 	{
 		myCounter = myReloadValue;
-		if(myISR) myISR(myParam);
+		if (myISR) myISR(myParam);
 	}
 }
+#endif

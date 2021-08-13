@@ -112,16 +112,17 @@ typedef struct
  *			4: The experimental extern S2PI slave w/ GPIO CS (connected via cable).
  *****************************************************************************/
 #ifndef SPI_DEFAULT_SLAVE
-#if defined (CPU_MKL17Z256VFM4)
-#define SPI_DEFAULT_SLAVE 1
-#else
 #define SPI_DEFAULT_SLAVE -1
-#endif
 #endif
 
 /*! The default baud rate for SPI. */
-#ifndef SPI_DEFAULT_BAUD_RATE
-#define SPI_DEFAULT_BAUD_RATE SPI_BAUD_RATE_MAX
+
+#ifndef SPI_BAUDRATE
+#ifdef SPI_MAX_BAUDRATE
+#define SPI_BAUDRATE SPI_MAX_BAUDRATE
+#else
+#define SPI_BAUDRATE 1000000U
+#endif
 #endif
 
 /*!@cond */
@@ -200,19 +201,16 @@ explorer_cfg_t ExplorerConfiguration;
 /*! The Argus data structure. */
 static argus_hnd_t * myArgusPtr;
 
-
 /*******************************************************************************
  * Code
  ******************************************************************************/
-
 static status_t ExplorerApp_InitDevice(explorer_cfg_t * cfg)
 {
-
 	/* Check for connected devices. */
 	int8_t slave = cfg->SPISlave;
 	uint32_t baudRate = cfg->SPIBaudRate;
 	status_t status = ExplorerApp_FindConnectedDevices(&slave, &baudRate);
-	if(status < STATUS_OK)
+	if (status < STATUS_OK)
 	{
 		error_log("No suitable device connected, error code: %d", status);
 
@@ -224,7 +222,7 @@ static status_t ExplorerApp_InitDevice(explorer_cfg_t * cfg)
 
 	/* Device initialization */
 	status = Argus_Init(myArgusPtr, slave);
-	if(status < STATUS_OK)
+	if (status < STATUS_OK)
 	{
 		error_log("Failed to initialize AFBR-S50 API, error code: %d", status);
 		return status;
@@ -247,7 +245,7 @@ status_t ExplorerApp_Init(void)
 	}
 
 	/* Initialize the board hardware /w watchdog timer disabled */
-	status = ExplorerApp_InitHardware();
+	status = ExplorerApp_InitHardware(&ExplorerConfiguration);
 	if(status < STATUS_OK)
 	{
 		assert(0);
@@ -320,6 +318,9 @@ static status_t ExplorerApp_InitTasks(void)
 
 void ExplorerApp_Run(void)
 {
+//#if DEBUG
+//	ExplorerApp_StartTimerMeasurement();
+//#endif
 	Scheduler_Run(); // never returns
 }
 
@@ -350,10 +351,10 @@ status_t ExplorerApp_GetDefaultConfiguration(explorer_cfg_t * cfg)
 {
 	assert(cfg != 0);
 
-	cfg->SPIBaudRate = SPI_DEFAULT_BAUD_RATE;
+	cfg->SPIBaudRate = SPI_BAUDRATE;
 	cfg->SPISlave = SPI_DEFAULT_SLAVE;
 
-#if defined(DEBUG) || (defined(AFBR_FMT_BUILD) && AFBR_FMT_BUILD)
+#if defined(DEBUG)
 	cfg->DebugMode = true;
 #else
 	cfg->DebugMode = false;
@@ -363,70 +364,72 @@ status_t ExplorerApp_GetDefaultConfiguration(explorer_cfg_t * cfg)
 	return STATUS_OK;
 }
 
-status_t ExplorerApp_GetConfiguration(explorer_cfg_t * cfg)
+void ExplorerApp_GetConfiguration(explorer_cfg_t * cfg)
 {
 	memcpy(cfg, &ExplorerConfiguration, sizeof(explorer_cfg_t));
-	return STATUS_OK;
 }
 
 status_t ExplorerApp_SetConfiguration(explorer_cfg_t * cfg)
 {
-	if(cfg->DataOutputMode > DATA_OUTPUT_STREAMING_1D_FAST)
+	if (cfg->DataOutputMode > DATA_OUTPUT_STREAMING_1D_FAST)
 	{
 		error_log("Explorer configuration failed: the data output mode (%d) is unknown.",
 				  cfg->DataOutputMode);
 		return ERROR_INVALID_ARGUMENT;
 	}
 
-	if(cfg->SPIBaudRate > SPI_BAUD_RATE_MAX)
+	if (cfg->SPIBaudRate > SPI_MAX_BAUDRATE)
 	{
 		error_log("Explorer configuration failed: the SPI baud rate (%d) is too large.\n"
-				  "It is reset to maximum value of %d bps.", cfg->SPIBaudRate, SPI_BAUD_RATE_MAX);
-		cfg->SPIBaudRate = SPI_BAUD_RATE_MAX;
+				  "It is reset to maximum value of %d bps.",
+				  cfg->SPIBaudRate, SPI_MAX_BAUDRATE);
+		cfg->SPIBaudRate = SPI_MAX_BAUDRATE;
 	}
 
-	if(ExplorerConfiguration.SPIBaudRate != cfg->SPIBaudRate)
+	if (ExplorerConfiguration.SPIBaudRate != cfg->SPIBaudRate)
 	{
-		status_t status = S2PI_SetBaudRate(cfg->SPIBaudRate);
-		if(status != STATUS_OK)
+		const status_t status = S2PI_SetBaudRate(cfg->SPIBaudRate);
+		if (status != STATUS_OK)
 		{
-		    /* Check if the actual baud rate is within 10 % of the desired baud rate. */
-		    if(status == ERROR_S2PI_INVALID_BAUD_RATE)
-		    	error_log("S2PI: The requested baud rate (%d bps) is not supported! "
-		    			  "The actual baud rate is %d bps.", cfg->SPIBaudRate, S2PI_GetBaudRate());
-		    else
-		    	error_log("S2PI: Setting the new baud rate failed, "
-		    			  "error code: %d", status);
+			/* Check if the actual baud rate is within 10 % of the desired baud rate. */
+			if (status == ERROR_S2PI_INVALID_BAUDRATE)
+				error_log("S2PI: The requested baud rate (%d bps) is not supported! "
+						  "The actual baud rate is %d bps.",
+						  cfg->SPIBaudRate, S2PI_GetBaudRate());
+			else
+				error_log("S2PI: Setting the new baud rate failed, "
+						  "error code: %d", status);
 
-		    /* Reset baud rate to last setting. */
+			/* Reset baud rate to last setting. */
 			S2PI_SetBaudRate(ExplorerConfiguration.SPIBaudRate);
 			return status;
 		}
 		cfg->SPIBaudRate = S2PI_GetBaudRate();
-	    //print("S2PI: Baud Rate set to %d bps.", cfg->SPIBaudRate);
+		//print("S2PI: Baud Rate set to %d bps.", cfg->SPIBaudRate);
 	}
 
-	s2pi_slave_t slave = Argus_GetSPISlave(myArgusPtr);
+	const s2pi_slave_t slave = Argus_GetSPISlave(myArgusPtr);
 
-	if((cfg->SPISlave < 0 && slave <= 0) ||
-	   (cfg->SPISlave > 0 && slave != cfg->SPISlave))
+	if ((cfg->SPISlave < 0 && slave <= 0) ||
+		(cfg->SPISlave > 0 && slave != cfg->SPISlave))
 	{
-		if(Argus_GetStatus(myArgusPtr) != STATUS_IDLE)
+		if (Argus_GetStatus(myArgusPtr) != STATUS_IDLE)
 		{
 			error_log("S2PI: Configuration failed, cannot set new SPI slave while device is busy!");
 			return ERROR_FAIL;
 		}
 
 		status_t status = ExplorerApp_InitDevice(cfg);
-		if (status != 0)
+		if (status != STATUS_OK)
 		{
 			error_log("S2PI: Configuration failed, cannot set new SPI slave, "
 					  "error code: %d", status);
+
 			ExplorerApp_InitDevice(&ExplorerConfiguration);
 			return status;
 		}
 
-	    //print("S2PI: Re-initialized with Slave %d.", cfg->SPISlave);
+		//print("S2PI: Re-initialized with Slave %d.", cfg->SPISlave);
 	}
 
 	memcpy(&ExplorerConfiguration, cfg, sizeof(explorer_cfg_t));
@@ -533,8 +536,6 @@ static status_t Task_EvaluateMeasurementData(task_event_t e)
 	DEBUG_TASK_EVALUATEDATA_ENTER;
 	assert(e);
 
-	status_t status = STATUS_OK;
-
 	/* Find free data buffer. */
     argus_resultsbuffer_t * buf = 0;
 	for(uint8_t i = 0; i < ARGUSRESULTBUFFER_SIZE; ++i)
@@ -549,71 +550,61 @@ static status_t Task_EvaluateMeasurementData(task_event_t e)
 	buf->Status = BUFFER_BUSY;
 
 	/* Evaluate data. */
-	status = Argus_EvaluateData(myArgusPtr, &(buf->Result), e);
-//	if(status < STATUS_OK) // ignore status and also send invalid data if any
-//	{
-//		buf->Status = BUFFER_EMTPY;
-//		DEBUG_TASK_EVALUATEDATA_LEAVE;
-//		return status;
-//	}
+	Argus_EvaluateData(myArgusPtr, &(buf->Result), e);
 
 	buf->Status = BUFFER_FULL;
 
-	status = Scheduler_PostEvent(TASK_SEND_DAT, (task_event_t)buf);
+	Scheduler_PostEvent(TASK_SEND_DAT, (task_event_t)buf);
 
 	DEBUG_TASK_EVALUATEDATA_LEAVE;
-	return status;
+	return STATUS_OK;
 }
 static status_t Task_SendMeasurementData(task_event_t e)
 {
 	DEBUG_TASK_SENDRESULTS_ENTER;
 	assert(e);
-	status_t status = STATUS_OK;
 	argus_resultsbuffer_t * buf = (argus_resultsbuffer_t *)e;
 
 	switch(ExplorerConfiguration.DataOutputMode)
 	{
-		case DATA_OUTPUT_ON_REQUEST:
-			break; // do nothing, on request only!
+		//case DATA_OUTPUT_ON_REQUEST:
+		//	break; // do nothing, on request only!
 		case DATA_OUTPUT_STREAMING_RAW:
-			status = SendMeasurementData(CMD_MEASUREMENT_DATA_RAW, &(buf->Result));
+			SendMeasurementData(CMD_MEASUREMENT_DATA_RAW, &(buf->Result));
 			break;
 		case DATA_OUTPUT_STREAMING_FULL:
-			status = SendMeasurementData(CMD_MEASUREMENT_DATA_DEBUG, &(buf->Result));
+			SendMeasurementData(CMD_MEASUREMENT_DATA_DEBUG, &(buf->Result));
 			break;
 		case DATA_OUTPUT_STREAMING_FAST:
-			status = SendMeasurementData(CMD_MEASUREMENT_DATA_FULL, &(buf->Result));
+			SendMeasurementData(CMD_MEASUREMENT_DATA_FULL, &(buf->Result));
 			break;
 		case DATA_OUTPUT_STREAMING_3D_FULL:
-			status = SendMeasurementData(CMD_MEASUREMENT_DATA_3D_DEBUG, &(buf->Result));
+			SendMeasurementData(CMD_MEASUREMENT_DATA_3D_DEBUG, &(buf->Result));
 			break;
 		case DATA_OUTPUT_STREAMING_3D_FAST:
-			status = SendMeasurementData(CMD_MEASUREMENT_DATA_3D, &(buf->Result));
+			SendMeasurementData(CMD_MEASUREMENT_DATA_3D, &(buf->Result));
 			break;
 		case DATA_OUTPUT_STREAMING_1D_FULL:
-			status = SendMeasurementData(CMD_MEASUREMENT_DATA_1D_DEBUG, &(buf->Result));
+			SendMeasurementData(CMD_MEASUREMENT_DATA_1D_DEBUG, &(buf->Result));
 			break;
 		case DATA_OUTPUT_STREAMING_1D_FAST:
-			status = SendMeasurementData(CMD_MEASUREMENT_DATA_1D, &(buf->Result));
+			SendMeasurementData(CMD_MEASUREMENT_DATA_1D, &(buf->Result));
 			break;
-//		case DATA_OUTPUT_STREAMING_INFO:
-//			status = SendMeasurementData(CMD_MEASUREMENT_SYSTEM_INFO, &(buf->Result));
-//			break;
 		default:
 			OnError(ERROR_FAIL, "Invalid Data Output Mode!");
 	}
 
 	buf->Status = BUFFER_EMTPY;
 	DEBUG_TASK_SENDRESULTS_LEAVE;
-	return status;
+	return STATUS_OK;
 }
 static status_t Task_HandleCommand(task_event_t e)
 {
 	DEBUG_TASK_HANDLECMD_ENTER;
 	assert(e);
-	status_t status = SCI_InvokeRxCommand(e);
+	SCI_InvokeRxCommand(e);
 	DEBUG_TASK_HANDLECMD_LEAVE;
-	return status;
+	return STATUS_OK;
 }
 
 static status_t Task_Error(task_event_t e)
@@ -639,12 +630,6 @@ static status_t Task_Idle(task_event_t e)
 	// if the period elapses, the devices is triggered in order to prevent
 	// latchup effect.
 
-//#if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
-//	// use green led to visualize idle time on MCU
-//	GPIO_ClearPinOutput(Pin_LED_Green);
-//#endif
-
-
 	status_t status = Argus_GetStatus(myArgusPtr);
 
 #if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
@@ -659,7 +644,6 @@ static status_t Task_Idle(task_event_t e)
 	}
 #endif
 
-#if !(defined(AFBR_FMT_BUILD) && AFBR_FMT_BUILD)
 	// trigger a ping from time to time
 	if(!ExplorerConfiguration.DebugMode && status == STATUS_IDLE)
 	{
@@ -682,11 +666,6 @@ static status_t Task_Idle(task_event_t e)
 	{
 		e = 0;
 	}
-#endif
-
-//#if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
-//	GPIO_SetPinOutput(Pin_LED_Green);
-//#endif
 
 	Scheduler_PostEvent(TASK_IDLE, e);
 
@@ -702,10 +681,10 @@ static status_t MeasurementDoneCallback(status_t status, void * param)
 {
 	if(status < STATUS_OK)
 	{
-		if(status == ERROR_TIMEOUT)
-		{
-			S2PI_PinsLow();
-		}
+//		if(status == ERROR_TIMEOUT)
+//		{
+//			S2PI_PinsLow();
+//		}
 		return OnError(status, "The measurement task execution failed");
 	}
 

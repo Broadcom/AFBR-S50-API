@@ -79,7 +79,14 @@
  * @param	weight The EMA weight in UQ0.7 format.
  * @return  The new mean value in UQ1.15 format.
  *****************************************************************************/
-static inline uq1_15_t fp_ema15c(uq1_15_t mean, uq1_15_t x, uq0_8_t weight);
+static inline uq1_15_t fp_ema15c(uq1_15_t mean, uq1_15_t x, uq0_8_t weight)
+{
+	if (!weight) return x;
+	// Heeds the wrap around effect by casting dx to int16:
+	int16_t dx = (int16_t)(x - mean);
+	int32_t diff = fp_rnds(weight * dx, 8U);
+	return (uq1_15_t)(mean + diff);
+}
 
 /*!***************************************************************************
  * @brief	Exponentially weighted moving average using the Q11.4 format.
@@ -92,7 +99,29 @@ static inline uq1_15_t fp_ema15c(uq1_15_t mean, uq1_15_t x, uq0_8_t weight);
  * @param	weight The EMA weight in UQ0.7 format.
  * @return  The new mean value in Q11.4 format.
  *****************************************************************************/
-static inline q11_4_t fp_ema4(q11_4_t mean, q11_4_t x, uq0_8_t weight);
+static inline q11_4_t fp_ema4(q11_4_t mean, q11_4_t x, uq0_8_t weight)
+{
+	if (!weight) return x;
+	int32_t dx = x - mean;
+	int32_t diff = fp_rnds(weight * dx, 8U);
+	return (q11_4_t)(mean + diff);
+}
+
+/*!***************************************************************************
+ * @brief	Exponentially weighted moving average using the Q7.8 format.
+ *
+ * @details Evaluates the moving average (exponentially weighted) for data in
+ * 			Q7.8 format.
+ *
+ * @param	mean The previous mean value in Q7.8 format.
+ * @param	x The current value to be added to the average Q7.8 format.
+ * @param	weight The EMA weight in UQ0.7 format.
+ * @return  The new mean value in Q7.8 format.
+ *****************************************************************************/
+static inline q7_8_t fp_ema8(q7_8_t mean, q7_8_t x, uq0_8_t weight)
+{
+	return (q7_8_t)fp_ema4(mean, x, weight);
+}
 
 /*!***************************************************************************
  * @brief	Exponentially weighted moving average using the Q15.16 format.
@@ -105,26 +134,6 @@ static inline q11_4_t fp_ema4(q11_4_t mean, q11_4_t x, uq0_8_t weight);
  * @param	weight The EMA weight in UQ0.7 format.
  * @return  The new mean value in Q15.16 format.
  *****************************************************************************/
-static inline q15_16_t fp_ema16(q15_16_t mean, q15_16_t x, uq0_8_t weight);
-
-
-static inline uq1_15_t fp_ema15c(uq1_15_t mean, uq1_15_t x, uq0_8_t weight)
-{
-	if (!weight) return x;
-	// Heeds the wrap around effect by casting dx to int16:
-	int16_t dx = (int16_t)(x - mean);
-	int32_t diff = fp_rnds(weight * dx, 8U);
-	return (uq1_15_t)(mean + diff);
-}
-
-static inline q11_4_t fp_ema4(q11_4_t mean, q11_4_t x, uq0_8_t weight)
-{
-	if (!weight) return x;
-	int32_t dx = x - mean;
-	int32_t diff = fp_rnds(weight * dx, 8U);
-	return (q11_4_t)(mean + diff);
-}
-
 static inline q15_16_t fp_ema16(q15_16_t mean, q15_16_t x, uq0_8_t weight)
 {
 	if (!weight) return x;
