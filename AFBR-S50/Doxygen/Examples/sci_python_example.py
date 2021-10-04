@@ -1,6 +1,6 @@
-# Example for using the AFBR-S50 API with UART interface
 # #############################################################################
-#
+# ###     Example for using the AFBR-S50 API with UART interface            ###
+# #############################################################################
 #
 # Prepare your evaluation kit (w/ NXP MKL46z MCU) by flashing the UART binary
 # to the device. Connect the OpenSDA USB port (NOT the one labeled with KL46Z)
@@ -21,7 +21,7 @@
 #
 # The script sends configuration commands to set the data output mode to 1D data
 # only and the frame rate to 5 Hz. After setting the configuration, the
-# measurements are started and the range is extracted from the received data
+# measurements are started and the data is extracted from the received data
 # frames and printed to the console.
 #
 #
@@ -32,96 +32,257 @@
 #
 # #############################################################################
 
+import time
 import serial
 
 # input parameters
-port = "COM4"
-baudrate = 2000000
-sample_count = 100
+port = "COM5"
+baudrate = 115200
 
+class AFBR_S50:
+    """
+    Serial Communication Interface for the AFBR-S50 Device.
+    Connects to the device via a UART interface.
+    """
 
-# byte stuffing definitions
-start_byte = b'\x02'
-stop_byte = b'\x03'
-esc_byte = b'\x1B'
+    ## SCI Start Byte     
+    start_byte = b'\x02'
+    ## SCI Stop Byte
+    stop_byte = b'\x03'
+    ## SCI Escape Byte
+    esc_byte = b'\x1B'
+    ## SCI Acknowledge Command
+    cmd_ack = 0x0A
+    ## SCI Not-Acknowledge Command
+    cmd_nak = 0x0B
+    ## Serial Interface
+    ser = None
 
-def write(tx: bytes):
+    def __init__(self, port, baudrate):
+        """!
+        Initializes the class and opens a serial port w/
+        "115200,8,N,1" serial settings and no timeout.
 
-    print("Sending: " + tx.hex())
-    ser.write(tx)
+        @param port (str): The port number string, e.g. "COM1"
+        @param baudrate (int): The baud rate in bauds per second, e.g. 115200
+        """
+        print("AFBR-S50: Open Serial Port " + port)
+        self.ser = serial.Serial(port, baudrate)
+        self.ser.timeout = 1.0 # seconds
+        print("AFBR-S50: Serial Port is open " + port + ": " + str(self.ser.is_open))
+    
+        # discard old data
+        if self.ser.inWaiting() > 0:
+            self.ser.read(self.ser.inWaiting()) 
 
-    return
+    def __del__(self):
+        """!
+        Deletes the class and closes the opened serial port.
+        """
+        self.ser.close()
 
-def read():
+    def write(self, tx: bytes):
+        """!
+        Sends a SCI message and waits for an optional answer and
+        the mandatory acknowledge.
 
-    # read until next stop byte
-    rx = bytearray(ser.read_until(stop_byte))
+        If any answer is received, it is returned as bytearray.
 
-    # remove escape bytes if any
-    rxi = rx.split(esc_byte)
-    rx = b''
-    for i in range(len(rxi)):
-        rxi[i][0] ^= 0xFF # invert byte after escape byte (also inverts start byte, but we don't care..)
-    rx = rx.join(rxi)
+        @param tx (bytes): The data message (incl. excape bytes) as byte array to be sent.
+        @return Returns the received answer (ACK or NAK) as byte array. None if no answer was received.
+        """
+        print("Sending: " + tx.hex())
+        self.ser.write(tx)
+        return self.__wait_for_ack(tx[1]) # read acknowledge
 
-    # extract command byte (first after start byte)
-    cmd = rx[1]
+    def __wait_for_ack(self, txcmd):
+        """!
+        Waits for an acknowledge signal for the specified command.
+        If an answer is received before the acknowledge is received,
+        the answer is returned as a bytearray.
+        If no acknowledge or any other command is received, an
+        exception is raised.
+        @param txcmd (byte): The TX command byte to await an acknowledge for.
+        @return Returns the received answer (ACK or NAK) as byte array. None if no answer was received.
+        """
+        answer = None
 
-    # interpret commands
-    if cmd == 0x0A: # Acknowledge
-        print ("Acknowledged Command " + str(rx[2]))
+        while True:
+            # Read until next stop byte and remove escape bytes
+            rx = bytearray(self.ser.read_until(self.stop_byte))
+            if len(rx) == 0:
+                raise Exception("No data was read from the RX line.")
 
-    elif cmd == 0x0B: # Not-Acknowledge
-        print ("Not-Acknowledged Command " + str(rx[2]) + " - Error: " + str((rx[3] << 8) + rx[4]))
+            if rx[0] != self.start_byte[0] or rx[-1] != self.stop_byte[0]:
+                raise Exception("Invalid data frame received (start or stop byte missing).")
+                
 
-    elif cmd == 0x06: # Log Message
-        print("Device Log: " + str(rx[8:-2]))
+            rx = self.__remove_byte_stuffing(rx)
+    
+            # Extract command byte (first after start byte)
+            rxcmd = rx[1]
+    
+            if rxcmd == txcmd: # response received
+                answer = rx
+    
+            # acknowledge signal received
+            elif rxcmd == self.cmd_ack: 
+                ackcmd = rx[2]
 
-    elif cmd == 0x36: # 1D Data Set
+                # acknowledge for the current command
+                if ackcmd == txcmd: 
+                    return answer
+                
+                # acknowledge for any other command
+                else: 
+                    raise Exception("Invalid ACK received")
+    
+            # not-acknowledge signal received
+            elif rxcmd == self.cmd_nak:
+                nakcmd = rx[2]
+                
+                # not-acknowledge for current command
+                if nakcmd == txcmd:
+                    raise Exception("NAK received")
+
+                # not-acknowledge for any other command
+                else:
+                    raise Exception("Invalid NAK received")
+    
+
+    def __remove_byte_stuffing(self, rx: bytearray):
+        """!
+        Removes escape bytes from the incoming message if any
+        @param rx (bytearray): The data message as byte array with escape bytes.
+        """
+        rxi = rx.split(self.esc_byte)
+        rx = b''
+        for i in range(1, len(rxi)):
+            rxi[i][0] ^= 0xFF # invert byte after escape byte (also inverts start byte, but we don't care..)
+        return rx.join(rxi)
+
+    def __extract_1d_data(self, rx: bytearray):
+        """!
+        Extracts the 1D data values from the 1D data message.
+        @param rx (bytearray): The 1D data message as byte array without escape bytes.
+        @return Returns the read data as dictionary. 
+        """
+        d = dict()
+
+        # Extract Status:
+        s = (rx[2] << 8) + rx[3]
+        d['status'] = s if s < 0x8000 else s - 0x10000 # convert to signed 16-bit int 
+
+        # Extract Time Stamp
+        t_sec = (rx[4] << 24) + (rx[5] << 16) + (rx[6] << 8) + rx[7]
+        t_usec = (rx[8] << 8) + rx[9]
+        d['timestamp'] = t_sec + t_usec * 16.0 / 1.0e6
+
         # Extract Range:
         r = (rx[12] << 16) + (rx[13] << 8) + rx[14]
-        r = r / 16384.0 # convert from Q9.14
-        print ("Range[m]: " + str(r))
+        d['range'] = r / 16384.0 # convert from Q9.14
 
-    else: # Unknown or not handled here
-        print ("Received Unknown: " + rx.hex())
+        # Extract Amplitude:
+        a = (rx[15] << 8) + rx[16]
+        d['amplitude'] = a / 16.0 # convert from UQ12.4
 
-    return rx
+        # Extract Signal Quality:
+        q = rx[17]
+        d['signal quality'] = q
 
-# open serial port w/ "11500,8,N,1", no timeout
-print("Open Serial Port " + port)
-with serial.Serial(port, baudrate) as ser:
-    print("Serial Open " + port + ": " + str(ser.is_open))
+        return d
 
-    # discard old data
-    ser.timeout = 0.1
-    while len(ser.read(100)) > 0: pass
-    ser.timeout = None
 
-    # setting data output mode to 1D data only
-    print("setting data output mode to 1d data only")
-    write(bytes.fromhex('02 41 07 F5 03'))
-    read()
+    def read_data(self):
+        """!
+        Reads the serial port and decodes the SCI data messages.
+        Currently only 1D data messages are supported.
+        If no data is pending to be read, the function immediately
+        return with None. If other data than measurement data was read,
+        the function returns with None.
+        Otherwise it returns a dictionary with the extracted data values.
+        @return Returns the read data as dictionary. None if no data has been read.
+        """
+        if self.ser.inWaiting() > 0:
 
-    # setting frame time to 200000 µsec = 0x00030D40 µsec
-    # NOTE: the 0x03 must be escaped and inverted (i.e. use 0x1BFC instead of 0x03)
-    print("setting frame rate to 5 Hz (i.e. frame time to 0.2 sec)")
-    write(bytes.fromhex('02 43 00 1B FC 0D 40 85 03'))
-    read()
+            # Read until next stop byte and remove escape bytes
+            rx = bytearray(self.ser.read_until(self.stop_byte))
+            if len(rx) == 0:
+                raise Exception("No data was read from the RX line.")
 
-    # starting measurements
-    print("starting measurements in timer based auto mode")
-    write(bytes.fromhex('02 11 D0 03'))
-    read()
+            if rx[0] != self.start_byte[0] or rx[-1] != self.stop_byte[0]:
+                raise Exception("Invalid data frame received (start or stop byte missing).")
 
-    #read measurement data
-    print("read measurement data")
-    for i in range(sample_count):
-        read()
+            rx = self.__remove_byte_stuffing(rx)
+        
+            # extract command byte (first after start byte)
+            cmd = rx[1]
+        
+            if cmd == 0x06: # Log Message
+                print("Device Log: " + str(rx[8:-2]))
+        
+            elif cmd == 0x36: # 1D Data Set
+                return self.__extract_1d_data(rx)
+        
+            else: # Unknown or not handled here
+                print("Received Unknown Data Frame: " + rx.hex())
 
-    # starting measurements
-    print("stop measurements")
-    write(bytes.fromhex('02 12 F7 03'))
-    read()
+        return None
 
-    ser.close()             # close port
+
+if __name__ == "__main__":
+
+    try:
+        # Create a new instance and open a serial port connection to the device.
+        s50 = AFBR_S50(port, baudrate)
+    
+        # Setting data output mode to 1D data only
+        # The message is composed of:
+        # [START][CMD][PARAM][CRC][STOP]
+        # where:
+        # [START] = 0x02; start byte
+        # [CMD]   = 0x41; command byte: data streaming mode
+        # [PARAM] = 0x07; parameter of command: 1d data streaming
+        # [CRC]   = 0xF5; checksum: pre-calculated in online calculator
+        # [STOP]  = 0x03; stop byte
+        print("setting data output mode to 1d data only")
+        s50.write(bytes.fromhex('02 41 07 F5 03'))
+    
+        # Setting frame time to 200000 µsec = 0x00030D40 µsec
+        # The message is composed of:
+        # [START][CMD][PARAM(0)]...[PARAM(N)][CRC][STOP]
+        # where:
+        # [START]    = 0x02; start byte
+        # [CMD]      = 0x43; command byte: measurement frame time
+        # [PARAM(x)] = 0x001BFC0D40; 4-bit parameter of command: 0x00 03 0D 40 w/ escape bytes 
+        # [CRC]      = 0x85; checksum: pre-calculated in online calculator
+        # [STOP]     = 0x03; stop byte
+        #
+        # NOTE: the 0x03 byte must be escaped and inverted (i.e. use 0x1BFC instead of 0x03)
+        #       The CRC is calculated on the original data, i.e. 0x43 00 03 0D 40 => 0x85
+        print("setting frame rate to 5 Hz (i.e. frame time to 0.2 sec)")
+        s50.write(bytes.fromhex('02 43 00 1B FC 0D 40 85 03'))
+    
+        # Starting measurements
+        # [CMD] = 0x11; command byte: start timer based measurements
+        print("starting measurements in timer based auto mode")
+        s50.write(bytes.fromhex('02 11 D0 03'))
+        
+        # Read measurement data
+        print("read measurement data")
+        while True:
+            d = s50.read_data()
+            if d != None:
+                print(d)
+
+            else:
+                # do other stuff
+                time.sleep(0.1)
+
+    except KeyboardInterrupt:
+        # Try to stop measurements
+        # [CMD] = 0x12; command byte: stop timer based measurements
+        print("stop measurements")
+        s50.write(bytes.fromhex('02 12 F7 03'))
+
+
