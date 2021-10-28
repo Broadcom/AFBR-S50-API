@@ -92,12 +92,12 @@ static status_t TxCmd_SoftwareInfo(sci_frame_t * frame, sci_param_t param, sci_d
 	char const * name = "AFBR-S50 Explorer App - ";
 	for (char const *c = name; *c != '\0'; c++)
 	{
-		SCI_Frame_PutChar(frame, (int)*c);
+		SCI_Frame_PutChar(*c, frame);
 	}
 	char const * build = Argus_GetBuildNumber();
 	for (char const *c = build; *c != '\0'; c++)
 	{
-		SCI_Frame_PutChar(frame, (int)*c);
+		SCI_Frame_PutChar(*c, frame);
 	}
 	return STATUS_OK;
 }
@@ -115,7 +115,7 @@ static status_t TxCmd_SoftwareVersion(sci_frame_t * frame, sci_param_t param, sc
 	char const * build = Argus_GetBuildNumber();
 	for(char const * c = build; *c != '\0'; c++)
 	{
-		SCI_Frame_PutChar(frame, (int)*c);
+		SCI_Frame_PutChar(*c, frame);
 	}
 	return STATUS_OK;
 }

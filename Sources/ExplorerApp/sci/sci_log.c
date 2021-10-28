@@ -47,7 +47,7 @@
 
 #include <stdarg.h>
 
-#include "utility/debug_console.h"
+#include "utility/printf/printf.h"
 
 
 /*******************************************************************************
@@ -68,7 +68,7 @@
  * @param	ap The argument list.
  * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-static inline status_t vprint(const char *fmt_s, va_list * ap);
+static inline status_t vprint(const char *fmt_s, va_list ap);
 
 /*! @cond */
 #if SCI_LOG_TIMESTAMP
@@ -97,7 +97,7 @@ status_t SCI_SendLogEntry(const char *fmt_s, ...)
 {
 	va_list  ap;
 	va_start(ap, fmt_s);
-	status_t status = vprint(fmt_s, &ap);
+	status_t status = vprint(fmt_s, ap);
 	va_end(ap);
 	return status;
 }
@@ -107,11 +107,11 @@ status_t print(const char  *fmt_s, ...)
 {
 	va_list  ap;
 	va_start(ap, fmt_s);
-	status_t status = vprint(fmt_s, &ap);
+	status_t status = vprint(fmt_s, ap);
 	va_end(ap);
 	return status;
 }
-static inline status_t vprint(const char *fmt_s, va_list * ap)
+static inline status_t vprint(const char *fmt_s, va_list ap)
 {
 	/* sending a log message in formated printf style */
 
@@ -126,7 +126,8 @@ static inline status_t vprint(const char *fmt_s, va_list * ap)
 	SCI_Frame_Queue_Time(frame, &t_now);
 #endif
 
-    PrintfFormattedData(SCI_Frame_PutChar, frame, fmt_s, ap);
+	int len = vfctprintf(SCI_Frame_PutChar, frame, fmt_s, ap);
+	if (len < 0) return ERROR_FAIL;
 
     return SCI_DataLink_SendTxFrame(frame, false);
 }

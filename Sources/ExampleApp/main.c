@@ -40,6 +40,7 @@
 #include "argus.h"
 
 #include "board/clock_config.h"
+#include "driver/irq.h"
 #include "driver/cop.h"
 #include "driver/s2pi.h"
 #include "driver/uart.h"
@@ -66,6 +67,15 @@
 #define ADVANCED_DEMO 1
 #endif
 
+/*! Selector for default/high-speed demo:
+ *  - 0: defaul demo at lower speed including dual-frequency mode enabled.
+ *  - 1: high-speed demo with 1000 fps and disabled dual-frequency mode.
+ *  Note that ADVANCE_MODE must be enabled to achieve full measurement speed.
+ *  Note that 12Mbps SPI Baud Rate must be set for KL46z; KL17z does not achieve full speed! */
+#ifndef HIGH_SPEED_DEMO
+#define HIGH_SPEED_DEMO 0
+#endif
+
 /*! Selector for HAL test demo:
  *  - 0: no HAL tests are executed.
  *  - 1: HAL tests are executed before any API code is executed. */
@@ -77,14 +87,63 @@
 #define SPI_SLAVE 1
 
 /*! Define the SPI baud rate (to be used in the SPI module). */
+#if HIGH_SPEED_DEMO
+#define SPI_BAUD_RATE 12000000
+#else
 #define SPI_BAUD_RATE 6000000
+#endif
+
+#if HIGH_SPEED_DEMO && !ADVANCED_DEMO
+#error HIGH_SPEED_DEMO can only be enabled w/ ADVANCED_DEMO enabled too!
+#endif
 
 /*******************************************************************************
  * Variables
  ******************************************************************************/
 
-/*! Global raw data variable. */
-static volatile void * myData = 0;
+#if ADVANCED_DEMO
+/*!***************************************************************************
+ *  Global raw data pointer variables for ADVANCED_MODE.
+ *
+ *  Stores the raw data pointer obtained from the API measurement data ready
+ *  callback for passing it to the #Argus_EvaluateData function outside of the
+ *  interrupt callback scope (i.e. from the main thread/task). Note that the
+ *  #Argus_EvaluateData function must be called once for each callback event
+ *  since it clears the internal state of the raw data buffer. If not called,
+ *  the API gets stuck waiting for the raw data buffer to be freed and ready
+ *  to be filled with new measurement data.
+ *
+ *  In automatic measurement mode (#ADVANCED_DEMO = 1), i.e. if the measurements
+ *  are automatically triggered on a time based schedule from the periodic
+ *  interrupt timer (PIT), the callback may occur faster than the
+ *  #Argus_EvaluateData function gets called from the main thread/task. This
+ *  usually happens at high frame rates or too much CPU load on the main
+ *  thread/task. In that case, the API delays new measurements until the
+ *  previous buffers are cleared. Since the API contains two distinct raw
+ *  data buffer, the user code must store two pointers in worst case scenario.
+ *****************************************************************************/
+static volatile void * myRawDataPtr[2] = { 0 };
+#else
+
+/*!***************************************************************************
+ *  Global raw data pointer variable for SIMPLE_MODE.
+ *
+ *  Stores the raw data pointer obtained from the API measurement data ready
+ *  callback for passing it to the #Argus_EvaluateData function outside of the
+ *  interrupt callback scope (i.e. from the main thread/task). Note that the
+ *  #Argus_EvaluateData function must be called once for each callback event
+ *  since it clears the internal state of the raw data buffer. If not called,
+ *  the API gets stuck waiting for the raw data buffer to be freed and ready
+ *  to be filled with new measurement data.
+ *
+ *  In simple measurement mode (#ADVANCED_DEMO = 0), i.e. if the measurements
+ *  are manually triggered via calls to #Argus_TriggerMeasurement from the
+ *  main thread/task, the callback occurs exactly once for each successful
+ *  call to the trigger function. Thus the #Argus_EvaluateData function needs
+ *  to be called once for each trigger command accordingly.
+ *****************************************************************************/
+static volatile void * myRawDataPtr = 0;
+#endif
 
 
 /*******************************************************************************
@@ -143,6 +202,7 @@ status_t measurement_ready_callback(status_t status, void * data);
  *****************************************************************************/
 static void handle_error(status_t status, char const * msg);
 
+
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -199,7 +259,9 @@ int main(void)
 	uint32_t id = Argus_GetChipID(hnd);
 	argus_module_version_t mv = Argus_GetModuleVersion(hnd);
 
-#if ADVANCED_DEMO
+#if ADVANCED_DEMO && HIGH_SPEED_DEMO
+	print("\n##### AFBR-S50 API - High Speed Example ##########\n"
+#elif ADVANCED_DEMO
 	print("\n##### AFBR-S50 API - Advanced Example ############\n"
 #else
 	print("\n##### AFBR-S50 API - Simple Example ##############\n"
@@ -219,9 +281,44 @@ int main(void)
 		  "unknown");
 
 
-	/* Adjust some configuration parameters by invoking the dedicated API methods. */
-	status = Argus_SetConfigurationFrameTime( hnd, 100000 ); // 0.1 second = 10 Hz
+	/* Choose the measurement mode via API functions:
+	 * - ARGUS_MODE_A: Long Range Measurement Mode
+	 * - ARGUS_MODE_B: Short Range Measurement Mode */
+	argus_mode_t mode = ARGUS_MODE_B;
+	status = Argus_SetConfigurationMeasurementMode(hnd, mode);
+	handle_error(status, "Argus_SetConfigurationMeasurementMode failed!");
+
+#if HIGH_SPEED_DEMO
+
+	/* Setup API for High Speed mode, i.e. 1000 fps measurement rate.
+	 * The following changes are made:
+	 * - Disable the dual-frequency mode.
+	 * - Disable the smart-power-save mode.
+	 * - Set frame time to 1000 us.
+	 *
+	 * Note: The maximum frame rate is limited by the amount of data sent via UART.
+	 *       See #print_results function for more information. */
+
+	status = Argus_SetConfigurationDFMMode(hnd, mode, DFM_MODE_OFF);
+	handle_error(status, "Argus_SetConfigurationDFMMode failed!");
+
+	status = Argus_SetConfigurationSmartPowerSaveEnabled(hnd, mode, false);
+	handle_error(status, "Argus_SetConfigurationSmartPowerSaveEnabled failed!");
+
+	status = Argus_SetConfigurationFrameTime(hnd, 1000); // 0.001 second = 1000 Hz
 	handle_error(status, "Argus_SetConfigurationFrameTime failed!");
+
+#else
+
+	/* Adjust additional configuration parameters by invoking the dedicated API methods.
+	 * Note: The maximum frame rate is limited by the amount of data sent via UART.
+	 *       See #print_results function for more information. */
+	status = Argus_SetConfigurationFrameTime(hnd, 100000); // 0.1 second = 10 Hz
+	handle_error(status, "Argus_SetConfigurationFrameTime failed!");
+
+#endif
+
+
 
 #if ADVANCED_DEMO
 
@@ -238,27 +335,25 @@ int main(void)
 	/* The program loop ... */
 	for(;;)
 	{
-		/* Check if new measurement data is ready. */
-		if (myData != 0)
-		{
-			/* Release for next measurement data. */
-			void * data = (void *) myData;
-			myData = 0;
+		/* Disable IRQs to avoid update of the myRawDataPtr array between distinct read commands. */
+		IRQ_LOCK();
+		void * dataPtr = (void*) myRawDataPtr[0];
+		myRawDataPtr[0] = myRawDataPtr[1];
+		myRawDataPtr[1] = 0;
+		IRQ_UNLOCK();
 
+		/* Check if new measurement data is ready. */
+		if (dataPtr != 0)
+		{
 			/* The measurement data structure. */
 			argus_results_t res;
 
 			/* Evaluate the raw measurement results. */
-		    status = Argus_EvaluateData(hnd, &res, data);
+		    status = Argus_EvaluateData(hnd, &res, dataPtr);
 		    handle_error(status, "Argus_EvaluateData failed!");
 
 			/* Use the obtain results, e.g. print via UART. */
 			print_results(&res);
-		}
-		else
-		{
-			/* User code here... */
-			__asm("nop");
 		}
 	}
 
@@ -267,8 +362,6 @@ int main(void)
 	/* The program loop ... */
 	for (;;)
 	{
-		myData = 0;
-
 		/* Triggers a single measurement.
 		 * Note that due to the laser safety algorithms, the method might refuse
 		 * to restart a measurement when the appropriate time has not been elapsed
@@ -298,8 +391,10 @@ int main(void)
 			argus_results_t res;
 
 			/* Evaluate the raw measurement results. */
-			status = Argus_EvaluateData(hnd, &res, (void*) myData);
+			status = Argus_EvaluateData(hnd, &res, (void*) myRawDataPtr);
 			handle_error(status, "Argus_EvaluateData failed!");
+
+			myRawDataPtr = 0;
 
 			/* Use the obtain results, e.g. print via UART. */
 			print_results(&res);
@@ -309,18 +404,53 @@ int main(void)
 #endif
 }
 
+
 static void print_results(argus_results_t const * res)
 {
+#if !HIGH_SPEED_DEMO
+
 	/* Print the recent measurement results:
-	 * 1. Range in mm (converting the Q9.22 value to mm)
-	 * 2. Amplitude in LSB (converting the UQ12.4 value to LSB)
-	 * 3. Status (0: OK, <0: Error, >0: Warning */
-	print("Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n",
+	 * 1. Time stamp in seconds since the last MCU reset.
+	 * 2. Range in mm (converting the Q9.22 value to mm).
+	 * 3. Amplitude in LSB (converting the UQ12.4 value to LSB).
+	 * 4. Signal Quality in % (100% = good signal).
+	 * 5. Status (0: OK, <0: Error, >0: Warning.
+	 *
+	 * Note: Sending data via UART creates a large delay which might prevent
+	 *       the API from reaching the full frame rate. This example sends
+	 *       approximately 80 characters per frame at 115200 bps which limits
+	 *       the max. frame rate of 144 fps:
+	 *       115200 bps / 10 [bauds-per-byte] / 80 [bytes-per-frame] = 144 fps */
+	print("%4d.%06d s; Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n",
+		  res->TimeStamp.sec,
+		  res->TimeStamp.usec,
 		  res->Bin.Range / (Q9_22_ONE / 1000),
 		  res->Bin.Amplitude / UQ12_4_ONE,
 		  res->Bin.SignalQuality,
 		  res->Status);
+
+#else
+	/* Static variable to store previous time stamp. */
+	static ltc_t t_prev = { 0 };
+
+	/* Print the recent measurement results:
+	 * 1. Time delta in microsconds to show the actual frame time.
+	 * 2. Range in mm (converting the Q9.22 value to mm).
+	 *
+	 * Note: To achieve 1000 fps, max. 11 bytes can be sent per frame at 115200 bps!!!
+	 *       115200 bps / 10 [bauds-per-byte] / 11 [bytes-per-frame] = 1047 fps
+	 *       Therefore not units are printed to the output! The first value is in
+	 *       microseconds, the second one is in millimeter.
+	 *
+	 * Note: The print formatting is expensive too. It must be reduced to a minimum by
+	 * 		 setting the #PRINTF_ADVANCED_ENABLE in the debug_console.h file to 0. */
+	print("%4d;%5d\n", Time_DiffUSec(&t_prev, &res->TimeStamp), res->Bin.Range / (Q9_22_ONE / 1000));
+
+	t_prev = res->TimeStamp;
+
+#endif
 }
+
 
 static void handle_error(status_t status, char const * msg)
 {
@@ -331,6 +461,7 @@ static void handle_error(status_t status, char const * msg)
 		while (1) __asm("nop"); // stop!
 	}
 }
+
 
 static void hardware_init(void)
 {
@@ -350,16 +481,27 @@ static void hardware_init(void)
 	S2PI_Init(SPI_SLAVE, SPI_BAUD_RATE);
 }
 
+
 status_t measurement_ready_callback(status_t status, void * data)
 {
 	handle_error(status, "Measurement Ready Callback received error!");
 
-	/* Inform the main task about new data ready.
-	 * Note: do not call the evaluate measurement method
-	 * from within this callback since it is invoked in
-	 * a interrupt service routine and should return as
-	 * soon as possible. */
-	assert(myData == 0);
-	myData = data;
+	/* Store the data pointer for the main thread/task.
+	 *
+	 * Note: Do not call the evaluate measurement method
+	 *       from within this callback since it is invoked in
+	 *       a interrupt service routine and should return as
+	 *       soon as possible. */
+
+#if ADVANCED_DEMO
+	assert(myRawDataPtr[0] == 0 || myRawDataPtr[1] == 0);
+	if (myRawDataPtr[0] == 0)
+		myRawDataPtr[0] = data;
+	else
+		myRawDataPtr[1] = data;
+#else
+    myRawDataPtr = data;
+#endif
+
 	return status;
 }

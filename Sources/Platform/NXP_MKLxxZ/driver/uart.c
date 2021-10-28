@@ -45,7 +45,7 @@
 #include "driver/irq.h"
 #include "driver/fsl_clock.h"
 #include "driver/fsl_port.h"
-#include "utility/debug_console.h"
+#include "utility/printf/printf.h"
 
 #include <stdarg.h>
 #include <stdlib.h>
@@ -55,10 +55,11 @@
  * Definitions
  ******************************************************************************/
 
-#define UART 					UART_BASEADDR	/*!< Alias for UART base address. */
+/*! Alias for UART base address. */
+#define UART UART_BASEADDR
 
-//#define DMA_CHANNEL_UART_TX 	2U				/*!< DMA channel for transmitting. */
-#define DEBUGCONSOLE_BUFFERSIZE 1024U			/*!< Output buffer size for debug console. */
+/*! Output buffer size for debug console. */
+#define PRINTF_BUFFER_SIZE 1024
 
 /*******************************************************************************
  * Prototypes
@@ -69,7 +70,6 @@ static void TxDMACallbackFunction2(status_t status);
 #endif
 static status_t SetBaudRate(uart_baud_rates_t baudRate, uint32_t srcClock_Hz);
 static void TxDMACallbackFunction(status_t status);
-static int PutChar(void * buf, int a);
 status_t print(const char  *fmt_s, ...);
 
 /*******************************************************************************
@@ -92,8 +92,7 @@ static uart_tx_callback_t myTxCallback = 0;
 static void * myTxCallbackState = 0;
 
 static volatile bool isTxOnGoing = false;
-static uint8_t myDebugConsole_Buffer[DEBUGCONSOLE_BUFFERSIZE] = {0};
-static uint8_t * myDebugConsole_WritePtr = 0;
+static char myBuffer[PRINTF_BUFFER_SIZE] = {0};
 static uart_baud_rates_t myBaudRate = UART_INVALID_BPS;
 
 /*******************************************************************************
@@ -581,16 +580,6 @@ bool UART_IsTxBusy(void)
  * Debug Console Functions
  ******************************************************************************/
 
-static int PutChar(void *buf, int a)
-{
-	(void) buf; // buf not used here.
-	if (myDebugConsole_WritePtr < (myDebugConsole_Buffer + DEBUGCONSOLE_BUFFERSIZE))
-	{
-		*(myDebugConsole_WritePtr++) = (uint8_t) a;
-	}
-	return 0;
-}
-
 __attribute__((weak)) status_t print(const char *fmt_s, ...)
 {
 	if (!isInitialized) return ERROR_NOT_INITIALIZED;
@@ -600,12 +589,11 @@ __attribute__((weak)) status_t print(const char *fmt_s, ...)
 
 	va_list ap;
 	va_start(ap, fmt_s);
-	myDebugConsole_WritePtr = myDebugConsole_Buffer;
-	int len = PrintfFormattedData(&PutChar, 0, fmt_s, &ap);
+	int len = vsnprintf_(myBuffer, PRINTF_BUFFER_SIZE, fmt_s, ap);
 	va_end(ap);
 
-	if (len < 0) return ERROR_FAIL;
-	return UART_SendBuffer(myDebugConsole_Buffer, len, 0, 0);
+	if (len < 0 || len >= PRINTF_BUFFER_SIZE) return ERROR_FAIL;
+	return UART_SendBuffer((uint8_t*)myBuffer, len, 0, 0);
 }
 
 /*******************************************************************************

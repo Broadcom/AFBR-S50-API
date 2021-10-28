@@ -93,11 +93,10 @@ static inline uint32_t SCI_Frame_BytesToRead(sci_frame_t const * frame);
  * 			additionally add an escape byte to the buffer.
  * @note	No new line / carriage return chars are added to the buffer. They
  * 			will be removed/ignored.
- * @param	frame The frame to put the data.
  * @param	c     The char to append.
- * @return 	Ignore; returns always 0;
+ * @param	frame The frame to put the data.
  *****************************************************************************/
-static inline int SCI_Frame_PutChar(void * frame, int c);
+static inline void SCI_Frame_PutChar(char c, void * frame);
 
 /*!***************************************************************************
  * @brief	Function for inserting a byte in a SCI frame.
@@ -462,11 +461,10 @@ static inline uint32_t SCI_Frame_Dequeue32u(sci_frame_t * frame)
 	return val;
 }
 
-static inline int SCI_Frame_PutChar(void * frame, int c)
+static inline void SCI_Frame_PutChar(char c, void * frame)
 {
-	if(c == '\r') return 0;
+	if(c == '\r') return;
 	SCI_Frame_Queue08u((sci_frame_t*)frame, (uint8_t)c);
-	return 0;
 }
 
 /*! @} */
