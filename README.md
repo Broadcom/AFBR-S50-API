@@ -79,7 +79,7 @@ Please refer to the [*Getting Started* Section of the *API Reference Manual*](ht
 
 In order to use the *AFBR-S50 API* on another MCU platform, refer to the generic [*Porting Guide* in the *API Reference Manual*](https://broadcom.github.io/AFBR-S50-API/porting_guide.html). 
 
-Also refer to the special *Porting Guide* based on a port of the *AFBR-S50 API* to the [STM32F401RE](https://www.st.com/en/evaluation-tools/nucleo-f401re.html) Evaluation Kit with a Cortex-M4 MCU. The guide can be found on the [Broadcom homepage](https://docs.broadcom.com/docs/AFBR-S50-SDK-Porting-Guide-to-Cortex-M4).
+Also refer to the special *Porting Guide* based on a port of the *AFBR-S50 API* to the [STM32F401RE](https://www.st.com/en/evaluation-tools/nucleo-f401re.html) Evaluation Kit with a Cortex-M4 MCU. The guide can be found on the [Broadcom homepage](https://docs.broadcom.com/docs/AFBR-S50-SDK-Porting-Guide-to-Cortex-M4-PG).
 
 ## How to get Support
 
