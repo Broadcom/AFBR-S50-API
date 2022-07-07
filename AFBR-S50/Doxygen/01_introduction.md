@@ -12,17 +12,23 @@ applications for the **AFBR-S50 Core Library**. The applications utilize the
 **AFBR-S50 API** and provide a fast getting started experience.
 
 Beneath the example implementations, the **Explorer App** publishes the full
-**AFBR-S50 sensor** functionality over **USB** or **UART** interfaces. 
+**AFBR-S50 sensor** functionality over **USB** or **UART** interfaces. The
+@ref reference_board by **MikroElektronika** 
+([available here](https://www.mikroe.com/bdc-afbr-s50-tof-sensor-board)) is 
+provided as an independent product that provides additional interfaces and 
+features such as a **CAN-bus**.
 
 The **AFBR-S50 API** and reference implementation are running on the
 [ARM Cortex-Mx](https://developer.arm.com/ip-products/processors/cortex-m/)
 processor architecture. Example projects exist for
 [Cortex-M0+](https://developer.arm.com/Processors/Cortex-M0-Plus),
 [Cortex-M4](https://developer.arm.com/Processors/Cortex-M4) and
+[Cortex-M33](https://developer.arm.com/Processors/Cortex-M33).
 
 In order to connect and evaluate the sensor, a PC GUI, the **AFBR-S50
 Explorer**, is provided. The GUI establishes a serial connection via **UART** or
-**USB** to the **Explorer App** running on a **Evaluation Kit**.
+**USB** to the **Explorer App** running on a **Evaluation Kit** or **Reference
+Board**.
 
 It leverages the **AFBR-S50 API and Core Library** to apply configuration and
 obtain measurement results. The latter is conveniently visualized in **1D or 3D
@@ -69,6 +75,9 @@ general and the following hardware is available:
 
 -   Reference Design files based on the
     [NXP Kinetis MKL17z](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/kl-series-cortex-m0-plus/kinetis-kl1x-48-mhz-mainstream-small-ultra-low-power-microcontrollers-mcus-based-on-arm-cortex-m0-plus-core:KL1x)
+
+-   [Reference Board](@ref reference_board) based on the
+    [Renesas RA4M2](https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra4m2-100mhz-arm-cortex-m33-trustzone-high-integration-lowest-active-power-consumption)
 
 ## Getting Started
 

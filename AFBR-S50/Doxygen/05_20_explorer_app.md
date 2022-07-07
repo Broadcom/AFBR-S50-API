@@ -36,6 +36,7 @@ your target. The following target/IDE combinations are provided:
 | NXP MKL46z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_ExplorerApp_KL46z` | Runs on **FRDM-KL46Z** evaluation board by **NXP**    |
 | NXP MKL17z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_ExplorerApp_KL17z` |                                                       |
 | STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_ExplorerApp_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
+| Renesas RA4M2 | e2 Studio     | `Projects/e2studio/AFBR_S50_ExplorerApp_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
 
 See also @ref gs_build for an overview of featured boards/MCUs/IDEs and how to
 import and build the project in the corresponding IDE. Just follow the steps and

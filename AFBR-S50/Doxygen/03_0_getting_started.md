@@ -16,6 +16,7 @@ To directly dive into building and debugging the featured projects, go to the
 corresponding IDE getting started section:
 
 -   \subpage mcuxpresso
+-   \subpage e2studio
 -   \subpage stm32cubeide
 
 Here is an overview of the featured targets and the required IDEs:
@@ -25,6 +26,7 @@ Here is an overview of the featured targets and the required IDEs:
 | AFBR-S50 Evaluation Kit   | [NXP Kinetis MKL46z](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/kl-series-cortex-m0-plus/kinetis-kl4x-48-mhz-usb-segment-lcd-ultra-low-power-microcontrollers-mcus-based-on-arm-cortex-m0-plus-core:KL4x)  | \ref mcuxpresso   | Based on the [NXP FRDM-KL46z](https://www.nxp.com/design/development-boards/freedom-development-boards/mcu-boards/freedom-development-platform-for-kinetis-kl3x-and-kl4x-mcus:FRDM-KL46Z) Evaluation Board |
 | AFBR-S50 Reference Design | [NXP Kinetis MKL17z](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/kl-series-cortex-m0-plus/kinetis-kl1x-48-mhz-mainstream-small-ultra-low-power-microcontrollers-mcus-based-on-arm-cortex-m0-plus-core:KL1x) | \ref mcuxpresso   |                                                                                                                                                                                                            |
 | AFBR-S50 Evaluation Kit   | [STM32F401RE](https://www.st.com/en/microcontrollers-microprocessors/stm32f401re.html)                                                                                                                                                                                 | \ref stm32cubeide | Based on the [STM32 NUCLEO-F401RE](https://www.st.com/en/evaluation-tools/nucleo-f401re.html) Evaluation Board                                                                                             |
+| @ref reference_board      | [Renesas RA4M2](https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra4m2-100mhz-arm-cortex-m33-trustzone-high-integration-lowest-active-power-consumption)                                                                       | \ref e2studio     | Provided by **MikroElektronika**                                                                                                                                                                           |
 
 ## Using the AFBR-S50 API {#gs_api}
 

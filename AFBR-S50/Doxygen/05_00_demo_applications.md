@@ -33,3 +33,11 @@ to present its usage:
     **AFBR-S50 Explorer GUI** that runs on a Windows machines connects to the
     **Explorer Application**.
 
+-   \subpage can_app
+
+    The \ref reference_board by **MikroElektronika** contains a **CAN-Bus**
+    interface which is presented with the **CAN-Bus Application**. The
+    application runs on the featured **Renesas RA4M2** **Cortex-M33** processor
+    and implements a basic **CAN Interface** that can be easily enhanced and
+    adopted by the user.
+

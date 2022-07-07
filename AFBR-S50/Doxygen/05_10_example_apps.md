@@ -59,6 +59,7 @@ depending on your target. The following target/IDE combinations are provided:
 | NXP MKL46z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL46z` | Runs on **FRDM-KL46Z** evaluation board by **NXP**    |
 | NXP MKL17z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL17z` |                                                       |
 | STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_Example_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
+| Renesas RA4M2 | e2 Studio     | `Projects/e2studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
 
 See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
 
@@ -71,9 +72,9 @@ triggers new measurement cycles from a periodic interrupt autonomously.
 
 The API calls the #Argus_StartMeasurementTimer method once upon initialization
 from the main thread in order to start autonomous measurement cycles. This
-required the optional **Periodic Interrupt Timer (PIT)** (see the 
-\link #argus_timer timer HAL interface\endlink) periodically from its 
-interrupt service routine.
+required the optional **Periodic Interrupt Timer (PIT)** (see the \link
+#argus_timer timer HAL interface\endlink) periodically from its interrupt
+service routine.
 
 The main thread loop is idle until the measurement data ready callback is
 invoked. Once a new raw measurement data set is ready, the #Argus_EvaluateData
@@ -109,6 +110,7 @@ depending on your target. The following target/IDE combinations are provided:
 | NXP MKL46z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL46z` | Runs on **FRDM-KL46Z** evaluation board by **NXP**    |
 | NXP MKL17z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL17z` |                                                       |
 | STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_Example_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
+| Renesas RA4M2 | e2 Studio     | `Projects/e2studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
 
 See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
 
@@ -165,12 +167,11 @@ depending on your target. The following target/IDE combinations are provided:
 | NXP MKL46z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL46z` | Runs on **FRDM-KL46Z** evaluation board by **NXP**    |
 | NXP MKL17z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL17z` |                                                       |
 | STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_Example_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
+| Renesas RA4M2 | e2 Studio     | `Projects/e2studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
 
 See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
 
 <!-- \include 02_advanced_example.c -->
-
-TODO
 
 ---
 
