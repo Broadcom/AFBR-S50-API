@@ -36,6 +36,9 @@
 
 #ifndef FP_EXP_H
 #define FP_EXP_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @addtogroup 	argus_fp
@@ -164,4 +167,7 @@ static inline uq16_16_t fp_exp16(q15_16_t x)
 }
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* FP_DIV_H */

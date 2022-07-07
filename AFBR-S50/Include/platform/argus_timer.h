@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_TIMER_H
 #define ARGUS_TIMER_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_timer Timer: Hardware Timer Interface
@@ -212,4 +215,7 @@ status_t Timer_SetCallback(timer_cb_t f);
 status_t Timer_SetInterval(uint32_t dt_microseconds, void * param);
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_TIMER_H */

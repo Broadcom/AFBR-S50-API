@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_STATUS_H
 #define ARGUS_STATUS_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include <stdint.h>
 
@@ -270,4 +273,7 @@ enum Status
 };
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_STATUS_H */

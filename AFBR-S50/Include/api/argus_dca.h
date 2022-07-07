@@ -37,6 +37,9 @@
 
 #ifndef ARGUS_DCA_H
 #define ARGUS_DCA_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup 	argus_dca Dynamic Configuration Adaption
@@ -500,4 +503,7 @@ typedef struct
 } argus_cfg_dca_t;
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_DCA_H */

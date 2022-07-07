@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_SNM_H
 #define ARGUS_SNM_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup 	argus_snm Shot Noise Monitor
@@ -80,4 +83,7 @@ typedef enum
 
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_SNM_H */

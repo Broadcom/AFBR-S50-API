@@ -36,6 +36,9 @@
 
 #ifndef FP_EMA_H
 #define FP_EMA_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @addtogroup 	argus_fp
@@ -152,4 +155,7 @@ static inline q15_16_t fp_ema16(q15_16_t mean, q15_16_t x, uq0_8_t weight)
 }
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* FP_EMA_H */

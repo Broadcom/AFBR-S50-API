@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_NVM_H
 #define ARGUS_NVM_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_nvm NVM: Non-Volatile Memory Layer
@@ -124,4 +127,7 @@ status_t NVM_Write(uint32_t offset, uint32_t size, uint8_t const * buf);
 status_t NVM_Read(uint32_t offset, uint32_t size, uint8_t * buf);
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif // ARGUS_NVM_H

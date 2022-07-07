@@ -36,6 +36,9 @@
 
 #ifndef INT_MATH
 #define INT_MATH
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @addtogroup 	argus_misc
@@ -270,4 +273,7 @@ static uint32_t isqrt(uint32_t v)
 #endif // INT_SQRT
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* INT_MATH */

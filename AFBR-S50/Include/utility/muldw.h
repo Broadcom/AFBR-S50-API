@@ -37,6 +37,9 @@
 
 #ifndef MULDW_H
 #define MULDW_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @addtogroup 	argus_misc
@@ -137,4 +140,7 @@ static inline void muldwu(uint32_t w[], uint32_t u, uint32_t v)
 }
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* MULDW_H */

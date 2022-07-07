@@ -36,6 +36,9 @@
 
 #ifndef TIME_H
 #define TIME_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_time Time Utility
@@ -291,4 +294,7 @@ uint32_t Time_ToMSec(ltc_t const * t);
 uint32_t Time_ToSec(ltc_t const * t);
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* TIME_H */

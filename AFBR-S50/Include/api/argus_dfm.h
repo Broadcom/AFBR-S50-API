@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_DFM_H
 #define ARGUS_DFM_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup 	argus_dfm Dual Frequency Mode
@@ -79,4 +82,7 @@ typedef enum
 
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_DFM_H */

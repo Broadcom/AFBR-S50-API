@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_RES_H
 #define ARGUS_RES_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_res Measurement Data
@@ -222,4 +225,7 @@ typedef struct
 
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_RES_H */

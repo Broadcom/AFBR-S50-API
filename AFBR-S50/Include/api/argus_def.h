@@ -37,6 +37,9 @@
 
 #ifndef ARGUS_DEF_H
 #define ARGUS_DEF_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * Include files
@@ -215,4 +218,7 @@ typedef enum
 typedef status_t (*argus_callback_t)(status_t status, void * data);
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_DEF_H */

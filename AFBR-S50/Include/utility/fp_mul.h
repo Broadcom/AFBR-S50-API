@@ -36,6 +36,9 @@
 
 #ifndef FP_MUL_H
 #define FP_MUL_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @addtogroup 	argus_fp
@@ -184,4 +187,7 @@ static inline int32_t fp_mul_s32_u16(int32_t u, uint16_t v, uint_fast8_t shift)
 }
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* FP_MUL_H */

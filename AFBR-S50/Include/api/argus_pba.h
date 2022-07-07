@@ -37,6 +37,9 @@
 
 #ifndef ARGUS_PBA_H
 #define ARGUS_PBA_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup 	argus_pba Pixel Binning Algorithm
@@ -221,4 +224,7 @@ typedef struct
 } argus_cfg_pba_t;
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_PBA_H */

@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_XTALK_H
 #define ARGUS_XTALK_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @addtogroup 	argus_cal
@@ -113,4 +116,7 @@ typedef struct
 
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_XTALK_H */

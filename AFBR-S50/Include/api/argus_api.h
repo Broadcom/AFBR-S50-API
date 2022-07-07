@@ -37,6 +37,9 @@
 
 #ifndef ARGUS_API_H
 #define ARGUS_API_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_api AFBR-S50 API
@@ -1237,4 +1240,7 @@ void Argus_GetExternalCrosstalkVectorTable_Callback(xtalk_t xtalk[ARGUS_DFM_FRAM
 
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_API_H */

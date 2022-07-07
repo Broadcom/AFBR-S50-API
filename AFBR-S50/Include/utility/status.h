@@ -37,7 +37,13 @@
 
 #ifndef STATUS_H
 #define STATUS_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include "api/argus_status.h"
 
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* STATUS_H */

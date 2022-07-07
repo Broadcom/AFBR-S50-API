@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_S2PI_H
 #define ARGUS_S2PI_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_s2pi S2PI: Serial Peripheral Interface
@@ -346,4 +349,7 @@ status_t S2PI_WriteGpioPin(s2pi_slave_t slave, s2pi_pin_t pin, uint32_t value);
 status_t S2PI_ReadGpioPin(s2pi_slave_t slave, s2pi_pin_t pin, uint32_t * value);
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif // ARGUS_S2PI_H

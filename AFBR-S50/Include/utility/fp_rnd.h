@@ -36,6 +36,9 @@
 
 #ifndef FP_RND_H
 #define FP_RND_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @addtogroup 	argus_fp
@@ -80,4 +83,7 @@ static inline int32_t fp_rnds(int32_t Q, uint_fast8_t n)
 }
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* FP_RND_H */

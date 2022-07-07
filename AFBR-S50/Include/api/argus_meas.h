@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_MEAS_H
 #define ARGUS_MEAS_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup 	argus_meas Measurement/Device Control
@@ -134,4 +137,7 @@ typedef struct
 } argus_meas_frame_t;
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_MEAS_H */

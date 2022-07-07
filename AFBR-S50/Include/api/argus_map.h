@@ -37,6 +37,9 @@
 
 #ifndef ARGUS_MAP_H
 #define ARGUS_MAP_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_map ADC Channel Mapping
@@ -249,4 +252,7 @@ static inline uint32_t ChannelToPixelMask(uint32_t msk)
 }
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_MAP_H */

@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_PRINT_H
 #define ARGUS_PRINT_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_log Debug: Logging Interface
@@ -80,4 +83,7 @@
 status_t print(const char *fmt_s, ...);
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_PRINT_H */

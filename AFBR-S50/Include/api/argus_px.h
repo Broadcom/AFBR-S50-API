@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_PX_H
 #define ARGUS_PX_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @addtogroup 	argus_res
@@ -154,4 +157,7 @@ typedef struct
 } argus_vector_t;
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_PX_H */

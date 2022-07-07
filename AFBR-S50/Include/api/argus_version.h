@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_VERSION_H
 #define ARGUS_VERSION_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_version API Version
@@ -73,4 +76,7 @@
 									   (ARGUS_API_VERSION_BUGFIX))
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* ARGUS_VERSION_H */

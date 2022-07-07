@@ -36,6 +36,9 @@
 
 #ifndef ARGUS_IRQ_H
 #define ARGUS_IRQ_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_irq IRQ: Global Interrupt Control Layer
@@ -120,4 +123,7 @@ void IRQ_UNLOCK(void);
 void IRQ_LOCK(void);
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif // ARGUS_IRQ_H

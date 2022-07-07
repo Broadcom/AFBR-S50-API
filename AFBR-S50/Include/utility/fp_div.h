@@ -36,6 +36,9 @@
 
 #ifndef FP_DIV_H
 #define FP_DIV_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @addtogroup 	argus_fp
@@ -169,4 +172,7 @@ static inline int32_t fp_div16(int32_t a, q15_16_t b)
 }
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* FP_DIV_H */

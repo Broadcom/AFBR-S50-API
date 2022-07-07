@@ -36,6 +36,9 @@
 
 #ifndef FP_DEF_H
 #define FP_DEF_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*!***************************************************************************
  * @defgroup	argus_fp Fixed Point Math
@@ -526,4 +529,7 @@ typedef int32_t q9_22_t;
 
 
 /*! @} */
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #endif /* FP_DEF_H */
