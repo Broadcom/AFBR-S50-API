@@ -28,7 +28,7 @@ jobs:
     #   working-directory: ./AFBR-S50
       uses: mattnotmitt/doxygen-action@v1
       with:
-        working-directory: './AFBR-S50/'
+        working-directory: './'
         doxyfile-path: './Doxyfile'
 
 
@@ -37,4 +37,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./AFBR-S50/Documentation/html
+        publish_dir: ./Documentation/html

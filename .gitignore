@@ -9,7 +9,7 @@ Projects/**/*.scratch
 Projects/**/*.jlink
 Projects/**/*.launch
 
-AFBR-S50/Documentation/
+Documentation/
 
 __pycache__/
 
