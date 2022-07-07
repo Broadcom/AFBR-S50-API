@@ -1,5 +1,5 @@
-<map id="Include/platform/argus_nvm.h" name="Include/platform/argus_nvm.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="438,5,589,47"/>
+<map id="AFBR&#45;S50/Include/platform/argus_nvm.h" name="AFBR&#45;S50/Include/platform/argus_nvm.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="423,5,604,47"/>
 <area shape="rect" id="node2" href="$argus_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="481,95,545,121"/>
 <area shape="rect" id="node3" href="$argus__api_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="459,169,568,196"/>
 <area shape="rect" id="node4" href="$argus__def_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="453,468,542,495"/>

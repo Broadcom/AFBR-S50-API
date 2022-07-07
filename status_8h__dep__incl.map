@@ -1,0 +1,32 @@
+<map id="AFBR&#45;S50/Include/utility/status.h" name="AFBR&#45;S50/Include/utility/status.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1653,5,1817,47"/>
+<area shape="rect" id="node2" href="$explorer__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="527,452,670,493"/>
+<area shape="rect" id="node13" href="$sci__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="1663,95,1806,136"/>
+<area shape="rect" id="node28" href="$task__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="1939,95,2082,136"/>
+<area shape="rect" id="node3" href="$explorer__app_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="527,541,670,583"/>
+<area shape="rect" id="node12" href="$explorer__flash_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="361,541,503,583"/>
+<area shape="rect" id="node4" href="$explorer__api_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="929,631,1071,672"/>
+<area shape="rect" id="node5" href="$explorer__api__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="754,631,905,672"/>
+<area shape="rect" id="node6" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="579,631,730,672"/>
+<area shape="rect" id="node7" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="845,720,987,761"/>
+<area shape="rect" id="node8" href="$explorer__flash_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="27,631,170,672"/>
+<area shape="rect" id="node9" href="$explorer__hardware_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="194,631,337,672"/>
+<area shape="rect" id="node11" href="$_explorer_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="361,631,503,672"/>
+<area shape="rect" id="node10" href="$explorer__hardware_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="194,720,337,761"/>
+<area shape="rect" id="node14" href="$sci_8h.html" title="SCI: The main interface." alt="" coords="1330,363,1473,404"/>
+<area shape="rect" id="node24" href="$sci__cmd_8h.html" title="SCI Layer 3: Command (Message) Interface." alt="" coords="1878,363,2021,404"/>
+<area shape="rect" id="node26" href="$sci__datalink_8h.html" title="SCI Layer 2: Data Link Interface." alt="" coords="1609,184,1751,225"/>
+<area shape="rect" id="node27" href="$sci__frame_8h.html" title="SCI Data Frame Interface." alt="" coords="1718,273,1861,315"/>
+<area shape="rect" id="node15" href="$explorer__api_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="929,452,1071,493"/>
+<area shape="rect" id="node20" href="$sci_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="1409,541,1551,583"/>
+<area shape="rect" id="node21" href="$sci__cmd_8c.html" title="SCI Layer 3: Command (Message) Module." alt="" coords="1610,452,1753,493"/>
+<area shape="rect" id="node22" href="$sci__handshaking_8h.html" title="SCI Handshaking Commands." alt="" coords="1431,452,1585,493"/>
+<area shape="rect" id="node16" href="$explorer__api__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="869,541,1019,583"/>
+<area shape="rect" id="node17" href="$explorer__api__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="694,541,845,583"/>
+<area shape="rect" id="node18" href="$explorer__api__data_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1095,541,1254,583"/>
+<area shape="rect" id="node19" href="$explorer__api__data_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1095,631,1254,672"/>
+<area shape="rect" id="node23" href="$sci__handshaking_8c.html" title="SCI Handshaking Commands." alt="" coords="1931,541,2085,583"/>
+<area shape="rect" id="node25" href="$sci__log_8c.html" title="SCI: Command definitions for log messages in printf style." alt="" coords="1777,452,1919,493"/>
+<area shape="rect" id="node29" href="$task__scheduler_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="1987,184,2147,225"/>
+<area shape="rect" id="node30" href="$task__scheduler_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="1987,273,2147,315"/>
+</map>

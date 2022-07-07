@@ -1,0 +1,4 @@
+<map id="Task Profiler" name="Task Profiler">
+<area shape="rect" id="node1" title="A utility module that measures execution times of tasks." alt="" coords="165,5,260,31"/>
+<area shape="rect" id="node2" href="$group__scheduler.html" title="A simple cooperative task scheduler with prioritized tasks." alt="" coords="5,5,117,31"/>
+</map>

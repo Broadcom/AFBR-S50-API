@@ -28,20 +28,14 @@ var NAVTREE =
     [ "Introduction", "index.html", [
       [ "API Overview", "index.html#autotoc_md0", null ],
       [ "Getting Started", "index.html#autotoc_md1", null ],
-      [ "Porting to a new MCU Platform", "index.html#autotoc_md2", null ],
-      [ "Copyright and License", "index.html#autotoc_md3", null ]
+      [ "Copyright and License", "index.html#autotoc_md2", null ]
     ] ],
     [ "Architectural Overview", "sw_api.html", [
       [ "Overview", "sw_api.html#sw_api_overview", null ],
       [ "Operation Principle", "sw_api.html#sw_api_principle", null ],
       [ "API Modules", "sw_api.html#sw_api_modules", null ]
     ] ],
-    [ "Getting Started", "getting_started.html", [
-      [ "AFBR-S50 API", "getting_started.html#gs_api", null ],
-      [ "Build And Run the Examples using MCUXpresso", "getting_started.html#gs_mcuxpresso", null ],
-      [ "Simple Example", "getting_started.html#gs_simple_example", null ],
-      [ "Advanced Example", "getting_started.html#gs_adv_example", null ]
-    ] ],
+    [ "Getting Started", "getting_started.html", "getting_started" ],
     [ "MCU Porting Guide", "porting_guide.html", [
       [ "Introduction", "porting_guide.html#pg_introduction", null ],
       [ "Toolchain Compatibility", "porting_guide.html#pg_toolchain", null ],
@@ -49,23 +43,23 @@ var NAVTREE =
       [ "Hardware Compatibility", "porting_guide.html#pg_hardware", null ],
       [ "Hardware Layers", "porting_guide.html#pg_hw_layers", [
         [ "S2PI (= SPI + GPIO) Layer", "porting_guide.html#pg_s2pi", [
-          [ "S2PI Overview", "porting_guide.html#autotoc_md4", null ],
-          [ "S2PI Initialization", "porting_guide.html#autotoc_md5", [
-            [ "S2PI Pin configuration", "porting_guide.html#autotoc_md6", null ],
-            [ "SPI Mode", "porting_guide.html#autotoc_md7", null ],
-            [ "SPI Speed", "porting_guide.html#autotoc_md8", null ],
-            [ "DMA Channels", "porting_guide.html#autotoc_md9", null ],
-            [ "DMA Interrupts and Callback Function", "porting_guide.html#autotoc_md10", null ],
-            [ "DMA Interrupt Priority", "porting_guide.html#autotoc_md11", null ]
+          [ "S2PI Overview", "porting_guide.html#autotoc_md20", null ],
+          [ "S2PI Initialization", "porting_guide.html#autotoc_md21", [
+            [ "S2PI Pin configuration", "porting_guide.html#autotoc_md22", null ],
+            [ "SPI Mode", "porting_guide.html#autotoc_md23", null ],
+            [ "SPI Speed", "porting_guide.html#autotoc_md24", null ],
+            [ "DMA Channels", "porting_guide.html#autotoc_md25", null ],
+            [ "DMA Interrupts and Callback Function", "porting_guide.html#autotoc_md26", null ],
+            [ "DMA Interrupt Priority", "porting_guide.html#autotoc_md27", null ]
           ] ]
         ] ],
         [ "Timer Layer", "porting_guide.html#pg_timer", [
-          [ "Lifetime Counter (LTC)", "porting_guide.html#autotoc_md12", null ],
-          [ "Periodic Interrupt Timer (PIT)", "porting_guide.html#autotoc_md13", null ]
+          [ "Lifetime Counter (LTC)", "porting_guide.html#autotoc_md28", null ],
+          [ "Periodic Interrupt Timer (PIT)", "porting_guide.html#autotoc_md29", null ]
         ] ],
         [ "Interrupt Layer", "porting_guide.html#pg_irq", [
-          [ "Interrupt Priority", "porting_guide.html#autotoc_md14", null ],
-          [ "Concurrency and Interrupt Locking", "porting_guide.html#autotoc_md15", null ]
+          [ "Interrupt Priority", "porting_guide.html#autotoc_md30", null ],
+          [ "Concurrency and Interrupt Locking", "porting_guide.html#autotoc_md31", null ]
         ] ],
         [ "NVM Layer", "porting_guide.html#pg_nvm", null ],
         [ "Log Layer", "porting_guide.html#pg_log", null ]
@@ -78,17 +72,28 @@ var NAVTREE =
         [ "Utilize the API", "porting_guide.html#pg_api", null ]
       ] ]
     ] ],
-    [ "Explorer App (API Demo)", "hw_api.html", "hw_api" ],
+    [ "Demo Applications", "apps.html", "apps" ],
+    [ "AFBR-S50 Reference Board", "reference_board.html", [
+      [ "Getting Started", "reference_board.html#reference_board_getting_started", null ],
+      [ "Overview", "reference_board.html#reference_board_overview", [
+        [ "Powering the Board", "reference_board.html#reference_board_power", null ],
+        [ "USB Connector", "reference_board.html#reference_board_usb", [
+          [ "Bootloader", "reference_board.html#reference_board_bootloader", null ]
+        ] ],
+        [ "CAN-Bus Connector", "reference_board.html#reference_board_can", null ],
+        [ "Serial (UART) Connector", "reference_board.html#reference_board_uart", null ]
+      ] ]
+    ] ],
     [ "Troubleshooting", "faq.html", [
-      [ "Device Initialization Yields Device Not Connected (Error Code -101)", "faq.html#autotoc_md25", null ],
-      [ "Decreased Device Performance or Accuracy", "faq.html#autotoc_md26", null ],
+      [ "Device Initialization Yields Device Not Connected (Error Code -101)", "faq.html#autotoc_md55", null ],
+      [ "Decreased Device Performance or Accuracy", "faq.html#autotoc_md56", null ],
       [ "EEPROM Readout Fails (Error Code -109)", "faq.html#faq_eeprom", [
-        [ "1. How to Verify EEPROM Readout Sequence", "faq.html#autotoc_md27", null ],
-        [ "2. Further Tests on EEPROM Readout Sequence", "faq.html#autotoc_md28", null ]
+        [ "1. How to Verify EEPROM Readout Sequence", "faq.html#autotoc_md57", null ],
+        [ "2. Further Tests on EEPROM Readout Sequence", "faq.html#autotoc_md58", null ]
       ] ],
-      [ "The Measurement Never Finishes or Yields Timeout Error (-6)", "faq.html#autotoc_md29", [
-        [ "The Measurement Finished Callback is Never Invoked", "faq.html#autotoc_md30", null ],
-        [ "The Measurement Finished Callback Yield a Timeout Error (Error Code -6)", "faq.html#autotoc_md31", null ]
+      [ "The Measurement Never Finishes or Yields Timeout Error (-6)", "faq.html#autotoc_md59", [
+        [ "The Measurement Finished Callback is Never Invoked", "faq.html#autotoc_md60", null ],
+        [ "The Measurement Finished Callback Yield a Timeout Error (Error Code -6)", "faq.html#autotoc_md61", null ]
       ] ]
     ] ],
     [ "Modules", "modules.html", "modules" ],
@@ -104,10 +109,11 @@ var NAVTREE =
       [ "File List", "files.html", "files_dup" ],
       [ "Globals", "globals.html", [
         [ "All", "globals.html", "globals_dup" ],
-        [ "Functions", "globals_func.html", null ],
+        [ "Functions", "globals_func.html", "globals_func" ],
+        [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
-        [ "Enumerator", "globals_eval.html", null ],
+        [ "Enumerator", "globals_eval.html", "globals_eval" ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ],
@@ -118,10 +124,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "01_simple_example_8c-example.html",
-"group__argusapi.html#gga9ad67917cc6683009a92174f75f1a0c5afa08b294ca01a69e4e18ede52e5fdb8d",
-"group__argusmap.html#gacd9a85d1dcb0dc86a87f313aa864973c",
-"group__misc.html#gae3d0f9e10d0232b7f9fa6d29854fcf09",
-"hw_api_cmd_overview.html#hw_api_cmds_cal"
+"globals.html",
+"group__argus__dca.html#ga306e8dd98141ca151a1f38ddbc5fcb11",
+"group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba4d0f7be53b837f004379ac6bbd56f1e2",
+"group__sci.html#ga9541c1bdd9799c358b94a817df7399f4",
+"structxtalk__t.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

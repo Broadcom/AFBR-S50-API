@@ -1,0 +1,12 @@
+<map id="Explorer Application" name="Explorer Application">
+<area shape="rect" id="node1" href="$group__demo__apps.html" title="AFBR&#45;S50 API Demo Applications." alt="" coords="5,195,136,220"/>
+<area shape="rect" id="node3" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="184,195,319,220"/>
+<area shape="rect" id="node2" href="$group__explorer__api.html" title="AFBR&#45;S50 Explorer Application &#45; Serial Commands." alt="" coords="399,5,534,31"/>
+<area shape="rect" id="node4" href="$group__explorer__init.html" title="Hardware Initialization Module." alt="" coords="392,55,541,95"/>
+<area shape="rect" id="node5" href="$group__explorer__main.html" title="AFBR&#45;S50 Explorer Application." alt="" coords="367,120,567,145"/>
+<area shape="rect" id="node6" href="$group__explorer__status.html" title="Status Codes Definitions." alt="" coords="417,169,517,195"/>
+<area shape="rect" id="node7" href="$group__explorer__version.html" title="Explorer Application Code Version." alt="" coords="409,219,524,244"/>
+<area shape="rect" id="node8" href="$group__platform.html" title="Platform Dependent Code." alt="" coords="431,268,502,293"/>
+<area shape="rect" id="node9" href="$group__scheduler.html" title="A simple cooperative task scheduler with prioritized tasks." alt="" coords="411,317,523,343"/>
+<area shape="rect" id="node10" href="$group__sci.html" title="Systems Communication Interface." alt="" coords="369,367,564,407"/>
+</map>

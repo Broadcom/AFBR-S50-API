@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ltc_5ft_545',['ltc_t',['../structltc__t.html',1,'']]]
+  ['explorer_5fcfg_5ft_0',['explorer_cfg_t',['../structexplorer__cfg__t.html',1,'']]]
 ];

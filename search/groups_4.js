@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hal_20self_20test_932',['HAL Self Test',['../group__argustest.html',1,'']]]
+  ['fixed_20point_20math_0',['Fixed Point Math',['../group__argus__fp.html',1,'']]]
 ];

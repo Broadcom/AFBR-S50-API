@@ -1,4 +1,4 @@
-<map id="Include/platform/argus_s2pi.h" name="Include/platform/argus_s2pi.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="20,5,171,47"/>
-<area shape="rect" id="node2" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="5,95,185,151"/>
+<map id="AFBR&#45;S50/Include/platform/argus_s2pi.h" name="AFBR&#45;S50/Include/platform/argus_s2pi.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,5,187,47"/>
+<area shape="rect" id="node2" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="21,95,171,136"/>
 </map>

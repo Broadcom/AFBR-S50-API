@@ -9,6 +9,9 @@ var annotated_dup =
     [ "argus_results_bin_t", "structargus__results__bin__t.html", "structargus__results__bin__t" ],
     [ "argus_results_t", "structargus__results__t.html", "structargus__results__t" ],
     [ "argus_vector_t", "structargus__vector__t.html", "structargus__vector__t" ],
+    [ "explorer_cfg_t", "structexplorer__cfg__t.html", "structexplorer__cfg__t" ],
     [ "ltc_t", "structltc__t.html", "structltc__t" ],
+    [ "sci_frame_queue_t", "structsci__frame__queue__t.html", "structsci__frame__queue__t" ],
+    [ "sci_frame_t", "structsci__frame__t.html", "structsci__frame__t" ],
     [ "xtalk_t", "structxtalk__t.html", "structxtalk__t" ]
 ];

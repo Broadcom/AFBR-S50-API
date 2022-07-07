@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['kcfactorc_716',['KcFactorC',['../structargus__cal__p2pxtalk__t.html#a89a612e7dfc0320579df3218ad75fefb',1,'argus_cal_p2pxtalk_t']]],
-  ['kcfactorcrefpx_717',['KcFactorCRefPx',['../structargus__cal__p2pxtalk__t.html#a969e9e7c1c66eaa30eb9a7e39e8324dd',1,'argus_cal_p2pxtalk_t']]],
-  ['kcfactors_718',['KcFactorS',['../structargus__cal__p2pxtalk__t.html#ad76f6a4b1b4b8b7e1a4b17c85efd53a4',1,'argus_cal_p2pxtalk_t']]],
-  ['kcfactorsrefpx_719',['KcFactorSRefPx',['../structargus__cal__p2pxtalk__t.html#a08fd7735d7e5a1154b8355d202035823',1,'argus_cal_p2pxtalk_t']]]
+  ['iapd_0',['IAPD',['../structargus__results__aux__t.html#a96e4ec831460fa95438a0d07627a3bc6',1,'argus_results_aux_t']]],
+  ['integrationtime_1',['IntegrationTime',['../structargus__meas__frame__t.html#ab76bd3b7bb6308b3ebada44c63ea399c',1,'argus_meas_frame_t']]]
 ];

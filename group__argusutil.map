@@ -1,6 +1,0 @@
-<map id="Utility" name="Utility">
-<area shape="rect" id="node1" href="$group__misc.html" title="Miscellaneous math utility functions utilized within the API." alt="" coords="108,5,245,31"/>
-<area shape="rect" id="node2" href="$group__fixedpoint.html" title="A basic math library for fixed point number in the Qx.y fomat." alt="" coords="117,55,236,80"/>
-<area shape="rect" id="node3" title="Utility library containing useful functions." alt="" coords="5,55,60,80"/>
-<area shape="rect" id="node4" href="$group__time.html" title="Timer utilities for time measurement duties." alt="" coords="133,104,220,129"/>
-</map>

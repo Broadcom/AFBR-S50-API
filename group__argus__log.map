@@ -1,4 +1,4 @@
 <map id="Debug: Logging Interface" name="Debug: Logging Interface">
-<area shape="rect" id="node1" title="Logging interface for the AFBR&#45;S50 API." alt="" coords="193,13,359,38"/>
-<area shape="rect" id="node2" href="$group__argus__platform.html" title="Collection of all interfaces for the Platform Abstraction Layers (HAL)." alt="" coords="5,5,145,45"/>
+<area shape="rect" id="node1" href="$group__argus__hal.html" title="Collection of all interfaces for the Hardware Abstraction Layers (HAL)." alt="" coords="5,5,152,45"/>
+<area shape="rect" id="node2" title="Logging interface for the AFBR&#45;S50 API." alt="" coords="200,13,365,38"/>
 </map>

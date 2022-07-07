@@ -1,0 +1,14 @@
+<map id="Sources/ExplorerApp/tasks/task_scheduler.c" name="Sources/ExplorerApp/tasks/task_scheduler.c">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="369,5,529,47"/>
+<area shape="rect" id="node2" href="$task__scheduler_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="120,95,240,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="148,393,212,420"/>
+<area shape="rect" id="node4" title=" " alt="" coords="254,169,322,196"/>
+<area shape="rect" id="node9" href="$task__profiler_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="398,95,501,121"/>
+<area shape="rect" id="node10" title=" " alt="" coords="525,95,593,121"/>
+<area shape="rect" id="node11" title=" " alt="" coords="617,95,719,121"/>
+<area shape="rect" id="node12" title=" " alt="" coords="743,95,825,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="32,169,107,196"/>
+<area shape="rect" id="node6" href="$task__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="130,169,230,196"/>
+<area shape="rect" id="node7" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="129,244,231,271"/>
+<area shape="rect" id="node8" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="116,319,244,345"/>
+</map>

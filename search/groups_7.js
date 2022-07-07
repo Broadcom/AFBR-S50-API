@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['nvm_3a_20non_2dvolatile_20memory_20layer_937',['NVM: Non-Volatile Memory Layer',['../group__argus__nvm.html',1,'']]]
+  ['measurement_20data_0',['Measurement Data',['../group__argus__res.html',1,'']]],
+  ['measurement_2fdevice_20control_1',['Measurement/Device Control',['../group__argus__meas.html',1,'']]],
+  ['miscellaneous_20math_2',['Miscellaneous Math',['../group__argus__misc.html',1,'']]]
 ];

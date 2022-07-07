@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['iapd_714',['IAPD',['../structargus__results__aux__t.html#a96e4ec831460fa95438a0d07627a3bc6',1,'argus_results_aux_t']]],
-  ['integrationtime_715',['IntegrationTime',['../structargus__meas__frame__t.html#ab76bd3b7bb6308b3ebada44c63ea399c',1,'argus_meas_frame_t']]]
+  ['head_0',['Head',['../structsci__frame__queue__t.html#a7761bc1e84fd500b8c0cc07d3c8ab1d2',1,'sci_frame_queue_t']]],
+  ['hnd_1',['hnd',['../group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b',1,'main.c']]]
 ];

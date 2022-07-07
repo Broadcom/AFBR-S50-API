@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error_5flog_922',['error_log',['../argus__hal__test_8c.html#ad9aa36016956a22b772d409089f0867d',1,'argus_hal_test.c']]]
+  ['argusresultbuffer_5fsize_0',['ARGUSRESULTBUFFER_SIZE',['../explorer__app_8c.html#ab618bcd4d87d9ad9a79a67baabe35bd5',1,'explorer_app.c']]]
 ];

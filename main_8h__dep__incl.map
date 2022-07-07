@@ -1,0 +1,6 @@
+<map id="Sources/CANApp/main.h" name="Sources/CANApp/main.h">
+<area shape="rect" id="node1" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="180,5,347,32"/>
+<area shape="rect" id="node2" href="$can__api_8c.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="5,80,156,121"/>
+<area shape="rect" id="node3" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="180,87,347,114"/>
+<area shape="rect" id="node4" href="$uart__api_8c.html" title="This file is part of the RA4M2 platform layer." alt="" coords="371,80,521,121"/>
+</map>
