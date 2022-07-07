@@ -1,8 +1,14 @@
-# Command Overview {#hw_api_cmd_overview}
+# Command Overview {#explorer_app_cmd_overview}
 
-The following section contains the current command overview as implemented in the _ExplorerApp_. The implementation can be found in the "Sources\explorer_app\api" folder of the "AFBR_S50_ExplorerApp_KL46z" project. See also @ref hw_api.
+The following section contains the current command details as implemented in the
+@ref explorer_app. The implementation can be found in the
+`Sources\ExplorerApp\api` folder of the
+[AFBR-S50 GitHub repository](https://github.com/Broadcom/AFBR-S50-API).
 
-# Generic Commands {#hw_api_cmds_generic}
+See @ref explorer_app_cmd_details for detailed description of all available
+commands.
+
+# Generic Commands {#explorer_app_cmds_generic}
 
 | Caption                                                | Byte | Type      | Comment                                                                                                                                                                           |
 | ------------------------------------------------------ | ---- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -18,7 +24,7 @@ The following section contains the current command overview as implemented in th
 | [Module UID](@ref cmd_uid)                             | 0x0F | get       | Gets the chip/module unique identification number.                                                                                                                                |
 | [Software Information / Identification](@ref cmd_info) | 0x05 | get       | Gets the information about current software and device (e.g. version, device id, device family, ...)                                                                              |
 
-# Device Control Commands {#hw_api_cmds_ctrl}
+# Device Control Commands {#explorer_app_cmds_ctrl}
 
 | Caption                                           | Byte | Type | Comment                                                                                                                                         |
 | ------------------------------------------------- | ---- | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -28,10 +34,10 @@ The following section contains the current command overview as implemented in th
 | [Calibration: Run](@ref cmd_ctrl_cal)             | 0x18 | cmd  | Executes a calibration sequence.                                                                                                                |
 | [Re-Initialize Device](@ref cmd_ctrl_reinit)      | 0x19 | cmd  | Invokes the device (re-)initialization command. Resets and reinitializes the API + ASIC with given config. (e.g. after unintended power cycle). |
 
-# Measurement Data Commands {#hw_api_cmds_data}
+# Measurement Data Commands {#explorer_app_cmds_data}
 
-The modes of measurement data streaming.
-The actual data might depend on device configuration and calibration.
+The modes of measurement data streaming. The actual data might depend on device
+configuration and calibration.
 
 | Caption                                                          | Byte | Type            | Comment                                                                                |
 | ---------------------------------------------------------------- | ---- | --------------- | -------------------------------------------------------------------------------------- |
@@ -43,7 +49,7 @@ The actual data might depend on device configuration and calibration.
 | [1D Measurement Data Set - Debug](@ref cmd_data_1d_dbg)          | 0x35 | get / auto/push | Gets a 1D measurement data set containing all the available distance measurement data. |
 | [1D Measurement Data Set](@ref cmd_data_1d)                      | 0x36 | get / auto/push | Gets a 1D measurement data set containing the essential distance measurement data.     |
 
-# Configuration Commands {#hw_api_cmds_cfg}
+# Configuration Commands {#explorer_app_cmds_cfg}
 
 | Caption                                            | Byte | Type      | Comment                                                                      |
 | -------------------------------------------------- | ---- | --------- | ---------------------------------------------------------------------------- |
@@ -58,7 +64,7 @@ The actual data might depend on device configuration and calibration.
 | [SPI Configuration](@ref cmd_cfg_spi)              | 0x58 | set / get | Gets or sets the SPI configuration (baud rate, slave instance).              |
 | [UART Configuration](@ref cmd_cfg_uart)            | 0x59 | set / get | Gets or sets the UART configuration (e.g. baud rate). Only for UART version. |
 
-# Calibration Commands {#hw_api_cmds_cal}
+# Calibration Commands {#explorer_app_cmds_cal}
 
 | Caption                                                                     | Byte | Type      | Comment                                                                              |
 | --------------------------------------------------------------------------- | ---- | --------- | ------------------------------------------------------------------------------------ |

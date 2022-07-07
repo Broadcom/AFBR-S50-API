@@ -39,7 +39,7 @@
 
 /*!***************************************************************************
  * @defgroup	argus_s2pi S2PI: Serial Peripheral Interface
- * @ingroup		argus_platform
+ * @ingroup		argus_hal
  *
  * @brief		S2PI: SPI incl. GPIO Hardware Layer Module
  *

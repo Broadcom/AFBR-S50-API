@@ -39,7 +39,7 @@
 
 /*!***************************************************************************
  * @defgroup	argus_irq IRQ: Global Interrupt Control Layer
- * @ingroup		argus_platform
+ * @ingroup		argus_hal
  *
  * @brief		Global Interrupt Control Layer
  *

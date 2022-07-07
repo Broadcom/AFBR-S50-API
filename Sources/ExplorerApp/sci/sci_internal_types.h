@@ -38,6 +38,11 @@
 #ifndef SCI_INTERNAL_TYPES_H
 #define SCI_INTERNAL_TYPES_H
 
+/*!***************************************************************************
+ * @addtogroup 	sci
+ * @{
+ *****************************************************************************/
+
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -45,13 +50,13 @@
 /*! Max. byte size of transmitting/receiving SCI data frames. */
 #define SCI_FRAME_SIZE 		64
 
-/*! The number of SCI data frames for Rx. */
+/*! The number of SCI data frames for RX. */
 #define SCI_FRAME_BUF_RX_CT 32
 
-/*! The number of SCI data frames for Tx. */
+/*! The number of SCI data frames for TX. */
 #define SCI_FRAME_BUF_TX_CT	32
 
-/*! The timeout for a tx frame request in milliseconds. */
+/*! The timeout for a TX frame request in milliseconds. */
 #define SCI_TX_TIMEOUT_MSEC	1000
 
 /*! The total number of SCI data frames. */

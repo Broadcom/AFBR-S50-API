@@ -41,6 +41,8 @@
  *
  * @details	The main function of the program, called after startup code
  * 			This function should never be exited.
+ *
+ * @return  Function never returns...
  *****************************************************************************/
 int main(void)
 {

@@ -30,7 +30,16 @@
 
 
 /*!***************************************************************************
-@defgroup	argusutil Utility
+@defgroup	argus AFBR-S50 SDK
+
+@brief		AFBR-S50 API and Core Libraries
+
+@details	
+ *****************************************************************************/
+
+/*!***************************************************************************
+@defgroup	argus_util Utility
+@ingroup	argus
 
 @brief		Utility library containing useful functions.
 
@@ -43,8 +52,8 @@
  
  
 /*!***************************************************************************
-@defgroup	misc Miscellaneous Math
-@ingroup	argusutil
+@defgroup	argus_misc Miscellaneous Math
+@ingroup	argus_util
 
 @brief		Miscellaneous math utility functions utilized within the API.
 
@@ -57,17 +66,18 @@
  
 
 /*!***************************************************************************
-@defgroup	argus_platform Platform Abstraction Layers
+@defgroup	argus_hal Hardware Abstraction Layers
+@ingroup	argus
 
-@brief		Collection of all interfaces for the Platform Abstraction Layers (HAL).
+@brief		Collection of all interfaces for the Hardware Abstraction Layers (HAL).
 
-@details	Contains all platform dependent code required by the API and core 
-			library.
+@details	Contains all hardware and platform dependent code required by the
+            AFBR-S50 API and core library.
  *****************************************************************************/
 
 /*!***************************************************************************
-@defgroup 	arguscfg Configuration
-@ingroup	argusapi
+@defgroup 	argus_cfg Configuration
+@ingroup	argus_api
 
 @brief		Device configuration parameter definitions and API functions.
 
@@ -79,8 +89,8 @@
  *****************************************************************************/
 
 /*!***************************************************************************
-@defgroup 	arguscal Calibration
-@ingroup	argusapi
+@defgroup 	argus_cal Calibration
+@ingroup	argus_api
 
 @brief		Device calibration parameter definitions and API functions.
 

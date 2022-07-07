@@ -19,25 +19,25 @@ The *AFBR-S50 Core Library* requires access to the hardware peripherals to commu
 # Operation Principle {#sw_api_principle}
 
 The basic operation principle of the *AFBR-S50 Core Library* is described below:
- - \link argusmeas Measurement\endlink routines are running asynchronously in the background and notify the user application via a callback when a measurement has finished and new raw measurement data is ready to be used. The measurements are triggered either by a periodic timer interrupt at a fixed frame rate or by a dedicated function call from the user application. The actual measurement sequence is driven by short interrupt service routines and therefore the main processor tasks are not blocked while measurements are ongoing. 
+ - \link argus_meas Measurement\endlink routines are running asynchronously in the background and notify the user application via a callback when a measurement has finished and new raw measurement data is ready to be used. The measurements are triggered either by a periodic timer interrupt at a fixed frame rate or by a dedicated function call from the user application. The actual measurement sequence is driven by short interrupt service routines and therefore the main processor tasks are not blocked while measurements are ongoing. 
  - The evaluation of the raw measurement data is executed independently of the measurement activity. When the main task is informed about the new raw measurement data ready event from the core by callback, it can call the evaluation routine whenever appropriate. However, the raw data buffer is blocked until the data is evaluated. Thus, not calling the evaluation routine blocks the start of new measurement frames. A double buffer architecture is utilized in order to allow interleaved execution of measurements and evaluation tasks. 
- - After calling the \link #Argus_EvaluateData evaluation routine\endlink, the \link #argusres Measurement Data\endlink is ready and calibrated. The raw data buffer is empty and ready to be used with a new measurement frame to be performed on the device.
- - In order to adopt to different operating conditions in different user application cases, the \link #arguscfg Configuration\endlink or \link #arguscal Calibration\endlink parameters can be applied via the API layer. Default configuration and calibration data sets, called \link #argus_mode_t Measurement Modes\endlink, are provided for many use cases. These default settings can be fine tuned to the actual customers requirements.
- - The \link #argusdca Dynamic Configuration Adaption (DCA)\endlink feature is provided to automatically adopt to changing environment parameters, such as target reflectivity, ambient light or temperature. This feature highly increase the dynamic measurement range.
- - The final evaluated measurement data obtained from the API consists of 3D data, i.e. range and amplitude per pixel, as well as 1D data, i.e. range and amplitude evaluated from a certain number of pixels. The selection of the pixels to determine the 1D data is realized via the \link #arguspba Pixel Binning Algorithm (PBA)\endlink module.
- - \link #arguscal Calibration\endlink algorithms are applied within the evaluation sequence and to the device configuration in order to compensate environmental influences or device-to-device deviations. Each device comes with its individual factory calibrated values in an EEPROM that is read and applied in by the \link #arguscal Calibration\endlink module.
+ - After calling the \link #Argus_EvaluateData evaluation routine\endlink, the \link #argus_res Measurement Data\endlink is ready and calibrated. The raw data buffer is empty and ready to be used with a new measurement frame to be performed on the device.
+ - In order to adopt to different operating conditions in different user application cases, the \link #argus_cfg Configuration\endlink or \link #argus_cal Calibration\endlink parameters can be applied via the API layer. Default configuration and calibration data sets, called \link #argus_mode_t Measurement Modes\endlink, are provided for many use cases. These default settings can be fine tuned to the actual customers requirements.
+ - The \link #argus_dca Dynamic Configuration Adaption (DCA)\endlink feature is provided to automatically adopt to changing environment parameters, such as target reflectivity, ambient light or temperature. This feature highly increase the dynamic measurement range.
+ - The final evaluated measurement data obtained from the API consists of 3D data, i.e. range and amplitude per pixel, as well as 1D data, i.e. range and amplitude evaluated from a certain number of pixels. The selection of the pixels to determine the 1D data is realized via the \link #argus_pba Pixel Binning Algorithm (PBA)\endlink module.
+ - \link #argus_cal Calibration\endlink algorithms are applied within the evaluation sequence and to the device configuration in order to compensate environmental influences or device-to-device deviations. Each device comes with its individual factory calibrated values in an EEPROM that is read and applied in by the \link #argus_cal Calibration\endlink module.
  - *Auxiliary* measurement tasks are utilized to obtain information about the system health and the environment (e.g. temperature or ambient light conditions) and adopt the system correspondingly. These measurements are automatically executed in the background after each measurement cycle.
- - A \link #argusdfm Dual-Frequency Mode (DFM)\endlink is provided to overcome the limited unambiguous range issue and remove ghost pictures.
+ - A \link #argus_dfm Dual-Frequency Mode (DFM)\endlink is provided to overcome the limited unambiguous range issue and remove ghost pictures.
  - **Eye-Safety** is derived from the static default configuration and adopted to any configuration changes made via the API. Also the DCA module heeds the laser safety limits. A timeout will watch the system responsiveness and the *Reference Pixel* is used to monitor the health state of the laser source. A system shut down is triggered in case of any failure, e.g. a laser short circuit.
 
 
 # API Modules {#sw_api_modules}
 
-The *AFBR-S50 Core Library* contains a comprehensive set of routines and algorithms to run the *AFBR-S50 Time-of-Flight Sensor* devices. The functions and objects are defined and implemented in the \link #argusapi AFBR-S50 Main API \endlink module. It consists of several submodules that handle specified tasks, such as 
- - \link #arguscfg device configuration\endlink,
- - \link #arguscal device calibration\endlink, 
- - \link #argusres measurement data evaluation\endlink or 
- - \link #argusmeas generic/measurement operation\endlink.
+The *AFBR-S50 Core Library* contains a comprehensive set of routines and algorithms to run the *AFBR-S50 Time-of-Flight Sensor* devices. The functions and objects are defined and implemented in the \link #argus_api AFBR-S50 Main API \endlink module. It consists of several submodules that handle specified tasks, such as 
+ - \link #argus_cfg device configuration\endlink,
+ - \link #argus_cal device calibration\endlink, 
+ - \link #argus_res measurement data evaluation\endlink or 
+ - \link #argus_meas generic/measurement operation\endlink.
 
 In order to provide a [portable API library](@ref porting_guide), the platform specific driver and HAL implementations are not included into the library. Instead, the connection to the hardware is obtained via the implementation of provided interfaces for the required hardware and peripherals. In detail, the hardware requirements are:
  - \link #argus_s2pi S2PI\endlink: The communication with the device requires an SPI interface with additional GPIO capabilities. In order to increase speed and lower the CPU load, it is recommended to us a DMA module along with the SPI interface. In order to get informed about the measurement data ready event, a single GPIO IRQ is required and incorporated into the SPI module. In order to decrease the complexity for connections (in terms of wires required), the devices EEPROM is connected to the SPI pins but speaks a different protocol. In order to enable the calibration data readout from the EEPROM, the SPI pins must be accessed as GPIO pins in order to emulate the protocol by software [bit banging](https://en.wikipedia.org/wiki/Bit_banging) algorithms. All these, i.e. SPI and GPIO, are summarized in the \link #argus_s2pi S2PI\endlink module.
@@ -48,7 +48,7 @@ In order to provide a [portable API library](@ref porting_guide), the platform s
 
 	
 Finally, there are some utilities implemented to help the user to adopt to the API architecture:
- - \link #fixedpoint Fixed Point Math\endlink: A small and effective fixed-point library containing essential algorithms and definitions.
- - \link #time Time Utilities\endlink: Methods to handle the specified time format provided by the API.
- - \link #misc Misc. Utilities\endlink: Miscellaneous Integer Math like long (64-bit) multiplication or integer square root.
+ - \link #argus_fp Fixed Point Math\endlink: A small and effective fixed-point library containing essential algorithms and definitions.
+ - \link #argus_time Time Utilities\endlink: Methods to handle the specified time format provided by the API.
+ - \link #argus_misc Misc. Utilities\endlink: Miscellaneous Integer Math like long (64-bit) multiplication or integer square root.
 

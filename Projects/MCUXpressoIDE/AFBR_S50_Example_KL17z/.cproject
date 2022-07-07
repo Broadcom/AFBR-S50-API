@@ -84,6 +84,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Sources/ExampleApp&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Sources/Platform/NXP_MKLxxZ&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../AFBR-S50/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../AFBR-S50/Test&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.include.files.558039371" name="Include files (-include)" superClass="gnu.c.compiler.option.include.files" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.gcc.exe.debug.option.optimization.level.1950584196" name="Optimization Level" superClass="com.crt.advproject.gcc.exe.debug.option.optimization.level" useByScannerDiscovery="false"/>
@@ -329,6 +330,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Sources/ExampleApp&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Sources/Platform/NXP_MKLxxZ&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../AFBR-S50/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../AFBR-S50/Test&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.include.files.1063068210" name="Include files (-include)" superClass="gnu.c.compiler.option.include.files" useByScannerDiscovery="false"/>
 								<option id="gnu.c.compiler.option.optimization.flags.881187927" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="-fno-common" valueType="string"/>

@@ -38,13 +38,13 @@
 #define EXPLORER_FLASH_H
 
 /*!***************************************************************************
- * @defgroup	explorerflash AFBR-S50 Explorer Flash Module
- * @ingroup		explorermain
+ * @defgroup	explorer_flash AFBR-S50 Explorer Flash Module
+ * @ingroup		explorer_main
  * @brief		AFBR-S50 Explorer Flash Module
  * @details		An application specific wrapper around the flash module to
  * 				save/load the application specific settings.
  *
- * @addtogroup 	explorerflash
+ * @addtogroup 	explorer_flash
  * @{
  *****************************************************************************/
 

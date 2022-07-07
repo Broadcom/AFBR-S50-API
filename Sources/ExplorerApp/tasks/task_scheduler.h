@@ -40,9 +40,12 @@
 
 /*!***************************************************************************
  * @defgroup	scheduler Task Scheduler
- * @ingroup		task
+ * @ingroup		explorer_app
+ *
  * @brief		A simple cooperative task scheduler with prioritized tasks.
+ *
  * @details		A simple cooperative task scheduler with prioritized tasks.
+ *
  * @addtogroup 	scheduler
  * @{
  *****************************************************************************/
@@ -78,7 +81,6 @@ typedef status_t (*task_function_t)(task_event_t p);
 /*!***************************************************************************
  * @brief 	Initializes the task scheduler.
  * @details	Resets internal data structures to a known state.
- * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 void Scheduler_Init(void);
 
@@ -88,7 +90,6 @@ void Scheduler_Init(void);
  * 			the pending tasks in order of priority in an endless loop.
  * 			If an error occurs within an task, the error is logged, but not
  * 			handled!
- * @return	This function never returns!
  *****************************************************************************/
 void Scheduler_Run(void);
 

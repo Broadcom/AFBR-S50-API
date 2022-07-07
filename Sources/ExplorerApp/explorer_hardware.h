@@ -38,11 +38,11 @@
 #define EXPLORER_HARDWARE_H
 
 /*!***************************************************************************
- * @defgroup	hwinit Hardware Initialization Module
- * @ingroup		explorerapp
+ * @defgroup	explorer_init Hardware Initialization Module
+ * @ingroup		explorer_app
  * @brief		Hardware Initialization Module
  * @details		Functions to initialize all the required hardware.
- * @addtogroup 	hwinit
+ * @addtogroup 	explorer_init
  * @{
  *****************************************************************************/
 

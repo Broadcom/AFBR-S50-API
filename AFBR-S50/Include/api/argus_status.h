@@ -40,15 +40,19 @@
 #include <stdint.h>
 
 /*!***************************************************************************
- * @defgroup    status Status Codes
+ * @defgroup    argus_status Status Codes
+ * @ingroup     argus
+ *
  * @brief       Status and Error Code Definitions
+ *
  * @details     Defines status and error codes for function return values.
  *              Basic status number structure:
  *              - 0 is OK or no error.
  *              - negative values determine errors.
  *              - positive values determine warnings or status information.
  *              .
- * @addtogroup  status
+ *
+ * @addtogroup  argus_status
  * @{
  *****************************************************************************/
 

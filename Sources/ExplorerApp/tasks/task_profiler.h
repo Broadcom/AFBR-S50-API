@@ -39,8 +39,10 @@
 
 /*!***************************************************************************
  * @defgroup	profiler Task Profiler
- * @ingroup		task
+ * @ingroup		scheduler
+ *
  * @brief		A utility module that measures execution times of tasks.
+ *
  * @details		This module provides basic functionality to do a simple
  * 				profiling of the scheduler tasks.
  *
@@ -51,7 +53,6 @@
  * 				consumed time is measured and summed via the platform time.h
  * 				utility module. For now, a debugger breakpoint can be used to
  * 				read the data from the device...
- *
  *
  * @addtogroup 	profiler
  * @{

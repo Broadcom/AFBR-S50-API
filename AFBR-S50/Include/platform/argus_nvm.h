@@ -39,7 +39,7 @@
 
 /*!***************************************************************************
  * @defgroup	argus_nvm NVM: Non-Volatile Memory Layer
- * @ingroup		argus_platform
+ * @ingroup		argus_hal
  *
  * @brief		Non-Volatile Memory Layer
  *

@@ -38,12 +38,15 @@
 #define TIME_H
 
 /*!***************************************************************************
- * @defgroup	time Time Utility
- * @ingroup		argusutil
+ * @defgroup	argus_time Time Utility
+ * @ingroup		argus_util
+ *
  * @brief 		Timer utilities for time measurement duties.
+ *
  * @details		This module provides time measurement utility functions like
  * 				delay or time measurement methods, or time math functions.
- * @addtogroup 	time
+ *
+ * @addtogroup 	argus_time
  * @{
  *****************************************************************************/
 

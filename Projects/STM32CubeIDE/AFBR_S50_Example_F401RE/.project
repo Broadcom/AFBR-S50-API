@@ -41,5 +41,10 @@
 			<type>2</type>
 			<locationURI>PARENT-3-PROJECT_LOC/Sources/Platform/STM32F4xx</locationURI>
 		</link>
+		<link>
+			<name>App/test</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/AFBR-S50/Test</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>

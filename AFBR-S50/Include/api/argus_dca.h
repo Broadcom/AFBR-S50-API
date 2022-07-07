@@ -39,8 +39,8 @@
 #define ARGUS_DCA_H
 
 /*!***************************************************************************
- * @defgroup 	argusdca Dynamic Configuration Adaption
- * @ingroup		argusapi
+ * @defgroup 	argus_dca Dynamic Configuration Adaption
+ * @ingroup		argus_api
  *
  * @brief		Dynamic Configuration Adaption (DCA) parameter definitions and API functions.
  *
@@ -64,7 +64,7 @@
  * 			 	- All that features are heeding the Laser Safety limits.
  * 				.
  *
- * @addtogroup 	argusdca
+ * @addtogroup 	argus_dca
  * @{
  *****************************************************************************/
 

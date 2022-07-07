@@ -39,8 +39,8 @@
 #define ARGUS_MAP_H
 
 /*!***************************************************************************
- * @defgroup	argusmap ADC Channel Mapping
- * @ingroup		argusres
+ * @defgroup	argus_map ADC Channel Mapping
+ * @ingroup		argus_api
  *
  * @brief		Pixel ADC Channel Mapping
  *
@@ -50,7 +50,7 @@
  * 				chip internal channel number (ch) to the two-dimensional
  * 				x-y-indices or one-dimensional n-index representation.
  *
- * @addtogroup 	argusmap
+ * @addtogroup 	argus_map
  * @{
  *****************************************************************************/
 

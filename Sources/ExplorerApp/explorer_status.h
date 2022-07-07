@@ -38,10 +38,13 @@
 #define EXPLORER_STATUS_H
 
 /*!***************************************************************************
- * @defgroup	status Status Codes
+ * @defgroup	explorer_status Status Codes
+ * @ingroup     explorer_app
+ *
  * @brief		Status Codes Definitions
  * @details		Defines status codes for specific functions.
- * @addtogroup 	status
+ *
+ * @addtogroup 	explorer_status
  * @{
  *****************************************************************************/
 

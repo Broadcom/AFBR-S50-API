@@ -38,9 +38,11 @@
 #define FP_DEF_H
 
 /*!***************************************************************************
- * @defgroup	fixedpoint Fixed Point Math
- * @ingroup		argusutil
+ * @defgroup	argus_fp Fixed Point Math
+ * @ingroup		argus_util
+ *
  * @brief		A basic math library for fixed point number in the Qx.y fomat.
+ *
  * @details		This module contains common fixed point type definitions as
  * 				well as some basic math algorithms. All types are based on
  * 				integer types. The number are defined with the Q number format.
@@ -50,9 +52,11 @@
  * 				 - Another resource for fixed point math in C might be found at
  * 					http://www.eetimes.com/author.asp?section_id=36&doc_id=1287491
  * 				 .
+ *
  * @warning		This definitions are not portable and work only with
  * 				little-endian systems!
- * @addtogroup 	fixedpoint
+ *
+ * @addtogroup 	argus_fp
  * @{
  *****************************************************************************/
 

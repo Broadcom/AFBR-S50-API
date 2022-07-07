@@ -38,8 +38,8 @@
 #define ARGUS_SNM_H
 
 /*!***************************************************************************
- * @defgroup 	argussnm Shot Noise Monitor
- * @ingroup		argusapi
+ * @defgroup 	argus_snm Shot Noise Monitor
+ * @ingroup		argus_api
  *
  * @brief		Shot Noise Monitor (SNM) parameter definitions and API functions.
  *
@@ -54,7 +54,7 @@
  *				- Static (Indoor): Static mode, optimized for indoor applications.
  *				.
  *
- * @addtogroup 	argussnm
+ * @addtogroup 	argus_snm
  * @{
  *****************************************************************************/
 

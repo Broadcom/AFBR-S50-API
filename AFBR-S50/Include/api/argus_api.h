@@ -39,7 +39,8 @@
 #define ARGUS_API_H
 
 /*!***************************************************************************
- * @defgroup	argusapi AFBR-S50 API
+ * @defgroup	argus_api AFBR-S50 API
+ * @ingroup     argus
  *
  * @brief		The main module of the API from the AFBR-S50 SDK.
  *
@@ -47,7 +48,7 @@
  * 				See the \ref getting_started Guide for a detailed description
  * 				on how to use the module/API.
  *
- * @addtogroup 	argusapi
+ * @addtogroup 	argus_api
  * @{
  *****************************************************************************/
 
@@ -272,7 +273,7 @@ s2pi_slave_t Argus_GetSPISlave(argus_hnd_t * hnd);
 /*!**************************************************************************
  * Measurement/Device Operation
  ****************************************************************************
- * @addtogroup 	argusmeas
+ * @addtogroup 	argus_meas
  * @{
  ****************************************************************************/
 
@@ -596,7 +597,7 @@ status_t Argus_ExecuteAbsoluteRangeOffsetCalibrationSequence(argus_hnd_t * hnd,
 /*!**************************************************************************
  * Configuration API
  ****************************************************************************
- * @addtogroup 	arguscfg
+ * @addtogroup 	argus_cfg
  * @{
  ****************************************************************************/
 
@@ -787,7 +788,7 @@ status_t Argus_GetConfigurationUnambiguousRange(argus_hnd_t * hnd,
 /*!**************************************************************************
  * Calibration API
  ****************************************************************************
- * @addtogroup 	arguscal
+ * @addtogroup 	argus_cal
  * @{
  ****************************************************************************/
 

@@ -38,8 +38,8 @@
 #define ARGUS_DFM_H
 
 /*!***************************************************************************
- * @defgroup 	argusdfm Dual Frequency Mode
- * @ingroup		argusapi
+ * @defgroup 	argus_dfm Dual Frequency Mode
+ * @ingroup		argus_api
  *
  * @brief		Dual Frequency Mode (DFM) parameter definitions and API functions.
  *
@@ -53,7 +53,7 @@
  *				- 8X: Dual Frequency Measurement w/ 8 times the unambiguous
  *				      range of the Single Frequency Measurement
  *
- * @addtogroup 	argusdfm
+ * @addtogroup 	argus_dfm
  * @{
  *****************************************************************************/
 

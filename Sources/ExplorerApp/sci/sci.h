@@ -40,6 +40,7 @@
 
 /*!***************************************************************************
  * @defgroup	sci SCI: Systems Communication Interface
+ * @ingroup     explorer_app
  *
  * @brief		Systems Communication Interface
  *
@@ -135,7 +136,7 @@ typedef status_t (*sci_rx_cmd_cb_t)(sci_frame_t * frame);
  *
  * @param	status The corresponding error code.
  *****************************************************************************/
-typedef void (*sci_error_cb_t)(status_t satus);
+typedef void (*sci_error_cb_t)(status_t status);
 
 /*!***************************************************************************
  * @brief	Initialize the SCI module.

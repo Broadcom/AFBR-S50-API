@@ -38,8 +38,8 @@
 #define ARGUS_RES_H
 
 /*!***************************************************************************
- * @defgroup	argusres Measurement Data
- * @ingroup		argusapi
+ * @defgroup	argus_res Measurement Data
+ * @ingroup		argus_api
  *
  * @brief		Measurement results data structures.
  *
@@ -52,7 +52,7 @@
  * 					- ...
  * 					.
  *
- * @addtogroup 	argusres
+ * @addtogroup 	argus_res
  * @{
  *****************************************************************************/
 
@@ -145,7 +145,7 @@ typedef struct
  *
  *			The pixel x-y orientation is sketched in the following graph. Note that
  *			the laser source would be on the right side beyond the reference pixel.
- *			See also \link argusmap ADC Channel Mapping\endlink
+ *			See also \link argus_map ADC Channel Mapping\endlink
  * @code
  * 			// Pixel Field: Pixel[x][y]
  * 			//
@@ -187,7 +187,7 @@ typedef struct
 		 *  - 0..31: active pixels
 		 *  - 32:    reference pixel
 		 *
-		 *  See also \link argusmap ADC Channel Mapping\endlink */
+		 *  See also \link argus_map ADC Channel Mapping\endlink */
 		argus_pixel_t Pixels[ARGUS_PIXELS + 1U];
 
 		struct
@@ -195,7 +195,7 @@ typedef struct
 			/*! Pixel data indexed by x-y-indices.\n
 			 *  The pixels are ordered in a two dimensional array that represent
 			 *  the x and y indices of the pixel.\n
-			*	See also \link argusmap ADC Channel Mapping\endlink
+			*	See also \link argus_map ADC Channel Mapping\endlink
 			 *
 			 *  Contains calibrated range, amplitude and pixel status among others. */
 			argus_pixel_t Pixel[ARGUS_PIXELS_X][ARGUS_PIXELS_Y];

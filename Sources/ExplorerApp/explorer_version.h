@@ -38,11 +38,14 @@
 #define EXPLORER_VERSION_H
 
 /*!***************************************************************************
- * @defgroup	version Version
- * @ingroup		explorerapp
+ * @defgroup	explorer_version Explorer Version
+ * @ingroup		explorer_app
+ *
  * @brief		Explorer Application Code Version.
+ *
  * @details		Provides a version number for Explorer Application.
- * @addtogroup 	version
+ *
+ * @addtogroup 	explorer_version
  * @{
  *****************************************************************************/
 

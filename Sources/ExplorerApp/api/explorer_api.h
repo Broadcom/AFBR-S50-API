@@ -38,11 +38,11 @@
 #define EXPLORER_API_H
 
 /*!***************************************************************************
- * @defgroup	explorerapi Serial Commands for the AFBR-S50 Explorer Demo Application.
- * @ingroup		explorerapp
+ * @defgroup	explorer_api AFBR-S50 SCI API
+ * @ingroup		explorer_app
  * @brief		AFBR-S50 Explorer Application - Serial Commands
  * @details		Definitions for AFBR-S50 Explorer Application specific serial commands.
- * @addtogroup 	explorerapi
+ * @addtogroup 	explorer_api
  * @{
  *****************************************************************************/
 

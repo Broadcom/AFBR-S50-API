@@ -57,8 +57,7 @@
  * @brief	Returns the current system status.
  * @return	Returns the current system status.
  *****************************************************************************/
-extern status_t GetSystemStatus(void);
-
+__attribute__((weak)) status_t GetSystemStatus(void);
 
 /*!***************************************************************************
  * @brief	Initialize the serial commands module.

@@ -39,7 +39,7 @@
 
 /*!***************************************************************************
  * @defgroup	argus_timer Timer: Hardware Timer Interface
- * @ingroup		argus_platform
+ * @ingroup		argus_hal
  *
  * @brief 		Timer implementations for lifetime counting as well as periodic
  * 				callback.

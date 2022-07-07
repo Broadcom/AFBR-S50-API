@@ -73,7 +73,7 @@ enum GenericSerialCommandCodes
 
 /*!***************************************************************************
  * @brief	Sends an status report.
- * @param	statusThe status value to be reported.
+ * @param	status The status value to be reported.
  * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t SCI_SendStatusReport(status_t status);
@@ -94,13 +94,13 @@ status_t SCI_SendLogEntry(const char *fmt_s, ...);
  *****************************************************************************/
 status_t SCI_Printf(const char  *fmt_s, ...);
 
-/*!***************************************************************************
- * @brief	Sends a log message.
- * @param	fmt_s The printf() format string.
- * @param	...   The printf() arguments.
- * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
- *****************************************************************************/
-status_t print(const char  *fmt_s, ...);
+///*!***************************************************************************
+// * @brief	Sends a log message.
+// * @param	fmt_s The printf() format string.
+// * @param	...   The printf() arguments.
+// * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
+// *****************************************************************************/
+//status_t print(const char  *fmt_s, ...);
 
 
 /*! @} */

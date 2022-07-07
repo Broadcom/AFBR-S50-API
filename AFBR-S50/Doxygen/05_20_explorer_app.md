@@ -1,26 +1,51 @@
-# Explorer App (API Demo) {#hw_api}
+# Explorer App {#explorer_app}
 
-The **Evaluation Kit** runs with a simple demo application, the **ExplorerApp**. It establishes an USB connection to the **AFBR-S50 Explorer GUI** that is running on a Windows PC. The ExplorerApp provides a simple interface that allows the GUI to transfer configuration and calibration parameters and receive measurement data.
+The **Evaluation Kit** runs with a demo application, the **Explorer App**. It
+establishes an **USB** or **UART** connection to the **AFBR-S50 Explorer GUI**
+that is running on a Windows PC. The **Explorer App** provides a serial
+interface that allows the GUI to transfer configuration and calibration
+parameters and receive measurement data.
 
-The ExplorerApp hosts the **AFBR-S50 Core Library** on the one hand and implements a **Serial Communication Interface (SCI)** on the other hand. The SCI is an communication protocol that can be used with almost every serial communication interface like UART or USB. The ExplorerApp is the communication slave, while an external host, e.g. the AFBR-S50 Explorer GUI running on Windows, is implemented as a master.
+The **Explorer App** hosts the **AFBR-S50 Core Library** and connects it to a a
+**Serial Communication Interface (SCI)** to allow accessing the sensor from the
+PC. The **SCI** implements an API that is equivalent to the **AFBR-S50 API**,
+but accessible via a serial peripheral interface such as **USB** or **UART**.
+The SCI is an communication protocol that can be ported to almost every serial
+communication interface. The **Explorer App** functions as the communication
+device, while an external host, e.g. the **AFBR-S50 Explorer GUI** running on a
+Windows machine, is implemented as a controller.
 
-The Evaluation Kit (containing the [NXP Kinetis MKL46z](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/kl-series-cortex-m0-plus/kinetis-kl4x-48-mhz-usb-segment-lcd-ultra-low-power-microcontrollers-mcus-based-on-arm-cortex-m0-plus-core:KL4x) MCU) uses the USB interface to connect to the external host (e.g. the AFBR-S50 Explorer). Another reference solution is provided, based on the [NXP Kinetis MKL17z](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/kl-series-cortex-m0-plus/kinetis-kl1x-48-mhz-mainstream-small-ultra-low-power-microcontrollers-mcus-based-on-arm-cortex-m0-plus-core:KL1x) MCU, that uses an UART interface to establish a connection to an external host.
+The following chapter gives an overview about the architecture and
+implementation of the **SCI** module in the **Explorer App**. After gaining a
+basic understanding of the implementation, it should be an easy task to adopt
+the **Explorer App** along with the interface to the user requirements and
+create the host interface that can connect to the provided **SCI**.
 
-The SCI of the ExplorerApp contains a API that is equivalent to the AFBR-S50 API, but accessible via the serial peripheral hardware. The following chapter gives an overview about the architecture and implementation of the SCI module in the ExplorerApp. After gaining a basic understanding of the implementation, it should be an easy task to adopt the *ExplorerApp* along with the interface to the user requirements and create the host interface that can connect to the provided SCI.
+@image html 5_1_explorerapp.png "Fig. 5.1: An overview of the Explorer App Architecture. The Explorer App is hosting the AFBR-S50 API on the one hand and a serial communication interface on the other hand to connect to an external host via serial peripheral like USB or UART. The external host would be a PC with running the AFBR-S50 Explorer GUI in case of the evaluation kit."
+@image latex 5_1_explorerapp.png "Fig. 5.1: An overview of the Explorer App Architecture. The Explorer App is hosting the AFBR-S50 API on the one hand and a serial communication interface on the other hand to connect to an external host via serial peripheral like USB or UART. The external host would be a PC with running the AFBR-S50 Explorer GUI in case of the evaluation kit."
 
-@image html 5_1_explorerapp.png "Fig. 5.1: An overview of the ExplorerApp Architecture. The ExplorerApp is hosting the AFBR-S50 API on the one hand and a serial communication interface on the other hand to connect to an external host via serial peripheral like USB or UART. The external host would be a PC with running the AFBR-S50 Explorer GUI in case of the evaluation kit."
-@image latex 5_1_explorerapp.png "Fig. 5.1: An overview of the ExplorerApp Architecture. The ExplorerApp is hosting the AFBR-S50 API on the one hand and a serial communication interface on the other hand to connect to an external host via serial peripheral like USB or UART. The external host would be a PC with running the AFBR-S50 Explorer GUI in case of the evaluation kit."
+# Build And Run the Explorer App {#explorer_app_build}
 
+The source files are located in `Sources/ExplorerApp` of the
+[AFBR-S50 GitHub repository](https://github.com/Broadcom/AFBR-S50-API) and the
+projects are located in `Project/<IDE>/AFBR_S50_ExplorerApp_<MCU>`, depending on
+your target. The following target/IDE combinations are provided:
 
-# Build And Run the ExplorerApp using MCUXpresso IDE {#hw_mcuxpresso}
+| MCU           | IDE           | Path                                                | Comment                                               |
+| ------------- | ------------- | --------------------------------------------------- | ----------------------------------------------------- |
+| NXP MKL46z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_ExplorerApp_KL46z` | Runs on **FRDM-KL46Z** evaluation board by **NXP**    |
+| NXP MKL17z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_ExplorerApp_KL17z` |                                                       |
+| STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_ExplorerApp_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
 
-In order to run the provided ExplorerApp project using the *MCUXpresso IDE* by NXP, follow the steps 1-6 in the [Build And Run the Examples using MCUXpresso IDE](@ref gs_mcuxpresso) section to import, build and run/debug the *AFBR_S50_ExplorerApp_KL46z* project.
-Skip step 7 and connect to via USB/UART with your SCI master (e.g. using the *AFBR-S50 Explorer* or the [Python example](@ref hw_example)) instead.
+See also @ref gs_build for an overview of featured boards/MCUs/IDEs and how to
+import and build the project in the corresponding IDE. Just follow the steps and
+skip the steps that connect to a serial terminal. and connect via USB or UART
+with a SCI controller (e.g. using the **AFBR-S50 Explorer GUI** or the
+[Python example](@ref explorer_app_python_example)) instead.
 
+# Serial Communication Interface {#explorer_app_sci}
 
-# Serial Communication Interface {#hw_api_sci}
-
-## Introduction {#hw_api_sci_intro}
+## Introduction {#explorer_app_sci_intro}
 
 The basic idea is to define simple commands (= 7-bit values) to access the AFBR-S50 API. These commands are either transactions with or without data phase. Usually, the commands with data phase are simple getter and setter commands, e.g. "get distance" or "set frame rate".
 
@@ -30,7 +55,7 @@ The data frames are transmitted in different manner dependent on the underlying 
 
 Each command to a slave is acknowledged after successful execution. If any error occurs, a not-acknowledge is invoked by the slave. Only a single command can be sent to the slave at once, i.e. the slave has to (not-)acknowledge the command before the master can send another one. A timeout can be implemented in the master to check if the slave responds within a given time and is still alive or if it is stuck in some invalid state.
 
-## Architecture {#hw_api_sci_architecture}
+## Architecture {#explorer_app_sci_architecture}
 
 The architecture of the SCI (see [Fig. 5.2](@ref sci_layer_model)) consists of several layer. Each is communicating on a specific level with its corresponding counterpart.
 
@@ -55,9 +80,9 @@ To sum up:
 \see See also the OSI model, which was used as an reference: https://en.wikipedia.org/wiki/OSI_model
 
 
-## Hardware Layer {#hw_api_hw_layer}
+## Hardware Layer {#explorer_app_hw_layer}
 
-### UART {#hw_api_uart}
+### UART {#explorer_app_uart}
 
 The UART interface support only point-to-point communications. It has an independent line for sending as well as receiving data and the slave can transmit data at any time without special actions from the master are required. Therefore, this mode does not require an interrupt line to inform the master about new data ready or error conditions. The data is just transmitted immediately which means that the master must always listen to its Rx line.
 
@@ -68,7 +93,7 @@ In order to provide a handshaking mechanism, the slave acknowledges the successf
 Furthermore, due to the independent TX line, the special feature of log and error messages are supported by the UART protocol.
 
 
-### SPI {#hw_api_spi}
+### SPI {#explorer_app_spi}
 
 The SPI interface support multiple slave mode via the chip select (CS) lines. Data transfers can only be initiated by the master and thus an extra IRQ line is used to give the slave a chance to call the masters attention to it. This is however optional and the alternative method would be polling the status by the master.
 
@@ -77,7 +102,7 @@ The data framing is realized via the CS. After the command byte, the data is tra
 The handshaking is implemented via the IRQ line. If an error occurs, the IRQ is pulled to low. The master can now read the corresponding status in order to get the root cause of the IRQ. Also the new measurement ready event is determined via the IRQ. In addition, the acknowledgment of the successful reception and execution of a command could be implemented via the interrupt; the master would responsible for reading the acknowledge status.
 
 
-### I2C {#hw_api_i2c}
+### I2C {#explorer_app_i2c}
 
 The I2C interface supports multiple slave mode via the device address bytes. Data transfers can only be initiated by the master and thus an extra IRQ line is used to give the slave a chance to call the masters attention to it. This is however optional and the alternative method would be polling the status by the master.
 
@@ -85,9 +110,9 @@ The data framing is realized via the usual I2C protocol. Every frame is started 
 
 Besides the already build-in acknowledgment mechanism form the I2C protocol, the reception of an invalid data frame is advertised via the IRQ line. If an error occurs, the IRQ is pulled to low. The master can now read the corresponding status in order to get the root cause of the IRQ. Also the new measurement ready event is determined via the IRQ. In addition, the In addition, the acknowledgment of the successful reception and execution of a command could be implemented via the interrupt; the master would responsible for reading the acknowledge status.
 
-## Command Protocols {#hw_api_cmd_protocols}
+## Command Protocols {#explorer_app_cmd_protocols}
 
-### Master-to-Slave Transfer {#hw_api_cmd_m2s}#
+### Master-to-Slave Transfer {#explorer_app_cmd_m2s}
 
 @image html 5_3_sci_master_to_slave.png "Fig. 5.3: The master to slave communication. The left side shows the UART hardware and the right side the version for SPI/I2C hardware."
 @image latex 5_3_sci_master_to_slave.png "Fig. 5.3: The master to slave communication. The left side shows the UART hardware and the right side the version for SPI/I2C hardware."
@@ -96,7 +121,7 @@ In case of UART, the master simply send data via its Tx line. After processing, 
 
 In case of SPI or I2C, the slave can not send data without the master initiating the transfer. Thus, an additional IRQ is used to give the slave the chance to call the masters attention. In case of no IRQ available, the master must poll the slave on a regular basis. So after processing, the slave signals when he is ready to send the acknowledge or not-acknowledge signal and afterwards the master must initiate the transfer from slave to master.
 
-### Slave-to-Master Transfer {#hw_api_cmd_s2m}
+### Slave-to-Master Transfer {#explorer_app_cmd_s2m}
 
 @image html 5_4_sci_slave_to_master.png "Fig. 5.4: The slave to master communication. The left side shows the UART hardware and the right side the version for SPI/I2C hardware."
 @image latex 5_4_sci_slave_to_master.png "Fig. 5.4: The slave to master communication. The left side shows the UART hardware and the right side the version for SPI/I2C hardware."
@@ -105,7 +130,7 @@ In case of UART, the slave simply sends data via its Tx line. After receiving on
 
 In case of SPI or I2C, the slave can not send data without the master initiating the transfer. Thus, an additional IRQ is used to give the slave the chance to call the masters attention. In case of no IRQ available, the master must poll the slave on a regular basis. The slave signals when he wants to send data via the IRQ and afterwards the master must initiate the transfer from slave to master.
 
-## Command Byte Format {#hw_api_cmd_format}
+## Command Byte Format {#explorer_app_cmd_format}
 
 Every command message is identified by the first byte in a data frame. This byte is an unique number that is mapped to a specified parameter/value/command.
 
@@ -132,7 +157,7 @@ Reserved Command Bytes
 
 
 
-## Command Types {#hw_api_cmd_types}
+## Command Types {#explorer_app_cmd_types}
 
 There are several command types defined:
 
@@ -152,7 +177,7 @@ Thus a single command byte can have up to three different intentions.
 - **set / get** The setter/getter combination e.g. for configuration parameters that can be applied to the slave and also read back.
 - **auto / push**: Data that is only send from the slave as needed without the request form the master, e.g. log messages or data streaming.
 
-## Data Frame Format {#hw_api_frame_format}
+## Data Frame Format {#explorer_app_frame_format}
 
 @image html 5_6_sci_data_frames.png "Fig. 5.6: The data frame format for different hardware."
 @image latex 5_6_sci_data_frames.png "Fig. 5.6: The data frame format for different hardware."
@@ -161,7 +186,7 @@ Each message or command that is sent over underlying hardware is put into a data
 
 The first byte within a data frame is the command byte that uniquely determines the purpose and thus the format of the data frame. The last byte within the data frame is the security byte that contains a CRC value that guarantees the data integrity of the receive frame. Between the command and CRC bytes, there is an optional data phase of arbitrary length. The format and interpretation of the data is determined by the command byte in the higher layers of the communication stack and does not have any influence for the data framing.
 
-### Byte Stuffing Algorithm {#hw_api_byte_stuffing}
+### Byte Stuffing Algorithm {#explorer_app_byte_stuffing}
 
 In case of SPI and I2C, the data framing is incorporated into the hardware protocol itself, while for the UART interface, a software solution is implemented. The SPI data frame is given by the chip select signal. Each data byte that comes while the chip select line stays at low are combined to a single frame until the chip select is released. The I2C protocol implements an embedded start and stop signal that gives the boundaries of a single data frame.
 
@@ -198,7 +223,7 @@ The algorithm to receive data with byte stuffing:
 4. Evaluate the data buffer by invoking the corresponding function belonging to the given command byte.
 
 
-### Error checking: 8-bit CRC {#hw_api_crc}
+### Error checking: 8-bit CRC {#explorer_app_crc}
 
 In order to guarantee the data integrity of the received data frame, a CRC value is added to each data frame.
 
@@ -219,14 +244,14 @@ Refer to the following link to verify your implementation of the *CRC8_SAE_J1850
 ## Overview
 
 Go to: 
-\subpage hw_api_cmd_overview
+\subpage explorer_app_cmd_overview
 
 ## Details
 
 Go to: 
-\subpage hw_api_cmd_details
+\subpage explorer_app_cmd_details
 
-# Python Example on Using the SCI Interface {#hw_example}
+# Python Example on Using the SCI Interface {#explorer_app_python_example}
 
 Here is an example that sets some configuration parameters (i.e. data output = 1D data only; measurement frame rate = 5 Hz) and starts timer based measurements. The range is extracted from the received data structure and printed to the console.
 
@@ -234,7 +259,8 @@ The example is very basic though. The sent data frames are manually created (i.e
 
 The file runs with Python (3.6) and requires the Python serial module (pySerial).
 
-Please find the file in "[INSTALL_DIR]\Device\Examples\sci_python_example.py" (default is "C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Examples\sci_python_example.py").
+Please find the file in `[INSTALL_DIR]\Device\Examples\sci_python_example.py`
+(default is `C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Examples\sci_python_example.py`).
 
 \include sci_python_example.py
 

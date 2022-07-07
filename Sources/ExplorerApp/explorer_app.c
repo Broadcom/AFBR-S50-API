@@ -177,6 +177,12 @@ static status_t SCI_RxCommandCallback(sci_frame_t * cmd);
 /*! Callback function for error occurred within the SCI/UART module. */
 static void SCI_ErrorCallback(status_t status);
 
+/*!***************************************************************************
+ * @brief	Returns the current system status.
+ * @details Overwrites the weak definition on "sci_cmd.c".
+ * @return	Returns the current system status.
+ *****************************************************************************/
+status_t GetSystemStatus(void);
 
 /******************************************************************************
  * Variables

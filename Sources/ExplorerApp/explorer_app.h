@@ -39,8 +39,8 @@
 #define EXPLORER_APP_H
 
 /*!***************************************************************************
- * @defgroup	explorermain AFBR-S50 Explorer Application
- * @ingroup		explorerapp
+ * @defgroup	explorer_main AFBR-S50 Explorer Application
+ * @ingroup		explorer_app
  * @brief		AFBR-S50 Explorer Application
  * @details		An example application that utilizes the Argus API.
  *
@@ -49,7 +49,7 @@
  * 				connect to the AFBR-S50 Explorer GUI. The latter is an evaluation
  * 				software for the Argus time-of-flight devices.
  *
- * @addtogroup 	explorermain
+ * @addtogroup 	explorer_main
  * @{
  *****************************************************************************/
 
@@ -113,7 +113,6 @@ status_t ExplorerApp_Init(void);
 /*!***************************************************************************
  * @brief	This runs the state machine.
  * @details	It runs the task scheduler and never return.
- * @return	This function never returns.
  *****************************************************************************/
 void ExplorerApp_Run(void);
 
@@ -196,7 +195,6 @@ status_t ExplorerApp_DeviceReinit(void);
 
 /*!***************************************************************************
  * @brief	Displays the unambiguous range in meter on the SLCD display.
- * @return	Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 void ExplorerApp_DisplayUnambiguousRange(void);
 

@@ -38,14 +38,14 @@
 #define ARGUS_VERSION_H
 
 /*!***************************************************************************
- * @defgroup	version API Version
- * @ingroup		argusapi
+ * @defgroup	argus_version API Version
+ * @ingroup		argus_api
  *
  * @brief		API and library core version number
  *
  * @details		Contains the AFBR-S50 API and Library Core Version Number.
  *
- * @addtogroup 	version
+ * @addtogroup 	argus_version
  * @{
  *****************************************************************************/
 

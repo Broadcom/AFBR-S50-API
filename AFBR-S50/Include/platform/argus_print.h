@@ -39,7 +39,7 @@
 
 /*!***************************************************************************
  * @defgroup	argus_log Debug: Logging Interface
- * @ingroup		argus_platform
+ * @ingroup		argus_hal
  *
  * @brief		Logging interface for the AFBR-S50 API.
  *

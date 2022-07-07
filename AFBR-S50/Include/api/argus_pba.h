@@ -39,8 +39,8 @@
 #define ARGUS_PBA_H
 
 /*!***************************************************************************
- * @defgroup 	arguspba Pixel Binning Algorithm
- * @ingroup		argusapi
+ * @defgroup 	argus_pba Pixel Binning Algorithm
+ * @ingroup		argus_api
  *
  * @brief		Pixel Binning Algorithm (PBA) parameter definitions and API functions.
  *
@@ -91,7 +91,7 @@
  *				pixels. See #argus_pba_averaging_mode_t for details.
  *
  *
- * @addtogroup 	arguspba
+ * @addtogroup 	argus_pba
  * @{
  *****************************************************************************/
 

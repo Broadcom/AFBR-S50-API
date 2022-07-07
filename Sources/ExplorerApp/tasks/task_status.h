@@ -38,10 +38,11 @@
 #define TASK_STATUS_H
 
 /*!***************************************************************************
- * @defgroup	status Status Codes
- * @brief		Status Codes Definitions
- * @details		Defines status codes for specific functions.
- * @addtogroup 	status
+ * @defgroup	scheduler_status Status Codes
+ * @ingroup     scheduler
+ * @brief		Status Codes Definitions for the Task Scheduler.
+ * @details		Defines status codes for task scheduler specific functions.
+ * @addtogroup  scheduler_status
  * @{
  *****************************************************************************/
 

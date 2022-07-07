@@ -38,15 +38,15 @@
 #define ARGUS_MEAS_H
 
 /*!***************************************************************************
- * @defgroup 	argusmeas Measurement/Device Control
- * @ingroup		argusapi
+ * @defgroup 	argus_meas Measurement/Device Control
+ * @ingroup		argus_api
  *
  * @brief 		Measurement/Device control module
  *
  * @details		This module contains measurement and device control specific
  * 				definitions and methods.
  *
- * @addtogroup 	argusmeas
+ * @addtogroup 	argus_meas
  * @{
  *****************************************************************************/
 
@@ -83,13 +83,13 @@ typedef struct
 
 	/*! Pixel enabled mask for the 32 pixels sorted
 	 *  by x-y-indices.
-	 *  See [pixel mapping](@ref argusmap) for more
+	 *  See [pixel mapping](@ref argus_map) for more
 	 *  details on the pixel mask. */
 	uint32_t PxEnMask;
 
 	/*! ADS channel enabled mask for the remaining
 	 *  channels 31 .. 63 (miscellaneous values).
-	 *  See [pixel mapping](@ref argusmap) for more
+	 *  See [pixel mapping](@ref argus_map) for more
 	 *  details on the ADC channel mask. */
 	uint32_t ChEnMask;
 

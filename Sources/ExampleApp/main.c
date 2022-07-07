@@ -33,11 +33,22 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
+/*!***************************************************************************
+ * @defgroup    example_main Example Application
+ * @ingroup     demo_apps
+ *
+ * @brief       AFBR-S50 API Example Applications.
+ *
+ * @addtogroup  example_main
+ * @{
+ *****************************************************************************/
 
 /*******************************************************************************
  * Include Files
  ******************************************************************************/
 #include "argus.h"
+#include "argus_hal_test.h"
+#include "platform/argus_print.h"
 
 #include "board/clock_config.h"
 #include "driver/irq.h"
@@ -46,11 +57,12 @@
 #include "driver/uart.h"
 #include "driver/timer.h"
 
-#include "test/argus_hal_test.h"
 
 #if defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL17Z256VFM4)
 #elif defined(STM32F401xE)
 #include "main.h"
+#elif defined(_RENESAS_RA_)
+#include "hal_data.h"
 #else
 #error No target specified!
 #endif
@@ -151,20 +163,6 @@ static volatile void * myRawDataPtr = 0;
  ******************************************************************************/
 
 /*!***************************************************************************
- * @brief	printf-like function to send print messages via UART.
- *
- * @details Defined in "driver/uart.c" source file.
- *
- * 			Open an UART connection with 115200 bps, 8N1, no handshake to
- * 			receive the data on a computer.
- *
- * @param	fmt_s The usual printf parameters.
- *
- * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
- *****************************************************************************/
-extern status_t print(const char  *fmt_s, ...);
-
-/*!***************************************************************************
  * @brief	Prints measurement results via UART.
  *
  * @details Prints some measurement data via UART in the following format:
@@ -253,9 +251,9 @@ int main(void)
 
 	/* Print some information about current API and connected device. */
 	uint32_t value = Argus_GetAPIVersion();
-	uint8_t a = (value >> 24) & 0xFFU;
-	uint8_t b = (value >> 16) & 0xFFU;
-	uint8_t c = value & 0xFFFFU;
+    uint8_t a = (uint8_t)((value >> 24) & 0xFFU);
+    uint8_t b = (uint8_t)((value >> 16) & 0xFFU);
+    uint16_t c = (uint16_t)(value & 0xFFFFU);
 	uint32_t id = Argus_GetChipID(hnd);
 	argus_module_version_t mv = Argus_GetModuleVersion(hnd);
 
@@ -351,8 +349,6 @@ int main(void)
 			/* Evaluate the raw measurement results. */
 		    status = Argus_EvaluateData(hnd, &res, dataPtr);
 		    handle_error(status, "Argus_EvaluateData failed!");
-
-			/* Use the obtain results, e.g. print via UART. */
 			print_results(&res);
 		}
 	}
@@ -421,7 +417,7 @@ static void print_results(argus_results_t const * res)
 	 *       approximately 80 characters per frame at 115200 bps which limits
 	 *       the max. frame rate of 144 fps:
 	 *       115200 bps / 10 [bauds-per-byte] / 80 [bytes-per-frame] = 144 fps */
-	print("%4d.%06d s; Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n",
+	print("%4d.%06d s;  Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n",
 		  res->TimeStamp.sec,
 		  res->TimeStamp.usec,
 		  res->Bin.Range / (Q9_22_ONE / 1000),
@@ -465,12 +461,12 @@ static void handle_error(status_t status, char const * msg)
 
 static void hardware_init(void)
 {
-	/* Initialize the board with clocks. */
-	BOARD_ClockInit();
-
+#ifndef _RENESAS_RA_
 	/* Disable the watchdog timer. */
 	COP_Disable();
-
+#endif
+	/* Initialize the board with clocks. */
+	BOARD_ClockInit();
 	/* Initialize timer required by the API. */
 	Timer_Init();
 
@@ -505,3 +501,5 @@ status_t measurement_ready_callback(status_t status, void * data)
 
 	return status;
 }
+
+/*! @} */

@@ -1,8 +1,13 @@
-# Command Details {#hw_api_cmd_details}
+# Command Details {#explorer_app_cmd_details}
 
-The following section contains the current command details as implemented in the _ExplorerApp_. The implementation can be found in the "Sources\explorer_app\api" folder of the "AFBR_S50_ExplorerApp_KL46z" project. See also @ref hw_api.
+The following section contains the current command details as implemented in the
+@ref explorer_app. The implementation can be found in the
+`Sources\ExplorerApp\api` folder of the
+[AFBR-S50 GitHub repository](https://github.com/Broadcom/AFBR-S50-API).
 
-# Generic Commands {#hw_api_cmd_generic}
+See @ref explorer_app_cmd_overview for an Overview of all available commands.
+
+# Generic Commands {#explorer_app_cmd_generic}
 
 ## Invalid Command {#cmd_invalid}
 
@@ -33,8 +38,8 @@ Slave does not-acknowledge the successful reception of the last command.
 
 ## Ping Command {#cmd_ping}
 
-A ping message the is sent from the master and reflected by the slave.
-Used to establish or test the UART connection.
+A ping message the is sent from the master and reflected by the slave. Used to
+establish or test the UART connection.
 
 | Caption / Name | Type  | Size | Unit | Comment |
 | -------------- | ----- | ---- | ---- | ------- |
@@ -53,7 +58,9 @@ An event/debug log message sent from the slave to inform the user.
 
 ## Test Message {#cmd_test}
 
-Sending a test message to the slave that will be echoed in order to test the interface. The slave will echo the exact message including the CRC values from the original message.
+Sending a test message to the slave that will be echoed in order to test the
+interface. The slave will echo the exact message including the CRC values from
+the original message.
 
 | Caption / Name | Type    | Size | Unit | Comment                                                             |
 | -------------- | ------- | ---- | ---- | ------------------------------------------------------------------- |
@@ -79,16 +86,22 @@ Gets the current software version number.
 | Version Software             | UINT32                 | 4    |      | Major [31:24], Minor [23:16], Bugfix [15:0]                                          |
 | Software Build Number String | CHAR[14] (= UINT8[14]) | n/a  |      | (Added in v1.2.0) Software Build Number as String (14 Digits; e.g. "20200101123456") |
 
-@note This command can be used to determine the current software version of the connected device. However, the command has changed as the build number was added to the command for v1.2.0 and newer versions. In order to determine the version, it is sufficient to encode only the version number. If the version is at least v1.2.0, the build number can also be extracted from the command data array.
+@note This command can be used to determine the current software version of the
+connected device. However, the command has changed as the build number was added
+to the command for `v1.2.0` and newer versions. In order to determine the
+version, it is sufficient to encode only the version number. If the version is
+at least `v1.2.0`, the build number can also be extracted from the command data
+array.
 
 \see
 
-- #Argus_GetAPIVersion
-- #Argus_GetBuildNumber
+-   #Argus_GetAPIVersion
+-   #Argus_GetBuildNumber
 
 ## Module Type / Version {#cmd_module}
 
-Gets the module information, incl. module type with version number, chip version and laser type.
+Gets the module information, incl. module type with version number, chip version
+and laser type.
 
 | Caption / Name      | Type  | Size | Unit | Comment                                         |
 | ------------------- | ----- | ---- | ---- | ----------------------------------------------- |
@@ -99,9 +112,9 @@ Gets the module information, incl. module type with version number, chip version
 
 \see
 
-- #Argus_GetModuleVersion
-- #Argus_GetChipVersion
-- #Argus_GetLaserType
+-   #Argus_GetModuleVersion
+-   #Argus_GetChipVersion
+-   #Argus_GetLaserType
 
 ## Module UID {#cmd_uid}
 
@@ -114,11 +127,12 @@ Gets the chip/module unique identification number.
 
 \see
 
-- #Argus_GetChipID
+-   #Argus_GetChipID
 
 ## Software Information / Identification {#cmd_info}
 
-Software Information / Identification Gets the information about current software and device (e.g. version, device id, device family, ...)
+Software Information / Identification Gets the information about current
+software and device (e.g. version, device id, device family, ...)
 
 | Caption / Name                  | Type               | Size | Unit | Comment                                                                                                                                              |
 | ------------------------------- | ------------------ | ---- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -131,18 +145,24 @@ Software Information / Identification Gets the information about current softwar
 | Module UID                      | UINT24             | 3    |      | Unique Identification Number                                                                                                                         |
 | Software ID String              | CHAR[] (= UINT8[]) | n/a  |      | Software ID String incl. Build Number (Format: "AFBR-S50 Explorer App - [BuildNumber]"; w/ build number containing 14 digits, e.g. "20200101123456") |
 
-@note This command can be used to determine the current software version of the connected device. However, the command has changed, e.g. the build number was added to the command for v1.2.0 and newer versions. In order to determine the version, it is sufficient to encode only the first version number. If the version is not current, the remaining command may differ. In case of different version, please refer to the corresponding API documentation to find the correct command formats.
+@note This command can be used to determine the current software version of the
+connected device. However, the command has changed, e.g. the build number was
+added to the command for v1.2.0 and newer versions. In order to determine the
+version, it is sufficient to encode only the first version number. If the
+version is not current, the remaining command may differ. In case of different
+version, please refer to the corresponding API documentation to find the correct
+command formats.
 
 \see
 
-- #Argus_GetAPIVersion
-- #Argus_GetBuildNumber
-- #Argus_GetModuleVersion
-- #Argus_GetLaserType
-- #Argus_GetChipVersion
-- #Argus_GetChipID
+-   #Argus_GetAPIVersion
+-   #Argus_GetBuildNumber
+-   #Argus_GetModuleVersion
+-   #Argus_GetLaserType
+-   #Argus_GetChipVersion
+-   #Argus_GetChipID
 
-# Device Control Commands {#hw_api_cmd_ctrl}
+# Device Control Commands {#explorer_app_cmd_ctrl}
 
 ## Measurement: Trigger Single Shot {#cmd_ctrl_trigger}
 
@@ -154,7 +174,7 @@ Executes a single shot measurement.
 
 \see
 
-- #Argus_TriggerMeasurement
+-   #Argus_TriggerMeasurement
 
 ## Measurement: Start Auto {#cmd_ctrl_start}
 
@@ -166,7 +186,7 @@ Starts the automatic, time-scheduled measurements with given frame rate.
 
 \see
 
-- #Argus_StartMeasurementTimer
+-   #Argus_StartMeasurementTimer
 
 ## Measurement: Stop {#cmd_ctrl_stop}
 
@@ -178,7 +198,7 @@ Stops the time-scheduled measurements (after the current frame finishes).
 
 \see
 
-- #Argus_StopMeasurementTimer
+-   #Argus_StopMeasurementTimer
 
 ## Run Calibration {#cmd_ctrl_cal}
 
@@ -192,9 +212,9 @@ Command triggers a specified calibration sequence.
 
 \see
 
-- #Argus_ExecuteXtalkCalibrationSequence
-- #Argus_ExecuteAbsoluteRangeOffsetCalibrationSequence
-- #Argus_ExecuteRelativeRangeOffsetCalibrationSequence
+-   #Argus_ExecuteXtalkCalibrationSequence
+-   #Argus_ExecuteAbsoluteRangeOffsetCalibrationSequence
+-   #Argus_ExecuteRelativeRangeOffsetCalibrationSequence
 
 ### Calibration Sequence Enumerator
 
@@ -207,9 +227,11 @@ Command triggers a specified calibration sequence.
 
 ## Device Reinitialize {#cmd_ctrl_reinit}
 
-Invokes the device (re-)initialization command. Resets and reinitialize the API + ASIC with given config. (e.g. after unintended power cycle).
+Invokes the device (re-)initialization command. Resets and reinitialize the
+API + ASIC with given config. (e.g. after unintended power cycle).
 
-@note Does not perform a MCU reset! Use the [MCU/Software Reset](@ref cmd_reset) if a complete MCU reset is desired.
+@note Does not perform a MCU reset! Use the [MCU/Software Reset](@ref cmd_reset)
+if a complete MCU reset is desired.
 
 | Caption / Name | Type  | Size | Unit | Comment |
 | -------------- | ----- | ---- | ---- | ------- |
@@ -217,9 +239,9 @@ Invokes the device (re-)initialization command. Resets and reinitialize the API 
 
 \see
 
-- #Argus_Reinit
+-   #Argus_Reinit
 
-# Measurement Data Commands {#hw_api_cmd_data}
+# Measurement Data Commands {#explorer_app_cmd_data}
 
 ## Raw Measurement Data Set {#cmd_data_raw}
 
@@ -236,7 +258,7 @@ Gets a raw measurement data set containing the raw device readout samples.
 | Optical Power                 | UQ12.4   | 2    | mA          | The optical output power is determined by the laser current.                                                                                                                                                                                                                                                                                           |
 | Pixel Gain                    | UINT8    | 1    |             | The pixel gain determines the sensitivity of the ToF cells.                                                                                                                                                                                                                                                                                            |
 | Bias Current                  | UINT8    | 1    | LSB         | The BIAS laser current in LSB.                                                                                                                                                                                                                                                                                                                         |
-| Enabled Pixel Mask            | HEX32    | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argusmap) for the corresponding x-y-indices.                                                                                                 |
+| Enabled Pixel Mask            | HEX32    | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argus_map) for the corresponding x-y-indices.                                                                                                 |
 | Enabled ADC Channel Mask      | HEX32    | 4    | n/a         | The ADC channel enabled mask determines the misc. ADC channels that are enabled and converted by the ADC muxing. The mask is channel based (starting from channel 32), i.e. the n-th bit represents the n-th ADC channel. See the channel mapping for the corresponding channel purpose.                                                               |
 | Phase Count                   | UINT8    | 1    | #           | Number of phase steps.                                                                                                                                                                                                                                                                                                                                 |
 | ADC Samples                   | UINT24[] | 396  | LSB         | Raw sampling data from the pixel field. The 22 LSBs determine the raw 22-bit ADC readouts and the two MSBs determine the saturation flags. The values are ordered in increasing channel number where different phase steps are gathered (i.e. \f$idx = 4 n + p\f$). Disabled values (see Enabled Pixel Mask and Enabled ADC Channel Mask) are skipped. |
@@ -256,7 +278,7 @@ Gets a measurement data set containing all the available data.
 | Optical Power                 | UQ12.4    | 2    | mA          | The optical output power is determined by the laser current.                                                                                                                                                                                                                                                                                           |
 | Pixel Gain                    | UINT8     | 1    |             | The pixel gain determines the sensitivity of the ToF cells.                                                                                                                                                                                                                                                                                            |
 | Bias Current                  | UINT8     | 1    | LSB         | The BIAS laser current in LSB.                                                                                                                                                                                                                                                                                                                         |
-| Enabled Pixel Mask            | HEX32     | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argusmap) for the corresponding x-y-indices.                                                                                                 |
+| Enabled Pixel Mask            | HEX32     | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argus_map) for the corresponding x-y-indices.                                                                                                 |
 | Enabled ADC Channel Mask      | HEX32     | 4    | n/a         | The ADC channel enabled mask determines the misc. ADC channels that are enabled and converted by the ADC muxing. The mask is channel based (starting from channel 32), i.e. the n-th bit represents the n-th ADC channel. See the channel mapping for the corresponding channel purpuse.                                                               |
 | Phase Count                   | UINT8     | 1    | #           | Number of phase steps.                                                                                                                                                                                                                                                                                                                                 |
 | ADC Samples                   | UINT24[]  | 396  | LSB         | Raw sampling data from the pixel field. The 22 LSBs determine the raw 22-bit ADC readouts and the two MSBs determine the saturation flags. The values are ordered in increasing channel number where different phase steps are gathered (i.e. \f$idx = 4 n + p\f$). Disabled values (see Enabled Pixel Mask and Enabled ADC Channel Mask) are skipped. |
@@ -297,7 +319,7 @@ Gets a measurement data set containing the essential data.
 | Optical Power                 | UQ12.4    | 2    | mA          | The optical output power is determined by the laser current.                                                                                                                                                                                                  |
 | Pixel Gain                    | UINT8     | 1    |             | The pixel gain determines the sensitivity of the ToF cells.                                                                                                                                                                                                   |
 | Bias Current                  | UINT8     | 1    | LSB         | The BIAS laser current in LSB.                                                                                                                                                                                                                                |
-| Enabled Pixel Mask            | HEX32     | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argusmap) for the corresponding x-y-indices.        |
+| Enabled Pixel Mask            | HEX32     | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argus_map) for the corresponding x-y-indices.        |
 | Status (x, y)                 | HEX8[,]   | 32   | m           | Status flags for each enabled pixel, see #argus_px_status_t. The values are ordered in increasing x and y indices (i.e. \f$n = 4 x + y\f$). Disabled values (see Enabled Pixel Mask) are skipped.                                                             |
 | Range (x, y)                  | Q9.14[,]  | 96   | m           | Range values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \f$n = 4 x + y\f$). Disabled values (see Enabled Pixel Mask) are skipped.                                                                                     |
 | Amplitude (x, y)              | UQ12.4[,] | 64   |             | Amplitude values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \f$n = 4 x + y\f$). Disabled values (see Enabled Pixel Mask) are skipped.                                                                                 |
@@ -330,7 +352,7 @@ Gets a 3D measurement data set containing all the available data per pixel.
 | Optical Power                 | UQ12.4    | 2    | mA          | The optical output power is determined by the laser current.                                                                                                                                                                                                  |
 | Pixel Gain                    | UINT8     | 1    |             | The pixel gain determines the sensitivity of the ToF cells.                                                                                                                                                                                                   |
 | Bias Current                  | UINT8     | 1    | LSB         | The BIAS laser current in LSB.                                                                                                                                                                                                                                |
-| Enabled Pixel Mask            | HEX32     | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argusmap) for the corresponding x-y-indices.        |
+| Enabled Pixel Mask            | HEX32     | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argus_map) for the corresponding x-y-indices.        |
 | Status (x, y)                 | HEX8[,]   | 32   | m           | Status flags for each enabled pixel, see #argus_px_status_t. The values are ordered in increasing x and y indices (i.e. \f$n = 4 x + y\f$). Disabled values (see Enabled Pixel Mask) are skipped.                                                             |
 | Range (x, y)                  | Q9.14[,]  | 96   | m           | Range values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \f$n = 4 x + y\f$). Disabled values (see Enabled Pixel Mask) are skipped.                                                                                     |
 | Amplitude (x, y)              | UQ12.4[,] | 64   |             | Amplitude values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \f$n = 4 x + y\f$). Disabled values (see Enabled Pixel Mask) are skipped.                                                                                 |
@@ -351,7 +373,7 @@ Gets a 3D measurement data set containing the essential data per pixel.
 | Optical Power                 | UQ12.4    | 2    | mA          | The optical output power is determined by the laser current.                                                                                                                                                                                                  |
 | Pixel Gain                    | UINT8     | 1    |             | The pixel gain determines the sensitivity of the ToF cells.                                                                                                                                                                                                   |
 | Bias Current                  | UINT8     | 1    | LSB         | The BIAS laser current in LSB.                                                                                                                                                                                                                                |
-| Enabled Pixel Mask            | HEX32     | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argusmap) for the corresponding x-y-indices.        |
+| Enabled Pixel Mask            | HEX32     | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argus_map) for the corresponding x-y-indices.        |
 | Status (x, y)                 | HEX8[,]   | 32   | m           | Status flags for each enabled pixel, see #argus_px_status_t. The values are ordered in increasing x and y indices (i.e. \f$n = 4 x + y\f$). Disabled values (see Enabled Pixel Mask) are skipped.                                                             |
 | Range (x, y)                  | Q9.14[,]  | 96   | m           | Range values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \f$n = 4 x + y\f$). Disabled values (see Enabled Pixel Mask) are skipped.                                                                                     |
 | Amplitude (x, y)              | UQ12.4[,] | 64   |             | Amplitude values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \f$n = 4 x + y\f$). Disabled values (see Enabled Pixel Mask) are skipped.                                                                                 |
@@ -371,7 +393,7 @@ Gets a 1D measurement data set containing all the available distance measurement
 | Optical Power                 | UQ12.4 | 2    | mA          | The optical output power is determined by the laser current.                                                                                                                                                                                                  |
 | Pixel Gain                    | UINT8  | 1    |             | The pixel gain determines the sensitivity of the ToF cells.                                                                                                                                                                                                   |
 | Bias Current                  | UINT8  | 1    | LSB         | The BIAS laser current in LSB.                                                                                                                                                                                                                                |
-| Enabled Pixel Mask            | HEX32  | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argusmap) for the corresponding x-y-indices.        |
+| Enabled Pixel Mask            | HEX32  | 4    | n/a         | The pixel enabled mask determines the pixels that are enabled and converted by the ADC muxing. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argus_map) for the corresponding x-y-indices.        |
 | 1D Pixel Count                | UINT8  | 1    | #           | The number of pixels considered for the 1D range value.                                                                                                                                                                                                       |
 | Saturated Pixel Count         | UINT8  | 1    | #           | The number of pixels with saturation flags set.                                                                                                                                                                                                               |
 | 1D Range (binned)             | Q9.14  | 3    | m           | 1D range as determined by the binning algorithm.                                                                                                                                                                                                              |
@@ -393,7 +415,7 @@ Gets a 1D measurement data set containing the essential distance measurement dat
 | 1D Amplitude (binned)         | UQ12.4 | 2    |             | 1D amplitude as determined by the binning algorithm.                                                                     |
 | Signal Quality                | UINT8  | 1    | %           | The signal quality indicator in % (0-100). 0%: invalid or not available; 1%: very bad signal, ...., 100%: perfect signal |
 
-# Configuration Commands {#hw_api_cmd_cfg}
+# Configuration Commands {#explorer_app_cmd_cfg}
 
 ## Data Output Mode {#cmd_cfg_output_mode}
 
@@ -427,8 +449,8 @@ Gets or sets the measurement mode.
 
 \see
 
-- #Argus_GetConfigurationMeasurementMode
-- #Argus_SetConfigurationMeasurementMode
+-   #Argus_GetConfigurationMeasurementMode
+-   #Argus_SetConfigurationMeasurementMode
 
 ## Frame Time {#cmd_cfg_frame_time}
 
@@ -441,8 +463,8 @@ Gets or sets the measurement frame time or the inverse measurement frame rate.
 
 \see
 
-- #Argus_GetConfigurationFrameTime
-- #Argus_SetConfigurationFrameTime
+-   #Argus_GetConfigurationFrameTime
+-   #Argus_SetConfigurationFrameTime
 
 ## Dual Frequency Mode {#cmd_cfg_dfm}
 
@@ -456,8 +478,8 @@ Gets or sets the Dual Frequency Mode configuration.
 
 \see
 
-- #Argus_GetConfigurationDFMMode
-- #Argus_SetConfigurationDFMMode
+-   #Argus_GetConfigurationDFMMode
+-   #Argus_SetConfigurationDFMMode
 
 ### Dual Frequency Mode Enumerator
 
@@ -479,8 +501,8 @@ Gets or sets the smart power saving feature enabled flag.
 
 \see
 
-- #Argus_GetConfigurationSmartPowerSaveEnabled
-- #Argus_SetConfigurationSmartPowerSaveEnabled
+-   #Argus_GetConfigurationSmartPowerSaveEnabled
+-   #Argus_SetConfigurationSmartPowerSaveEnabled
 
 ## Shot Noise Monitor Mode {#cmd_cfg_snm}
 
@@ -494,8 +516,8 @@ Gets or sets the shot noise monitor mode.
 
 \see
 
-- #Argus_GetConfigurationShotNoiseMonitorMode
-- #Argus_SetConfigurationShotNoiseMonitorMode
+-   #Argus_GetConfigurationShotNoiseMonitorMode
+-   #Argus_SetConfigurationShotNoiseMonitorMode
 
 ### Shot Noise Monitor Mode Enumerator
 
@@ -507,7 +529,8 @@ Gets or sets the shot noise monitor mode.
 
 ## Dynamic Configuration Adaption {#cmd_cfg_dca}
 
-Gets or sets the setting parameters of the Dynamic Configuration Adaption (DCA) algorithm.
+Gets or sets the setting parameters of the Dynamic Configuration Adaption (DCA)
+algorithm.
 
 | Caption / Name                                     | Type   | Size | Unit | Comment                                                                                                                                                                                                        |
 | -------------------------------------------------- | ------ | ---- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -532,9 +555,9 @@ Gets or sets the setting parameters of the Dynamic Configuration Adaption (DCA) 
 
 \see
 
-- #Argus_GetConfigurationDynamicAdaption
-- #Argus_SetConfigurationDynamicAdaption
-- #argus_cfg_dca_t
+-   #Argus_GetConfigurationDynamicAdaption
+-   #Argus_SetConfigurationDynamicAdaption
+-   #argus_cfg_dca_t
 
 ## Pixel Binning {#cmd_cfg_pba}
 
@@ -546,7 +569,7 @@ Gets or sets the setting parameters of the Pixel Binning (PBA) algorithm.
 | Measurement Mode Selector       | ENUM8  | 1    | n/a  | The addressed measurement mode. See #argus_mode_t for details.                                                                                                                                                                         |
 | PBA Enabled Flags               | ENUM8  | 1    | n/a  | Enables/disables the pixel binning (features). See #argus_pba_flags_t for details.                                                                                                                                                     |
 | Averaging Mode                  | ENUM8  | 1    | n/a  | Selects the averaging mode for the PBA. See #argus_pba_averaging_mode_t for details.                                                                                                                                                   |
-| Pre-filter Mask                 | HEX32  | 4    | n/a  | The pixel pre-filter mask determines the pixels that are dismissed by the PBA. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argusmap) for the corresponding x-y-indices. |
+| Pre-filter Mask                 | HEX32  | 4    | n/a  | The pixel pre-filter mask determines the pixels that are dismissed by the PBA. The mask is channel based, i.e. the n-th bit represents the n-th ADC channel. See the [pixel mapping](@ref argus_map) for the corresponding x-y-indices. |
 | Absolute Amplitude Threshold    | UQ12.4 | 2    | LSB  | Absolute Amplitude Threshold in LSB. Lower values are dismissed.                                                                                                                                                                       |
 | Relative Amplitude Threshold    | UQ0.8  | 1    | %    | Relative Amplitude Threshold in % of max value. Lower values are dismissed.                                                                                                                                                            |
 | Absolute Minimum Distance Scope | UQ1.15 | 2    | m    | Absolute Minimum Distance Scope Filter Threshold Value in LSB. Distances with larger values (compared to current minimum distance) are dismissed.                                                                                      |
@@ -554,8 +577,8 @@ Gets or sets the setting parameters of the Pixel Binning (PBA) algorithm.
 
 \see
 
-- #Argus_GetConfigurationPixelBinning
-- #Argus_SetConfigurationPixelBinning
+-   #Argus_GetConfigurationPixelBinning
+-   #Argus_SetConfigurationPixelBinning
 
 ## SPI Configuration {#cmd_cfg_spi}
 
@@ -571,9 +594,9 @@ Gets or sets the SPI configuration parameters.
 
 Available Baud Rates:
 
-- NXP MKL46z Baud Rates: e.g. 12 MHz, 6 MHz, 3 MHz, 1.5 MHz, ...
-- NXP MKL17z Baud Rates: e.g. 6 MHz, 3 MHz, 1.5 MHz, ...
-- STM32F401RE Baud Rates: e.g. 21 MHz, 10.5 MHz, 5.25 MHz, ...
+-   NXP MKL46z Baud Rates: e.g. 12 MHz, 6 MHz, 3 MHz, 1.5 MHz, ...
+-   NXP MKL17z Baud Rates: e.g. 6 MHz, 3 MHz, 1.5 MHz, ...
+-   STM32F401RE Baud Rates: e.g. 21 MHz, 10.5 MHz, 5.25 MHz, ...
 
 ## UART Configuration {#cmd_cfg_uart}
 
@@ -584,18 +607,20 @@ Gets or sets the UART configuration (e.g. baud rate).
 | Command        | UINT8  | 1    |      | 0x59                         |
 | UART Baud Rate | UINT32 | 4    | 0    | Baud Rate in BaudPerSeconds. |
 
-@note The device responds with an acknowledge before changing the UART baud rate.
+@note The device responds with an acknowledge before changing the UART baud
+rate.
 
-@note The UART configuration is only available for the STM32F401RE Evaluation Board. The board is initialized with 1 Mbps upon reset.
+@note The UART configuration is only available for the STM32F401RE Evaluation
+Board. The board is initialized with 1 Mbps upon reset.
 
 Available Baud Rates:
 
-- 115200 bps
-- 500000 bps
-- 1000000 bps (1 Mbps), default after MCU reset/power on.
-- 2000000 bps (2 Mbps)
+-   115200 bps
+-   500000 bps
+-   1000000 bps (1 Mbps), default after MCU reset/power on.
+-   2000000 bps (2 Mbps)
 
-# Calibration Commands {#hw_api_cmd_cal}
+# Calibration Commands {#explorer_app_cmd_cal}
 
 ## Global Range Offset {#cmd_cal_range_offset}
 
@@ -609,8 +634,8 @@ Gets or sets the global range offset for a selected measurement mode.
 
 \see
 
-- #Argus_GetCalibrationGlobalRangeOffset
-- #Argus_SetCalibrationGlobalRangeOffset
+-   #Argus_GetCalibrationGlobalRangeOffset
+-   #Argus_SetCalibrationGlobalRangeOffset
 
 ## Pixel Range Offsets {#cmd_cal_offsets}
 
@@ -624,18 +649,18 @@ Gets or sets the pixel-to-pixel range offset table.
 
 Note on indices:
 
-- x: The pixel x-index (0-7)
-- y: The pixel y-index (0-3)
-  .
+-   x: The pixel x-index (0-7)
+-   y: The pixel y-index (0-3)
 
 \see
 
-- #Argus_GetCalibrationPixelRangeOffsets
-- #Argus_SetCalibrationPixelRangeOffsets
+-   #Argus_GetCalibrationPixelRangeOffsets
+-   #Argus_SetCalibrationPixelRangeOffsets
 
 ## Pixel Range Offsets - Reset Offset Table {#cmd_cal_offsets_rst}
 
-Command to reset the range offset table to the factory calibrated default values.
+Command to reset the range offset table to the factory calibrated default
+values.
 
 | Caption / Name            | Type  | Size | Unit | Comment                                                        |
 | ------------------------- | ----- | ---- | ---- | -------------------------------------------------------------- |
@@ -644,7 +669,7 @@ Command to reset the range offset table to the factory calibrated default values
 
 \see
 
-- #Argus_ResetCalibrationPixelRangeOffsets
+-   #Argus_ResetCalibrationPixelRangeOffsets
 
 ## Range Offsets Calibration Sequence - Sample Time {#cmd_cal_offsets_smpl_time}
 
@@ -657,8 +682,8 @@ Gets or sets the range offset calibration sequence sample time.
 
 \see
 
-- #Argus_GetCalibrationRangeOffsetSequenceSampleTime
-- #Argus_SetCalibrationRangeOffsetSequenceSampleTime
+-   #Argus_GetCalibrationRangeOffsetSequenceSampleTime
+-   #Argus_SetCalibrationRangeOffsetSequenceSampleTime
 
 ## Crosstalk Compensation - Vector Table {#cmd_cal_xtalk_vec}
 
@@ -672,20 +697,20 @@ Gets or sets the crosstalk compensation vector table.
 
 Note on indices:
 
-- f: The frequency index for A- and B-frames respectively (A = 0; B = 1)
-- x: The pixel x-index (0-7)
-- y: The pixel y-index (0-3)
-- a: The sin/cos index (sin = 0; cos = 1)
-  .
+-   f: The frequency index for A- and B-frames respectively (A = 0; B = 1)
+-   x: The pixel x-index (0-7)
+-   y: The pixel y-index (0-3)
+-   a: The sin/cos index (sin = 0; cos = 1)
 
 \see
 
-- #Argus_GetCalibrationCrosstalkVectorTable
-- #Argus_SetCalibrationCrosstalkVectorTable
+-   #Argus_GetCalibrationCrosstalkVectorTable
+-   #Argus_SetCalibrationCrosstalkVectorTable
 
 ## Crosstalk Compensation - Reset Vector Table {#cmd_cal_xtalk_rst}
 
-Command to reset the crosstalk vector table to the factory calibrated default values.
+Command to reset the crosstalk vector table to the factory calibrated default
+values.
 
 | Caption / Name            | Type  | Size | Unit | Comment                                                        |
 | ------------------------- | ----- | ---- | ---- | -------------------------------------------------------------- |
@@ -694,7 +719,7 @@ Command to reset the crosstalk vector table to the factory calibrated default va
 
 \see
 
-- #Argus_ResetCalibrationCrosstalkVectorTable
+-   #Argus_ResetCalibrationCrosstalkVectorTable
 
 ## Crosstalk Calibration Sequence - Sample Time {#cmd_cal_xtalk_smpl_time}
 
@@ -707,8 +732,8 @@ Gets or sets the crosstalk calibration sequence sample time.
 
 \see
 
-- #Argus_GetCalibrationCrosstalkSequenceSampleTime
-- #Argus_SetCalibrationCrosstalkSequenceSampleTime
+-   #Argus_GetCalibrationCrosstalkSequenceSampleTime
+-   #Argus_SetCalibrationCrosstalkSequenceSampleTime
 
 ## Crosstalk Calibration Sequence - Maximum Amplitude Threshold {#cmd_cal_xtalk_max_ampl}
 
@@ -721,8 +746,8 @@ Gets or sets the crosstalk calibration sequence maximum amplitude threshold.
 
 \see
 
-- #Argus_GetCalibrationCrosstalkSequenceAmplitudeThreshold
-- #Argus_SetCalibrationCrosstalkSequenceAmplitudeThreshold
+-   #Argus_GetCalibrationCrosstalkSequenceAmplitudeThreshold
+-   #Argus_SetCalibrationCrosstalkSequenceAmplitudeThreshold
 
 ## Pixel-2-Pixel Crosstalk Compensation Parameters {#cmd_cal_xtalk_p2p}
 
@@ -742,5 +767,5 @@ Gets or sets the pixel-2-pixel crosstalk calibration parameter values.
 
 \see
 
-- #Argus_GetCalibrationCrosstalkPixel2Pixel
-- #Argus_SetCalibrationCrosstalkPixel2Pixel
+-   #Argus_GetCalibrationCrosstalkPixel2Pixel
+-   #Argus_SetCalibrationCrosstalkPixel2Pixel

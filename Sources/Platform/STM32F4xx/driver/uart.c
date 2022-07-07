@@ -1,7 +1,7 @@
 /*************************************************************************//**
  * @file
- * @brief    	This file is part of the AFBR-S50 API.
- * @details		
+ * @brief    	This file is part of the STM32F401RE platform layer.
+ * @details		This file provides UART driver functionality.
  * 
  * @copyright
  * 

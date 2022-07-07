@@ -38,7 +38,8 @@
 #define ARGUS_HAL_TEST_H
 
 /*!***************************************************************************
- * @defgroup	argustest HAL Self Test
+ * @defgroup	argus_test HAL Self Test
+ * @ingroup     argus
  *
  * @brief		A test module to verify implementation of the HAL.
  *
@@ -46,7 +47,7 @@
  * 				platform in order to verify the	implementation of the HAL that
  * 				are required by the API.
  *
- * @addtogroup 	argustest
+ * @addtogroup 	argus_test
  * @{
  *****************************************************************************/
 

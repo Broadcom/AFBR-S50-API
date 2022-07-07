@@ -26,48 +26,50 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-/*****************************************************************************
+ *****************************************************************************/
 
-/*!
-@defgroup	explorerapp Explorer Application
-@brief		An example application for the Argus API.
-@details	This example application for the Argus API demonstrates an sophisticated
-			way to utilize and run the Argus Distance measurement sensor. It contains 
-			several parts:
-				- A generic and simple task scheduler.
-				- The corresponding task definitions of the Argus application called state machine.
-				- A serial protocol to communicate with the desktop application via a serial connection.
-				- ...
-*/
+/*!***************************************************************************
+@defgroup	explorer_app Explorer Application
+@ingroup 	demo_apps
+
+@brief		The AFBR-S50 Explorer Application featuring the SCI interface.
+
+@details	See also @ref explorer_app section for more details.
+
+The **Explorer Application** is a full featured implementation of the API
+that is used in the **AFBR-S50 Evaluation Kits**. The **Explorer
+Application** implements a sophisticated serial communication interface that
+publishes the full **AFBR-S50 API** via **USB** or **UART** interfaces. The
+**AFBR-S50 Explorer GUI** that runs on a Windows machines connects to the
+**Explorer Application**.
+
+The Explorer App features the following modules:
+- A generic and simple task scheduler.
+- The corresponding task definitions of the application called state machine.
+- A serial protocol to communicate with the desktop application via a serial connection.
+- ...
+
+*****************************************************************************/
 
 
-
-
-/*!
+/*!***************************************************************************
 @defgroup	platform Platform
+@ingroup	explorer_app
+
 @brief		Platform Dependent Code
+
 @details	Contains all platform dependent code like drivers and utilities,
 			board configurations, CMSIS, linker files and startup code.
-*/
 
+*****************************************************************************/
 
-/*!
+/*!***************************************************************************
 @defgroup	driver Driver
 @ingroup	platform
+
 @brief		Hardware Driver Module
+
 @details	Sumarizes all hardware drivers.
-*/
 
-
-
-
-/*!
-
-@defgroup	task Task Scheduler
-@ingroup	explorerapp
-@brief		A simple cooperative task scheduler with prioritized tasks.
-@details	A simple cooperative task scheduler with prioritized tasks.
-*/
-
-
+*****************************************************************************/
 

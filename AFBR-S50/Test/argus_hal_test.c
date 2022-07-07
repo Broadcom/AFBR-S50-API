@@ -217,6 +217,7 @@ static status_t TimerPlausibilityTest(void)
 
 	/* Adding a delay. Depending on MCU speed, this takes any time.
 	 * However, the Timer should be able to solve this on any MCU. */
+	//for (volatile uint32_t i = 0; i < 2; ++i) __asm("nop");
 	for (volatile uint32_t i = 0; i < 100000; ++i) __asm("nop");
 
 	/* Get new timer value and verify some time has elapsed. */
@@ -266,7 +267,7 @@ static status_t TimerPlausibilityTest(void)
 static status_t TimerWraparoundTest(void)
 {
 	/* Test parameter configuration: *****************************************/
-	const int8_t n = 2;		// The number of wraparounds to test.
+	const uint8_t n = 2;		// The number of wraparounds to test.
 	/*************************************************************************/
 
 	uint32_t hct0 = 0;
@@ -507,8 +508,9 @@ static void DataReadyCallback(void * param)
 static status_t ConfigureDevice(s2pi_slave_t slave, int8_t rcoTrim)
 {
 	/* Setup Device and Trigger Measurement. */
-	uint16_t v = 0x0010U | (((34 + rcoTrim) & 0x3F) << 6);
-	uint8_t d1[] = { 0x14, v >> 8, v & 0xFF, 0x21 };
+    assert(rcoTrim >= -34 && rcoTrim < 0x3F - 34);
+	uint16_t v = (uint16_t)(0x0010U | (((uint16_t)(34 + rcoTrim) & 0x3F) << 6U));
+	uint8_t d1[] = { 0x14U, (uint8_t)(v >> 8U), v & 0xFFU, 0x21U };
 	status_t status = SPITransferSync(slave, d1, sizeof(d1));
 	if (status < STATUS_OK)
 	{
@@ -628,8 +630,8 @@ static status_t TriggerMeasurement(s2pi_slave_t slave, uint16_t samples)
 {
 	// samples is zero based, i.e. writing 0 yields 1 sample
 	samples = samples > 0 ? samples - 1 : samples;
-	uint16_t v = 0x8000U | ((samples & 0x03FFU) << 5U);
-	uint8_t d[] = { 0x1C, v >> 8, v & 0xFFU };
+	uint16_t v = (uint16_t)(0x8000U | ((samples & 0x03FFU) << 5U));
+	uint8_t d[] = { 0x1CU, (uint8_t)(v >> 8U), v & 0xFFU };
 	status_t status = SPITransferSync(slave, d, sizeof(d));
 	if (status < STATUS_OK)
 	{
@@ -1095,8 +1097,8 @@ static status_t TimerTest(s2pi_slave_t slave)
 	/* Test parameter configuration: *****************************************/
 	const int8_t n = 10;				// The number of measurements.
 	const uint32_t ds = 100; 			// The step size in averaging samples.
-	const float exp_slope = 102.4; 		// Expected slope is 102.4 µs / phase / sample
-	const float rel_slope_error = 3e-2; // Relative slope tolerance is 3%.
+	const float exp_slope = 102.4f; 		// Expected slope is 102.4 µs / phase / sample
+	const float rel_slope_error = 3e-2f; // Relative slope tolerance is 3%.
 	/*************************************************************************/
 
 	/* Read RCOTrim value from EEPROM*/
@@ -1135,8 +1137,10 @@ static status_t TimerTest(s2pi_slave_t slave)
 		ltc_t start;
 		Time_GetNow(&start);
 
-		int samples = ds * i;
-		status = RunMeasurement(slave, samples);
+		uint32_t samples = ds * i;
+		assert(samples < UINT16_MAX);
+
+		status = RunMeasurement(slave, (uint16_t)samples);
 		if (status < STATUS_OK)
 		{
 			error_log("Timer test failed!\n"
@@ -1149,8 +1153,8 @@ static status_t TimerTest(s2pi_slave_t slave)
 
 		xsum += (float) samples;
 		ysum += (float) elapsed_usec;
-		x2sum += (float) samples * samples;
-		xysum += (float) samples * elapsed_usec;
+		x2sum += (float) samples * (float) samples;
+		xysum += (float) samples * (float) elapsed_usec;
 
 		print("| %5d | %7d | %10d |\n", i, samples, elapsed_usec);
 	}
@@ -1253,13 +1257,13 @@ static void PIT_Callback(void * param)
 static status_t RunPITTest(uint32_t exp_dt_us, uint32_t n)
 {
 	/* Test parameter configuration: *****************************************/
-	const float rel_dt_error = 1e-3; 	// Relative timer interval tolerance is 0.1%.
-	const float abs_dt_error = 1.0; 	// Absolute timer interval tolerance is 1us.
+	const float rel_dt_error = 1e-3f; 	// Relative timer interval tolerance is 0.1%.
+	const float abs_dt_error = 1.0f; 	// Absolute timer interval tolerance is 1us.
 	/*************************************************************************/
-	float dt = exp_dt_us * rel_dt_error;
+	float dt = (float) exp_dt_us * rel_dt_error;
 	if (dt < abs_dt_error) dt = abs_dt_error;
-	const float max_dt = exp_dt_us + dt;
-	const float min_dt = exp_dt_us - dt;
+	const float max_dt = (float) exp_dt_us + dt;
+	const float min_dt = (float) exp_dt_us - dt;
 	/*************************************************************************/
 
 	/* Setup the PIT callback with specified interval. */
@@ -1313,7 +1317,7 @@ static status_t RunPITTest(uint32_t exp_dt_us, uint32_t n)
 	}
 
 	/* Verify the measured average timer interval. */
-	const float act_dt_us = Time_DiffUSec(&data.t_first, &data.t_last) / (n - 1);
+	const float act_dt_us = (float) Time_DiffUSec(&data.t_first, &data.t_last) / (float) (n - 1);
 
 	if (status == STATUS_OK && (act_dt_us > max_dt || act_dt_us < min_dt))
 	{
