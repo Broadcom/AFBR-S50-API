@@ -27,7 +27,7 @@ should work fine with the library files. Note that builds that utilize these
 toolchains are not tested nor verified and can not be officially supported!
 
 If you still have to use one of these, make sure to read the
-[Binary Interoperability Between Toolchains Application Note](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0487a/index.html)
+[Binary Interoperability Between Toolchains Application Note](https://developer.arm.com/documentation/dai0487/latest/)
 by ARM to understand the implications of mixing code from different toolchains.
 
 As mentioned above, the **AFBR-S50 Core Library** is build with **AEABI**

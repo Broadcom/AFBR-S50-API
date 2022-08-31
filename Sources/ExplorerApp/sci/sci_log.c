@@ -60,7 +60,7 @@
 
 /*!***************************************************************************
  * @brief	A vprintf() function for the uart connection.
- * @details	This function is similar to #UART_Printf except that, instead of
+ * @details	This function is similar to #UART_Print except that, instead of
  * 			taking a variable number of arguments directly, it takes an
  * 			argument list pointer ap. Requires a call to #va_start(ap, fmt_s);
  * 			before and va_end(ap); after this function.
