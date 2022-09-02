@@ -107,7 +107,7 @@ Fig. 4.1: An overview of the AFBR-S50 software architecture for integration into
 <h1><a class="anchor" id="pg_toolchain"></a>
 Toolchain Compatibility</h1>
 <p >The <b>AFBR-S50 Core Library</b> is build and tested using the <a href="https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain">GNU Embedded Toolchain for Arm</a>. However, any other toolchain that supports <b>AEABI</b> compatible library linking should work fine with the library files. Note that builds that utilize these toolchains are not tested nor verified and can not be officially supported!</p>
-<p >If you still have to use one of these, make sure to read the <a href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0487a/index.html">Binary Interoperability Between Toolchains Application Note</a> by ARM to understand the implications of mixing code from different toolchains.</p>
+<p >If you still have to use one of these, make sure to read the <a href="https://developer.arm.com/documentation/dai0487/latest/">Binary Interoperability Between Toolchains Application Note</a> by ARM to understand the implications of mixing code from different toolchains.</p>
 <p >As mentioned above, the <b>AFBR-S50 Core Library</b> is build with <b>AEABI</b> compatibility enabled (i.e. with the <code>-library_interface=aeabi_clib</code> compiler flag). The following GNU toolchain settings are used to compile the libraries:</p>
 <ul>
 <li><code>-library_interface=aeabi_clib</code>: Specifies that the compiler output is <b>AEABI</b> compliant.</li>
