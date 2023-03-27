@@ -1,27 +1,27 @@
 /*************************************************************************//**
  * @file
- * @brief    	This file is part of the AFBR-S50 hardware API.
- * @details		Defines the generic device calibration API.
+ * @brief       This file is part of the AFBR-S50 hardware API.
+ * @details     Defines the generic device calibration API.
  *
  * @copyright
- * 
- * Copyright (c) 2021, Broadcom Inc
+ *
+ * Copyright (c) 2023, Broadcom Inc.
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * 1. Redistributions of source code must retain the above copyright notice, this
  *    list of conditions and the following disclaimer.
- * 
+ *
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 
+ *
  * 3. Neither the name of the copyright holder nor the names of its
  *    contributors may be used to endorse or promote products derived from
  *    this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -41,76 +41,103 @@ extern "C" {
 #endif
 
 /*!***************************************************************************
- * @addtogroup 	argus_cal
+ * @addtogroup  argus_cal
  * @{
  *****************************************************************************/
 
-#include "api/argus_def.h"
+#include "argus_def.h"
+#include "argus_dfm.h"
 
 /*!***************************************************************************
- * @brief	Pixel Crosstalk Compensation Vector.
- * @details	Contains calibration data (per pixel) that belongs to the
- * 			RX-TX-Crosstalk compensation feature.
+ * @brief   Pixel Crosstalk Compensation Vector.
+ * @details Contains calibration data (per pixel) that belongs to the
+ *          RX-TX-Crosstalk compensation feature.
+ *          The crosstalk vector consists of a Sine and Cosine component in LSB.
  *****************************************************************************/
-
-/*! Pixel Crosstalk Vector */
-typedef struct
+typedef struct xtalk_t
 {
-	/*! Crosstalk Vector - Sine component.
-	 *  Special Value: Q11_4_MIN == not available */
-	q11_4_t dS;
+    /*! Crosstalk Vector - Sine component.
+     *  Units: LSB
+     *  Special Value: Q11_4_MIN == not available */
+    q11_4_t dS;
 
-	/*! Crosstalk Vector - Cosine component.
-	 *  Special Value: Q11_4_MIN == not available */
-	q11_4_t dC;
+    /*! Crosstalk Vector - Cosine component.
+     *  Units: LSB
+     *  Special Value: Q11_4_MIN == not available */
+    q11_4_t dC;
 
 } xtalk_t;
 
 /*!***************************************************************************
- * @brief	Pixel-To-Pixel Crosstalk Compensation Parameters.
- * @details	Contains calibration data that belongs to the pixel-to-pixel
- * 			crosstalk compensation feature.
+ * @brief   Pixel Crosstalk Vector Table.
+ * @details Contains crosstalk vector values for all 32 active pixels,
+ *          separated for A/B-Frames.
  *****************************************************************************/
-typedef struct
+typedef struct argus_cal_xtalk_table_t
 {
-	/*! Pixel-To-Pixel Compensation on/off. */
-	bool Enabled;
+    union
+    {
+        struct
+        {
+            /*! The crosstalk vector table for A-Frames. */
+            xtalk_t FrameA[ARGUS_PIXELS_X][ARGUS_PIXELS_Y];
 
-	/*! The relative threshold determines when the compensation is active for
-	 *  each individual pixel. The value determines the ratio of the individual
-	 *  pixel signal is with respect to the overall average signal. If the
-	 *  ratio is smaller than the value, the compensation is active. Absolute
-	 *  and relative conditions are connected with AND logic. */
-	uq0_8_t RelativeThreshold;
+            /*! The crosstalk vector table for B-Frames. */
+            xtalk_t FrameB[ARGUS_PIXELS_X][ARGUS_PIXELS_Y];
+        };
 
-	/*! The absolute threshold determines the minimum total crosstalk
-	 *  amplitude (i.e. the average amplitude of all pixels weighted by
-	 *  the Kc factor) that is required for the compensation to become
-	 *  active. Set to 0 to always enable. Absolute and relative
-	 *  conditions are connected with AND logic. */
-	uq12_4_t AbsoluteTreshold;
+        /*! The crosstalk vector table for A/B-Frames of all 32 pixels.*/
+        xtalk_t Table[ARGUS_DFM_FRAME_COUNT][ARGUS_PIXELS_X][ARGUS_PIXELS_Y];
+    };
 
-	/*! The sine component of the Kc factor that determines the amount of the total
-	 *  signal of all pixels that influences the individual signal of each pixel.
-	 *  Higher values determine more influence on the individual pixel signal. */
-	q3_12_t KcFactorS;
+} argus_cal_xtalk_table_t;
 
-	/*! The cosine component of the Kc factor that determines the amount of the total
-	 *  signal of all pixels that influences the individual signal of each pixel.
-	 *  Higher values determine more influence on the individual pixel signal. */
-	q3_12_t KcFactorC;
 
-	/*! The sine component of the reference pixel Kc factor that determines the
-	 *  amount of the total signal on all pixels that influences the individual
-	 *  signal of the reference pixel.
-	 *  Higher values determine more influence on the reference pixel signal. */
-	q3_12_t KcFactorSRefPx;
+/*!***************************************************************************
+ * @brief   Pixel-To-Pixel Crosstalk Compensation Parameters.
+ * @details Contains calibration data that belongs to the pixel-to-pixel
+ *          crosstalk compensation feature.
+ *****************************************************************************/
+typedef struct argus_cal_p2pxtalk_t
+{
+    /*! Pixel-To-Pixel Compensation on/off. */
+    bool Enabled;
 
-	/*! The cosine component of the reference pixel Kc factor that determines the
-	 *  amount of the total signal on all pixels that influences the individual
-	 *  signal of the reference pixel.
-	 *  Higher values determine more influence on the reference pixel signal. */
-	q3_12_t KcFactorCRefPx;
+    /*! The relative threshold determines when the compensation is active for
+     *  each individual pixel. The value determines the ratio of the individual
+     *  pixel signal with respect to the overall average signal. If the
+     *  ratio is smaller than the value, the compensation is active. Absolute
+     *  and relative conditions are connected with AND logic. */
+    uq0_8_t RelativeThreshold;
+
+    /*! The absolute threshold determines the minimum total crosstalk
+     *  amplitude (i.e. the average amplitude of all pixels weighted by
+     *  the Kc factor) that is required for the compensation to become
+     *  active. Set to 0 to always enable. Absolute and relative
+     *  conditions are connected with AND logic. */
+    uq12_4_t AbsoluteTreshold;
+
+    /*! The sine component of the Kc factor that determines the amount of the total
+     *  signal of all pixels that influences the individual signal of each pixel.
+     *  Higher values determine more influence on the individual pixel signal. */
+    q3_12_t KcFactorS;
+
+    /*! The cosine component of the Kc factor that determines the amount of the total
+     *  signal of all pixels that influences the individual signal of each pixel.
+     *  Higher values determine more influence on the individual pixel signal. */
+    q3_12_t KcFactorC;
+
+    /*! The sine component of the reference pixel Kc factor that determines the
+     *  amount of the total signal on all pixels that influences the individual
+     *  signal of the reference pixel.
+     *  Higher values determine more influence on the reference pixel signal. */
+    q3_12_t KcFactorSRefPx;
+
+    /*! The cosine component of the reference pixel Kc factor that determines the
+     *  amount of the total signal on all pixels that influences the individual
+     *  signal of the reference pixel.
+     *  Higher values determine more influence on the reference pixel signal. */
+    q3_12_t KcFactorCRefPx;
 
 } argus_cal_p2pxtalk_t;
 

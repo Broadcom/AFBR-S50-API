@@ -193,7 +193,7 @@ typedef enum IRQn {
 
 #include "cmsis/core_cm0plus.h"              /* Core Peripheral Access Layer */
 
-#include "startup/MKL17Z/system_MKL17Z4.h"	/* Device specific configuration file */
+#include "startup/MKL17Z/system_MKL17Z4.h"  /* Device specific configuration file */
 /*!
  * @}
  */ /* end of group Cortex_Core_Configuration */

@@ -1,7 +1,7 @@
 /*************************************************************************//**
  * @file
  * @brief       This file is part of the RA4M2 platform layer.
- * @details		This file provides driver functionality for PIT (periodic interrupt timer).
+ * @details     This file provides driver functionality for PIT (periodic interrupt timer).
  *
  * @copyright
  *
@@ -42,7 +42,6 @@
 
 #include "driver/timer.h"
 #include "driver/irq.h"
-#include "board/board_config.h"
 #include "bsp_api.h"
 #include "hal_data.h"
 
@@ -66,8 +65,8 @@ void Timer_Init(void)
     if (!isInitialized)
     {
         /************************************************
-		 ***  Initialize timer 0 as lifetime counter. ***
-		 ************************************************/
+         ***  Initialize timer 0 as lifetime counter. ***
+         ************************************************/
         fsp_err_t err = R_GPT_Open(&g_ltc_ctrl, &g_ltc_cfg);
         assert(err == FSP_SUCCESS);
 
@@ -75,8 +74,8 @@ void Timer_Init(void)
         assert(err == FSP_SUCCESS);
 
         /********************************************************
-		 ***  Initialize timer 1 as periodic interrupt timer. ***
-		 ********************************************************/
+         ***  Initialize timer 1 as periodic interrupt timer. ***
+         ********************************************************/
         err = R_GPT_Open(&g_pit_ctrl, &g_pit_cfg);
         assert(err == FSP_SUCCESS);
 
@@ -159,5 +158,5 @@ status_t Timer_SetInterval(uint32_t dt_microseconds, void * param)
 void user_timer1_callback(timer_callback_args_t * p_args)
 {
     (void)p_args; //unused
-    myISR(myParam);
+    if (myISR) myISR(myParam);
 }

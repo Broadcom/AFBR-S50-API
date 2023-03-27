@@ -30,7 +30,6 @@ pull-request on the
 [AFBR-S50 GitHub repository](https://github.com/Broadcom/AFBR-S50-API) or reach
 out to the Broadcom TOF Support Team: <mailto:support.TOF@broadcom.com>
 
-
 ## Getting Started {#reference_board_getting_started}
 
 Get started on using the board by flashing the desired firmware to the board
@@ -94,7 +93,7 @@ of the **J5** header (i.e. the **SWD** interface).
     @image html 6_4_bootloader_successful.png "Fig. 6.4: Bootloader flashed device successfully." width=480
     @image latex 6_4_bootloader_successful.png "Fig. 6.4: Bootloader flashed device successfully." width=0.5\textwidth
 
-7.  Disconnect the USB cable and don't forget to remove the jumper in order to 
+7.  Disconnect the USB cable and don't forget to remove the jumper in order to
     reboot the board in normal operation mode.
 
 @note The `*.srec` files are available at

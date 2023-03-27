@@ -12,10 +12,10 @@ applications for the **AFBR-S50 Core Library**. The applications utilize the
 **AFBR-S50 API** and provide a fast getting started experience.
 
 Beneath the example implementations, the **Explorer App** publishes the full
-**AFBR-S50 sensor** functionality over **USB** or **UART** interfaces. The
-@ref reference_board by **MikroElektronika** 
-([available here](https://www.mikroe.com/bdc-afbr-s50-tof-sensor-board)) is 
-provided as an independent product that provides additional interfaces and 
+**AFBR-S50 sensor** functionality over **USB** or **UART** interfaces. The @ref
+reference_board by **MikroElektronika**
+([available here](https://www.mikroe.com/bdc-afbr-s50-tof-sensor-board)) is
+provided as an independent product that provides additional interfaces and
 features such as a **CAN-bus**.
 
 The **AFBR-S50 API** and reference implementation are running on the

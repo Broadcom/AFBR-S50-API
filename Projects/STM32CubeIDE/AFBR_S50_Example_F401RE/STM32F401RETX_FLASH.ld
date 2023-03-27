@@ -55,26 +55,35 @@ ENTRY(Reset_Handler)
 /* Highest address of the user mode stack */
 _estack = ORIGIN(RAM) + LENGTH(RAM);	/* end of "RAM" Ram type memory */
 
-_Min_Heap_Size = 0x1400 ;	/* required amount of heap  */
+_Min_Heap_Size = 0x4000 ;	/* required amount of heap  */
 _Min_Stack_Size = 0x4000 ;	/* required amount of stack */
 
 /* Memories definition */
 MEMORY
 {
-  RAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 96K
-  FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 512K
+  RAM      (xrw)  : ORIGIN = 0x20000000, LENGTH = 96K
+  VECTOR   (rx)   : ORIGIN = 0x08000000, LENGTH = 16K
+  DATA     (xrw)  : ORIGIN = 0x08004000, LENGTH = 32K
+  FLASH    (rx)   : ORIGIN = 0x0800C000, LENGTH = 464K
 }
 
 /* Sections */
 SECTIONS
 {
+  .user_data :
+  {
+    . = ALIGN(4);
+     KEEP(*(.user_data))
+    . = ALIGN(4);
+  } >DATA
+
   /* The startup code into "FLASH" Rom type memory */
   .isr_vector :
   {
     . = ALIGN(4);
     KEEP(*(.isr_vector)) /* Startup code */
     . = ALIGN(4);
-  } >FLASH
+  } >VECTOR
 
   /* The program code and other data into "FLASH" Rom type memory */
   .text :

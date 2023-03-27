@@ -54,7 +54,7 @@ static volatile uint8_t myUartRxData;
 static void uart_rx_callback(uint8_t const * data, uint32_t const size);
 
 /*! UART Data characters definition*/
-typedef enum
+typedef enum argus_uart_t
 {
     /*! Remote Frame ID for starting measurements */
     UART_START = 's',

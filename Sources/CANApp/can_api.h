@@ -1,7 +1,7 @@
 /*************************************************************************//**
  * @file
- * @brief    	AFBR-S50 CAN Interface
- * @details		This file defines an CAN interface to communicate with the
+ * @brief       AFBR-S50 CAN Interface
+ * @details     This file defines an CAN interface to communicate with the
  *              AFBR-S50 Time-Of-Flight sensor API.
  *
  * @copyright

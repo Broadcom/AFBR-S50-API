@@ -1,27 +1,27 @@
 /*************************************************************************//**
  * @file
- * @brief    	This file is part of the AFBR-S50 Explorer example application.
- * @details		A utility module that measures execution times of tasks.
- * 
+ * @brief       This file is part of the AFBR-S50 Explorer example application.
+ * @details     A utility module that measures execution times of tasks.
+ *
  * @copyright
- * 
- * Copyright (c) 2021, Broadcom Inc
+ *
+ * Copyright (c) 2023, Broadcom Inc.
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * 1. Redistributions of source code must retain the above copyright notice, this
  *    list of conditions and the following disclaimer.
- * 
+ *
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 
+ *
  * 3. Neither the name of the copyright holder nor the names of its
  *    contributors may be used to endorse or promote products derived from
  *    this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -47,7 +47,7 @@
 #include <assert.h>
 #include <stdint.h>
 #include "task_status.h"
-#include "utility/debug.h"
+#include "debug.h"
 #include "utility/time.h"
 
 /*******************************************************************************
@@ -58,12 +58,12 @@
 /*!***************************************************************************
  * @brief Task profiler information definition.
  *****************************************************************************/
-typedef struct
+typedef struct taskprofileinfo_t
 {
-	uint32_t ExecutionCount;
-	uint32_t FailedExecutionCount;
-	ltc_t ExecutionTime;
-	ltc_t LastStartTimeStamp;
+    uint32_t ExecutionCount;
+    uint32_t FailedExecutionCount;
+    ltc_t ExecutionTime;
+    ltc_t LastStartTimeStamp;
 } taskprofileinfo_t;
 
 /*******************************************************************************
@@ -87,44 +87,44 @@ static char * myLogPtr = myLogStr;
  ******************************************************************************/
 static void ProfilerLog(char type, char id)
 {
-//	*(myLogPtr++) = type;
-//	*(myLogPtr++) = id;
-//	if(myLogPtr - myLogStr > LOG_COUNT)
-//	{
-//		print(myLogStr);
-//		myLogPtr = myLogStr;
-//	}
+//  *(myLogPtr++) = type;
+//  *(myLogPtr++) = id;
+//  if(myLogPtr - myLogStr > LOG_COUNT)
+//  {
+//      print(myLogStr);
+//      myLogPtr = myLogStr;
+//  }
 }
 
 void OnTaskStart(uint32_t priority)
 {
-	ProfilerLog('S', (char)('a' + priority));
-	Time_GetNow(&(myTPI[priority].LastStartTimeStamp));
+    ProfilerLog('S', (char)('a' + priority));
+    Time_GetNow(&(myTPI[priority].LastStartTimeStamp));
 }
 void OnTaskFinished(uint32_t priority, status_t status)
 {
-	if(status == STATUS_OK)
-	{
-		ltc_t t = {0};
-		Time_GetElapsed(&t, &(myTPI[priority].LastStartTimeStamp));
-		Time_Add(&(myTPI[priority].ExecutionTime), &(myTPI[priority].ExecutionTime), &t);
-		myTPI[priority].ExecutionCount++;
-		ProfilerLog('P', (char)('a' + priority));
-	}
-	else
-	{
-		myTPI[priority].FailedExecutionCount++;
-		ProfilerLog('F', (char)('a' + priority));
-	}
+    if(status == STATUS_OK)
+    {
+        ltc_t t = {0};
+        Time_GetElapsed(&t, &(myTPI[priority].LastStartTimeStamp));
+        Time_Add(&(myTPI[priority].ExecutionTime), &(myTPI[priority].ExecutionTime), &t);
+        myTPI[priority].ExecutionCount++;
+        ProfilerLog('P', (char)('a' + priority));
+    }
+    else
+    {
+        myTPI[priority].FailedExecutionCount++;
+        ProfilerLog('F', (char)('a' + priority));
+    }
 }
 void OnTaskQueued(uint32_t priority)
 {
-	ProfilerLog('Q', (char)('a' + priority));
-	if(myLogPtr - myLogStr > LOG_COUNT)
-	{
-		print(myLogStr);
-		myLogPtr = myLogStr;
-	}
+    ProfilerLog('Q', (char)('a' + priority));
+    if(myLogPtr - myLogStr > LOG_COUNT)
+    {
+        print(myLogStr);
+        myLogPtr = myLogStr;
+    }
 }
 
 

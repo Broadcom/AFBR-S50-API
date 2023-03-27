@@ -1,6 +1,10 @@
 /* generated configuration header file - do not edit */
 #ifndef BSP_MCU_FAMILY_CFG_H_
 #define BSP_MCU_FAMILY_CFG_H_
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "bsp_mcu_device_pn_cfg.h"
 #include "bsp_mcu_device_cfg.h"
 #include "../../../ra/fsp/src/bsp/mcu/ra4m2/bsp_mcu_info.h"
@@ -73,7 +77,7 @@
             (((1 > 0) ? 0U : 1U) << 2) /* CAN0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 8) /* IIC1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 9) /* IIC0 */ | \
-            (((1 > 0) ? 0U : 1U) << 11) /* USBFS */ | \
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 11) /* USBFS */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 18) /* SPI1 */ | \
             (((1 > 0) ? 0U : 1U) << 19) /* SPI0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 22) /* SCI9 */ | \
@@ -136,7 +140,7 @@
 #ifndef BSP_TZ_CFG_MSSAR
 #define BSP_TZ_CFG_MSSAR (\
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 0) /* ELC */ | \
-            (((6 > 0) ? 0U : 1U) << 1) /* DTC_DMAC */ | \
+            (((4 > 0) ? 0U : 1U) << 1) /* DTC_DMAC */ | \
             0xfffffffc) /* Unused */
 #endif
 
@@ -215,8 +219,8 @@
 /* Security attribution for registers for DMAC channels */
 #ifndef BSP_TZ_CFG_ICUSARC
 #define BSP_TZ_CFG_ICUSARC (\
-            (((1 > 0) ? 0U : 1U) << 0U) /* DMAC Channel 0 */ | \
-            (((1 > 0) ? 0U : 1U) << 1U) /* DMAC Channel 1 */ | \
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 0U) /* DMAC Channel 0 */ | \
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 1U) /* DMAC Channel 1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 2U) /* DMAC Channel 2 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 3U) /* DMAC Channel 3 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 4U) /* DMAC Channel 4 */ | \
@@ -356,5 +360,9 @@
 #endif
 #ifndef BSP_CLOCK_CFG_MAIN_OSC_WAIT
 #define BSP_CLOCK_CFG_MAIN_OSC_WAIT (9)
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 #endif /* BSP_MCU_FAMILY_CFG_H_ */

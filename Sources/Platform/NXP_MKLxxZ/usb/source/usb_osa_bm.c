@@ -120,16 +120,16 @@ void USB_OsaMemoryFree(void *p)
 #include "driver/irq.h"
 void USB_OsaEnterCritical(uint32_t *sr)
 {
-	(void)sr;
-	IRQ_LOCK();
+    (void)sr;
+    IRQ_LOCK();
 //    *sr = DisableGlobalIRQ();
 //    __ASM("CPSID I");
 }
 
 void USB_OsaExitCritical(uint32_t sr)
 {
-	(void)sr;
-	IRQ_UNLOCK();
+    (void)sr;
+    IRQ_UNLOCK();
 //    EnableGlobalIRQ(sr);
 }
 
@@ -198,9 +198,9 @@ usb_osa_status_t USB_OsaEventSet(usb_osa_event_handle handle, uint32_t bitMask)
 }
 
 usb_osa_status_t USB_OsaEventWait(usb_osa_event_handle handle, uint32_t bitMask,
-								  uint32_t flag, uint32_t timeout, uint32_t *bitSet)
+                                  uint32_t flag, uint32_t timeout, uint32_t *bitSet)
 {
-	(void)timeout;
+    (void)timeout;
 
     usb_osa_event_struct_t *event = (usb_osa_event_struct_t *)handle;
     uint32_t bits;
@@ -349,7 +349,7 @@ usb_osa_status_t USB_OsaSemPost(usb_osa_sem_handle handle)
 
 usb_osa_status_t USB_OsaSemWait(usb_osa_sem_handle handle, uint32_t timeout)
 {
-	(void)timeout;
+    (void)timeout;
 
     usb_osa_sem_struct_t *sem = (usb_osa_sem_struct_t *)handle;
     USB_OSA_SR_ALLOC();
@@ -385,18 +385,18 @@ usb_osa_status_t USB_OsaMutexCreate(usb_osa_mutex_handle *handle)
 
 usb_osa_status_t USB_OsaMutexDestroy(usb_osa_mutex_handle handle)
 {
-	(void) handle;
-	return kStatus_USB_OSA_Success;
+    (void) handle;
+    return kStatus_USB_OSA_Success;
 }
 usb_osa_status_t USB_OsaMutexLock(usb_osa_mutex_handle handle)
 {
-	(void) handle;
-	return kStatus_USB_OSA_Success;
+    (void) handle;
+    return kStatus_USB_OSA_Success;
 }
 usb_osa_status_t USB_OsaMutexUnlock(usb_osa_mutex_handle handle)
 {
-	(void) handle;
-	return kStatus_USB_OSA_Success;
+    (void) handle;
+    return kStatus_USB_OSA_Success;
 }
 
 usb_osa_status_t USB_OsaMsgqCreate(usb_osa_msgq_handle *handle, uint32_t count, uint32_t size)
@@ -494,7 +494,7 @@ usb_osa_status_t USB_OsaMsgqSend(usb_osa_msgq_handle handle, void *msg)
 
 usb_osa_status_t USB_OsaMsgqRecv(usb_osa_msgq_handle handle, void *msg, uint32_t timeout)
 {
-	(void)timeout;
+    (void)timeout;
 
     usb_osa_msgq_struct_t *msgq = (usb_osa_msgq_struct_t *)handle;
     usb_osa_msg_struct_t *msgEntity;

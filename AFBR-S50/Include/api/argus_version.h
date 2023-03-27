@@ -1,11 +1,11 @@
 /*************************************************************************//**
  * @file
- * @brief    	This file is part of the AFBR-S50 API.
- * @details		This file contains the current API version number.
+ * @brief       This file is part of the AFBR-S50 API.
+ * @details     This file contains the current API version number.
  *
  * @copyright
  *
- * Copyright (c) 2021, Broadcom Inc
+ * Copyright (c) 2023, Broadcom Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,14 +41,14 @@ extern "C" {
 #endif
 
 /*!***************************************************************************
- * @defgroup	argus_version API Version
- * @ingroup		argus_api
+ * @defgroup    argus_version API Version
+ * @ingroup     argus_api
  *
- * @brief		API and library core version number
+ * @brief       API and library core version number
  *
- * @details		Contains the AFBR-S50 API and Library Core Version Number.
+ * @details     Contains the AFBR-S50 API and Library Core Version Number.
  *
- * @addtogroup 	argus_version
+ * @addtogroup  argus_version
  * @{
  *****************************************************************************/
 
@@ -56,24 +56,24 @@ extern "C" {
 #define ARGUS_API_VERSION_MAJOR    1
 
 /*! Minor version number of the AFBR-S50 API. */
-#define ARGUS_API_VERSION_MINOR    3
+#define ARGUS_API_VERSION_MINOR    4
 
 /*! Bugfix version number of the AFBR-S50 API. */
-#define ARGUS_API_VERSION_BUGFIX   5
+#define ARGUS_API_VERSION_BUGFIX   4
 
-/*! Build version nunber of the AFBR-S50 API. */
-#define ARGUS_API_VERSION_BUILD    "20210812171515"
+/*! Build version number of the AFBR-S50 API. */
+#define ARGUS_API_VERSION_BUILD    "20230327150535"
 
 /*****************************************************************************/
 
 /*! Construct the version number for drivers. */
 #define MAKE_VERSION(major, minor, bugfix) \
-	(((major) << 24) | ((minor) << 16) | (bugfix))
+    (((major) << 24) | ((minor) << 16) | (bugfix))
 
 /*! Version number of the AFBR-S50 API. */
 #define ARGUS_API_VERSION MAKE_VERSION((ARGUS_API_VERSION_MAJOR), \
-									   (ARGUS_API_VERSION_MINOR), \
-									   (ARGUS_API_VERSION_BUGFIX))
+                                       (ARGUS_API_VERSION_MINOR), \
+                                       (ARGUS_API_VERSION_BUGFIX))
 
 /*! @} */
 #ifdef __cplusplus

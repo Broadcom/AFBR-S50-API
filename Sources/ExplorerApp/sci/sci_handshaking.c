@@ -1,28 +1,28 @@
 /*************************************************************************//**
  * @file
- * @brief    	SCI Handshaking Commands
- * @details		This file provides an interface for the data link layer of the
- *				systems communication interface.
- * 
+ * @brief       SCI Handshaking Commands
+ * @details     This file provides an interface for the data link layer of the
+ *              systems communication interface.
+ *
  * @copyright
- * 
- * Copyright (c) 2021, Broadcom Inc
+ *
+ * Copyright (c) 2023, Broadcom Inc.
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * 1. Redistributions of source code must retain the above copyright notice, this
  *    list of conditions and the following disclaimer.
- * 
+ *
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 
+ *
  * 3. Neither the name of the copyright holder nor the names of its
  *    contributors may be used to endorse or promote products derived from
  *    this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -58,26 +58,45 @@
  * Variables
  ******************************************************************************/
 
-
 /*******************************************************************************
  * Code
  ******************************************************************************/
 
-status_t SCI_SendAcknowledge(sci_cmd_t cmd)
+status_t SCI_SendAcknowledge(sci_device_t deviceID, sci_cmd_t cmd)
 {
-	sci_frame_t * frame = SCI_DataLink_RequestTxFrame(true);
-	if(!frame) return ERROR_SCI_BUFFER_FULL;
-	SCI_Frame_Queue08u(frame, CMD_ACKNOWLEDGE);
-	SCI_Frame_Queue08u(frame, cmd);
-	return SCI_DataLink_SendTxFrame(frame, true);
+    sci_frame_t * frame = SCI_DataLink_RequestTxFrame(true);
+    if (!frame) return ERROR_SCI_BUFFER_FULL;
+
+    if (SCI_CMD_IS_EXTENDED_CMD(cmd))
+    {
+        SCI_Frame_Queue08u(frame, CMD_ACKNOWLEDGE | 0x80);
+        SCI_Frame_Queue08u(frame, deviceID);
+        SCI_Frame_Queue08u(frame, cmd | 0x80);
+    }
+    else
+    {
+        SCI_Frame_Queue08u(frame, CMD_ACKNOWLEDGE);
+        SCI_Frame_Queue08u(frame, cmd);
+    }
+    return SCI_DataLink_SendTxFrame(frame, true);
 }
 
-status_t SCI_SendNotAcknowledge(sci_cmd_t cmd, status_t reason)
+status_t SCI_SendNotAcknowledge(sci_device_t deviceID, sci_cmd_t cmd, status_t reason)
 {
-	sci_frame_t * frame = SCI_DataLink_RequestTxFrame(true);
-	if(!frame) return ERROR_SCI_BUFFER_FULL;
-	SCI_Frame_Queue08u(frame, CMD_NOT_ACKNOWLEDGE);
-	SCI_Frame_Queue08u(frame, cmd);
-	SCI_Frame_Queue16s(frame, (int16_t)reason);
-	return SCI_DataLink_SendTxFrame(frame, true);
+    sci_frame_t * frame = SCI_DataLink_RequestTxFrame(true);
+    if (!frame) return ERROR_SCI_BUFFER_FULL;
+
+    if (SCI_CMD_IS_EXTENDED_CMD(cmd))
+    {
+        SCI_Frame_Queue08u(frame, CMD_NOT_ACKNOWLEDGE | 0x80);
+        SCI_Frame_Queue08u(frame, deviceID);
+        SCI_Frame_Queue08u(frame, cmd | 0x80);
+    }
+    else
+    {
+        SCI_Frame_Queue08u(frame, CMD_NOT_ACKNOWLEDGE);
+        SCI_Frame_Queue08u(frame, cmd);
+    }
+    SCI_Frame_Queue16s(frame, (int16_t)reason);
+    return SCI_DataLink_SendTxFrame(frame, true);
 }

@@ -37,14 +37,14 @@
 #define CAN_APP_VERSION_H
 
 /*!***************************************************************************
- * @defgroup	can_version CAN Application Version
- * @ingroup		can_app
+ * @defgroup    can_version CAN Application Version
+ * @ingroup     can_app
  *
- * @brief		AFBR-S50 CAN Application version number
+ * @brief       AFBR-S50 CAN Application version number
  *
- * @details		Contains the AFBR-S50 CAN Application version number.
+ * @details     Contains the AFBR-S50 CAN Application version number.
  *
- * @addtogroup 	can_version
+ * @addtogroup  can_version
  * @{
  *****************************************************************************/
 
@@ -61,12 +61,12 @@
 
 /*! Construct the version number for drivers. */
 #define MAKE_VERSION(major, minor, bugfix) \
-	(((major) << 24) | ((minor) << 16) | (bugfix))
+    (((major) << 24) | ((minor) << 16) | (bugfix))
 
 /*! Version number of the CAN Application. */
 #define CAN_APP_VERSION MAKE_VERSION((CAN_APP_VERSION_MAJOR), \
-									 (CAN_APP_VERSION_MINOR), \
-									 (CAN_APP_VERSION_BUGFIX))
+                                     (CAN_APP_VERSION_MINOR), \
+                                     (CAN_APP_VERSION_BUGFIX))
 
 /*! @} */
 #endif /* CAN_APP_VERSION_H */

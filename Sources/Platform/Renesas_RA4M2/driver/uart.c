@@ -1,7 +1,7 @@
 /*************************************************************************//**
  * @file
- * @brief    	This file is part of the RA4M2 platform layer.
- * @details		This file provides UART driver functionality.
+ * @brief       This file is part of the RA4M2 platform layer.
+ * @details     This file provides UART driver functionality.
  *
  * @copyright
  *
@@ -76,9 +76,15 @@ static uart_rx_callback_t myRxCallback = 0;
 
 status_t UART_Init(void)
 {
-    fsp_err_t err = R_SCI_UART_Open(&g_uart0_ctrl, &g_uart0_cfg);
-    assert(err == FSP_SUCCESS);
-    return (err == FSP_SUCCESS) ? STATUS_OK : ERROR_FAIL;
+    static bool isInitialized = false;
+    if (!isInitialized)
+    {
+        fsp_err_t err = R_SCI_UART_Open(&g_uart0_ctrl, &g_uart0_cfg);
+        assert(err == FSP_SUCCESS);
+        if (err == FSP_SUCCESS) isInitialized = true;
+        return (err == FSP_SUCCESS) ? STATUS_OK : ERROR_FAIL;
+    }
+    return STATUS_OK;
 }
 
 static status_t UART_AwaitIdle(void)
@@ -152,14 +158,14 @@ bool UART_IsTxBusy(void)
 
 void UART_SetRxCallback(uart_rx_callback_t f)
 {
-	IRQ_LOCK();
-	myRxCallback = f;
-	IRQ_UNLOCK();
+    IRQ_LOCK();
+    myRxCallback = f;
+    IRQ_UNLOCK();
 }
 
 void UART_RemoveRxCallback(void)
 {
-	UART_SetRxCallback(0);
+    UART_SetRxCallback(0);
 }
 
 void user_uart_callback(uart_callback_args_t *p_args)

@@ -31,7 +31,7 @@
 #define _C_LOCK_CONFIG_H_
 
 /*!***************************************************************************
- * @brief	Function to initialize clock base on board configuration.
+ * @brief   Function to initialize clock base on board configuration.
  *****************************************************************************/
 void BOARD_ClockInit(void);
 

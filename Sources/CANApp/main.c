@@ -43,18 +43,13 @@
  * Include Files
  ******************************************************************************/
 #include "main.h"
-
-#include "can_app_version.h"
-#include "platform/argus_print.h"
-#include "board/clock_config.h"
-#include "driver/irq.h"
-#include "driver/s2pi.h"
-#include "driver/uart.h"
-#include "driver/timer.h"
-#include "driver/bsp.h"
-#include "can_api.h"
-#include "hal_data.h"
 #include "uart_api.h"
+#include "can_api.h"
+#include "can_app_version.h"
+
+#include "board/board.h"
+#include "driver/irq.h"
+#include "driver/bsp.h"
 
 
 /*******************************************************************************
@@ -72,27 +67,34 @@
  * Variables
  ******************************************************************************/
 
+
 /*!***************************************************************************
- *  Global raw data pointer variables for ADVANCED_MODE.
+ *  Global measurement data ready event counter.
  *
- *  Stores the raw data pointer obtained from the API measurement data ready
- *  callback for passing it to the #Argus_EvaluateData function outside of the
- *  interrupt callback scope (i.e. from the main thread/task). Note that the
- *  #Argus_EvaluateData function must be called once for each callback event
- *  since it clears the internal state of the raw data buffer. If not called,
- *  the API gets stuck waiting for the raw data buffer to be freed and ready
- *  to be filled with new measurement data.
+ *  Determines the number of measurement data ready events happened and thus
+ *  the number of timer the #Argus_EvaluateData function must be called to
+ *  free API internal date structures that buffer the raw sensor readout data.
  *
- *  In automatic measurement mode (#ADVANCED_DEMO = 1), i.e. if the measurements
- *  are automatically triggered on a time based schedule from the periodic
- *  interrupt timer (PIT), the callback may occur faster than the
- *  #Argus_EvaluateData function gets called from the main thread/task. This
- *  usually happens at high frame rates or too much CPU load on the main
- *  thread/task. In that case, the API delays new measurements until the
- *  previous buffers are cleared. Since the API contains two distinct raw
- *  data buffer, the user code must store two pointers in worst case scenario.
+ *  The #Argus_EvaluateData function must be called outside of the interrupt
+ *  callback scope (i.e. from the main thread/task) to avoid huge delays due
+ *  to the heavy data evaluation.
+ *
+ *  Note that the #Argus_EvaluateData function must be called once for each
+ *  callback event since it clears the internal state of the raw data buffer.
+ *  If not called, the API gets stuck waiting for the raw data buffer to be
+ *  freed and ready to be filled with new measurement data.
+ *
+ *  In automatic measurement mode, i.e. if the measurements are automatically
+ *  triggered on a time based schedule from the periodic interrupt timer (PIT),
+ *  the callback may occur faster than the #Argus_EvaluateData function gets
+ *  called from the main thread/task. This usually happens at high frame rates
+ *  or too much CPU load on the main thread/task. In that case, the API delays
+ *  new measurements until the previous buffers are cleared. Since the API
+ *  contains two distinct raw data buffers, this counter raises up to 2 in the
+ *  worst case scenario.
  *****************************************************************************/
-static volatile void * myRawDataPtr[2] = { 0 };
+static volatile uint8_t myDataReadyEvents = 0;
+
 
 /*! The AFBR-S50 Data Handle. */
 argus_hnd_t * hnd = 0;
@@ -109,19 +111,16 @@ argus_hnd_t * hnd = 0;
 static void print_help(void);
 
 /*!***************************************************************************
- * @brief   Initialization routine for board hardware and peripherals.
- *****************************************************************************/
-static void hardware_init(void);
-
-/*!***************************************************************************
  * @brief   Measurement data ready callback function.
  *
  * @param   status The measurement/device status from the last measurement cycle.
- * @param   data A pointer to the raw measurement data results that need to be
- *               passed to the #Argus_EvaluateData function.
+ *
+ * @param   device The pointer to the handle of the calling API instance. Used to
+ *                 identify the calling instance in case of multiple devices.
+ *
  * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-status_t measurement_ready_callback(status_t status, void * data);
+status_t measurement_ready_callback(status_t status, argus_hnd_t * device);
 
 
 /*******************************************************************************
@@ -142,7 +141,13 @@ int main(void)
 
     /* Initialize the platform hardware including the required peripherals
      * for the API. */
-    hardware_init();
+    Board_Init();
+
+    /* Initialize the CAN hardware. */
+    CAN_Init();
+
+    /* Initialize the UART API. */
+    UART_API_Init();
 
     /* The API module handle that contains all data definitions that is
      * required within the API module for the corresponding hardware device.
@@ -170,7 +175,7 @@ int main(void)
     uint8_t b = (uint8_t)((value >> 16) & 0xFFU);
     uint16_t c = (uint16_t)(value & 0xFFFFU);
     uint32_t id = Argus_GetChipID(hnd);
-    argus_module_version_t mv = Argus_GetModuleVersion(hnd);
+    const char * module = Argus_GetModuleName(hnd);
 
     print("\n##### AFBR-S50 API - CAN Application #############\n"
           "  APP Version: v%d.%d.%d\n"
@@ -179,15 +184,7 @@ int main(void)
           "  Module:      %s\n"
           "##################################################\n",
           CAN_APP_VERSION_MAJOR, CAN_APP_VERSION_MINOR, CAN_APP_VERSION_BUGFIX,
-          a, b, c, id,
-          mv == AFBR_S50MV85G_V1 ? "AFBR-S50MV85G (v1)" :
-          mv == AFBR_S50MV85G_V2 ? "AFBR-S50MV85G (v2)" :
-          mv == AFBR_S50MV85G_V3 ? "AFBR-S50MV85G (v3)" :
-          mv == AFBR_S50LV85D_V1 ? "AFBR-S50LV85D (v1)" :
-          mv == AFBR_S50MV68B_V1 ? "AFBR-S50MV68B (v1)" :
-          mv == AFBR_S50MV85I_V1 ? "AFBR-S50MV85I (v1)" :
-          mv == AFBR_S50SV85K_V1 ? "AFBR-S50SV85K (v1)" :
-          "unknown");
+          a, b, c, id, module);
 
     print_help();
 
@@ -207,21 +204,18 @@ int main(void)
         /* Check for incoming UART commands and handle the m. */
         UART_HandleCommand();
 
-        /* Disable IRQs to avoid update of the myRawDataPtr array between distinct read commands. */
-        IRQ_LOCK();
-        void * dataPtr = (void*)myRawDataPtr[0];
-        myRawDataPtr[0] = myRawDataPtr[1];
-        myRawDataPtr[1] = 0;
-        IRQ_UNLOCK();
-
         /* Check if new measurement data is ready. */
-        if (dataPtr != 0)
+        if (myDataReadyEvents)
         {
+            IRQ_LOCK();
+            myDataReadyEvents--;
+            IRQ_UNLOCK();
+
             /* The measurement data structure. */
             argus_results_t res;
 
             /* Evaluate the raw measurement results. */
-            status = Argus_EvaluateData(hnd, &res, dataPtr);
+            status = Argus_EvaluateData(hnd, &res);
             handle_error(status, "Argus_EvaluateData failed!");
 
             /* Sending measurement data via serial (UART) interface. */
@@ -280,43 +274,16 @@ void handle_error(status_t status, char const * msg)
 }
 
 
-static void hardware_init(void)
+status_t measurement_ready_callback(status_t status, argus_hnd_t * device)
 {
-    /* Initialize the board with clocks. */
-    BOARD_ClockInit();
+    (void) device; // currently unused...
 
-    /* Initialize timer required by the API. */
-    Timer_Init();
-
-    /* Initialize UART for print functionality. */
-    UART_API_Init();
-
-    /* Initialize the CAN hardware. */
-    CAN_Init();
-
-    /* Initialize the S2PI hardware required by the API. */
-    S2PI_Init(SPI_SLAVE, SPI_BAUD_RATE);
-}
-
-
-status_t measurement_ready_callback(status_t status, void * data)
-{
     handle_error(status, "Measurement Ready Callback received error!");
 
-    /* Store the data pointer for the main thread/task.
-     *
-     * Note: Do not call the evaluate measurement method
-     *       from within this callback since it is invoked in
-     *       a interrupt service routine and should return as
-     *       soon as possible. */
+    /* Count the events... */
+    myDataReadyEvents++;
 
-    assert(myRawDataPtr[0] == 0 || myRawDataPtr[1] == 0);
-    if (myRawDataPtr[0] == 0)
-        myRawDataPtr[0] = data;
-    else
-        myRawDataPtr[1] = data;
-
-    return status;
+    return STATUS_OK;
 }
 
 /*! @} */

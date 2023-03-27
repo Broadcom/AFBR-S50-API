@@ -50,44 +50,44 @@
  *  @ingroup status */
 enum StatusUSB
 {
-	/*! USB Error. */
-	ERROR_USB = -30,
+    /*! USB Error. */
+    ERROR_USB = -30,
 
-	/*! USB Busy Error. */
-	ERROR_USB_BUSY = -31,
+    /*! USB Busy Error. */
+    ERROR_USB_BUSY = -31,
 
-	/*! USB Timeout Error. */
-	ERROR_USB_TIMEOUT = -32
+    /*! USB Timeout Error. */
+    ERROR_USB_TIMEOUT = -32
 
 };
 
 /*!***************************************************************************
- * @brief	SCI physical layer received byte callback function type.
- * @details	Callback that is invoked whenever data has been received via the
- * 			physical layer.
- * @param	data The received data as byte (uint8_t) array.
- * @param	size The size of the received data.
- * @return 	-
+ * @brief   SCI physical layer received byte callback function type.
+ * @details Callback that is invoked whenever data has been received via the
+ *          physical layer.
+ * @param   data The received data as byte (uint8_t) array.
+ * @param   size The size of the received data.
+ * @return  -
  *****************************************************************************/
 typedef void (*usb_rx_callback_t)(uint8_t const * data, uint32_t const size);
 
 /*!***************************************************************************
- * @brief	SCI physical layer transmit done callback function type.
- * @details	Callback that is invoked whenever the physical layer has finished
- * 			transmitting the current data buffer.
- * @param	status The \link #status_t status\endlink of the transmitter;
- *       			 (#STATUS_OK on success).
- * @param	state A pointer to the state that was passed to the Tx function.
- * @return 	-
+ * @brief   SCI physical layer transmit done callback function type.
+ * @details Callback that is invoked whenever the physical layer has finished
+ *          transmitting the current data buffer.
+ * @param   status The \link #status_t status\endlink of the transmitter;
+ *                   (#STATUS_OK on success).
+ * @param   state A pointer to the state that was passed to the Tx function.
+ * @return  -
  *****************************************************************************/
 typedef void (*usb_tx_callback_t)(status_t status, void *state);
 
 /*!***************************************************************************
- * @brief	SCI error callback function type.
- * @detail	Callback that is invoked whenever a error occurs.
- * @param	status The error \link #status_t status\endlink that invoked the
- * 				   callback.
- * @return 	-
+ * @brief   SCI error callback function type.
+ * @detail  Callback that is invoked whenever a error occurs.
+ * @param   status The error \link #status_t status\endlink that invoked the
+ *                 callback.
+ * @return  -
  *****************************************************************************/
 typedef void (*usb_error_callback_t)(status_t status);
 
@@ -96,58 +96,58 @@ typedef void (*usb_error_callback_t)(status_t status);
  ******************************************************************************/
 
 /*!***************************************************************************
- * @brief	Initialize the USB Receiver/Transmitter
- * @details	This API is used to initialize the class.
- * @param 	-
- * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
+ * @brief   Initialize the USB Receiver/Transmitter
+ * @details This API is used to initialize the class.
+ * @param   -
+ * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t USB_DeviceApplicationInit(void);
 
 /*!***************************************************************************
- * @brief	Writes several bytes to the USB connection.
+ * @brief   Writes several bytes to the USB connection.
  * @details This API is used by the application to send data to the host system.
- * @param	txBuff Data array to write to the USB connection
- * @param	txSize The size of the data array
- * @param	f Callback function after tx is done, set 0 if not needed;
- * @param	state Optional user state that will be passed to callback
- * 					function; set 0 if not needed.
- * @return 	Returns the \link #status_t status\endlink:
- * 			 - #STATUS_OK (0) on success.
- * 			 - #STATUS_BUSY on Tx line busy
- * 			 - #ERROR_NOT_INITIALIZED
- * 			 - #ERROR_INVALID_ARGUMENT
+ * @param   txBuff Data array to write to the USB connection
+ * @param   txSize The size of the data array
+ * @param   f Callback function after tx is done, set 0 if not needed;
+ * @param   state Optional user state that will be passed to callback
+ *                  function; set 0 if not needed.
+ * @return  Returns the \link #status_t status\endlink:
+ *           - #STATUS_OK (0) on success.
+ *           - #STATUS_BUSY on Tx line busy
+ *           - #ERROR_NOT_INITIALIZED
+ *           - #ERROR_INVALID_ARGUMENT
  *****************************************************************************/
 status_t USB_SendBuffer(uint8_t * txBuff,
-						size_t txSize,
-						usb_tx_callback_t f,
-						void * state);
+                        size_t txSize,
+                        usb_tx_callback_t f,
+                        void * state);
 
 
 /*!***************************************************************************
- * @brief	Reads the transmittion status of the USB interface
- * @return	Booleon value:
- * 			 - true: device is busy
- * 			 - false: device is idle
+ * @brief   Reads the transmittion status of the USB interface
+ * @return  Booleon value:
+ *           - true: device is busy
+ *           - false: device is idle
  *****************************************************************************/
 bool USB_IsTxBusy(void);
 
 /*!***************************************************************************
- * @brief	Checks if USB Sending timeout is elapsed and cancels the request in
- * 			case of elapsed timeout.
+ * @brief   Checks if USB Sending timeout is elapsed and cancels the request in
+ *          case of elapsed timeout.
  *
- * @return 	True if the transfer has been canceled due to timeout.
+ * @return  True if the transfer has been canceled due to timeout.
  *****************************************************************************/
 bool USB_CancelIfTimeOutElapsed(void);
 
 /*!***************************************************************************
- * @brief	Installs an callback function for the byte received event.
- * @param	f The callback function pointer.
+ * @brief   Installs an callback function for the byte received event.
+ * @param   f The callback function pointer.
  *****************************************************************************/
  void USB_SetRxCallback(usb_rx_callback_t f);
 
 /*!***************************************************************************
- * @brief	Installs an callback function for the error occurred event.
- * @param	f The callback function pointer.
+ * @brief   Installs an callback function for the error occurred event.
+ * @param   f The callback function pointer.
  *****************************************************************************/
 void USB_SetErrorCallback(usb_error_callback_t f);
 

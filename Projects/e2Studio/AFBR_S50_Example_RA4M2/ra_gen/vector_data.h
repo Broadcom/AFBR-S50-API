@@ -1,6 +1,9 @@
 /* generated vector header file - do not edit */
 #ifndef VECTOR_DATA_H
 #define VECTOR_DATA_H
+#ifdef __cplusplus
+        extern "C" {
+        #endif
 /* Number of interrupts allocated */
 #ifndef VECTOR_DATA_IRQ_COUNT
 #define VECTOR_DATA_IRQ_COUNT    (10)
@@ -38,4 +41,7 @@ void gpt_counter_overflow_isr(void);
 #define ICU_IRQ1_IRQn          ((IRQn_Type) 8) /* ICU IRQ1 (External pin interrupt 1) */
 #define VECTOR_NUMBER_GPT1_COUNTER_OVERFLOW ((IRQn_Type) 9) /* GPT1 COUNTER OVERFLOW (Overflow) */
 #define GPT1_COUNTER_OVERFLOW_IRQn          ((IRQn_Type) 9) /* GPT1 COUNTER OVERFLOW (Overflow) */
+#ifdef __cplusplus
+        }
+        #endif
 #endif /* VECTOR_DATA_H */

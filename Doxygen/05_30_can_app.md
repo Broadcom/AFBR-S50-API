@@ -20,9 +20,9 @@ out to the Broadcom TOF Support Team: <mailto:support.TOF@broadcom.com>
 
 See @ref reference_board_bootloader for details.
 
-## Build And Run the CAN App using e2Studio IDE {#can_app_e2Studio}
+## Build And Run the CAN App using e² Studio IDE {#can_app_e2Studio}
 
-In order to run the provided **CAN App** project using the **e2 Studio IDE** by
+In order to run the provided **CAN App** project using the **e² Studio IDE** by
 **Renesas**, follow the steps in the @ref e2studio section to import, build and
 run/debug the **AFBR_S50_CANApp_RA4M2** project. Skip steps that connect to UART
 and connect to via CAN-Bus software instead.
@@ -54,7 +54,7 @@ Data Frame (0x28) Description:
 | Status         | -     | 6-7   | 16-bit signed int   | Measurement Status (0: OK, <0: Error, >0 Warning/Status, see #status_t for details) |
 
 
-Here is an overview of currently available UART commands: 
+Here is an overview of currently available UART commands:
 | Character       | Name                | Description                                                                                |
 | ----- | ------------------- | ------------------------------------------------------------------------------------------ |
 | s         | Start Measurements | Starts the measurement cycle on the board. |

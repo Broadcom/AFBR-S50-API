@@ -463,25 +463,25 @@ typedef enum _mcg_monitor_mode
  *  @ingroup status */
 enum StatusMCG
 {
-	/*!< Can't switch to target mode. */
+    /*!< Can't switch to target mode. */
     STATUS_MCG_MODE_UNREACHABLE = -41,
 
-	/*!< Current mode invalid for the specific function. */
+    /*!< Current mode invalid for the specific function. */
     STATUS_MCG_MODE_INVALID = -42,
 
-	/*!< Invalid bus clock for ATM. */
+    /*!< Invalid bus clock for ATM. */
     STATUS_MCG_ATM_BUS_CLOCK_INVALID = -43,
 
-	/*!< Invalid desired frequency for ATM. */
+    /*!< Invalid desired frequency for ATM. */
     STATUS_MCG_ATM_DESIRED_FREQ_INVALID = -44,
 
-	/*!< IRC is used when using ATM. */
+    /*!< IRC is used when using ATM. */
     STATUS_MCG_ATM_IRC_USED = -45,
 
-	/*!< Hardware fail occurs during ATM. */
+    /*!< Hardware fail occurs during ATM. */
     STATUS_MCG_ATM_HARDWARE_FAIL = -46,
 
-	/*!< Can't change the clock source because it is in use. */
+    /*!< Can't change the clock source because it is in use. */
     STATUS_MCG_SOURCE_USED = -47
 };
 

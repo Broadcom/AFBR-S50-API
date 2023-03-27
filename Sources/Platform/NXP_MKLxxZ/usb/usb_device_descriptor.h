@@ -43,10 +43,13 @@
 #define USB_DEVICE_MAX_POWER (0x32U)
 
 /*! @brieg USB descriptors. */
-#define USB_VENDOR_ID_LOW (0x6EU)
-#define USB_VENDOR_ID_HIGH (0x27U)
-#define USB_PRODUCT_ID_LOW (0x01U) /* Product ID: 0x0301 - EK; 0x0300 - Prototyp */
-#define USB_PRODUCT_ID_HIGH (0x03U)
+#ifndef USB_PRODUCT_ID
+#define USB_PRODUCT_ID (0x0301U)
+/* Product ID: 0x0301 - EK; 0x0300 - Prototyp (deprecated); 0x0310 - HTOL
+ * see here for a complete list:
+ * \\wrbgfs03.rgb.broadcom.net\dev\1_Projects\Project_Spectrometers\17_Software\Neue Geräte-IDs.xlsx */
+#endif
+#define USB_VENDOR_ID  (0x276EU)
 
 /*! @brief USB device class code */
 #define USB_DEVICE_CLASS (0x00U)

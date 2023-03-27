@@ -111,13 +111,13 @@ void BOARD_BootClockVLPR(void);
 
 
 /*!***************************************************************************
- * @brief	Function to initialize clock base on board configuration.
+ * @brief   Function to initialize clock base on board configuration.
  *****************************************************************************/
 void BOARD_ClockInit(void);
 
 
 /*!***************************************************************************
- * @brief 	Function to change clock mode to RUN mode.
+ * @brief   Function to change clock mode to RUN mode.
  *****************************************************************************/
 void BOARD_BootClockRUN(void);
 

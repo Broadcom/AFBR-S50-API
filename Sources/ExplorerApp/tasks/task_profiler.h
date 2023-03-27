@@ -1,27 +1,27 @@
 /*************************************************************************//**
  * @file
- * @brief    	This file is part of the AFBR-S50 Explorer example application.
- * @details		A utility module that measures execution times of tasks.
- * 
+ * @brief       This file is part of the AFBR-S50 Explorer example application.
+ * @details     A utility module that measures execution times of tasks.
+ *
  * @copyright
- * 
- * Copyright (c) 2021, Broadcom Inc
+ *
+ * Copyright (c) 2023, Broadcom Inc.
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * 1. Redistributions of source code must retain the above copyright notice, this
  *    list of conditions and the following disclaimer.
- * 
+ *
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 
+ *
  * 3. Neither the name of the copyright holder nor the names of its
  *    contributors may be used to endorse or promote products derived from
  *    this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -38,29 +38,29 @@
 #define TASK_PROFILER_H
 
 /*!***************************************************************************
- * @defgroup	profiler Task Profiler
- * @ingroup		scheduler
+ * @defgroup    profiler Task Profiler
+ * @ingroup     scheduler
  *
- * @brief		A utility module that measures execution times of tasks.
+ * @brief       A utility module that measures execution times of tasks.
  *
- * @details		This module provides basic functionality to do a simple
- * 				profiling of the scheduler tasks.
+ * @details     This module provides basic functionality to do a simple
+ *              profiling of the scheduler tasks.
  *
- * 				UNDER CONSTRUCTION!
+ *              UNDER CONSTRUCTION!
  *
- * 				This module is under construction and experimental.
- * 				A function is called before and after executing a task. The
- * 				consumed time is measured and summed via the platform time.h
- * 				utility module. For now, a debugger breakpoint can be used to
- * 				read the data from the device...
+ *              This module is under construction and experimental.
+ *              A function is called before and after executing a task. The
+ *              consumed time is measured and summed via the platform time.h
+ *              utility module. For now, a debugger breakpoint can be used to
+ *              read the data from the device...
  *
- * @addtogroup 	profiler
+ * @addtogroup  profiler
  * @{
  *****************************************************************************/
 
 
 /*!***************************************************************************
- * @brief	Enabled the profiler as preprocessor option.
+ * @brief   Enabled the profiler as preprocessor option.
  *****************************************************************************/
 #define PROFILING 0
 

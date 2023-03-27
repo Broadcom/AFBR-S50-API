@@ -1,6 +1,6 @@
 # MCU Porting Guide {#porting_guide}
 
-# Introduction {#pg_introduction}
+## Introduction {#pg_introduction}
 
 The following section gives an brief overview on how to integrate the **AFBR-S50
 Core Library and API** into an user application and how to port the library to
@@ -8,7 +8,7 @@ another platform. See the [Fig. 4.1](@ref sw_overview) for a visualization of
 the integration progress. The API is embedded into the user application where
 both are accessing the hardware peripherals via the driver and HAL layers.
 
-@anchor sw_overview 
+@anchor sw_overview
 @image html 4_1_sw_overview.png "Fig. 4.1: An overview of the AFBR-S50 software architecture for integration into an user application."
 @image latex 4_1_sw_overview.png "Fig. 4.1: An overview of the AFBR-S50 software architecture for integration into an user application."
 
@@ -18,7 +18,7 @@ interface with the **AFBR-S50** sensor device through the given peripherals. The
 following sections give an overview on the hardware interface layers and finally
 show a step-by-step guide on how to accomplish the porting task.
 
-# Toolchain Compatibility {#pg_toolchain}
+## Toolchain Compatibility {#pg_toolchain}
 
 The **AFBR-S50 Core Library** is build and tested using the
 [GNU Embedded Toolchain for Arm](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain).
@@ -44,7 +44,7 @@ flag). The following GNU toolchain settings are used to compile the libraries:
 @note The **AFBR-S50** code does not use any floating-point nor `wchar_t` values
 at all.
 
-# Architecture Compatibility {#pg_architecture}
+## Architecture Compatibility {#pg_architecture}
 
 The **AFBR-S50 Core Library** is compatible with all
 [Arm Cortex-M Series Processors](https://developer.arm.com/ip-products/processors/cortex-m).
@@ -102,7 +102,7 @@ anyhow.
 @see For more information on the topic see for example
 [this blog](https://embeddedartistry.com/blog/2017/10/11/demystifying-arm-floating-point-compiler-options/).
 
-# Hardware Compatibility {#pg_hardware}
+## Hardware Compatibility {#pg_hardware}
 
 The **AFBR-S50 Core Library** is build and tested using the
 [NXP FRDM-KL46Z](https://www.nxp.com/design/development-boards/freedom-development-boards/mcu-boards/freedom-development-platform-for-kinetis-kl3x-and-kl4x-mcus:FRDM-KL46Z)
@@ -142,7 +142,7 @@ here and must be added accordingly.
 The following section gives a brief overview on the corresponding hardware
 layers.
 
-# Hardware Layers {#pg_hw_layers}
+## Hardware Layers {#pg_hw_layers}
 
 The AFBR-S50 API basically supports any ARM Cortex-Mx based microcontroller
 platform. Merely the hardware layers need to be adopted to match the underlying
@@ -170,11 +170,11 @@ from within the interrupt service routines), the data evaluation must be
 executed from the main thread after the raw measurement data has been read from
 the device.
 
-## S2PI (= SPI + GPIO) Layer {#pg_s2pi}
+### S2PI (= SPI + GPIO) Layer {#pg_s2pi}
 
 The S2PI module is a combination of SPI and GPIO hardware. The communication
 with the device requires an SPI peripheral. To increase speed and lower the CPU
-load, it is recommended to us a DMA module along with the SPI interface. The
+load, it is recommended to use a DMA module along with the SPI interface. The
 measurement data ready event occurs when the measurement cycle on the device is
 finished and the data is ready to read. A single GPIO IRQ invoking a callback to
 the API core is required and incorporated into the SPI module.
@@ -189,11 +189,11 @@ forth and back between SPI and GPIO mode for the corresponding pins is
 incorporated into the S2PI module.
 
 @note The EEPROM read sequence (and herein the GPIO mode) is only executed once
-upon device initialization. This is, during the #Argus_Init API function. The
-EEPROM is not accessed while active distance measurements are executed and thus
-the GPIO toggle speed does not impact the device performance.
+upon device initialization. This is, during the #Argus_Init or #Argus_Reinit API
+functions. The EEPROM is not accessed while active distance measurements are
+executed and thus the GPIO toggle speed does not impact the device performance.
 
-### S2PI Overview
+#### S2PI Overview
 
 The module needs to provide two different modes of operation, both as SPI
 master:
@@ -227,16 +227,19 @@ master:
 See the [S2PI module](@ref argus_s2pi) documentation for more details on the SPI
 interface.
 
-@note If EEPROM readout fails and the device shows bad performance, refer to the
+@warning If the EEPROM readout fails the device operates in an uncalibrated mode
+which will result in decreased device performance! Please make sure to catch
+this case by checking the error return code if the #Argus_Init function
+(#ERROR_ARGUS_UNKNOWN_MODULE). Also refer to the
 [troubleshooting section](@ref faq_eeprom) for additional info on how to debug
 the GPIO mode.
 
-### S2PI Initialization
+#### S2PI Initialization
 
 The SPI hardware layer is required to be initialized before the first call to
 the core library.
 
-#### S2PI Pin configuration
+##### S2PI Pin configuration
 
 1. `CLK`, `MOSI`, `MISO`
 
@@ -289,7 +292,7 @@ The following table provides an overview over the GPIO configurations:
 | Mode for SPI  |    SPI    |    SPI    |  SPI  | SPI or GPIO |     GPIO     |
 | Mode for GPIO |   GPIO    |   GPIO    | GPIO  |    GPIO     |  (not used)  |
 
-#### SPI Mode
+##### SPI Mode
 
 The device works with `CPOL=1` (clock polarity) and `CPHA=1` (clock phase),
 meaning that the clock is pulled high in idle state and the data should be read
@@ -299,7 +302,7 @@ must be configured accordingly:
 -   `CPOL = 1`
 -   `CPHA = 1`
 
-#### SPI Speed
+##### SPI Speed
 
 The speed is crucial to achieve a high frame rate when performing continuous
 measurements: As each measurement requires around 500 bytes of data, the data
@@ -317,7 +320,7 @@ the SPI speed is often directly coupled with the system clock via a divider.
 @note In case of issues with SPI transfers, start with a lower SPI clock speed
 (e.g. 1 MHz) and increase successively.
 
-#### DMA Channels
+##### DMA Channels
 
 For the DMA (direct memory access) transfer, usually two separate channels need
 to be set up for the data read and write.
@@ -339,7 +342,7 @@ sure that the DMA implementation of your MCU supports this! Otherwise, the
 received data should be transferred to a temporary buffer and copied to the
 destination after reception.
 
-#### DMA Interrupts and Callback Function
+##### DMA Interrupts and Callback Function
 
 Usually, the SPI transmission requires a callback function to be triggered after
 the transmission is complete.
@@ -360,7 +363,7 @@ On the other hand, in the transmit only case, make sure that the DMA interrupt
 does not call the callback function, or unassert `CS`, before the last byte is
 fully transmitted, especially if the SPI speed is slow.
 
-#### DMA Interrupt Priority
+##### DMA Interrupt Priority
 
 To make use of stable and high frame rates, the SPI interrupt should not be
 blocked by other possibly longer running interrupts, so the interrupt priority
@@ -369,7 +372,11 @@ uses other interrupts for very time sensitive purposes, they should have higher
 priority, as the callback function may include preparing a new SPI transfer and
 therefore may take multiple microseconds to return.
 
-## Timer Layer {#pg_timer}
+An important thing to note is that the API will trigger new SPI transfers
+within the SPI and GPIO callback functions.
+
+
+### Timer Layer {#pg_timer}
 
 The [Timer Interface](@ref argus_timer) implements two timers: a lifetime
 counter (LTC) for time measurement duties and a periodic interrupt timer (PIT)
@@ -379,7 +386,7 @@ for the triggering of measurements on a time based schedule.
 limits. Note that this timer must be setup carefully in order to guarantee the
 laser safety to be within **Class 1**.
 
-### Lifetime Counter (LTC)
+#### Lifetime Counter (LTC)
 
 The lifetime counter should be set up to deliver the current time in
 microseconds. The timer resolution must be in the magnitude of 10 to 100
@@ -400,7 +407,7 @@ a software based scenario, the first timer triggers an interrupt upon the wrap
 around. A 32-bit software counter representing the seconds is increased within
 the interrupt service routine.
 
-### Periodic Interrupt Timer (PIT)
+#### Periodic Interrupt Timer (PIT)
 
 Note that the periodic interrupt timer is mandatory only if the user requires
 the measurements to be started autonomously in the background on a time based
@@ -420,7 +427,7 @@ The granularity of the PIT is highly dependent on the required measurement frame
 rate. E.g. to achieve 1000 frames per seconds, the PIT must be able to trigger
 every millisecond!
 
-## Interrupt Layer {#pg_irq}
+### Interrupt Layer {#pg_irq}
 
 As described in the sections about the S2PI and Timer layers, the Argus API uses
 three different kinds of interrupts associated with callback functions that have
@@ -443,7 +450,7 @@ to be set up during the module initialization:
     no new measurement is started and the measurement cycle is delayed or
     skipped.
 
-### Interrupt Priority
+#### Interrupt Priority
 
 All of these interrupts with their callbacks typically take several microseconds
 to complete. The callback functions within the API are designed to not induce
@@ -459,7 +466,7 @@ be chosen in the following way:
 -   Other interrupts that are not as important or less time critical should get
     a lower interrupt priority (typically a higher value).
 
-### Concurrency and Interrupt Locking
+#### Concurrency and Interrupt Locking
 
 The callbacks from the interrupts above provide information or trigger new SPI
 transfers. In order to prevent concurrency issues, the program must be able to
@@ -476,7 +483,7 @@ all maskable interrupts. If other critical interrupts are present, an
 alternative implementation can selectively lock only the interrupts used by the
 Argus API.
 
-## NVM Layer {#pg_nvm}
+### NVM Layer {#pg_nvm}
 
 The Non-Volatile Memory (NVM) layer is an optional interface that provides
 access to a non-volatile memory hardware, e.g. flash. This is used to
@@ -495,7 +502,7 @@ the impact of cover glass.
 be achieved by using the corresponding API functions and apply the previous
 parameters after the system reset manually.
 
-## Log Layer {#pg_log}
+### Log Layer {#pg_log}
 
 In order to send debug and error messages, a `printf`-like function from the
 [Debug Interface](@ref argus_log) can be implemented. If not required, the
@@ -508,20 +515,20 @@ Note that errors are propagated using the #status_t enumeration of status and
 error codes. Any method within the API returns an error code that gives a hint
 on the execution status of the routine.
 
-# Verifying the ported code using the HAL Self Test {#hal_self_test}
+## Verifying the ported code using the HAL Self Test {#hal_self_test}
 
 The **HAL Self Test** module is provide to help the user to verify its ported
 code on the new platform. It runs a series of simple tests on the target
 platform and verifies things like SPI, GPIO and timer implementations. In case
 of timer tests, the connected AFBR-S50 sensor device is used as a reference
-clock in order to verify the correct timings. Please refer to the 
+clock in order to verify the correct timings. Please refer to the
 [HAL Self Test](@ref #argus_test) module for a detailed documentations.
 
-Here is the modified @ref advanced_example_app from the 
-@ref getting_started section. The changes are basically an additional
-include directive and the call to the #Argus_VerifyHALImplementation function.
-The function call is placed after hardware initialization (i.e. `hardware_init`)
-and before device initialization (i.e. #Argus_Init).
+Here is the modified @ref advanced_example_app from the @ref getting_started
+section. The changes are basically an additional include directive and the call
+to the #Argus_VerifyHALImplementation function. The function call is placed
+after hardware initialization (i.e. `hardware_init`) and before device
+initialization (i.e. #Argus_Init).
 
 Please find the example files in `[INSTALL_DIR]\Device\Examples\` (default is
 `C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Examples\`).
@@ -530,9 +537,10 @@ The HAL self test header and source files are located under
 `[INSTALL_DIR]\Device\Examples\test\` (default is
 `C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Examples\test\`).
 
-\ref 03_hal_self_test_example.c 
+\ref 01_simple_example_with_hal_self_test.c
+\ref 02_advanced_example_with_hal_self_test.c
 
-# Step-by-Step Porting Guide {#pg_guide}
+## Step-by-Step Porting Guide {#pg_guide}
 
 The following step-by-step guide leads through the basic process on getting the
 API running on any Cortex-M0 based development environment. The steps are
@@ -551,7 +559,7 @@ only. An extensive porting guide to a Cortex-M4 architecture is available on the
 document shows the full task of porting the **AFBR-S50 API** to a new processor
 platform on the example of a STM32F403RE Cortex-M4 microprocessor.
 
-## Create a new project in your environment {#pg_new_project}
+### Create a new project in your environment {#pg_new_project}
 
 The first step would be to create a new empty project or use an existing one.
 Usually this is done utilizing the provided platform specific SDK provided by
@@ -560,10 +568,10 @@ is used to create a project with at least SPI (with DMA mode), GPIO and PIT
 (periodic interrupt timer) support. The new project is tested using the "Hello
 World" print statement.
 
-@image html 4_2_new_project.jpg "Fig. 4.2: Creating a new SDK project." width=800px 
+@image html 4_2_new_project.jpg "Fig. 4.2: Creating a new SDK project." width=800px
 @image latex 4_2_new_project.jpg "Fig. 4.2: Creating a new SDK project."
 
-## Implement hardware interfaces {#pg_hw_interface}
+### Implement hardware interfaces {#pg_hw_interface}
 
 After the successfully creating, building and testing the new SDK project, the
 hardware interfaces required by the AFBR-S50 Core Library need to implemented.
@@ -574,17 +582,17 @@ scratch.
 In order to start, the include files must be referenced in the project and a
 source file is required for each interface file. The simplest way to include the
 API into your project is to copy the files. Go to the install directory if the
-AFBR-S50 SDK and find the files in `[INSTALL_DIR]\Device\Lib` (see 
+AFBR-S50 SDK and find the files in `[INSTALL_DIR]\Device\Lib` (see
 [Fig.  4.3](@ref fig_02_lib_dir)).
 
-@anchor fig_02_lib_dir 
-@image html 4_3_lib_dir.jpg "Fig. 4.3: The AFBR-S50 library directory." width=600px 
+@anchor fig_02_lib_dir
+@image html 4_3_lib_dir.jpg "Fig. 4.3: The AFBR-S50 library directory." width=600px
 @image latex 4_3_lib_dir.jpg "Fig. 4.3: The AFBR-S50 library directory."
 
 The **AFBR-S50** library and include files are in the AFBR-S50 folder which
 needs to be copied into the project.
 
-@image html 4_4_copied_lib_files.jpg "Fig. 4.4: The AFBR-S50 library files are copied into the project folder." width=400px 
+@image html 4_4_copied_lib_files.jpg "Fig. 4.4: The AFBR-S50 library files are copied into the project folder." width=400px
 @image latex 4_4_copied_lib_files.jpg "Fig. 4.4: The AFBR-S50 library files are copied into the project folder."
 
 Note: The example.c file as well as the platform folder belonging to the
@@ -603,7 +611,7 @@ following files are created:
 -   `argus_timer.c`
 -   `argus_irq.c` .
 
-@image html 4_5_setup_project.jpg "Fig. 4.5: Setup the include path and add the 'AFBR-S50\\Include' folder. Afterwards create a source '*.c' file for each header '*.h' file in the 'AFBR-S50\\Include\\platform' folder. Create an empty function body for each function declaration in the corresponding header files." width=800px 
+@image html 4_5_setup_project.jpg "Fig. 4.5: Setup the include path and add the 'AFBR-S50\\Include' folder. Afterwards create a source '*.c' file for each header '*.h' file in the 'AFBR-S50\\Include\\platform' folder. Create an empty function body for each function declaration in the corresponding header files." width=800px
 @image latex 4_5_setup_project.jpg "Fig. 4.5: Setup the include path and add the 'AFBR-S50\\Include' folder. Afterwards create a source '*.c' file for each header '*.h' file in the 'AFBR-S50\\Include\\platform' folder. Create an empty function body for each function declaration in the corresponding header files."
 
 Note that the `argus_nvm.h` is ignored in this examples since the usage of the
@@ -666,7 +674,7 @@ of the platform layers that come with the AFBR-S50 SDK, found in
     argus_log) header and implements a print functionality over an UART
     interface. .
 
-## Link Library File {#pg_linker}
+### Link Library File {#pg_linker}
 
 Now that the platform layers are implemented, the library needs to be linked
 into the project. Therefore add the **AFBR-S50** folder
@@ -674,14 +682,15 @@ into the project. Therefore add the **AFBR-S50** folder
 `libafbrs50.a` file to the linker libraries (i.e. `afbrs50`, leaving away the
 `lib` and `.a` in case of GNU toolchain).
 
-@image html 4_6_setup_linker.jpg "Fig. 4.6: Setup the linker by adding the **AFBR-S50** library search path and the `afbrs50` library." width=800px 
+@image html 4_6_setup_linker.jpg "Fig. 4.6: Setup the linker by adding the **AFBR-S50** library search path and the `afbrs50` library." width=800px
 @image latex 4_6_setup_linker.jpg "Fig. 5.6: Setup the linker by adding the **AFBR-S50** library search path and the `afbrs50` library."
 
-## Utilize the API {#pg_api}
+### Utilize the API {#pg_api}
 
 Now, the **AFBR-S50 API** is ready to use. Include the `argus.h` header and
 start coding your AFBR-S50 application. Refer to the
 [Getting Started Guide](@ref getting_started) to see an example
 implementation with basic measurements.
 
-\example 03_hal_self_test_example.c
+\example 01_simple_example_with_hal_self_test.c
+\example 02_advanced_example_with_hal_self_test.c

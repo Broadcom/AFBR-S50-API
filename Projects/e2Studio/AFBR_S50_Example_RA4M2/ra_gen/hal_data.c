@@ -220,7 +220,12 @@ const external_irq_cfg_t g_external_irq0_cfg =
           .filter_enable = false,
           .pclk_div = EXTERNAL_IRQ_PCLK_DIV_BY_64,
           .p_callback = user_irq_callback,
-          .p_context = NULL,
+          /** If NULL then do not add & */
+#if defined(NULL)
+    .p_context           = NULL,
+#else
+          .p_context = &NULL,
+#endif
           .p_extend = NULL,
           .ipl = (3),
           #if defined(VECTOR_NUMBER_ICU_IRQ1)
@@ -240,18 +245,19 @@ dtc_instance_ctrl_t g_transfer3_ctrl;
 
 transfer_info_t g_transfer3_info =
         {
-          .dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-          .repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
-          .irq = TRANSFER_IRQ_END,
-          .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-          .src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-          .size = TRANSFER_SIZE_1_BYTE,
-          .mode = TRANSFER_MODE_NORMAL,
+          .transfer_settings_word_b.dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+          .transfer_settings_word_b.repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
+          .transfer_settings_word_b.irq = TRANSFER_IRQ_END,
+          .transfer_settings_word_b.chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+          .transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+          .transfer_settings_word_b.size = TRANSFER_SIZE_1_BYTE,
+          .transfer_settings_word_b.mode = TRANSFER_MODE_NORMAL,
           .p_dest = (void*)NULL,
           .p_src = (void const*)NULL,
           .num_blocks = 0,
           .length = 0,
         };
+
 const dtc_extended_cfg_t g_transfer3_cfg_extend =
         {
           .activation_source = VECTOR_NUMBER_SCI0_RXI,
@@ -273,18 +279,19 @@ dtc_instance_ctrl_t g_transfer2_ctrl;
 
 transfer_info_t g_transfer2_info =
         {
-          .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-          .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
-          .irq = TRANSFER_IRQ_END,
-          .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-          .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-          .size = TRANSFER_SIZE_1_BYTE,
-          .mode = TRANSFER_MODE_NORMAL,
+          .transfer_settings_word_b.dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+          .transfer_settings_word_b.repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
+          .transfer_settings_word_b.irq = TRANSFER_IRQ_END,
+          .transfer_settings_word_b.chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+          .transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+          .transfer_settings_word_b.size = TRANSFER_SIZE_1_BYTE,
+          .transfer_settings_word_b.mode = TRANSFER_MODE_NORMAL,
           .p_dest = (void*)NULL,
           .p_src = (void const*)NULL,
           .num_blocks = 0,
           .length = 0,
         };
+
 const dtc_extended_cfg_t g_transfer2_cfg_extend =
         {
           .activation_source = VECTOR_NUMBER_SCI0_TXI,
@@ -306,8 +313,9 @@ sci_uart_instance_ctrl_t g_uart0_ctrl;
 
 baud_setting_t g_uart0_baud_setting =
         {
-          /* Baud rate calculated with 2.124% error. */.abcse = 0,
-          .abcs = 0, .bgdm = 1, .cks = 0, .brr = 33, .mddr = (uint8_t)256, .brme = false
+          /* Baud rate calculated with 2.124% error. */.semr_baudrate_bits_b.abcse = 0,
+          .semr_baudrate_bits_b.abcs = 0, .semr_baudrate_bits_b.bgdm = 1, .cks = 0, .brr = 33, .mddr = (uint8_t)256,
+          .semr_baudrate_bits_b.brme = false
         };
 
 /** UART extended configuration for UARTonSCI HAL driver */
@@ -323,7 +331,16 @@ const sci_uart_extended_cfg_t g_uart0_cfg_extend =
                 .flow_control_pin       = BSP_IO_PORT_FF_PIN_0xFF,
                 #else
           .flow_control_pin = (bsp_io_port_pin_t)UINT16_MAX,
-        #endif
+#endif
+          .rs485_setting = {
+                             .enable = SCI_UART_RS485_DISABLE,
+                             .polarity = SCI_UART_RS485_DE_POLARITY_HIGH,
+                             #if 0xFF != 0xFF
+                    .de_control_pin = BSP_IO_PORT_FF_PIN_0xFF,
+                #else
+                             .de_control_pin = (bsp_io_port_pin_t)UINT16_MAX,
+          #endif
+                  },
         };
 
 /** UART interface configuration */
@@ -385,18 +402,19 @@ dtc_instance_ctrl_t g_transfer1_ctrl;
 
 transfer_info_t g_transfer1_info =
         {
-          .dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-          .repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
-          .irq = TRANSFER_IRQ_END,
-          .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-          .src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-          .size = TRANSFER_SIZE_2_BYTE,
-          .mode = TRANSFER_MODE_NORMAL,
+          .transfer_settings_word_b.dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+          .transfer_settings_word_b.repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
+          .transfer_settings_word_b.irq = TRANSFER_IRQ_END,
+          .transfer_settings_word_b.chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+          .transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+          .transfer_settings_word_b.size = TRANSFER_SIZE_2_BYTE,
+          .transfer_settings_word_b.mode = TRANSFER_MODE_NORMAL,
           .p_dest = (void*)NULL,
           .p_src = (void const*)NULL,
           .num_blocks = 0,
           .length = 0,
         };
+
 const dtc_extended_cfg_t g_transfer1_cfg_extend =
         {
           .activation_source = VECTOR_NUMBER_SPI0_RXI,
@@ -418,18 +436,19 @@ dtc_instance_ctrl_t g_transfer0_ctrl;
 
 transfer_info_t g_transfer0_info =
         {
-          .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-          .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
-          .irq = TRANSFER_IRQ_END,
-          .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-          .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-          .size = TRANSFER_SIZE_2_BYTE,
-          .mode = TRANSFER_MODE_NORMAL,
+          .transfer_settings_word_b.dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+          .transfer_settings_word_b.repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
+          .transfer_settings_word_b.irq = TRANSFER_IRQ_END,
+          .transfer_settings_word_b.chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+          .transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+          .transfer_settings_word_b.size = TRANSFER_SIZE_2_BYTE,
+          .transfer_settings_word_b.mode = TRANSFER_MODE_NORMAL,
           .p_dest = (void*)NULL,
           .p_src = (void const*)NULL,
           .num_blocks = 0,
           .length = 0,
         };
+
 const dtc_extended_cfg_t g_transfer0_cfg_extend =
         {
           .activation_source = VECTOR_NUMBER_SPI0_TXI,

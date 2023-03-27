@@ -41,7 +41,7 @@
 /* CPU specific feature definitions */
 #include "devices/MKL46Z/MKL46Z4_features.h"
 
-#include "utility/platform_status.h"
+#include "utility/status.h"
 
 /*!
  * @addtogroup ksdk_common

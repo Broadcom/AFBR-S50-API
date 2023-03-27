@@ -24,6 +24,10 @@ to present its usage:
         measurement modes of the AFBR-S50 API. Note that adequate hardware is
         required to achieve really high measurement rates.
 
+    -   The \ref multi_device_example_app demonstration of the usage of multiple
+        devices from a single MCU. Note that adequate hardware is required to
+        talk to multiple devices.
+
 -   \subpage explorer_app
 
     The **Explorer Application** is a full featured implementation of the API

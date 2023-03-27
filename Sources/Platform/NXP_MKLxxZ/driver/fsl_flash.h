@@ -127,58 +127,58 @@ enum _flash_driver_version_constants
  * @ingroup status */
 enum StatusFlash
 {
-	/*! Error size */
-	ERROR_FLASH_SIZE_ERROR = -80,
+    /*! Error size */
+    ERROR_FLASH_SIZE_ERROR = -80,
 
-	/*! Parameter is not aligned with specified baseline */
-	ERROR_FLASH_ALIGNMENT_ERROR = -81,
+    /*! Parameter is not aligned with specified baseline */
+    ERROR_FLASH_ALIGNMENT_ERROR = -81,
 
-	/*! Address is out of range */
-	ERROR_FLASH_ADDRESS_ERROR = -82,
+    /*! Address is out of range */
+    ERROR_FLASH_ADDRESS_ERROR = -82,
 
-	/*! Invalid instruction codes and out-of bounds addresses */
-	ERROR_FLASH_ACCESS_ERROR = -83,
-	/*! The program/erase operation is requested to execute on protected areas */
-	ERROR_FLASH_PROTECTION_VIOLATION = -84,
+    /*! Invalid instruction codes and out-of bounds addresses */
+    ERROR_FLASH_ACCESS_ERROR = -83,
+    /*! The program/erase operation is requested to execute on protected areas */
+    ERROR_FLASH_PROTECTION_VIOLATION = -84,
 
-	/*! Run-time error during command execution. */
-	ERROR_FLASH_COMMAND_FAILURE = -85,
+    /*! Run-time error during command execution. */
+    ERROR_FLASH_COMMAND_FAILURE = -85,
 
-	/*! Unknown property.*/
-	ERROR_FLASH_UNKNOWN_PROPERTY = -86,
+    /*! Unknown property.*/
+    ERROR_FLASH_UNKNOWN_PROPERTY = -86,
 
-	/*! API erase key is invalid.*/
-	ERROR_FLASH_ERASE_KEY_ERROR = -87,
+    /*! API erase key is invalid.*/
+    ERROR_FLASH_ERASE_KEY_ERROR = -87,
 
-	/*! Current region is execute only.*/
-	ERROR_FLASH_REGION_EXECUTE_ONLY = -88,
+    /*! Current region is execute only.*/
+    ERROR_FLASH_REGION_EXECUTE_ONLY = -88,
 
-	/*!< Execute-in-RAM function is not available.*/
-	ERROR_FLASH_EXEXUTE_IN_RAM_FUNCTION_NOT_READY = -89,
+    /*!< Execute-in-RAM function is not available.*/
+    ERROR_FLASH_EXEXUTE_IN_RAM_FUNCTION_NOT_READY = -89,
 
-	/*!< Failed to update partition status.*/
-	ERROR_FLASH__PARTITION_STATUS_UPDATE_FAILURE = -90,
+    /*!< Failed to update partition status.*/
+    ERROR_FLASH__PARTITION_STATUS_UPDATE_FAILURE = -90,
 
-	/*!< Failed to set flexram as EEPROM.*/
-	ERROR_FLASH_SET_FLEXRAM_AS_EEPROM_ERROR = -91,
+    /*!< Failed to set flexram as EEPROM.*/
+    ERROR_FLASH_SET_FLEXRAM_AS_EEPROM_ERROR = -91,
 
-	/*!< Failed to recover flexram as EEPROM.*/
-	ERROR_FLASH_RECOVER_FLEXRAM_AS_EEPROM_ERROR = -92,
+    /*!< Failed to recover flexram as EEPROM.*/
+    ERROR_FLASH_RECOVER_FLEXRAM_AS_EEPROM_ERROR = -92,
 
-	/*!< Failed to set flexram as RAM.*/
-	ERROR_FLASH_SET_FLEXRAM_AS_RAM_ERROR = -93,
+    /*!< Failed to set flexram as RAM.*/
+    ERROR_FLASH_SET_FLEXRAM_AS_RAM_ERROR = -93,
 
-	/*!< Failed to recover flexram as RAM.*/
-	ERROR_FLASH_RECOVER_FLEXRAM_AS_RAM_ERROR = -94,
+    /*!< Failed to recover flexram as RAM.*/
+    ERROR_FLASH_RECOVER_FLEXRAM_AS_RAM_ERROR = -94,
 
-	/*!< Flash API is not supported.*/
-	ERROR_FLASH_COMMAND_NOT_SUPPORTED = -95,
+    /*!< Flash API is not supported.*/
+    ERROR_FLASH_COMMAND_NOT_SUPPORTED = -95,
 
-	/*!< Swap system is not in uninitialzed state.*/
-	ERROR_FLASH_SWAP_SYSTEM_NOT_IN_UNITIALIZED = -96,
+    /*!< Swap system is not in uninitialzed state.*/
+    ERROR_FLASH_SWAP_SYSTEM_NOT_IN_UNITIALIZED = -96,
 
-	/*!< Swap indicator address is invalid.*/
-	ERROR_FLASH_SWAP_INDICATOR_ADDRESS_ERROR = -97,
+    /*!< Swap indicator address is invalid.*/
+    ERROR_FLASH_SWAP_INDICATOR_ADDRESS_ERROR = -97,
 };
 /*@}*/
 

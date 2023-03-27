@@ -1,7 +1,7 @@
 /*************************************************************************//**
  * @file
  * @brief       This file is part of the RA4M2 platform layer.
- * @details		This file provides an interface for IO Ports.
+ * @details     This file provides an interface for IO Ports.
  *
  * @copyright
  *

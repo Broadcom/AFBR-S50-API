@@ -1,27 +1,27 @@
 /*************************************************************************//**
  * @file
- * @brief    	This file is part of the AFBR-S50 API.
- * @details		
- * 
+ * @brief       This file is part of the AFBR-S50 API.
+ * @details
+ *
  * @copyright
- * 
+ *
  * Copyright (c) 2021, Broadcom Inc
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * 1. Redistributions of source code must retain the above copyright notice, this
  *    list of conditions and the following disclaimer.
- * 
+ *
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- * 
+ *
  * 3. Neither the name of the copyright holder nor the names of its
  *    contributors may be used to endorse or promote products derived from
  *    this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -46,14 +46,14 @@
  * First, two sectors of size 16kbyte are allocated for the storage of data.
  * These two sections are used alternating to save the data. The reason is that
  * each sector must be erased fully before any data can be written. This means,
- * the data must be buffered somewhere. Unfortunately it's not possible to
- * buffer such a large amount of data in RAM. Thus, the data is copied from the
- * currently active flash sector to the currently unused sector and the data
- * that needs to be written to the device is inserted while copying.
+ * the data must be buffered somewhere. Unfortunately it's not easily possible
+ * to buffer such a large amount of data in RAM. Thus, the data is copied from
+ * the currently active flash sector to the currently unused sector and the
+ * data that needs to be written to the device is inserted while copying.
  *
  * A few bytes at the beginning of the sector are reserved to represent the
  * current status of the section. If the first byte of a section is 0, the
- * secor holds the data. If it is 0xFF, it is currently unused. After erasing
+ * sector holds the data. If it is 0xFF, it is currently unused. After erasing
  * the data, all bytes are 0xFF in the erased sector.
  *
  * The algorithm is as follows:
@@ -66,19 +66,15 @@
  * 5. Finish by locking the flash driver.
  * ***************************************************************************/
 
-__attribute__((__section__(".user_data"))) const volatile uint8_t userConfig[0x8000]; // sector 1+2
+/*******************************************************************************
+ * Definitions
+ ******************************************************************************/
 
-/*!*****************************************************************************
- * @brief	Initializes global flash properties structure members.
- * @return 	Returns the \link #status_t status\endlink (#STATUS_OK on success).
- *****************************************************************************/
-status_t Flash_Init(void)
-{
-	return STATUS_OK;
-}
+/*! The size of a single flash sector. */
+#define FLASH_SECTOR_SIZE 0x4000U
 
+/*! Address offset for header bytes. */
 #define FLASH_ADDRESS_OFFSET 16U
-
 
 /*! Unlock the flash memory for writing. */
 #define FLASH_UNLOCK() do { if (HAL_FLASH_Unlock() != HAL_OK) return ERROR_FAIL; } while(0)
@@ -88,157 +84,193 @@ status_t Flash_Init(void)
 
 /*! Erase the flash memory \p sector before writing. */
 #define FLASH_ERASE_SECTOR(sector) do { \
-		__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | FLASH_FLAG_PGSERR ); \
-		FLASH_Erase_Sector(sector, VOLTAGE_RANGE_3); \
-	} while(0)
-
-/*! Size of flash sector 1. */
-#define FLASH_SECTOR_1_SIZE 0x4000U
-
-/*! Size of flash sector 2. */
-#define FLASH_SECTOR_2_SIZE 0x4000U
+        __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | FLASH_FLAG_PGSERR ); \
+        FLASH_Erase_Sector(sector, VOLTAGE_RANGE_3); \
+    } while(0)
 
 /*! Address of flash sector 1. */
 #define FLASH_SECTOR_1_ADDR ((uint32_t)(userConfig))
 
 /*! Address of flash sector 2. */
-#define FLASH_SECTOR_2_ADDR ((uint32_t)(userConfig) + FLASH_SECTOR_1_SIZE)
+#define FLASH_SECTOR_2_ADDR ((uint32_t)(userConfig) + FLASH_SECTOR_SIZE)
 
+/*! Obtains the current sector. */
 #define FLASH_CURRENT_SECTOR() ((userConfig[0] == 0x00U) ? FLASH_SECTOR_1 : FLASH_SECTOR_2)
+
+/*! Obtains the not current sector. */
 #define FLASH_NOT_CURRENT_SECTOR() ((userConfig[0] == 0x00U) ? FLASH_SECTOR_2 : FLASH_SECTOR_1)
 
 /*! Macro to determine the address vector of a specified flash sector by its index. */
 #define FLASH_SECTOR_ADDRESS(startaddr, index, offset) \
-	((uint32_t)(((startaddr) + FLASH_ADDRESS_OFFSET) + ((index) * (FLASH_BLOCK_SIZE)) + (offset)))
+    ((uint32_t)(((startaddr) + FLASH_ADDRESS_OFFSET) + ((index) * (FLASH_BLOCK_SIZE)) + (offset)))
 
+/*! Obtains the current sector address. */
 #define FLASH_CURRENT_SECTOR_ADDR() ((userConfig[0] == 0x00U) ? FLASH_SECTOR_1_ADDR : FLASH_SECTOR_2_ADDR)
+
+/*! Obtains the not current sector address. */
 #define FLASH_NOT_CURRENT_SECTOR_ADDR() ((userConfig[0] == 0x00U) ? FLASH_SECTOR_2_ADDR : FLASH_SECTOR_1_ADDR)
 
-status_t Flash_Read(uint32_t index, uint32_t offset,
-					uint8_t * data, uint32_t size)
-{
-	if (data == 0) return ERROR_INVALID_ARGUMENT;
-	if (size == 0) return ERROR_INVALID_ARGUMENT;
-	if (FLASH_SECTOR_ADDRESS(0, index, offset) + size > FLASH_SECTOR_1_SIZE)
-		return ERROR_OUT_OF_RANGE;
+/*! Array that points to the reserved flash memory for user data. */
+__attribute__((__section__(".user_data"))) const volatile uint8_t userConfig[2*FLASH_SECTOR_SIZE]; // sector 1+2
 
-	memcpy(data, (uint8_t*)FLASH_SECTOR_ADDRESS(FLASH_CURRENT_SECTOR_ADDR(), index, offset), size);
-	return STATUS_OK;
+/*!*****************************************************************************
+ * @brief   Initializes global flash properties structure members.
+ * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
+ *****************************************************************************/
+status_t Flash_Init(void)
+{
+    static_assert(FLASH_SECTOR_SIZE > FLASH_TOTAL_SIZE + FLASH_ADDRESS_OFFSET,
+                  "Flash sector size exceeded!");
+    static_assert(((FLASH_TOTAL_SIZE + FLASH_ADDRESS_OFFSET) & 0xF) == 0,
+                  "Flash sector size must be multiple of 16 bytes!");
+    return STATUS_OK;
+}
+
+
+status_t Flash_Read(uint32_t index, uint32_t offset,
+                    uint8_t * data, uint32_t size)
+{
+    if (data == 0) return ERROR_INVALID_ARGUMENT;
+    if (size == 0) return ERROR_INVALID_ARGUMENT;
+    if (FLASH_SECTOR_ADDRESS(0, index, offset) + size > FLASH_TOTAL_SIZE + FLASH_ADDRESS_OFFSET)
+        return ERROR_OUT_OF_RANGE;
+
+    memcpy(data, (uint8_t*)FLASH_SECTOR_ADDRESS(FLASH_CURRENT_SECTOR_ADDR(), index, offset), size);
+    return STATUS_OK;
 }
 
 status_t Flash_Write(uint32_t index, uint32_t offset,
-					 uint8_t const *data, uint32_t size)
+                     uint8_t const *data, uint32_t size)
 {
-	if (data == 0) return ERROR_INVALID_ARGUMENT;
-	if (size == 0) return ERROR_INVALID_ARGUMENT;
-	if (FLASH_SECTOR_ADDRESS(0, index, offset) + size > FLASH_SECTOR_1_SIZE)
-		return ERROR_OUT_OF_RANGE;
+    if (data == 0) return ERROR_INVALID_ARGUMENT;
+    if (size == 0) return ERROR_INVALID_ARGUMENT;
+    if (FLASH_SECTOR_ADDRESS(0, index, offset) + size > FLASH_TOTAL_SIZE + FLASH_ADDRESS_OFFSET)
+        return ERROR_OUT_OF_RANGE;
 
-	uint32_t const rd_sector = FLASH_CURRENT_SECTOR();
-	uint32_t const wr_sector = FLASH_NOT_CURRENT_SECTOR();
-	uint32_t const rd_sector_addr = FLASH_CURRENT_SECTOR_ADDR();
-	uint32_t const wr_sector_addr = FLASH_NOT_CURRENT_SECTOR_ADDR();
+    uint32_t const rd_sector = FLASH_CURRENT_SECTOR();
+    uint32_t const wr_sector = FLASH_NOT_CURRENT_SECTOR();
+    uint32_t const rd_sector_addr = FLASH_CURRENT_SECTOR_ADDR();
+    uint32_t const wr_sector_addr = FLASH_NOT_CURRENT_SECTOR_ADDR();
 
-	uint32_t const start = FLASH_SECTOR_ADDRESS(wr_sector_addr, index, offset);
-	uint32_t const stop = start + size;
+    uint32_t const start = FLASH_SECTOR_ADDRESS(wr_sector_addr, index, offset);
+    uint32_t const stop = start + size;
 
-	/* rd: 0000... wr: ????.... */
+    /* rd: 0000... wr: ????.... */
 
-	FLASH_UNLOCK();
-	FLASH_ERASE_SECTOR(wr_sector);
+    FLASH_UNLOCK();
+    FLASH_ERASE_SECTOR(wr_sector);
 
-	/* rd: 0000... wr: FFFF.... */
+    /* rd: 0000... wr: FFFF.... */
 
-	if (HAL_FLASH_Program(TYPEPROGRAM_WORD, wr_sector_addr, 0) != HAL_OK)
-	{
-		FLASH_LOCK();
-		return ERROR_FAIL;
-	}
+    if (HAL_FLASH_Program(TYPEPROGRAM_WORD, wr_sector_addr, 0) != HAL_OK)
+    {
+        FLASH_LOCK();
+        return ERROR_FAIL;
+    }
 
-	/* Copy data to other sector and fill in new data. */
-	for (uint32_t rd = rd_sector_addr, wr = wr_sector_addr;
-		 wr < wr_sector_addr + FLASH_TOTAL_SIZE;
-		 ++rd, ++wr)
-	{
-		if (wr == start)
-		{
-			rd = (uint32_t)data;
-		}
-		else if (wr == stop)
-		{
-			rd = rd_sector_addr + (wr - wr_sector_addr);
-		}
+    /* Copy data to other sector and fill in new data.
+     * Note: the size is limited to FLASH_TOTAL_SIZE to increase access speed. */
 
-		if (HAL_FLASH_Program(TYPEPROGRAM_BYTE, wr, *((uint8_t*)rd)) != HAL_OK)
-		{
-			FLASH_LOCK();
-			return ERROR_FAIL;
-		}
-	}
+    uint32_t rd = rd_sector_addr + FLASH_ADDRESS_OFFSET;
+    uint32_t wr = wr_sector_addr + FLASH_ADDRESS_OFFSET;
+    for (uint32_t i = 0; i < FLASH_TOTAL_SIZE >> 2; ++i)
+    {
+        uint32_t val = 0;
+        for (uint32_t j = 0; j < sizeof(uint32_t); ++j)
+        {
+            if (wr == start)
+            {
+                rd = (uint32_t) data;
+            }
+            else if (wr == stop)
+            {
+                rd = rd_sector_addr + (wr - wr_sector_addr);
+            }
 
-	/* cur: 0000... oth: 00dd.... */
+            val |= (*((uint8_t*) rd)) << (j << 3);
 
-	FLASH_ERASE_SECTOR(rd_sector);
+            ++wr;
+            ++rd;
+        }
 
-	/* cur: ffff... oth: FFFF.... */
+        if (HAL_FLASH_Program(TYPEPROGRAM_WORD, wr - sizeof(uint32_t), val) != HAL_OK)
+        {
+            FLASH_LOCK();
+            return ERROR_FAIL;
+        }
+    }
 
-	FLASH_LOCK();
-	return STATUS_OK;
+    /* cur: 0000... oth: 00dd.... */
+
+    FLASH_ERASE_SECTOR(rd_sector);
+
+    /* cur: ffff... oth: FFFF.... */
+
+    FLASH_LOCK();
+    return STATUS_OK;
 }
 
 status_t Flash_Clear(uint32_t index, uint32_t offset, uint32_t size)
 {
-	if (size == 0) return ERROR_INVALID_ARGUMENT;
-	if (FLASH_SECTOR_ADDRESS(0, index, offset) + size > FLASH_SECTOR_1_SIZE)
-		return ERROR_OUT_OF_RANGE;
+    if (size == 0) return ERROR_INVALID_ARGUMENT;
+    if (FLASH_SECTOR_ADDRESS(0, index, offset) + size > FLASH_TOTAL_SIZE + FLASH_ADDRESS_OFFSET)
+        return ERROR_OUT_OF_RANGE;
 
-	uint32_t const rd_sector = FLASH_CURRENT_SECTOR();
-	uint32_t const wr_sector = FLASH_NOT_CURRENT_SECTOR();
-	uint32_t const rd_sector_addr = FLASH_CURRENT_SECTOR_ADDR();
-	uint32_t const wr_sector_addr = FLASH_NOT_CURRENT_SECTOR_ADDR();
+    uint32_t const rd_sector = FLASH_CURRENT_SECTOR();
+    uint32_t const wr_sector = FLASH_NOT_CURRENT_SECTOR();
+    uint32_t const rd_sector_addr = FLASH_CURRENT_SECTOR_ADDR();
+    uint32_t const wr_sector_addr = FLASH_NOT_CURRENT_SECTOR_ADDR();
 
-	uint32_t const start = FLASH_SECTOR_ADDRESS(wr_sector_addr, index, offset);
-	uint32_t const stop = start + size;
+    uint32_t const start = FLASH_SECTOR_ADDRESS(wr_sector_addr, index, offset);
+    uint32_t const stop = start + size;
 
-	/* rd: 0000... wr: ????.... */
+    /* rd: 0000... wr: ????.... */
 
-	FLASH_UNLOCK();
-	FLASH_ERASE_SECTOR(wr_sector);
+    FLASH_UNLOCK();
+    FLASH_ERASE_SECTOR(wr_sector);
 
-	/* rd: 0000... wr: FFFF.... */
+    /* rd: 0000... wr: FFFF.... */
 
-	if (HAL_FLASH_Program(TYPEPROGRAM_WORD, wr_sector_addr, 0) != HAL_OK)
-	{
-		FLASH_LOCK();
-		return ERROR_FAIL;
-	}
+    if (HAL_FLASH_Program(TYPEPROGRAM_WORD, wr_sector_addr, 0) != HAL_OK)
+    {
+        FLASH_LOCK();
+        return ERROR_FAIL;
+    }
 
-	/* Copy data to other sector and fill in new data. */
-	for (uint32_t rd = rd_sector_addr, wr = wr_sector_addr;
-		 wr < wr_sector_addr + FLASH_TOTAL_SIZE;
-		 ++rd, ++wr)
-	{
-		uint8_t val = (wr >= start && wr < stop) ? 0 : *((uint8_t*)rd);
+    /* Copy data to other sector and fill in new data.
+     * Note: the size is limited to FLASH_TOTAL_SIZE to increase access speed. */
+    uint32_t rd = rd_sector_addr + FLASH_ADDRESS_OFFSET;
+    uint32_t wr = wr_sector_addr + FLASH_ADDRESS_OFFSET;
+    for (uint32_t i = 0; i < FLASH_TOTAL_SIZE >> 2; ++i)
+    {
+        uint32_t val = 0;
+        for (uint32_t j = 0; j < sizeof(uint32_t); ++j)
+        {
+            uint8_t b = (wr >= start && wr < stop) ? 0 : *((uint8_t*)rd);
+            val |= b << (j << 3);
+            ++wr;
+            ++rd;
+        }
 
-		if (HAL_FLASH_Program(TYPEPROGRAM_BYTE, wr, val) != HAL_OK)
-		{
-			FLASH_LOCK();
-			return ERROR_FAIL;
-		}
-	}
+        if (HAL_FLASH_Program(TYPEPROGRAM_WORD, wr - sizeof(uint32_t), val) != HAL_OK)
+        {
+            FLASH_LOCK();
+            return ERROR_FAIL;
+        }
+    }
 
-	/* cur: 0000... oth: 00dd.... */
+    /* cur: 0000... oth: 00dd.... */
 
-	FLASH_ERASE_SECTOR(rd_sector);
+    FLASH_ERASE_SECTOR(rd_sector);
 
-	/* cur: ffff... oth: FFFF.... */
+    /* cur: ffff... oth: FFFF.... */
 
-	FLASH_LOCK();
-	return STATUS_OK;
+    FLASH_LOCK();
+    return STATUS_OK;
 }
 
 status_t Flash_ClearAll(void)
 {
-	return Flash_Clear(0, 0, FLASH_TOTAL_SIZE);
+    return Flash_Clear(0, 0, FLASH_API_BLOCK_SIZE);
 }
 

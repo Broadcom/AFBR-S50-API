@@ -1,7 +1,7 @@
 /*************************************************************************//**
  * @file
- * @brief    	AFBR-S50 CAN Interface
- * @details		This file defines an CAN interface to communicate with the
+ * @brief       AFBR-S50 CAN Interface
+ * @details     This file defines an CAN interface to communicate with the
  *              AFBR-S50 Time-Of-Flight sensor API.
  *
  * @copyright
@@ -44,12 +44,12 @@
 #include "can_api.h"
 
 #include "main.h"
+#include "debug.h"
 
 #include "r_can.h"
 #include "hal_data.h"
 #include "driver/bsp.h"
 #include "driver/irq.h"
-#include "utility/debug.h"
 
 
 /*! CAN transmission busy status. */
@@ -67,7 +67,7 @@ static volatile uint32_t can_rx_remote_id = 0;
 
 
 /*! CAN Data Frame ID definition. */
-typedef enum
+typedef enum argus_can_frame_id_t
 {
     /*! Remote Frame ID for starting measurements */
     CAN_FRAME_ID_START = 8,

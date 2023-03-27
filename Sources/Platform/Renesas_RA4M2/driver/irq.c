@@ -1,7 +1,7 @@
 /*************************************************************************//**
  * @file
  * @brief       This file is part of the RA4M2 platform layer.
- * @details		This file provides an interface for enabling/disabling interrupts.
+ * @details     This file provides an interface for enabling/disabling interrupts.
  *
  * @copyright
  *
@@ -43,34 +43,34 @@ static volatile int g_irq_lock_ct;
 
 
 /*!***************************************************************************
- * @brief	Enable IRQ Interrupts
+ * @brief   Enable IRQ Interrupts
  *
- * @details	Enables IRQ interrupts by clearing the I-bit in the CPSR.
- * 			Can only be executed in Privileged modes.
+ * @details Enables IRQ interrupts by clearing the I-bit in the CPSR.
+ *          Can only be executed in Privileged modes.
  *
- * @return	-
+ * @return  -
  *****************************************************************************/
 void IRQ_UNLOCK(void)
 {
-	assert(g_irq_lock_ct > 0);
-	if (--g_irq_lock_ct <= 0)
-	{
-		g_irq_lock_ct = 0;
-		__enable_irq();
-	}
+    assert(g_irq_lock_ct > 0);
+    if (--g_irq_lock_ct <= 0)
+    {
+        g_irq_lock_ct = 0;
+        __enable_irq();
+    }
 }
 
 
 /*!***************************************************************************
- * @brief	Disable IRQ Interrupts
+ * @brief   Disable IRQ Interrupts
  *
- * @details	Disables IRQ interrupts by setting the I-bit in the CPSR.
- * 			Can only be executed in Privileged modes.
+ * @details Disables IRQ interrupts by setting the I-bit in the CPSR.
+ *          Can only be executed in Privileged modes.
  *
- * @return	-
+ * @return  -
  *****************************************************************************/
 void IRQ_LOCK(void)
 {
-	__disable_irq();
-	g_irq_lock_ct++;
+    __disable_irq();
+    g_irq_lock_ct++;
 }

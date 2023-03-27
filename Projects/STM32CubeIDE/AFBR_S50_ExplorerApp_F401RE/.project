@@ -42,9 +42,9 @@
 			<locationURI>PARENT-3-PROJECT_LOC/Sources/Platform/STM32F4xx</locationURI>
 		</link>
 		<link>
-			<name>Platform/utility/printf</name>
+			<name>Utility</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/Sources/Platform/NXP_MKLxxZ/utility/printf</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/Sources/Utility</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

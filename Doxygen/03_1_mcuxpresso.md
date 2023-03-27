@@ -2,17 +2,17 @@
 
 The provided example projects can be run on the **NXP** targets (**MKL46Z**,
 **MKL17Z**) using the **MCUXpresso IDE**. The evaluation kit is build on the
-**FRDM-KL46z Evaluation Kit from NXP**.
-Also refer to https://www.nxp.com/frdm-kl46z for further information.
+**FRDM-KL46z Evaluation Kit from NXP**. Also refer to
+<https://www.nxp.com/frdm-kl46z> for further information.
 
 @note This guide shows how to use the example projects but the same steps can be
-executed to run the other **MCUXpresso IDE** projects. See \ref apps for an overview.
+executed to run the other **MCUXpresso IDE** projects. See \ref apps for an
+overview.
 
 Execute the following steps to get the example projects up and running. Please
 also refer to the
 [getting started guide by NXP](https://www.nxp.com/docs/en/user-guide/MCUXSDKGSUG.pdf)
 in case of any trouble.
-
 
 @note Depending on where you obtain the code, i.e. from the SDK installer or the
 GitHub repository, certain steps may differ. The projects that come with the SDK
@@ -29,19 +29,21 @@ In order to run provided project, execute the following steps:
 
 Download and install the **MCUXpresso IDE** (recommended v11.5 or higher):
 
-1. Go to https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE
+1. Go to
+   <https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE>
 2. Click on `Download` and register or sign in to download the installer.
 3. Install the IDE.
-4. Go to https://mcuxpresso.nxp.com for more information.
+4. Go to <https://mcuxpresso.nxp.com> for more information.
 
 ## Import NXP MKL46z SDK
 
-Download and import the **NXP MKL46z SDK** (or **NXP MKL17z SDK**) into the **MCUXpresso IDE**
+Download and import the **NXP MKL46z SDK** (or **NXP MKL17z SDK**) into the
+**MCUXpresso IDE**
 
 1. Open MCUXpresso IDE, accept the workspace settings by clicking on `Launch`.
 2. Click on `Download and Install SDKs` on the `Welcome Page`.
-3. Go to the `Processors` tab and type `MKL46` into the filter field, select
-    the `SDK_2.x_MKL46Z256xxx4` (or `SDK_2.x_MKL17Z256xxx4`) SDK and click `Install` 
+3. Go to the `Processors` tab and type `MKL46` into the filter field, select the
+   `SDK_2.x_MKL46Z256xxx4` (or `SDK_2.x_MKL17Z256xxx4`) SDK and click `Install`
 4. Accept the licenses and click on `Finish`.
 5. After the installation has finished, close the `Welcome` view.
 
@@ -60,41 +62,42 @@ Import the Project archive files:
 
         1. Click on `Browse...` in the `Project archive (zip)` section
         2. Browse to `[INSTALL_DIR]\Device\Projects\` (default is
-            `C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Projects\`
+           `C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Projects\`)
         3. Select the required project archive (e.g.
-            `AFBR_S50_Example_KL46z.zip`) and click `Open`
+           `AFBR_S50_Example_KL46z.zip`) and click `Open`
             @image html 3_2_import_project.jpg "Fig. 3.2: Import the project archive into the MCUXpresso IDE." width=800px
             @image latex 3_2_import_project.jpg "Fig. 3.2: Import the project archive into the MCUXpresso IDE."
 
     - If importing a project from the local directory as provided by
-        cloning/downloading the **GitHub repository**:
+      cloning/downloading the **GitHub repository**:
 
         1. Click on `Browse...` in the `Project directory (unpacked)` section
         2. Browse to `[REPOSITORY_ROOT]\Projects\MCUXpressoIDE\`
         3. Select the required project root folder (e.g.
-            `AFBR_S50_Example_KL46z`) and click `Select Folder`
+           `AFBR_S50_Example_KL46z`) and click `Select Folder`
         4. **IMPORTANT**: Click `Next`and disable the check at
-            `Copy projects into Workspace`. (Otherwise, the references to the
-            source files will be messed up!)
+           `Copy projects into Workspace`. (Otherwise, the references to the
+           source files will be messed up!)
             @image html 3_3_disable_copy_into_ws.jpg "Fig. 3.3: Disable the check at \"Copy projects into workspace\" before importing an directory project!" width=400px
             @image latex 3_3_disable_copy_into_ws.jpg "Fig. 3.3: Disable the check at \"Copy projects into workspace\" before importing an directory project!"
 
 4. Click `Finish`
 
-## Build the Project:
+## Build the Project
 
-1. Go to **MCUXpresso IDE** -> `Project Explorer` and select the project to build.
+1. Go to **MCUXpresso IDE** -> `Project Explorer` and select the project to
+   build.
 2. Go to `Quickstart Panel` and click on `Build`
 
 @image html 3_4_build.jpg "Fig. 3.4: Build the project." width=800px
 @image latex 3_4_build.jpg "Fig. 3.4: Build the project."
 
-## Download and install the OpenSDA drivers:
+## Download and install the OpenSDA drivers
 
-1. Go to http://www.pemicro.com/opensda/
+1. Go to <http://www.pemicro.com/opensda/>
 2. Download and install `PEDrivers_install.exe`
 
-## Debug the Project with the OpenSDA Debugger:
+## Debug the Project with the OpenSDA Debugger
 
 1. Connect the `OpenSDA` USB port of the FRMD-KL46z evaluation board.
 2. Go to **MCUXpresso IDE** -> `Quickstart Panel`

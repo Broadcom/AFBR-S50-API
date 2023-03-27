@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2020-2021] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
+ * Copyright [2020-2022] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
  *
  * This software and documentation are supplied by Renesas Electronics America Inc. and may only be used with products
  * of Renesas Electronics Corp. and its affiliates ("Renesas").  No other uses are authorized.  Renesas products are
@@ -43,6 +43,9 @@
  * @addtogroup BSP_MCU
  * @{
  **********************************************************************************************************************/
+
+/* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
+FSP_HEADER
 
 /***********************************************************************************************************************
  * Typedef definitions
@@ -115,6 +118,9 @@ typedef enum e_fsp_ip
     FSP_IP_USBHS  = 71,                ///< USB High Speed
     FSP_IP_OSPI   = 72,                ///< Octa Serial Peripheral Interface
     FSP_IP_CEC    = 73,                ///< HDMI CEC
+    FSP_IP_TFU    = 74,                ///< Trigonometric Function Unit
+    FSP_IP_IIRFA  = 75,                ///< IIR Filter Accelerator
+    FSP_IP_CANFD  = 76,                ///< CAN-FD
 } fsp_ip_t;
 
 /** Signals that can be mapped to an interrupt. */
@@ -221,6 +227,10 @@ typedef enum e_fsp_signal
     FSP_SIGNAL_IOPORT_EVENT_2,                    ///< IOPORT EVENT 2
     FSP_SIGNAL_IOPORT_EVENT_3,                    ///< IOPORT EVENT 3
     FSP_SIGNAL_IOPORT_EVENT_4,                    ///< IOPORT EVENT 4
+    FSP_SIGNAL_IOPORT_EVENT_B = 0,                ///< IOPORT EVENT B
+    FSP_SIGNAL_IOPORT_EVENT_C,                    ///< IOPORT EVENT C
+    FSP_SIGNAL_IOPORT_EVENT_D,                    ///< IOPORT EVENT D
+    FSP_SIGNAL_IOPORT_EVENT_E,                    ///< IOPORT EVENT E
     FSP_SIGNAL_IWDT_UNDERFLOW = 0,                ///< IWDT UNDERFLOW
     FSP_SIGNAL_JPEG_JDTI      = 0,                ///< JPEG JDTI
     FSP_SIGNAL_JPEG_JEDI,                         ///< JPEG JEDI
@@ -283,5 +293,8 @@ typedef enum e_fsp_signal
 typedef void (* fsp_vector_t)(void);
 
 /** @} (end addtogroup BSP_MCU) */
+
+/** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
+FSP_FOOTER
 
 #endif

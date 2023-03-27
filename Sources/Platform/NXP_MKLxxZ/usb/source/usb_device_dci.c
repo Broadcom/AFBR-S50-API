@@ -374,7 +374,7 @@ static usb_status_t USB_DeviceControl(usb_device_handle handle, usb_device_contr
 static usb_status_t USB_DeviceResetNotification(usb_device_struct_t *handle,
                                                 usb_device_callback_message_struct_t *message)
 {
-	(void) message;
+    (void) message;
 #if (defined(USB_DEVICE_CONFIG_USE_TASK) && (USB_DEVICE_CONFIG_USE_TASK > 0U))
     USB_OSA_SR_ALLOC();
 #endif
@@ -431,7 +431,7 @@ static usb_status_t USB_DeviceResetNotification(usb_device_struct_t *handle,
 static usb_status_t USB_DeviceSuspendNotification(usb_device_struct_t *handle,
                                                   usb_device_callback_message_struct_t *message)
 {
-	(void) message;
+    (void) message;
     /* Call device callback to notify the application that the USB bus suspend signal detected.
     the deviceCallback is the second parameter of USB_DeviceInit */
     return handle->deviceCallback(handle, kUSB_DeviceEventSuspend, NULL);
@@ -450,7 +450,7 @@ static usb_status_t USB_DeviceSuspendNotification(usb_device_struct_t *handle,
 static usb_status_t USB_DeviceResumeNotification(usb_device_struct_t *handle,
                                                  usb_device_callback_message_struct_t *message)
 {
-	(void) message;
+    (void) message;
     /* Call device callback to notify the application that the USB bus resume signal detected.
     the deviceCallback is the second parameter of USB_DeviceInit */
     return handle->deviceCallback(handle, kUSB_DeviceEventResume, NULL);
@@ -1005,10 +1005,10 @@ usb_status_t USB_DeviceDeinit(usb_device_handle handle)
  */
 usb_status_t USB_DeviceSendRequest(usb_device_handle handle, uint8_t endpointAddress, uint8_t *buffer, uint32_t length)
 {
-	return USB_DeviceTransfer(handle,
-							  (endpointAddress & USB_ENDPOINT_NUMBER_MASK) |
-							  (USB_IN << USB_DESCRIPTOR_ENDPOINT_ADDRESS_DIRECTION_SHIFT),
-							  buffer, length);
+    return USB_DeviceTransfer(handle,
+                              (endpointAddress & USB_ENDPOINT_NUMBER_MASK) |
+                              (USB_IN << USB_DESCRIPTOR_ENDPOINT_ADDRESS_DIRECTION_SHIFT),
+                              buffer, length);
 }
 
 /*!
@@ -1038,8 +1038,8 @@ usb_status_t USB_DeviceSendRequest(usb_device_handle handle, uint8_t endpointAdd
 usb_status_t USB_DeviceRecvRequest(usb_device_handle handle, uint8_t endpointAddress, uint8_t *buffer, uint32_t length)
 {
     return USB_DeviceTransfer(handle,
-							  (endpointAddress & USB_ENDPOINT_NUMBER_MASK) |
-							  (USB_OUT << USB_DESCRIPTOR_ENDPOINT_ADDRESS_DIRECTION_SHIFT),
+                              (endpointAddress & USB_ENDPOINT_NUMBER_MASK) |
+                              (USB_OUT << USB_DESCRIPTOR_ENDPOINT_ADDRESS_DIRECTION_SHIFT),
                               buffer, length);
 }
 

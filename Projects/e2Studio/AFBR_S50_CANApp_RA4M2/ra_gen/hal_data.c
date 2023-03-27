@@ -1,179 +1,6 @@
 /* generated HAL source file - do not edit */
 #include "hal_data.h"
 
-dmac_instance_ctrl_t g_transfer5_ctrl;
-transfer_info_t g_transfer5_info =
-        {
-          .dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-          .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
-          .irq = TRANSFER_IRQ_END,
-          .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-          .src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-          .size = TRANSFER_SIZE_2_BYTE,
-          .mode = TRANSFER_MODE_BLOCK,
-          .p_dest = (void*)0,
-          .p_src = (void const*)USB_SRC_ADDRESS,
-          .num_blocks = 0,
-          .length = 0,
-        };
-const dmac_extended_cfg_t g_transfer5_extend =
-        {
-          .offset = 0,
-          .src_buffer_size = 1,
-          #if defined(VECTOR_NUMBER_DMAC1_INT)
-    .irq                 = VECTOR_NUMBER_DMAC1_INT,
-#else
-          .irq = FSP_INVALID_VECTOR,
-#endif
-          .ipl = (3),
-          .channel = 1,
-          .p_callback = NULL,
-          .p_context = NULL,
-          .activation_source = ELC_EVENT_NONE,
-        };
-const transfer_cfg_t g_transfer5_cfg =
-        {
-          .p_info = &g_transfer5_info,
-          .p_extend = &g_transfer5_extend,
-        };
-/* Instance structure to use this module. */
-const transfer_instance_t g_transfer5 =
-        {
-          .p_ctrl = &g_transfer5_ctrl,
-          .p_cfg = &g_transfer5_cfg,
-          .p_api = &g_transfer_on_dmac
-        };
-dmac_instance_ctrl_t g_transfer4_ctrl;
-transfer_info_t g_transfer4_info =
-        {
-          .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-          .repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
-          .irq = TRANSFER_IRQ_END,
-          .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-          .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-          .size = TRANSFER_SIZE_2_BYTE,
-          .mode = TRANSFER_MODE_BLOCK,
-          .p_dest = (void*)USB_DEST_ADDRESS,
-          .p_src = (void const*)0,
-          .num_blocks = 0,
-          .length = 0,
-        };
-const dmac_extended_cfg_t g_transfer4_extend =
-        {
-          .offset = 0,
-          .src_buffer_size = 1,
-          #if defined(VECTOR_NUMBER_DMAC0_INT)
-    .irq                 = VECTOR_NUMBER_DMAC0_INT,
-#else
-          .irq = FSP_INVALID_VECTOR,
-#endif
-          .ipl = (3),
-          .channel = 0,
-          .p_callback = usb_ip0_d1fifo_callback,
-          .p_context = NULL,
-          .activation_source = ELC_EVENT_NONE,
-        };
-const transfer_cfg_t g_transfer4_cfg =
-        {
-          .p_info = &g_transfer4_info,
-          .p_extend = &g_transfer4_extend,
-        };
-/* Instance structure to use this module. */
-const transfer_instance_t g_transfer4 =
-        {
-          .p_ctrl = &g_transfer4_ctrl,
-          .p_cfg = &g_transfer4_cfg,
-          .p_api = &g_transfer_on_dmac
-        };
-usb_instance_ctrl_t g_basic0_ctrl;
-
-#if !defined(NULL)
-extern usb_descriptor_t NULL;
-#endif
-#define RA_NOT_DEFINED (1)
-const usb_cfg_t g_basic0_cfg =
-        {
-          .usb_mode = USB_MODE_HOST,
-          .usb_speed = USB_SPEED_FS,
-          .module_number = 0,
-          .type = USB_CLASS_HCDC,
-          #if defined(NULL)
-                .p_usb_reg = NULL,
-#else
-          .p_usb_reg = &NULL,
-#endif
-          .usb_complience_cb = NULL,
-#if defined(VECTOR_NUMBER_USBFS_INT)
-                .irq       = VECTOR_NUMBER_USBFS_INT,
-#else
-          .irq = FSP_INVALID_VECTOR,
-#endif
-#if defined(VECTOR_NUMBER_USBFS_RESUME)
-                .irq_r     = VECTOR_NUMBER_USBFS_RESUME,
-#else
-          .irq_r = FSP_INVALID_VECTOR,
-#endif
-#if defined(VECTOR_NUMBER_USBFS_FIFO_0)
-                .irq_d0    = VECTOR_NUMBER_USBFS_FIFO_0,
-#else
-          .irq_d0 = FSP_INVALID_VECTOR,
-#endif
-#if defined(VECTOR_NUMBER_USBFS_FIFO_1)
-                .irq_d1    = VECTOR_NUMBER_USBFS_FIFO_1,
-#else
-          .irq_d1 = FSP_INVALID_VECTOR,
-#endif
-#if defined(VECTOR_NUMBER_USBHS_USB_INT_RESUME)
-                .hsirq     = VECTOR_NUMBER_USBHS_USB_INT_RESUME,
-#else
-          .hsirq = FSP_INVALID_VECTOR,
-#endif
-#if defined(VECTOR_NUMBER_USBHS_FIFO_0)
-                .hsirq_d0  = VECTOR_NUMBER_USBHS_FIFO_0,
-#else
-          .hsirq_d0 = FSP_INVALID_VECTOR,
-#endif
-#if defined(VECTOR_NUMBER_USBHS_FIFO_1)
-                .hsirq_d1  = VECTOR_NUMBER_USBHS_FIFO_1,
-#else
-          .hsirq_d1 = FSP_INVALID_VECTOR,
-#endif
-          .ipl = (12),
-          .ipl_r = (12),
-          .ipl_d0 = (12),
-          .ipl_d1 = (12),
-          .hsipl = (12),
-          .hsipl_d0 = (12),
-          .hsipl_d1 = (12),
-#if (BSP_CFG_RTOS != 0)
-                .p_usb_apl_callback = NULL,
-#else
-          .p_usb_apl_callback = NULL,
-#endif
-#if defined(NULL)
-                .p_context = NULL,
-#else
-          .p_context = &NULL,
-#endif
-#if (RA_NOT_DEFINED == g_transfer4)
-#else
-          .p_transfer_tx = &g_transfer4,
-#endif
-#if (RA_NOT_DEFINED == g_transfer5)
-#else
-          .p_transfer_rx = &g_transfer5,
-        #endif
-        };
-#undef RA_NOT_DEFINED
-
-/* Instance structure to use this module. */
-const usb_instance_t g_basic0 =
-        {
-          .p_ctrl = &g_basic0_ctrl,
-          .p_cfg = &g_basic0_cfg,
-          .p_api = &g_usb_on_usb,
-        };
-
 #ifndef CAN0_BAUD_SETTINGS_OVERRIDE
 #define CAN0_BAUD_SETTINGS_OVERRIDE  (0)
 #endif
@@ -717,7 +544,12 @@ const external_irq_cfg_t g_external_irq0_cfg =
           .filter_enable = false,
           .pclk_div = EXTERNAL_IRQ_PCLK_DIV_BY_64,
           .p_callback = user_irq_callback,
-          .p_context = NULL,
+          /** If NULL then do not add & */
+#if defined(NULL)
+    .p_context           = NULL,
+#else
+          .p_context = &NULL,
+#endif
           .p_extend = NULL,
           .ipl = (3),
           #if defined(VECTOR_NUMBER_ICU_IRQ1)
@@ -737,18 +569,19 @@ dtc_instance_ctrl_t g_transfer3_ctrl;
 
 transfer_info_t g_transfer3_info =
         {
-          .dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-          .repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
-          .irq = TRANSFER_IRQ_END,
-          .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-          .src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-          .size = TRANSFER_SIZE_1_BYTE,
-          .mode = TRANSFER_MODE_NORMAL,
+          .transfer_settings_word_b.dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+          .transfer_settings_word_b.repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
+          .transfer_settings_word_b.irq = TRANSFER_IRQ_END,
+          .transfer_settings_word_b.chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+          .transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+          .transfer_settings_word_b.size = TRANSFER_SIZE_1_BYTE,
+          .transfer_settings_word_b.mode = TRANSFER_MODE_NORMAL,
           .p_dest = (void*)NULL,
           .p_src = (void const*)NULL,
           .num_blocks = 0,
           .length = 0,
         };
+
 const dtc_extended_cfg_t g_transfer3_cfg_extend =
         {
           .activation_source = VECTOR_NUMBER_SCI0_RXI,
@@ -770,18 +603,19 @@ dtc_instance_ctrl_t g_transfer2_ctrl;
 
 transfer_info_t g_transfer2_info =
         {
-          .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-          .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
-          .irq = TRANSFER_IRQ_END,
-          .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-          .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-          .size = TRANSFER_SIZE_1_BYTE,
-          .mode = TRANSFER_MODE_NORMAL,
+          .transfer_settings_word_b.dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+          .transfer_settings_word_b.repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
+          .transfer_settings_word_b.irq = TRANSFER_IRQ_END,
+          .transfer_settings_word_b.chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+          .transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+          .transfer_settings_word_b.size = TRANSFER_SIZE_1_BYTE,
+          .transfer_settings_word_b.mode = TRANSFER_MODE_NORMAL,
           .p_dest = (void*)NULL,
           .p_src = (void const*)NULL,
           .num_blocks = 0,
           .length = 0,
         };
+
 const dtc_extended_cfg_t g_transfer2_cfg_extend =
         {
           .activation_source = VECTOR_NUMBER_SCI0_TXI,
@@ -803,8 +637,9 @@ sci_uart_instance_ctrl_t g_uart0_ctrl;
 
 baud_setting_t g_uart0_baud_setting =
         {
-          /* Baud rate calculated with 2.124% error. */.abcse = 0,
-          .abcs = 0, .bgdm = 1, .cks = 0, .brr = 33, .mddr = (uint8_t)256, .brme = false
+          /* Baud rate calculated with 2.124% error. */.semr_baudrate_bits_b.abcse = 0,
+          .semr_baudrate_bits_b.abcs = 0, .semr_baudrate_bits_b.bgdm = 1, .cks = 0, .brr = 33, .mddr = (uint8_t)256,
+          .semr_baudrate_bits_b.brme = false
         };
 
 /** UART extended configuration for UARTonSCI HAL driver */
@@ -820,7 +655,16 @@ const sci_uart_extended_cfg_t g_uart0_cfg_extend =
                 .flow_control_pin       = BSP_IO_PORT_FF_PIN_0xFF,
                 #else
           .flow_control_pin = (bsp_io_port_pin_t)UINT16_MAX,
-        #endif
+#endif
+          .rs485_setting = {
+                             .enable = SCI_UART_RS485_DISABLE,
+                             .polarity = SCI_UART_RS485_DE_POLARITY_HIGH,
+                             #if 0xFF != 0xFF
+                    .de_control_pin = BSP_IO_PORT_FF_PIN_0xFF,
+                #else
+                             .de_control_pin = (bsp_io_port_pin_t)UINT16_MAX,
+          #endif
+                  },
         };
 
 /** UART interface configuration */
@@ -882,18 +726,19 @@ dtc_instance_ctrl_t g_transfer1_ctrl;
 
 transfer_info_t g_transfer1_info =
         {
-          .dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-          .repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
-          .irq = TRANSFER_IRQ_END,
-          .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-          .src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-          .size = TRANSFER_SIZE_2_BYTE,
-          .mode = TRANSFER_MODE_NORMAL,
+          .transfer_settings_word_b.dest_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+          .transfer_settings_word_b.repeat_area = TRANSFER_REPEAT_AREA_DESTINATION,
+          .transfer_settings_word_b.irq = TRANSFER_IRQ_END,
+          .transfer_settings_word_b.chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+          .transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+          .transfer_settings_word_b.size = TRANSFER_SIZE_2_BYTE,
+          .transfer_settings_word_b.mode = TRANSFER_MODE_NORMAL,
           .p_dest = (void*)NULL,
           .p_src = (void const*)NULL,
           .num_blocks = 0,
           .length = 0,
         };
+
 const dtc_extended_cfg_t g_transfer1_cfg_extend =
         {
           .activation_source = VECTOR_NUMBER_SPI0_RXI,
@@ -915,18 +760,19 @@ dtc_instance_ctrl_t g_transfer0_ctrl;
 
 transfer_info_t g_transfer0_info =
         {
-          .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-          .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
-          .irq = TRANSFER_IRQ_END,
-          .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-          .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-          .size = TRANSFER_SIZE_2_BYTE,
-          .mode = TRANSFER_MODE_NORMAL,
+          .transfer_settings_word_b.dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+          .transfer_settings_word_b.repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
+          .transfer_settings_word_b.irq = TRANSFER_IRQ_END,
+          .transfer_settings_word_b.chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+          .transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+          .transfer_settings_word_b.size = TRANSFER_SIZE_2_BYTE,
+          .transfer_settings_word_b.mode = TRANSFER_MODE_NORMAL,
           .p_dest = (void*)NULL,
           .p_src = (void const*)NULL,
           .num_blocks = 0,
           .length = 0,
         };
+
 const dtc_extended_cfg_t g_transfer0_cfg_extend =
         {
           .activation_source = VECTOR_NUMBER_SPI0_TXI,

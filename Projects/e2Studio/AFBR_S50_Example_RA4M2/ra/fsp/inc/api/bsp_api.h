@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2020-2021] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
+ * Copyright [2020-2022] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
  *
  * This software and documentation are supplied by Renesas Electronics America Inc. and may only be used with products
  * of Renesas Electronics Corp. and its affiliates ("Renesas").  No other uses are authorized.  Renesas products are
@@ -71,6 +71,11 @@
 /* BSP Common Includes (Other than bsp_common.h) */
 #include "../../src/bsp/mcu/all/bsp_delay.h"
 #include "../../src/bsp/mcu/all/bsp_mcu_api.h"
+
+/* BSP TFU Includes. */
+#if BSP_FEATURE_TFU_SUPPORTED
+ #include "../../src/bsp/mcu/all/bsp_tfu.h"
+#endif
 
 /** Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER

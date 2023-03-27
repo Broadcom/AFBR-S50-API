@@ -8,7 +8,7 @@ The following section contains the current command details as implemented in the
 See @ref explorer_app_cmd_details for detailed description of all available
 commands.
 
-# Generic Commands {#explorer_app_cmds_generic}
+## Generic Commands {#explorer_app_cmds_generic}
 
 | Caption                                                | Byte | Type      | Comment                                                                                                                                                                           |
 | ------------------------------------------------------ | ---- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -24,24 +24,24 @@ commands.
 | [Module UID](@ref cmd_uid)                             | 0x0F | get       | Gets the chip/module unique identification number.                                                                                                                                |
 | [Software Information / Identification](@ref cmd_info) | 0x05 | get       | Gets the information about current software and device (e.g. version, device id, device family, ...)                                                                              |
 
-# Device Control Commands {#explorer_app_cmds_ctrl}
+## Device Control Commands {#explorer_app_cmds_ctrl}
 
 | Caption                                           | Byte | Type | Comment                                                                                                                                         |
 | ------------------------------------------------- | ---- | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Measurement: Single Shot](@ref cmd_ctrl_trigger) | 0x10 | cmd  | Executes a single shot measurement.                                                                                                             |
 | [Measurement: Start Auto](@ref cmd_ctrl_start)    | 0x11 | cmd  | Starts the automatic, time-scheduled measurements with given frame rate.                                                                        |
 | [Measurement: Stop](@ref cmd_ctrl_stop)           | 0x12 | cmd  | Stops the time-scheduled measurements (after the current frame finishes).                                                                       |
+| [Measurement: Abort](@ref cmd_ctrl_abort)         | 0x13 | cmd  | Aborts the current measurements immediately.                                                                                                    |
 | [Calibration: Run](@ref cmd_ctrl_cal)             | 0x18 | cmd  | Executes a calibration sequence.                                                                                                                |
 | [Re-Initialize Device](@ref cmd_ctrl_reinit)      | 0x19 | cmd  | Invokes the device (re-)initialization command. Resets and reinitializes the API + ASIC with given config. (e.g. after unintended power cycle). |
 
-# Measurement Data Commands {#explorer_app_cmds_data}
+## Measurement Data Commands {#explorer_app_cmds_data}
 
 The modes of measurement data streaming. The actual data might depend on device
 configuration and calibration.
 
 | Caption                                                          | Byte | Type            | Comment                                                                                |
 | ---------------------------------------------------------------- | ---- | --------------- | -------------------------------------------------------------------------------------- |
-| [Raw Measurement Data Set](@ref cmd_data_raw)                    | 0x30 | get / auto/push | Gets a raw measurement data set containing the raw device readout samples.             |
 | [Measurement Data Set (1D + 3D) - Debug](@ref cmd_data_full_dbg) | 0x31 | get / auto/push | Gets a measurement data set containing all the available data.                         |
 | [Measurement Data Set (1D + 3D)](@ref cmd_data_full)             | 0x32 | get / auto/push | Gets a measurement data set containing the essential data.                             |
 | [3D Measurement Data Set - Debug](@ref cmd_data_3d_dbg)          | 0x33 | get / auto/push | Gets a 3D measurement data set containing all the available data per pixel.            |
@@ -49,22 +49,23 @@ configuration and calibration.
 | [1D Measurement Data Set - Debug](@ref cmd_data_1d_dbg)          | 0x35 | get / auto/push | Gets a 1D measurement data set containing all the available distance measurement data. |
 | [1D Measurement Data Set](@ref cmd_data_1d)                      | 0x36 | get / auto/push | Gets a 1D measurement data set containing the essential distance measurement data.     |
 
-# Configuration Commands {#explorer_app_cmds_cfg}
+## Configuration Commands {#explorer_app_cmds_cfg}
 
-| Caption                                            | Byte | Type      | Comment                                                                      |
-| -------------------------------------------------- | ---- | --------- | ---------------------------------------------------------------------------- |
-| [Data Output Mode](@ref cmd_cfg_output_mode)       | 0x41 | set / get | The measurement data output mode. (Hardware API only)                        |
-| [Measurement Mode](@ref cmd_cfg_mode)              | 0x42 | set / get | Gets or sets the measurement mode.                                           |
-| [Frame Time (Frame Rate)](@ref cmd_cfg_frame_time) | 0x43 | set / get | Gets or sets the measurement frame time (i.e. inverse frame rate).           |
-| [Dual Frequency Mode](@ref cmd_cfg_dfm)            | 0x44 | set / get | Gets or sets the dual frequency mode.                                        |
-| [Smart Power Save Mode](@ref cmd_cfg_sps)          | 0x45 | set / get | Gets or sets the smart power saving feature enabled flag.                    |
-| [Shot Noise Monitor Mode](@ref cmd_cfg_snm)        | 0x46 | set / get | Gets or sets the shot noise monitor mode.                                    |
-| [Dynamic Configuration Adaption](@ref cmd_cfg_dca) | 0x52 | set / get | Gets or sets the full DCA feature configuration set.                         |
-| [Pixel Binning Algorithm](@ref cmd_cfg_pba)        | 0x54 | set / get | Gets or sets the pixel binning feature configuration.                        |
-| [SPI Configuration](@ref cmd_cfg_spi)              | 0x58 | set / get | Gets or sets the SPI configuration (baud rate, slave instance).              |
-| [UART Configuration](@ref cmd_cfg_uart)            | 0x59 | set / get | Gets or sets the UART configuration (e.g. baud rate). Only for UART version. |
+| Caption                                            | Byte | Type      | Comment                                                                               |
+| -------------------------------------------------- | ---- | --------- | ------------------------------------------------------------------------------------- |
+| [Data Output Mode](@ref cmd_cfg_output_mode)       | 0x41 | set / get | The measurement data output mode. (Hardware API only)                                 |
+| [Measurement Mode](@ref cmd_cfg_mode)              | 0x42 | set / get | Gets or sets the measurement mode.                                                    |
+| [Frame Time (Frame Rate)](@ref cmd_cfg_frame_time) | 0x43 | set / get | Gets or sets the measurement frame time (i.e. inverse frame rate).                    |
+| [Dual Frequency Mode](@ref cmd_cfg_dfm)            | 0x44 | set / get | Gets or sets the dual frequency mode.                                                 |
+| [Smart Power Save Mode](@ref cmd_cfg_sps)          | 0x45 | set / get | Gets or sets the smart power saving feature enabled flag.                             |
+| [Shot Noise Monitor Mode](@ref cmd_cfg_snm)        | 0x46 | set / get | Gets or sets the shot noise monitor mode.                                             |
+| [Crosstalk Monitor Mode](@ref cmd_cfg_xtm)         | 0x47 | set / get | Gets or sets the crosstalk monitor mode.                                              |
+| [Dynamic Configuration Adaption](@ref cmd_cfg_dca) | 0x52 | set / get | Gets or sets the full dynamic configuration adaption (DCA) feature configuration set. |
+| [Pixel Binning Algorithm](@ref cmd_cfg_pba)        | 0x54 | set / get | Gets or sets the pixel binning algorithm (PBA) feature configuration.                 |
+| [SPI Configuration](@ref cmd_cfg_spi)              | 0x58 | set / get | Gets or sets the SPI configuration (e.g. baud rate).                                  |
+| [UART Configuration](@ref cmd_cfg_uart)            | 0x59 | set / get | Gets or sets the UART configuration (e.g. baud rate). Only for UART version.          |
 
-# Calibration Commands {#explorer_app_cmds_cal}
+## Calibration Commands {#explorer_app_cmds_cal}
 
 | Caption                                                                     | Byte | Type      | Comment                                                                              |
 | --------------------------------------------------------------------------- | ---- | --------- | ------------------------------------------------------------------------------------ |

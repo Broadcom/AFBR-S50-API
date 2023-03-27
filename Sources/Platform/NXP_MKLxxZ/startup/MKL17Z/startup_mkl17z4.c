@@ -67,6 +67,8 @@ extern "C" {
 extern "C" {
 #endif
 
+#include <assert.h>
+
 //*****************************************************************************
 // Flash Configuration block : 16-byte flash configuration field that stores
 // default protection settings (loaded on reset) and security information that
@@ -78,12 +80,12 @@ __attribute__ ((used,section(".FlashConfig"))) const struct {
     unsigned int word2;
     unsigned int word3;
     unsigned int word4;
-} Flash_Config = {	0xFFFFFFFF,
-					0xFFFFFFFF,
-					0xFFFFFFFF,
-					0xFFFF3FFE
-					//0xFFFFBDFE
-					};
+} Flash_Config = {  0xFFFFFFFF,
+                    0xFFFFFFFF,
+                    0xFFFFFFFF,
+                    0xFFFF3FFE
+                    //0xFFFFBDFE
+                    };
 //*****************************************************************************
 // Declaration of external SystemInit function
 //*****************************************************************************
@@ -148,6 +150,11 @@ WEAK void PORTC_PORTD_IRQHandler(void);
 // defines a handler (with the same name), this will automatically take
 // precedence over these weak definitions
 //*****************************************************************************
+void NMI_Handler(void) ALIAS(IntDefaultHandler);
+void HardFault_Handler(void) ALIAS(IntDefaultHandler);
+void SVC_Handler(void) ALIAS(IntDefaultHandler);
+void PendSV_Handler(void) ALIAS(IntDefaultHandler);
+void SysTick_Handler(void) ALIAS(IntDefaultHandler);
 void DMA0_DriverIRQHandler(void) ALIAS(IntDefaultHandler);
 void DMA1_DriverIRQHandler(void) ALIAS(IntDefaultHandler);
 void DMA2_DriverIRQHandler(void) ALIAS(IntDefaultHandler);
@@ -269,19 +276,19 @@ void (* const g_pfnVectors[])(void) = {
 //*****************************************************************************
 __attribute__ ((section(".after_vectors.init_data")))
 void data_init(unsigned int romstart, unsigned int start, unsigned int len) {
-	unsigned int *pulDest = (unsigned int*) start;
-	unsigned int *pulSrc = (unsigned int*) romstart;
-	unsigned int loop;
-	for (loop = 0; loop < len; loop = loop + 4)
-		*pulDest++ = *pulSrc++;
+    unsigned int *pulDest = (unsigned int*) start;
+    unsigned int *pulSrc = (unsigned int*) romstart;
+    unsigned int loop;
+    for (loop = 0; loop < len; loop = loop + 4)
+        *pulDest++ = *pulSrc++;
 }
 
 __attribute__ ((section(".after_vectors.init_bss")))
 void bss_init(unsigned int start, unsigned int len) {
-	unsigned int *pulDest = (unsigned int*) start;
-	unsigned int loop;
-	for (loop = 0; loop < len; loop = loop + 4)
-		*pulDest++ = 0;
+    unsigned int *pulDest = (unsigned int*) start;
+    unsigned int loop;
+    for (loop = 0; loop < len; loop = loop + 4)
+        *pulDest++ = 0;
 }
 
 //*****************************************************************************
@@ -320,27 +327,27 @@ void ResetISR(void) {
     //
     // Copy the data sections from flash to SRAM.
     //
-	unsigned int LoadAddr, ExeAddr, SectionLen;
-	unsigned int *SectionTableAddr;
+    unsigned int LoadAddr, ExeAddr, SectionLen;
+    unsigned int *SectionTableAddr;
 
-	// Load base address of Global Section Table
-	SectionTableAddr = &__data_section_table;
+    // Load base address of Global Section Table
+    SectionTableAddr = &__data_section_table;
 
     // Copy the data sections from flash to SRAM.
-	while (SectionTableAddr < &__data_section_table_end) {
-		LoadAddr = *SectionTableAddr++;
-		ExeAddr = *SectionTableAddr++;
-		SectionLen = *SectionTableAddr++;
-		data_init(LoadAddr, ExeAddr, SectionLen);
-	}
+    while (SectionTableAddr < &__data_section_table_end) {
+        LoadAddr = *SectionTableAddr++;
+        ExeAddr = *SectionTableAddr++;
+        SectionLen = *SectionTableAddr++;
+        data_init(LoadAddr, ExeAddr, SectionLen);
+    }
 
-	// At this point, SectionTableAddr = &__bss_section_table;
-	// Zero fill the bss segment
-	while (SectionTableAddr < &__bss_section_table_end) {
-		ExeAddr = *SectionTableAddr++;
-		SectionLen = *SectionTableAddr++;
-		bss_init(ExeAddr, SectionLen);
-	}
+    // At this point, SectionTableAddr = &__bss_section_table;
+    // Zero fill the bss segment
+    while (SectionTableAddr < &__bss_section_table_end) {
+        ExeAddr = *SectionTableAddr++;
+        SectionLen = *SectionTableAddr++;
+        bss_init(ExeAddr, SectionLen);
+    }
 
 #if !defined (__USE_CMSIS)
 // Assume that if __USE_CMSIS defined, then CMSIS SystemInit code
@@ -367,50 +374,54 @@ void ResetISR(void) {
     __asm volatile ("cpsie i");
 
 #if defined (__REDLIB__)
-	// Call the Redlib library, which in turn calls main()
-	__main();
+    // Call the Redlib library, which in turn calls main()
+    __main();
 #else
-	main();
+    main();
 #endif
 
-	//
-	// main() shouldn't return, but if it does, we'll just enter an infinite loop
-	//
-	while (1) {
-		;
-	}
+    //
+    // main() shouldn't return, but if it does, we'll just enter an infinite loop
+    //
+    while (1) {
+        ;
+    }
 }
 
 //*****************************************************************************
 // Default core exception handlers. Override the ones here by defining your own
 // handler routines in your application code.
 //*****************************************************************************
-WEAK_AV void NMI_Handler(void)
-{ while(1) {}
-}
-
-WEAK_AV void HardFault_Handler(void)
-{ while(1) {}
-}
-
-WEAK_AV void SVC_Handler(void)
-{ while(1) {}
-}
-
-WEAK_AV void PendSV_Handler(void)
-{ while(1) {}
-}
-
-WEAK_AV void SysTick_Handler(void)
-{ while(1) {}
-}
+//WEAK_AV void NMI_Handler(void)
+//{ while(1) {}
+//}
+//
+//WEAK_AV void HardFault_Handler(void)
+//{ while(1) {}
+//}
+//
+//WEAK_AV void SVC_Handler(void)
+//{ while(1) {}
+//}
+//
+//WEAK_AV void PendSV_Handler(void)
+//{ while(1) {}
+//}
+//
+//WEAK_AV void SysTick_Handler(void)
+//{ while(1) {}
+//}
 
 //*****************************************************************************
 // Processor ends up here if an unexpected interrupt occurs or a specific
 // handler is not present in the application code.
 //*****************************************************************************
+__attribute__((naked))
 WEAK_AV void IntDefaultHandler(void)
-{ while(1) {}
+{
+    __asm__ __volatile__ ("bkpt #0");
+    __assert_func(__FILE__, __LINE__, (char*) 0, "Undefined Handler Called!");
+    while(1) {}
 }
 
 //*****************************************************************************

@@ -71,7 +71,7 @@ status_t SMC_SetPowerModeHsrun(SMC_Type *base)
 
 status_t SMC_SetPowerModeWait(SMC_Type *base)
 {
-	(void)base; // unused parameter?
+    (void)base; // unused parameter?
 
     /* configure Normal Wait mode */
     SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
@@ -154,7 +154,7 @@ status_t SMC_SetPowerModeVlpr(SMC_Type *base
 
 status_t SMC_SetPowerModeVlpw(SMC_Type *base)
 {
-	(void)base; // unused paremeter?
+    (void)base; // unused paremeter?
     /* configure VLPW mode */
     /* Set the SLEEPDEEP bit to enable deep sleep mode */
     SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;

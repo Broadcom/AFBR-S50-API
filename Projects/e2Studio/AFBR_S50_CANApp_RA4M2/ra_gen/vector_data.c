@@ -19,12 +19,6 @@
             [12] = can_tx_isr, /* CAN0 MAILBOX TX (Transmission complete interrupt) */
             [13] = can_rx_isr, /* CAN0 FIFO RX (Receive FIFO interrupt) */
             [14] = can_tx_isr, /* CAN0 FIFO TX (Transmit FIFO interrupt) */
-            [15] = usbfs_interrupt_handler, /* USBFS INT (USBFS interrupt) */
-            [16] = usbfs_resume_handler, /* USBFS RESUME (USBFS resume interrupt) */
-            [17] = usbfs_d0fifo_handler, /* USBFS FIFO 0 (DMA transfer request 0) */
-            [18] = usbfs_d1fifo_handler, /* USBFS FIFO 1 (DMA transfer request 1) */
-            [19] = dmac_int_isr, /* DMAC0 INT (DMAC transfer end 0) */
-            [20] = dmac_int_isr, /* DMAC1 INT (DMAC transfer end 1) */
         };
         const bsp_interrupt_event_t g_interrupt_event_link_select[BSP_ICU_VECTOR_MAX_ENTRIES] =
         {
@@ -43,11 +37,5 @@
             [12] = BSP_PRV_IELS_ENUM(EVENT_CAN0_MAILBOX_TX), /* CAN0 MAILBOX TX (Transmission complete interrupt) */
             [13] = BSP_PRV_IELS_ENUM(EVENT_CAN0_FIFO_RX), /* CAN0 FIFO RX (Receive FIFO interrupt) */
             [14] = BSP_PRV_IELS_ENUM(EVENT_CAN0_FIFO_TX), /* CAN0 FIFO TX (Transmit FIFO interrupt) */
-            [15] = BSP_PRV_IELS_ENUM(EVENT_USBFS_INT), /* USBFS INT (USBFS interrupt) */
-            [16] = BSP_PRV_IELS_ENUM(EVENT_USBFS_RESUME), /* USBFS RESUME (USBFS resume interrupt) */
-            [17] = BSP_PRV_IELS_ENUM(EVENT_USBFS_FIFO_0), /* USBFS FIFO 0 (DMA transfer request 0) */
-            [18] = BSP_PRV_IELS_ENUM(EVENT_USBFS_FIFO_1), /* USBFS FIFO 1 (DMA transfer request 1) */
-            [19] = BSP_PRV_IELS_ENUM(EVENT_DMAC0_INT), /* DMAC0 INT (DMAC transfer end 0) */
-            [20] = BSP_PRV_IELS_ENUM(EVENT_DMAC1_INT), /* DMAC1 INT (DMAC transfer end 1) */
         };
         #endif

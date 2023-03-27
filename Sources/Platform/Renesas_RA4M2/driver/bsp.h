@@ -1,7 +1,7 @@
 /***************************************************************************
  * @file
- * @brief    	Board Support Package for the AFBR-S50 Reference Board.
- * @details		This file provides board specific functionality like LED's.
+ * @brief       Board Support Package for the AFBR-S50 Reference Board.
+ * @details     This file provides board specific functionality like LED's.
  *
  * @copyright
  *

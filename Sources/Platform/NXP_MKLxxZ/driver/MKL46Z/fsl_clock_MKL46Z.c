@@ -1093,8 +1093,8 @@ status_t CLOCK_SetFeiMode(mcg_dmx32_t dmx32, mcg_drs_t drs, void (*fllStableDela
 
     /* Set CLKS and IREFS. */
     MCG->C1 = (uint8_t)(((MCG->C1 & ~(MCG_C1_CLKS_MASK | MCG_C1_IREFS_MASK)))
-    					| (MCG_C1_CLKS(kMCG_ClkOutSrcOut)        /* CLKS = 0 */
-    					| MCG_C1_IREFS(kMCG_FllSrcInternal))); /* IREFS = 1 */
+                        | (MCG_C1_CLKS(kMCG_ClkOutSrcOut)        /* CLKS = 0 */
+                        | MCG_C1_IREFS(kMCG_FllSrcInternal))); /* IREFS = 1 */
 
     /* Wait and check status. */
     while (kMCG_FllSrcInternal != MCG_S_IREFST_VAL)
@@ -1226,8 +1226,8 @@ status_t CLOCK_SetFbiMode(mcg_dmx32_t dmx32, mcg_drs_t drs, void (*fllStableDela
 
     /* Set CLKS and IREFS. */
     MCG->C1 = (uint8_t)((MCG->C1 & ~(MCG_C1_CLKS_MASK | MCG_C1_IREFS_MASK))
-        				| (MCG_C1_CLKS(kMCG_ClkOutSrcInternal)    /* CLKS = 1 */
-        				| MCG_C1_IREFS(kMCG_FllSrcInternal))); /* IREFS = 1 */
+                        | (MCG_C1_CLKS(kMCG_ClkOutSrcInternal)    /* CLKS = 1 */
+                        | MCG_C1_IREFS(kMCG_FllSrcInternal))); /* IREFS = 1 */
 
     /* Wait and check status. */
     while (kMCG_FllSrcInternal != MCG_S_IREFST_VAL)
@@ -1245,8 +1245,8 @@ status_t CLOCK_SetFbiMode(mcg_dmx32_t dmx32, mcg_drs_t drs, void (*fllStableDela
     }
 
     MCG->C4 = (uint8_t)((mcg_c4 & ~(MCG_C4_DMX32_MASK | MCG_C4_DRST_DRS_MASK))
-    					| (MCG_C4_DMX32(dmx32)
-    					| MCG_C4_DRST_DRS(drs)));
+                        | (MCG_C4_DMX32(dmx32)
+                        | MCG_C4_DRST_DRS(drs)));
 
     /* Wait for FLL stable time. */
     if (fllStableDelay)
@@ -1361,7 +1361,7 @@ status_t CLOCK_SetBlpeMode(void)
 
 status_t CLOCK_SetPbeMode(mcg_pll_clk_select_t pllcs, mcg_pll_config_t const *config)
 {
-	(void)pllcs; // unused parameter?!?
+    (void)pllcs; // unused parameter?!?
     /*
        This function is designed to change MCG to PBE mode from PEE/BLPE/FBE,
        but with this workflow, the source mode could be all modes except PEI/PBI.
@@ -1500,8 +1500,8 @@ status_t CLOCK_BootToBlpeMode(mcg_oscsel_t oscsel)
 
     /* Set to FBE mode. */
     MCG->C1 = (uint8_t)((MCG->C1 & ~(MCG_C1_CLKS_MASK | MCG_C1_IREFS_MASK))
-    				| (MCG_C1_CLKS(kMCG_ClkOutSrcExternal)    /* CLKS = 2 */
-    				| MCG_C1_IREFS(kMCG_FllSrcExternal))); /* IREFS = 0 */
+                    | (MCG_C1_CLKS(kMCG_ClkOutSrcExternal)    /* CLKS = 2 */
+                    | MCG_C1_IREFS(kMCG_FllSrcExternal))); /* IREFS = 0 */
 
     /* Wait for MCG_S[CLKST] and MCG_S[IREFST]. */
     while ((MCG->S & (MCG_S_IREFST_MASK | MCG_S_CLKST_MASK)) !=

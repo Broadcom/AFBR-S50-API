@@ -158,6 +158,13 @@ API** to the
 Evaluation Kit with a Cortex-M4 MCU. The guide can be found on the
 [Broadcom homepage](https://docs.broadcom.com/docs/AFBR-S50-SDK-Porting-Guide-to-Cortex-M4-PG).
 
+### Migrate from previous versions
+
+If you have used the previous version of the **AFBR-S50 API**, please read the
+[Migration guide](https://broadcom.github.io/AFBR-S50-API/migration_guide.html)
+to get an overview of the changes in the API as well as the HAL compared to the
+current version.
+
 ## How to get Support
 
 In oder to get support, please make sure the issue is related to the **AFBR-S50
@@ -183,18 +190,29 @@ Ideas for contributions could be:
 -   fixing/updating platform or example code or project files,
 -   porting the platform code to new processors,
 -   adding additional examples/demo projects,
--   and much more... .
+-   and much more...
 
 Please make sure your work fits well into the existing structure and coding
 style. Also, before you start your work, check if your planned contribution will
 be accepted by open a new issue that describes your planned changes. This will
 also help to gather information about the implementation.
 
+## Acknowledgements
+
+The **AFBR-S50 API** is based developed using the following tools:
+
+-   [NXP MCUXpresso IDE](https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE)
+-   [ST STM32Cube IDE](https://www.st.com/en/development-tools/stm32cubeide.html)
+-   [Renesas e² Studio IDE](https://www.renesas.com/us/en/software-tool/e-studio)
+-   printf library by [mpaland](https://github.com/mpaland/printf) and
+    [eyalroz](https://github.com/eyalroz/printf)
+-   [Doxygen](https://www.doxygen.nl/) and [Graphviz](https://graphviz.org/)
+
 ## Copyright and License
 
 The **AFBR-S50-API** is published under the **BSD 3-Clause License**:
 
-> Copyright (c) 2021, Broadcom Inc All rights reserved.
+> Copyright (c) 2023, Broadcom Inc All rights reserved.
 >
 > Redistribution and use in source and binary forms, with or without
 > modification, are permitted provided that the following conditions are met:

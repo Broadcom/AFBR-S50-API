@@ -40,6 +40,7 @@
  * Include Files
  ******************************************************************************/
 #include "argus.h"
+#include "debug.h"
 
 #if !defined(_RENESAS_RA_)
 #error No target specified or target not supported!

@@ -1,9 +1,12 @@
 /* generated vector header file - do not edit */
 #ifndef VECTOR_DATA_H
 #define VECTOR_DATA_H
+#ifdef __cplusplus
+        extern "C" {
+        #endif
 /* Number of interrupts allocated */
 #ifndef VECTOR_DATA_IRQ_COUNT
-#define VECTOR_DATA_IRQ_COUNT    (21)
+#define VECTOR_DATA_IRQ_COUNT    (15)
 #endif
 /* ISR prototypes */
 void spi_rxi_isr(void);
@@ -19,11 +22,6 @@ void gpt_counter_overflow_isr(void);
 void can_error_isr(void);
 void can_rx_isr(void);
 void can_tx_isr(void);
-void usbfs_interrupt_handler(void);
-void usbfs_resume_handler(void);
-void usbfs_d0fifo_handler(void);
-void usbfs_d1fifo_handler(void);
-void dmac_int_isr(void);
 
 /* Vector table allocations */
 #define VECTOR_NUMBER_SPI0_RXI ((IRQn_Type) 0) /* SPI0 RXI (Receive buffer full) */
@@ -56,16 +54,7 @@ void dmac_int_isr(void);
 #define CAN0_FIFO_RX_IRQn          ((IRQn_Type) 13) /* CAN0 FIFO RX (Receive FIFO interrupt) */
 #define VECTOR_NUMBER_CAN0_FIFO_TX ((IRQn_Type) 14) /* CAN0 FIFO TX (Transmit FIFO interrupt) */
 #define CAN0_FIFO_TX_IRQn          ((IRQn_Type) 14) /* CAN0 FIFO TX (Transmit FIFO interrupt) */
-#define VECTOR_NUMBER_USBFS_INT ((IRQn_Type) 15) /* USBFS INT (USBFS interrupt) */
-#define USBFS_INT_IRQn          ((IRQn_Type) 15) /* USBFS INT (USBFS interrupt) */
-#define VECTOR_NUMBER_USBFS_RESUME ((IRQn_Type) 16) /* USBFS RESUME (USBFS resume interrupt) */
-#define USBFS_RESUME_IRQn          ((IRQn_Type) 16) /* USBFS RESUME (USBFS resume interrupt) */
-#define VECTOR_NUMBER_USBFS_FIFO_0 ((IRQn_Type) 17) /* USBFS FIFO 0 (DMA transfer request 0) */
-#define USBFS_FIFO_0_IRQn          ((IRQn_Type) 17) /* USBFS FIFO 0 (DMA transfer request 0) */
-#define VECTOR_NUMBER_USBFS_FIFO_1 ((IRQn_Type) 18) /* USBFS FIFO 1 (DMA transfer request 1) */
-#define USBFS_FIFO_1_IRQn          ((IRQn_Type) 18) /* USBFS FIFO 1 (DMA transfer request 1) */
-#define VECTOR_NUMBER_DMAC0_INT ((IRQn_Type) 19) /* DMAC0 INT (DMAC transfer end 0) */
-#define DMAC0_INT_IRQn          ((IRQn_Type) 19) /* DMAC0 INT (DMAC transfer end 0) */
-#define VECTOR_NUMBER_DMAC1_INT ((IRQn_Type) 20) /* DMAC1 INT (DMAC transfer end 1) */
-#define DMAC1_INT_IRQn          ((IRQn_Type) 20) /* DMAC1 INT (DMAC transfer end 1) */
+#ifdef __cplusplus
+        }
+        #endif
 #endif /* VECTOR_DATA_H */

@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2020-2021] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
+ * Copyright [2020-2022] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
  *
  * This software and documentation are supplied by Renesas Electronics America Inc. and may only be used with products
  * of Renesas Electronics Corp. and its affiliates ("Renesas").  No other uses are authorized.  Renesas products are
@@ -43,10 +43,7 @@
  **********************************************************************************************************************/
 
 /** Used for holding reference counters for protection bits. */
-static volatile uint16_t g_protect_counters[] =
-{
-    0U, 0U, 0U, 0U
-};
+volatile uint16_t g_protect_counters[4] BSP_SECTION_EARLY_INIT;
 
 /** Masks for setting or clearing the PRCR register. Use -1 for size because PWPR in MPC is used differently. */
 static const uint16_t g_prcr_masks[] =
