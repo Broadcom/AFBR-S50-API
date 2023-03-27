@@ -13,5 +13,5 @@ var sci__cmd_8h =
     ] ],
     [ "SCI_Printf", "group__sci__cmd.html#ga61157a72bdcf53ee9ed1e1bedb00c350", null ],
     [ "SCI_SendLogEntry", "group__sci__cmd.html#ga425c28c398bd3343bec6cb67bc0c9a53", null ],
-    [ "SCI_SendStatusReport", "group__sci__cmd.html#ga6362dea14d11155dc11bf3b9e77aa20f", null ]
+    [ "SCI_SendStatusReport", "group__sci__cmd.html#ga7ed509eda277925c8eda6504d21a6bbb", null ]
 ];

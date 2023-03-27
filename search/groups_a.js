@@ -9,5 +9,5 @@ var searchData=
   ['sci_3a_20handshaking_6',['SCI: Handshaking',['../group__sci__handshaking.html',1,'']]],
   ['sci_3a_20systems_20communication_20interface_7',['SCI: Systems Communication Interface',['../group__sci.html',1,'']]],
   ['shot_20noise_20monitor_8',['Shot Noise Monitor',['../group__argus__snm.html',1,'']]],
-  ['status_20codes_9',['Status Codes',['../group__argus__status.html',1,'(Global Namespace)'],['../group__explorer__status.html',1,'(Global Namespace)'],['../group__scheduler__status.html',1,'(Global Namespace)']]]
+  ['status_20codes_9',['Status Codes',['../group__argus__status.html',1,'(Global Namespace)'],['../group__scheduler__status.html',1,'(Global Namespace)']]]
 ];

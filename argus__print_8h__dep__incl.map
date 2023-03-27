@@ -1,6 +1,5 @@
 <map id="AFBR&#45;S50/Include/platform/argus_print.h" name="AFBR&#45;S50/Include/platform/argus_print.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="173,5,354,47"/>
-<area shape="rect" id="node2" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="5,95,156,136"/>
-<area shape="rect" id="node3" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="180,102,347,129"/>
-<area shape="rect" id="node4" href="$_example_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="371,95,518,136"/>
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="77,5,258,45"/>
+<area shape="rect" id="node2" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="5,93,156,133"/>
+<area shape="rect" id="node3" href="$_example_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="181,93,327,133"/>
 </map>

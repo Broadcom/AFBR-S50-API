@@ -10,7 +10,8 @@ var group__argus__res =
     ] ],
     [ "argus_vector_t", "structargus__vector__t.html", [
       [ "C", "structargus__vector__t.html#a709c335617e44b47d02304e7c393f883", null ],
-      [ "S", "structargus__vector__t.html#a1937758c5ce2d4255e3633cca98d68c8", null ]
+      [ "S", "structargus__vector__t.html#a1937758c5ce2d4255e3633cca98d68c8", null ],
+      [ "SC", "structargus__vector__t.html#a000f2b441a1843becdbf93968dfaf068", null ]
     ] ],
     [ "argus_results_bin_t", "structargus__results__bin__t.html", [
       [ "Amplitude", "structargus__results__bin__t.html#a918392407fcf45cadb280ebe502d633d", null ],
@@ -26,10 +27,16 @@ var group__argus__res =
       [ "VDDL", "structargus__results__aux__t.html#afe80010eb3836d9b44b2fd7e8a84fe76", null ],
       [ "VSUB", "structargus__results__aux__t.html#ac34b781dd59274774ac6fe721f82cd4b", null ]
     ] ],
+    [ "argus_results_debug_t", "structargus__results__debug__t.html", [
+      [ "Data", "structargus__results__debug__t.html#a2418076c37773dc87529d91d64cb18e7", null ],
+      [ "DCAAmplitude", "structargus__results__debug__t.html#aa9cfe179d25305c370c549abae5c296b", null ],
+      [ "XtalkMonitor", "structargus__results__debug__t.html#aad9ed208663c99a7fa8f89b68638d276", null ],
+      [ "XtalkPredictor", "structargus__results__debug__t.html#afe10b62bf2d248eed6f017c0bb601dd6", null ]
+    ] ],
     [ "argus_results_t", "structargus__results__t.html", [
       [ "Auxiliary", "structargus__results__t.html#a2b8344a8d47e1b7f48089b2da3df91a2", null ],
       [ "Bin", "structargus__results__t.html#aff9b50b61955470fa1d349b4fb17ff1e", null ],
-      [ "Data", "structargus__results__t.html#ac00196d4a1e19101c5f7a53ea4557ffe", null ],
+      [ "Debug", "structargus__results__t.html#a6c4308dd05f1f19908e9dbd2bb9b1e43", null ],
       [ "Frame", "structargus__results__t.html#a4270d9561d3ea6518527dd3ff316dfae", null ],
       [ "Pixel", "structargus__results__t.html#a98f47fff1959f85bc941df9c6c850f31", null ],
       [ "PixelRef", "structargus__results__t.html#a7982d02b667ac86b2b7f2f89d2b07296", null ],
@@ -44,7 +51,7 @@ var group__argus__res =
       [ "PIXEL_OFF", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea922b0b68ce012a829baad27b639232cf", null ],
       [ "PIXEL_SAT", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea57613d4f1ab753e3c57f3f4fdd437c89", null ],
       [ "PIXEL_BIN_EXCL", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911eaa26c2f90a5f25cd796cd097fb559c2a7", null ],
-      [ "PIXEL_AMPL_MIN", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea1a604198fe7718c99adea9ffda66108f", null ],
+      [ "PIXEL_INVALID", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea0f1a7a2db4c5229e3c0c6abff1d9f7ac", null ],
       [ "PIXEL_PREFILTERED", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea8cba4116cec855dab7a96ac690f0b309", null ],
       [ "PIXEL_NO_SIGNAL", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea3a9cca52ba3afd66cd03b7585e76da55", null ],
       [ "PIXEL_OUT_OF_SYNC", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911eaa06bedb3ec057fee6bf549c375796fdc", null ],

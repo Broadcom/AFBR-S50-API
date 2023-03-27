@@ -1,5 +1,8 @@
 var group__argus__map =
 [
+    [ "ARGUS_PIXELS", "group__argus__map.html#gac8cf1aeb912a212770cb1a1e05f952a3", null ],
+    [ "ARGUS_PIXELS_X", "group__argus__map.html#ga9228747d6ab08e18b28c3787c5cf5810", null ],
+    [ "ARGUS_PIXELS_Y", "group__argus__map.html#ga17627acf84a462e4500a28f8ada462d4", null ],
     [ "CHANNEL_COUNT", "group__argus__map.html#ga875ebafabfb32c77eed1e81e9f4bc802", null ],
     [ "CHANNELN_DISABLE", "group__argus__map.html#gabfef3d1a313dbd8f722e248e225848a1", null ],
     [ "CHANNELN_ENABLE", "group__argus__map.html#gac14bac78f94bf611f7351d73596482e8", null ],
@@ -21,5 +24,9 @@ var group__argus__map =
     [ "PIXELN_ISENABLED", "group__argus__map.html#gac988f6a8ec90ed0977066e8cc8d9eaea", null ],
     [ "PIXELXY_DISABLE", "group__argus__map.html#ga7a40569c2bf00c02841b1eff390ba659", null ],
     [ "PIXELXY_ENABLE", "group__argus__map.html#gae32b946e334dbc39181bac75790064dc", null ],
-    [ "PIXELXY_ISENABLED", "group__argus__map.html#gaa51a0ce9b1e5dd179fbeaedfc4dd80e6", null ]
+    [ "PIXELXY_ISENABLED", "group__argus__map.html#gaa51a0ce9b1e5dd179fbeaedfc4dd80e6", null ],
+    [ "ChannelToPixelMask", "group__argus__map.html#ga6302f5fd14b9ccc655f47f0aaa79e4dc", null ],
+    [ "FillPixelMask", "group__argus__map.html#ga5180d7801c5b68b8fb8ae640dc612543", null ],
+    [ "PixelToChannelMask", "group__argus__map.html#ga0334e020000ed46b7b392d94a25ebfb8", null ],
+    [ "ShiftSelectedPixels", "group__argus__map.html#ga4545757e36411fa348b27c725a65f1c6", null ]
 ];

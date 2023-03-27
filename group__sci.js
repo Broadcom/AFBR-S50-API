@@ -4,11 +4,11 @@ var group__sci =
     [ "SCI: Generic Command Definitions", "group__sci__cmd.html", "group__sci__cmd" ],
     [ "SCI: CRC8", "group__sci__crc.html", "group__sci__crc" ],
     [ "SCI: Data Link Layer", "group__sci__datalink.html", "group__sci__datalink" ],
-    [ "SCI: Data Frames", "group__sci__frame.html", null ],
+    [ "SCI: Data Frames", "group__sci__frame.html", "group__sci__frame" ],
     [ "SCI: Handshaking", "group__sci__handshaking.html", "group__sci__handshaking" ],
     [ "sci_frame_t", "structsci__frame__t.html", [
       [ "Buffer", "structsci__frame__t.html#a9d8ab26e3605366f2785300339551d15", null ],
-      [ "Next", "structsci__frame__t.html#ac1ae1726808cc8c5a53c16f3e8f82241", null ],
+      [ "Next", "structsci__frame__t.html#adfe8a72c136ab1af24dc6495267a541b", null ],
       [ "RdPtr", "structsci__frame__t.html#a730565cca771a78721b164cb7ffb1517", null ],
       [ "WrPtr", "structsci__frame__t.html#a69ca9753955252e179772b891cb0464e", null ]
     ] ],
@@ -18,6 +18,8 @@ var group__sci =
       [ "Load", "structsci__frame__queue__t.html#a90892d902a83f4c5d421b2c3b3b8aee2", null ],
       [ "Size", "structsci__frame__queue__t.html#a1c2cc44f0488c8095b45e44262b44d10", null ]
     ] ],
+    [ "DEVICEID_DEFAULT", "group__sci.html#gab39d523f783b44d1a6dce3bafcbf9bb8", null ],
+    [ "DEVICEID_FIRST_VALID", "group__sci.html#gaa16bb9e651be64c00815038d3a308fd1", null ],
     [ "SCI_FRAME_BUF_CT", "group__sci.html#ga6d99e09015e65fef1189f46eb68e6ddb", null ],
     [ "SCI_FRAME_BUF_RX_CT", "group__sci.html#gaaa9dd0e7327897f577d8354dea056875", null ],
     [ "SCI_FRAME_BUF_TX_CT", "group__sci.html#gad9a546208a4f8ff1599cf0680b3b2575", null ],
@@ -25,11 +27,15 @@ var group__sci =
     [ "SCI_TX_TIMEOUT_MSEC", "group__sci.html#ga90d56fe3172b9b3b5c064919f1245646", null ],
     [ "sci_cmd_t", "group__sci.html#gae0765ecea75b1c8c72f65e19e099ebe9", null ],
     [ "sci_data_t", "group__sci.html#gaf71636db1f647717026ffe3bb0fa15a3", null ],
+    [ "sci_device_t", "group__sci.html#ga0e012ddfd289bcc3d60f1a8737e5bd9c", null ],
     [ "sci_error_cb_t", "group__sci.html#ga517377a1118c16231427e0f2b7ee5bb9", null ],
     [ "sci_param_t", "group__sci.html#ga4574175116303c73fe4a57693e4cde4e", null ],
     [ "sci_rx_cmd_cb_t", "group__sci.html#ga465da1a88cb0cd3c38fd5849dfc3b475", null ],
-    [ "sci_rx_cmd_fct_t", "group__sci.html#ga551da4ce1c1420b95fdf480e8b919f90", null ],
-    [ "sci_tx_cmd_fct_t", "group__sci.html#gaf09c4245d0febaf461bfe16f1515d7d0", null ],
+    [ "sci_rx_cmd_fct_t", "group__sci.html#ga1c334fddb9235d6ebd610a008f930650", null ],
+    [ "sci_tx_cmd_fct_t", "group__sci.html#gadced48dec472799721eb1d16ee105cbc", null ],
+    [ "StatusExplorer", "group__sci.html#ga0aa4b33b0a1b4529687c10ccaa47ac3a", [
+      [ "ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS", "group__sci.html#gga0aa4b33b0a1b4529687c10ccaa47ac3aaad9d3431dbba08fd73b0b4194d5694a0", null ]
+    ] ],
     [ "StatusSCI", "group__sci.html#gaa3029a6e3236ba6a085810f22f9149ce", [
       [ "ERROR_SCI_UNKNOWN_COMMAND", "group__sci.html#ggaa3029a6e3236ba6a085810f22f9149cea6971be73d14326bfb9d96cb814cd4500", null ],
       [ "ERROR_SCI_CMD_EXECUTION_FAILURE", "group__sci.html#ggaa3029a6e3236ba6a085810f22f9149ceaa368774840d20c1e771b6212509edd5e", null ],
@@ -49,7 +55,7 @@ var group__sci =
     [ "SCI_InvokeRxCommand", "group__sci.html#ga6ce77452b5e5ad88806c55233fbb5425", null ],
     [ "SCI_RemoveErrorCallback", "group__sci.html#gad169838eccdc87c656e449b38c4c59aa", null ],
     [ "SCI_RemoveRxCommandCallback", "group__sci.html#gaa0919a66f6069581cfda87cf72fd2dd2", null ],
-    [ "SCI_SendCommand", "group__sci.html#ga5cab256dca3c3256a4af5e033444a335", null ],
+    [ "SCI_SendCommand", "group__sci.html#ga62c22cb4f03e8782e2d74a9316549587", null ],
     [ "SCI_SetCommand", "group__sci.html#ga544e97f025c75af190ea889946c6a283", null ],
     [ "SCI_SetErrorCallback", "group__sci.html#gae69be187b354adaf75a1b90e0a89d861", null ],
     [ "SCI_SetPostRxCommand", "group__sci.html#ga9541c1bdd9799c358b94a817df7399f4", null ],

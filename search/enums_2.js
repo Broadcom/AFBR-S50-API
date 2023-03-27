@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cal_5fsequence_5ft_0',['cal_sequence_t',['../group__explorer__api.html#ga37ea70f00be022c0315b5753e80548f7',1,'explorer_api.h']]]
+  ['data_5foutput_5fmode_5ft_0',['data_output_mode_t',['../group__explorer__types.html#ga54b52f07a92dddf58be9d1d1534b4a6f',1,'explorer_types.h']]]
 ];

@@ -1,6 +1,6 @@
 <map id="Demo Applications" name="Demo Applications">
-<area shape="rect" id="node1" href="$group__can__app.html" title="AFBR&#45;S50 Reference Board CAN&#45;bus example application." alt="" coords="195,5,312,31"/>
+<area shape="rect" id="node1" href="$group__can__app.html" title="AFBR&#45;S50 Reference Board CAN&#45;bus example application." alt="" coords="209,5,327,31"/>
 <area shape="rect" id="node2" title="AFBR&#45;S50 API Demo Applications." alt="" coords="5,55,136,80"/>
-<area shape="rect" id="node3" href="$group__example__main.html" title="AFBR&#45;S50 API Example Applications." alt="" coords="184,55,323,80"/>
-<area shape="rect" id="node4" href="$group__explorer__app.html" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="186,104,321,129"/>
+<area shape="rect" id="node3" href="$group__example__apps.html" title="Example and Demo Projects for the AFBR&#45;S50 API." alt="" coords="184,55,352,80"/>
+<area shape="rect" id="node4" href="$group__explorer__app.html" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="201,104,335,129"/>
 </map>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['main_0',['main',['../group__example__main.html#ga840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;main.c'],['../_explorer_app_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;main.c'],['../group__can__app.html#ga840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;main.c']]],
-  ['measurement_5fready_5fcallback_1',['measurement_ready_callback',['../group__example__main.html#ga00d01265c79fec3e7000cf849f69cbd1',1,'measurement_ready_callback(status_t status, void *data):&#160;main.c'],['../group__can__app.html#ga00d01265c79fec3e7000cf849f69cbd1',1,'measurement_ready_callback(status_t status, void *data):&#160;main.c']]]
+  ['handle_5ferror_0',['handle_error',['../group__can__app.html#gadac4458c88ff5ecae510f35ef38c4b35',1,'main.c']]],
+  ['handleerror_1',['HandleError',['../group__example__apps.html#gab85e73a9f779646747efa495bd06d4f5',1,'HandleError(status_t status, char const *msg):&#160;main.c'],['../group__example__apps.html#gab85e73a9f779646747efa495bd06d4f5',1,'HandleError(status_t status, char const *msg):&#160;main.c']]]
 ];

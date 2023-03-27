@@ -1,8 +1,27 @@
 var searchData=
 [
-  ['next_0',['Next',['../structsci__frame__t.html#ac1ae1726808cc8c5a53c16f3e8f82241',1,'sci_frame_t']]],
-  ['nvm_3a_20non_2dvolatile_20memory_20layer_1',['NVM: Non-Volatile Memory Layer',['../group__argus__nvm.html',1,'']]],
-  ['nvm_5finit_2',['NVM_Init',['../group__argus__nvm.html#ga1d4158a840a27f7b260bd2d8d0bf64a3',1,'argus_nvm.h']]],
-  ['nvm_5fread_3',['NVM_Read',['../group__argus__nvm.html#ga077b4b7bcb2efdfc2040dfaa58487e85',1,'argus_nvm.h']]],
-  ['nvm_5fwrite_4',['NVM_Write',['../group__argus__nvm.html#ga2463d0812d4465d27e03447e725c321f',1,'argus_nvm.h']]]
+  ['main_0',['main',['../_example_app_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;main.c'],['../_explorer_app_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;main.c'],['../group__can__app.html#ga840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;main.c']]],
+  ['main_2ec_1',['main.c',['../_c_a_n_app_2main_8c.html',1,'(Global Namespace)'],['../_example_app_2main_8c.html',1,'(Global Namespace)'],['../_explorer_app_2main_8c.html',1,'(Global Namespace)']]],
+  ['main_2eh_2',['main.h',['../main_8h.html',1,'']]],
+  ['make_5fversion_3',['MAKE_VERSION',['../group__argus__version.html#ga812138aa3315b0c6953c1a26130bcc37',1,'MAKE_VERSION():&#160;argus_version.h'],['../group__explorer__version.html#ga812138aa3315b0c6953c1a26130bcc37',1,'MAKE_VERSION():&#160;explorer_version.h'],['../group__can__version.html#ga812138aa3315b0c6953c1a26130bcc37',1,'MAKE_VERSION():&#160;can_app_version.h']]],
+  ['mavlink_20app_20_28afbr_2ds50_20ref_2e_20board_29_4',['MAVLink App (AFBR-S50 Ref. Board)',['../mavlink_app.html',1,'']]],
+  ['max_5',['MAX',['../group__argus__misc.html#gafa99ec4acc4ecb2dc3c2d05da15d0e3f',1,'int_math.h']]],
+  ['mcu_20porting_20guide_6',['MCU Porting Guide',['../porting_guide.html',1,'']]],
+  ['mcuxpresso_20ide_7',['MCUXpresso IDE',['../mcuxpresso.html',1,'getting_started']]],
+  ['measurement_20data_8',['Measurement Data',['../group__argus__res.html',1,'']]],
+  ['measurement_2fdevice_20control_9',['Measurement/Device Control',['../group__argus__meas.html',1,'']]],
+  ['measurement_5fready_5fcallback_10',['measurement_ready_callback',['../group__can__app.html#gaac9d89a7c497cdc9fd7ef858f72f6df1',1,'main.c']]],
+  ['measurementcallback_11',['MeasurementCallback',['../group__argus__test.html#gacbe38b477d2e0181623d5649b5564578',1,'argus_hal_test.c']]],
+  ['measurementreadycallback_12',['MeasurementReadyCallback',['../core__utils_8c.html#ab10ecdb4ba8c7d5083cc3ec9a5733b19',1,'core_utils.c']]],
+  ['min_13',['MIN',['../group__argus__misc.html#ga3acffbd305ee72dcd4593c0d8af64a4f',1,'int_math.h']]],
+  ['miscellaneous_20math_14',['Miscellaneous Math',['../group__argus__misc.html',1,'']]],
+  ['module_5fextended_5fflag_15',['MODULE_EXTENDED_FLAG',['../group__argus__api.html#ga1da90998e20d8faf2416ea000c386e4c',1,'argus_def.h']]],
+  ['module_5fnone_16',['MODULE_NONE',['../group__argus__api.html#gga46f240b890cd62efe83bf2d095277470aaa900f50762d9ace21be7cfdf0b175b4',1,'argus_def.h']]],
+  ['muldwu_17',['muldwu',['../group__argus__fp.html#gaf1ab6e0408d3ea076f88eb31a958ae19',1,'fp_mul.h']]],
+  ['myccb_18',['myCCB',['../sci_8c.html#ada4ae339d14de9fc8c84e9a0ba275273',1,'sci.c']]],
+  ['mycrc8lookup_19',['myCRC8Lookup',['../sci__crc8_8c.html#afa736f989f78829e4579a2ee41a194cc',1,'sci_crc8.c']]],
+  ['mydatareadyevents_20',['myDataReadyEvents',['../group__can__app.html#gaf7335bf4f18928bdf815956a2a67152c',1,'main.c']]],
+  ['mylog2lookup_21',['myLog2Lookup',['../task__scheduler_8c.html#a18a84c88144272a8ac8157db53246a9d',1,'task_scheduler.c']]],
+  ['myscheduler_22',['myScheduler',['../explorer__tasks_8c.html#a48c87cf9cb9bf57cadc5616f4c8a503e',1,'explorer_tasks.c']]],
+  ['myuartrxdata_23',['myUartRxData',['../uart__api_8c.html#a488f0fe65e3750a476e5d2c486014592',1,'uart_api.c']]]
 ];

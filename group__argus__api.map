@@ -5,7 +5,7 @@
 <area shape="rect" id="node4" href="$group__argus__cfg.html" title="Device configuration parameter definitions and API functions." alt="" coords="354,55,451,80"/>
 <area shape="rect" id="node5" href="$group__argus__dca.html" title="Dynamic Configuration Adaption (DCA) parameter definitions and API functions." alt="" coords="327,105,478,145"/>
 <area shape="rect" id="node6" href="$group__argus__dfm.html" title="Dual Frequency Mode (DFM) parameter definitions and API functions." alt="" coords="329,169,476,195"/>
-<area shape="rect" id="node7" href="$group__argus__map.html" title="Pixel ADC Channel Mapping." alt="" coords="327,219,478,244"/>
+<area shape="rect" id="node7" href="$group__argus__map.html" title="Pixel Channel Mapping." alt="" coords="327,219,479,244"/>
 <area shape="rect" id="node8" href="$group__argus__meas.html" title="Measurement/Device control module." alt="" coords="330,269,475,309"/>
 <area shape="rect" id="node9" href="$group__argus__pba.html" title="Pixel Binning Algorithm (PBA) parameter definitions and API functions." alt="" coords="325,333,480,359"/>
 <area shape="rect" id="node10" href="$group__argus__res.html" title="Measurement results data structures." alt="" coords="337,383,468,408"/>

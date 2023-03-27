@@ -1,13 +1,7 @@
-<map id="Sources/ExplorerApp/explorer_status.h" name="Sources/ExplorerApp/explorer_status.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="592,5,735,47"/>
-<area shape="rect" id="node2" href="$explorer__app_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="505,95,648,136"/>
-<area shape="rect" id="node11" href="$explorer__flash_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="736,95,879,136"/>
-<area shape="rect" id="node3" href="$explorer__api_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,184,148,225"/>
-<area shape="rect" id="node4" href="$explorer__api__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="557,184,708,225"/>
-<area shape="rect" id="node5" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="732,184,883,225"/>
-<area shape="rect" id="node6" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="448,273,591,315"/>
-<area shape="rect" id="node7" href="$explorer__flash_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="907,184,1049,225"/>
-<area shape="rect" id="node8" href="$explorer__hardware_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="172,184,315,225"/>
-<area shape="rect" id="node10" href="$_explorer_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="339,184,481,225"/>
-<area shape="rect" id="node9" href="$explorer__hardware_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="172,273,315,315"/>
+<map id="Sources/ExplorerApp/core/explorer_status.h" name="Sources/ExplorerApp/core/explorer_status.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="257,5,411,45"/>
+<area shape="rect" id="node2" href="$explorer__api_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,93,148,133"/>
+<area shape="rect" id="node3" href="$explorer__api__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="172,93,323,133"/>
+<area shape="rect" id="node4" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="347,93,497,133"/>
+<area shape="rect" id="node5" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="521,93,664,133"/>
 </map>

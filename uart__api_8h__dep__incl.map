@@ -1,5 +1,5 @@
 <map id="Sources/CANApp/uart_api.h" name="Sources/CANApp/uart_api.h">
-<area shape="rect" id="node1" title="AFBR&#45;S50 UART Interface." alt="" coords="104,5,255,47"/>
-<area shape="rect" id="node2" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="5,102,172,129"/>
-<area shape="rect" id="node3" href="$uart__api_8c.html" title="This file is part of the RA4M2 platform layer." alt="" coords="196,95,347,136"/>
+<area shape="rect" id="node1" title="AFBR&#45;S50 UART Interface." alt="" coords="104,5,255,45"/>
+<area shape="rect" id="node2" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="5,101,172,126"/>
+<area shape="rect" id="node3" href="$uart__api_8c.html" title="This file is part of the RA4M2 platform layer." alt="" coords="196,93,347,133"/>
 </map>

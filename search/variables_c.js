@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['outputpower_0',['OutputPower',['../structargus__meas__frame__t.html#a4aad62a4d40928a3907b8ae569a740b2',1,'argus_meas_frame_t']]]
+  ['next_0',['Next',['../structsci__frame__t.html#adfe8a72c136ab1af24dc6495267a541b',1,'sci_frame_t']]]
 ];

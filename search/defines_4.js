@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ping_5fperiod_5fms_0',['PING_PERIOD_MS',['../explorer__app_8c.html#afbb20bd6c842b1ea64e796019ccb861f',1,'explorer_app.c']]]
+  ['sci_5fmax_5fcommands_0',['SCI_MAX_COMMANDS',['../sci_8c.html#ab3eef3ba9002be282d857156b5913aee',1,'sci.c']]]
 ];

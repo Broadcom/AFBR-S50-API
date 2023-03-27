@@ -1,4 +1,4 @@
-<map id="ADC Channel Mapping" name="ADC Channel Mapping">
+<map id="Pixel Channel Mapping" name="Pixel Channel Mapping">
 <area shape="rect" id="node1" href="$group__argus__api.html" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="5,5,115,31"/>
-<area shape="rect" id="node2" title="Pixel ADC Channel Mapping." alt="" coords="163,5,313,31"/>
+<area shape="rect" id="node2" title="Pixel Channel Mapping." alt="" coords="163,5,315,31"/>
 </map>

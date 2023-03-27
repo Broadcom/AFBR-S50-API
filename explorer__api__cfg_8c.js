@@ -1,4 +1,31 @@
 var explorer__api__cfg_8c =
 [
-    [ "ExplorerAPI_InitCfg", "group__explorer__api.html#ga4a12b2b28c2f524bd8943cb8c7fb864f", null ]
+    [ "Deserialize_Cfg_DCA", "explorer__api__cfg_8c.html#a9911e2693c35178d3d304e56c99bd2b1", null ],
+    [ "Deserialize_Cfg_PBA", "explorer__api__cfg_8c.html#a860fcc7efb300585035c8c8dfdb97f2a", null ],
+    [ "ExplorerAPI_InitCfg", "group__explorer__api.html#ga397854e365de873964cdf468d713dcd3", null ],
+    [ "PrxCmd_CfgUart", "explorer__api__cfg_8c.html#ad521eba412a65cb79d941fad7e3e8de1", null ],
+    [ "RxCmd_CfgDataOutputMode", "explorer__api__cfg_8c.html#a447ae754331b44717fe2894ad73da970", null ],
+    [ "RxCmd_CfgDca", "explorer__api__cfg_8c.html#af7d00c62af0ac894b48b68238f49e13f", null ],
+    [ "RxCmd_CfgDualFrequencyMode", "explorer__api__cfg_8c.html#add764e4c551742f7f4970347b029ad2f", null ],
+    [ "RxCmd_CfgFrameTime", "explorer__api__cfg_8c.html#a8396ad0c5b3e95294a31e97359b21607", null ],
+    [ "RxCmd_CfgMeasurementMode", "explorer__api__cfg_8c.html#a91e1fe364f4ab219975a7f99d0bd32c4", null ],
+    [ "RxCmd_CfgPba", "explorer__api__cfg_8c.html#a472f4a0d36fce3764f2a3c2714450fe4", null ],
+    [ "RxCmd_CfgShotNoiseMonitor", "explorer__api__cfg_8c.html#a86a627d663cc6753a31f25bf470b00a1", null ],
+    [ "RxCmd_CfgSmartPowerSaveEnabled", "explorer__api__cfg_8c.html#ae0cc880a38e0ab9268817b33f71c4db8", null ],
+    [ "RxCmd_CfgSpi", "explorer__api__cfg_8c.html#a1979c0d59a266fba875f6de0bf7f5547", null ],
+    [ "RxCmd_CfgUart", "explorer__api__cfg_8c.html#a90ea572a134e42f93e719bc1f8ef109f", null ],
+    [ "RxCmd_CfgXtalkMonitor", "explorer__api__cfg_8c.html#a89466d8d088530a4017f25828f51861e", null ],
+    [ "Serialize_Cfg_DCA", "explorer__api__cfg_8c.html#aac70e8c1da4f0b779e9f6a13a4686d74", null ],
+    [ "Serialize_Cfg_PBA", "explorer__api__cfg_8c.html#a04a7daf3d54b08df0c84ff604ae64682", null ],
+    [ "TxCmd_CfgDataOutputMode", "explorer__api__cfg_8c.html#ae0511c3d9796834d76b9cd135dd14cd7", null ],
+    [ "TxCmd_CfgDca", "explorer__api__cfg_8c.html#aca723d7a84a547cd4d5f21f31e3614c2", null ],
+    [ "TxCmd_CfgDualFrequencyMode", "explorer__api__cfg_8c.html#aab5b3b3c1a44f435c76124d892e520c1", null ],
+    [ "TxCmd_CfgFrameTime", "explorer__api__cfg_8c.html#ab946803e47f254e92ea3c9bce15cbb7f", null ],
+    [ "TxCmd_CfgMeasurementMode", "explorer__api__cfg_8c.html#a3aaf33ed512d16bbf722e4de4e68aa5f", null ],
+    [ "TxCmd_CfgPba", "explorer__api__cfg_8c.html#ada7f733592078bb51c980b9fd3a02884", null ],
+    [ "TxCmd_CfgShotNoiseMonitor", "explorer__api__cfg_8c.html#a469f9ddd45da9897497f367c1b1a7c0f", null ],
+    [ "TxCmd_CfgSmartPowerSaveEnabled", "explorer__api__cfg_8c.html#aec583544025fa829ce49caa614a0d08e", null ],
+    [ "TxCmd_CfgSpi", "explorer__api__cfg_8c.html#a45f9a8c90bd51d09ec5e05127e496b93", null ],
+    [ "TxCmd_CfgUart", "explorer__api__cfg_8c.html#ac4f4f016f3e8c2480dc1382b038138fe", null ],
+    [ "TxCmd_CfgXtalkMonitor", "explorer__api__cfg_8c.html#a502e37bff59490c58696cd6ca08b1d9b", null ]
 ];

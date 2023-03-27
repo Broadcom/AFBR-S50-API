@@ -1,6 +1,7 @@
 var sci__datalink_8h =
 [
     [ "SCI_ALLOW_NEWLINE", "group__sci__datalink.html#gad6bd36d98f740472d9caf20fb58a6d3c", null ],
+    [ "SCI_CMD_IS_EXTENDED_CMD", "group__sci__datalink.html#gaab322a8f34e3a523e0b952018bd607c1", null ],
     [ "SCI_DataLink_CheckRxFrame", "group__sci__datalink.html#gae05bd13d288a890b3e20d6393de6c7f0", null ],
     [ "SCI_DataLink_Init", "group__sci__datalink.html#gaa67ba12dd56ca69119f1ff0a07ae5351", null ],
     [ "SCI_DataLink_IsTxBusy", "group__sci__datalink.html#ga57fa12d8f110797f314cc4cb840860ad", null ],

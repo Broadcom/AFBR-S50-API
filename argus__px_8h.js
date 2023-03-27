@@ -7,7 +7,7 @@ var argus__px_8h =
       [ "PIXEL_OFF", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea922b0b68ce012a829baad27b639232cf", null ],
       [ "PIXEL_SAT", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea57613d4f1ab753e3c57f3f4fdd437c89", null ],
       [ "PIXEL_BIN_EXCL", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911eaa26c2f90a5f25cd796cd097fb559c2a7", null ],
-      [ "PIXEL_AMPL_MIN", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea1a604198fe7718c99adea9ffda66108f", null ],
+      [ "PIXEL_INVALID", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea0f1a7a2db4c5229e3c0c6abff1d9f7ac", null ],
       [ "PIXEL_PREFILTERED", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea8cba4116cec855dab7a96ac690f0b309", null ],
       [ "PIXEL_NO_SIGNAL", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea3a9cca52ba3afd66cd03b7585e76da55", null ],
       [ "PIXEL_OUT_OF_SYNC", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911eaa06bedb3ec057fee6bf549c375796fdc", null ],

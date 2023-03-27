@@ -1,10 +1,10 @@
 <map id="Sources/ExplorerApp/sci/sci_datalink.h" name="Sources/ExplorerApp/sci/sci_datalink.h">
-<area shape="rect" id="node1" title="SCI Layer 2: Data Link Interface." alt="" coords="85,5,227,47"/>
-<area shape="rect" id="node2" href="$sci__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="41,95,133,121"/>
-<area shape="rect" id="node6" href="$sci__internal__types_8h.html" title="SCI: The internal type definitions." alt="" coords="163,95,299,121"/>
-<area shape="rect" id="node3" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="25,169,127,196"/>
-<area shape="rect" id="node4" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,244,133,271"/>
-<area shape="rect" id="node5" title=" " alt="" coords="88,319,152,345"/>
-<area shape="rect" id="node7" title=" " alt="" coords="209,169,277,196"/>
-<area shape="rect" id="node8" title=" " alt="" coords="301,169,376,196"/>
+<area shape="rect" id="node1" title="SCI Layer 2: Data Link Interface." alt="" coords="85,5,227,45"/>
+<area shape="rect" id="node2" href="$sci__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="41,93,133,119"/>
+<area shape="rect" id="node6" href="$sci__internal__types_8h.html" title="SCI: The internal type definitions." alt="" coords="163,93,299,119"/>
+<area shape="rect" id="node3" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="25,167,127,192"/>
+<area shape="rect" id="node4" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,240,133,265"/>
+<area shape="rect" id="node5" title=" " alt="" coords="88,313,152,339"/>
+<area shape="rect" id="node7" title=" " alt="" coords="209,167,277,192"/>
+<area shape="rect" id="node8" title=" " alt="" coords="301,167,376,192"/>
 </map>

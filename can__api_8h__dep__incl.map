@@ -1,5 +1,5 @@
 <map id="Sources/CANApp/can_api.h" name="Sources/CANApp/can_api.h">
-<area shape="rect" id="node1" title="AFBR&#45;S50 CAN Interface." alt="" coords="96,5,247,47"/>
-<area shape="rect" id="node2" href="$can__api_8c.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="5,95,156,136"/>
-<area shape="rect" id="node3" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="180,102,347,129"/>
+<area shape="rect" id="node1" title="AFBR&#45;S50 CAN Interface." alt="" coords="96,5,247,45"/>
+<area shape="rect" id="node2" href="$can__api_8c.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="5,93,156,133"/>
+<area shape="rect" id="node3" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="180,101,347,126"/>
 </map>

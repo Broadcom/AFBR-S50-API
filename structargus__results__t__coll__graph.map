@@ -1,8 +1,10 @@
 <map id="argus_results_t" name="argus_results_t">
-<area shape="rect" id="node1" title="The measurement results data structure." alt="" coords="239,124,349,151"/>
-<area shape="rect" id="node2" href="$structltc__t.html" title="A data structure to represent current time." alt="" coords="5,5,52,32"/>
-<area shape="rect" id="node3" href="$structargus__meas__frame__t.html" title="The device measurement configuration structure." alt="" coords="77,5,221,32"/>
-<area shape="rect" id="node4" href="$structargus__pixel__t.html" title="The evaluated measurement results per pixel." alt="" coords="245,5,343,32"/>
-<area shape="rect" id="node5" href="$structargus__results__bin__t.html" title="The 1d measurement results data structure." alt="" coords="368,5,503,32"/>
-<area shape="rect" id="node6" href="$structargus__results__aux__t.html" title="The auxiliary measurement results data structure." alt="" coords="527,5,666,32"/>
+<area shape="rect" id="node1" title="The measurement results data structure." alt="" coords="468,152,579,177"/>
+<area shape="rect" id="node2" href="$structltc__t.html" title="A data structure to represent current time." alt="" coords="249,5,296,31"/>
+<area shape="rect" id="node3" href="$structargus__meas__frame__t.html" title="The device measurement configuration structure." alt="" coords="201,55,345,80"/>
+<area shape="rect" id="node4" href="$structargus__pixel__t.html" title="The evaluated measurement results per pixel." alt="" coords="223,125,322,151"/>
+<area shape="rect" id="node5" href="$structargus__results__bin__t.html" title="The 1d measurement results data structure." alt="" coords="205,175,340,200"/>
+<area shape="rect" id="node6" href="$structargus__results__aux__t.html" title="The auxiliary measurement results data structure." alt="" coords="203,224,342,249"/>
+<area shape="rect" id="node7" href="$structargus__results__debug__t.html" title="The debug data of measurement results data structure." alt="" coords="196,273,349,299"/>
+<area shape="rect" id="node8" href="$structxtalk__t.html" title="Pixel Crosstalk Compensation Vector." alt="" coords="5,273,65,299"/>
 </map>

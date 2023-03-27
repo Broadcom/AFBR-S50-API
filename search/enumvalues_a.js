@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['task_5ferror_0',['TASK_ERROR',['../group__explorer__main.html#ggac7a0d0b0bc05d09afb4355814f794a13aefbc99194d4bc3aecd78087cb3bffa18',1,'explorer_app.h']]],
-  ['task_5feval_5fdat_1',['TASK_EVAL_DAT',['../group__explorer__main.html#ggac7a0d0b0bc05d09afb4355814f794a13a37776db9f4eaa51bf64872aea0690b0d',1,'explorer_app.h']]],
-  ['task_5fhndl_5fcmd_2',['TASK_HNDL_CMD',['../group__explorer__main.html#ggac7a0d0b0bc05d09afb4355814f794a13a6f64181957346bd02bfea7fd93262c2d',1,'explorer_app.h']]],
-  ['task_5fidle_3',['TASK_IDLE',['../group__explorer__main.html#ggac7a0d0b0bc05d09afb4355814f794a13a68aaf7aebc00fba8fe3b1b36a109a3df',1,'explorer_app.h']]],
-  ['task_5fsend_5fdat_4',['TASK_SEND_DAT',['../group__explorer__main.html#ggac7a0d0b0bc05d09afb4355814f794a13ace01ee9c8584bd67757c5975571f33eb',1,'explorer_app.h']]]
+  ['uart_5fstart_0',['UART_START',['../uart__api_8c.html#a6b489aad943b0fa3180745fde69bacb8a482a98eb7e555a6c20aa5a5ed46cbf1f',1,'uart_api.c']]],
+  ['uart_5fstop_1',['UART_STOP',['../uart__api_8c.html#a6b489aad943b0fa3180745fde69bacb8ada933bf8409b243459b1600e68c250cc',1,'uart_api.c']]]
 ];

@@ -1,5 +1,9 @@
 <map id="AFBR&#45;S50/Include/utility/time.h" name="AFBR&#45;S50/Include/utility/time.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,5,169,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="9,95,73,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="97,95,171,121"/>
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="148,5,312,45"/>
+<area shape="rect" id="node2" href="$argus__timer_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,93,156,119"/>
+<area shape="rect" id="node5" title=" " alt="" coords="109,313,173,339"/>
+<area shape="rect" id="node6" title=" " alt="" coords="232,93,300,119"/>
+<area shape="rect" id="node7" title=" " alt="" coords="325,93,399,119"/>
+<area shape="rect" id="node3" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="35,167,137,192"/>
+<area shape="rect" id="node4" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="26,240,154,265"/>
 </map>

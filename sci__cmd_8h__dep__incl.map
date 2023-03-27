@@ -1,7 +1,8 @@
 <map id="Sources/ExplorerApp/sci/sci_cmd.h" name="Sources/ExplorerApp/sci/sci_cmd.h">
-<area shape="rect" id="node1" title="SCI Layer 3: Command (Message) Interface." alt="" coords="259,5,401,47"/>
-<area shape="rect" id="node2" href="$sci_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="5,95,148,136"/>
-<area shape="rect" id="node3" href="$sci__cmd_8c.html" title="SCI Layer 3: Command (Message) Module." alt="" coords="172,95,315,136"/>
-<area shape="rect" id="node4" href="$sci__handshaking_8c.html" title="SCI Handshaking Commands." alt="" coords="339,95,494,136"/>
-<area shape="rect" id="node5" href="$sci__log_8c.html" title="SCI: Command definitions for log messages in printf style." alt="" coords="519,95,661,136"/>
+<area shape="rect" id="node1" title="SCI Layer 3: Command (Message) Interface." alt="" coords="339,5,481,45"/>
+<area shape="rect" id="node2" href="$sci_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="5,93,148,133"/>
+<area shape="rect" id="node3" href="$sci__cmd_8c.html" title="SCI Layer 3: Command (Message) Module." alt="" coords="172,93,315,133"/>
+<area shape="rect" id="node4" href="$sci__datalink_8c.html" title=" " alt="" coords="339,93,481,133"/>
+<area shape="rect" id="node5" href="$sci__handshaking_8c.html" title="SCI Handshaking Commands." alt="" coords="506,93,661,133"/>
+<area shape="rect" id="node6" href="$sci__log_8c.html" title="SCI: Command definitions for log messages in printf style." alt="" coords="685,93,828,133"/>
 </map>

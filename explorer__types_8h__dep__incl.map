@@ -1,0 +1,26 @@
+<map id="Sources/ExplorerApp/core/explorer_types.h" name="Sources/ExplorerApp/core/explorer_types.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="948,5,1096,45"/>
+<area shape="rect" id="node2" href="$explorer__api_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1013,181,1156,221"/>
+<area shape="rect" id="node6" href="$explorer__api__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1180,181,1331,221"/>
+<area shape="rect" id="node8" href="$explorer__api__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1936,93,2087,133"/>
+<area shape="rect" id="node9" href="$explorer__api__data_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1725,93,1884,133"/>
+<area shape="rect" id="node11" href="$core__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="180,181,323,221"/>
+<area shape="rect" id="node13" href="$core__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="347,181,489,221"/>
+<area shape="rect" id="node18" href="$core__device_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="680,181,823,221"/>
+<area shape="rect" id="node19" href="$core__flash_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="847,181,989,221"/>
+<area shape="rect" id="node20" href="$core__utils_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="513,181,656,221"/>
+<area shape="rect" id="node22" href="$explorer__app_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1407,93,1549,133"/>
+<area shape="rect" id="node3" href="$explorer__api_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="513,269,656,309"/>
+<area shape="rect" id="node4" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1521,269,1664,309"/>
+<area shape="rect" id="node5" href="$explorer__tasks_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1188,269,1331,309"/>
+<area shape="rect" id="node7" href="$explorer__api__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1013,269,1164,309"/>
+<area shape="rect" id="node10" href="$explorer__api__data_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1843,181,2001,221"/>
+<area shape="rect" id="node12" href="$core__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,269,148,309"/>
+<area shape="rect" id="node14" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="172,269,323,309"/>
+<area shape="rect" id="node15" href="$core__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="347,269,489,309"/>
+<area shape="rect" id="node16" href="$core__device_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="680,269,823,309"/>
+<area shape="rect" id="node17" href="$core__flash_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="847,269,989,309"/>
+<area shape="rect" id="node21" href="$core__utils_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1355,269,1497,309"/>
+<area shape="rect" id="node23" href="$explorer__tasks_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1573,181,1716,221"/>
+<area shape="rect" id="node24" href="$_explorer_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="1407,181,1549,221"/>
+</map>

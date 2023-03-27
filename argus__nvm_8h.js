@@ -1,6 +1,6 @@
 var argus__nvm_8h =
 [
-    [ "NVM_Init", "group__argus__nvm.html#ga1d4158a840a27f7b260bd2d8d0bf64a3", null ],
-    [ "NVM_Read", "group__argus__nvm.html#ga077b4b7bcb2efdfc2040dfaa58487e85", null ],
-    [ "NVM_Write", "group__argus__nvm.html#ga2463d0812d4465d27e03447e725c321f", null ]
+    [ "ARGUS_NVM_BLOCK_SIZE", "group__argus__nvm.html#gab7950163a10048da5202ea4c6015d302", null ],
+    [ "NVM_ReadBlock", "group__argus__nvm.html#ga8a2466c2cf2e2651b45298703f936888", null ],
+    [ "NVM_WriteBlock", "group__argus__nvm.html#ga6a377265320f4a026896bf3718da3e99", null ]
 ];

@@ -43,23 +43,23 @@ var NAVTREE =
       [ "Hardware Compatibility", "porting_guide.html#pg_hardware", null ],
       [ "Hardware Layers", "porting_guide.html#pg_hw_layers", [
         [ "S2PI (= SPI + GPIO) Layer", "porting_guide.html#pg_s2pi", [
-          [ "S2PI Overview", "porting_guide.html#autotoc_md20", null ],
-          [ "S2PI Initialization", "porting_guide.html#autotoc_md21", [
-            [ "S2PI Pin configuration", "porting_guide.html#autotoc_md22", null ],
-            [ "SPI Mode", "porting_guide.html#autotoc_md23", null ],
-            [ "SPI Speed", "porting_guide.html#autotoc_md24", null ],
-            [ "DMA Channels", "porting_guide.html#autotoc_md25", null ],
-            [ "DMA Interrupts and Callback Function", "porting_guide.html#autotoc_md26", null ],
-            [ "DMA Interrupt Priority", "porting_guide.html#autotoc_md27", null ]
+          [ "S2PI Overview", "porting_guide.html#autotoc_md26", null ],
+          [ "S2PI Initialization", "porting_guide.html#autotoc_md27", [
+            [ "S2PI Pin configuration", "porting_guide.html#autotoc_md28", null ],
+            [ "SPI Mode", "porting_guide.html#autotoc_md29", null ],
+            [ "SPI Speed", "porting_guide.html#autotoc_md30", null ],
+            [ "DMA Channels", "porting_guide.html#autotoc_md31", null ],
+            [ "DMA Interrupts and Callback Function", "porting_guide.html#autotoc_md32", null ],
+            [ "DMA Interrupt Priority", "porting_guide.html#autotoc_md33", null ]
           ] ]
         ] ],
         [ "Timer Layer", "porting_guide.html#pg_timer", [
-          [ "Lifetime Counter (LTC)", "porting_guide.html#autotoc_md28", null ],
-          [ "Periodic Interrupt Timer (PIT)", "porting_guide.html#autotoc_md29", null ]
+          [ "Lifetime Counter (LTC)", "porting_guide.html#autotoc_md34", null ],
+          [ "Periodic Interrupt Timer (PIT)", "porting_guide.html#autotoc_md35", null ]
         ] ],
         [ "Interrupt Layer", "porting_guide.html#pg_irq", [
-          [ "Interrupt Priority", "porting_guide.html#autotoc_md30", null ],
-          [ "Concurrency and Interrupt Locking", "porting_guide.html#autotoc_md31", null ]
+          [ "Interrupt Priority", "porting_guide.html#autotoc_md36", null ],
+          [ "Concurrency and Interrupt Locking", "porting_guide.html#autotoc_md37", null ]
         ] ],
         [ "NVM Layer", "porting_guide.html#pg_nvm", null ],
         [ "Log Layer", "porting_guide.html#pg_log", null ]
@@ -73,6 +73,7 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Demo Applications", "apps.html", "apps" ],
+    [ "MAVLink App (AFBR-S50 Ref. Board)", "mavlink_app.html", null ],
     [ "AFBR-S50 Reference Board", "reference_board.html", [
       [ "Getting Started", "reference_board.html#reference_board_getting_started", null ],
       [ "Overview", "reference_board.html#reference_board_overview", [
@@ -84,16 +85,27 @@ var NAVTREE =
         [ "Serial (UART) Connector", "reference_board.html#reference_board_uart", null ]
       ] ]
     ] ],
+    [ "API Migration Guide (1.3.5 → 1.4.4)", "migration_guide.html", [
+      [ "Overview of Changes", "migration_guide.html#autotoc_md62", null ],
+      [ "Removal of Dual-Measurement Modes And Adding of Advanced Measurement Modes", "migration_guide.html#autotoc_md63", null ],
+      [ "Improved Measurement Ready Callback", "migration_guide.html#autotoc_md64", null ],
+      [ "Improved Measurement Evaluate Function", "migration_guide.html#autotoc_md65", null ],
+      [ "Advanced Debug Data Structure for #Argus_EvaluateData", "migration_guide.html#autotoc_md66", null ],
+      [ "S2PI Hardware Abstraction Layer (HAL) Changes", "migration_guide.html#autotoc_md67", [
+        [ "Changed HAL Functions in the S2PI layer", "migration_guide.html#autotoc_md68", null ],
+        [ "Added HAL Functions in the S2PI layer", "migration_guide.html#autotoc_md69", null ]
+      ] ]
+    ] ],
     [ "Troubleshooting", "faq.html", [
-      [ "Device Initialization Yields Device Not Connected (Error Code -101)", "faq.html#autotoc_md55", null ],
-      [ "Decreased Device Performance or Accuracy", "faq.html#autotoc_md56", null ],
+      [ "Device Initialization Yields Device Not Connected (Error Code -101)", "faq.html#autotoc_md70", null ],
+      [ "Decreased Device Performance or Accuracy", "faq.html#autotoc_md71", null ],
       [ "EEPROM Readout Fails (Error Code -109)", "faq.html#faq_eeprom", [
-        [ "1. How to Verify EEPROM Readout Sequence", "faq.html#autotoc_md57", null ],
-        [ "2. Further Tests on EEPROM Readout Sequence", "faq.html#autotoc_md58", null ]
+        [ "1. How to Verify EEPROM Readout Sequence", "faq.html#autotoc_md72", null ],
+        [ "2. Further Tests on EEPROM Readout Sequence", "faq.html#autotoc_md73", null ]
       ] ],
-      [ "The Measurement Never Finishes or Yields Timeout Error (-6)", "faq.html#autotoc_md59", [
-        [ "The Measurement Finished Callback is Never Invoked", "faq.html#autotoc_md60", null ],
-        [ "The Measurement Finished Callback Yield a Timeout Error (Error Code -6)", "faq.html#autotoc_md61", null ]
+      [ "The Measurement Never Finishes or Yields Timeout Error (-6)", "faq.html#autotoc_md74", [
+        [ "The Measurement Finished Callback is Never Invoked", "faq.html#autotoc_md75", null ],
+        [ "The Measurement Finished Callback Yield a Timeout Error (Error Code -6)", "faq.html#autotoc_md76", null ]
       ] ]
     ] ],
     [ "Modules", "modules.html", "modules" ],
@@ -123,12 +135,13 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"01_simple_example_8c-example.html",
-"globals.html",
-"group__argus__dca.html#ga306e8dd98141ca151a1f38ddbc5fcb11",
-"group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba4d0f7be53b837f004379ac6bbd56f1e2",
-"group__sci.html#ga9541c1bdd9799c358b94a817df7399f4",
-"structxtalk__t.html"
+"01__simple__example_8c.html",
+"explorer__tasks_8h.html",
+"globals_g.html",
+"group__argus__fp.html#ga19897391260034e038e9da2df46f1834",
+"group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baf0e528520443a79c92959950049e7c4d",
+"group__platform.html",
+"status_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

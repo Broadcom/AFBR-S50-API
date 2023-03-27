@@ -22,10 +22,6 @@ var group__argus__dca =
     [ "ARGUS_CFG_DCA_ATH_MIN", "group__argus__dca.html#gacbf0f6ae27f5693abb9acfe99d978a74", null ],
     [ "ARGUS_CFG_DCA_DEPTH_MAX", "group__argus__dca.html#ga005779c74f13fa3f74e987467e8ce76c", null ],
     [ "ARGUS_CFG_DCA_DEPTH_MIN", "group__argus__dca.html#gaa4655f8de08e3d531b993bcb2e45d2ea", null ],
-    [ "ARGUS_CFG_DCA_POWER_MAX", "group__argus__dca.html#gadd760d893431046c062aaa9c63edc133", null ],
-    [ "ARGUS_CFG_DCA_POWER_MAX_LSB", "group__argus__dca.html#ga45e3145735bf54f0d2406cb677ed2c09", null ],
-    [ "ARGUS_CFG_DCA_POWER_MIN", "group__argus__dca.html#gaef1b555426530be2b201fba246bbefe2", null ],
-    [ "ARGUS_CFG_DCA_POWER_MIN_LSB", "group__argus__dca.html#ga47595262469c005a05e4d1fbb4c26d01", null ],
     [ "ARGUS_CFG_DCA_PXTH_MAX", "group__argus__dca.html#ga353f4aff1cae02e18a1efcbbbd7f3bf2", null ],
     [ "ARGUS_CFG_DCA_PXTH_MIN", "group__argus__dca.html#ga330be2c5629652346db2eb5476595ab7", null ],
     [ "ARGUS_DCA_GAIN_STAGE_COUNT", "group__argus__dca.html#ga71cf6c84b861e31ec3ee784ec3d832b2", null ],
@@ -41,6 +37,7 @@ var group__argus__dca =
       [ "DCA_AMPLITUDE_AVG", "group__argus__dca.html#ggadbdf132d9dfb8842fe53edc85cf049e8abfd83b35ec92d67717d5fc91366ffefe", null ]
     ] ],
     [ "argus_dca_enable_t", "group__argus__dca.html#ga6c841af5b41e4703611e988458753985", [
+      [ "DCA_ENABLE_OFF", "group__argus__dca.html#gga6c841af5b41e4703611e988458753985ad762237921ea67ecdc0f3dd7218b9235", null ],
       [ "DCA_ENABLE_DYNAMIC", "group__argus__dca.html#gga6c841af5b41e4703611e988458753985aee8c3220a5dd69f22f068d658f13a0cc", null ],
       [ "DCA_ENABLE_STATIC", "group__argus__dca.html#gga6c841af5b41e4703611e988458753985ade972b84e434a6e2d39faae22b653135", null ]
     ] ],
@@ -57,7 +54,7 @@ var group__argus__dca =
     ] ],
     [ "argus_state_t", "group__argus__dca.html#gada1413643a68f3cd36f6c0a1d0b61e91", [
       [ "ARGUS_STATE_NONE", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a39a26d0859b7585feec4b8319225aad4", null ],
-      [ "ARGUS_STATE_MEASUREMENT_MODE", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a1483eeb28356f4e2ac4ba8474ad07fe9", null ],
+      [ "ARGUS_STATE_XTALK_MONITOR_ACTIVE", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a628f0ff57bcf44cad9d29d326eee4b26", null ],
       [ "ARGUS_STATE_DUAL_FREQ_MODE", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91afd66ce64e66b21146762a75d2a64e7d4", null ],
       [ "ARGUS_STATE_MEASUREMENT_FREQ", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ac026afa99d6bc6435a417995007ef116", null ],
       [ "ARGUS_STATE_DEBUG_MODE", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a9386f5d56e8f8e8c8a233e9fc10aa4d7", null ],
