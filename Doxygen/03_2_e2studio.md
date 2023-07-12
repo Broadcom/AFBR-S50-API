@@ -44,7 +44,7 @@ Import the project archive files:
 
         1. Click on `Browse...` in the `Select archive file` section
         2. Browse to `[INSTALL_DIR]\Device\Projects\` (default is
-           `C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Projects\`
+           `C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Projects\`)
         3. Select the required project archive (e.g.
            `AFBR_S50_Example_RA4M2.zip`) and click `Open`
 
@@ -100,6 +100,9 @@ Follow the steps in the @ref reference_board_uart section to connect to the
 board via UART.
 
 ## Display the Measurement Values
+
+@note This applies only for the \ref example_app. In case of the \ref explorer_app,
+use the AFBR-S50 Explorer GUI instead.
 
 Display the measurement values on a PC via an UART terminal:
 

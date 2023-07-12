@@ -76,15 +76,9 @@ static uart_rx_callback_t myRxCallback = 0;
 
 status_t UART_Init(void)
 {
-    static bool isInitialized = false;
-    if (!isInitialized)
-    {
-        fsp_err_t err = R_SCI_UART_Open(&g_uart0_ctrl, &g_uart0_cfg);
-        assert(err == FSP_SUCCESS);
-        if (err == FSP_SUCCESS) isInitialized = true;
-        return (err == FSP_SUCCESS) ? STATUS_OK : ERROR_FAIL;
-    }
-    return STATUS_OK;
+    fsp_err_t err = R_SCI_UART_Open(&g_uart0_ctrl, &g_uart0_cfg);
+    assert(err == FSP_SUCCESS);
+    return (err == FSP_SUCCESS) ? STATUS_OK : ERROR_FAIL;
 }
 
 static status_t UART_AwaitIdle(void)

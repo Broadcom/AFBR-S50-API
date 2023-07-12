@@ -45,6 +45,10 @@
 #include "argus_hal_test.h"
 #endif
 
+#if RUN_XTALK_CALIBRATION
+#include "argus_xtalk_cal_cli.h"
+#endif
+
 /*!***************************************************************************
  *  Global measurement data ready event counter.
  *
@@ -226,6 +230,13 @@ void ExampleMain(void)
 
     /* Print a device information message. */
     PrintDeviceInfo(device);
+
+#if RUN_XTALK_CALIBRATION
+    /* Enter the CLI to perform a xtalk calibration interactively.
+     * It guides through all steps needed to compensate electrical
+     * as well as optical xtalk caused by an application design. */
+    Argus_XtalkCalibration_CLI(device);
+#endif // RUN_XTALK_CALIBRATION
 
     /* Start the measurement timers within the API module.
      * The callback is invoked every time a measurement has been finished.

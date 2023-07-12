@@ -158,5 +158,5 @@ status_t Timer_SetInterval(uint32_t dt_microseconds, void * param)
 void user_timer1_callback(timer_callback_args_t * p_args)
 {
     (void)p_args; //unused
-    if (myISR) myISR(myParam);
+    myISR(myParam);
 }

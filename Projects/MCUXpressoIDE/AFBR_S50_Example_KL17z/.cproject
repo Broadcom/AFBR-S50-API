@@ -67,6 +67,7 @@
 								<option id="gnu.c.compiler.option.preprocessor.nostdinc.1623231387" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false"/>
 								<option id="gnu.c.compiler.option.preprocessor.preprocess.1649530540" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.preprocessor.def.symbols.1299344655" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="PRINTF_SUPPORT_DECIMAL_SPECIFIERS=1"/>
 									<listOptionValue builtIn="false" value="SPI_MAX_BAUDRATE=6000000"/>
 									<listOptionValue builtIn="false" value="SPI_DEFAULT_SLAVE=1"/>
 									<listOptionValue builtIn="false" value="UART_BAUDRATE=115200"/>
@@ -86,6 +87,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Sources/Platform/NXP_MKLxxZ&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../AFBR-S50/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../AFBR-S50/Test&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../AFBR-S50/Xtalk-CLI&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.include.files.558039371" name="Include files (-include)" superClass="gnu.c.compiler.option.include.files" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.gcc.exe.debug.option.optimization.level.1950584196" name="Optimization Level" superClass="com.crt.advproject.gcc.exe.debug.option.optimization.level" useByScannerDiscovery="false"/>
@@ -313,6 +315,7 @@
 								<option id="gnu.c.compiler.option.preprocessor.nostdinc.78725758" name="Do not search system directories (-nostdinc)" superClass="gnu.c.compiler.option.preprocessor.nostdinc" useByScannerDiscovery="false"/>
 								<option id="gnu.c.compiler.option.preprocessor.preprocess.888706029" name="Preprocess only (-E)" superClass="gnu.c.compiler.option.preprocessor.preprocess" useByScannerDiscovery="false"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.preprocessor.def.symbols.10612564" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="PRINTF_SUPPORT_DECIMAL_SPECIFIERS=1"/>
 									<listOptionValue builtIn="false" value="SPI_MAX_BAUDRATE=6000000"/>
 									<listOptionValue builtIn="false" value="SPI_DEFAULT_SLAVE=1"/>
 									<listOptionValue builtIn="false" value="UART_BAUDRATE=115200"/>
@@ -333,6 +336,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Sources/Platform/NXP_MKLxxZ&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../AFBR-S50/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../AFBR-S50/Test&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../AFBR-S50/Xtalk-CLI&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.include.files.1063068210" name="Include files (-include)" superClass="gnu.c.compiler.option.include.files" useByScannerDiscovery="false"/>
 								<option id="gnu.c.compiler.option.optimization.flags.881187927" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="-fno-common" valueType="string"/>

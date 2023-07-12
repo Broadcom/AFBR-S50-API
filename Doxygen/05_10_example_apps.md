@@ -22,6 +22,21 @@ their purpose. Each example application shows different use cases of the
     devices from a single MCU. Note that adequate hardware is required to talk
     to multiple devices.
 
+\note All examples are combined into a single project
+(`AFBR_S50_Example_<TARGET>`) per IDE. In order to select a certain example, go
+to the `example.h` (within `Project > App > examples > example.h`) and select
+the specific example by setting the `API_EXAMPLE` preprocessor definition. Also
+note that the \ref argus_test and the \ref argus_xtk_cli can be enabled/disabled
+here.
+
+\n
+
+\note Usually, the first slave (`SPI_SLAVE = 1`) identifier is used for all
+current evaluation or reference boards. Only some deprecated evaluation boards
+may use the fifth (`SPI_SLAVE = 5`) SPI slave which needs to be set manually in
+the `example.h` (within `Project > App > examples > example.h`) file by changing
+the `SPI_SLAVE` preprocessor definition accordingly.
+
 ## Simple Example {#simple_example_app}
 
 The **Simple Example** demonstrates the most basic usage of the API. It triggers
@@ -179,20 +194,19 @@ See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
 
 ## Multi-Device Example {#multi_device_example_app}
 
-The **Multi-Device Example** demonstrates how to use multiple device
-per microcontroller. An new instance of the API (just like in OOP) is
-created for each tine-of-flight sensor present. The main thread triggers
-measurement cycle alternatively on each device in a round robbin manner.
+The **Multi-Device Example** demonstrates how to use multiple device per
+microcontroller. An new instance of the API (just like in OOP) is created for
+each tine-of-flight sensor present. The main thread triggers measurement cycle
+alternatively on each device in a round robbin manner.
 
 The example is based on the @ref simple_example_app and triggers each device
 individually with a call to #Argus_TriggerMeasurement in a simple nested loop.
 
-
 The code is polling the module status to wait for the measurement data to be
 ready. Once a new raw measurement data set is ready, the #Argus_EvaluateData
-method is called for the current instance to obtain meaningful values like
-range and signal quality.  The data values of the current device are streamed
-via an **UART** connection.
+method is called for the current instance to obtain meaningful values like range
+and signal quality. The data values of the current device are streamed via an
+**UART** connection.
 
 In order to observe the values, open a connection via a terminal (e.g.
 [Termite](https://www.compuphase.com/software_termite.htm)). Setup the
@@ -207,7 +221,8 @@ its execution.
 
 Note that the project will provide additional information via the serial stream
 upon program initialization. Especially the **HAL Self Test** might be executed
-optionally for each instance in oder to verify the current **HAL** implementation.
+optionally for each instance in oder to verify the current **HAL**
+implementation.
 
 In order to get started with the project, please read the \ref gs_build section.
 

@@ -76,6 +76,7 @@ void Error_Handler(void);
 #define SWO_GPIO_Port GPIOB
 #define CS_Pin GPIO_PIN_6
 #define CS_GPIO_Port GPIOB
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

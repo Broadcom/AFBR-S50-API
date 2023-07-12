@@ -77,7 +77,7 @@
  *              - Added verification of SPI callback invocation.
  *              - Updated GPIO interrupt test to verify if delayed interrupt
  *                pending states can be detected via #S2PI_ReadIrqPin.
- * 
+ *
  *****************************************************************************/
 #define HAL_TEST_VERSION "v1.4"
 
@@ -210,7 +210,7 @@
  *
  * @note    See #HAL_TEST_VERSION for a version history and change log of
  *          the HAL self tests.
- * 
+ *
  * @param   spi_slave The SPI hardware slave, i.e. the specified CS and IRQ
  *                    lines. This is actually just a number that is passed
  *                    to the SPI interface to distinct for multiple SPI slave

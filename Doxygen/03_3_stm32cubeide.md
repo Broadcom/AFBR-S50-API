@@ -90,6 +90,9 @@ board via UART.
 
 ## Display the Measurement Values
 
+@note This applies only for the \ref example_app. In case of the \ref explorer_app,
+use the AFBR-S50 Explorer GUI instead.
+
 Display the measurement values on a PC via an UART terminal:
 
 1. Open a terminal (e.g.

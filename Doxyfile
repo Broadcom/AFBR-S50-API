@@ -904,6 +904,7 @@ INPUT                  = Doxygen \
                          Sources/ExplorerApp \
                          Sources/CANApp \
                          AFBR-S50/Test \
+                         AFBR-S50/Xtalk-CLI \
                          Sources/apps.dox
 
 # This tag can be used to specify the character encoding of the source files

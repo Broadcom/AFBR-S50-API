@@ -76,7 +76,7 @@
  *  - 3: 03_high_speed_example.c: Runs measurements with up to 3000 frames per second.
  *  - 4: 04_multi_device_example.c: Demonstrates the usage of multiple devices per MCU. */
 #ifndef API_EXAMPLE
-#define API_EXAMPLE 2
+#define API_EXAMPLE 1
 #endif
 
 /*! Selector for HAL test demo:
@@ -84,6 +84,13 @@
  *  - 1: HAL tests are executed before any API code is executed. */
 #ifndef RUN_HAL_TESTS
 #define RUN_HAL_TESTS 1
+#endif
+
+/*! Selector for XTALK calibration demo:
+ *  - 0: no XTALK calibration is executed.
+ *  - 1: XTALK calibration is executed before any API code is executed. */
+#ifndef RUN_XTALK_CALIBRATION
+#define RUN_XTALK_CALIBRATION 0
 #endif
 
 /*! Define the SPI slave for device. */

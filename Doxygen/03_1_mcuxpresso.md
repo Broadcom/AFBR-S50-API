@@ -58,7 +58,7 @@ Import the Project archive files:
 2. Click on `Import projects(s) from file system...`
 3. Select your project for import:
 
-    - If importing a project as zip file as provided by the **SDK installer**:
+    -   If importing a project as zip file as provided by the **SDK installer**:
 
         1. Click on `Browse...` in the `Project archive (zip)` section
         2. Browse to `[INSTALL_DIR]\Device\Projects\` (default is
@@ -68,8 +68,8 @@ Import the Project archive files:
             @image html 3_2_import_project.jpg "Fig. 3.2: Import the project archive into the MCUXpresso IDE." width=800px
             @image latex 3_2_import_project.jpg "Fig. 3.2: Import the project archive into the MCUXpresso IDE."
 
-    - If importing a project from the local directory as provided by
-      cloning/downloading the **GitHub repository**:
+    -   If importing a project from the local directory as provided by
+        cloning/downloading the **GitHub repository**:
 
         1. Click on `Browse...` in the `Project directory (unpacked)` section
         2. Browse to `[REPOSITORY_ROOT]\Projects\MCUXpressoIDE\`
@@ -84,6 +84,13 @@ Import the Project archive files:
 4. Click `Finish`
 
 ## Build the Project
+
+\note Usually, the first slave (`SPI_SLAVE = 1`) identifier is used for all
+current evaluation or reference boards. Only some deprecated evaluation boards
+based on the FRDM-KL46z evaluation board may use the fifth (`SPI_SLAVE = 5`) SPI
+slave which needs to be set manually in the `example.h` (within
+`Project > App > examples > example.h`) file by changing the `SPI_SLAVE`
+preprocessor definition accordingly.
 
 1. Go to **MCUXpresso IDE** -> `Project Explorer` and select the project to
    build.
@@ -111,6 +118,9 @@ Import the Project archive files:
     @image latex 3_6_debug_resume.jpg "Fig. 3.6: Resume the halted program."
 
 ## Display the Measurement Values
+
+@note This applies only for the \ref example_app. In case of the \ref
+explorer_app, use the AFBR-S50 Explorer GUI instead.
 
 Display the measurement values on a PC via an UART terminal:
 

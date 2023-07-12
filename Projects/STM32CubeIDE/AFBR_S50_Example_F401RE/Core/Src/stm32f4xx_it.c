@@ -27,12 +27,13 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
+extern void USER_UART_IRQHandler(UART_HandleTypeDef *huart);
 
 /* USER CODE END TD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
- 
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -255,6 +256,8 @@ void USART2_IRQHandler(void)
   HAL_UART_IRQHandler(&huart2);
   /* USER CODE BEGIN USART2_IRQn 1 */
 
+  USER_UART_IRQHandler(&huart2);
+
   /* USER CODE END USART2_IRQn 1 */
 }
 
@@ -289,4 +292,3 @@ void DMA2_Stream3_IRQHandler(void)
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
-

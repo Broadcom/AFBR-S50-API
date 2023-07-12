@@ -116,7 +116,7 @@ to `CAN`.
 
 To connect the **AFBR-S50 Reference Board** via **CAN** interface to the PC, an
 appropriate **CAN-to-USB** adapter is required (e.g. the
-[USB to CAN Analyzer Adapter by SeeedStudio](https://www.seeedstudio.com/USB-CAN-Analyzer-p-2888.html).
+[USB to CAN Analyzer Adapter by SeeedStudio](https://www.seeedstudio.com/USB-CAN-Analyzer-p-2888.html)).
 
 ### Serial (UART) Connector {#reference_board_uart}
 
@@ -130,7 +130,7 @@ the board.
 
 To connect the **AFBR-S50 Reference Board** via **UART** interface to the PC, an
 appropriate **Serial-to-USB** adapter is required (e.g. the
-[FT232H Breakout Board by Adafruit](https://learn.adafruit.com/adafruit-ft232h-breakout).
+[FT232H Breakout Board by Adafruit](https://learn.adafruit.com/adafruit-ft232h-breakout)).
 
 | AFBR-S50 Reference Board | Serial-to-USB FTDI Adapter |
 | ------------------------ | -------------------------- |
