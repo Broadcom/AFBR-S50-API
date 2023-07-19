@@ -164,6 +164,7 @@ Fig. 3.3: Disable the check at "Copy projects into workspace" before importing a
 </ol>
 <h1><a class="anchor" id="autotoc_md10"></a>
 Build the Project</h1>
+<dl class="section note"><dt>Note</dt><dd>Usually, the first slave (<code>SPI_SLAVE = 1</code>) identifier is used for all current evaluation or reference boards. Only some deprecated evaluation boards based on the FRDM-KL46z evaluation board may use the fifth (<code>SPI_SLAVE = 5</code>) SPI slave which needs to be set manually in the <code>example.h</code> (within <code>Project &gt; App &gt; examples &gt; example.h</code>) file by changing the <code>SPI_SLAVE</code> preprocessor definition accordingly.</dd></dl>
 <ol type="1">
 <li>Go to <b>MCUXpresso IDE</b> -&gt; <code>Project Explorer</code> and select the project to build.</li>
 <li>Go to <code>Quickstart Panel</code> and click on <code>Build</code></li>
@@ -198,7 +199,8 @@ Fig. 3.6: Resume the halted program.</div></div>
 </ol>
 <h1><a class="anchor" id="autotoc_md13"></a>
 Display the Measurement Values</h1>
-<p >Display the measurement values on a PC via an UART terminal:</p>
+<dl class="section note"><dt>Note</dt><dd>This applies only for the <a class="el" href="example_app.html">Example Apps</a>. In case of the <a class="el" href="explorer_app.html">Explorer App</a>, use the AFBR-S50 Explorer GUI instead.</dd></dl>
+<p>Display the measurement values on a PC via an UART terminal:</p>
 <ol type="1">
 <li>Open a terminal (e.g. <a href="https://www.compuphase.com/software_termite.htm">Termite</a>) and open a UART connection using 115200 bps, 8N1, no handshake connection. <table class="markdownTable">
 <tr class="markdownTableHead">

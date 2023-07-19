@@ -109,6 +109,9 @@ $(document).ready(function(){initNavTree('example_app.html',''); initResizable()
 <li>The <a class="el" href="example_app.html#high_speed_example_app">High-Speed Example</a> demonstration the high-framerate measurement modes of the AFBR-S50 API. Note that adequate hardware is required to achieve really high measurement rates.</li>
 <li>The <a class="el" href="example_app.html#multi_device_example_app">Multi-Device Example</a> demonstration of the usage of multiple devices from a single MCU. Note that adequate hardware is required to talk to multiple devices.</li>
 </ul>
+<dl class="section note"><dt>Note</dt><dd>All examples are combined into a single project (<code>AFBR_S50_Example_&lt;TARGET&gt;</code>) per IDE. In order to select a certain example, go to the <code>example.h</code> (within <code>Project &gt; App &gt; examples &gt; example.h</code>) and select the specific example by setting the <code>API_EXAMPLE</code> preprocessor definition. Also note that the <a class="el" href="group__argus__test.html">HAL Self Test</a> and the <a class="el" href="group__argus__xtk__cli.html">Crosstalk Calibration CLI</a> can be enabled/disabled here.</dd></dl>
+<p><br  />
+ </p><dl class="section note"><dt>Note</dt><dd>Usually, the first slave (<code>SPI_SLAVE = 1</code>) identifier is used for all current evaluation or reference boards. Only some deprecated evaluation boards may use the fifth (<code>SPI_SLAVE = 5</code>) SPI slave which needs to be set manually in the <code>example.h</code> (within <code>Project &gt; App &gt; examples &gt; example.h</code>) file by changing the <code>SPI_SLAVE</code> preprocessor definition accordingly.</dd></dl>
 <h1><a class="anchor" id="simple_example_app"></a>
 Simple Example</h1>
 <p >The <b>Simple Example</b> demonstrates the most basic usage of the API. It triggers new measurement cycles from the main thread.</p>

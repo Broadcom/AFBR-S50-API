@@ -1,23 +1,11 @@
 var searchData=
 [
-  ['s_0',['S',['../structargus__vector__t.html#a1937758c5ce2d4255e3633cca98d68c8',1,'argus_vector_t']]],
-  ['satpxthexp_1',['SatPxThExp',['../structargus__cfg__dca__t.html#ae97dae6ab6665545d70ea90f176d2dae',1,'argus_cfg_dca_t']]],
-  ['satpxthlin_2',['SatPxThLin',['../structargus__cfg__dca__t.html#ab11dcd89f98b7629faff9f6389b576c9',1,'argus_cfg_dca_t']]],
-  ['satpxthrst_3',['SatPxThRst',['../structargus__cfg__dca__t.html#a17c6d600a267ac7bf9eab091a430fd0f',1,'argus_cfg_dca_t']]],
-  ['sc_4',['SC',['../structargus__vector__t.html#a000f2b441a1843becdbf93968dfaf068',1,'argus_vector_t']]],
-  ['sci_5fcurrenttxframe_5',['SCI_CurrentTxFrame',['../sci__datalink_8c.html#aac3522bbc5eeb5ee0f55dddc74f192b4',1,'sci_datalink.c']]],
-  ['sci_5fdatabuffer_6',['SCI_DataBuffer',['../sci__datalink_8c.html#a578dce7d2da2ece661292a80c5bb3a99',1,'sci_datalink.c']]],
-  ['sci_5ferrorcallback_7',['SCI_ErrorCallback',['../sci__datalink_8c.html#aec345d4adc518338c60406e3d94c7918',1,'SCI_ErrorCallback():&#160;sci_datalink.c'],['../sci_8c.html#a4136924ff9dc93e4fc95305d5ccf4501',1,'SCI_ErrorCallback():&#160;explorer_tasks.c']]],
-  ['sci_5fframebuffer_8',['SCI_FrameBuffer',['../sci__datalink_8c.html#af01cbae3f33fc7fe3075ddb71df44322',1,'sci_datalink.c']]],
-  ['sci_5frxcallback_9',['SCI_RxCallback',['../sci__datalink_8c.html#adc2ecea2d5c7a4b7ce32afaaf50fa2bb',1,'SCI_RxCallback():&#160;sci_datalink.c'],['../sci_8c.html#adc2ecea2d5c7a4b7ce32afaaf50fa2bb',1,'SCI_RxCallback():&#160;sci_datalink.c']]],
-  ['sci_5frxframequeue_10',['SCI_RxFrameQueue',['../sci__datalink_8c.html#ab1bcb7b993192bfd5e45cfcf715b5795',1,'sci_datalink.c']]],
-  ['sci_5ftxframequeue_11',['SCI_TxFrameQueue',['../sci__datalink_8c.html#a7f3473ecec07662c16c2aa658fec1c95',1,'sci_datalink.c']]],
-  ['sec_12',['sec',['../structltc__t.html#aae386e23a938a46867548cd27f5c1013',1,'ltc_t']]],
-  ['signalquality_13',['SignalQuality',['../structargus__results__bin__t.html#a032de48d823435330e13bc0d50934227',1,'argus_results_bin_t']]],
-  ['size_14',['Size',['../structsci__frame__queue__t.html#a1c2cc44f0488c8095b45e44262b44d10',1,'sci_frame_queue_t']]],
-  ['sna_15',['SNA',['../structargus__results__aux__t.html#a35ef912f7798ebfec37c704fe0dcffde',1,'argus_results_aux_t']]],
-  ['spibaudrate_16',['SPIBaudRate',['../structexplorer__cfg__t.html#ad17f55dd493912e41a8512025a78ccb4',1,'explorer_cfg_t']]],
-  ['spislave_17',['SPISlave',['../structexplorer__cfg__t.html#af533f342183009910d93e6ef03fef3cc',1,'explorer_cfg_t']]],
-  ['state_18',['State',['../structargus__meas__frame__t.html#ae6b3817cf5561c10c83421c1ca9794c0',1,'argus_meas_frame_t']]],
-  ['status_19',['Status',['../structargus__results__t.html#a94a5adbd578f9e837e084cdd79a142ca',1,'argus_results_t::Status()'],['../structargus__pixel__t.html#a1bab0aba97de4f50e10358c3cd2e3336',1,'argus_pixel_t::Status()']]]
+  ['range_0',['Range',['../structargus__pixel__t.html#a6498b19c7b89e59ebad243c16199f364',1,'argus_pixel_t::Range()'],['../structargus__results__bin__t.html#a830e9e333b9fece506f2e72b92087a51',1,'argus_results_bin_t::Range()']]],
+  ['rangewindow_1',['RangeWindow',['../structargus__pixel__t.html#ac0816df3cf5b81397cd715919da1ce03',1,'argus_pixel_t']]],
+  ['rdptr_2',['RdPtr',['../structsci__frame__t.html#a730565cca771a78721b164cb7ffb1517',1,'sci_frame_t']]],
+  ['relamplthreshold_3',['RelAmplThreshold',['../structargus__cfg__pba__t.html#aaceefc39fb9903ba8d1a911f7aca34c5',1,'argus_cfg_pba_t']]],
+  ['relativethreshold_4',['RelativeThreshold',['../structargus__cal__p2pxtalk__t.html#adf8c7556d043e44d055869a51da96e5a',1,'argus_cal_p2pxtalk_t']]],
+  ['relmindistancescope_5',['RelMinDistanceScope',['../structargus__cfg__pba__t.html#ad33928c5f0e17170054fb2c9e595b556',1,'argus_cfg_pba_t']]],
+  ['rxdata_6',['rxdata',['../group__argus__xtk__cli.html#ga6a6871f49043ded6e30bf8b544fc890e',1,'argus_xtalk_cal_cli.c']]],
+  ['rxdatas_7',['rxdataS',['../group__argus__xtk__cli.html#ga113d3fdbf7c9c92f075391b6133d271f',1,'argus_xtalk_cal_cli.c']]]
 ];

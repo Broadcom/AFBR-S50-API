@@ -107,5 +107,7 @@ var globals_dup =
     [ "u", "globals_u.html", null ],
     [ "uart_t", "globals_u.html", null ],
     [ "v", "globals_v.html", null ],
-    [ "verifyh", "globals_v.html", null ]
+    [ "verifyh", "globals_v.html", null ],
+    [ "xtalk_c", "globals_x.html", null ],
+    [ "xtalkca", "globals_x.html", null ]
 ];

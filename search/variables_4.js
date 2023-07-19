@@ -7,5 +7,6 @@ var searchData=
   ['eventq_5fidle_4',['EventQ_Idle',['../explorer__tasks_8c.html#a2401cc55883777ed8794644127ab2a3c',1,'explorer_tasks.c']]],
   ['eventq_5fsendresults_5',['EventQ_SendResults',['../explorer__tasks_8c.html#a283013b33ea94c3054713e68427315d6',1,'explorer_tasks.c']]],
   ['explorerarray_6',['explorerArray',['../core__device_8c.html#af70bddc42e88c7cb958aa267e09e4d69',1,'core_device.c']]],
-  ['exploreridmap_7',['explorerIDMap',['../core__device_8c.html#ab747026f3c0deb35975deb8ec98b89c8',1,'core_device.c']]]
+  ['exploreridmap_7',['explorerIDMap',['../core__device_8c.html#ab747026f3c0deb35975deb8ec98b89c8',1,'core_device.c']]],
+  ['extalkarr_8',['eXtalkArr',['../group__argus__xtk__cli.html#gaff30fd9092765ad8bb2bbd4a9d3b8646',1,'argus_xtalk_cal_cli.c']]]
 ];

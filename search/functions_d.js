@@ -5,7 +5,15 @@ var searchData=
   ['pixeltochannelmask_2',['PixelToChannelMask',['../group__argus__map.html#ga0334e020000ed46b7b392d94a25ebfb8',1,'argus_map.h']]],
   ['popcount_3',['popcount',['../group__argus__misc.html#ga9ff95c4211063b5555e76cf950aec14f',1,'int_math.h']]],
   ['print_4',['print',['../group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2',1,'print(const char *fmt_s,...):&#160;sci_log.c'],['../group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2',1,'print(const char *fmt_s,...):&#160;sci_log.c']]],
-  ['print_5fhelp_5',['print_help',['../group__can__app.html#ga402ea961bfc2ffeee61e3a7c330b1559',1,'main.c']]],
-  ['prxcmd_5fcfguart_6',['PrxCmd_CfgUart',['../explorer__api__cfg_8c.html#ad521eba412a65cb79d941fad7e3e8de1',1,'explorer_api_cfg.c']]],
-  ['prxcmd_5fsystemreset_7',['PrxCmd_SystemReset',['../sci__cmd_8c.html#a6efa61bd60df6564560f892ca8cc30f3',1,'sci_cmd.c']]]
+  ['print_5fbinnedresults_5',['Print_BinnedResults',['../group__argus__xtk__cli.html#ga03205d9936e1c43d0eff1f99a4a24015',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fhelp_6',['print_help',['../group__can__app.html#ga402ea961bfc2ffeee61e3a7c330b1559',1,'main.c']]],
+  ['print_5fintegrationenergyinfo_7',['Print_IntegrationEnergyInfo',['../group__argus__xtk__cli.html#ga878e04ad94eb2367fd9f3dc947326be6',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fpixelamplresults_8',['Print_PixelAmplResults',['../group__argus__xtk__cli.html#ga74720aa6136125dc65490094230cdbac',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fpixelmapcoordinates_9',['Print_PixelMapCoordinates',['../group__argus__xtk__cli.html#gaa494d93a4e4ebf78426749b97977970b',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fpixelsatresults_10',['Print_PixelSatResults',['../group__argus__xtk__cli.html#ga32677b8cc832490f25aea4e9cc386ea4',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5ftotalxtalkmap_11',['Print_TotalXtalkMap',['../group__argus__xtk__cli.html#gaf3c41a0ac508d7d23e0c27708eceae31',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fxtalkmap_12',['Print_XtalkMap',['../group__argus__xtk__cli.html#ga645382afe2d5d00ee2b9d44dbef831c2',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fxtalkvectortable_13',['Print_XtalkVectorTable',['../group__argus__xtk__cli.html#gad925f61e148752fbff72ffe00fe6b9e7',1,'argus_xtalk_cal_cli.c']]],
+  ['prxcmd_5fcfguart_14',['PrxCmd_CfgUart',['../explorer__api__cfg_8c.html#ad521eba412a65cb79d941fad7e3e8de1',1,'explorer_api_cfg.c']]],
+  ['prxcmd_5fsystemreset_15',['PrxCmd_SystemReset',['../sci__cmd_8c.html#a6efa61bd60df6564560f892ca8cc30f3',1,'sci_cmd.c']]]
 ];

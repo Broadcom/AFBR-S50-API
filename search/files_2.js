@@ -23,5 +23,7 @@ var searchData=
   ['argus_5fstatus_2eh_20',['argus_status.h',['../argus__status_8h.html',1,'']]],
   ['argus_5ftimer_2eh_21',['argus_timer.h',['../argus__timer_8h.html',1,'']]],
   ['argus_5fversion_2eh_22',['argus_version.h',['../argus__version_8h.html',1,'']]],
-  ['argus_5fxtalk_2eh_23',['argus_xtalk.h',['../argus__xtalk_8h.html',1,'']]]
+  ['argus_5fxtalk_2eh_23',['argus_xtalk.h',['../argus__xtalk_8h.html',1,'']]],
+  ['argus_5fxtalk_5fcal_5fcli_2ec_24',['argus_xtalk_cal_cli.c',['../argus__xtalk__cal__cli_8c.html',1,'']]],
+  ['argus_5fxtalk_5fcal_5fcli_2eh_25',['argus_xtalk_cal_cli.h',['../argus__xtalk__cal__cli_8h.html',1,'']]]
 ];

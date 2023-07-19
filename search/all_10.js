@@ -52,9 +52,18 @@ var searchData=
   ['powersavingratio_49',['PowerSavingRatio',['../structargus__cfg__dca__t.html#acc776da7a4920d53f4e19035435b2c89',1,'argus_cfg_dca_t']]],
   ['prefiltermask_50',['PrefilterMask',['../structargus__cfg__pba__t.html#a46082cdac62c7b127b1f05bbe713aa8d',1,'argus_cfg_pba_t']]],
   ['print_51',['print',['../group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2',1,'print(const char *fmt_s,...):&#160;sci_log.c'],['../group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2',1,'print(const char *fmt_s,...):&#160;sci_log.c']]],
-  ['print_5fhelp_52',['print_help',['../group__can__app.html#ga402ea961bfc2ffeee61e3a7c330b1559',1,'main.c']]],
-  ['profiling_53',['PROFILING',['../group__profiler.html#ga8c097a59d344c89887c5f4cbdbcf493e',1,'task_profiler.h']]],
-  ['prxcmd_5fcfguart_54',['PrxCmd_CfgUart',['../explorer__api__cfg_8c.html#ad521eba412a65cb79d941fad7e3e8de1',1,'explorer_api_cfg.c']]],
-  ['prxcmd_5fsystemreset_55',['PrxCmd_SystemReset',['../sci__cmd_8c.html#a6efa61bd60df6564560f892ca8cc30f3',1,'sci_cmd.c']]],
-  ['pxenmask_56',['PxEnMask',['../structargus__meas__frame__t.html#af5e3edeb721a1da4ef410bbba9058ca6',1,'argus_meas_frame_t']]]
+  ['print_5fbinnedresults_52',['Print_BinnedResults',['../group__argus__xtk__cli.html#ga03205d9936e1c43d0eff1f99a4a24015',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fhelp_53',['print_help',['../group__can__app.html#ga402ea961bfc2ffeee61e3a7c330b1559',1,'main.c']]],
+  ['print_5fintegrationenergyinfo_54',['Print_IntegrationEnergyInfo',['../group__argus__xtk__cli.html#ga878e04ad94eb2367fd9f3dc947326be6',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fpixelamplresults_55',['Print_PixelAmplResults',['../group__argus__xtk__cli.html#ga74720aa6136125dc65490094230cdbac',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fpixelmapcoordinates_56',['Print_PixelMapCoordinates',['../group__argus__xtk__cli.html#gaa494d93a4e4ebf78426749b97977970b',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fpixelsatresults_57',['Print_PixelSatResults',['../group__argus__xtk__cli.html#ga32677b8cc832490f25aea4e9cc386ea4',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5ftotalxtalkmap_58',['Print_TotalXtalkMap',['../group__argus__xtk__cli.html#gaf3c41a0ac508d7d23e0c27708eceae31',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fxtalkmap_59',['Print_XtalkMap',['../group__argus__xtk__cli.html#ga645382afe2d5d00ee2b9d44dbef831c2',1,'argus_xtalk_cal_cli.c']]],
+  ['print_5fxtalkvectortable_60',['Print_XtalkVectorTable',['../group__argus__xtk__cli.html#gad925f61e148752fbff72ffe00fe6b9e7',1,'argus_xtalk_cal_cli.c']]],
+  ['profiling_61',['PROFILING',['../group__profiler.html#ga8c097a59d344c89887c5f4cbdbcf493e',1,'task_profiler.h']]],
+  ['prompt_5finput_62',['PROMPT_INPUT',['../group__argus__xtk__cli.html#gad97fca087dd87409c643a274f04e572d',1,'argus_xtalk_cal_cli.c']]],
+  ['prxcmd_5fcfguart_63',['PrxCmd_CfgUart',['../explorer__api__cfg_8c.html#ad521eba412a65cb79d941fad7e3e8de1',1,'explorer_api_cfg.c']]],
+  ['prxcmd_5fsystemreset_64',['PrxCmd_SystemReset',['../sci__cmd_8c.html#a6efa61bd60df6564560f892ca8cc30f3',1,'sci_cmd.c']]],
+  ['pxenmask_65',['PxEnMask',['../structargus__meas__frame__t.html#af5e3edeb721a1da4ef410bbba9058ca6',1,'argus_meas_frame_t']]]
 ];

@@ -54,5 +54,6 @@ var globals_func =
     [ "trigger", "globals_func_t.html", null ],
     [ "u", "globals_func_u.html", null ],
     [ "v", "globals_func_v.html", null ],
-    [ "verifyh", "globals_func_v.html", null ]
+    [ "verifyh", "globals_func_v.html", null ],
+    [ "xtalkca", "globals_func_x.html", null ]
 ];

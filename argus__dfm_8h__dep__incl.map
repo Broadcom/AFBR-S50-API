@@ -1,39 +1,41 @@
 <map id="AFBR&#45;S50/Include/api/argus_dfm.h" name="AFBR&#45;S50/Include/api/argus_dfm.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="716,5,867,45"/>
-<area shape="rect" id="node2" href="$argus__api_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="773,269,924,309"/>
-<area shape="rect" id="node36" href="$argus__xtalk_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="773,93,924,133"/>
-<area shape="rect" id="node3" href="$argus_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="761,357,937,383"/>
-<area shape="rect" id="node4" href="$argus__hal__test_8h.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="76,431,227,471"/>
-<area shape="rect" id="node6" href="$can__api_8h.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="251,431,401,471"/>
-<area shape="rect" id="node9" href="$main_8h.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="425,438,592,463"/>
-<area shape="rect" id="node11" href="$uart__api_8h.html" title="AFBR&#45;S50 UART Interface." alt="" coords="616,431,767,471"/>
-<area shape="rect" id="node12" href="$explorer__types_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="863,431,1011,471"/>
-<area shape="rect" id="node16" href="$explorer__tasks_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1528,695,1671,735"/>
-<area shape="rect" id="node33" href="$explorer__app_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1507,519,1649,559"/>
-<area shape="rect" id="node34" href="$explorer__tasks_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1528,607,1671,647"/>
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="660,5,811,45"/>
+<area shape="rect" id="node2" href="$argus__api_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="717,269,868,309"/>
+<area shape="rect" id="node38" href="$argus__xtalk_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="717,93,868,133"/>
+<area shape="rect" id="node3" href="$argus_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="705,357,881,383"/>
+<area shape="rect" id="node4" href="$argus__hal__test_8h.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="5,431,156,471"/>
+<area shape="rect" id="node6" href="$argus__xtalk__cal__cli_8h.html" title="Provides an interactive crosstalk calibration CLI to the AFBR&#45;S50 API." alt="" coords="181,431,327,471"/>
+<area shape="rect" id="node8" href="$can__api_8h.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="352,431,503,471"/>
+<area shape="rect" id="node11" href="$main_8h.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="527,438,693,463"/>
+<area shape="rect" id="node13" href="$uart__api_8h.html" title="AFBR&#45;S50 UART Interface." alt="" coords="717,431,868,471"/>
+<area shape="rect" id="node14" href="$explorer__types_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1292,431,1440,471"/>
+<area shape="rect" id="node18" href="$explorer__tasks_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="2157,695,2300,735"/>
+<area shape="rect" id="node35" href="$explorer__app_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1911,519,2053,559"/>
+<area shape="rect" id="node36" href="$explorer__tasks_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="2149,607,2292,647"/>
 <area shape="rect" id="node5" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="5,519,156,559"/>
-<area shape="rect" id="node7" href="$can__api_8c.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="180,519,331,559"/>
-<area shape="rect" id="node8" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="355,526,521,551"/>
-<area shape="rect" id="node10" href="$uart__api_8c.html" title="This file is part of the RA4M2 platform layer." alt="" coords="545,519,696,559"/>
-<area shape="rect" id="node13" href="$explorer__api_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1259,607,1401,647"/>
-<area shape="rect" id="node17" href="$explorer__api__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="849,607,1000,647"/>
-<area shape="rect" id="node19" href="$explorer__api__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1272,519,1423,559"/>
-<area shape="rect" id="node20" href="$explorer__api__data_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1025,519,1184,559"/>
-<area shape="rect" id="node22" href="$core__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="16,607,159,647"/>
-<area shape="rect" id="node24" href="$core__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="349,607,492,647"/>
-<area shape="rect" id="node29" href="$core__device_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="683,607,825,647"/>
-<area shape="rect" id="node30" href="$core__flash_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="183,607,325,647"/>
-<area shape="rect" id="node31" href="$core__utils_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="516,607,659,647"/>
-<area shape="rect" id="node14" href="$explorer__api_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="853,695,996,735"/>
-<area shape="rect" id="node15" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1195,695,1337,735"/>
-<area shape="rect" id="node18" href="$explorer__api__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1020,695,1171,735"/>
-<area shape="rect" id="node21" href="$explorer__api__data_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1024,607,1183,647"/>
-<area shape="rect" id="node23" href="$core__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="12,695,155,735"/>
-<area shape="rect" id="node25" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="679,695,829,735"/>
-<area shape="rect" id="node26" href="$core__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="512,695,655,735"/>
-<area shape="rect" id="node27" href="$core__device_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="345,695,488,735"/>
-<area shape="rect" id="node28" href="$core__flash_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="179,695,321,735"/>
-<area shape="rect" id="node32" href="$core__utils_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1361,695,1504,735"/>
-<area shape="rect" id="node35" href="$_explorer_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="1695,607,1837,647"/>
-<area shape="rect" id="node37" href="$argus__res_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="773,181,924,221"/>
+<area shape="rect" id="node7" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="181,519,327,559"/>
+<area shape="rect" id="node9" href="$can__api_8c.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="352,519,503,559"/>
+<area shape="rect" id="node10" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="527,526,693,551"/>
+<area shape="rect" id="node12" href="$uart__api_8c.html" title="This file is part of the RA4M2 platform layer." alt="" coords="717,519,868,559"/>
+<area shape="rect" id="node15" href="$explorer__api_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1649,607,1792,647"/>
+<area shape="rect" id="node19" href="$explorer__api__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="471,607,621,647"/>
+<area shape="rect" id="node21" href="$explorer__api__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="944,519,1095,559"/>
+<area shape="rect" id="node22" href="$explorer__api__data_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1119,519,1277,559"/>
+<area shape="rect" id="node24" href="$core__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1816,607,1959,647"/>
+<area shape="rect" id="node26" href="$core__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1483,607,1625,647"/>
+<area shape="rect" id="node31" href="$core__device_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1149,607,1292,647"/>
+<area shape="rect" id="node32" href="$core__flash_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="983,607,1125,647"/>
+<area shape="rect" id="node33" href="$core__utils_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1316,607,1459,647"/>
+<area shape="rect" id="node16" href="$explorer__api_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1657,695,1800,735"/>
+<area shape="rect" id="node17" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="816,695,959,735"/>
+<area shape="rect" id="node20" href="$explorer__api__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="641,695,792,735"/>
+<area shape="rect" id="node23" href="$explorer__api__data_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="697,607,856,647"/>
+<area shape="rect" id="node25" href="$core__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1824,695,1967,735"/>
+<area shape="rect" id="node27" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1483,695,1633,735"/>
+<area shape="rect" id="node28" href="$core__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1316,695,1459,735"/>
+<area shape="rect" id="node29" href="$core__device_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1149,695,1292,735"/>
+<area shape="rect" id="node30" href="$core__flash_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="983,695,1125,735"/>
+<area shape="rect" id="node34" href="$core__utils_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1991,695,2133,735"/>
+<area shape="rect" id="node37" href="$_explorer_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="1983,607,2125,647"/>
+<area shape="rect" id="node39" href="$argus__res_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="717,181,868,221"/>
 </map>

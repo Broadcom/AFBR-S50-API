@@ -9,6 +9,7 @@ var searchData=
   ['depthmax_6',['DepthMax',['../structargus__cfg__dca__t.html#ac2a96cf9c3d20c12da8d46fcb34abf50',1,'argus_cfg_dca_t']]],
   ['depthmin_7',['DepthMin',['../structargus__cfg__dca__t.html#a6a70fa63ba929b8207ebaeb563d4882e',1,'argus_cfg_dca_t']]],
   ['depthnom_8',['DepthNom',['../structargus__cfg__dca__t.html#a089916ee1563d6d5b1161de79a97675a',1,'argus_cfg_dca_t']]],
-  ['digitalintegrationdepth_9',['DigitalIntegrationDepth',['../structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21',1,'argus_meas_frame_t']]],
-  ['ds_10',['dS',['../structxtalk__t.html#a7a91b69e535b934d2d05241e26c3ea0d',1,'xtalk_t']]]
+  ['device_5fquery_5ftimer_5fms_9',['device_query_timer_ms',['../group__argus__xtk__cli.html#ga25bf3535fed8d54919fa35cb097592ed',1,'argus_xtalk_cal_cli.c']]],
+  ['digitalintegrationdepth_10',['DigitalIntegrationDepth',['../structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21',1,'argus_meas_frame_t']]],
+  ['ds_11',['dS',['../structxtalk__t.html#a7a91b69e535b934d2d05241e26c3ea0d',1,'xtalk_t']]]
 ];

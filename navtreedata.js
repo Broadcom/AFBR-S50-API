@@ -73,7 +73,6 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Demo Applications", "apps.html", "apps" ],
-    [ "MAVLink App (AFBR-S50 Ref. Board)", "mavlink_app.html", null ],
     [ "AFBR-S50 Reference Board", "reference_board.html", [
       [ "Getting Started", "reference_board.html#reference_board_getting_started", null ],
       [ "Overview", "reference_board.html#reference_board_overview", [
@@ -136,12 +135,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "01__simple__example_8c.html",
-"explorer__tasks_8h.html",
+"explorer__tasks_8c.html#adf5f1e7124841becf9ebe3fa0f37bbfb",
 "globals_g.html",
-"group__argus__fp.html#ga19897391260034e038e9da2df46f1834",
-"group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baf0e528520443a79c92959950049e7c4d",
-"group__platform.html",
-"status_8h.html"
+"group__argus__fp.html#ga085fcf847cab9a36abe41613fbabc58c",
+"group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70bab6d45f3ac20a25b5d9b33ab2565f6f0c",
+"group__explorer__tasks.html#ggac7a0d0b0bc05d09afb4355814f794a13ace01ee9c8584bd67757c5975571f33eb",
+"sci_8c.html#a3e166e84332ab5f49ff2218e30e6dc4f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

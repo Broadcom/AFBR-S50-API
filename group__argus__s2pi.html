@@ -121,7 +121,7 @@ Collaboration diagram for S2PI: Serial Peripheral Interface:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ga0146c4f3ef32320d6fc869b9018ffeeb"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__s2pi.html#ga0146c4f3ef32320d6fc869b9018ffeeb">s2pi_callback_t</a>) (<a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, void *param)</td></tr>
+<tr class="memitem:ga0146c4f3ef32320d6fc869b9018ffeeb"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__s2pi.html#ga0146c4f3ef32320d6fc869b9018ffeeb">s2pi_callback_t</a>) (<a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> <a class="el" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a>, void *param)</td></tr>
 <tr class="memdesc:ga0146c4f3ef32320d6fc869b9018ffeeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">S2PI layer callback function type for the SPI transfer completed event.  <a href="group__argus__s2pi.html#ga0146c4f3ef32320d6fc869b9018ffeeb">More...</a><br /></td></tr>
 <tr class="separator:ga0146c4f3ef32320d6fc869b9018ffeeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9401acadf486ee660bfb6900da57719c"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__s2pi.html#ga9401acadf486ee660bfb6900da57719c">s2pi_irq_callback_t</a>) (void *param)</td></tr>
@@ -208,7 +208,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>(* s2pi_callback_t) (<a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, void *param)</td>
+          <td class="memname">typedef <a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>(* s2pi_callback_t) (<a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> <a class="el" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a>, void *param)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -710,15 +710,15 @@ Functions</h2></td></tr>
 <div class="line">    (void) slave; <span class="comment">// not used in this implementation as all</span></div>
 <div class="line">                  <span class="comment">// SPI slaves are on the same SPI interface</span></div>
 <div class="line"> </div>
-<div class="line">    <a class="code hl_typedef" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status = <a class="code hl_enumvalue" href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88">STATUS_BUSY</a>;</div>
+<div class="line">    <a class="code hl_typedef" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> <a class="code hl_variable" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a> = <a class="code hl_enumvalue" href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88">STATUS_BUSY</a>;</div>
 <div class="line">    <a class="code hl_function" href="group__argus__irq.html#ga7eb2f9c9e40114afd7d079ace7c152e7">IRQ_LOCK</a>();</div>
 <div class="line">    <span class="keywordflow">if</span> (!SpiMutexBlocked)</div>
 <div class="line">    {</div>
 <div class="line">        SpiMutexBlocked = <span class="keyword">true</span>;</div>
-<div class="line">        status = <a class="code hl_enumvalue" href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>;</div>
+<div class="line">        <a class="code hl_variable" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a> = <a class="code hl_enumvalue" href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a>;</div>
 <div class="line">    }</div>
 <div class="line">    <a class="code hl_function" href="group__argus__irq.html#ga41f0d51315c5971183de8750606eab22">IRQ_UNLOCK</a>();</div>
-<div class="line">    <span class="keywordflow">return</span> status;</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_variable" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a>;</div>
 <div class="line">}</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__argus__s2pi.html#ga50973ed176c6a73d9bbca7cbcbcadc2a">S2PI_ReleaseMutex</a>(<a class="code hl_typedef" href="group__argus__api.html#gaa236b64d7430965890e9c6834e24c317">s2pi_slave_t</a> slave)</div>
 <div class="line">{</div>
@@ -733,6 +733,7 @@ Functions</h2></td></tr>
 <div class="ttc" id="agroup__argus__status_html_gaaabdaf7ee58ca7269bd4bf24efcde092"><div class="ttname"><a href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a></div><div class="ttdeci">int32_t status_t</div><div class="ttdoc">Type used for all status and error return values.</div><div class="ttdef"><b>Definition:</b> argus_status.h:70</div></div>
 <div class="ttc" id="agroup__argus__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88"><div class="ttname"><a href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba27b7b4ca606d6208a2ada6df1af6ab88">STATUS_BUSY</a></div><div class="ttdeci">@ STATUS_BUSY</div><div class="ttdef"><b>Definition:</b> argus_status.h:89</div></div>
 <div class="ttc" id="agroup__argus__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566"><div class="ttname"><a href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a></div><div class="ttdeci">@ STATUS_OK</div><div class="ttdef"><b>Definition:</b> argus_status.h:80</div></div>
+<div class="ttc" id="agroup__argus__xtk__cli_html_gaea26d52d2e16010e3e3e3ce0e8a1a0ce"><div class="ttname"><a href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a></div><div class="ttdeci">static status_t status</div><div class="ttdef"><b>Definition:</b> argus_xtalk_cal_cli.c:139</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">slave</td><td>The specified S2PI slave. Note that the slave information is only required if multiple SPI instances are used in order to map to the correct SPI instance.</td></tr>

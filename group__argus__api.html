@@ -188,7 +188,7 @@ Typedefs</h2></td></tr>
 <tr class="separator:gaa236b64d7430965890e9c6834e24c317"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9923866e2d4ec9891ae79e1baae01b92"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a></td></tr>
 <tr class="separator:ga9923866e2d4ec9891ae79e1baae01b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4cd3ecbeee9434d900a18a817b0e2f79"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__api.html#ga4cd3ecbeee9434d900a18a817b0e2f79">argus_measurement_ready_callback_t</a>) (<a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>)</td></tr>
+<tr class="memitem:ga4cd3ecbeee9434d900a18a817b0e2f79"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__api.html#ga4cd3ecbeee9434d900a18a817b0e2f79">argus_measurement_ready_callback_t</a>) (<a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> <a class="el" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a>, <a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>)</td></tr>
 <tr class="memdesc:ga4cd3ecbeee9434d900a18a817b0e2f79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measurement Ready API callback function.  <a href="group__argus__api.html#ga4cd3ecbeee9434d900a18a817b0e2f79">More...</a><br /></td></tr>
 <tr class="separator:ga4cd3ecbeee9434d900a18a817b0e2f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -445,7 +445,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>(* argus_measurement_ready_callback_t) (<a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> status, <a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>)</td>
+          <td class="memname">typedef <a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>(* argus_measurement_ready_callback_t) (<a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a> <a class="el" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a>, <a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -784,7 +784,7 @@ Functions</h2></td></tr>
 <div class="line">uint8_t c = value &amp; 0xFFFFU;</div>
 <div class="ttc" id="agroup__argus__api_html_gabec8f8d2fd8e05e1b4dc6158bffe1f23"><div class="ttname"><a href="group__argus__api.html#gabec8f8d2fd8e05e1b4dc6158bffe1f23">Argus_GetAPIVersion</a></div><div class="ttdeci">uint32_t Argus_GetAPIVersion(void)</div><div class="ttdoc">Gets the version number of the current API library.</div></div>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>Returns the current version number. </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a23">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a23">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a20">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a20">02_advanced_example_with_hal_self_test.c</a>, <a class="el" href="03_high_speed_example_8c-example.html#a19">03_high_speed_example.c</a>, and <a class="el" href="04_multi_device_example_8c-example.html#a27">04_multi_device_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a24">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a24">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a21">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a21">02_advanced_example_with_hal_self_test.c</a>, <a class="el" href="03_high_speed_example_8c-example.html#a20">03_high_speed_example.c</a>, and <a class="el" href="04_multi_device_example_8c-example.html#a28">04_multi_device_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -836,7 +836,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the unique identification number. </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a24">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a24">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a21">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a21">02_advanced_example_with_hal_self_test.c</a>, <a class="el" href="03_high_speed_example_8c-example.html#a20">03_high_speed_example.c</a>, and <a class="el" href="04_multi_device_example_8c-example.html#a28">04_multi_device_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a25">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a25">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a22">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a22">02_advanced_example_with_hal_self_test.c</a>, <a class="el" href="03_high_speed_example_8c-example.html#a21">03_high_speed_example.c</a>, and <a class="el" href="04_multi_device_example_8c-example.html#a29">04_multi_device_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -922,7 +922,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the current module name. </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a25">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a25">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a22">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a22">02_advanced_example_with_hal_self_test.c</a>, <a class="el" href="03_high_speed_example_8c-example.html#a21">03_high_speed_example.c</a>, and <a class="el" href="04_multi_device_example_8c-example.html#a29">04_multi_device_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a26">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a26">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a23">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a23">02_advanced_example_with_hal_self_test.c</a>, <a class="el" href="03_high_speed_example_8c-example.html#a22">03_high_speed_example.c</a>, and <a class="el" href="04_multi_device_example_8c-example.html#a30">04_multi_device_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -1028,7 +1028,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the <a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status</a> (<a class="el" href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a> on success). </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a4">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a4">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a5">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a5">02_advanced_example_with_hal_self_test.c</a>, and <a class="el" href="04_multi_device_example_8c-example.html#a4">04_multi_device_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a5">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a5">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a6">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a6">02_advanced_example_with_hal_self_test.c</a>, and <a class="el" href="04_multi_device_example_8c-example.html#a5">04_multi_device_example.c</a>.</dd>
 </dl>
 
 </div>
@@ -1085,7 +1085,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the <a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status</a> (<a class="el" href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a> on success). </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="03_high_speed_example_8c-example.html#a5">03_high_speed_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="03_high_speed_example_8c-example.html#a6">03_high_speed_example.c</a>.</dd>
 </dl>
 
 </div>

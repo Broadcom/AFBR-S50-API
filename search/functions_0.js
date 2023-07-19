@@ -68,5 +68,6 @@ var searchData=
   ['argus_5fstartmeasurementtimer_65',['Argus_StartMeasurementTimer',['../group__argus__meas.html#gabe59a112f841d59e435510d3c17c9db1',1,'argus_api.h']]],
   ['argus_5fstopmeasurementtimer_66',['Argus_StopMeasurementTimer',['../group__argus__meas.html#ga4c9933c83ea073d73d6108f64ea32e86',1,'argus_api.h']]],
   ['argus_5ftriggermeasurement_67',['Argus_TriggerMeasurement',['../group__argus__meas.html#ga4c115715544c1f66cf39f1a1f649f093',1,'argus_api.h']]],
-  ['argus_5fverifyhalimplementation_68',['Argus_VerifyHALImplementation',['../group__argus__test.html#gaeaefab65deb7fdee9faeb9f713e88c6d',1,'argus_hal_test.c']]]
+  ['argus_5fverifyhalimplementation_68',['Argus_VerifyHALImplementation',['../group__argus__test.html#gaeaefab65deb7fdee9faeb9f713e88c6d',1,'argus_hal_test.c']]],
+  ['argus_5fxtalkcalibration_5fcli_69',['Argus_XtalkCalibration_CLI',['../group__argus__xtk__cli.html#ga4111bd3a802e007dde1ad96451ad7511',1,'argus_xtalk_cal_cli.c']]]
 ];
