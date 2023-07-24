@@ -172,7 +172,7 @@ void SCI_Frame_Queue_Time(sci_frame_t * frame, ltc_t const * t)
     assert(frame != 0);
     assert(t != 0);
     SCI_Frame_Queue32u(frame, t->sec);          // s
-    SCI_Frame_Queue16u(frame, t->usec >> 4U);   // µs / 16
+    SCI_Frame_Queue16u(frame, (uint16_t)(t->usec >> 4U));   // µs / 16
 }
 
 static inline uint8_t SCI_Frame_GetByte(sci_frame_t * frame)

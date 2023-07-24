@@ -229,6 +229,9 @@ status_t SCI_InvokeRxCommand(sci_frame_t * frame)
             deviceID = DEVICEID_FIRST_VALID;
     }
 
+    /* There is no validity check for the DeviceID because the SCI layer doesn't
+     * have the required information on the valid Devices connected. Thus it will
+     * simply forward the received DeviceID to the upper layers. */
 
     /* If CRC fails */
     if (status < STATUS_OK)
@@ -237,10 +240,6 @@ status_t SCI_InvokeRxCommand(sci_frame_t * frame)
         SCI_SendNotAcknowledge(deviceID, cmd, status);
         return status;
     }
-
-    /* If DeviceID is unused/invalid. */
-    //TODO: this should be handled here as a centralized spot, instead of in each
-    // command handler
 
     /* If command is unknown. */
     if ((cmd & 0x7FU) == CMD_INVALID)

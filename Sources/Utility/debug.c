@@ -61,9 +61,21 @@
  * Code
  ******************************************************************************/
 
-
 /*! Definitions of stack top/bottom addresses from the linker file. */
-extern int _vStackTop, _vStackBase;
+#if defined(BSP_MCU_GROUP_RA4M2) && (BSP_MCU_GROUP_RA4M2 == 1)
+// The RA4M2 has a different naming scheme for the stack boundaries
+extern uint32_t __StackTop;
+extern uint32_t __StackLimit;
+
+#define STACK_TOP   __StackTop
+#define STACK_BASE  __StackLimit
+#else
+extern int _vStackTop;
+extern int _vStackBase;
+
+#define STACK_TOP   _vStackTop
+#define STACK_BASE  _vStackBase
+#endif
 
 /*! The pattern to be filled to unused stack space. */
 #define STACK_PATTERN 0xAAAAAAAAU
@@ -71,8 +83,8 @@ extern int _vStackTop, _vStackBase;
 uint32_t Debug_GetStackUsage(void)
 {
     uint32_t size = 0;
-    uint32_t * top = (uint32_t*)&_vStackTop;
-    uint32_t * base = (uint32_t*)&_vStackBase;
+    uint32_t * top = (uint32_t*)&STACK_TOP;
+    uint32_t * base = (uint32_t*)&STACK_BASE;
 
     for (const uint32_t * p = base; p < top; p++)
     {
@@ -97,7 +109,7 @@ void Debug_ResetStackUsage(void)
 
     uint32_t * sp = 0;
     __asm__ __volatile__ ("mov %0, sp" : "=r"(sp));
-    uint32_t * base = (uint32_t*)&_vStackBase;
+    uint32_t * base = (uint32_t*)&STACK_BASE;
 
     while (--sp >= base)
     {

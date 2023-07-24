@@ -38,6 +38,7 @@
 /*******************************************************************************
  * Include Files
  ******************************************************************************/
+#include "explorer_api_cfg.h"
 #include "core/core_device.h"
 #include "core/core_utils.h"
 #include "core/core_cfg.h"
@@ -542,7 +543,7 @@ static status_t TxCmd_CfgUart(sci_device_t deviceID, sci_frame_t * frame, sci_pa
 /*******************************************************************************
  * Init Code
  ******************************************************************************/
-status_t ExplorerAPI_InitCfg()
+status_t ExplorerAPI_InitCfg(void)
 {
     status_t status;
     status = SCI_SetRxTxCommand(CMD_CONFIGURATION_DATA_OUTPUT_MODE, RxCmd_CfgDataOutputMode, TxCmd_CfgDataOutputMode);

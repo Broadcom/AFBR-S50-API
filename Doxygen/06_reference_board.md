@@ -28,7 +28,7 @@ documentation and code projects are still under construction and will be
 periodically updated. Please feel free to contribute and submit an issue or
 pull-request on the
 [AFBR-S50 GitHub repository](https://github.com/Broadcom/AFBR-S50-API) or reach
-out to the Broadcom TOF Support Team: <mailto:support.TOF@broadcom.com>
+out to the Broadcom TOF Support Team at [support.TOF@broadcom.com](mailto:support.TOF@broadcom.com).
 
 ## Getting Started {#reference_board_getting_started}
 

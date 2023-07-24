@@ -41,6 +41,7 @@
 #include "driver/uart.h"
 #include "driver/irq.h"
 #include "utility/time.h"
+#include "board/board_config.h"
 
 #include "hal_data.h"
 #include <assert.h>
@@ -61,14 +62,28 @@ status_t print(const char  *fmt_s, ...);
  * Variables
  ******************************************************************************/
 
+/*! Flag to track wether the UART module has been initialized. */
+static volatile bool isInitialized = false;
+
+static uart_baud_rates_t setBaudrate = UART_INVALID_BPS;
+
 /*! Data buffer for sending data. */
 static uint8_t myBuffer[1024];
 
 /*! Flag to determine if TX is ongoing. */
 static volatile bool isTxOnGoing = false;
 
+/*! User callback that is invoked when a transfer is finished. */
+static uart_tx_callback_t myTxCallback = 0;
+
+/*! Callback parameter/state passed to the myTxCallback callback when invoked. */
+static void * myTxCallbackState = 0;
+
 /*! User callback that is invoked for each incoming byte. */
 static uart_rx_callback_t myRxCallback = 0;
+
+/*! User callback that is invoked when a transmission error occurs. */
+static uart_error_callback_t myErrorCallback = 0;
 
 /*******************************************************************************
  * Code
@@ -76,19 +91,90 @@ static uart_rx_callback_t myRxCallback = 0;
 
 status_t UART_Init(void)
 {
-    fsp_err_t err = R_SCI_UART_Open(&g_uart0_ctrl, &g_uart0_cfg);
-    assert(err == FSP_SUCCESS);
-    return (err == FSP_SUCCESS) ? STATUS_OK : ERROR_FAIL;
+    if (isInitialized) return STATUS_OK;
+
+    /* Ensure the default baudrate is valid */
+    status_t status = UART_CheckBaudRate(UART_BAUDRATE);
+    if (status != STATUS_OK) return status;
+
+    /* Open the UART peripheral */
+    fsp_err_t retVal = R_SCI_UART_Open(&g_uart0_ctrl, &g_uart0_cfg);
+    if (retVal != FSP_SUCCESS) return ERROR_FAIL;
+
+    status = UART_SetBaudRate(UART_BAUDRATE);
+    if (status != STATUS_OK) return status;
+
+    isInitialized = true;
+    setBaudrate = UART_BAUDRATE;
+
+    return STATUS_OK;
 }
 
-static status_t UART_AwaitIdle(void)
+uart_baud_rates_t UART_GetBaudRate(void)
+{
+    return setBaudrate;
+}
+
+status_t UART_CheckBaudRate(uart_baud_rates_t baudRate)
+{
+    switch (baudRate)
+    {
+        case UART_115200_BPS:
+            case UART_500000_BPS:
+            case UART_1000000_BPS:
+            case UART_2000000_BPS:
+            return STATUS_OK;
+
+        case UART_INVALID_BPS:
+            default:
+            return ERROR_UART_BAUDRATE_NOT_SUPPORTED;
+    }
+}
+
+status_t UART_SetBaudRate(uart_baud_rates_t baudRate)
+{
+    status_t status = UART_CheckBaudRate(baudRate);
+    if (status != STATUS_OK) return status;
+
+    /* Check that we're not busy.*/
+    IRQ_LOCK();
+    if (isTxOnGoing)
+    {
+        IRQ_UNLOCK();
+        return STATUS_BUSY;
+    }
+    isTxOnGoing = true;
+    IRQ_UNLOCK();
+
+    baud_setting_t baudSetting;
+    fsp_err_t retVal = R_SCI_UART_BaudCalculate(baudRate, false, 5000u, &baudSetting);
+    if (retVal != FSP_SUCCESS)
+    {
+        isTxOnGoing = false;
+        return ERROR_UART_BAUDRATE_NOT_SUPPORTED;
+    }
+
+    retVal = R_SCI_UART_BaudSet(&g_uart0_ctrl, &baudSetting);
+    if (retVal != FSP_SUCCESS)
+    {
+        isTxOnGoing = false;
+        return ERROR_FAIL;
+    }
+
+    setBaudrate = baudRate;
+    isTxOnGoing = false;
+
+    return STATUS_OK;
+}
+
+static status_t UART_AwaitIdle()
 {
     const uint32_t timeout_ms = 500;
     ltc_t start;
     Time_GetNow(&start);
 
     /* Wait until no transfer is ongoing and claim the control. */
-    for(;;)
+    for (;;)
     {
         while (isTxOnGoing)
         {
@@ -112,23 +198,12 @@ static status_t UART_AwaitIdle(void)
     return STATUS_OK;
 }
 
-static status_t UART_Write(uint8_t const * buffer, uint32_t length)
+__attribute__((weak))  status_t print(const char * fmt_s, ...)
 {
-    assert(buffer != 0);
-    assert(length > 0);
-
-    if (FSP_SUCCESS != R_SCI_UART_Write(&g_uart0_ctrl, buffer, length))
-    {
-        isTxOnGoing = false;
-        return ERROR_FAIL;
-    }
-
-    return STATUS_OK;
-}
-
-__attribute__((weak)) status_t print(const char * fmt_s, ...)
-{
-    status_t status = UART_AwaitIdle();
+    /* The UART mutex logic is needed here in order to protect the printf buffer as well,
+     * otherwise an overlapping call would corrupt it. This function also sets isTxOnGoing
+     * when the UART becomes Idle. */
+    status_t status = UART_AwaitIdle(true);
     if (status != STATUS_OK) return status;
 
     va_list ap;
@@ -138,11 +213,39 @@ __attribute__((weak)) status_t print(const char * fmt_s, ...)
 
     if (len < 0)
     {
+        return ERROR_FAIL;
+    }
+
+    if (R_SCI_UART_Write(&g_uart0_ctrl, myBuffer, (uint32_t)len) != FSP_SUCCESS)
+    {
         isTxOnGoing = false;
         return ERROR_FAIL;
     }
 
-    return UART_Write(myBuffer, (uint32_t)len);
+    return STATUS_OK;
+}
+
+status_t UART_SendBuffer(uint8_t const * txBuff, size_t txSize, uart_tx_callback_t f, void * state)
+{
+    assert(isInitialized);
+    if (!isInitialized) return ERROR_NOT_INITIALIZED;
+
+    /* Verify arguments. */
+    if (!txBuff || !txSize) return ERROR_INVALID_ARGUMENT;
+
+    status_t status = UART_AwaitIdle();
+    if (status != STATUS_OK) return status;
+
+    myTxCallback = f;
+    myTxCallbackState = state;
+
+    if (FSP_SUCCESS != R_SCI_UART_Write(&g_uart0_ctrl, txBuff, txSize))
+    {
+        isTxOnGoing = false;
+        return ERROR_FAIL;
+    }
+
+    return STATUS_OK;
 }
 
 bool UART_IsTxBusy(void)
@@ -152,6 +255,7 @@ bool UART_IsTxBusy(void)
 
 void UART_SetRxCallback(uart_rx_callback_t f)
 {
+    assert(isInitialized);
     IRQ_LOCK();
     myRxCallback = f;
     IRQ_UNLOCK();
@@ -159,34 +263,75 @@ void UART_SetRxCallback(uart_rx_callback_t f)
 
 void UART_RemoveRxCallback(void)
 {
+    assert(isInitialized);
     UART_SetRxCallback(0);
 }
 
-void user_uart_callback(uart_callback_args_t *p_args)
+void UART_SetErrorCallback(uart_error_callback_t f)
+{
+    assert(isInitialized);
+    IRQ_LOCK();
+    myErrorCallback = f;
+    IRQ_UNLOCK();
+}
+
+void UART_RemoveErrorCallback(void)
+{
+    assert(isInitialized);
+    UART_SetErrorCallback(0);
+}
+
+void user_uart_callback(uart_callback_args_t * p_args)
 {
     switch (p_args->event)
     {
         case UART_EVENT_RX_CHAR:
+        {
             if (myRxCallback)
             {
                 const uint8_t data = (uint8_t)p_args->data;
                 myRxCallback(&data, 1);
             }
             break;
+        }
 
         case UART_EVENT_TX_COMPLETE:
+        {
             isTxOnGoing = false;
+
+            if (myTxCallback)
+            {
+                myTxCallback(STATUS_OK, myTxCallbackState);
+            }
             break;
+        }
 
         case UART_EVENT_TX_DATA_EMPTY:
         case UART_EVENT_RX_COMPLETE:
         case UART_EVENT_BREAK_DETECT:
+            break;
+
         case UART_EVENT_ERR_FRAMING:
         case UART_EVENT_ERR_OVERFLOW:
         case UART_EVENT_ERR_PARITY:
-            break;
+        {
+            bool wasTxTransfer = false;
+            if (isTxOnGoing)
+            {
+                wasTxTransfer = true;
+                isTxOnGoing = false;
+            }
 
-        default:
-            assert(0);
+            if (myErrorCallback)
+            {
+                myErrorCallback(ERROR_FAIL);
+            }
+
+            if (wasTxTransfer && myTxCallback)
+            {
+                myTxCallback(ERROR_FAIL, myTxCallbackState);
+            }
+            break;
+        }
     }
 }

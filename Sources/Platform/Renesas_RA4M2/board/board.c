@@ -35,10 +35,11 @@
  *****************************************************************************/
 
 #include "board/board.h"
+#include "board/board_config.h"
 #include "driver/s2pi.h"
 #include "driver/uart.h"
 #include "driver/timer.h"
-//#include "driver/flash.h"
+#include "driver/flash.h"
 #include "debug.h" // declaration of print() and error_log()
 #include "hal_data.h"
 
@@ -72,13 +73,13 @@ status_t Board_Init(void)
         return status;
     }
 
-//  /* Initialize the Flash driver module. */
-//  status = Flash_Init();
-//    if (status < STATUS_OK)
-//    {
-//        error_log("Flash driver initialization failed, error code: %d", status);
-//        return status;
-//    }
+    /* Initialize the Flash driver module. */
+    status = Flash_Init();
+    if (status < STATUS_OK)
+    {
+        error_log("Flash driver initialization failed, error code: %d", status);
+        return status;
+    }
 
     return STATUS_OK;
 }
@@ -88,7 +89,3 @@ void Board_Reset(void)
     NVIC_SystemReset();
 }
 
-void Board_CheckReset(void)
-{
-    /* not implemented ... */
-}

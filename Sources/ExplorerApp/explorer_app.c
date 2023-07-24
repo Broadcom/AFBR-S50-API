@@ -103,8 +103,6 @@ static status_t ExplorerApp_InitCommands()
     return status;
 }
 
-
-
 status_t ExplorerApp_Init()
 {
     Debug_ResetStackUsage();
@@ -122,6 +120,22 @@ status_t ExplorerApp_Init()
     SLCD_DisplayBar();
 #endif
 
+    /* Initialize the systems communication interface. */
+    status = ExplorerApp_InitCommands();
+    if (status < STATUS_OK)
+    {
+        assert(0);
+        return status;
+    }
+
+    /* Initialize the AFBR-S50 Explorer task scheduler. */
+    status = ExplorerApp_InitTasks();
+    if (status < STATUS_OK)
+    {
+        assert(0);
+        return status;
+    }
+
     /* Initialize Devices */
     uint8_t devicesFound = 0;
     for (uint8_t deviceID = 1; deviceID <= EXPLORER_DEVICE_ID_MAX; deviceID++)
@@ -138,22 +152,6 @@ status_t ExplorerApp_Init()
     {
         assert(0);
         return ERROR_ARGUS_NOT_CONNECTED;
-    }
-
-    /* Initialize the systems communication interface. */
-    status = ExplorerApp_InitCommands();
-    if (status < STATUS_OK)
-    {
-        assert(0);
-        return status;
-    }
-
-    /* Initialize the AFBR-S50 Explorer task scheduler. */
-    status = ExplorerApp_InitTasks();
-    if (status < STATUS_OK)
-    {
-        assert(0);
-        return status;
     }
 
     return status;

@@ -34,6 +34,11 @@ const ioport_pin_cfg_t g_bsp_pin_cfg_data[] = {
                                                           | (uint32_t)IOPORT_PERIPHERAL_SCI0_2_4_6_8)
                                                 },
                                                 {
+                                                  .pin = BSP_IO_PORT_01_PIN_03,
+                                                  .pin_cfg = ((uint32_t)IOPORT_CFG_PERIPHERAL_PIN
+                                                          | (uint32_t)IOPORT_PERIPHERAL_CAN)
+                                                },
+                                                {
                                                   .pin = BSP_IO_PORT_01_PIN_04,
                                                   .pin_cfg = ((uint32_t)IOPORT_CFG_IRQ_ENABLE
                                                           | (uint32_t)IOPORT_CFG_PORT_DIRECTION_INPUT
@@ -74,6 +79,16 @@ const ioport_pin_cfg_t g_bsp_pin_cfg_data[] = {
                                                   .pin = BSP_IO_PORT_03_PIN_00,
                                                   .pin_cfg = ((uint32_t)IOPORT_CFG_PERIPHERAL_PIN
                                                           | (uint32_t)IOPORT_PERIPHERAL_DEBUG)
+                                                },
+                                                {
+                                                  .pin = BSP_IO_PORT_04_PIN_02,
+                                                  .pin_cfg = ((uint32_t)IOPORT_CFG_PERIPHERAL_PIN
+                                                          | (uint32_t)IOPORT_PERIPHERAL_CAN)
+                                                },
+                                                {
+                                                  .pin = BSP_IO_PORT_04_PIN_07,
+                                                  .pin_cfg = ((uint32_t)IOPORT_CFG_PERIPHERAL_PIN
+                                                          | (uint32_t)IOPORT_PERIPHERAL_USB_FS)
                                                 },
 };
 

@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2020-2022] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
+ * Copyright [2020-2023] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
  *
  * This software and documentation are supplied by Renesas Electronics America Inc. and may only be used with products
  * of Renesas Electronics Corp. and its affiliates ("Renesas").  No other uses are authorized.  Renesas products are
@@ -42,10 +42,10 @@ extern "C" {
  **********************************************************************************************************************/
 
 /** FSP pack major version. */
- #define FSP_VERSION_MAJOR (3U)
+ #define FSP_VERSION_MAJOR (4U)
 
 /** FSP pack minor version. */
- #define FSP_VERSION_MINOR (6U)
+ #define FSP_VERSION_MINOR (4U)
 
 /** FSP pack patch version. */
  #define FSP_VERSION_PATCH (0U)
@@ -54,10 +54,10 @@ extern "C" {
  #define FSP_VERSION_BUILD           (0U)
 
 /** Public FSP version name. */
- #define FSP_VERSION_STRING          ("3.6.0")
+ #define FSP_VERSION_STRING          ("4.4.0")
 
 /** Unique FSP version ID. */
- #define FSP_VERSION_BUILD_STRING    ("Built with Renesas Advanced Flexible Software Package version 3.6.0")
+ #define FSP_VERSION_BUILD_STRING    ("Built with Renesas Advanced Flexible Software Package version 4.4.0")
 
 /**********************************************************************************************************************
  * Typedef definitions
@@ -68,19 +68,6 @@ typedef union st_fsp_pack_version
 {
     /** Version id */
     uint32_t version_id;
-
-    /**
-     * Code version parameters, little endian order.
-     *
-     * DEPRECATED: Anonymous structure.
-     */
-    struct
-    {
-        uint8_t build;                 ///< Build version of FSP Pack
-        uint8_t patch;                 ///< Patch version of FSP Pack
-        uint8_t minor;                 ///< Minor version of FSP Pack
-        uint8_t major;                 ///< Major version of FSP Pack
-    };
 
     /**
      * Code version parameters, little endian order.

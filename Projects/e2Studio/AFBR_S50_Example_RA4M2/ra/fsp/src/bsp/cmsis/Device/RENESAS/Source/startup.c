@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2020-2022] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
+ * Copyright [2020-2023] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
  *
  * This software and documentation are supplied by Renesas Electronics America Inc. and may only be used with products
  * of Renesas Electronics Corp. and its affiliates ("Renesas").  No other uses are authorized.  Renesas products are
@@ -91,8 +91,7 @@ BSP_PLACE_IN_SECTION(BSP_SECTION_STACK);
 /* Heap */
 #if (BSP_CFG_HEAP_BYTES > 0)
 
-__attribute__((unused))
-BSP_DONT_REMOVE static uint8_t g_heap[BSP_CFG_HEAP_BYTES] BSP_ALIGN_VARIABLE(BSP_STACK_ALIGNMENT) \
+BSP_DONT_REMOVE static uint8_t g_heap[BSP_CFG_HEAP_BYTES] BSP_ALIGN_VARIABLE(BSP_STACK_ALIGNMENT) /* @suppress("Unused variable declaration in file scope") */ \
     BSP_PLACE_IN_SECTION(BSP_SECTION_HEAP);
 #endif
 

@@ -72,6 +72,13 @@ explorer_t * ExplorerApp_GetExplorerPtr(sci_device_t deviceID);
 explorer_t * ExplorerApp_GetExplorerPtrFromArgus(argus_hnd_t * argus);
 
 /*!***************************************************************************
+ * @brief   Gets the device ID of the specified Explorer instance pointer.
+ * @param   explorer The AFBR-Explorer control block.
+ * @return  The Device ID of the selected Explorer instance.
+ *****************************************************************************/
+sci_device_t ExplorerApp_GetDeviceID(explorer_t * explorer);
+
+/*!***************************************************************************
  * @brief   Gets the number of initialized Argus sensor devices.
  * @return  Returns the number of initialized Argus sensor devices.
  *****************************************************************************/
@@ -86,6 +93,7 @@ uint8_t ExplorerApp_GetInitializedExplorerCount();
  * @return  Returns the selected Explorer instance handle pointer.
  *****************************************************************************/
 explorer_t * ExplorerApp_GetInitializedExplorer(uint8_t index);
+
 
 /*!***************************************************************************
  * @brief   Initializes the associated Argus device handle belonging to an

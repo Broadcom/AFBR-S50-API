@@ -66,7 +66,7 @@ static explorer_t * explorerIDMap[S2PI_SLAVE_COUNT + 1] = { 0 };
  * Local Functions
  ******************************************************************************/
 
-static status_t CheckConnectedDevice(uint8_t slave)
+static status_t CheckConnectedDevice(sci_device_t slave)
 {
     status_t status = STATUS_OK;
 
@@ -110,68 +110,6 @@ static status_t CheckConnectedDevice(uint8_t slave)
     }
 
     if (hasData) return STATUS_OK;
-
-    return ERROR_ARGUS_NOT_CONNECTED;
-}
-
-static status_t FindConnectedDevices(int8_t * slave, uint32_t * maxBaudRate)
-{
-    assert(slave != 0);
-    assert(maxBaudRate != 0);
-
-    status_t status = STATUS_OK;
-    uint8_t r_max = 0;
-
-    if (*slave == 0)
-    {
-        return ERROR_ARGUS_NOT_CONNECTED;
-    }
-    else if (*slave > 0)
-    {
-        return CheckConnectedDevice(*slave);
-    }
-    else
-    {
-        /* Reduce baud rate for search. */
-        while (((*maxBaudRate) >> r_max) > 100000U) r_max++;
-        S2PI_SetBaudRate(*slave, (*maxBaudRate) >> r_max);
-
-        /* Auto detect slave. */
-        *slave = 0;
-        for (uint8_t s = 1; s <= 4; s++)
-        {
-            status = CheckConnectedDevice(s);
-            if (status == STATUS_OK)
-            {
-                *slave = s;
-                break;
-            }
-            else if (status != ERROR_ARGUS_NOT_CONNECTED)
-            {
-                return status;
-            }
-        }
-        if (*slave == 0)
-        {
-            return ERROR_ARGUS_NOT_CONNECTED;
-        }
-    }
-
-    /* Auto detect max baud rate. */
-    for (uint8_t r = 0; r < r_max; ++r)
-    {
-        S2PI_SetBaudRate(*slave, (*maxBaudRate) >> r);
-        status = CheckConnectedDevice(*slave);
-        if (status == STATUS_OK)
-        {
-            (*maxBaudRate) = (*maxBaudRate) >> r;
-            return STATUS_OK;
-        }
-        else if (status != ERROR_ARGUS_NOT_CONNECTED)
-        {
-            return status;
-        }
-    }
 
     return ERROR_ARGUS_NOT_CONNECTED;
 }
@@ -227,6 +165,12 @@ explorer_t * ExplorerApp_GetInitializedExplorer(uint8_t index)
     return explorer->Argus != NULL ? explorer : NULL;
 }
 
+sci_device_t ExplorerApp_GetDeviceID(explorer_t * explorer)
+{
+    assert(explorer != NULL);
+    return explorer->DeviceID;
+}
+
 status_t ExplorerApp_InitDevice(explorer_t * explorer, argus_mode_t mode, bool reinit)
 {
     assert(explorer != NULL);
@@ -242,8 +186,10 @@ status_t ExplorerApp_InitDevice(explorer_t * explorer, argus_mode_t mode, bool r
         }
     }
 
+    sci_device_t slave = S2PI_SLAVE_NONE;
     if (reinit)
     {
+        slave = (sci_device_t)Argus_GetSPISlave(explorer->Argus);
         status_t status = Argus_Deinit(explorer->Argus);
         if (status < STATUS_OK)
         {
@@ -253,24 +199,32 @@ status_t ExplorerApp_InitDevice(explorer_t * explorer, argus_mode_t mode, bool r
         }
     }
 
-    /* Check for connected devices. */
-    int8_t slave = explorer->Configuration.SPISlave;
-    uint32_t baudRate = explorer->Configuration.SPIBaudRate;
-    status_t status = FindConnectedDevices(&slave, &baudRate);
-    if (status < STATUS_OK)
+    if (slave == S2PI_SLAVE_NONE)
     {
-        Argus_DestroyHandle(explorer->Argus);
-        explorer->Argus = NULL;
-        error_log("No suitable device connected, error code: %d", status);
-        return status;
+        slave = explorer->DeviceID;
+
+        /* Check for device connection in terms of slave and baud rate. */
+        status_t status = CheckConnectedDevice(slave);
+        if (status < STATUS_OK)
+        {
+            Argus_DestroyHandle(explorer->Argus);
+            explorer->Argus = NULL;
+            /* Do not print error here as this happens upon initialization
+             * while searching for devices. */
+            // error_log("No suitable device connected, error code: %d", status);
+            return status;
+        }
     }
+
+    assert(slave != S2PI_SLAVE_NONE);
 
     /* Device initialization */
     ltc_t start = Time_Now();
-    status = Argus_InitMode(explorer->Argus, slave, mode);
+    status_t status = Argus_InitMode(explorer->Argus, slave, mode);
     uint32_t elapsed = Time_GetElapsedUSec(&start);
     print("Init Time: %d us", elapsed);
-    if (status < STATUS_OK)
+    if (status == ERROR_ARGUS_UNKNOWN_MODULE) status = STATUS_OK; // ignore unknown modules
+    else if (status < STATUS_OK)
     {
         Argus_DestroyHandle(explorer->Argus);
         explorer->Argus = NULL;
@@ -321,9 +275,8 @@ status_t ExplorerApp_InitExplorer(sci_device_t deviceID)
         return ERROR_FAIL;
     }
 
-
+    pExplorer->DeviceID = deviceID;
     ExplorerApp_GetDefaultConfiguration(&pExplorer->Configuration);
-    pExplorer->Configuration.SPISlave = deviceID;
 
     /* Initialize connected devices. */
     status = ExplorerApp_InitDevice(pExplorer, 0, false);

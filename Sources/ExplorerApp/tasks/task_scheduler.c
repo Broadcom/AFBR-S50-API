@@ -196,7 +196,7 @@ static inline void ScheduleNext(scheduler_t * const me)
     if (pending)
     {
         /* Get highest pending and not masked priority. */
-        uint32_t prio = 0;
+        uint8_t prio = 0;
         while (pending & ~0xFU)
         {
             pending >>= 4U;

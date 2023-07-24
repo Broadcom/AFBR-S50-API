@@ -1071,6 +1071,7 @@ static void Set_Xtalk_AmplitudeThreshold(argus_hnd_t * hnd, uint8_t step, uint8_
     print("Xtalk amplitude threshold set to: %d\n\n",
           (step > 1) ? (myXtkAmpThr / UQ12_4_ONE) : ELEC_XTK_AMPL_LMT);
 }
+
 /*!***************************************************************************
  * @brief   Interpolates crosstalk values in the total crosstalk vector table.
  *
@@ -1100,17 +1101,18 @@ static void Interpolate_ActivePixels(argus_hnd_t * hnd)
             {
                 for (unsigned int x = 4; x < 7; x++)
                 {
-                    totalXtalk.Table[f][y][x].dS =
-                            (float)(totalXtalk.Table[f][y][2].dS +
-                                    totalXtalk.Table[f][y][3].dS +
-                                    totalXtalk.Table[f][y][7].dS) / 3.f;
-                    totalXtalk.Table[f][y][x].dC =
-                            (float)(totalXtalk.Table[f][y][2].dC +
-                                    totalXtalk.Table[f][y][3].dC +
-                                    totalXtalk.Table[f][y][7].dC) / 3.f;
+                    totalXtalk.Table[f][x][y].dS =
+                            (float)(totalXtalk.Table[f][2][y].dS +
+                                    totalXtalk.Table[f][3][y].dS +
+                                    totalXtalk.Table[f][7][y].dS) / 3.f;
+                    totalXtalk.Table[f][x][y].dC =
+                            (float)(totalXtalk.Table[f][2][y].dC +
+                                    totalXtalk.Table[f][3][y].dC +
+                                    totalXtalk.Table[f][7][y].dC) / 3.f;
                 }
             }
         }
+        print("Active pixel peaks were interpolated.\n");
     }
 }
 

@@ -119,18 +119,20 @@ status_t S2PI_Init(s2pi_slave_t defaultSlave, uint32_t baudRate_Bps);
 
 /*!***************************************************************************
  * @brief   Gets the current SPI baud rate in bps.
+ * @param   slave The SPI slave to obtain baud rate from.
  * @return  Returns the current baud rate.
  *****************************************************************************/
-uint32_t S2PI_GetBaudRate(void);
+uint32_t S2PI_GetBaudRate(s2pi_slave_t slave);
 
 /*!***************************************************************************
  * @brief   Sets the SPI baud rate in bps.
+ * @param   slave The SPI slave to be changed.
  * @param   baudRate_Bps The default SPI baud rate in bauds-per-second.
  * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *          - #STATUS_OK on success
  *          - #ERROR_S2PI_INVALID_BAUDRATE on invalid baud rate value.
  *****************************************************************************/
-status_t S2PI_SetBaudRate(uint32_t baudRate_Bps);
+status_t S2PI_SetBaudRate(s2pi_slave_t slave, uint32_t baudRate_Bps);
 
 
 /*!***************************************************************************

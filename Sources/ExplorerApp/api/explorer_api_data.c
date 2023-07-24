@@ -69,7 +69,9 @@ static void Serialize_MeasurementData_Generic(sci_frame_t * frame, argus_results
 {
     (void) type; // unused
 
-    SCI_Frame_Queue16u(frame, res->Status);
+    assert(res->Status >= INT16_MIN && res->Status <= INT16_MAX);
+
+    SCI_Frame_Queue16s(frame, (int16_t)res->Status);
     SCI_Frame_Queue_Time(frame, &res->TimeStamp);
 }
 static void Serialize_MeasurementData_FrameConfig(sci_frame_t * frame, argus_results_t const * res, sci_cmd_t type)
@@ -243,13 +245,13 @@ static void Serialize_MeasurementData_Debug(sci_frame_t * frame, argus_results_t
     /* Crosstalk Values */
     for (uint_fast8_t y = 0; y < (ARGUS_PIXELS_Y >> 1); ++y)
     {
-        SCI_Frame_Queue16u(frame, res->Debug->XtalkPredictor[y].dS);
-        SCI_Frame_Queue16u(frame, res->Debug->XtalkPredictor[y].dC);
+        SCI_Frame_Queue16s(frame, res->Debug->XtalkPredictor[y].dS);
+        SCI_Frame_Queue16s(frame, res->Debug->XtalkPredictor[y].dC);
     }
     for (uint_fast8_t y = 0; y < ARGUS_PIXELS_Y; ++y)
     {
-        SCI_Frame_Queue16u(frame, res->Debug->XtalkMonitor[y].dS);
-        SCI_Frame_Queue16u(frame, res->Debug->XtalkMonitor[y].dC);
+        SCI_Frame_Queue16s(frame, res->Debug->XtalkMonitor[y].dS);
+        SCI_Frame_Queue16s(frame, res->Debug->XtalkMonitor[y].dC);
     }
 }
 static void Serialize_MeasurementData(sci_frame_t * frame, argus_results_t const * res, sci_cmd_t type)

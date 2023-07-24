@@ -65,11 +65,11 @@ static void Serialize_Cal_P2PXtalk(sci_frame_t * frame, argus_cal_p2pxtalk_t con
 {
     /* Pixel-To-Pixel Crosstalk */
     SCI_Frame_Queue08u(frame, cal->Enabled);
-    SCI_Frame_Queue16u(frame, cal->KcFactorS);
-    SCI_Frame_Queue16u(frame, cal->KcFactorC);
-    SCI_Frame_Queue16u(frame, cal->KcFactorSRefPx);
-    SCI_Frame_Queue16u(frame, cal->KcFactorCRefPx);
-    SCI_Frame_Queue08s(frame, cal->RelativeThreshold);
+    SCI_Frame_Queue16s(frame, cal->KcFactorS);
+    SCI_Frame_Queue16s(frame, cal->KcFactorC);
+    SCI_Frame_Queue16s(frame, cal->KcFactorSRefPx);
+    SCI_Frame_Queue16s(frame, cal->KcFactorCRefPx);
+    SCI_Frame_Queue08u(frame, cal->RelativeThreshold);
     SCI_Frame_Queue16u(frame, cal->AbsoluteTreshold);
 }
 static void Deserialize_Cal_P2PXtalk(sci_frame_t * frame, argus_cal_p2pxtalk_t * cal)

@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2020-2022] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
+ * Copyright [2020-2023] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
  *
  * This software and documentation are supplied by Renesas Electronics America Inc. and may only be used with products
  * of Renesas Electronics Corp. and its affiliates ("Renesas").  No other uses are authorized.  Renesas products are
@@ -192,6 +192,7 @@ const timer_api_t g_timer_on_gpt =
  *                                        callback.
  * @retval FSP_ERR_INVALID_MODE           Triangle wave PWM is only supported if GPT_CFG_OUTPUT_SUPPORT_ENABLE is 2.
  *                                        Selected channel does not support external count sources.
+ *                                        External and event count sources not are available in this mode.
  * @retval FSP_ERR_IP_CHANNEL_NOT_PRESENT The channel requested in the p_cfg parameter is not available on this device.
  **********************************************************************************************************************/
 fsp_err_t R_GPT_Open (timer_ctrl_t * const p_ctrl, timer_cfg_t const * const p_cfg)
@@ -213,7 +214,7 @@ fsp_err_t R_GPT_Open (timer_ctrl_t * const p_ctrl, timer_cfg_t const * const p_c
  #endif
 
  #if GPT_PRV_EXTRA_FEATURES_ENABLED != GPT_CFG_OUTPUT_SUPPORT_ENABLE
-    FSP_ERROR_RETURN(p_cfg->mode <= TIMER_MODE_PWM, FSP_ERR_INVALID_MODE);
+    FSP_ERROR_RETURN(p_cfg->mode <= TIMER_MODE_ONE_SHOT_PULSE, FSP_ERR_INVALID_MODE);
  #endif
 
     FSP_ERROR_RETURN(GPT_OPEN != p_instance_ctrl->open, FSP_ERR_ALREADY_OPEN);
@@ -236,8 +237,14 @@ fsp_err_t R_GPT_Open (timer_ctrl_t * const p_ctrl, timer_cfg_t const * const p_c
 
  #if GPT_PRV_EXTRA_FEATURES_ENABLED == GPT_CFG_OUTPUT_SUPPORT_ENABLE
 
+    /* Alternate count sources cannot be used in triangle PWM modes */
+    FSP_ERROR_RETURN(!((p_cfg->mode >= TIMER_MODE_ONE_SHOT_PULSE) &&
+                       (p_extend->count_up_source || p_extend->count_down_source)),
+                     FSP_ERR_INVALID_MODE);
+
     /* Callback is required if underflow interrupt is enabled. */
     gpt_extended_pwm_cfg_t const * p_pwm_cfg = p_extend->p_pwm_cfg;
+
     if (NULL != p_pwm_cfg)
     {
         if (p_pwm_cfg->trough_irq >= 0)
@@ -510,7 +517,8 @@ fsp_err_t R_GPT_DutyCycleSet (timer_ctrl_t * const p_ctrl, uint32_t const duty_c
     }
     else
     {
-        FSP_ERROR_RETURN(!pwm_mode3_pin, FSP_ERR_INVALID_MODE);
+        FSP_ERROR_RETURN((!pwm_mode3_pin) || (TIMER_MODE_ONE_SHOT_PULSE == p_instance_ctrl->p_cfg->mode),
+                         FSP_ERR_INVALID_MODE);
     }
 
     FSP_ERROR_RETURN(GPT_OPEN == p_instance_ctrl->open, FSP_ERR_NOT_OPEN);
@@ -537,6 +545,10 @@ fsp_err_t R_GPT_DutyCycleSet (timer_ctrl_t * const p_ctrl, uint32_t const duty_c
             /*
              * In TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM_MODE3, if this is a crest duty cycle, then update the crest
              * duty cycle register. Otherwise, update the trough duty cycle register.
+             * Or in case of One-Shot pulse mode, buffer registers are either GTCCRC and GTCCRD for pulses on GTIOCnA pin
+             * or GTCCRE and GTCCRF for pulses on GTIOCnB pin.
+             * Hence update registers GTCCRD, GTCCRF for trailing edge dutycycle counts on GTIOCnA, GTIOCnB respectively, otherwise update
+             * registers GTCCRC,GTCCRE for leading edge dutycycle counts on GTIOCnA, GTIOCnB respectively.
              */
             reg_offset = 4U;
         }
@@ -550,6 +562,12 @@ fsp_err_t R_GPT_DutyCycleSet (timer_ctrl_t * const p_ctrl, uint32_t const duty_c
         {
             p_instance_ctrl->p_reg->GTCCR[tmp_pin + reg_offset] = duty_regs.gtccr_buffer;
         }
+    }
+
+    if (0 != (pin & GPT_BUFFER_FORCE_PUSH))
+    {
+        /* Enable the compare match buffer. */
+        p_instance_ctrl->p_reg->GTBER |= 1U << R_GPT0_GTBER_CCRSWT_Pos;
     }
 
     if (GPT_IO_PIN_GTIOCB != tmp_pin)
@@ -823,7 +841,8 @@ fsp_err_t R_GPT_PwmOutputDelaySet (timer_ctrl_t * const           p_ctrl,
     else
     {
         uint32_t compare_match;
-        if (TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM_MODE3 == p_instance_ctrl->p_cfg->mode)
+        if ((TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM_MODE3 == p_instance_ctrl->p_cfg->mode) ||
+            (TIMER_MODE_ONE_SHOT_PULSE == p_instance_ctrl->p_cfg->mode))
         {
             /* In TIMER_MODE_TRIANGLE_WAVE_ASYMMETRIC_PWM_MODE3, the trough compare match value is set in
              * GTCCRD, and GTCCRF. */
@@ -1213,7 +1232,7 @@ static void gpt_hardware_initialize (gpt_instance_ctrl_t * const p_instance_ctrl
      * register, PCLK divisor register, and counter register. */
     R_BSP_MODULE_START(FSP_IP_GPT, p_cfg->channel);
 
-#if GPT_CFG_OUTPUT_SUPPORT_ENABLE
+#if GPT_CFG_OUTPUT_SUPPORT_ENABLE && BSP_FEATURE_GPT_ODC_VALID_CHANNEL_MASK
     if (0U != (BSP_FEATURE_GPT_ODC_VALID_CHANNEL_MASK & p_instance_ctrl->channel_mask))
     {
         /* Enter a critical section in order to ensure that multiple GPT channels don't access the common
@@ -1254,7 +1273,7 @@ static void gpt_hardware_initialize (gpt_instance_ctrl_t * const p_instance_ctrl
      * RA6M3 manual R01UH0886EJ0100) and other registers required by the driver. */
 
     /* Dividers for GPT are half the enum value. */
-    uint32_t gtcr_tpcs = p_cfg->source_div;
+    uint32_t gtcr_tpcs = p_cfg->source_div >> BSP_FEATURE_GPT_TPCS_SHIFT;
     uint32_t gtcr      = gtcr_tpcs << R_GPT0_GTCR_TPCS_Pos;
 
     /* Store period register setting. The actual period and is one cycle longer than the register value for saw waves
@@ -1262,6 +1281,13 @@ static void gpt_hardware_initialize (gpt_instance_ctrl_t * const p_instance_ctrl
      * Register (GTPR)". The setting passed to the configuration is expected to be half the desired period for
      * triangle waves. */
     uint32_t gtpr = p_cfg->period_counts - 1U;
+
+    /* Set GTCR.MD = 0x001 for TIMER_MODE_ONE_SHOT_PULSE mode. */
+    if (TIMER_MODE_ONE_SHOT_PULSE == p_cfg->mode)
+    {
+        gtcr |= (1U << R_GPT0_GTCR_MD_Pos);
+    }
+
 #if GPT_PRV_EXTRA_FEATURES_ENABLED == GPT_CFG_OUTPUT_SUPPORT_ENABLE
 
     /* Saw-wave PWM mode is set in GTCR.MD for all modes except TIMER_MODE_TRIANGLE_WAVE_SYMMETRIC_PWM and
@@ -1496,7 +1522,7 @@ static void r_gpt_enable_irq (IRQn_Type const irq, uint32_t priority, void * p_c
 #if GPT_CFG_OUTPUT_SUPPORT_ENABLE
 
 /*******************************************************************************************************************//**
- * Calculates duty cycle register values.  GTPR must be set before entering this function.
+ * Calculates duty cycle register values.  GTPBR must be set before entering this function.
  *
  * @param[in]  p_instance_ctrl         Instance control structure
  * @param[in]  duty_cycle_counts       Duty cycle to set
@@ -1509,9 +1535,9 @@ static void gpt_calculate_duty_cycle (gpt_instance_ctrl_t * const p_instance_ctr
 {
     /* Determine the current period. The actual period is one cycle longer than the register value for saw waves
      * and twice the register value for triangle waves. Reference section 23.2.21 "General PWM Timer Cycle Setting
-     * Register (GTPR)". The setting passed to the configuration is expected to be half the desired duty cycle for
+     * Register (GTPBR)". The setting passed to the configuration is expected to be half the desired duty cycle for
      * triangle waves. */
-    uint32_t current_period = p_instance_ctrl->p_reg->GTPR;
+    uint32_t current_period = p_instance_ctrl->p_reg->GTPBR;
  #if GPT_PRV_EXTRA_FEATURES_ENABLED == GPT_CFG_OUTPUT_SUPPORT_ENABLE
     if (p_instance_ctrl->p_cfg->mode < TIMER_MODE_TRIANGLE_WAVE_SYMMETRIC_PWM)
  #endif
@@ -1589,8 +1615,9 @@ static void gpt_calculate_duty_cycle (gpt_instance_ctrl_t * const p_instance_ctr
 static uint32_t gpt_clock_frequency_get (gpt_instance_ctrl_t * const p_instance_ctrl)
 {
     /* Look up PCLKD frequency and divide it by GPT PCLKD divider. */
-    timer_source_div_t pclk_divisor = (timer_source_div_t) (p_instance_ctrl->p_reg->GTCR_b.TPCS);
-    uint32_t           pclk_freq_hz = R_FSP_SystemClockHzGet(FSP_PRIV_CLOCK_PCLKD);
+    timer_source_div_t pclk_divisor =
+        (timer_source_div_t) (p_instance_ctrl->p_reg->GTCR_b.TPCS << BSP_FEATURE_GPT_TPCS_SHIFT);
+    uint32_t pclk_freq_hz = R_FSP_SystemClockHzGet(FSP_PRIV_CLOCK_PCLKD);
 
     return pclk_freq_hz >> pclk_divisor;
 }
@@ -1623,6 +1650,10 @@ static uint32_t gpt_gtior_calculate (timer_cfg_t const * const p_cfg, gpt_pin_le
         gtion = GPT_PRV_GTIO_TOGGLE_COMPARE_MATCH;
     }
  #endif
+    else if (TIMER_MODE_ONE_SHOT_PULSE == p_cfg->mode)
+    {
+        gtion = GPT_PRV_GTIO_TOGGLE_COMPARE_MATCH;
+    }
     else
     {
         /* In one-shot mode, the output pin goes high after the first compare match (one cycle after the timer starts counting). */
@@ -1745,7 +1776,7 @@ static void r_gpt_capture_common_isr (gpt_prv_capture_event_t event)
 void gpt_counter_overflow_isr (void)
 {
     /* Save context if RTOS is used */
-    FSP_CONTEXT_SAVE;
+    FSP_CONTEXT_SAVE
 
     IRQn_Type irq = R_FSP_CurrentIrqGet();
 
@@ -1779,7 +1810,7 @@ void gpt_counter_overflow_isr (void)
     }
 
     /* Restore context if RTOS is used */
-    FSP_CONTEXT_RESTORE;
+    FSP_CONTEXT_RESTORE
 }
 
 #if GPT_PRV_EXTRA_FEATURES_ENABLED == GPT_CFG_OUTPUT_SUPPORT_ENABLE
@@ -1790,7 +1821,7 @@ void gpt_counter_overflow_isr (void)
 void gpt_counter_underflow_isr (void)
 {
     /* Save context if RTOS is used */
-    FSP_CONTEXT_SAVE;
+    FSP_CONTEXT_SAVE
 
     IRQn_Type irq = R_FSP_CurrentIrqGet();
 
@@ -1804,7 +1835,7 @@ void gpt_counter_underflow_isr (void)
     r_gpt_call_callback(p_instance_ctrl, TIMER_EVENT_TROUGH, 0);
 
     /* Restore context if RTOS is used */
-    FSP_CONTEXT_RESTORE;
+    FSP_CONTEXT_RESTORE
 }
 
 #endif

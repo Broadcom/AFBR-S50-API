@@ -90,7 +90,7 @@ static status_t TxCmd_SoftwareInfo(sci_device_t deviceID, sci_frame_t * frame, s
     {
         const uint8_t deviceCount = ExplorerApp_GetInitializedExplorerCount();
         SCI_Frame_Queue08u(frame, deviceCount);
-        for (uint8_t deviceID = EXPLORER_DEVICE_ID_MIN; deviceID <= EXPLORER_DEVICE_ID_MAX; deviceID++)
+        for (deviceID = EXPLORER_DEVICE_ID_MIN; deviceID <= EXPLORER_DEVICE_ID_MAX; deviceID++)
         {
 
             argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);

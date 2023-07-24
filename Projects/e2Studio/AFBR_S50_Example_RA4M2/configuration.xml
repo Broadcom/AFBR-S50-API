@@ -9,7 +9,7 @@
     <option key="#DeviceCommand#" value="R7FA4M2AD"/>
     <option key="#RTOS#" value="_none"/>
     <option key="#pinconfiguration#" value="R7FA4M2AD3CFL.pincfg"/>
-    <option key="#FSPVersion#" value="3.6.0"/>
+    <option key="#FSPVersion#" value="4.4.0"/>
     <option key="#SELECTED_TOOLCHAIN#" value="gcc-arm-embedded"/>
     <option key="#ToolchainVersion#" value="10.3.1.20210824"/>
   </generalSettings>
@@ -40,6 +40,7 @@
       <property id="config.bsp.fsp.tz.stbramsar" value="config.bsp.fsp.tz.stbramsar.both"/>
       <property id="config.bsp.fsp.tz.bussara" value="config.bsp.fsp.tz.bussara.both"/>
       <property id="config.bsp.fsp.tz.bussarb" value="config.bsp.fsp.tz.bussarb.both"/>
+      <property id="config.bsp.fsp.tz.uninitialized_ns_application_fallback" value="config.bsp.fsp.tz.uninitialized_ns_application_fallback.enabled"/>
       <property id="config.bsp.fsp.cache_line_size" value="config.bsp.fsp.cache_line_size.32"/>
       <property id="config.bsp.fsp.OFS0.iwdt_start_mode" value="config.bsp.fsp.OFS0.iwdt_start_mode.disabled"/>
       <property id="config.bsp.fsp.OFS0.iwdt_timeout" value="config.bsp.fsp.OFS0.iwdt_timeout.2048"/>
@@ -68,23 +69,27 @@
       <property id="config.bsp.fsp.mcu.sci_spi.max_bitrate" value="25000000"/>
       <property id="config.bsp.fsp.mcu.spi.max_bitrate" value="50000000"/>
       <property id="config.bsp.fsp.mcu.iic_master.rate.rate_fastplus" value="1"/>
+      <property id="config.bsp.fsp.mcu.iic_master.fastplus_channels" value="0x1"/>
+      <property id="config.bsp.fsp.mcu.iic_slave.rate.rate_fastplus" value="1"/>
+      <property id="config.bsp.fsp.mcu.iic_slave.fastplus_channels" value="0x1"/>
       <property id="config.bsp.fsp.mcu.sci_uart.cstpen_channels" value="0x0219"/>
       <property id="config.bsp.fsp.mcu.gpt.pin_count_source_channels" value="0xFFFF"/>
+      <property id="config.bsp.fsp.mcu.adc_dmac.samples_per_channel" value="65535"/>
     </config>
     <config id="config.bsp.ra">
-      <property id="config.bsp.common.main" value="0x2000"/>
-      <property id="config.bsp.common.heap" value="0x2000"/>
+      <property id="config.bsp.common.main" value="0x3000"/>
+      <property id="config.bsp.common.heap" value="0x6000"/>
       <property id="config.bsp.common.vcc" value="3300"/>
       <property id="config.bsp.common.checking" value="config.bsp.common.checking.disabled"/>
       <property id="config.bsp.common.assert" value="config.bsp.common.assert.none"/>
       <property id="config.bsp.common.error_log" value="config.bsp.common.error_log.none"/>
       <property id="config.bsp.common.soft_reset" value="config.bsp.common.soft_reset.disabled"/>
-      <property id="config.bsp.common.main_osc_populated" value="config.bsp.common.main_osc_populated.enabled"/>
+      <property id="config.bsp.common.main_osc_populated" value="config.bsp.common.main_osc_populated.disabled"/>
       <property id="config.bsp.common.pfs_protect" value="config.bsp.common.pfs_protect.enabled"/>
       <property id="config.bsp.common.c_runtime_init" value="config.bsp.common.c_runtime_init.enabled"/>
       <property id="config.bsp.common.early_init" value="config.bsp.common.early_init.disabled"/>
       <property id="config.bsp.common.main_osc_clock_source" value="config.bsp.common.main_osc_clock_source.crystal"/>
-      <property id="config.bsp.common.subclock_populated" value="config.bsp.common.subclock_populated.enabled"/>
+      <property id="config.bsp.common.subclock_populated" value="config.bsp.common.subclock_populated.disabled"/>
       <property id="config.bsp.common.subclock_drive" value="config.bsp.common.subclock_drive.standard"/>
       <property id="config.bsp.common.subclock_stabilization_ms" value="1000"/>
     </config>
@@ -124,53 +129,73 @@
     <node id="board.clock.uclk.display" option="board.clock.uclk.display.value"/>
   </raClockConfiguration>
   <raComponentSelection>
-    <component apiversion="" class="BSP" condition="" group="Board" subgroup="custom" variant="" vendor="Renesas" version="3.6.0">
-      <description>Custom Board Support Files</description>
-      <originalPack>Renesas.RA_board_custom.3.6.0.pack</originalPack>
-    </component>
-    <component apiversion="" class="CMSIS" condition="" group="CMSIS5" subgroup="CoreM" variant="" vendor="Arm" version="5.8.0+renesas.0.fsp.3.6.0">
-      <description>Arm CMSIS Version 5 - Core (M)</description>
-      <originalPack>Arm.CMSIS5.5.8.0+renesas.0.fsp.3.6.0.pack</originalPack>
-    </component>
-    <component apiversion="" class="Common" condition="" group="all" subgroup="fsp_common" variant="" vendor="Renesas" version="3.6.0">
-      <description>Board Support Package Common Files</description>
-      <originalPack>Renesas.RA.3.6.0.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_dtc" variant="" vendor="Renesas" version="3.6.0">
-      <description>Data Transfer Controller</description>
-      <originalPack>Renesas.RA.3.6.0.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_gpt" variant="" vendor="Renesas" version="3.6.0">
-      <description>General PWM Timer</description>
-      <originalPack>Renesas.RA.3.6.0.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_icu" variant="" vendor="Renesas" version="3.6.0">
-      <description>External Interrupt</description>
-      <originalPack>Renesas.RA.3.6.0.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="3.6.0">
-      <description>I/O Port</description>
-      <originalPack>Renesas.RA.3.6.0.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_sci_uart" variant="" vendor="Renesas" version="3.6.0">
-      <description>SCI UART</description>
-      <originalPack>Renesas.RA.3.6.0.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_spi" variant="" vendor="Renesas" version="3.6.0">
-      <description>Serial Peripheral Interface</description>
-      <originalPack>Renesas.RA.3.6.0.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="ra4m2" subgroup="device" variant="R7FA4M2AD3CFL" vendor="Renesas" version="3.6.0">
+    <component apiversion="" class="BSP" condition="" group="ra4m2" subgroup="device" variant="R7FA4M2AD3CFL" vendor="Renesas" version="4.4.0">
       <description>Board support package for R7FA4M2AD3CFL</description>
-      <originalPack>Renesas.RA_mcu_ra4m2.3.6.0.pack</originalPack>
+      <originalPack>Renesas.RA_mcu_ra4m2.4.4.0.pack</originalPack>
     </component>
-    <component apiversion="" class="BSP" condition="" group="ra4m2" subgroup="device" variant="" vendor="Renesas" version="3.6.0">
+    <component apiversion="" class="BSP" condition="" group="ra4m2" subgroup="device" variant="" vendor="Renesas" version="4.4.0">
       <description>Board support package for RA4M2</description>
-      <originalPack>Renesas.RA_mcu_ra4m2.3.6.0.pack</originalPack>
+      <originalPack>Renesas.RA_mcu_ra4m2.4.4.0.pack</originalPack>
     </component>
-    <component apiversion="" class="BSP" condition="" group="ra4m2" subgroup="fsp" variant="" vendor="Renesas" version="3.6.0">
+    <component apiversion="" class="BSP" condition="" group="ra4m2" subgroup="fsp" variant="" vendor="Renesas" version="4.4.0">
       <description>Board support package for RA4M2 - FSP Data</description>
-      <originalPack>Renesas.RA_mcu_ra4m2.3.6.0.pack</originalPack>
+      <originalPack>Renesas.RA_mcu_ra4m2.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="Board" subgroup="custom" variant="" vendor="Renesas" version="4.4.0">
+      <description>Custom Board Support Files</description>
+      <originalPack>Renesas.RA_board_custom.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="CMSIS" condition="" group="CMSIS5" subgroup="CoreM" variant="" vendor="Arm" version="5.9.0+renesas.0.fsp.4.4.0">
+      <description>Arm CMSIS Version 5 - Core (M)</description>
+      <originalPack>Arm.CMSIS5.5.9.0+renesas.0.fsp.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="Common" condition="" group="all" subgroup="fsp_common" variant="" vendor="Renesas" version="4.4.0">
+      <description>Board Support Package Common Files</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_can" variant="" vendor="Renesas" version="4.4.0">
+      <description>Controller Area Network</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_dtc" variant="" vendor="Renesas" version="4.4.0">
+      <description>Data Transfer Controller</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_gpt" variant="" vendor="Renesas" version="4.4.0">
+      <description>General PWM Timer</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_icu" variant="" vendor="Renesas" version="4.4.0">
+      <description>External Interrupt</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="4.4.0">
+      <description>I/O Port</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_sci_uart" variant="" vendor="Renesas" version="4.4.0">
+      <description>SCI UART</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_spi" variant="" vendor="Renesas" version="4.4.0">
+      <description>Serial Peripheral Interface</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_usb_basic" variant="" vendor="Renesas" version="4.4.0">
+      <description>USB Basic</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_usb_pvnd" variant="" vendor="Renesas" version="4.4.0">
+      <description>USB Peripheral Vendor Class</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_flash_hp" variant="" vendor="Renesas" version="4.4.0">
+      <description>Flash Memory High Performance</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="Middleware" condition="" group="all" subgroup="rm_vee_flash" variant="" vendor="Renesas" version="4.4.0">
+      <description>Virtual EEPROM</description>
+      <originalPack>Renesas.RA.4.4.0.pack</originalPack>
     </component>
   </raComponentSelection>
   <raElcConfiguration/>
@@ -182,10 +207,6 @@
       <property id="module.driver.ioport.elc_trigger_ioport2" value="_disabled"/>
       <property id="module.driver.ioport.elc_trigger_ioport3" value="_disabled"/>
       <property id="module.driver.ioport.elc_trigger_ioport4" value="_disabled"/>
-      <property id="module.driver.ioport.elc_trigger_ioportb" value="_disabled"/>
-      <property id="module.driver.ioport.elc_trigger_ioportc" value="_disabled"/>
-      <property id="module.driver.ioport.elc_trigger_ioportd" value="_disabled"/>
-      <property id="module.driver.ioport.elc_trigger_ioporte" value="_disabled"/>
       <property id="module.driver.ioport.pincfg" value="g_bsp_pin_cfg"/>
     </module>
     <module id="module.driver.spi_on_spi.2086473694">
@@ -400,6 +421,253 @@
       <property id="module.driver.timer.gtioca_disable_setting" value="module.driver.timer.gtioca_disable_setting.gtioc_disable_prohibited"/>
       <property id="module.driver.timer.gtiocb_disable_setting" value="module.driver.timer.gtiocb_disable_setting.gtioc_disable_prohibited"/>
     </module>
+    <module id="module.driver.can_on_can.1155809120">
+      <property id="module.driver.can.name" value="g_can0"/>
+      <property id="module.driver.can.channel" value="0"/>
+      <property id="module.driver.can.clock_source" value="module.driver.can.clock_source.pclkl"/>
+      <property id="module.driver.can.sample_point" value="75"/>
+      <property id="module.driver.can.baud_rate" value="1000000"/>
+      <property id="module.driver.can.override_baud_setting" value="module.driver.can.override_baud_setting.disabled"/>
+      <property id="module.driver.can.baud_rate_prescaler" value="1"/>
+      <property id="module.driver.can.time_segment_1" value="module.driver.can.time_segment_1.tq4"/>
+      <property id="module.driver.can.time_segment_2" value="module.driver.can.time_segment_2.tq2"/>
+      <property id="module.driver.can.sync_jump_width" value="module.driver.can.sync_jump_width.tq1"/>
+      <property id="module.driver.can.p_callback" value="can_callback"/>
+      <property id="module.driver.can.message_mode" value="module.driver.can.message_mode.overwrite"/>
+      <property id="module.driver.can.global_id_mode" value="module.driver.can.global_id_mode.standard"/>
+      <property id="module.driver.can.mailbox_count" value="module.driver.can.mailbox_count.32"/>
+      <property id="module.driver.can.rxfifo_id1.id" value="0"/>
+      <property id="module.driver.can.rxfifo_id2.id" value="0"/>
+      <property id="module.driver.can.mailbox0_id" value="0"/>
+      <property id="module.driver.can.mailbox1_id" value="1"/>
+      <property id="module.driver.can.mailbox2_id" value="2"/>
+      <property id="module.driver.can.mailbox3_id" value="3"/>
+      <property id="module.driver.can.mailbox4_id" value="4"/>
+      <property id="module.driver.can.mailbox5_id" value="5"/>
+      <property id="module.driver.can.mailbox6_id" value="6"/>
+      <property id="module.driver.can.mailbox7_id" value="7"/>
+      <property id="module.driver.can.mailbox8_id" value="8"/>
+      <property id="module.driver.can.mailbox9_id" value="9"/>
+      <property id="module.driver.can.mailbox10_id" value="10"/>
+      <property id="module.driver.can.mailbox11_id" value="11"/>
+      <property id="module.driver.can.mailbox12_id" value="12"/>
+      <property id="module.driver.can.mailbox13_id" value="13"/>
+      <property id="module.driver.can.mailbox14_id" value="14"/>
+      <property id="module.driver.can.mailbox15_id" value="15"/>
+      <property id="module.driver.can.mailbox16_id" value="16"/>
+      <property id="module.driver.can.mailbox17_id" value="17"/>
+      <property id="module.driver.can.mailbox18_id" value="18"/>
+      <property id="module.driver.can.mailbox19_id" value="19"/>
+      <property id="module.driver.can.mailbox20_id" value="20"/>
+      <property id="module.driver.can.mailbox21_id" value="21"/>
+      <property id="module.driver.can.mailbox22_id" value="22"/>
+      <property id="module.driver.can.mailbox23_id" value="23"/>
+      <property id="module.driver.can.mailbox24_id" value="24"/>
+      <property id="module.driver.can.mailbox25_id" value="25"/>
+      <property id="module.driver.can.mailbox26_id" value="26"/>
+      <property id="module.driver.can.mailbox27_id" value="27"/>
+      <property id="module.driver.can.mailbox28_id" value="28"/>
+      <property id="module.driver.can.mailbox29_id" value="29"/>
+      <property id="module.driver.can.mailbox30_id" value="30"/>
+      <property id="module.driver.can.mailbox31_id" value="31"/>
+      <property id="module.driver.can.rxfifo_id1.id_mode" value="module.driver.can.rxfifo_id1.id_mode.standard"/>
+      <property id="module.driver.can.rxfifo_id2.id_mode" value="module.driver.can.rxfifo_id2.id_mode.standard"/>
+      <property id="module.driver.can.mailbox0_id_mode" value="module.driver.can.mailbox0_id_mode.standard"/>
+      <property id="module.driver.can.mailbox1_id_mode" value="module.driver.can.mailbox1_id_mode.standard"/>
+      <property id="module.driver.can.mailbox2_id_mode" value="module.driver.can.mailbox2_id_mode.standard"/>
+      <property id="module.driver.can.mailbox3_id_mode" value="module.driver.can.mailbox3_id_mode.standard"/>
+      <property id="module.driver.can.mailbox4_id_mode" value="module.driver.can.mailbox4_id_mode.standard"/>
+      <property id="module.driver.can.mailbox5_id_mode" value="module.driver.can.mailbox5_id_mode.standard"/>
+      <property id="module.driver.can.mailbox6_id_mode" value="module.driver.can.mailbox6_id_mode.standard"/>
+      <property id="module.driver.can.mailbox7_id_mode" value="module.driver.can.mailbox7_id_mode.standard"/>
+      <property id="module.driver.can.mailbox8_id_mode" value="module.driver.can.mailbox8_id_mode.standard"/>
+      <property id="module.driver.can.mailbox9_id_mode" value="module.driver.can.mailbox9_id_mode.standard"/>
+      <property id="module.driver.can.mailbox10_id_mode" value="module.driver.can.mailbox10_id_mode.standard"/>
+      <property id="module.driver.can.mailbox11_id_mode" value="module.driver.can.mailbox11_id_mode.standard"/>
+      <property id="module.driver.can.mailbox12_id_mode" value="module.driver.can.mailbox12_id_mode.standard"/>
+      <property id="module.driver.can.mailbox13_id_mode" value="module.driver.can.mailbox13_id_mode.standard"/>
+      <property id="module.driver.can.mailbox14_id_mode" value="module.driver.can.mailbox14_id_mode.standard"/>
+      <property id="module.driver.can.mailbox15_id_mode" value="module.driver.can.mailbox15_id_mode.standard"/>
+      <property id="module.driver.can.mailbox16_id_mode" value="module.driver.can.mailbox16_id_mode.standard"/>
+      <property id="module.driver.can.mailbox17_id_mode" value="module.driver.can.mailbox17_id_mode.standard"/>
+      <property id="module.driver.can.mailbox18_id_mode" value="module.driver.can.mailbox18_id_mode.standard"/>
+      <property id="module.driver.can.mailbox19_id_mode" value="module.driver.can.mailbox19_id_mode.standard"/>
+      <property id="module.driver.can.mailbox20_id_mode" value="module.driver.can.mailbox20_id_mode.standard"/>
+      <property id="module.driver.can.mailbox21_id_mode" value="module.driver.can.mailbox21_id_mode.standard"/>
+      <property id="module.driver.can.mailbox22_id_mode" value="module.driver.can.mailbox22_id_mode.standard"/>
+      <property id="module.driver.can.mailbox23_id_mode" value="module.driver.can.mailbox23_id_mode.standard"/>
+      <property id="module.driver.can.mailbox24_id_mode" value="module.driver.can.mailbox24_id_mode.standard"/>
+      <property id="module.driver.can.mailbox25_id_mode" value="module.driver.can.mailbox25_id_mode.standard"/>
+      <property id="module.driver.can.mailbox26_id_mode" value="module.driver.can.mailbox26_id_mode.standard"/>
+      <property id="module.driver.can.mailbox27_id_mode" value="module.driver.can.mailbox27_id_mode.standard"/>
+      <property id="module.driver.can.mailbox28_id_mode" value="module.driver.can.mailbox28_id_mode.standard"/>
+      <property id="module.driver.can.mailbox29_id_mode" value="module.driver.can.mailbox29_id_mode.standard"/>
+      <property id="module.driver.can.mailbox30_id_mode" value="module.driver.can.mailbox30_id_mode.standard"/>
+      <property id="module.driver.can.mailbox31_id_mode" value="module.driver.can.mailbox31_id_mode.standard"/>
+      <property id="module.driver.can.mailbox0_type" value="module.driver.can.mailbox0_type.transmit"/>
+      <property id="module.driver.can.mailbox1_type" value="module.driver.can.mailbox1_type.receive"/>
+      <property id="module.driver.can.mailbox2_type" value="module.driver.can.mailbox2_type.receive"/>
+      <property id="module.driver.can.mailbox3_type" value="module.driver.can.mailbox3_type.receive"/>
+      <property id="module.driver.can.mailbox4_type" value="module.driver.can.mailbox4_type.receive"/>
+      <property id="module.driver.can.mailbox5_type" value="module.driver.can.mailbox5_type.receive"/>
+      <property id="module.driver.can.mailbox6_type" value="module.driver.can.mailbox6_type.receive"/>
+      <property id="module.driver.can.mailbox7_type" value="module.driver.can.mailbox7_type.receive"/>
+      <property id="module.driver.can.mailbox8_type" value="module.driver.can.mailbox8_type.receive"/>
+      <property id="module.driver.can.mailbox9_type" value="module.driver.can.mailbox9_type.receive"/>
+      <property id="module.driver.can.mailbox10_type" value="module.driver.can.mailbox10_type.receive"/>
+      <property id="module.driver.can.mailbox11_type" value="module.driver.can.mailbox11_type.receive"/>
+      <property id="module.driver.can.mailbox12_type" value="module.driver.can.mailbox12_type.receive"/>
+      <property id="module.driver.can.mailbox13_type" value="module.driver.can.mailbox13_type.receive"/>
+      <property id="module.driver.can.mailbox14_type" value="module.driver.can.mailbox14_type.receive"/>
+      <property id="module.driver.can.mailbox15_type" value="module.driver.can.mailbox15_type.receive"/>
+      <property id="module.driver.can.mailbox16_type" value="module.driver.can.mailbox16_type.receive"/>
+      <property id="module.driver.can.mailbox17_type" value="module.driver.can.mailbox17_type.receive"/>
+      <property id="module.driver.can.mailbox18_type" value="module.driver.can.mailbox18_type.receive"/>
+      <property id="module.driver.can.mailbox19_type" value="module.driver.can.mailbox19_type.receive"/>
+      <property id="module.driver.can.mailbox20_type" value="module.driver.can.mailbox20_type.receive"/>
+      <property id="module.driver.can.mailbox21_type" value="module.driver.can.mailbox21_type.receive"/>
+      <property id="module.driver.can.mailbox22_type" value="module.driver.can.mailbox22_type.receive"/>
+      <property id="module.driver.can.mailbox23_type" value="module.driver.can.mailbox23_type.receive"/>
+      <property id="module.driver.can.mailbox24_type" value="module.driver.can.mailbox24_type.receive"/>
+      <property id="module.driver.can.mailbox25_type" value="module.driver.can.mailbox25_type.receive"/>
+      <property id="module.driver.can.mailbox26_type" value="module.driver.can.mailbox26_type.receive"/>
+      <property id="module.driver.can.mailbox27_type" value="module.driver.can.mailbox27_type.receive"/>
+      <property id="module.driver.can.mailbox28_type" value="module.driver.can.mailbox28_type.receive"/>
+      <property id="module.driver.can.mailbox29_type" value="module.driver.can.mailbox29_type.receive"/>
+      <property id="module.driver.can.mailbox30_type" value="module.driver.can.mailbox30_type.receive"/>
+      <property id="module.driver.can.mailbox31_type" value="module.driver.can.mailbox31_type.receive"/>
+      <property id="module.driver.can.rxfifo_id1.frame_type" value="module.driver.can.rxfifo_id1.frame_type.remote"/>
+      <property id="module.driver.can.rxfifo_id2.frame_type" value="module.driver.can.rxfifo_id2.frame_type.remote"/>
+      <property id="module.driver.can.mailbox0_frame_type" value="module.driver.can.mailbox0_frame_type.remote"/>
+      <property id="module.driver.can.mailbox1_frame_type" value="module.driver.can.mailbox1_frame_type.data"/>
+      <property id="module.driver.can.mailbox2_frame_type" value="module.driver.can.mailbox2_frame_type.data"/>
+      <property id="module.driver.can.mailbox3_frame_type" value="module.driver.can.mailbox3_frame_type.data"/>
+      <property id="module.driver.can.mailbox4_frame_type" value="module.driver.can.mailbox4_frame_type.data"/>
+      <property id="module.driver.can.mailbox5_frame_type" value="module.driver.can.mailbox5_frame_type.data"/>
+      <property id="module.driver.can.mailbox6_frame_type" value="module.driver.can.mailbox6_frame_type.data"/>
+      <property id="module.driver.can.mailbox7_frame_type" value="module.driver.can.mailbox7_frame_type.data"/>
+      <property id="module.driver.can.mailbox8_frame_type" value="module.driver.can.mailbox8_frame_type.remote"/>
+      <property id="module.driver.can.mailbox9_frame_type" value="module.driver.can.mailbox9_frame_type.remote"/>
+      <property id="module.driver.can.mailbox10_frame_type" value="module.driver.can.mailbox10_frame_type.remote"/>
+      <property id="module.driver.can.mailbox11_frame_type" value="module.driver.can.mailbox11_frame_type.remote"/>
+      <property id="module.driver.can.mailbox12_frame_type" value="module.driver.can.mailbox12_frame_type.data"/>
+      <property id="module.driver.can.mailbox13_frame_type" value="module.driver.can.mailbox13_frame_type.data"/>
+      <property id="module.driver.can.mailbox14_frame_type" value="module.driver.can.mailbox14_frame_type.data"/>
+      <property id="module.driver.can.mailbox15_frame_type" value="module.driver.can.mailbox15_frame_type.data"/>
+      <property id="module.driver.can.mailbox16_frame_type" value="module.driver.can.mailbox16_frame_type.data"/>
+      <property id="module.driver.can.mailbox17_frame_type" value="module.driver.can.mailbox17_frame_type.data"/>
+      <property id="module.driver.can.mailbox18_frame_type" value="module.driver.can.mailbox18_frame_type.data"/>
+      <property id="module.driver.can.mailbox19_frame_type" value="module.driver.can.mailbox19_frame_type.data"/>
+      <property id="module.driver.can.mailbox20_frame_type" value="module.driver.can.mailbox20_frame_type.data"/>
+      <property id="module.driver.can.mailbox21_frame_type" value="module.driver.can.mailbox21_frame_type.data"/>
+      <property id="module.driver.can.mailbox22_frame_type" value="module.driver.can.mailbox22_frame_type.data"/>
+      <property id="module.driver.can.mailbox23_frame_type" value="module.driver.can.mailbox23_frame_type.data"/>
+      <property id="module.driver.can.mailbox24_frame_type" value="module.driver.can.mailbox24_frame_type.data"/>
+      <property id="module.driver.can.mailbox25_frame_type" value="module.driver.can.mailbox25_frame_type.data"/>
+      <property id="module.driver.can.mailbox26_frame_type" value="module.driver.can.mailbox26_frame_type.data"/>
+      <property id="module.driver.can.mailbox27_frame_type" value="module.driver.can.mailbox27_frame_type.data"/>
+      <property id="module.driver.can.mailbox28_frame_type" value="module.driver.can.mailbox28_frame_type.data"/>
+      <property id="module.driver.can.mailbox29_frame_type" value="module.driver.can.mailbox29_frame_type.data"/>
+      <property id="module.driver.can.mailbox30_frame_type" value="module.driver.can.mailbox30_frame_type.data"/>
+      <property id="module.driver.can.mailbox31_frame_type" value="module.driver.can.mailbox31_frame_type.data"/>
+      <property id="module.driver.can.rxfifo_id1.mask" value="0x1FFFFFFF"/>
+      <property id="module.driver.can.rxfifo_id2.mask" value="0x1FFFFFFF"/>
+      <property id="module.driver.can.mailbox_0_to_3_group_mask" value="0x1FFFFFFF"/>
+      <property id="module.driver.can.mailbox_4_to_7_group_mask" value="0x1FFFFFFF"/>
+      <property id="module.driver.can.mailbox_8_to_11_group_mask" value="0x1FFFFFFF"/>
+      <property id="module.driver.can.mailbox_12_to_15_group_mask" value="0x1FFFFFFF"/>
+      <property id="module.driver.can.mailbox_16_to_19_group_mask" value="0x1FFFFFFF"/>
+      <property id="module.driver.can.mailbox_20_to_23_group_mask" value="0x1FFFFFFF"/>
+      <property id="module.driver.can.mailbox_24_to_27_group_mask" value="0x1FFFFFFF"/>
+      <property id="module.driver.can.mailbox_28_to_31_group_mask" value="0x1FFFFFFF"/>
+      <property id="module.driver.can.ipl" value="board.icu.common.irq.priority3"/>
+      <property id="module.driver.can.txfifo_int_mode" value="module.driver.can.txfifo_int_mode.every_frame"/>
+    </module>
+    <module id="module.driver.timer_on_gpt.1890944877">
+      <property id="module.driver.timer.name" value="g_upt"/>
+      <property id="module.driver.timer.channel" value="2"/>
+      <property id="module.driver.timer.mode" value="module.driver.timer.mode.mode_periodic"/>
+      <property id="module.driver.timer.period" value="100"/>
+      <property id="module.driver.timer.unit" value="module.driver.timer.unit.unit_period_usec"/>
+      <property id="module.driver.timer.gtior.gtioa.initial_output_level" value="module.driver.timer.gtior.gtioa.initial_output_level.low"/>
+      <property id="module.driver.timer.gtior.gtioa.cycle_end_output_level" value="module.driver.timer.gtior.gtioa.cycle_end_output_level.retain"/>
+      <property id="module.driver.timer.gtior.gtioa.compare_match_output_level" value="module.driver.timer.gtior.gtioa.compare_match_output_level.retain"/>
+      <property id="module.driver.timer.gtior.gtioa.count_stop_retain" value="module.driver.timer.gtior.gtioa.count_stop_retain.disabled"/>
+      <property id="module.driver.timer.gtior.gtiob.initial_output_level" value="module.driver.timer.gtior.gtiob.initial_output_level.low"/>
+      <property id="module.driver.timer.gtior.gtiob.cycle_end_output_level" value="module.driver.timer.gtior.gtiob.cycle_end_output_level.retain"/>
+      <property id="module.driver.timer.gtior.gtiob.compare_match_output_level" value="module.driver.timer.gtior.gtiob.compare_match_output_level.retain"/>
+      <property id="module.driver.timer.gtior.gtiob.count_stop_retain" value="module.driver.timer.gtior.gtiob.count_stop_retain.disabled"/>
+      <property id="module.driver.timer.gtior.custom_waveform_enable" value="module.driver.timer.gtior.custom_waveform_enable.disabled"/>
+      <property id="module.driver.timer.duty_cycle" value="50"/>
+      <property id="module.driver.timer.gtioca_output_enabled" value="module.driver.timer.gtioca_output_enabled.false"/>
+      <property id="module.driver.timer.gtioca_stop_level" value="module.driver.timer.gtioca_stop_level.pin_level_low"/>
+      <property id="module.driver.timer.gtiocb_output_enabled" value="module.driver.timer.gtiocb_output_enabled.false"/>
+      <property id="module.driver.timer.gtiocb_stop_level" value="module.driver.timer.gtiocb_stop_level.pin_level_low"/>
+      <property id="module.driver.timer.count_up_source" value=""/>
+      <property id="module.driver.timer.count_down_source" value=""/>
+      <property id="module.driver.timer.start_source" value=""/>
+      <property id="module.driver.timer.stop_source" value=""/>
+      <property id="module.driver.timer.clear_source" value=""/>
+      <property id="module.driver.timer.capture_a_source" value=""/>
+      <property id="module.driver.timer.capture_b_source" value=""/>
+      <property id="module.driver.timer.gtioca_filter" value="module.driver.timer.gtioc_filter.gtioc_filter_none"/>
+      <property id="module.driver.timer.gtiocb_filter" value="module.driver.timer.gtioc_filter.gtioc_filter_none"/>
+      <property id="module.driver.timer.p_callback" value="usb_poll_callback"/>
+      <property id="module.driver.timer.ipl" value="board.icu.common.irq.priority4"/>
+      <property id="module.driver.timer.capture_a_ipl" value="_disabled"/>
+      <property id="module.driver.timer.capture_b_ipl" value="_disabled"/>
+      <property id="module.driver.timer.trough_ipl" value="_disabled"/>
+      <property id="module.driver.timer.extra" value="module.driver.timer.extra.disabled"/>
+      <property id="module.driver.timer.poeg_link" value="module.driver.timer.poeg_link.poeg_link_poeg0"/>
+      <property id="module.driver.timer.output_disable" value=""/>
+      <property id="module.driver.timer.adc_trigger" value=""/>
+      <property id="module.driver.timer.dead_time_count_up" value="0"/>
+      <property id="module.driver.timer.dead_time_count_down" value="0"/>
+      <property id="module.driver.timer.adc_a_compare_match" value="0"/>
+      <property id="module.driver.timer.adc_b_compare_match" value="0"/>
+      <property id="module.driver.timer.interrupt_skip.source" value="module.driver.timer.interrupt_skip.source.none"/>
+      <property id="module.driver.timer.interrupt_skip.count" value="module.driver.timer.interrupt_skip.count.count_0"/>
+      <property id="module.driver.timer.interrupt_skip.adc" value="module.driver.timer.interrupt_skip.adc.none"/>
+      <property id="module.driver.timer.gtioca_disable_setting" value="module.driver.timer.gtioca_disable_setting.gtioc_disable_prohibited"/>
+      <property id="module.driver.timer.gtiocb_disable_setting" value="module.driver.timer.gtiocb_disable_setting.gtioc_disable_prohibited"/>
+    </module>
+    <module id="module.driver.pvnd_on_usb.1824498731">
+      <property id="module.driver.pvnd.name" value="g_pvnd0"/>
+    </module>
+    <module id="module.driver.basic_on_usb.679197675">
+      <property id="module.driver.basic.name" value="g_basic0"/>
+      <property id="module.driver.usb_basic.usb_mode" value="module.driver.usb_basic.usb_mode.host"/>
+      <property id="module.driver.usb_basic.usb_speed" value="module.driver.usb_basic.usb_speed.fs"/>
+      <property id="module.driver.usb_basic.usb_modulenumber" value="module.driver.usb_basic.usb_modulenumber.0"/>
+      <property id="module.driver.usb_basic.usb_classtype" value="module.driver.usb_basic.usb_classtype.pcdc"/>
+      <property id="module.driver.usb_basic.p_usb_reg" value="g_usb_descriptor"/>
+      <property id="module.driver.usb_basic.complience_cb" value="NULL"/>
+      <property id="module.driver.usb_basic.ipl" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.usb_basic.ipl_r" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.usb_basic.ipl_d0" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.usb_basic.ipl_d1" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.usb_basic.hsipl" value="_disabled"/>
+      <property id="module.driver.usb_basic.hsipl_d0" value="_disabled"/>
+      <property id="module.driver.usb_basic.hsipl_d1" value="_disabled"/>
+      <property id="module.driver.usb_basic.rtos_callback" value="NULL"/>
+      <property id="module.driver.usb_basic.other_context" value="NULL"/>
+    </module>
+    <module id="module.middleware.rm_vee_flash.196939332">
+      <property id="module.middleware.rm_vee_flash.name" value="g_vee0"/>
+      <property id="module.middleware.rm_vee_flash.record_max_id" value="4"/>
+      <property id="module.middleware.rm_vee_flash.num_segments" value="2"/>
+      <property id="module.middleware.rm_vee_flash.start_addr" value="BSP_FEATURE_FLASH_DATA_FLASH_START"/>
+      <property id="module.middleware.rm_vee_flash.total_size" value="BSP_DATA_FLASH_SIZE_BYTES"/>
+      <property id="module.middleware.rm_vee_flash.ref_data_size" value="0"/>
+      <property id="module.middleware.rm_vee_flash.p_callback" value="Flash_callback"/>
+    </module>
+    <module id="module.driver.flash_on_flash_hp.1936668240">
+      <property id="module.driver.flash.name" value="g_flash0"/>
+      <property id="module.driver.flash.data_flash_bgo" value="module.driver.flash.data_flash_bgo.enabled"/>
+      <property id="module.driver.flash.p_callback" value="NULL"/>
+      <property id="module.driver.flash.ipl" value="board.icu.common.irq.priority13"/>
+      <property id="module.driver.flash.err_ipl" value="board.icu.common.irq.priority13"/>
+    </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.spi_on_spi.2086473694">
@@ -413,16 +681,55 @@
       <stack module="module.driver.external_irq_on_icu.1221257939"/>
       <stack module="module.driver.timer_on_gpt.516135447"/>
       <stack module="module.driver.timer_on_gpt.5797816"/>
+      <stack module="module.driver.timer_on_gpt.1890944877"/>
+      <stack module="module.driver.can_on_can.1155809120"/>
+      <stack module="module.driver.pvnd_on_usb.1824498731">
+        <stack module="module.driver.basic_on_usb.679197675" requires="module.driver.basic_on_usb.requires.basic"/>
+      </stack>
+      <stack module="module.middleware.rm_vee_flash.196939332">
+        <stack module="module.driver.flash_on_flash_hp.1936668240" requires="module.middleware.rm_vee_flash.requires.flash"/>
+      </stack>
     </context>
+    <config id="config.driver.flash_hp">
+      <property id="config.driver.flash_hp.param_checking_enable" value="config.flash_hp.param_checking_enable.bsp"/>
+      <property id="config.driver.flash_hp.param_code_flash_programming_enable" value="config.driver.flash_hp.param_code_flash_programming_enable.disabled"/>
+      <property id="config.driver.flash_hp.param_data_flash_programming_enable" value="config.driver.flash_hp.param_data_flash_programming_enable.enabled"/>
+    </config>
     <config id="config.driver.ioport">
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
+    </config>
+    <config id="config.driver.can">
+      <property id="config.driver.can.param_checking_enable" value="config.driver.can.param_checking_enable.bsp"/>
+      <property id="config.driver.can.fifo_support" value="config.driver.can.fifo_support.disabled"/>
     </config>
     <config id="config.driver.icu">
       <property id="config.driver.icu.param_checking_enable" value="config.driver.icu.param_checking_enable.bsp"/>
     </config>
+    <config id="config.driver.usb_basic">
+      <property id="config.driver.usb_basic.param_checking_enable" value="config.driver.usb_basic.param_checking_enable.bsp"/>
+      <property id="config.driver.usb_basic.pll_clock_frequency" value="config.driver.usb_basic.pll_clock_frequency.24mhz"/>
+      <property id="config.driver.usb_basic.buswait" value="config.driver.usb_basic.buswait.0"/>
+      <property id="config.driver.usb_basic.bc_function" value="config.driver.usb_basic.bc_function.disable"/>
+      <property id="config.driver.usb_basic.power_source" value="config.driver.usb_basic.power_source.high"/>
+      <property id="config.driver.usb_basic.dcp_function" value="config.driver.usb_basic.dcp_function.disable"/>
+      <property id="config.driver.usb_basic.request" value="config.driver.usb_basic.request.enable"/>
+      <property id="config.driver.usb_basic.dblb" value="config.driver.usb_basic.dblb.enable"/>
+      <property id="config.driver.usb_basic.cntmd" value="config.driver.usb_basic.cntmd.disable"/>
+      <property id="config.driver.usb_basic.ldo_regulator" value="config.driver.usb_basic.ldo_regulator.disable"/>
+      <property id="config.driver.usb_basic.dma" value="config.driver.usb_basic.dma.disable"/>
+      <property id="config.driver.usb_basic.source_address" value="config.driver.usb_basic.source_address.none"/>
+      <property id="config.driver.usb_basic.dest_address" value="config.driver.usb_basic.dest_address.none"/>
+      <property id="config.driver.usb_basic.compliance_mode" value="config.driver.usb_basic.compliance_mode.disable"/>
+      <property id="config.driver.usb_basic.tpl_table" value="NULL"/>
+    </config>
     <config id="config.driver.dtc">
       <property id="config.driver.dtc.param_checking_enable" value="config.driver.dtc.param_checking_enable.bsp"/>
       <property id="config.driver.dtc.vector_table" value=".fsp_dtc_vector_table"/>
+    </config>
+    <config id="config.middleware.rm_vee_flash">
+      <property id="config.middleware.rm_vee_flash.checking" value="config.middleware.rm_vee_flash.checking.system"/>
+      <property id="config.middleware.rm_vee_flash.ref_data_support" value="config.middleware.rm_vee_flash.ref_data_support.disabled"/>
+      <property id="config.middleware.rm_vee_flash.refresh_buf_size" value="32"/>
     </config>
     <config id="config.driver.sci_uart">
       <property id="config.driver.sci_uart.param_checking_enable" value="config.driver.sci_uart.param_checking_enable.bsp"/>
@@ -445,6 +752,9 @@
   </raModuleConfiguration>
   <raPinConfiguration>
     <pincfg active="true" name="R7FA4M2AD3CFL.pincfg" selected="true" symbol="g_bsp_pin_cfg">
+      <configSetting altId="can0.crx.p402" configurationId="can0.crx"/>
+      <configSetting altId="can0.ctx.p103" configurationId="can0.ctx"/>
+      <configSetting altId="can0.mode.enabled.free" configurationId="can0.mode"/>
       <configSetting altId="debug0.mode.swd" configurationId="debug0.mode"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio"/>
@@ -462,6 +772,8 @@
       <configSetting altId="p100.gpio_mode.gpio_mode_peripheral" configurationId="p100.gpio_mode"/>
       <configSetting altId="p101.sci0.txd" configurationId="p101"/>
       <configSetting altId="p101.gpio_mode.gpio_mode_peripheral" configurationId="p101.gpio_mode"/>
+      <configSetting altId="p103.can0.ctx" configurationId="p103"/>
+      <configSetting altId="p103.gpio_mode.gpio_mode_peripheral" configurationId="p103.gpio_mode"/>
       <configSetting altId="p104.irq0.irq01" configurationId="p104"/>
       <configSetting altId="p104.gpio_irq.gpio_irq_enabled" configurationId="p104.gpio_irq"/>
       <configSetting altId="p104.gpio_mode.gpio_mode_irq" configurationId="p104.gpio_mode"/>
@@ -481,6 +793,10 @@
       <configSetting altId="p206.gpio_mode.gpio_mode_out.low" configurationId="p206.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
       <configSetting altId="p300.gpio_mode.gpio_mode_peripheral" configurationId="p300.gpio_mode"/>
+      <configSetting altId="p402.can0.crx" configurationId="p402"/>
+      <configSetting altId="p402.gpio_mode.gpio_mode_peripheral" configurationId="p402.gpio_mode"/>
+      <configSetting altId="p407.usbfs0.vbus" configurationId="p407"/>
+      <configSetting altId="p407.gpio_mode.gpio_mode_peripheral" configurationId="p407.gpio_mode"/>
       <configSetting altId="sci0.mode.asynchronous.free" configurationId="sci0.mode"/>
       <configSetting altId="sci0.rxd.p100" configurationId="sci0.rxd"/>
       <configSetting altId="sci0.txd.p101" configurationId="sci0.txd"/>
@@ -489,6 +805,8 @@
       <configSetting altId="spi0.mosi.p109" configurationId="spi0.mosi"/>
       <configSetting altId="spi0.pairing.free" configurationId="spi0.pairing"/>
       <configSetting altId="spi0.rspck.p111" configurationId="spi0.rspck"/>
+      <configSetting altId="usbfs0.mode.device" configurationId="usbfs0.mode"/>
+      <configSetting altId="usbfs0.vbus.p407" configurationId="usbfs0.vbus"/>
     </pincfg>
   </raPinConfiguration>
 </raConfiguration>

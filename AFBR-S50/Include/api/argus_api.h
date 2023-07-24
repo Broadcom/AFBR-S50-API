@@ -500,8 +500,8 @@ status_t Argus_TriggerMeasurement(argus_hnd_t * hnd,
  *
  * @details If the function returns true, a raw buffer is required to be
  *          evaluated to the #Argus_EvaluateData function. The raw data buffer
- *          is filled with raw data from the measurement tasks which need to 
- *          be evaluated and the buffer must be freed in order to restart a 
+ *          is filled with raw data from the measurement tasks which need to
+ *          be evaluated and the buffer must be freed in order to restart a
  *          new measurement task.
  *
  *          Note that no configuration parameters can be update until all raw
@@ -546,7 +546,7 @@ status_t Argus_Abort(argus_hnd_t * hnd);
  * @brief   Checks the state of the device/driver.
  *
  * @details Returns the current module status or error if any.
- * 
+ *
  *          See the following for a list of errors:
  *
  *          Status:

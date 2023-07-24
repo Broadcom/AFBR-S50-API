@@ -50,8 +50,11 @@
 
 #if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
 #include "driver/MKL46Z/slcd.h"
-#include "usb/usb_sci.h" // status definitions
 #include "driver/gpio.h" // debug only
+#endif
+
+#if AFBR_SCI_USB
+#include "usb/usb_sci.h" // status definitions
 #endif
 
 #include <assert.h>
@@ -282,7 +285,7 @@ static void Task_EvaluateMeasurementData(argus_hnd_t * argus)
     if (status < STATUS_OK) OnError(status, "Evaluation Task failed");
 
     buf->Status = BUFFER_FULL;
-    buf->deviceID = explorer->Configuration.SPISlave;
+    buf->deviceID = ExplorerApp_GetDeviceID(explorer);
 
     Scheduler_PostEvent(myScheduler, TASK_SEND_DAT, buf);
 
@@ -346,14 +349,13 @@ static void Task_HandleCommand(sci_frame_t * frame)
 
 static void Task_Error(error_event_t * e)
 {
-#if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
-    if (e->Status != ERROR_USB_TIMEOUT)
-    {
+#if AFBR_SCI_USB
+    if (e->Status == ERROR_USB_TIMEOUT) return;
 #endif
-        error_log("%s, error code: %d", e->String, e->Status);
+
+    error_log("%s, error code: %d", e->String, e->Status);
 #if defined(CPU_MKL46Z256VLH4) || defined(CPU_MKL46Z256VLL4) || defined(CPU_MKL46Z256VMC4) || defined(CPU_MKL46Z256VMP4)
-        SLCD_DisplayDecimalSigned((int16_t)e->Status);
-    }
+    SLCD_DisplayDecimalSigned((int16_t)e->Status);
 #endif
 }
 

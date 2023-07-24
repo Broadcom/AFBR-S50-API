@@ -547,7 +547,7 @@ static size_t sprint_broken_up_decimal(
 
     unsigned int count = precision;
 
-    if (flags & FLAGS_ADAPT_EXP && !(flags & FLAGS_HASH)) {
+    if ((flags & FLAGS_ADAPT_EXP) && !(flags & FLAGS_HASH)) {
       // %g/%G mandates we skip the trailing 0 digits...
       if (number_.fractional > 0) {
         while(true) {

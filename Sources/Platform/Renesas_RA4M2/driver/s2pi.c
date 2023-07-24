@@ -35,8 +35,6 @@
  *
  *****************************************************************************/
 
-
-
 /*******************************************************************************
  * Include Files
  ******************************************************************************/
@@ -46,6 +44,8 @@
 #include "bsp_api.h"
 #include "hal_data.h"
 #include "io.h"
+#include "debug.h"
+#include "board/board_config.h"
 
 /*******************************************************************************
  * Definitions
@@ -58,7 +58,6 @@
 #define SPIx_CS_PIN                      BSP_IO_PORT_01_PIN_12
 #define SPIx_IRQ_PIN                     BSP_IO_PORT_01_PIN_04
 
-
 /*! An additional delay to be added after each GPIO access in order to decrease
  *  the baud rate of the software EEPROM protocol. Increase the delay if timing
  *  issues occur while reading the EERPOM.
@@ -67,7 +66,6 @@
 #define S2PI_GPIO_DELAY_US 10
 #endif
 
-
 #if (S2PI_GPIO_DELAY_US == 0)
 #define S2PI_GPIO_DELAY() ((void)0)
 #else
@@ -75,12 +73,11 @@
 #define S2PI_GPIO_DELAY() Time_DelayUSec(S2PI_GPIO_DELAY_US)
 #endif
 
-
 /* Event flags for master and slave */
 static volatile spi_event_t g_master_event_flag;    // Master Transfer Event completion flag
 
 /*******************************************************************************
- * Definitions
+ * Types
  ******************************************************************************/
 
 /*! A structure to hold all internal data required by the S2PI module. */
@@ -102,18 +99,52 @@ typedef struct s2pi_handle_t
 
     void * IrqCallbackParam;
 
-    /*! Dummy variable for unused Rx data. */
-    uint8_t RxSink;
-
     /*! The actual SPI baud rate in bps. */
     uint32_t BaudRate;
 
 } s2pi_handle_t;
 
-static s2pi_handle_t spiHnd_ = {0};
+typedef struct
+{
+    bsp_io_port_pin_t CS;
+    bsp_io_port_pin_t IRQ;
+} s2pi_map_t;
 
-spi_instance_ctrl_t SpiHandle;
+/*******************************************************************************
+ * Prototypes
+ ******************************************************************************/
 
+/*! Completes the current series of SPI transfers. */
+static status_t S2PI_CompleteTransfer(status_t status);
+
+/******************************************************************************
+ * Variables
+ ******************************************************************************/
+
+/*! The S2PI data handle. */
+static s2pi_handle_t spiHnd_ = { 0 };
+
+/*! The S2PI driver handle. */
+static spi_instance_ctrl_t * const pSpiDrvHandle = &g_spi0_ctrl;
+/*! The S2PI driver config handle. */
+static spi_cfg_t const * const pSpiDrvConfig = &g_spi0_cfg;
+
+static const bsp_io_port_pin_t s2pi_gpios_[] = {
+    [S2PI_CLK ] = SPIx_SCK_PIN,
+    [S2PI_CS ] = SPIx_CS_PIN,
+    [S2PI_MOSI] = SPIx_MOSI_PIN,
+    [S2PI_MISO] = SPIx_MISO_PIN,
+    [S2PI_IRQ ] = SPIx_IRQ_PIN
+};
+
+static const s2pi_map_t s2pi_map[] =
+{
+    [S2PI_SLAVE1] = { .CS = SPIx_CS_PIN, .IRQ = SPIx_IRQ_PIN }
+};
+
+/*******************************************************************************
+ * Code
+ ******************************************************************************/
 
 /*!***************************************************************************
  * @brief   Initialize the S2PI module.
@@ -141,38 +172,52 @@ status_t S2PI_Init(s2pi_slave_t defaultSlave, uint32_t baudRate_Bps)
     spiHnd_.BaudRate = 0;
     spiHnd_.Callback = 0;
     spiHnd_.CallbackParam = 0;
+    spiHnd_.Slave = SPI_DEFAULT_SLAVE;
 
+    /* Configure CS pin */
     R_IOPORT_PinWrite(&g_ioport_ctrl, (bsp_io_port_pin_t) SPIx_CS_PIN, BSP_IO_LEVEL_HIGH);
 
-    /*##-1- Configure the SPI peripheral #######################################*/
-    /* Set the SPI parameters */
-
+    /* Configure the IRQ pin */
     R_ICU_ExternalIrqOpen(&g_external_irq0_ctrl, &g_external_irq0_cfg);
     R_ICU_ExternalIrqEnable(&g_external_irq0_ctrl);
 
-    if (FSP_SUCCESS != R_SPI_Open(&g_spi0_ctrl, &g_spi0_cfg))
+    /* Calculate register set values for the requested baudrate */
+    rspck_div_setting_t spiSettings;
+    fsp_err_t ret = R_SPI_CalculateBitrate(baudRate_Bps, &spiSettings);
+    bool invalidSettings = (spiSettings.brdv == 0) && (spiSettings.spbr == 0);
+    if ((ret != FSP_SUCCESS) || invalidSettings) return ERROR_FAIL;
+
+    /* Set the requested baudrate */
+    spi_extended_cfg_t * pExtCfg = (spi_extended_cfg_t*)pSpiDrvConfig->p_extend;
+    pExtCfg->spck_div = spiSettings;
+
+    /* Open the S2PI peripheral */
+    if (FSP_SUCCESS != R_SPI_Open(pSpiDrvHandle, pSpiDrvConfig))
         return ERROR_FAIL;
 
     isInitialized = true;
+    spiHnd_.BaudRate = baudRate_Bps;
+
     return STATUS_OK;
 }
 
-
 status_t S2PI_GetStatus(s2pi_slave_t slave)
 {
-    (void) slave;
+    (void)slave;
     return spiHnd_.Status;
 }
 
 status_t S2PI_TryGetMutex(s2pi_slave_t slave)
 {
     (void)slave;
+    // Note: Function is currently not used (as the driver only supports single-device mode)
     return STATUS_OK;
 }
 
 void S2PI_ReleaseMutex(s2pi_slave_t slave)
 {
     (void)slave;
+    // Note: Function is currently not used (as the driver only supports single-device mode)
 }
 
 /*!***************************************************************************
@@ -229,52 +274,23 @@ status_t S2PI_TransferFrame(s2pi_slave_t spi_slave,
     spiHnd_.Status = STATUS_BUSY;
     IRQ_UNLOCK();
 
-    // s2pi_log_setup(txData, rxData, frameSize);
-
-//  if (spiHnd_.Slave != spi_slave)
-//  {
-//      status_t status = S2PI_SetSlaveInternal(spi_slave);
-//      if (status < STATUS_OK)
-//      {
-//          spiHnd_.Status = STATUS_IDLE;
-//          return status;
-//      }
-//  }
-
     spiHnd_.Callback = callback;
     spiHnd_.CallbackParam = callbackData;
 
-
-    //R_BSP_PinWrite( SPIx_CS_PIN, BSP_IO_LEVEL_LOW );
     R_IOPORT_PinWrite(&g_ioport_ctrl, (bsp_io_port_pin_t) SPIx_CS_PIN, BSP_IO_LEVEL_LOW);
 
-
-    /* Set up the RX DMA channel */
-// Note: TX interrupt may return before the data is even written, as soon as the SPI register is filled, so maybe we would read into an empty buffer every time, otherwise delay
-
-    //HAL_StatusTypeDef hal_error = rxData ? HAL_SPI_TransmitReceive_DMA( &SpiHandle, (uint8_t *) txData, rxData, (uint16_t) frameSize )
-                                        // : HAL_SPI_Transmit_DMA( &SpiHandle, (uint8_t *) txData, (uint16_t) frameSize );
-
-//  uint8_t rxbuf[ frameSize ];
-//  HAL_StatusTypeDef hal_error = HAL_SPI_TransmitReceive_DMA( &SpiHandle, (uint8_t *) txData, rxData ? rxData : rxbuf, (uint16_t) frameSize );
-
-    //if ( hal_error != HAL_OK )
-        //return ERROR_FAIL;
-
     IRQ_LOCK();
+
     /* Master send data to Slave */
-    fsp_err_t err = FSP_SUCCESS;     // Error status
-    err = rxData ? R_SPI_WriteRead(&g_spi0_ctrl, txData, rxData, frameSize, SPI_BIT_WIDTH_8_BITS)
-                 :R_SPI_Write(&g_spi0_ctrl, txData, frameSize, SPI_BIT_WIDTH_8_BITS);
+    fsp_err_t err = rxData ? R_SPI_WriteRead(pSpiDrvHandle, txData, rxData, frameSize, SPI_BIT_WIDTH_8_BITS)
+                                             : R_SPI_Write(pSpiDrvHandle, txData, frameSize, SPI_BIT_WIDTH_8_BITS);
 
     IRQ_UNLOCK();
-    /* Error handle */
-    if(FSP_SUCCESS != err)
-    {
-        return ERROR_FAIL;
-    }
 
-    return STATUS_OK;
+    if (err != FSP_SUCCESS)
+        return ERROR_FAIL;
+    else
+        return STATUS_OK;
 }
 
 /*!*****************************************************************************
@@ -290,7 +306,6 @@ status_t S2PI_CaptureGpioControl(s2pi_slave_t slave)
 {
     (void)slave;
 
-    fsp_err_t err = FSP_SUCCESS; // Error status
     /* Check if something is ongoing. */
     IRQ_LOCK();
     if (spiHnd_.Status != STATUS_IDLE)
@@ -301,18 +316,12 @@ status_t S2PI_CaptureGpioControl(s2pi_slave_t slave)
     spiHnd_.Status = STATUS_S2PI_GPIO_MODE;
     IRQ_UNLOCK();
 
-    //R_BSP_PinWrite( SPIx_SCK_PIN, BSP_IO_LEVEL_HIGH );
-    R_IOPORT_PinWrite(&g_ioport_ctrl, (bsp_io_port_pin_t) SPIx_SCK_PIN, BSP_IO_LEVEL_HIGH);
+    R_IOPORT_PinWrite(&g_ioport_ctrl, s2pi_gpios_[S2PI_CLK], BSP_IO_LEVEL_HIGH);
 
-    err = R_IOPORT_PinsCfg(&g_ioport_ctrl, &g_bsp_pin_cfg2);
-    if (FSP_SUCCESS != err)
-    {
-        return ERROR_FAIL;
-    }
+    R_IOPORT_PinsCfg(&g_ioport_ctrl, &g_bsp_pin_cfg2);
 
     return STATUS_OK;
 }
-
 
 /*!*****************************************************************************
  * @brief   Releases the S2PI pins from GPIO usage and switches back to SPI mode.
@@ -325,7 +334,6 @@ status_t S2PI_ReleaseGpioControl(s2pi_slave_t slave)
 {
     (void)slave;
 
-    fsp_err_t err = FSP_SUCCESS; // Error status
     /* Check if something is ongoing. */
     IRQ_LOCK();
     if (spiHnd_.Status != STATUS_S2PI_GPIO_MODE)
@@ -336,26 +344,10 @@ status_t S2PI_ReleaseGpioControl(s2pi_slave_t slave)
     spiHnd_.Status = STATUS_IDLE;
     IRQ_UNLOCK();
 
-    err = R_IOPORT_PinsCfg(&g_ioport_ctrl, &g_bsp_pin_cfg3);
-    if (FSP_SUCCESS != err)
-    {
-        return ERROR_FAIL;
-    }
+    R_IOPORT_PinsCfg(&g_ioport_ctrl, &g_bsp_pin_cfg3);
 
     return STATUS_OK;
 }
-
-
-typedef struct
-{
-    bsp_io_port_pin_t pin;
-} S2PI_GPIOS;
-
-static const S2PI_GPIOS s2pi_gpios_[] = { [ S2PI_CLK  ] = { SPIx_SCK_PIN },
-                                          [ S2PI_CS   ] = { SPIx_CS_PIN },
-                                          [ S2PI_MOSI ] = { SPIx_MOSI_PIN },
-                                          [ S2PI_MISO ] = { SPIx_MISO_PIN },
-                                          [ S2PI_IRQ  ] = { SPIx_IRQ_PIN  } };
 
 /*!*****************************************************************************
  * @brief   Writes the output for a specified SPI pin in GPIO mode.
@@ -369,29 +361,19 @@ static const S2PI_GPIOS s2pi_gpios_[] = { [ S2PI_CLK  ] = { SPIx_SCK_PIN },
 status_t S2PI_WriteGpioPin(s2pi_slave_t slave, s2pi_pin_t pin, uint32_t value)
 {
     (void)(slave);
-    fsp_err_t err = FSP_SUCCESS;     // Error status
-    if ( pin > S2PI_IRQ )
-    {
-        return ERROR_INVALID_ARGUMENT;
-    }
+
+    if (pin > S2PI_IRQ) return ERROR_INVALID_ARGUMENT;
 
     /* Check if in GPIO mode. */
-    if(spiHnd_.Status != STATUS_S2PI_GPIO_MODE)
-    {
+    if (spiHnd_.Status != STATUS_S2PI_GPIO_MODE)
         return ERROR_S2PI_INVALID_STATE;
-    }
 
-    //R_BSP_PinWrite( s2pi_gpios_[ pin ].pin, !!value );
-    err = R_IOPORT_PinWrite(&g_ioport_ctrl, (bsp_io_port_pin_t) s2pi_gpios_[ pin ].pin, value);
-    if(FSP_SUCCESS != err)
-    {
-        return ERROR_FAIL;
-    }
+    R_IOPORT_PinWrite(&g_ioport_ctrl, s2pi_gpios_[pin], value);
+
     S2PI_GPIO_DELAY();
 
     return STATUS_OK;
 }
-
 
 /*!*****************************************************************************
  * @brief   Reads the input from a specified SPI pin in GPIO mode.
@@ -405,31 +387,19 @@ status_t S2PI_WriteGpioPin(s2pi_slave_t slave, s2pi_pin_t pin, uint32_t value)
 status_t S2PI_ReadGpioPin(s2pi_slave_t slave, s2pi_pin_t pin, uint32_t * value)
 {
     (void)(slave);
-    //bsp_io_level_t value_pin;
-    fsp_err_t err = FSP_SUCCESS;     // Error status
-    if ( pin > S2PI_IRQ )
-        return ERROR_INVALID_ARGUMENT;
+
+    if (pin > S2PI_IRQ) return ERROR_INVALID_ARGUMENT;
 
     /* Check if in GPIO mode. */
-    if(spiHnd_.Status != STATUS_S2PI_GPIO_MODE)
-    {
+    if (spiHnd_.Status != STATUS_S2PI_GPIO_MODE)
         return ERROR_S2PI_INVALID_STATE;
-    }
 
-    //*value = R_BSP_PinRead( s2pi_gpios_[ pin ].pin );
-    //err = R_IOPORT_PinRead(&g_ioport_ctrl, (bsp_io_port_pin_t) s2pi_gpios_[ pin ].pin, &value_pin);
-    //*value = (uint32_t)&value_pin;
-    *value = R_BSP_PinRead( s2pi_gpios_[ pin ].pin );
-    if(FSP_SUCCESS != err)
-    {
-        return ERROR_FAIL;
-    }
+    *value = R_BSP_PinRead(s2pi_gpios_[pin]);
 
     S2PI_GPIO_DELAY();
 
     return STATUS_OK;
 }
-
 
 /*!***************************************************************************
  * @brief   Set a callback for the GPIO IRQ for a specified S2PI slave.
@@ -456,7 +426,6 @@ status_t S2PI_SetIrqCallback(s2pi_slave_t slave,
     return STATUS_OK;
 }
 
-
 /*!***************************************************************************
  * @brief   Reads the current status of the IRQ pin.
  * @details In order to keep a low priority for GPIO IRQs, the state of the
@@ -478,15 +447,8 @@ status_t S2PI_SetIrqCallback(s2pi_slave_t slave,
 uint32_t S2PI_ReadIrqPin(s2pi_slave_t slave)
 {
     (void)(slave);
-    bsp_io_level_t value_pin;
-    R_IOPORT_PinRead(&g_ioport_ctrl, (bsp_io_port_pin_t) SPIx_IRQ_PIN, &value_pin);
-    //return value;
-    uint32_t value = value_pin;
-    //value = R_BSP_PinRead((bsp_io_port_pin_t) SPIx_IRQ_PIN);
-    return value;
-    //return R_BSP_PinRead((bsp_io_port_pin_t) SPIx_IRQ_PIN);
+    return (R_ICU->IELSR_b[g_external_irq0_ctrl.irq].IR) ? 0u : 1u;
 }
-
 
 /*!***************************************************************************
  * @brief   Cycles the chip select line.
@@ -500,10 +462,9 @@ uint32_t S2PI_ReadIrqPin(s2pi_slave_t slave)
  *****************************************************************************/
 status_t S2PI_CycleCsPin(s2pi_slave_t slave)
 {
-    (void)(slave);
     /* Check the driver status. */
     IRQ_LOCK();
-    if ( spiHnd_.Status != STATUS_IDLE )
+    if (spiHnd_.Status != STATUS_IDLE)
     {
         IRQ_UNLOCK();
         return STATUS_BUSY;
@@ -511,16 +472,13 @@ status_t S2PI_CycleCsPin(s2pi_slave_t slave)
     spiHnd_.Status = STATUS_BUSY;
     IRQ_UNLOCK();
 
-    //R_BSP_PinWrite( SPIx_CS_PIN, BSP_IO_LEVEL_LOW );
-    R_IOPORT_PinWrite(&g_ioport_ctrl, (bsp_io_port_pin_t) SPIx_CS_PIN, BSP_IO_LEVEL_LOW);
-    //R_BSP_PinWrite( SPIx_CS_PIN, BSP_IO_LEVEL_HIGH );
-    R_IOPORT_PinWrite(&g_ioport_ctrl, (bsp_io_port_pin_t) SPIx_CS_PIN, BSP_IO_LEVEL_HIGH);
+    R_IOPORT_PinWrite(&g_ioport_ctrl, s2pi_map[slave].CS, BSP_IO_LEVEL_LOW);
+    R_IOPORT_PinWrite(&g_ioport_ctrl, s2pi_map[slave].CS, BSP_IO_LEVEL_HIGH);
 
     spiHnd_.Status = STATUS_IDLE;
 
     return STATUS_OK;
 }
-
 
 /*!***************************************************************************
  * @brief   Terminates a currently ongoing asynchronous SPI transfer.
@@ -530,35 +488,25 @@ status_t S2PI_CycleCsPin(s2pi_slave_t slave)
  *****************************************************************************/
 status_t S2PI_Abort(s2pi_slave_t slave)
 {
-    (void) slave;
+    (void)slave;
 
     IRQ_LOCK();
 
-    status_t status = spiHnd_.Status;
-
     /* Check if something is ongoing. */
-    if(status == STATUS_IDLE)
+    if (spiHnd_.Status == STATUS_BUSY)
     {
-        IRQ_UNLOCK();
-        return STATUS_OK;
-    }
-
-    /* Abort SPI transfer. */
-    if(status == STATUS_BUSY)
-    {
-        //HAL_SPI_Abort(&SpiHandle);
-        R_SPI_Close(&g_spi0_ctrl);
+        /* Abort SPI transfer. */
+        R_SPI_Close(pSpiDrvHandle);
+        R_SPI_Open(pSpiDrvHandle, pSpiDrvConfig);
     }
 
     IRQ_UNLOCK();
 
-    //HAL_SPI_TxRxCpltCallback( &SpiHandle );
-        //if(status == ERROR_ABORTED) status = STATUS_OK;
-    status = STATUS_OK;
+    status_t status = S2PI_CompleteTransfer(ERROR_ABORTED);
+    if (status == ERROR_ABORTED) status = STATUS_OK;
 
     return status;
 }
-
 
 /*!***************************************************************************
  * @brief   Triggers the callback function with the provided status.
@@ -574,17 +522,50 @@ static status_t S2PI_CompleteTransfer(status_t status)
     spiHnd_.Status = STATUS_IDLE;
 
     /* Deactivate CS (set high), as we use GPIO pin */
-    R_IOPORT_PinWrite(&g_ioport_ctrl, (bsp_io_port_pin_t) SPIx_CS_PIN, BSP_IO_LEVEL_HIGH);
+    /* Note: hardcoded default SPI slave because there is no 'source' param in the callback */
+    R_IOPORT_PinWrite(&g_ioport_ctrl, s2pi_map[SPI_DEFAULT_SLAVE].CS, BSP_IO_LEVEL_HIGH);
+
     /* Invoke callback if there is one */
     if (spiHnd_.Callback != 0)
     {
         s2pi_callback_t callback = spiHnd_.Callback;
         spiHnd_.Callback = 0;
-        status = callback( status, spiHnd_. CallbackParam );
-        (void)( status );
+        status = callback(status, spiHnd_.CallbackParam);
     }
-    //status = STATUS_OK;
+
+    /* If the callback ran, then this is the updated status. Otherwise, the received status is
+     * returned (no processing was done) */
     return status;
+}
+
+uint32_t S2PI_GetBaudRate(s2pi_slave_t slave)
+{
+    (void)slave;
+    return spiHnd_.BaudRate;
+}
+
+status_t S2PI_SetBaudRate(s2pi_slave_t slave, uint32_t baudRate_Bps)
+{
+    (void)slave;
+
+    rspck_div_setting_t spiSettings;
+    fsp_err_t ret = R_SPI_CalculateBitrate(baudRate_Bps, &spiSettings);
+
+    bool invalidSettings = (spiSettings.brdv == 0) && (spiSettings.spbr == 0);
+    if ((ret != FSP_SUCCESS) || invalidSettings) return ERROR_S2PI_INVALID_BAUDRATE;
+
+    ret = R_SPI_Close(pSpiDrvHandle);
+    spi_extended_cfg_t * pExtCfg = (spi_extended_cfg_t*)pSpiDrvConfig->p_extend;
+    pExtCfg->spck_div = spiSettings;
+    ret += R_SPI_Open(pSpiDrvHandle, pSpiDrvConfig);
+
+    if (ret != FSP_SUCCESS)
+        return ERROR_FAIL;
+    else
+    {
+        spiHnd_.BaudRate = baudRate_Bps;
+        return STATUS_OK;
+    }
 }
 
 /*******************************************************************************************************************//**
@@ -594,8 +575,9 @@ static status_t S2PI_CompleteTransfer(status_t status)
  **********************************************************************************************************************/
 void user_spi_callback(spi_callback_args_t * p_args)
 {
-    if (SPI_EVENT_TRANSFER_COMPLETE == p_args->event)
+    if (p_args->event == SPI_EVENT_TRANSFER_COMPLETE)
     {
+        // Note: the p_args->pContext can be used to convey slave ID if needed
         g_master_event_flag = SPI_EVENT_TRANSFER_COMPLETE;
         S2PI_CompleteTransfer(STATUS_OK);
     }
@@ -610,12 +592,12 @@ void user_spi_callback(spi_callback_args_t * p_args)
  * @param[IN]  p_args
  * @retval     None
  **********************************************************************************************************************/
-void user_irq_callback(external_irq_callback_args_t *p_args)
+void user_irq_callback(external_irq_callback_args_t * p_args)
 {
     /* Make sure it's the right interrupt*/
-    if(0x01 == p_args->channel)
+    if (p_args->channel == 0x01)
     {
-        if(spiHnd_.IrqCallback != 0)
+        if (spiHnd_.IrqCallback != 0)
         {
             spiHnd_.IrqCallback(spiHnd_.IrqCallbackParam);
         }

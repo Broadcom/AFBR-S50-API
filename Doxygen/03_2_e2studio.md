@@ -32,6 +32,10 @@ Download and install the **e² Studio IDE**:
 3. Install the IDE.
 4. Go to <https://www.renesas.com/us/en/software-tool/e2studio-support> for more information.
 
+@note Please make sure the installation adds a recent version of the Renesas FSP
+(Flexible Software Package). Otherwise, you may need to add it after the installation.
+Go to <https://github.com/renesas/fsp/releases> and browse for the latest `FSP_Packs_v#.#.#.exe`.
+
 ## Import a Project
 
 Import the project archive files:
@@ -71,6 +75,12 @@ Import the project archive files:
 
 @image html 3_10_build_project.PNG "Fig. 3.10: Build the project on e² Studio." width=800px
 @image latex 3_10_build_project.PNG "Fig. 3.10: Build the project on e² Studio."
+
+\note If the build fails and the IDE complains about missing definitions or files,
+make sure that the e2 Studio and FSP installations are not broken. This seems to
+randomly happen when the FSP is updated to a newer version. In that case, completely
+remove the Renesas e2 Studio and all related stuff (e.g. uninstall everything label
+with Renesas) and reinstall the latest e2 Studio IDE and FSP package as described above.
 
 ## Debug the Project with a SWD debugger
 

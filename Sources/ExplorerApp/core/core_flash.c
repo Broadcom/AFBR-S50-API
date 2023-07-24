@@ -41,6 +41,7 @@
 #include "core_flash.h"
 #include "core_utils.h"
 #include "core_cfg.h"
+#include "explorer_config.h"
 
 #include "driver/flash.h"
 #include "debug.h"
@@ -69,7 +70,32 @@
 
 status_t ExplorerApp_ClearFlash(void)
 {
+    static bool resumeArray[EXPLORER_DEVICE_COUNT];
+
+    for (uint8_t idx = 0; idx < EXPLORER_DEVICE_COUNT; idx++)
+    {
+        explorer_t * pExplorer = ExplorerApp_GetInitializedExplorer(idx);
+        if (pExplorer)
+        {
+            resumeArray[idx] = ExplorerApp_SuspendTimerMeasurement(pExplorer->Argus);
+        }
+        else
+        {
+            resumeArray[idx] = false;
+        }
+    }
+
     status_t status = Flash_ClearAll();
+
+    for (uint8_t idx = 0; idx < EXPLORER_DEVICE_COUNT; idx++)
+    {
+        if (resumeArray[idx])
+        {
+            explorer_t * pExplorer = ExplorerApp_GetInitializedExplorer(idx);
+            ExplorerApp_StartTimerMeasurement(pExplorer->Argus);
+        }
+    }
+
     if (status != STATUS_OK) return status;
 
     print("Successfully cleared complete flash memory!");

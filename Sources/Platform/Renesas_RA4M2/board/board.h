@@ -47,31 +47,8 @@
  *****************************************************************************/
 
 #include "api/argus_status.h"
-
-/*! Define the default SPI slave for device.
- *  The slave is used for SPI initialization only! */
-#ifndef SPI_DEFAULT_SLAVE
-#define SPI_DEFAULT_SLAVE 1
-#endif
-
-
-/*! Define the SPI baud rate (to be used in the SPI module).
- *  This is dependent of the available peripheral. */
-#ifndef SPI_BAUD_RATE
-#endif
-
-/*! Define the maximum SPI baud rate (to be used in the SPI module).
- *  This is dependent of the available peripheral. */
-#ifndef SPI_MAX_BAUDRATE
-#define SPI_MAX_BAUDRATE 21000000
-#endif
-
-/*! Define the current SPI baud rate (to be used in the SPI module).
- *  This is dependent of the available peripheral. */
-#ifndef SPI_BAUDRATE
-#define SPI_BAUDRATE SPI_MAX_BAUDRATE
-#endif
-
+#include "bsp_mcu_device_pn_cfg.h"
+#include "bsp_mcu_family_cfg.h"
 
 /*!***************************************************************************
  * @brief   Initializes the board and its peripherals.
@@ -84,11 +61,6 @@ status_t Board_Init(void);
  * @details Calls the NVIC reset function.
  *****************************************************************************/
 void Board_Reset(void);
-
-/*!***************************************************************************
- * @brief   Checks the reason of the latest system reset and does a printout
- *****************************************************************************/
-void Board_CheckReset(void);
 
 /*! @} */
 #endif /* BOARD_H */

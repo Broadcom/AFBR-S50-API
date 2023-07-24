@@ -83,7 +83,6 @@ void ExplorerApp_GetDefaultConfiguration(explorer_cfg_t * cfg)
     assert(cfg != 0);
 
     cfg->SPIBaudRate = SPI_BAUDRATE;
-    cfg->SPISlave = SPI_DEFAULT_SLAVE;
 
 #if defined(DEBUG)
     cfg->DebugMode = true;
@@ -129,53 +128,31 @@ status_t ExplorerApp_SetConfiguration(explorer_t * explorer, explorer_cfg_t * cf
 
     if (explorer->Configuration.SPIBaudRate != cfg->SPIBaudRate)
     {
-        const status_t status = S2PI_SetBaudRate(cfg->SPISlave, cfg->SPIBaudRate);
+        const s2pi_slave_t slave = Argus_GetSPISlave(explorer->Argus);
+
+        const status_t status = S2PI_SetBaudRate(slave, cfg->SPIBaudRate);
         if (status != STATUS_OK)
         {
             /* Check if the actual baud rate is within 10 % of the desired baud rate. */
             if (status == ERROR_S2PI_INVALID_BAUDRATE)
                 error_log("S2PI: The requested baud rate (%d bps) is not supported! "
                           "The actual baud rate is %d bps.",
-                          cfg->SPIBaudRate, S2PI_GetBaudRate(cfg->SPISlave));
+                          cfg->SPIBaudRate, S2PI_GetBaudRate(slave));
             else
                 error_log("S2PI: Setting the new baud rate failed, "
                           "error code: %d", status);
 
             /* Reset baud rate to last setting. */
-            S2PI_SetBaudRate(cfg->SPISlave, explorer->Configuration.SPIBaudRate);
+            S2PI_SetBaudRate(slave, explorer->Configuration.SPIBaudRate);
             return status;
         }
-        cfg->SPIBaudRate = S2PI_GetBaudRate(cfg->SPISlave);
+        cfg->SPIBaudRate = S2PI_GetBaudRate(slave);
         //print("S2PI: Baud Rate set to %d bps.", cfg->SPIBaudRate);
     }
 
     explorer_cfg_t backup_cfg;
     ExplorerApp_GetConfiguration(explorer, &backup_cfg);
     memcpy(&explorer->Configuration, cfg, sizeof(explorer_cfg_t));
-
-    const s2pi_slave_t slave = Argus_GetSPISlave(explorer->Argus);
-    if ((cfg->SPISlave < 0 && slave <= 0) ||
-        (cfg->SPISlave > 0 && slave != cfg->SPISlave))
-    {
-        if (Argus_GetStatus(explorer->Argus) != STATUS_IDLE)
-        {
-            error_log("S2PI: Configuration failed, cannot set new SPI slave while device is busy!");
-            return ERROR_FAIL;
-        }
-
-        status_t status = ExplorerApp_InitDevice(explorer, 0, true);
-        if (status != STATUS_OK)
-        {
-            error_log("S2PI: Configuration failed, cannot set new SPI slave, "
-                      "error code: %d",
-                      status);
-            memcpy(&explorer->Configuration, &backup_cfg, sizeof(explorer_cfg_t));
-            ExplorerApp_InitDevice(explorer, 0, true);
-            return status;
-        }
-
-        //print("S2PI: Re-initialized with Slave %d.", cfg->SPISlave);
-    }
 
     return ExplorerApp_SetDebugMode(explorer, cfg->DebugMode);
 }

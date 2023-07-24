@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2020-2022] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
+ * Copyright [2020-2023] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
  *
  * This software and documentation are supplied by Renesas Electronics America Inc. and may only be used with products
  * of Renesas Electronics Corp. and its affiliates ("Renesas").  No other uses are authorized.  Renesas products are
@@ -93,6 +93,7 @@
 #define SCI_SSR_ORER_MASK                       (0x20U) ///< overflow error
 #define SCI_SSR_FER_MASK                        (0x10U) ///< framing error
 #define SCI_SSR_PER_MASK                        (0x08U) ///< parity err
+#define SCI_SSR_FIFO_RESERVED_MASK              (0x02U) ///< Reserved bit mask for SSR_FIFO register
 #define SCI_RCVR_ERR_MASK                       (SCI_SSR_ORER_MASK | SCI_SSR_FER_MASK | SCI_SSR_PER_MASK)
 
 #define SCI_REG_SIZE                            (R_SCI1_BASE - R_SCI0_BASE)
@@ -1607,7 +1608,7 @@ static void r_sci_uart_call_callback (sci_uart_instance_ctrl_t * p_ctrl, uint32_
 void sci_uart_txi_isr (void)
 {
     /* Save context if RTOS is used */
-    FSP_CONTEXT_SAVE;
+    FSP_CONTEXT_SAVE
 
     IRQn_Type irq = R_FSP_CurrentIrqGet();
 
@@ -1642,7 +1643,12 @@ void sci_uart_txi_isr (void)
             }
 
             /* Clear TDFE flag */
-            p_ctrl->p_reg->SSR_FIFO_b.TDFE = 0U;
+            /* Don't acess the flag via bit fields because bit 1 is reserved. It must be written as '1' and has an */
+            /* undefined read value. Bit fields will attempt to do a read-modify-write which could have unintended */
+            /* side effects provided the undefined read behavior. */
+            uint8_t ssr_fifo =
+                (uint8_t) ((p_ctrl->p_reg->SSR_FIFO | SCI_SSR_FIFO_RESERVED_MASK) & ~R_SCI0_SSR_FIFO_TDFE_Msk);
+            p_ctrl->p_reg->SSR_FIFO = ssr_fifo;
         }
         else
  #endif
@@ -1682,7 +1688,7 @@ void sci_uart_txi_isr (void)
     }
 
     /* Restore context if RTOS is used */
-    FSP_CONTEXT_RESTORE;
+    FSP_CONTEXT_RESTORE
 }
 
 #endif
@@ -1705,7 +1711,7 @@ void sci_uart_txi_isr (void)
 void sci_uart_rxi_isr (void)
 {
     /* Save context if RTOS is used */
-    FSP_CONTEXT_SAVE;
+    FSP_CONTEXT_SAVE
 
     IRQn_Type irq = R_FSP_CurrentIrqGet();
 
@@ -1820,7 +1826,7 @@ void sci_uart_rxi_isr (void)
  #endif
 
     /* Restore context if RTOS is used */
-    FSP_CONTEXT_RESTORE;
+    FSP_CONTEXT_RESTORE
 }
 
 #endif
@@ -1835,7 +1841,7 @@ void sci_uart_rxi_isr (void)
 void sci_uart_tei_isr (void)
 {
     /* Save context if RTOS is used */
-    FSP_CONTEXT_SAVE;
+    FSP_CONTEXT_SAVE
 
     IRQn_Type irq = R_FSP_CurrentIrqGet();
 
@@ -1858,7 +1864,7 @@ void sci_uart_tei_isr (void)
     R_BSP_IrqStatusClear(irq);
 
     /* Restore context if RTOS is used */
-    FSP_CONTEXT_RESTORE;
+    FSP_CONTEXT_RESTORE
 }
 
 #endif

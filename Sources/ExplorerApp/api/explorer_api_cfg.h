@@ -48,7 +48,7 @@
  * @brief   Initialize the configuration API.
  * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-status_t ExplorerAPI_InitCfg();
+status_t ExplorerAPI_InitCfg(void);
 
 /*! @} */
 #endif /* EXPLORER_API_CFG_H */

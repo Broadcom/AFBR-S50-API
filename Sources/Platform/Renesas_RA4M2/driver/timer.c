@@ -55,37 +55,57 @@ static timer_cb_t myISR = 0;
 /*! The parameter to be passed to the callback. */
 static void * myParam = 0;
 
+#ifdef DEBUG
+static volatile bool isInitialized = false;
+#endif
+
 /*******************************************************************************
  * Code
  *******************************************************************************/
 
 void Timer_Init(void)
 {
-    static bool isInitialized = false;
-    if (!isInitialized)
-    {
-        /************************************************
-         ***  Initialize timer 0 as lifetime counter. ***
-         ************************************************/
-        fsp_err_t err = R_GPT_Open(&g_ltc_ctrl, &g_ltc_cfg);
-        assert(err == FSP_SUCCESS);
+    assert(!isInitialized);
 
-        err = R_GPT_Start(&g_ltc_ctrl);
-        assert(err == FSP_SUCCESS);
+    /************************************************
+     ***  Initialize timer 0 as lifetime counter. ***
+     ************************************************/
+    fsp_err_t err = R_GPT_Open(&g_ltc_ctrl, &g_ltc_cfg);
+    assert(err == FSP_SUCCESS);
 
-        /********************************************************
-         ***  Initialize timer 1 as periodic interrupt timer. ***
-         ********************************************************/
-        err = R_GPT_Open(&g_pit_ctrl, &g_pit_cfg);
-        assert(err == FSP_SUCCESS);
+    err = R_GPT_Start(&g_ltc_ctrl);
+    assert(err == FSP_SUCCESS);
 
-        isInitialized = (err == FSP_SUCCESS);
-    }
+    /********************************************************
+     ***  Initialize timer 1 as periodic interrupt timer. ***
+     ********************************************************/
+    err = R_GPT_Open(&g_pit_ctrl, &g_pit_cfg);
+    assert(err == FSP_SUCCESS);
+
+#if AFBR_SCI_USB
+    /********************************************************
+     ***  Initialize timer 2 as USB polling timer.        ***
+     ********************************************************/
+    err = R_GPT_Open(&g_upt_ctrl, &g_upt_cfg);
+    assert(err == FSP_SUCCESS);
+
+    err = R_GPT_Start(&g_upt_ctrl);
+    assert(err == FSP_SUCCESS);
+#endif
+
+#ifdef DEBUG
+    isInitialized = true;
+#else
+    /* Avoid compiler warning about unused variable */
+    (void)err;
+#endif
 }
 
 
 void Timer_GetCounterValue(uint32_t * hct, uint32_t * lct)
 {
+    assert(isInitialized);
+
     /* Note: the current timer setting wraps after exactly 4000 seconds.
      * In order to handle the wrap around (without chaining another timer)
      * a static variable is used to check for wrap around: if the new timer
@@ -96,8 +116,11 @@ void Timer_GetCounterValue(uint32_t * hct, uint32_t * lct)
     static uint32_t prev_cnt = 0; // last counter read value
     static uint32_t offset_sec = 0; // offset in seconds (4000 per wrap around)
 
+    IRQ_LOCK();
     const uint32_t cnt = g_ltc_ctrl.p_reg->GTCNT;
     if (cnt < prev_cnt) offset_sec += 4000;
+    prev_cnt = cnt;
+    IRQ_UNLOCK();
 
     *lct = cnt % 1000000U;
     *hct = cnt / 1000000U + offset_sec;
@@ -105,13 +128,22 @@ void Timer_GetCounterValue(uint32_t * hct, uint32_t * lct)
 
 status_t Timer_SetCallback(timer_cb_t f)
 {
+    assert(isInitialized);
+
+    if (f == 0)
+    {
+        Timer_SetInterval(0, myParam);
+    }
+
     myISR = f;
     return STATUS_OK;
 }
 
 status_t Timer_SetInterval(uint32_t dt_microseconds, void * param)
 {
-    assert(dt_microseconds == 0 || dt_microseconds > 100);
+    assert(isInitialized);
+    assert(!(dt_microseconds != 0 && myISR == 0)); // Timer must not be enabled without IRS
+
     if (dt_microseconds)
     {
         /* GPT is clocked by PCLKD. */
@@ -158,5 +190,5 @@ status_t Timer_SetInterval(uint32_t dt_microseconds, void * param)
 void user_timer1_callback(timer_callback_args_t * p_args)
 {
     (void)p_args; //unused
-    myISR(myParam);
+    if (myISR) myISR(myParam);
 }

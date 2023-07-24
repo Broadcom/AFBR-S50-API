@@ -190,9 +190,6 @@ typedef enum data_output_mode_t
 /*! AFBR-S50 Explorer Application configuration data. */
 typedef struct explorer_cfg_t
 {
-    /*! Determines the SPI slave. */
-    int8_t SPISlave;
-
     /*! Determines the SPI baud rate in bps. */
     uint32_t SPIBaudRate;
 
@@ -207,6 +204,9 @@ typedef struct explorer_cfg_t
 /*! AFBR-S50 Explorer Application control block for a AFBR-S50 TOF device instance. */
 typedef struct explorer_t
 {
+    /*! Determines the SPI slave. */
+    sci_device_t DeviceID;
+
     /*! The device specific Explorer configuration data. */
     explorer_cfg_t Configuration;
 

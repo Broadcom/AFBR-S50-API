@@ -225,7 +225,7 @@ void can_callback(can_callback_args_t * p_args)
         LED_CAN_RX_OFF();
 
         /* Save remote frame ID to be handled from main thread. */
-        if (p_args->p_frame->type == CAN_FRAME_TYPE_REMOTE)
+        if (p_args->frame.type == CAN_FRAME_TYPE_REMOTE)
         {
             if (can_rx_remote_id != 0)
             {
