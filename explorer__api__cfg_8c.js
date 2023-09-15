@@ -2,7 +2,7 @@ var explorer__api__cfg_8c =
 [
     [ "Deserialize_Cfg_DCA", "explorer__api__cfg_8c.html#a9911e2693c35178d3d304e56c99bd2b1", null ],
     [ "Deserialize_Cfg_PBA", "explorer__api__cfg_8c.html#a860fcc7efb300585035c8c8dfdb97f2a", null ],
-    [ "ExplorerAPI_InitCfg", "group__explorer__api.html#ga397854e365de873964cdf468d713dcd3", null ],
+    [ "ExplorerAPI_InitCfg", "group__explorer__api.html#ga2ad591d72ea7145c1c8ca772e4a29d3b", null ],
     [ "PrxCmd_CfgUart", "explorer__api__cfg_8c.html#ad521eba412a65cb79d941fad7e3e8de1", null ],
     [ "RxCmd_CfgDataOutputMode", "explorer__api__cfg_8c.html#a447ae754331b44717fe2894ad73da970", null ],
     [ "RxCmd_CfgDca", "explorer__api__cfg_8c.html#af7d00c62af0ac894b48b68238f49e13f", null ],

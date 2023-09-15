@@ -3,12 +3,12 @@ var group__explorer__types =
     [ "explorer_cfg_t", "structexplorer__cfg__t.html", [
       [ "DataOutputMode", "structexplorer__cfg__t.html#a45b0a1ada2dd632f1cf8723ae6f42b82", null ],
       [ "DebugMode", "structexplorer__cfg__t.html#a872fece3315d2aa8adb16be90265c134", null ],
-      [ "SPIBaudRate", "structexplorer__cfg__t.html#ad17f55dd493912e41a8512025a78ccb4", null ],
-      [ "SPISlave", "structexplorer__cfg__t.html#af533f342183009910d93e6ef03fef3cc", null ]
+      [ "SPIBaudRate", "structexplorer__cfg__t.html#ad17f55dd493912e41a8512025a78ccb4", null ]
     ] ],
     [ "explorer_t", "structexplorer__t.html", [
       [ "Argus", "structexplorer__t.html#a38666bad45fbed392f92416ec8f91ed2", null ],
-      [ "Configuration", "structexplorer__t.html#ad148cd8f7c34932facf38ffe68477aa3", null ]
+      [ "Configuration", "structexplorer__t.html#ad148cd8f7c34932facf38ffe68477aa3", null ],
+      [ "DeviceID", "structexplorer__t.html#a4d8b0e35c430fd35ce77b9fbf5918d84", null ]
     ] ],
     [ "data_output_mode_t", "group__explorer__types.html#ga54b52f07a92dddf58be9d1d1534b4a6f", [
       [ "DATA_OUTPUT_STREAMING_FULL_DEBUG", "group__explorer__types.html#gga54b52f07a92dddf58be9d1d1534b4a6faa44c5de62f739308262611b8befd52c5", null ],

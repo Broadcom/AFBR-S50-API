@@ -2,6 +2,7 @@ var core__device_8h =
 [
     [ "ExplorerApp_DeviceReinit", "group__core__device.html#gab6c92ea0bf68db3c8bef99b84c38f3c6", null ],
     [ "ExplorerApp_GetArgusPtr", "group__core__device.html#gae47b67d1dad1085862d47efc83e0520c", null ],
+    [ "ExplorerApp_GetDeviceID", "group__core__device.html#gab797c0c9b077366ebb67385792912505", null ],
     [ "ExplorerApp_GetExplorerPtr", "group__core__device.html#ga11257178d58ce4c7b76b23ad807b2b4b", null ],
     [ "ExplorerApp_GetExplorerPtrFromArgus", "group__core__device.html#gab3af4dff46e8c4e9eca98adcbb87d9fb", null ],
     [ "ExplorerApp_GetInitializedExplorer", "group__core__device.html#gac56300dcbf9874c7bad8d0c5eea358e6", null ],

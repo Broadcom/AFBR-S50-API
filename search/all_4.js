@@ -36,7 +36,7 @@ var searchData=
   ['channeln_5fenable_33',['CHANNELN_ENABLE',['../group__argus__map.html#gac14bac78f94bf611f7351d73596482e8',1,'argus_map.h']]],
   ['channeln_5fisenabled_34',['CHANNELN_ISENABLED',['../group__argus__map.html#ga5dd380bdac8d9b17bc2920a29f5e90ea',1,'argus_map.h']]],
   ['channeltopixelmask_35',['ChannelToPixelMask',['../group__argus__map.html#ga6302f5fd14b9ccc655f47f0aaa79e4dc',1,'argus_map.h']]],
-  ['checkconnecteddevice_36',['CheckConnectedDevice',['../core__device_8c.html#a8f2aead776031525d958854e68073e18',1,'core_device.c']]],
+  ['checkconnecteddevice_36',['CheckConnectedDevice',['../core__device_8c.html#a1ca1089554d710af21402bb96c7fdd75',1,'core_device.c']]],
   ['checktimercountervalues_37',['CheckTimerCounterValues',['../group__argus__test.html#gac78eb59125d9954d9104ca21ed2014ed',1,'argus_hal_test.c']]],
   ['chenmask_38',['ChEnMask',['../structargus__meas__frame__t.html#a260b63262f7887f4d8e5061d80ff4a74',1,'argus_meas_frame_t']]],
   ['clamp_39',['CLAMP',['../group__argus__misc.html#ga33bd933f5d4895b3b6d18c2d5fed91a0',1,'int_math.h']]],

@@ -135,10 +135,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "01__simple__example_8c.html",
-"explorer__tasks_8c.html#adf5f1e7124841becf9ebe3fa0f37bbfb",
+"explorer__tasks_8c.html#ae3ec3979a753cbf6f205246cb5e7b40f",
 "globals_g.html",
-"group__argus__fp.html#ga085fcf847cab9a36abe41613fbabc58c",
-"group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70bab6d45f3ac20a25b5d9b33ab2565f6f0c",
+"group__argus__fp.html#ga0e8d4b251feb608e910a7a04db024c2e",
+"group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70babdd0a544705d78b88b2504c6251a31bd",
 "group__explorer__tasks.html#ggac7a0d0b0bc05d09afb4355814f794a13ace01ee9c8584bd67757c5975571f33eb",
 "sci_8c.html#a3e166e84332ab5f49ff2218e30e6dc4f"
 ];

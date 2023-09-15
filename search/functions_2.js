@@ -10,7 +10,7 @@ var searchData=
   ['ceildiv_7',['ceildiv',['../group__argus__misc.html#gad97c8789bc21e3f5c46689606fdbe6e4',1,'int_math.h']]],
   ['ceiling2_8',['ceiling2',['../group__argus__misc.html#ga9601dee0619996f64b59de9d12074f0e',1,'int_math.h']]],
   ['channeltopixelmask_9',['ChannelToPixelMask',['../group__argus__map.html#ga6302f5fd14b9ccc655f47f0aaa79e4dc',1,'argus_map.h']]],
-  ['checkconnecteddevice_10',['CheckConnectedDevice',['../core__device_8c.html#a8f2aead776031525d958854e68073e18',1,'core_device.c']]],
+  ['checkconnecteddevice_10',['CheckConnectedDevice',['../core__device_8c.html#a1ca1089554d710af21402bb96c7fdd75',1,'core_device.c']]],
   ['checktimercountervalues_11',['CheckTimerCounterValues',['../group__argus__test.html#gac78eb59125d9954d9104ca21ed2014ed',1,'argus_hal_test.c']]],
   ['configuredevice_12',['ConfigureDevice',['../group__argus__test.html#gad3f9878573bb6d8a97ea811307bfb181',1,'argus_hal_test.c']]]
 ];

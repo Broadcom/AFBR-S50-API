@@ -10,6 +10,7 @@ var searchData=
   ['depthmin_7',['DepthMin',['../structargus__cfg__dca__t.html#a6a70fa63ba929b8207ebaeb563d4882e',1,'argus_cfg_dca_t']]],
   ['depthnom_8',['DepthNom',['../structargus__cfg__dca__t.html#a089916ee1563d6d5b1161de79a97675a',1,'argus_cfg_dca_t']]],
   ['device_5fquery_5ftimer_5fms_9',['device_query_timer_ms',['../group__argus__xtk__cli.html#ga25bf3535fed8d54919fa35cb097592ed',1,'argus_xtalk_cal_cli.c']]],
-  ['digitalintegrationdepth_10',['DigitalIntegrationDepth',['../structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21',1,'argus_meas_frame_t']]],
-  ['ds_11',['dS',['../structxtalk__t.html#a7a91b69e535b934d2d05241e26c3ea0d',1,'xtalk_t']]]
+  ['deviceid_10',['DeviceID',['../structexplorer__t.html#a4d8b0e35c430fd35ce77b9fbf5918d84',1,'explorer_t']]],
+  ['digitalintegrationdepth_11',['DigitalIntegrationDepth',['../structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21',1,'argus_meas_frame_t']]],
+  ['ds_12',['dS',['../structxtalk__t.html#a7a91b69e535b934d2d05241e26c3ea0d',1,'xtalk_t']]]
 ];

@@ -116,6 +116,7 @@ Install Renesas e² Studio IDE</h1>
 <li>Install the IDE.</li>
 <li>Go to <a href="https://www.renesas.com/us/en/software-tool/e2studio-support">https://www.renesas.com/us/en/software-tool/e2studio-support</a> for more information.</li>
 </ol>
+<dl class="section note"><dt>Note</dt><dd>Please make sure the installation adds a recent version of the Renesas FSP (Flexible Software Package). Otherwise, you may need to add it after the installation. Go to <a href="https://github.com/renesas/fsp/releases">https://github.com/renesas/fsp/releases</a> and browse for the latest <code>FSP_Packs_v#.#.#.exe</code>.</dd></dl>
 <h1><a class="anchor" id="autotoc_md15"></a>
 Import a Project</h1>
 <p >Import the project archive files:</p>
@@ -154,7 +155,8 @@ Build the Project</h1>
 <img src="3_10_build_project.PNG" alt="" width="800px"/>
 <div class="caption">
 Fig. 3.10: Build the project on e² Studio.</div></div>
- <h1><a class="anchor" id="autotoc_md17"></a>
+ <dl class="section note"><dt>Note</dt><dd>If the build fails and the IDE complains about missing definitions or files, make sure that the e2 Studio and FSP installations are not broken. This seems to randomly happen when the FSP is updated to a newer version. In that case, completely remove the Renesas e2 Studio and all related stuff (e.g. uninstall everything label with Renesas) and reinstall the latest e2 Studio IDE and FSP package as described above.</dd></dl>
+<h1><a class="anchor" id="autotoc_md17"></a>
 Debug the Project with a SWD debugger</h1>
 <p >The <b>Renesas RA4M2</b> on the <a class="el" href="reference_board.html">AFBR-S50 Reference Board</a> can be debugged with any SWD debug probe supported by the <b>e² Studio</b>. Please refer to the <b>e² Studio</b> documentation for more information. The following demonstrate the steps using a <b>J-Link SWD Debug Probe</b>:</p>
 <ol type="1">
