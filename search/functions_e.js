@@ -6,7 +6,7 @@ var searchData=
   ['runmeasurement_3',['RunMeasurement',['../group__argus__test.html#ga574338ce27c9762e0f6f29b285a5c98c',1,'argus_hal_test.c']]],
   ['runpittest_4',['RunPITTest',['../group__argus__test.html#ga77ada738d9ac6ace8866e898d11fad10',1,'argus_hal_test.c']]],
   ['rxcallback_5',['RxCallback',['../sci__datalink_8c.html#ab067ecc05fa1e305e211864e38e6131d',1,'sci_datalink.c']]],
-  ['rxcmd_5fcalglobalrangeoffset_6',['RxCmd_CalGlobalRangeOffset',['../explorer__api__cal_8c.html#ad7bd81c2251b34e09a43946173f40ba5',1,'explorer_api_cal.c']]],
+  ['rxcmd_5fcalglobalrangeoffsets_6',['RxCmd_CalGlobalRangeOffsets',['../explorer__api__cal_8c.html#aab98d7c63d05add086e5278a442d94eb',1,'explorer_api_cal.c']]],
   ['rxcmd_5fcalpixelrangeoffsets_7',['RxCmd_CalPixelRangeOffsets',['../explorer__api__cal_8c.html#a250c297d09910978788221e6653bc4a2',1,'explorer_api_cal.c']]],
   ['rxcmd_5fcalrangeoffsetseqsampletime_8',['RxCmd_CalRangeOffsetSeqSampleTime',['../explorer__api__cal_8c.html#aad9cd8de66ecb4b0a12ba8c8eba4afc1',1,'explorer_api_cal.c']]],
   ['rxcmd_5fcalresetpixelrangeoffsets_9',['RxCmd_CalResetPixelRangeOffsets',['../explorer__api__cal_8c.html#aaa0778be040677950e9d543af7d8dca4',1,'explorer_api_cal.c']]],

@@ -1,8 +1,13 @@
 <map id="Sources/ExampleApp/examples/examples.h" name="Sources/ExampleApp/examples/examples.h">
-<area shape="rect" id="node1" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="374,5,525,45"/>
-<area shape="rect" id="node2" href="$01__simple__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="5,93,152,148"/>
-<area shape="rect" id="node3" href="$02__advanced__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="176,93,339,148"/>
-<area shape="rect" id="node4" href="$03__high__speed__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="363,93,535,148"/>
-<area shape="rect" id="node5" href="$04__multi__device__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="560,93,739,148"/>
-<area shape="rect" id="node6" href="$_example_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="763,101,909,141"/>
+<area shape="rect" id="Node000001" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="371,5,521,46"/>
+<area shape="rect" id="Node000002" href="$01__simple__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="5,94,151,150"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="357,49,163,97,152,100,150,94,161,91,355,44"/>
+<area shape="rect" id="Node000003" href="$02__advanced__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="175,94,336,150"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="394,56,312,96,309,91,391,51"/>
+<area shape="rect" id="Node000004" href="$03__high__speed__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="360,94,532,150"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="449,61,449,93,443,93,443,61"/>
+<area shape="rect" id="Node000005" href="$04__multi__device__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="556,94,734,150"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="503,51,588,91,586,96,500,56"/>
+<area shape="rect" id="Node000006" href="$_example_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="757,102,903,142"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="536,42,747,91,771,98,769,103,745,97,535,48"/>
 </map>

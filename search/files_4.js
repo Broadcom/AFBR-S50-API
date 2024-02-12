@@ -13,9 +13,10 @@ var searchData=
   ['explorer_5fapp_2edox_10',['explorer_app.dox',['../explorer__app_8dox.html',1,'']]],
   ['explorer_5fapp_2eh_11',['explorer_app.h',['../explorer__app_8h.html',1,'']]],
   ['explorer_5fconfig_2eh_12',['explorer_config.h',['../explorer__config_8h.html',1,'']]],
-  ['explorer_5fstatus_2eh_13',['explorer_status.h',['../explorer__status_8h.html',1,'']]],
-  ['explorer_5ftasks_2ec_14',['explorer_tasks.c',['../explorer__tasks_8c.html',1,'']]],
-  ['explorer_5ftasks_2eh_15',['explorer_tasks.h',['../explorer__tasks_8h.html',1,'']]],
-  ['explorer_5ftypes_2eh_16',['explorer_types.h',['../explorer__types_8h.html',1,'']]],
-  ['explorer_5fversion_2eh_17',['explorer_version.h',['../explorer__version_8h.html',1,'']]]
+  ['explorer_5fmacro_2eh_13',['explorer_macro.h',['../explorer__macro_8h.html',1,'']]],
+  ['explorer_5fstatus_2eh_14',['explorer_status.h',['../explorer__status_8h.html',1,'']]],
+  ['explorer_5ftasks_2ec_15',['explorer_tasks.c',['../explorer__tasks_8c.html',1,'']]],
+  ['explorer_5ftasks_2eh_16',['explorer_tasks.h',['../explorer__tasks_8h.html',1,'']]],
+  ['explorer_5ftypes_2eh_17',['explorer_types.h',['../explorer__types_8h.html',1,'']]],
+  ['explorer_5fversion_2eh_18',['explorer_version.h',['../explorer__version_8h.html',1,'']]]
 ];

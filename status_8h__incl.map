@@ -1,5 +1,7 @@
 <map id="AFBR&#45;S50/Include/utility/status.h" name="AFBR&#45;S50/Include/utility/status.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,5,169,45"/>
-<area shape="rect" id="node2" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="23,93,151,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="55,167,119,192"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,5,169,46"/>
+<area shape="rect" id="Node000002" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="23,94,151,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,46,90,78,84,78,84,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="55,168,119,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,120,90,152,84,152,84,120"/>
 </map>

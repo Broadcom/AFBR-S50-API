@@ -1,4 +1,4 @@
 <map id="Driver" name="Driver">
-<area shape="rect" id="node1" title="Hardware Driver Module." alt="" coords="124,5,180,31"/>
-<area shape="rect" id="node2" href="$group__platform.html" title="Platform Dependent Code." alt="" coords="5,5,76,31"/>
+<area shape="rect" id="Node000001" title="Hardware Driver Module." alt="" coords="124,5,179,31"/>
+<area shape="rect" id="Node000002" href="$group__platform.html" title="Platform Dependent Code." alt="" coords="5,5,76,31"/>
 </map>

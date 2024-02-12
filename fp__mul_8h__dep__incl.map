@@ -1,5 +1,7 @@
 <map id="AFBR&#45;S50/Include/utility/fp_mul.h" name="AFBR&#45;S50/Include/utility/fp_mul.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="95,5,259,45"/>
-<area shape="rect" id="node2" href="$fp__ema_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,93,169,133"/>
-<area shape="rect" id="node3" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="194,93,341,133"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="95,5,258,46"/>
+<area shape="rect" id="Node000002" href="$fp__ema_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,94,169,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,59,109,95,105,92,143,55"/>
+<area shape="rect" id="Node000003" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="193,94,338,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,55,247,92,244,95,206,59"/>
 </map>

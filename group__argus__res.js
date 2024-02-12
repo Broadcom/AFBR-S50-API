@@ -46,6 +46,7 @@ var group__argus__res =
     ] ],
     [ "ARGUS_AMPLITUDE_MAX", "group__argus__res.html#gaa9ab19743163a3338b7bff716f26f147", null ],
     [ "ARGUS_RANGE_MAX", "group__argus__res.html#ga580128fdd319051f828cd45dc81045c5", null ],
+    [ "ARGUS_RANGE_MIN", "group__argus__res.html#ga74dcebf143a716fd121f5c2f18de8fb8", null ],
     [ "argus_px_status_t", "group__argus__res.html#ga51d96e2b693d2566698b7beaa4b0911e", [
       [ "PIXEL_OK", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911eab0d555b3e70ec26fe736ad17d9db6eca", null ],
       [ "PIXEL_OFF", "group__argus__res.html#gga51d96e2b693d2566698b7beaa4b0911ea922b0b68ce012a829baad27b639232cf", null ],

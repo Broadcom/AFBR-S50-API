@@ -43,6 +43,7 @@ var argus__status_8h =
       [ "ERROR_ARGUS_LASER_FAILURE", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baf50c9a98cdc5af84bf60c3d3d2bbeff8", null ],
       [ "ERROR_ARGUS_DATA_INTEGRITY_LOST", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba273e432b191dece89e8ff2c5f53d6425", null ],
       [ "ERROR_ARGUS_RANGE_OFFSET_CALIBRATION_FAILED", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70badf566d0690cfa47729de2e94c9aed0ea", null ],
+      [ "ERROR_ARGUS_VSUB_CALIBRATION_FAILED", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70bab517ff5a37864472ea7505b6c35cfacd", null ],
       [ "ERROR_ARGUS_BUSY", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba9cbef431ec4d716166fc8ca9a90c98bf", null ],
       [ "ERROR_ARGUS_UNKNOWN_MODULE", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70bab6d45f3ac20a25b5d9b33ab2565f6f0c", null ],
       [ "ERROR_ARGUS_UNKNOWN_CHIP", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba534f9aa559489563531bfb5f4160b1d2", null ],

@@ -1,8 +1,10 @@
 var annotated_dup =
 [
-    [ "argus_cal_offset_table_t", "structargus__cal__offset__table__t.html", "structargus__cal__offset__table__t" ],
+    [ "argus_cal_electrical_p2pxtalk_t", "structargus__cal__electrical__p2pxtalk__t.html", "structargus__cal__electrical__p2pxtalk__t" ],
+    [ "argus_cal_offset_table_t", "unionargus__cal__offset__table__t.html", "unionargus__cal__offset__table__t" ],
+    [ "argus_cal_optical_p2pxtalk_t", "structargus__cal__optical__p2pxtalk__t.html", "structargus__cal__optical__p2pxtalk__t" ],
     [ "argus_cal_p2pxtalk_t", "structargus__cal__p2pxtalk__t.html", "structargus__cal__p2pxtalk__t" ],
-    [ "argus_cal_xtalk_table_t", "structargus__cal__xtalk__table__t.html", "structargus__cal__xtalk__table__t" ],
+    [ "argus_cal_xtalk_table_t", "unionargus__cal__xtalk__table__t.html", "unionargus__cal__xtalk__table__t" ],
     [ "argus_cfg_dca_t", "structargus__cfg__dca__t.html", "structargus__cfg__dca__t" ],
     [ "argus_cfg_pba_t", "structargus__cfg__pba__t.html", "structargus__cfg__pba__t" ],
     [ "argus_meas_frame_t", "structargus__meas__frame__t.html", "structargus__meas__frame__t" ],

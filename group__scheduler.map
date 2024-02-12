@@ -1,6 +1,6 @@
 <map id="Task Scheduler" name="Task Scheduler">
-<area shape="rect" id="node1" href="$group__explorer__app.html" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="5,31,140,56"/>
-<area shape="rect" id="node3" title="A simple cooperative task scheduler with prioritized tasks." alt="" coords="188,31,300,56"/>
-<area shape="rect" id="node2" href="$group__profiler.html" title="A utility module that measures execution times of tasks." alt="" coords="351,5,445,31"/>
-<area shape="rect" id="node4" href="$group__scheduler__status.html" title="Status Codes Definitions for the Task Scheduler." alt="" coords="348,55,448,80"/>
+<area shape="rect" id="Node000002" href="$group__explorer__app.html" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="5,31,140,56"/>
+<area shape="rect" id="Node000001" title="A simple cooperative task scheduler with prioritized tasks." alt="" coords="188,31,299,56"/>
+<area shape="rect" id="Node000003" href="$group__profiler.html" title="A utility module that measures execution times of tasks." alt="" coords="350,5,443,31"/>
+<area shape="rect" id="Node000004" href="$group__scheduler__status.html" title="Status Codes Definitions for the Task Scheduler." alt="" coords="347,55,446,80"/>
 </map>

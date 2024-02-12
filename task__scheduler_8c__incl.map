@@ -1,14 +1,28 @@
 <map id="Sources/ExplorerApp/tasks/task_scheduler.c" name="Sources/ExplorerApp/tasks/task_scheduler.c">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="370,5,530,45"/>
-<area shape="rect" id="node2" href="$task__scheduler_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="121,93,241,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="149,387,213,412"/>
-<area shape="rect" id="node4" title=" " alt="" coords="255,167,323,192"/>
-<area shape="rect" id="node9" href="$task__profiler_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="399,93,502,119"/>
-<area shape="rect" id="node10" title=" " alt="" coords="526,93,594,119"/>
-<area shape="rect" id="node11" title=" " alt="" coords="618,93,685,119"/>
-<area shape="rect" id="node12" title=" " alt="" coords="709,93,792,119"/>
-<area shape="rect" id="node5" title=" " alt="" coords="32,167,106,192"/>
-<area shape="rect" id="node6" href="$task__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="131,167,231,192"/>
-<area shape="rect" id="node7" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="130,240,232,265"/>
-<area shape="rect" id="node8" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="117,313,245,339"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="367,5,526,46"/>
+<area shape="rect" id="Node000002" href="$task__scheduler_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="120,94,239,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="381,49,237,92,235,86,379,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="148,389,211,414"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="425,49,404,70,386,95,366,135,361,179,361,256,357,281,347,303,332,323,314,341,270,369,227,388,225,383,268,364,310,336,328,320,343,300,352,279,356,255,356,179,361,134,381,93,400,67,421,45"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="254,168,321,193"/>
+<area shape="poly" id="edge12_Node000001_Node000004" title=" " alt="" coords="408,49,374,69,342,96,319,125,302,155,297,153,314,122,338,92,371,65,405,44"/>
+<area shape="rect" id="Node000009" href="$task__profiler_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="396,94,497,120"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="449,46,449,78,444,78,444,46"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="521,94,588,120"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="475,44,527,82,524,87,472,49"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="612,94,678,120"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="497,44,602,85,600,90,495,49"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="702,94,783,120"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="521,44,688,88,686,93,520,49"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="120,116,93,123,66,134,42,149,22,169,10,198,11,228,22,257,42,286,67,314,95,338,148,378,145,382,92,343,64,317,38,290,18,260,5,229,5,197,18,166,38,145,64,129,91,118,119,111"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="200,118,258,156,255,161,197,122"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="32,168,106,193"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="162,122,102,161,99,157,160,118"/>
+<area shape="rect" id="Node000006" href="$task__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="130,168,229,193"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="182,120,182,152,177,152,177,120"/>
+<area shape="rect" id="Node000007" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="129,241,230,267"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="182,194,182,226,177,226,177,194"/>
+<area shape="rect" id="Node000008" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="116,315,243,341"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="182,267,182,299,177,299,177,267"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="182,341,182,373,177,373,177,341"/>
 </map>

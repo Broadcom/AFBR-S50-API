@@ -1,14 +1,14 @@
 <map id="AFBR&#45;S50 API" name="AFBR&#45;S50 API">
-<area shape="rect" id="node1" href="$group__argus.html" title="AFBR&#45;S50 API and Core Libraries." alt="" coords="5,248,120,273"/>
-<area shape="rect" id="node2" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="168,248,277,273"/>
-<area shape="rect" id="node3" href="$group__argus__cal.html" title="Device calibration parameter definitions and API functions." alt="" coords="361,5,444,31"/>
-<area shape="rect" id="node4" href="$group__argus__cfg.html" title="Device configuration parameter definitions and API functions." alt="" coords="354,55,451,80"/>
-<area shape="rect" id="node5" href="$group__argus__dca.html" title="Dynamic Configuration Adaption (DCA) parameter definitions and API functions." alt="" coords="327,105,478,145"/>
-<area shape="rect" id="node6" href="$group__argus__dfm.html" title="Dual Frequency Mode (DFM) parameter definitions and API functions." alt="" coords="329,169,476,195"/>
-<area shape="rect" id="node7" href="$group__argus__map.html" title="Pixel Channel Mapping." alt="" coords="327,219,479,244"/>
-<area shape="rect" id="node8" href="$group__argus__meas.html" title="Measurement/Device control module." alt="" coords="330,269,475,309"/>
-<area shape="rect" id="node9" href="$group__argus__pba.html" title="Pixel Binning Algorithm (PBA) parameter definitions and API functions." alt="" coords="325,333,480,359"/>
-<area shape="rect" id="node10" href="$group__argus__res.html" title="Measurement results data structures." alt="" coords="337,383,468,408"/>
-<area shape="rect" id="node11" href="$group__argus__snm.html" title="Shot Noise Monitor (SNM) parameter definitions and API functions." alt="" coords="337,432,469,457"/>
-<area shape="rect" id="node12" href="$group__argus__version.html" title="API and library core version number." alt="" coords="357,481,448,507"/>
+<area shape="rect" id="Node000002" href="$group__argus.html" title="AFBR&#45;S50 API and Core Libraries." alt="" coords="5,248,119,274"/>
+<area shape="rect" id="Node000001" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="167,248,275,274"/>
+<area shape="rect" id="Node000004" href="$group__argus__cal.html" title="Device calibration parameter definitions and API functions." alt="" coords="359,5,441,31"/>
+<area shape="rect" id="Node000003" href="$group__argus__cfg.html" title="Device configuration parameter definitions and API functions." alt="" coords="352,55,448,80"/>
+<area shape="rect" id="Node000005" href="$group__argus__dca.html" title="Dynamic Configuration Adaption (DCA) parameter definitions and API functions." alt="" coords="325,105,474,145"/>
+<area shape="rect" id="Node000006" href="$group__argus__dfm.html" title="Dual Frequency Mode (DFM) parameter definitions and API functions." alt="" coords="327,169,472,195"/>
+<area shape="rect" id="Node000007" href="$group__argus__map.html" title="Pixel Channel Mapping." alt="" coords="324,219,475,244"/>
+<area shape="rect" id="Node000008" href="$group__argus__meas.html" title="Measurement/Device control module." alt="" coords="328,269,472,309"/>
+<area shape="rect" id="Node000009" href="$group__argus__pba.html" title="Pixel Binning Algorithm (PBA) parameter definitions and API functions." alt="" coords="323,333,476,359"/>
+<area shape="rect" id="Node000010" href="$group__argus__res.html" title="Measurement results data structures." alt="" coords="335,383,465,408"/>
+<area shape="rect" id="Node000011" href="$group__argus__snm.html" title="Shot Noise Monitor (SNM) parameter definitions and API functions." alt="" coords="334,432,465,458"/>
+<area shape="rect" id="Node000012" href="$group__argus__version.html" title="API and library core version number." alt="" coords="355,481,445,507"/>
 </map>

@@ -1,6 +1,20 @@
 <map id="AFBR&#45;S50/Include/platform/argus_print.h" name="AFBR&#45;S50/Include/platform/argus_print.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="163,5,345,45"/>
-<area shape="rect" id="node2" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="5,93,156,133"/>
-<area shape="rect" id="node3" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="181,93,327,133"/>
-<area shape="rect" id="node4" href="$_example_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="351,93,498,133"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="369,5,550,46"/>
+<area shape="rect" id="Node000002" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="127,94,277,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="388,54,261,96,260,91,386,49"/>
+<area shape="rect" id="Node000003" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="301,94,447,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="431,59,395,95,391,92,428,55"/>
+<area shape="rect" id="Node000004" href="$examples_8h.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="471,94,621,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="492,55,528,92,525,95,488,59"/>
+<area shape="rect" id="Node000009" href="$_example_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="757,190,903,231"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="532,49,634,92,727,142,801,187,799,192,724,146,632,96,530,54"/>
+<area shape="rect" id="Node000005" href="$01__simple__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="5,183,151,238"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="456,138,307,159,243,169,163,185,152,188,150,183,161,180,242,163,306,154,456,132"/>
+<area shape="rect" id="Node000006" href="$02__advanced__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="175,183,336,238"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="472,142,337,186,336,180,470,137"/>
+<area shape="rect" id="Node000007" href="$03__high__speed__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="360,183,532,238"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="516,147,477,184,473,180,513,143"/>
+<area shape="rect" id="Node000008" href="$04__multi__device__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="556,183,734,238"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="579,143,618,180,614,184,575,147"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="620,137,771,187,770,192,619,142"/>
 </map>

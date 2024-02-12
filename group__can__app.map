@@ -1,7 +1,7 @@
 <map id="CAN Application" name="CAN Application">
-<area shape="rect" id="node1" title="AFBR&#45;S50 Reference Board CAN&#45;bus example application." alt="" coords="184,55,301,80"/>
-<area shape="rect" id="node2" href="$group__can__intf.html" title="CAN interface for the AFBR&#45;S50 Reference Board CAN application." alt="" coords="367,5,495,31"/>
-<area shape="rect" id="node3" href="$group__can__version.html" title="AFBR&#45;S50 CAN Application version number." alt="" coords="349,55,513,80"/>
-<area shape="rect" id="node5" href="$group__uart__intf.html" title="UART interface for the AFBR&#45;S50 Reference Board CAN application." alt="" coords="363,104,499,129"/>
-<area shape="rect" id="node4" href="$group__demo__apps.html" title="AFBR&#45;S50 API Demo Applications." alt="" coords="5,55,136,80"/>
+<area shape="rect" id="Node000001" title="AFBR&#45;S50 Reference Board CAN&#45;bus example application." alt="" coords="183,55,299,80"/>
+<area shape="rect" id="Node000003" href="$group__can__intf.html" title="CAN interface for the AFBR&#45;S50 Reference Board CAN application." alt="" coords="365,5,492,31"/>
+<area shape="rect" id="Node000004" href="$group__can__version.html" title="AFBR&#45;S50 CAN Application version number." alt="" coords="347,55,510,80"/>
+<area shape="rect" id="Node000005" href="$group__uart__intf.html" title="UART interface for the AFBR&#45;S50 Reference Board CAN application." alt="" coords="361,104,496,130"/>
+<area shape="rect" id="Node000002" href="$group__demo__apps.html" title="AFBR&#45;S50 API Demo Applications." alt="" coords="5,55,135,80"/>
 </map>

@@ -1,7 +1,12 @@
 <map id="AFBR&#45;S50/Include/utility/fp_div.h" name="AFBR&#45;S50/Include/utility/fp_div.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="7,5,171,45"/>
-<area shape="rect" id="node2" href="$fp__def_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,93,73,119"/>
-<area shape="rect" id="node4" href="$int__math_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="98,93,181,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="13,167,77,192"/>
-<area shape="rect" id="node5" title=" " alt="" coords="105,167,173,192"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="7,5,170,46"/>
+<area shape="rect" id="Node000002" href="$fp__def_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,94,73,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,48,57,82,52,79,74,45"/>
+<area shape="rect" id="Node000004" href="$int__math_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="97,94,178,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="103,45,124,79,120,82,98,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="13,168,76,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="43,120,45,152,40,152,37,120"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="123,122,74,160,70,156,120,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="104,168,171,193"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="140,120,140,152,135,152,135,120"/>
 </map>

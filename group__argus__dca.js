@@ -66,11 +66,14 @@ var group__argus__dca =
       [ "ARGUS_STATE_LASER_ERROR", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a8924beb0ddafc36ab0b0938b0c6061c6", null ],
       [ "ARGUS_STATE_HAS_DATA", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a73cf53cfb562f799547d64e4daa829f7", null ],
       [ "ARGUS_STATE_HAS_AUX_DATA", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a606d162a9326a4e797b6f3867498912c", null ],
-      [ "ARGUS_STATE_DCA_MAX", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a552601d1c54f5ed7b06464e4dd21f42d", null ],
+      [ "ARGUS_STATE_SATURATED_PIXELS", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a6eead2dfbb013536ea51c4e83bb43507", null ],
       [ "ARGUS_STATE_DCA_POWER_HIGH", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a3d4fb1c8b690467c224297e9b86d5222", null ],
       [ "ARGUS_STATE_DCA_GAIN_LOW", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91ae89fcf01db86e04f6e002ef2f50d8594", null ],
       [ "ARGUS_STATE_DCA_GAIN_MED_LOW", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a03cd021210ebdabe24a06e83b63e37c9", null ],
       [ "ARGUS_STATE_DCA_GAIN_MED_HIGH", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a974525ea8ada042ffa5b3faef4498f37", null ],
-      [ "ARGUS_STATE_DCA_GAIN_HIGH", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a4ad11dc9c4ad55ab183317d251a42eb5", null ]
+      [ "ARGUS_STATE_DCA_GAIN_HIGH", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a4ad11dc9c4ad55ab183317d251a42eb5", null ],
+      [ "ARGUS_STATE_DCA_MIN", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a9eda1198bbf15081ce9596b731683989", null ],
+      [ "ARGUS_STATE_DCA_MAX", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a552601d1c54f5ed7b06464e4dd21f42d", null ],
+      [ "ARGUS_STATE_DCA_RESET", "group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a19db9f61bfde53bcb486e6ab071822c7", null ]
     ] ]
 ];

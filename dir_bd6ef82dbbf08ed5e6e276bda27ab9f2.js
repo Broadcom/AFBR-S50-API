@@ -11,6 +11,7 @@ var dir_bd6ef82dbbf08ed5e6e276bda27ab9f2 =
     [ "core_utils.c", "core__utils_8c.html", "core__utils_8c" ],
     [ "core_utils.h", "core__utils_8h.html", "core__utils_8h" ],
     [ "explorer_config.h", "explorer__config_8h.html", "explorer__config_8h" ],
+    [ "explorer_macro.h", "explorer__macro_8h.html", "explorer__macro_8h" ],
     [ "explorer_status.h", "explorer__status_8h.html", "explorer__status_8h" ],
     [ "explorer_types.h", "explorer__types_8h.html", "explorer__types_8h" ],
     [ "explorer_version.h", "explorer__version_8h.html", "explorer__version_8h" ]

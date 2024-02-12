@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['mcu_20porting_20guide_0',['MCU Porting Guide',['../porting_guide.html',1,'']]],
-  ['mcuxpresso_20ide_1',['MCUXpresso IDE',['../mcuxpresso.html',1,'getting_started']]]
+  ['ide_0',['ide',['../e2studio.html',1,'e² Studio IDE'],['../mcuxpresso.html',1,'MCUXpresso IDE']]],
+  ['introduction_1',['Introduction',['../index.html',1,'']]]
 ];

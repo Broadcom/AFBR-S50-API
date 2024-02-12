@@ -46,7 +46,7 @@ var searchData=
   ['timerwraparoundtest_43',['TimerWraparoundTest',['../group__argus__test.html#ga980f35ff76c95550b670cf77db10f09d',1,'argus_hal_test.c']]],
   ['triggermeasurement_44',['TriggerMeasurement',['../group__argus__test.html#ga50cb46632e54a6c66bd513506759e348',1,'argus_hal_test.c']]],
   ['txcallback_45',['TxCallback',['../sci__datalink_8c.html#a2737046f04d0793053a11fd5e6baaa92',1,'sci_datalink.c']]],
-  ['txcmd_5fcalglobalrangeoffset_46',['TxCmd_CalGlobalRangeOffset',['../explorer__api__cal_8c.html#a626d34628d99be33619a7babed15da9a',1,'explorer_api_cal.c']]],
+  ['txcmd_5fcalglobalrangeoffsets_46',['TxCmd_CalGlobalRangeOffsets',['../explorer__api__cal_8c.html#ae302a7fe4cc99660b90670dbfa3ed6f3',1,'explorer_api_cal.c']]],
   ['txcmd_5fcalpixelrangeoffsets_47',['TxCmd_CalPixelRangeOffsets',['../explorer__api__cal_8c.html#afbfc945ef6dee7529d8a58af3cac70dc',1,'explorer_api_cal.c']]],
   ['txcmd_5fcalrangeoffsetseqsampletime_48',['TxCmd_CalRangeOffsetSeqSampleTime',['../explorer__api__cal_8c.html#a5d17b766d3af4bd2613ea4303037f50d',1,'explorer_api_cal.c']]],
   ['txcmd_5fcalxtalkpixel2pixel_49',['TxCmd_CalXtalkPixel2Pixel',['../explorer__api__cal_8c.html#a56721c18b19c8e9ea55d8ad3c9efd23a',1,'explorer_api_cal.c']]],

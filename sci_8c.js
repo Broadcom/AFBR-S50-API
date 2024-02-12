@@ -16,6 +16,6 @@ var sci_8c =
     [ "SCI_SetTxCommand", "group__sci.html#ga8dd0c11bb039dcff0f5a2e7a1b3b4c92", null ],
     [ "SCI_UnsetCommand", "group__sci.html#ga2e1f0e0cabac70c3b82ab9cc9720d827", null ],
     [ "myCCB", "sci_8c.html#ada4ae339d14de9fc8c84e9a0ba275273", null ],
-    [ "SCI_ErrorCallback", "sci_8c.html#a4136924ff9dc93e4fc95305d5ccf4501", null ],
+    [ "SCI_ErrorCallback", "sci_8c.html#aec345d4adc518338c60406e3d94c7918", null ],
     [ "SCI_RxCallback", "sci_8c.html#adc2ecea2d5c7a4b7ce32afaaf50fa2bb", null ]
 ];

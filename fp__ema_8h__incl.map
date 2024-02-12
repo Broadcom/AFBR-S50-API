@@ -1,8 +1,16 @@
 <map id="AFBR&#45;S50/Include/utility/fp_ema.h" name="AFBR&#45;S50/Include/utility/fp_ema.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,5,169,45"/>
-<area shape="rect" id="node2" href="$fp__def_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="32,240,100,265"/>
-<area shape="rect" id="node4" href="$fp__rnd_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="107,167,209,192"/>
-<area shape="rect" id="node6" href="$fp__mul_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="35,93,140,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="34,313,98,339"/>
-<area shape="rect" id="node5" title=" " alt="" coords="124,240,192,265"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,5,169,46"/>
+<area shape="rect" id="Node000002" href="$fp__def_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="32,241,99,267"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,48,42,69,25,95,19,130,25,166,37,199,52,227,47,230,32,201,20,167,14,130,21,93,37,66,59,44"/>
+<area shape="rect" id="Node000004" href="$fp__rnd_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="106,168,207,193"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="115,44,136,66,153,93,161,123,162,152,157,152,156,124,149,95,132,69,111,48"/>
+<area shape="rect" id="Node000006" href="$fp__mul_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="35,94,139,120"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="90,46,90,78,84,78,84,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="34,315,97,341"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="68,267,68,299,63,299,63,267"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="143,196,94,234,91,230,139,192"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="124,241,191,267"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="159,194,160,225,154,226,154,194"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="88,120,72,226,67,226,83,120"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="100,118,136,155,132,158,97,122"/>
 </map>

@@ -1,7 +1,12 @@
 <map id="AFBR&#45;S50/Include/utility/fp_rnd.h" name="AFBR&#45;S50/Include/utility/fp_rnd.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="125,5,289,45"/>
-<area shape="rect" id="node2" href="$fp__ema_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,181,169,221"/>
-<area shape="rect" id="node3" href="$fp__mul_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="125,93,289,133"/>
-<area shape="rect" id="node5" href="$explorer__api__data_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="313,93,472,133"/>
-<area shape="rect" id="node4" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="194,181,341,221"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="124,5,287,46"/>
+<area shape="rect" id="Node000002" href="$fp__ema_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,183,169,223"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,57,133,74,115,95,104,117,96,140,90,183,85,182,91,139,99,115,110,93,129,70,152,53"/>
+<area shape="rect" id="Node000003" href="$fp__mul_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="124,94,287,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,62,208,94,203,94,203,62"/>
+<area shape="rect" id="Node000005" href="$explorer__api__data_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="311,94,468,135"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="262,50,349,91,347,96,260,55"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="168,146,115,184,112,180,165,142"/>
+<area shape="rect" id="Node000004" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="193,183,338,223"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="230,146,254,181,250,184,226,149"/>
 </map>

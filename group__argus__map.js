@@ -19,14 +19,18 @@ var group__argus__map =
     [ "PIXELCH_DISABLE", "group__argus__map.html#ga3d7cf748c2db341a24cb3f016bddd57c", null ],
     [ "PIXELCH_ENABLE", "group__argus__map.html#ga5a24ea85779702aee04bf2fa260db833", null ],
     [ "PIXELCH_ISENABLED", "group__argus__map.html#ga1bf138d6fadff2f28dfd8792c51687da", null ],
+    [ "PIXELCH_MASK", "group__argus__map.html#ga39fe4f4fdb82a794c465cc33d8ed020e", null ],
     [ "PIXELN_DISABLE", "group__argus__map.html#ga91c078d2261a261e89c5cc15f8d95ea9", null ],
     [ "PIXELN_ENABLE", "group__argus__map.html#ga52036de87980ad18c03e32030c461492", null ],
     [ "PIXELN_ISENABLED", "group__argus__map.html#gac988f6a8ec90ed0977066e8cc8d9eaea", null ],
+    [ "PIXELN_MASK", "group__argus__map.html#ga38a7860c2be206a557238038fee3dee8", null ],
     [ "PIXELXY_DISABLE", "group__argus__map.html#ga7a40569c2bf00c02841b1eff390ba659", null ],
     [ "PIXELXY_ENABLE", "group__argus__map.html#gae32b946e334dbc39181bac75790064dc", null ],
     [ "PIXELXY_ISENABLED", "group__argus__map.html#gaa51a0ce9b1e5dd179fbeaedfc4dd80e6", null ],
+    [ "PIXELXY_MASK", "group__argus__map.html#gaca47d1f31e1e41bb9f76ed01d2629063", null ],
     [ "ChannelToPixelMask", "group__argus__map.html#ga6302f5fd14b9ccc655f47f0aaa79e4dc", null ],
     [ "FillPixelMask", "group__argus__map.html#ga5180d7801c5b68b8fb8ae640dc612543", null ],
+    [ "GetAdjacentPixelsMask", "group__argus__map.html#ga1f880f9a5361204f098eb5b9c3d5e071", null ],
     [ "PixelToChannelMask", "group__argus__map.html#ga0334e020000ed46b7b392d94a25ebfb8", null ],
     [ "ShiftSelectedPixels", "group__argus__map.html#ga4545757e36411fa348b27c725a65f1c6", null ]
 ];

@@ -1,0 +1,5 @@
+<map id="argus_cal_xtalk_table_t" name="argus_cal_xtalk_table_t">
+<area shape="rect" id="Node000001" title="Pixel Crosstalk Vector Table." alt="" coords="5,124,163,150"/>
+<area shape="rect" id="Node000002" href="$structxtalk__t.html" title="Pixel Crosstalk Compensation Vector." alt="" coords="54,5,114,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,47,87,123,81,123,81,47"/>
+</map>

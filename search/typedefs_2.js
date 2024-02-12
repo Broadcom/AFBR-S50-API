@@ -2,7 +2,7 @@ var searchData=
 [
   ['s2pi_5fcallback_5ft_0',['s2pi_callback_t',['../group__argus__s2pi.html#ga0146c4f3ef32320d6fc869b9018ffeeb',1,'argus_s2pi.h']]],
   ['s2pi_5firq_5fcallback_5ft_1',['s2pi_irq_callback_t',['../group__argus__s2pi.html#ga9401acadf486ee660bfb6900da57719c',1,'argus_s2pi.h']]],
-  ['s2pi_5fslave_5ft_2',['s2pi_slave_t',['../group__argus__api.html#gaa236b64d7430965890e9c6834e24c317',1,'s2pi_slave_t():&#160;argus_api.h'],['../group__argus__s2pi.html#gaa236b64d7430965890e9c6834e24c317',1,'s2pi_slave_t():&#160;argus_s2pi.h']]],
+  ['s2pi_5fslave_5ft_2',['s2pi_slave_t',['../group__argus__api.html#gaa236b64d7430965890e9c6834e24c317',1,'s2pi_slave_t:&#160;argus_api.h'],['../group__argus__s2pi.html#gaa236b64d7430965890e9c6834e24c317',1,'s2pi_slave_t:&#160;argus_s2pi.h']]],
   ['sci_5fcmd_5ft_3',['sci_cmd_t',['../group__sci.html#gae0765ecea75b1c8c72f65e19e099ebe9',1,'sci.h']]],
   ['sci_5fdata_5ft_4',['sci_data_t',['../group__sci.html#gaf71636db1f647717026ffe3bb0fa15a3',1,'sci.h']]],
   ['sci_5fdevice_5ft_5',['sci_device_t',['../group__sci.html#ga0e012ddfd289bcc3d60f1a8737e5bd9c',1,'sci.h']]],

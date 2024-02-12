@@ -1,5 +1,7 @@
 <map id="Sources/ExplorerApp/tasks/task_profiler.h" name="Sources/ExplorerApp/tasks/task_profiler.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="93,5,236,45"/>
-<area shape="rect" id="node2" href="$task__profiler_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="5,93,148,133"/>
-<area shape="rect" id="node3" href="$task__scheduler_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="173,93,333,133"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="92,5,234,46"/>
+<area shape="rect" id="Node000002" href="$task__profiler_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="5,94,148,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,59,98,95,94,92,131,55"/>
+<area shape="rect" id="Node000003" href="$task__scheduler_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="172,94,331,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,55,233,92,229,95,192,59"/>
 </map>

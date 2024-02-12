@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['s2pi_3a_20serial_20peripheral_20interface_0',['S2PI: Serial Peripheral Interface',['../group__argus__s2pi.html',1,'']]],
-  ['sci_3a_20byte_20stuffing_1',['SCI: Byte Stuffing',['../group__sci__bytestuffing.html',1,'']]],
-  ['sci_3a_20crc8_2',['SCI: CRC8',['../group__sci__crc.html',1,'']]],
-  ['sci_3a_20data_20frames_3',['SCI: Data Frames',['../group__sci__frame.html',1,'']]],
-  ['sci_3a_20data_20link_20layer_4',['SCI: Data Link Layer',['../group__sci__datalink.html',1,'']]],
-  ['sci_3a_20generic_20command_20definitions_5',['SCI: Generic Command Definitions',['../group__sci__cmd.html',1,'']]],
-  ['sci_3a_20handshaking_6',['SCI: Handshaking',['../group__sci__handshaking.html',1,'']]],
-  ['sci_3a_20systems_20communication_20interface_7',['SCI: Systems Communication Interface',['../group__sci.html',1,'']]],
-  ['shot_20noise_20monitor_8',['Shot Noise Monitor',['../group__argus__snm.html',1,'']]],
-  ['status_20codes_9',['Status Codes',['../group__argus__status.html',1,'(Global Namespace)'],['../group__scheduler__status.html',1,'(Global Namespace)']]]
+  ['macro_20operations_0',['Explorer Macro Operations',['../group__explorer__macro.html',1,'']]],
+  ['mapping_1',['Pixel Channel Mapping',['../group__argus__map.html',1,'']]],
+  ['math_2',['math',['../group__argus__fp.html',1,'Fixed Point Math'],['../group__argus__misc.html',1,'Miscellaneous Math']]],
+  ['measurement_20data_3',['Measurement Data',['../group__argus__res.html',1,'']]],
+  ['measurement_20device_20control_4',['Measurement/Device Control',['../group__argus__meas.html',1,'']]],
+  ['memory_20layer_5',['NVM: Non-Volatile Memory Layer',['../group__argus__nvm.html',1,'']]],
+  ['miscellaneous_20math_6',['Miscellaneous Math',['../group__argus__misc.html',1,'']]],
+  ['mode_7',['Dual Frequency Mode',['../group__argus__dfm.html',1,'']]],
+  ['module_8',['AFBR-S50 Explorer Flash Module',['../group__core__flash.html',1,'']]],
+  ['monitor_9',['Shot Noise Monitor',['../group__argus__snm.html',1,'']]]
 ];

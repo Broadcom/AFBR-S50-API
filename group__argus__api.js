@@ -74,5 +74,6 @@ var group__argus__api =
     [ "Argus_Init", "group__argus__api.html#ga7d724a6657138f112bff554f7db2a898", null ],
     [ "Argus_InitMode", "group__argus__api.html#ga7bd03721a1412baf755c81a2d2dab06e", null ],
     [ "Argus_Reinit", "group__argus__api.html#gab1dd6c99418b2e470a29b85721edc93f", null ],
-    [ "Argus_ReinitMode", "group__argus__api.html#ga899559efe4ddce8d4bb17b5cc988cd34", null ]
+    [ "Argus_ReinitMode", "group__argus__api.html#ga899559efe4ddce8d4bb17b5cc988cd34", null ],
+    [ "Argus_RestoreDeviceState", "group__argus__api.html#ga4862877c07b190ffb77af7b39419e2f9", null ]
 ];

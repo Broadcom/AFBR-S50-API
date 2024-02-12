@@ -1,4 +1,4 @@
 <map id="S2PI: Serial Peripheral Interface" name="S2PI: Serial Peripheral Interface">
-<area shape="rect" id="node1" href="$group__argus__hal.html" title="Collection of all interfaces for the Hardware Abstraction Layers (HAL)." alt="" coords="5,5,152,45"/>
-<area shape="rect" id="node2" title="S2PI: SPI incl. GPIO Hardware Layer Module." alt="" coords="200,5,351,45"/>
+<area shape="rect" id="Node000002" href="$group__argus__hal.html" title="Collection of all interfaces for the Hardware Abstraction Layers (HAL)." alt="" coords="5,5,152,46"/>
+<area shape="rect" id="Node000001" title="S2PI: SPI incl. GPIO Hardware Layer Module." alt="" coords="200,5,350,46"/>
 </map>

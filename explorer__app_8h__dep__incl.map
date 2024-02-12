@@ -1,8 +1,15 @@
 <map id="Sources/ExplorerApp/explorer_app.h" name="Sources/ExplorerApp/explorer_app.h">
-<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="227,5,369,45"/>
-<area shape="rect" id="node2" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,181,148,221"/>
-<area shape="rect" id="node3" href="$explorer__tasks_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="339,181,481,221"/>
-<area shape="rect" id="node4" href="$explorer__tasks_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="172,93,315,133"/>
-<area shape="rect" id="node6" href="$_explorer_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="391,93,533,133"/>
-<area shape="rect" id="node5" href="$core__utils_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="172,181,315,221"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="225,5,368,46"/>
+<area shape="rect" id="Node000002" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,183,148,223"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,55,196,73,162,96,120,141,90,184,86,181,116,137,159,92,193,69,229,50"/>
+<area shape="rect" id="Node000003" href="$explorer__tasks_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="339,183,481,223"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="320,58,399,181,395,184,315,60"/>
+<area shape="rect" id="Node000004" href="$explorer__tasks_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="172,94,314,135"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="279,61,257,95,253,92,274,58"/>
+<area shape="rect" id="Node000006" href="$_explorer_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="388,94,530,135"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="348,51,424,91,421,96,346,56"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="193,144,115,185,113,180,191,140"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="296,140,373,180,371,185,293,144"/>
+<area shape="rect" id="Node000005" href="$core__utils_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="172,183,314,223"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="246,150,246,182,241,182,241,150"/>
 </map>

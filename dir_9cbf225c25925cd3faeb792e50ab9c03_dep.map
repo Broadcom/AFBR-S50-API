@@ -1,8 +1,10 @@
 <map id="AFBR&#45;S50" name="AFBR&#45;S50">
-<area shape="rect" id="node2" href="dir_82027cc1cfaf56e8782fb3fde083c666.html" title="Include" alt="" coords="76,100,140,125"/>
-<area shape="rect" id="node3" href="dir_978dc27316e1351ee55a5f870de08f3c.html" title="Test" alt="" coords="128,27,176,52"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000014_000009.html" title="6" alt="" coords="128,81,136,96"/>
+<area shape="rect" id="node2" href="dir_82027cc1cfaf56e8782fb3fde083c666.html" title="Include" alt="" coords="76,100,140,126"/>
+<area shape="rect" id="node3" href="dir_978dc27316e1351ee55a5f870de08f3c.html" title="Test" alt="" coords="127,27,174,52"/>
+<area shape="poly" id="edge1" href="dir_000014_000009.html" alt="" coords="146,54,125,88,121,85,141,51"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000014_000009.html" title="6" alt="" coords="128,81,135,96"/>
 <area shape="rect" id="node4" href="dir_068bc7b3e9785a128fee02175d1e2953.html" title="Xtalk&#45;CLI" alt="" coords="27,27,104,52"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000016_000009.html" title="3" alt="" coords="95,72,103,87"/>
-<area shape="rect" id="clust1" href="dir_9cbf225c25925cd3faeb792e50ab9c03.html" alt="" coords="16,16,296,136"/>
+<area shape="poly" id="edge2" href="dir_000016_000009.html" alt="" coords="75,51,95,85,91,88,70,54"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000016_000009.html" title="3" alt="" coords="95,72,102,87"/>
+<area shape="rect" id="clust1" href="dir_9cbf225c25925cd3faeb792e50ab9c03.html" alt="" coords="16,16,292,137"/>
 </map>
