@@ -111,15 +111,24 @@ static void Serialize_Cfg_PBA(sci_frame_t * frame, argus_cfg_pba_t const * pba)
     assert(pba != 0);
 
     SCI_Frame_Queue08u(frame, !!(pba->Enabled & PBA_ENABLE));
-    SCI_Frame_Queue08u(frame, !!(pba->Enabled & PBA_ENABLE_GOLDPX));
+    SCI_Frame_Queue08u(frame, !!(pba->Enabled & PBA_ENABLE_GOLDPX_FALLBACK_MODE));
+    SCI_Frame_Queue08u(frame, !!(pba->Enabled & PBA_ENABLE_GOLDPX_PRIORITY_MODE));
     SCI_Frame_Queue08u(frame, !!(pba->Enabled & PBA_ENABLE_MIN_DIST_SCOPE));
     SCI_Frame_Queue08u(frame, pba->AveragingMode);
     SCI_Frame_Queue32u(frame, pba->PrefilterMask);
-    SCI_Frame_Queue16u(frame, pba->AbsAmplThreshold);
-    SCI_Frame_Queue08u(frame, pba->RelAmplThreshold);
-    SCI_Frame_Queue32s(frame, pba->AbsMinDistanceThreshold);
-    SCI_Frame_Queue16u(frame, pba->AbsMinDistanceScope);
-    SCI_Frame_Queue08u(frame, pba->RelMinDistanceScope);
+    SCI_Frame_Queue16u(frame, pba->AbsoluteAmplitudeExclusion);
+    SCI_Frame_Queue16u(frame, pba->AbsoluteAmplitudeInclusion);
+    SCI_Frame_Queue08u(frame, pba->RelativeAmplitudeExclusion);
+    SCI_Frame_Queue08u(frame, pba->RelativeAmplitudeInclusion);
+    SCI_Frame_Queue32s(frame, pba->AbsoluteMinimumDistanceThreshold);
+    SCI_Frame_Queue16u(frame, pba->AbsoluteDistanceScopeExclusion);
+    SCI_Frame_Queue16u(frame, pba->AbsoluteDistanceScopeInclusion);
+    SCI_Frame_Queue08u(frame, pba->RelativeDistanceScopeExclusion);
+    SCI_Frame_Queue08u(frame, pba->RelativeDistanceScopeInclusion);
+    SCI_Frame_Queue16u(frame, pba->GoldenPixelPriorityAmplitudeExclusion);
+    SCI_Frame_Queue16u(frame, pba->GoldenPixelPriorityAmplitudeInclusion);
+    SCI_Frame_Queue08u(frame, pba->GoldenPixelSaturationFilterPixelThreshold);
+    SCI_Frame_Queue08u(frame, pba->GoldenPixelOutOfSyncAgeThreshold);
 }
 static void Deserialize_Cfg_PBA(sci_frame_t * frame, argus_cfg_pba_t * pba)
 {
@@ -128,15 +137,24 @@ static void Deserialize_Cfg_PBA(sci_frame_t * frame, argus_cfg_pba_t * pba)
 
     pba->Enabled = 0;
     pba->Enabled |= SCI_Frame_Dequeue08u(frame) ? PBA_ENABLE : 0;
-    pba->Enabled |= SCI_Frame_Dequeue08u(frame) ? PBA_ENABLE_GOLDPX : 0;
+    pba->Enabled |= SCI_Frame_Dequeue08u(frame) ? PBA_ENABLE_GOLDPX_FALLBACK_MODE : 0;
+    pba->Enabled |= SCI_Frame_Dequeue08u(frame) ? PBA_ENABLE_GOLDPX_PRIORITY_MODE : 0;
     pba->Enabled |= SCI_Frame_Dequeue08u(frame) ? PBA_ENABLE_MIN_DIST_SCOPE : 0;
     pba->AveragingMode = SCI_Frame_Dequeue08u(frame);
     pba->PrefilterMask = SCI_Frame_Dequeue32u(frame);
-    pba->AbsAmplThreshold = SCI_Frame_Dequeue16u(frame);
-    pba->RelAmplThreshold = SCI_Frame_Dequeue08u(frame);
-    pba->AbsMinDistanceThreshold = SCI_Frame_Dequeue32s(frame);
-    pba->AbsMinDistanceScope = SCI_Frame_Dequeue16u(frame);
-    pba->RelMinDistanceScope = SCI_Frame_Dequeue08u(frame);
+    pba->AbsoluteAmplitudeExclusion = SCI_Frame_Dequeue16u(frame);
+    pba->AbsoluteAmplitudeInclusion = SCI_Frame_Dequeue16u(frame);
+    pba->RelativeAmplitudeExclusion = SCI_Frame_Dequeue08u(frame);
+    pba->RelativeAmplitudeInclusion = SCI_Frame_Dequeue08u(frame);
+    pba->AbsoluteMinimumDistanceThreshold = SCI_Frame_Dequeue32s(frame);
+    pba->AbsoluteDistanceScopeExclusion = SCI_Frame_Dequeue16u(frame);
+    pba->AbsoluteDistanceScopeInclusion = SCI_Frame_Dequeue16u(frame);
+    pba->RelativeDistanceScopeExclusion = SCI_Frame_Dequeue08u(frame);
+    pba->RelativeDistanceScopeInclusion = SCI_Frame_Dequeue08u(frame);
+    pba->GoldenPixelPriorityAmplitudeExclusion = SCI_Frame_Dequeue16u(frame);
+    pba->GoldenPixelPriorityAmplitudeInclusion = SCI_Frame_Dequeue16u(frame);
+    pba->GoldenPixelSaturationFilterPixelThreshold = SCI_Frame_Dequeue08u(frame);
+    pba->GoldenPixelOutOfSyncAgeThreshold = SCI_Frame_Dequeue08u(frame);
 }
 
 

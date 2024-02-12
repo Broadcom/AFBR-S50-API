@@ -81,7 +81,7 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave)
      * Every call to an API function requires the passing of a pointer to this
      * data structure. */
     argus_hnd_t * device = Argus_CreateHandle();
-    HandleError(device ? STATUS_OK : ERROR_FAIL, "Argus_CreateHandle failed!");
+    HandleError(device ? STATUS_OK : ERROR_FAIL, true, "Argus_CreateHandle failed!");
 
     /* Initialize the API with the dedicated default measurement mode.
      * This implicitly calls the initialization functions
@@ -96,13 +96,13 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave)
      * parameter to choose the measurement mode: see the #argus_mode_t
      * enumeration for more information on available measurement modes. */
     status_t status = Argus_Init(device, slave);
-    HandleError(status, "Argus_Init failed!");
+    HandleError(status, true, "Argus_Init failed!");
 
     /* Adjust additional configuration parameters by invoking the dedicated API methods.
      * Note: The maximum frame rate is limited by the amount of data sent via UART.
      *       See #PrintResults function for more information. */
     status = Argus_SetConfigurationFrameTime(device, 100000); // 0.1 second = 10 Hz
-    HandleError(status, "Argus_SetConfigurationFrameTime failed!");
+    HandleError(status, true, "Argus_SetConfigurationFrameTime failed!");
 
     return device;
 }
@@ -121,7 +121,7 @@ static status_t MeasurementReadyCallback(status_t status, argus_hnd_t * device)
 {
     (void)device; // unused in this example...
 
-    HandleError(status, "Measurement Ready Callback received error!");
+    HandleError(status, false, "Measurement Ready Callback received error!");
 
     /* Count the data ready events, i.e. the number of times the
      * Argus_EvaluateData function must be called from main thread.
@@ -223,7 +223,7 @@ void main(void)
      * Note that the timer based measurement is not implemented for multiple
      * instance yet! */
     status = Argus_StartMeasurementTimer(device, &MeasurementReadyCallback);
-    HandleError(status, "Argus_StartMeasurementTimer failed!");
+    HandleError(status, true, "Argus_StartMeasurementTimer failed!");
 
     /* The program loop ... */
     for (;;)
@@ -240,7 +240,7 @@ void main(void)
 
             /* Evaluate the raw measurement results. */
             status = Argus_EvaluateData(device, &res);
-            HandleError(status, "Argus_EvaluateData failed!");
+            HandleError(status, false, "Argus_EvaluateData failed!");
 
             /* Use the obtain results, e.g. print via UART. */
             PrintResults(&res);

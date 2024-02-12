@@ -50,7 +50,7 @@ int main(void)
     /* Initialize the platform hardware including the required peripherals
      * for the API. */
     status_t status = Board_Init();
-    HandleError(status, "Board initialization failed!");
+    HandleError(status, true, "Board initialization failed!");
 
     /* Pass control to the example code. */
     ExampleMain();
@@ -59,13 +59,18 @@ int main(void)
     for (;;);
 }
 
-void HandleError(status_t status, char const * msg)
+void HandleError(status_t status, bool stop, char const * msg)
 {
     /* Check for status < 0 and print message and halt the program execution. */
     if (status < STATUS_OK)
     {
-        print("ERROR: %s\nError Code: %d", msg, status);
-        while (1) __asm("nop"); // stop!
+        print("ERROR (%d): %s\n", status, msg);
+        if (stop)
+        {
+            print(" --> Stopped execution due to a critical issue!\n"
+                  "     Check the hardware end reset the board!\n");
+            while (1) __asm("nop"); // stop!
+        }
     }
 }
 

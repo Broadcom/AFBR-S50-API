@@ -237,8 +237,11 @@ static uint8_t const * myRxPtr;
 static size_t myFrameSize;
 static char myString[S2PI_LOG_BUFFER_SIZE];
 static char * myWrPtr = myString;
+static bool isLogging = false;
 static void s2pi_log_setup(int slave, uint8_t const * txData, uint8_t const * rxData, size_t frameSize)
 {
+    if (!isLogging) return;
+
     myRxPtr = rxData;
     myFrameSize = frameSize;
 
@@ -300,6 +303,8 @@ static void s2pi_log_send(void)
 
     print(myString);
 }
+void S2PI_StartLogging(void){ isLogging = true;}
+void S2PI_StopLogging(void){ isLogging = false;}
 #else
 #define s2pi_log_setup(...) (void)0
 #define s2pi_log_send(...)  (void)0

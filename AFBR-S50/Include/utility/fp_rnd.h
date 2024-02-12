@@ -79,7 +79,7 @@ inline uint32_t fp_rndu(uint32_t Q, uint_fast8_t n)
  *****************************************************************************/
 inline int32_t fp_rnds(int32_t Q, uint_fast8_t n)
 {
-    return (Q < 0) ? -fp_rndu(-Q, n) : fp_rndu(Q, n);
+    return (Q < 0) ? -(int32_t)fp_rndu((uint32_t)(-Q), n) : (int32_t)fp_rndu((uint32_t)Q, n);
 }
 
 /*!***************************************************************************
@@ -107,7 +107,7 @@ inline uint32_t fp_truncu(uint32_t Q, uint_fast8_t n)
  *****************************************************************************/
 inline int32_t fp_truncs(int32_t Q, uint_fast8_t n)
 {
-    return (Q < 0) ? -fp_truncu(-Q, n) : fp_truncu(Q, n);
+    return (Q < 0) ? -(int32_t)fp_truncu((uint32_t)(-Q), n) : (int32_t)fp_truncu((uint32_t)Q, n);
 }
 
 /*! @} */

@@ -1214,6 +1214,8 @@ static void Handle_Error(status_t status, char const * msg)
 static void UART_Rx_Callback(uint8_t const * data, uint32_t const size)
 {
     assert(data != NULL);
+    (void)size;
+
     rxdata = data[0]; // ignores other than first characters!
 }
 

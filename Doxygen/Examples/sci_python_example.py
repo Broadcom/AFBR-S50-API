@@ -6,7 +6,7 @@
 # to the device. Connect the OpenSDA USB port (NOT the one labeled with KL46Z)
 # to your computer. Go to the Device/Binary folder install directory of you SDK
 # (default: C:\Program Files (x86)\Broadcom\AFBR-S50 SDK\Device\Binary) and copy
-# the AFBR.S50.ExplorerApp.vX.X.X_KL46z_UART.srec (not the *_USB.*!!) file to
+# the AFBR.S50.ExplorerApp.vX.X.X_KL46z_UART.bin (not the *_USB.*!!) file to
 # the OpenSDA USB drive.
 #
 # After flashing, the device is ready to receive commands via the OpenSDA serial

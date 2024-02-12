@@ -164,10 +164,10 @@ static void Task_Idle(idle_event_t * e);
 /* Prototypes for callback and interrupt service routines */
 
 /*! Callback function for new command received from SCI module. */
-static status_t SCI_RxCommandCallback(sci_frame_t * cmd);
+static status_t SCI_RxCommandCallbackHandler(sci_frame_t * cmd);
 
 /*! Callback function for error occurred within the SCI/UART module. */
-static void SCI_ErrorCallback(status_t status);
+static void SCI_ErrorCallbackHandler(status_t status);
 
 
 /******************************************************************************
@@ -217,8 +217,8 @@ status_t ExplorerApp_InitTasks()
     if (status < STATUS_OK) return status;
 
     /* Install SCI callbacks. */
-    SCI_SetRxCommandCallback(SCI_RxCommandCallback);
-    SCI_SetErrorCallback(SCI_ErrorCallback);
+    SCI_SetRxCommandCallback(SCI_RxCommandCallbackHandler);
+    SCI_SetErrorCallback(SCI_ErrorCallbackHandler);
 
     static idle_event_t idle_event = { 0 };
     status = Scheduler_PostEvent(myScheduler, TASK_IDLE, &idle_event);
@@ -445,12 +445,12 @@ status_t ExplorerApp_MeasurementReadyCallback(status_t status, argus_hnd_t * arg
     return status;
 }
 
-static void SCI_ErrorCallback(status_t status)
+static void SCI_ErrorCallbackHandler(status_t status)
 {
-    OnError(status, "Serial Error");
+    OnError(status, "SCI Error");
 }
 
-static status_t SCI_RxCommandCallback(sci_frame_t * cmd)
+static status_t SCI_RxCommandCallbackHandler(sci_frame_t * cmd)
 {
     assert(cmd);
     task_event_t * const event = (task_event_t * const)cmd;

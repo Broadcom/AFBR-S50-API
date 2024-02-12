@@ -66,5 +66,10 @@ void Board_Reset(void);
  *****************************************************************************/
 void Board_CheckReset(void);
 
+/*! The S2PI slave identifier. */
+typedef int32_t s2pi_slave_t;
+void Board_EnableDevice(s2pi_slave_t slave);
+void Board_DisableDevice(s2pi_slave_t slave);
+
 /*! @} */
 #endif /* BOARD_H */

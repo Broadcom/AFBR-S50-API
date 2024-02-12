@@ -53,13 +53,13 @@
 #define EXPLORER_VERSION_MAJOR    1
 
 /*! @brief Minor version number of the platform code. */
-#define EXPLORER_VERSION_MINOR    4
+#define EXPLORER_VERSION_MINOR    5
 
 /*! @brief Bugfix version number of the platform code. */
-#define EXPLORER_VERSION_BUGFIX   4
+#define EXPLORER_VERSION_BUGFIX   6
 
 /*! Build version number of the AFBR-S50 API. */
-#define EXPLORER_VERSION_BUILD    "20230327150535"
+#define EXPLORER_VERSION_BUILD    "20240208081753"
 
 /*****************************************************************************/
 

@@ -33,62 +33,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include "examples.h"
-#if API_EXAMPLE == 4
-
 #include "argus.h"
-#include "board/board_config.h"    // declaration of S2PI slaves
-#include "platform/argus_print.h"  // declaration of print()
-#include "driver/irq.h" // declaration of IRQ_LOCK/UNLOCK()
+ // additional #includes ...
 
-#if RUN_HAL_TESTS
-#include "argus_hal_test.h"
-#endif
-
-/*! The number of devices connected/used in the example. Range: 1 to 4. */
-#ifndef DEVICE_COUNT
-#define DEVICE_COUNT 4
-#endif
-
-/*! Define the SPI slave for device. */
-#ifndef SPI_SLAVE1
-#define SPI_SLAVE1 (SPI_SLAVE)
-#endif
-/*! Define the SPI slave for device. */
-#ifndef SPI_SLAVE2
-#define SPI_SLAVE2 (SPI_SLAVE1 + 1)
-#endif
-/*! Define the SPI slave for device. */
-#ifndef SPI_SLAVE3
-#define SPI_SLAVE3 (SPI_SLAVE2 + 1)
-#endif
-/*! Define the SPI slave for device. */
-#ifndef SPI_SLAVE4
-#define SPI_SLAVE4 (SPI_SLAVE3 + 1)
-#endif
-
-/*! Size of the date ready event queue. Max. 2 values per device. */
-#define FIFO_SIZE 8
-
-/*! FIFO (First-In-First-Out) Data Buffer Structure. */
-typedef struct fifo_t
-{
-    /*! Data buffer. */
-    argus_hnd_t * Buffer[FIFO_SIZE];
-
-    /*! Data write pointer */
-    argus_hnd_t ** volatile WrPtr;
-
-    /*! Data read pointer */
-    argus_hnd_t ** volatile  RdPtr;
-
-    /*! Current number of data in buffer. */
-    size_t volatile Load;
-
-} fifo_t;
-
-/*! The date ready event queue for storing data ready events from the API. */
-static fifo_t DataReadyEventQueue = { 0 };
+#include "argus_xtalk_cal_cli.h"
 
 /*!***************************************************************************
  * @brief   Creates and initializes a new device instance.
@@ -133,42 +81,51 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave)
 }
 
 /*!***************************************************************************
- * @brief   Measurement data ready callback function.
- *
- * @param   status The measurement/device status from the last measurement cycle.
+ * @brief   Triggers a measurement cycle in blocking manner.
  *
  * @param   device The pointer to the handle of the calling API instance. Used to
- *                 identify the calling instance in case of multiple devices.
+ *                identify the calling instance in case of multiple devices.
  *
- * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
+ * @param   res The pointer to the results data structure where the final
+ *              measurement results are stored.
  *****************************************************************************/
-static status_t MeasurementReadyCallback(status_t status, argus_hnd_t * device)
+static void TriggerMeasurementBlocking(argus_hnd_t * device, argus_results_t * res)
 {
-    (void)device; // unused in this example...
+    status_t status = STATUS_OK;
 
-    HandleError(status, false, "Measurement Ready Callback received error!");
-
-    /* Queue the data ready events, i.e. the device handle pointer,
-     * to inform the main thread to call the Argus_EvaluateData function.
+    /* Triggers a single measurement.
      *
-     * Note: Since multiple devices are used, the device parameter
-     *       can NOT be ignored. The device parameter determines
-     *       the calling device instance and will be stored in a
-     *       event queue in the order of measurement ready events.
+     * Note that due to the laser safety algorithms, the method might refuse
+     * to restart a measurement when the appropriate time has not been elapsed
+     * right now. The function returns with status #STATUS_ARGUS_POWERLIMIT and
+     * the function must be called again later. Use the frame time configuration
+     * in order to adjust the timing between two measurement frames.
      *
-     * Note: Do not call the Argus_EvaluateMeasurement method
-     *       from within this callback since it is invoked in
-     *       a interrupt service routine and should return as
-     *       soon as possible. */
+     * The callback can be null for the trigger function if the #Argus_GetStatus
+     * function is used to await the measurement cycle to finish. Otherwise, the
+     * callback should be set to receive the measurement ready event. See the
+     * advanced example on how to use the callback. */
+    do
+    {
+        status = Argus_TriggerMeasurement(device, 0);
+    } while (status == STATUS_ARGUS_POWERLIMIT);
+    HandleError(status, false, "Argus_TriggerMeasurement failed!");
 
-    assert(DataReadyEventQueue.Load < FIFO_SIZE);
-    *DataReadyEventQueue.WrPtr = device;
-    DataReadyEventQueue.WrPtr++;
-    if (DataReadyEventQueue.WrPtr >= DataReadyEventQueue.Buffer + FIFO_SIZE)
-        DataReadyEventQueue.WrPtr = DataReadyEventQueue.Buffer;
-    DataReadyEventQueue.Load++;
+    /* Wait until measurement data is ready by polling the #Argus_GetStatus
+     * function until the status is not #STATUS_BUSY any more. Note that
+     * the actual measurement is performed asynchronously in the background
+     * (i.e. on the device, in DMA transfers and in interrupt service routines).
+     * Thus, one could do more useful stuff while waiting here... */
+    do
+    {
+        status = Argus_GetStatus(device);
+    }
+    while (status == STATUS_BUSY);
+    HandleError(status, false, "Waiting for measurement data ready (Argus_GetStatus) failed!");
 
-    return STATUS_OK;
+    /* Evaluate the raw measurement results by calling the #Argus_EvaluateData function. */
+    status = Argus_EvaluateData(device, res);
+    HandleError(status, false, "Argus_EvaluateData failed!");
 }
 
 /*!***************************************************************************
@@ -177,16 +134,14 @@ static status_t MeasurementReadyCallback(status_t status, argus_hnd_t * device)
  * @details Prints some measurement data via UART in the following format:
  *
  *          ```
- *          #1: 123.456789 s; Range: 123456 mm;  Amplitude: 1234 LSB; Quality: 100;  Status: 0
+ *          123.456789 s; Range: 123456 mm;  Amplitude: 1234 LSB; Quality: 100;  Status: 0
  *          ```
  *
  * @param   res A pointer to the latest measurement results structure.
- * @param   id The identifier number to prepend to the print statement.
  *****************************************************************************/
-static void PrintResults(argus_results_t const * res, uint32_t id)
+static void PrintResults(argus_results_t const * res)
 {
     /* Print the recent measurement results:
-     * 0. Device ID
      * 1. Time stamp in seconds since the last MCU reset.
      * 2. Range in mm (converting the Q9.22 value to mm).
      * 3. Amplitude in LSB (converting the UQ12.4 value to LSB).
@@ -198,8 +153,7 @@ static void PrintResults(argus_results_t const * res, uint32_t id)
      *       approximately 80 characters per frame at 115200 bps which limits
      *       the max. frame rate of 144 fps:
      *       115200 bps / 10 [bauds-per-byte] / 80 [bytes-per-frame] = 144 fps */
-    print("#%06d:  %4d.%06d s; Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n",
-          id,
+    print("%4d.%06d s; Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n",
           res->TimeStamp.sec,
           res->TimeStamp.usec,
           res->Bin.Range / (Q9_22_ONE / 1000),
@@ -211,108 +165,59 @@ static void PrintResults(argus_results_t const * res, uint32_t id)
 /*!***************************************************************************
  * @brief   Prints information about the initialized devices.
  *
- * @details Prints information about the initialized devices.
- *
- * @param   device_count The number of connected devices.
- * @param   devices The array to the device handlers.
+ * @param   device The pointer to the device handler.
  *****************************************************************************/
-static void PrintDeviceInfo(const uint8_t device_count, argus_hnd_t * devices[static device_count])
+static void PrintDeviceInfo(argus_hnd_t * device)
 {
     /* Print some information about current API and connected device. */
     const uint32_t value = Argus_GetAPIVersion();
     const uint8_t a = (uint8_t)((value >> 24) & 0xFFU);
     const uint8_t b = (uint8_t)((value >> 16) & 0xFFU);
     const uint8_t c = (uint8_t)(value & 0xFFFFU);
+    const uint32_t id = Argus_GetChipID(device);
+    const char * m = Argus_GetModuleName(device);
 
-    print("\n##### AFBR-S50 API - Multi-Device Example #####################\n"
-          "  API Version: v%d.%d.%d\n", a, b, c);
-    for (uint8_t d = 0; d < device_count; d++)
-    {
-        const uint32_t id = Argus_GetChipID(devices[d]);
-        const char * m = Argus_GetModuleName(devices[d]);
-        print("  Chip ID #%d:  %d\n"
-              "  Module  #%d:  %s\n",
-              d + 1, id, d + 1, m);
-    }
-    print("###############################################################\n\n");
+    print("\n##### AFBR-S50 API - Simple Example ###########################\n"
+          "  API Version: v%d.%d.%d\n"
+          "  Chip ID:     %d\n"
+          "  Module:      %s\n"
+          "###############################################################\n\n",
+          a, b, c, id, m);
 }
 
 /*!***************************************************************************
- * @brief   Application entry point for the multi-device example.
+ * @brief   Application entry point for the simple example.
  *
  * @details The main function of the simple example, called after startup code
  *          and hardware initialization.
  *
  *          This function will never be exited!
  *****************************************************************************/
-void ExampleMain(void)
+void main(void)
 {
-    status_t status = STATUS_OK;
-    const s2pi_slave_t slaves[] = { SPI_SLAVE1, SPI_SLAVE2, SPI_SLAVE3, SPI_SLAVE4 };
-
-    /* Initialize event queue */
-    DataReadyEventQueue.WrPtr = DataReadyEventQueue.Buffer;
-    DataReadyEventQueue.RdPtr = DataReadyEventQueue.Buffer;
-    DataReadyEventQueue.Load = 0;
-
-#if RUN_HAL_TESTS
-    for (uint8_t d = 0; d < DEVICE_COUNT; d++)
-    {
-        /* Running a sequence of test in order to verify the HAL implementation. */
-        status_t status = Argus_VerifyHALImplementation(slaves[d]);
-        HandleError(status, true, "HAL Implementation verification failed!");
-    }
-#endif // RUN_HAL_TESTS
+    HardwareInit(); // defined elsewhere
 
     /* Instantiate and initialize the device handlers. */
-    argus_hnd_t * devices[DEVICE_COUNT] = { 0 };
-
-    for (uint8_t d = 0; d < DEVICE_COUNT; d++)
-    {
-        devices[d] = InitializeDevice(slaves[d]);
-    }
+    argus_hnd_t * device = InitializeDevice(SPI_SLAVE);
 
     /* Print a device information message. */
-    PrintDeviceInfo(sizeof(devices) / sizeof(devices[0]), devices);
+    PrintDeviceInfo(device);
 
-    /* Start the measurement timers within the API module.
-     * The callback is invoked every time a measurement has been finished.
-     * The callback is used to schedule the data evaluation routine to the
-     * main thread by the user.
-     * Note that the timer based measurement is not implemented for multiple
-     * instance yet! */
-    for (uint8_t d = 0; d < DEVICE_COUNT; d++)
-    {
-        status = Argus_StartMeasurementTimer(devices[d], &MeasurementReadyCallback);
-        HandleError(status, true, "Argus_StartMeasurementTimer failed!");
-    }
+    /* Enter the CLI to perform a xtalk calibration interactively.
+     * It guides through all steps needed to compensate electrical
+     * as well as optical xtalk caused by an application design. */
+    Argus_XtalkCalibration_CLI(device);
 
     /* The program loop ... */
     for (;;)
     {
-        /* Check if new measurement data is ready. */
-        if (DataReadyEventQueue.Load > 0)
-        {
-            IRQ_LOCK();
-            argus_hnd_t * device = *DataReadyEventQueue.RdPtr;
-            DataReadyEventQueue.Load--;
-            DataReadyEventQueue.RdPtr++;
-            if (DataReadyEventQueue.RdPtr >= DataReadyEventQueue.Buffer + FIFO_SIZE)
-                DataReadyEventQueue.RdPtr = DataReadyEventQueue.Buffer;
-            IRQ_UNLOCK();
+        /* The measurement data structure. */
+        argus_results_t res;
 
-            /* The measurement data structure. */
-            argus_results_t res;
+        /* Trigger a measurement for the current device. */
+        TriggerMeasurementBlocking(device, &res);
 
-            /* Evaluate the raw measurement results. */
-            status = Argus_EvaluateData(device, &res);
-            HandleError(status, false, "Argus_EvaluateData failed!");
-
-            /* Use the obtain results, e.g. print via UART. */
-            uint32_t id = Argus_GetChipID(device);
-            PrintResults(&res, id);
-        }
+        /* Use the obtain results, e.g. print via UART. */
+        PrintResults(&res);
     }
 }
-
-#endif // API_EXAMPLE

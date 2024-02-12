@@ -171,88 +171,31 @@ status_t S2PI_Init(s2pi_slave_t defaultSlave,
 }
 static inline void S2PI_InitPins()
 {
+    /* Initializes ports and pins: PWRx, CSx, IRQx */
     MX_GPIO_Init();
 
+    /* Initializes Pins: MOSI/MISO/CLK */
     S2PI_SetGPIOMode(true);
     S2PI_SetGPIOMode(false);
 
-    /* GPIO Ports Clock Enable (for CSn) */
-    S2PI_CS1_PORTCLK_ENB();
-    S2PI_IRQ1_PORTCLK_ENB();
-
-#if S2PI_SLAVE_COUNT >= 2
-    S2PI_CS2_PORTCLK_ENB();
-    S2PI_IRQ2_PORTCLK_ENB();
-#endif
-
-#if S2PI_SLAVE_COUNT >= 3
-    S2PI_CS3_PORTCLK_ENB();
-    S2PI_IRQ3_PORTCLK_ENB();
-#endif
-
-#if S2PI_SLAVE_COUNT >= 4
-    S2PI_CS4_PORTCLK_ENB();
-    S2PI_IRQ4_PORTCLK_ENB();
-#endif
-
-    /* Helper struct to Configure CSn */
-    GPIO_InitTypeDef GPIO_InitStructCS = {0};
-    GPIO_InitStructCS.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStructCS.Pull = GPIO_NOPULL;
-    GPIO_InitStructCS.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-
-    /* Helper struct to Configure IRQn */
-    GPIO_InitTypeDef GPIO_InitStructIRQ = {0};
-    GPIO_InitStructIRQ.Mode = GPIO_MODE_IT_FALLING;
-    GPIO_InitStructIRQ.Pull = GPIO_PULLUP;
-
-
-
-    GPIO_InitStructCS.Pin = S2PI_CS1_GPIO_PIN;
-    HAL_GPIO_WritePin(S2PI_CS1_GPIO, S2PI_CS1_GPIO_PIN, GPIO_PIN_SET);
-    HAL_GPIO_Init(S2PI_CS1_GPIO, &GPIO_InitStructCS);
-
-    GPIO_InitStructIRQ.Pin = S2PI_IRQ1_GPIO_PIN;
-    HAL_GPIO_Init(S2PI_IRQ1_GPIO, &GPIO_InitStructIRQ);
-    HAL_NVIC_SetPriority(S2PI_IRQ1_EXTI, 4, 0);
-    HAL_NVIC_EnableIRQ(S2PI_IRQ1_EXTI);
     myS2PIHnd.SlaveIrqMapping[S2PI_SLAVE1] = S2PI_IRQ1_GPIO_PIN;
 
 #if S2PI_SLAVE_COUNT >= 2
-    GPIO_InitStructCS.Pin = S2PI_CS2_GPIO_PIN;
-    HAL_GPIO_WritePin(S2PI_CS2_GPIO, S2PI_CS2_GPIO_PIN, GPIO_PIN_SET);
-    HAL_GPIO_Init(S2PI_CS2_GPIO, &GPIO_InitStructCS);
-
-    GPIO_InitStructIRQ.Pin = S2PI_IRQ2_GPIO_PIN;
-    HAL_GPIO_Init(S2PI_IRQ2_GPIO, &GPIO_InitStructIRQ);
-    HAL_NVIC_SetPriority(S2PI_IRQ2_EXTI, 4, 0);
-    HAL_NVIC_EnableIRQ(S2PI_IRQ2_EXTI);
     myS2PIHnd.SlaveIrqMapping[S2PI_SLAVE2] = S2PI_IRQ2_GPIO_PIN;
 #endif
 
 #if S2PI_SLAVE_COUNT >= 3
-    GPIO_InitStructCS.Pin = S2PI_CS3_GPIO_PIN;
-    HAL_GPIO_WritePin(S2PI_CS3_GPIO, S2PI_CS3_GPIO_PIN, GPIO_PIN_SET);
-    HAL_GPIO_Init(S2PI_CS3_GPIO, &GPIO_InitStructCS);
-
-    GPIO_InitStructIRQ.Pin = S2PI_IRQ3_GPIO_PIN;
-    HAL_GPIO_Init(S2PI_IRQ3_GPIO, &GPIO_InitStructIRQ);
-    HAL_NVIC_SetPriority(S2PI_IRQ3_EXTI, 4, 0);
-    HAL_NVIC_EnableIRQ(S2PI_IRQ3_EXTI);
     myS2PIHnd.SlaveIrqMapping[S2PI_SLAVE3] = S2PI_IRQ3_GPIO_PIN;
 #endif
 
 #if S2PI_SLAVE_COUNT >= 4
-    GPIO_InitStructCS.Pin = S2PI_CS4_GPIO_PIN;
-    HAL_GPIO_WritePin(S2PI_CS4_GPIO, S2PI_CS4_GPIO_PIN, GPIO_PIN_SET);
-    HAL_GPIO_Init(S2PI_CS4_GPIO, &GPIO_InitStructCS);
-
-    GPIO_InitStructIRQ.Pin = S2PI_IRQ4_GPIO_PIN;
-    HAL_GPIO_Init(S2PI_IRQ4_GPIO, &GPIO_InitStructIRQ);
-    HAL_NVIC_SetPriority(S2PI_IRQ4_EXTI, 4, 0);
-    HAL_NVIC_EnableIRQ(S2PI_IRQ4_EXTI);
     myS2PIHnd.SlaveIrqMapping[S2PI_SLAVE4] = S2PI_IRQ4_GPIO_PIN;
 #endif
+
+    /* The 4X board equipped with power switches require some delay
+     * until the devices have finished the power-on-reset (POR).
+     * Must be >= 2ms (?) */
+    Time_DelayMSec(3);
 }
 
 static inline status_t S2PI_SetSlaveInternal(s2pi_slave_t slave)
@@ -805,23 +748,4 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
             }
         }
     }
-}
-
-/* @brief This function handles EXTI line[9:5] interrupts. */
-void EXTI9_5_IRQHandler(void)
-{
-    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
-    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);
-}
-
-/* @brief This function handles EXTI line[15:10] interrupts. */
-void EXTI15_10_IRQHandler(void)
-{
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_10);
-}
-
-/* @brief This function handles EXTI line3 interrupts. */
-void EXTI3_IRQHandler(void)
-{
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
 }

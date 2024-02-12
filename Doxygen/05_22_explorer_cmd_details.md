@@ -754,8 +754,8 @@ Gets or sets the global range offset.
 
 \see
 
--   #Argus_GetCalibrationGlobalRangeOffset
--   #Argus_SetCalibrationGlobalRangeOffset
+-   #Argus_GetCalibrationGlobalRangeOffsets
+-   #Argus_SetCalibrationGlobalRangeOffsets
 
 ### Pixel Range Offsets {#cmd_cal_offsets}
 

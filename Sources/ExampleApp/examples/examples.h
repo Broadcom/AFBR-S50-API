@@ -103,7 +103,8 @@
 #error The selected API_EXAMPLE is not available!
 #endif
 
-#include "utility/status.h" // for definition of status_t
+#include "board/board.h"
+#include "platform/argus_print.h" // declaration of print()
 
 /*!***************************************************************************
  * @brief   Application entry point for the specified example.
@@ -121,9 +122,10 @@ void ExampleMain(void);
  * @details The example code calls this function whenever an unexpected error
  *          occurs, for example, if an API function returns an error code.
  *
- *          This implementation of the function will print the error message
- *          and then enter an infinite loop. The infinite loop is intended to
- *          prevent the program from continuing execution in case of errors.
+ *          This implementation of the function will print the error message.
+ *          If specified, the program execution will be stopped with an
+ *          infinite loop. Otherwise, the program will continue to run and the
+ *          error is printed and ignored.
  *
  * @warning This is only a simple example implementation that does not handle
  *          errors in a production system. It is intended to demonstrate the
@@ -136,9 +138,10 @@ void ExampleMain(void);
  *          the error by re-initializing the device.
  *
  * @param   status The specified status to be checked for errors.
+ * @param   stop Whether to stop the program (e.g. in case of a critical error).
  * @param   msg The associated error message to be printed in case of errors.
  *****************************************************************************/
-void HandleError(status_t status, char const * msg);
+void HandleError(status_t status, bool stop, char const * msg);
 
 /*! @} */
 #endif /* ARGUS_EXAMPLE_H */

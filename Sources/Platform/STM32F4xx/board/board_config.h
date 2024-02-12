@@ -121,6 +121,10 @@
 #define S2PI_IRQ1_EXTI              EXTI9_5_IRQn        /*!< S2PI Interrupt Line - ExtInt ID. */
 #define S2PI_IRQ1_PORTCLK_ENB()     __HAL_RCC_GPIOC_CLK_ENABLE()
 
+#define S2PI_PWR1_GPIO               GPIOB               /*!< Board Device Enable Line - GPIO. */
+#define S2PI_PWR1_GPIO_PIN           GPIO_PIN_6          /*!< Board Device Enable Line - Pin Number. */
+#define S2PI_PWR1_PORTCLK_ENB()      __HAL_RCC_GPIOB_CLK_ENABLE()
+
 #define S2PI_CS2_GPIO               GPIOA               /*!< S2PI Chip Select Line - GPIO. */
 #define S2PI_CS2_GPIO_PIN           GPIO_PIN_9          /*!< S2PI Chip Select Line - Pin Number. */
 #define S2PI_CS2_PORTCLK_ENB()      __HAL_RCC_GPIOA_CLK_ENABLE()
@@ -129,6 +133,10 @@
 #define S2PI_IRQ2_GPIO_PIN          GPIO_PIN_10         /*!< S2PI Interrupt Line - Pin Number. */
 #define S2PI_IRQ2_EXTI              EXTI15_10_IRQn      /*!< S2PI Interrupt Line - ExtInt ID. */
 #define S2PI_IRQ2_PORTCLK_ENB()     __HAL_RCC_GPIOA_CLK_ENABLE()
+
+#define S2PI_PWR2_GPIO               GPIOB               /*!< Board Device Enable Line - GPIO. */
+#define S2PI_PWR2_GPIO_PIN           GPIO_PIN_6          /*!< Board Device Enable Line - Pin Number. */
+#define S2PI_PWR2_PORTCLK_ENB()      __HAL_RCC_GPIOB_CLK_ENABLE()
 
 #define S2PI_CS3_GPIO               GPIOA               /*!< S2PI Chip Select Line - GPIO. */
 #define S2PI_CS3_GPIO_PIN           GPIO_PIN_8          /*!< S2PI Chip Select Line - Pin Number. */
@@ -139,6 +147,10 @@
 #define S2PI_IRQ3_EXTI              EXTI3_IRQn          /*!< S2PI Interrupt Line - ExtInt ID. */
 #define S2PI_IRQ3_PORTCLK_ENB()     __HAL_RCC_GPIOB_CLK_ENABLE()
 
+#define S2PI_PWR3_GPIO               GPIOB               /*!< Board Device Enable Line - GPIO. */
+#define S2PI_PWR3_GPIO_PIN           GPIO_PIN_6          /*!< Board Device Enable Line - Pin Number. */
+#define S2PI_PWR3_PORTCLK_ENB()      __HAL_RCC_GPIOB_CLK_ENABLE()
+
 #define S2PI_CS4_GPIO               GPIOB               /*!< S2PI Chip Select Line - GPIO. */
 #define S2PI_CS4_GPIO_PIN           GPIO_PIN_10         /*!< S2PI Chip Select Line - Pin Number. */
 #define S2PI_CS4_PORTCLK_ENB()      __HAL_RCC_GPIOB_CLK_ENABLE()
@@ -147,6 +159,10 @@
 #define S2PI_IRQ4_GPIO_PIN          GPIO_PIN_5          /*!< S2PI Interrupt Line - Pin Number. */
 #define S2PI_IRQ4_EXTI              EXTI9_5_IRQn        /*!< S2PI Interrupt Line - ExtInt ID. */
 #define S2PI_IRQ4_PORTCLK_ENB()     __HAL_RCC_GPIOB_CLK_ENABLE()
+
+#define S2PI_EN4_GPIO               GPIOB               /*!< Board Device Enable Line - GPIO. */
+#define S2PI_EN4_GPIO_PIN           GPIO_PIN_6          /*!< Board Device Enable Line - Pin Number. */
+#define S2PI_EN4_PORTCLK_ENB()      __HAL_RCC_GPIOB_CLK_ENABLE()
 
 
 #define S2PI_FUNCTION               GPIO_AF5_SPI1

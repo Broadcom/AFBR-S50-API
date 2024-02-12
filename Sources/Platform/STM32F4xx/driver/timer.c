@@ -39,12 +39,6 @@
 #include <assert.h>
 
 
-/*! Storage for the callback parameter */
-static void * callback_param_;
-
-/*! Callback function for PIT timer */
-static timer_cb_t timer_callback_;
-
 /*!***************************************************************************
  * @brief   Initializes the timer hardware.
  * @return  -
@@ -109,6 +103,14 @@ void Timer_GetCounterValue(uint32_t * hct, uint32_t * lct)
 
 #endif
 
+#if TIMER_PIT_ENABLED
+/*! Storage for the callback parameter */
+static void * callback_param_;
+
+/*! Callback function for PIT timer */
+static timer_cb_t timer_callback_;
+
+
 /*!***************************************************************************
  * @brief   Sets the timer interval for a specified callback parameter.
  * @details Sets the callback interval for the specified parameter and starts
@@ -154,7 +156,7 @@ status_t Timer_SetInterval(uint32_t dt_microseconds, void * param)
          * of the auto-reload into the internal shadow registers. This is
          * required to update the timer configuration before the next update
          * event (i.e. under/overflow). Unfortunately this also generates
-         * and immediate interrupt wich is cleared in the next statement. */
+         * and immediate interrupt which is cleared in the next statement. */
         HAL_TIM_GenerateEvent(&htim4, TIM_EVENTSOURCE_UPDATE);
         __HAL_TIM_CLEAR_IT(&htim4, TIM_IT_UPDATE); // clear interrupt
 
@@ -195,3 +197,5 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         timer_callback_(callback_param_);
     }
 }
+
+#endif

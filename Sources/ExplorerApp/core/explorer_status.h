@@ -45,8 +45,7 @@
 
 #include "utility/status.h"
 
-/*! @brief The Explorer application specific status and error return codes.
- *  @ingroup status */
+/*! @brief The Explorer application specific status and error return codes. */
 enum StatusExplorer
 {
     /*! Invalid/not initialized device address. */

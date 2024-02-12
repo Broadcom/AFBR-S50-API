@@ -95,3 +95,45 @@ void Board_CheckReset(void)
 {
     /* not implemented ... */
 }
+
+void Board_EnableDevice(s2pi_slave_t slave)
+{
+    switch (slave)
+    {
+        case S2PI_SLAVE1:
+            HAL_GPIO_WritePin(PWR1_GPIO_Port, PWR1_Pin, GPIO_PIN_SET);
+            break;
+        case S2PI_SLAVE2:
+            HAL_GPIO_WritePin(PWR2_GPIO_Port, PWR2_Pin, GPIO_PIN_SET);
+            break;
+        case S2PI_SLAVE3:
+            HAL_GPIO_WritePin(PWR3_GPIO_Port, PWR3_Pin, GPIO_PIN_SET);
+            break;
+        case S2PI_SLAVE4:
+            HAL_GPIO_WritePin(PWR4_GPIO_Port, PWR4_Pin, GPIO_PIN_SET);
+            break;
+        default:
+            assert(0);
+    }
+}
+
+void Board_DisableDevice(s2pi_slave_t slave)
+{
+    switch (slave)
+    {
+        case S2PI_SLAVE1:
+            HAL_GPIO_WritePin(PWR1_GPIO_Port, PWR1_Pin, GPIO_PIN_SET);
+            break;
+        case S2PI_SLAVE2:
+            HAL_GPIO_WritePin(PWR2_GPIO_Port, PWR2_Pin, GPIO_PIN_SET);
+            break;
+        case S2PI_SLAVE3:
+            HAL_GPIO_WritePin(PWR3_GPIO_Port, PWR3_Pin, GPIO_PIN_SET);
+            break;
+        case S2PI_SLAVE4:
+            HAL_GPIO_WritePin(PWR4_GPIO_Port, PWR4_Pin, GPIO_PIN_SET);
+            break;
+        default:
+            assert(0);
+    }
+}

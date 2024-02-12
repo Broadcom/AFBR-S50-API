@@ -94,7 +94,7 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave, argus_mode_t mode)
      * Every call to an API function requires the passing of a pointer to this
      * data structure. */
     argus_hnd_t * device = Argus_CreateHandle();
-    HandleError(device ? STATUS_OK : ERROR_FAIL, "Argus_CreateHandle failed!");
+    HandleError(device ? STATUS_OK : ERROR_FAIL, true, "Argus_CreateHandle failed!");
 
     /* Initialize the API with a specified measurement mode.
      * This implicitly calls the initialization functions
@@ -113,7 +113,7 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave, argus_mode_t mode)
      * example demonstrates the high speed modes (which are not default for
      * any device), the corresponding measurement mode parameter is passed here. */
     status_t status = Argus_InitMode(device, slave, mode);
-    HandleError(status, "Argus_Init failed!");
+    HandleError(status, true, "Argus_Init failed!");
 
     /* Setup API for High Speed mode, i.e. 1000 fps measurement rate.
      * The following changes are made:
@@ -129,13 +129,13 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave, argus_mode_t mode)
      *       initialization (see #Argus_Init). These modes reduce the pixel count
      *       in favor of higher measurement speed. */
     status = Argus_SetConfigurationDFMMode(device, DFM_MODE_OFF);
-    HandleError(status, "Argus_SetConfigurationDFMMode failed!");
+    HandleError(status, true, "Argus_SetConfigurationDFMMode failed!");
 
     status = Argus_SetConfigurationSmartPowerSaveEnabled(device, false);
-    HandleError(status, "Argus_SetConfigurationSmartPowerSaveEnabled failed!");
+    HandleError(status, true, "Argus_SetConfigurationSmartPowerSaveEnabled failed!");
 
     status = Argus_SetConfigurationFrameTime(device, 1000); // 0.001 second = 1000 Hz
-    HandleError(status, "Argus_SetConfigurationFrameTime failed!");
+    HandleError(status, true, "Argus_SetConfigurationFrameTime failed!");
 
     return device;
 }
@@ -154,7 +154,7 @@ static status_t MeasurementReadyCallback(status_t status, argus_hnd_t * device)
 {
     (void)device; // unused in this example...
 
-    HandleError(status, "Measurement Ready Callback received error!");
+    HandleError(status, false, "Measurement Ready Callback received error!");
 
     /* Count the data ready events, i.e. the number of times the
      * Argus_EvaluateData function must be called from main thread.
@@ -246,7 +246,7 @@ void ExampleMain(void)
 #if RUN_HAL_TESTS
     /* Running a sequence of test in order to verify the HAL implementation. */
     status = Argus_VerifyHALImplementation(SPI_SLAVE);
-    HandleError(status, "HAL Implementation verification failed on SPI_SLAVE!");
+    HandleError(status, true, "HAL Implementation verification failed on SPI_SLAVE!");
 #endif // RUN_HAL_TESTS
 
     /* Instantiate and initialize the device handlers. */
@@ -269,7 +269,7 @@ void ExampleMain(void)
      * Note that the timer based measurement is not implemented for multiple
      * instance yet! */
     status = Argus_StartMeasurementTimer(device, &MeasurementReadyCallback);
-    HandleError(status, "Argus_StartMeasurementTimer failed!");
+    HandleError(status, true, "Argus_StartMeasurementTimer failed!");
 
     /* The program loop ... */
     for (;;)
@@ -286,7 +286,7 @@ void ExampleMain(void)
 
             /* Evaluate the raw measurement results. */
             status = Argus_EvaluateData(device, &res);
-            HandleError(status, "Argus_EvaluateData failed!");
+            HandleError(status, false, "Argus_EvaluateData failed!");
 
             /* Use the obtain results, e.g. print via UART. */
             PrintResults(&res);

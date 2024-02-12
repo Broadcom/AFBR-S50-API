@@ -45,8 +45,7 @@
 
 #include "utility/status.h"
 
-/*! @brief The SCI module specific status and error return codes.
- *  @ingroup status */
+/*! @brief The SCI module specific status and error return codes. */
 enum StatusSCI
 {
     /*! Unknown/not initialized command. */

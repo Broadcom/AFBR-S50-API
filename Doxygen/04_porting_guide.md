@@ -55,26 +55,20 @@ artifacts are compiled for the most common architectures.
 
 The following API variants are available:
 
-| Library Name        | Architecture | FPU     | ABI  | Optimization |
-| ------------------- | ------------ | ------- | ---- | ------------ |
-| `afbrs50_m0`        | Cortex-M0    | none    | soft | performance  |
-| `afbrs50_m0_os`     | Cortex-M0    | none    | soft | memory size  |
-| `afbrs50_m0p`       | Cortex-M0+   | none    | soft | performance  |
-| `afbrs50_m0p_os`    | Cortex-M0+   | none    | soft | memory size  |
-| `afbrs50_m1`        | Cortex-M1    | none    | soft | performance  |
-| `afbrs50_m1_os`     | Cortex-M1    | none    | soft | memory size  |
-| `afbrs50_m3`        | Cortex-M3    | none    | soft | performance  |
-| `afbrs50_m3_os`     | Cortex-M3    | none    | soft | memory size  |
-| `afbrs50_m4`        | Cortex-M4    | none    | soft | performance  |
-| `afbrs50_m4_os`     | Cortex-M4    | none    | soft | memory size  |
-| `afbrs50_m4_fpu`    | Cortex-M4    | FPv4-SP | hard | performance  |
-| `afbrs50_m4_fpu_os` | Cortex-M4    | FPv4-SP | hard | memory size  |
+| Library Name        | Architecture  | FPU     | ABI  | Optimization |
+| ------------------- | ------------- | ------- | ---- | ------------ |
+| `afbrs50_m0`        | Cortex-M0/M0+ | none    | soft | performance  |
+| `afbrs50_m0_os`     | Cortex-M0/M0+ | none    | soft | memory size  |
+| `afbrs50_m3`        | Cortex-M3     | none    | soft | performance  |
+| `afbrs50_m3_os`     | Cortex-M3     | none    | soft | memory size  |
+| `afbrs50_m4`        | Cortex-M4     | none    | soft | performance  |
+| `afbrs50_m4_os`     | Cortex-M4     | none    | soft | memory size  |
+| `afbrs50_m4_fpu`    | Cortex-M4     | FPv4-SP | hard | performance  |
+| `afbrs50_m4_fpu_os` | Cortex-M4     | FPv4-SP | hard | memory size  |
 
 Architecture:
 
 -   Cortex-M0: `-mcpu=cortex-m0`
--   Cortex-M0+: `-mcpu=cortex-m0plus`
--   Cortex-M1: `-mcpu=cortex-m1`
 -   Cortex-M3: `-mcpu=cortex-m3`
 -   Cortex-M4: `-mcpu=cortex-m4`
 

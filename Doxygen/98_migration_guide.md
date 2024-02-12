@@ -1,10 +1,81 @@
-# API Migration Guide (1.3.5 → 1.4.4) {#migration_guide}
+# API Migration Guide {#migration_guide}
 
 The following document describes the changes to the **AFBR-S50 API** interface
-from **v1.3.5** to **v1.4.4**. This is meant to assist developers in updating
-their code to the latest API version. Due to many improvements and new features,
-such as multi-device support, high-speed measurement modes and memory footprint
-reduction, the API interface has changed significantly.
+across the released versions. This is meant to assist developers in updating
+their code to a newer API version.
+
+The API is usually not changing much between the versions, however, some
+features require to introduce breaking changes such that the user code needs to
+be adopted too. This document mainly focusses on the breaking changes only.
+
+If migration over multiple releases is required, please refer to each of the
+corresponding sections below and apply the changes iteratively.
+
+Please report any additional issues to the
+[AFBR-S50 GitHub repository](https://github.com/broadcom/afbr-s50-api/issues).
+
+# API Migration Guide (1.4.4 → 1.5.6) {#migration_guide_1_5}
+
+The following document describes the changes to the **AFBR-S50 API** interface
+from **v1.4.4** to **v1.5.6**. 
+
+## Overview of Changes
+
+The most changes to the last version of the **AFBR-S50 API, v1.5.6,** happened
+under the hood. Thus, there are only very minor changes regarding the offset
+calibration parameters to the API . 
+
+## Introduction of distinct global range offsets for low and high power stages
+
+To better compensate for the different range offsets of the low and high power
+stages, a second global range offset value has been introduced. The new value is
+only applied in the low power stage and thus does not affect the high power
+stage. However, the API function not require two offset values and the offset 
+table data structure has changed from a two-dimensional array to a
+three-dimensional array.
+
+Here are the changes in the API functions:
+```c
+// v1.4.4 range offset functions with a single offset value
+status_t Argus_SetCalibrationGlobalRangeOffset(argus_hnd_t *hnd, q0_15_t value);
+status_t Argus_GetCalibrationGlobalRangeOffset(argus_hnd_t *hnd, q0_15_t *value);
+
+// v1.5.6 range offset functions with a two distinct offset values
+status_t Argus_SetCalibrationGlobalRangeOffsets(argus_hnd_t *hnd, q0_15_t offset_low, q0_15_t offset_high);
+status_t Argus_GetCalibrationGlobalRangeOffsets(argus_hnd_t *hnd, q0_15_t *offset_low, q0_15_t *offset_high);
+```
+
+Here are the corresponding changes in the data structure:
+```c
+// v1.4.4 range offset table data structure wrapping a two dimensional array
+typedef struct argus_cal_offset_table_t
+{
+    q0_15_t Table[ARGUS_PIXELS_X][ARGUS_PIXELS_Y];
+
+} argus_cal_offset_table_t;
+
+// v1.5.6 range offset table data structure wrapping a three dimensional array
+typedef union argus_cal_offset_table_t
+{
+    struct
+    {
+        q0_15_t LowPower[ARGUS_PIXELS_X][ARGUS_PIXELS_Y];
+        q0_15_t HighPower[ARGUS_PIXELS_X][ARGUS_PIXELS_Y];
+    };
+
+    q0_15_t Table[ARGUS_DCA_POWER_STAGE_COUNT][ARGUS_PIXELS_X][ARGUS_PIXELS_Y];
+
+} argus_cal_offset_table_t;
+```
+
+# API Migration Guide (1.3.5 → 1.4.4) {#migration_guide_1_4}
+
+The following document describes the changes to the **AFBR-S50 API** interface
+from **v1.3.5** to **v1.4.4**. 
+
+Due to many improvements and new features in **v1.4.4**, such as multi-device
+support, high-speed measurement modes and memory footprint reduction, the API
+interface has changed significantly this time.
 
 ## Overview of Changes
 
@@ -222,7 +293,41 @@ for timeout in case of running measurements via #Argus_StartMeasurementTimer`.
 See also the API reference manual documentation of #Argus_GetStatus
 and #Argus_IsDataEvaluationPending` functions for more information.
 
-## Advanced Debug Data Structure for #Argus_EvaluateData
+## Changed Data Types for Crosstalk and Offset Tables
+
+The new data types `argus_cal_offset_table_t` and `argus_cal_xtalk_table_t` have
+been introduced for passing offset and crosstalk tables in and out of the API.
+
+Function affected are:
+
+- #Argus_SetCalibrationCrosstalkVectorTable
+- #Argus_GetCalibrationCrosstalkVectorTable
+- #Argus_GetCrosstalkVectorTable_Callback
+- #Argus_SetCalibrationPixelRangeOffsets
+- #Argus_GetCalibrationPixelRangeOffsets
+- #Argus_GetPixelRangeOffsets_Callback
+
+
+Here is an example for the crosstalk related functions:
+```c
+// v1.3.5 crosstalk functions used 3-dimensional arrays
+status_t Argus_SetCalibrationCrosstalkVectorTable(argus_hnd_t * hnd, argus_mode_t mode, xtalk_t value[ARGUS_DFM_FRAME_COUNT][ARGUS_PIXELS_X][ARGUS_PIXELS_Y]);
+
+// v1.4.4 use dedicated struct containing that data
+status_t Argus_SetCalibrationCrosstalkVectorTable(argus_hnd_t * hnd, argus_cal_xtalk_table_t const * value);
+```
+
+Here is an example for the offset related functions:
+
+```c
+// v1.3.5 range offset functions used 2-dimensional arrays
+status_t Argus_SetCalibrationPixelRangeOffsets(argus_hnd_t * hnd, argus_mode_t mode, q0_15_t value[ARGUS_PIXELS_X][ARGUS_PIXELS_Y]);
+
+// v1.4.4 use dedicated struct containing that data
+status_t Argus_SetCalibrationPixelRangeOffsets(argus_hnd_t * hnd, argus_cal_offset_table_t const * value);
+```
+
+## Advanced Debug Data Structure for Argus_EvaluateData
 
 In order to obtain additional debug information without any impact on the
 measurement performance, a new debug data structure (#argus_results_debug_t)

@@ -52,7 +52,7 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave)
      * Every call to an API function requires the passing of a pointer to this
      * data structure. */
     argus_hnd_t * device = Argus_CreateHandle();
-    HandleError(device ? STATUS_OK : ERROR_FAIL, "Argus_CreateHandle failed!");
+    HandleError(device ? STATUS_OK : ERROR_FAIL, true, "Argus_CreateHandle failed!");
 
     /* Initialize the API with the dedicated default measurement mode.
      * This implicitly calls the initialization functions
@@ -67,13 +67,13 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave)
      * parameter to choose the measurement mode: see the #argus_mode_t
      * enumeration for more information on available measurement modes. */
     status_t status = Argus_Init(device, slave);
-    HandleError(status, "Argus_Init failed!");
+    HandleError(status, true, "Argus_Init failed!");
 
     /* Adjust additional configuration parameters by invoking the dedicated API methods.
      * Note: The maximum frame rate is limited by the amount of data sent via UART.
      *       See #PrintResults function for more information. */
     status = Argus_SetConfigurationFrameTime(device, 100000); // 0.1 second = 10 Hz
-    HandleError(status, "Argus_SetConfigurationFrameTime failed!");
+    HandleError(status, true, "Argus_SetConfigurationFrameTime failed!");
 
     return device;
 }
@@ -107,7 +107,7 @@ static void TriggerMeasurementBlocking(argus_hnd_t * device, argus_results_t * r
     {
         status = Argus_TriggerMeasurement(device, 0);
     } while (status == STATUS_ARGUS_POWERLIMIT);
-    HandleError(status, "Argus_StartMeasurementTimer failed!");
+    HandleError(status, false, "Argus_TriggerMeasurement failed!");
 
     /* Wait until measurement data is ready by polling the #Argus_GetStatus
      * function until the status is not #STATUS_BUSY any more. Note that
@@ -119,11 +119,11 @@ static void TriggerMeasurementBlocking(argus_hnd_t * device, argus_results_t * r
         status = Argus_GetStatus(device);
     }
     while (status == STATUS_BUSY);
-    HandleError(status, "Waiting for measurement data ready (Argus_GetStatus) failed!");
+    HandleError(status, false, "Waiting for measurement data ready (Argus_GetStatus) failed!");
 
     /* Evaluate the raw measurement results by calling the #Argus_EvaluateData function. */
     status = Argus_EvaluateData(device, res);
-    HandleError(status, "Argus_EvaluateData failed!");
+    HandleError(status, false, "Argus_EvaluateData failed!");
 }
 
 /*!***************************************************************************

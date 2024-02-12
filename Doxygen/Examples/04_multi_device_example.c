@@ -37,6 +37,8 @@
  // additional #includes ...
 #include "board/board_config.h"    // declaration of S2PI slaves
 
+#include "driver/irq.h" // declaration of IRQ_LOCK/UNLOCK()
+
 /*! The number of devices connected/used in the example. Range: 1 to 4. */
 #ifndef DEVICE_COUNT
 #define DEVICE_COUNT 4
@@ -59,6 +61,29 @@
 #define SPI_SLAVE4 (SPI_SLAVE3 + 1)
 #endif
 
+/*! Size of the date ready event queue. Max. 2 values per device. */
+#define FIFO_SIZE 8
+
+/*! FIFO (First-In-First-Out) Data Buffer Structure. */
+typedef struct fifo_t
+{
+    /*! Data buffer. */
+    argus_hnd_t * Buffer[FIFO_SIZE];
+
+    /*! Data write pointer */
+    argus_hnd_t ** volatile WrPtr;
+
+    /*! Data read pointer */
+    argus_hnd_t ** volatile  RdPtr;
+
+    /*! Current number of data in buffer. */
+    size_t volatile Load;
+
+} fifo_t;
+
+/*! The date ready event queue for storing data ready events from the API. */
+static fifo_t DataReadyEventQueue = { 0 };
+
 /*!***************************************************************************
  * @brief   Creates and initializes a new device instance.
  *
@@ -75,7 +100,7 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave)
      * Every call to an API function requires the passing of a pointer to this
      * data structure. */
     argus_hnd_t * device = Argus_CreateHandle();
-    HandleError(device ? STATUS_OK : ERROR_FAIL, "Argus_CreateHandle failed!");
+    HandleError(device ? STATUS_OK : ERROR_FAIL, true, "Argus_CreateHandle failed!");
 
     /* Initialize the API with the dedicated default measurement mode.
      * This implicitly calls the initialization functions
@@ -90,76 +115,54 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave)
      * parameter to choose the measurement mode: see the #argus_mode_t
      * enumeration for more information on available measurement modes. */
     status_t status = Argus_Init(device, slave);
-    HandleError(status, "Argus_Init failed!");
+    HandleError(status, true, "Argus_Init failed!");
 
     /* Adjust additional configuration parameters by invoking the dedicated API methods.
      * Note: The maximum frame rate is limited by the amount of data sent via UART.
      *       See #PrintResults function for more information. */
     status = Argus_SetConfigurationFrameTime(device, 100000); // 0.1 second = 10 Hz
-    HandleError(status, "Argus_SetConfigurationFrameTime failed!");
-
-    /* In case of multi-device mode, the devices are sharing time between them.
-     * Thus it is required to setup the power saving ratio to a respective value.
-     * Ideally, in case of two devices, this would mean that each device must
-     * save at least 50% of the time for the other device. In reality however,
-     * additional task like readout or auxiliary measurements require even more
-     * time to be save, .e.g 60% in case of 2 devices. */
-    argus_cfg_dca_t dca;
-    status = Argus_GetConfigurationDynamicAdaption(device, &dca);
-    HandleError(status, "Argus_GetConfigurationDynamicAdaption failed!");
-    dca.PowerSavingRatio = 154; // ~60% in UQ0.8
-    status = Argus_SetConfigurationDynamicAdaption(device, &dca);
-    HandleError(status, "Argus_SetConfigurationDynamicAdaption failed!");
+    HandleError(status, true, "Argus_SetConfigurationFrameTime failed!");
 
     return device;
 }
 
 /*!***************************************************************************
- * @brief   Triggers a measurement cycle in blocking manner.
+ * @brief   Measurement data ready callback function.
+ *
+ * @param   status The measurement/device status from the last measurement cycle.
  *
  * @param   device The pointer to the handle of the calling API instance. Used to
  *                 identify the calling instance in case of multiple devices.
  *
- * @param   res The pointer to the results data structure where the final
- *              measurement results are stored.
+ * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-static void TriggerMeasurementBlocking(argus_hnd_t * device, argus_results_t * res)
+static status_t MeasurementReadyCallback(status_t status, argus_hnd_t * device)
 {
-    status_t status = STATUS_OK;
+    (void)device; // unused in this example...
 
-    /* Triggers a single measurement.
+    HandleError(status, false, "Measurement Ready Callback received error!");
+
+    /* Queue the data ready events, i.e. the device handle pointer,
+     * to inform the main thread to call the Argus_EvaluateData function.
      *
-     * Note that due to the laser safety algorithms, the method might refuse
-     * to restart a measurement when the appropriate time has not been elapsed
-     * right now. The function returns with status #STATUS_ARGUS_POWERLIMIT and
-     * the function must be called again later. Use the frame time configuration
-     * in order to adjust the timing between two measurement frames.
+     * Note: Since multiple devices are used, the device parameter
+     *       can NOT be ignored. The device parameter determines
+     *       the calling device instance and will be stored in a
+     *       event queue in the order of measurement ready events.
      *
-     * The callback can be null for the trigger function if the #Argus_GetStatus
-     * function is used to await the measurement cycle to finish. Otherwise, the
-     * callback should be set to receive the measurement ready event. See the
-     * advanced example on how to use the callback. */
-    do
-    {
-        status = Argus_TriggerMeasurement(device, 0);
-    } while (status == STATUS_ARGUS_POWERLIMIT);
-    HandleError(status, "Argus_StartMeasurementTimer failed!");
+     * Note: Do not call the Argus_EvaluateMeasurement method
+     *       from within this callback since it is invoked in
+     *       a interrupt service routine and should return as
+     *       soon as possible. */
 
-    /* Wait until measurement data is ready by polling the #Argus_GetStatus
-     * function until the status is not #STATUS_BUSY any more. Note that
-     * the actual measurement is performed asynchronously in the background
-     * (i.e. on the device, in DMA transfers and in interrupt service routines).
-     * Thus, one could do more useful stuff while waiting here... */
-    do
-    {
-        status = Argus_GetStatus(device);
-    }
-    while (status == STATUS_BUSY);
-    HandleError(status, "Waiting for measurement data ready (Argus_GetStatus) failed!");
+    assert(DataReadyEventQueue.Load < FIFO_SIZE);
+    *DataReadyEventQueue.WrPtr = device;
+    DataReadyEventQueue.WrPtr++;
+    if (DataReadyEventQueue.WrPtr >= DataReadyEventQueue.Buffer + FIFO_SIZE)
+        DataReadyEventQueue.WrPtr = DataReadyEventQueue.Buffer;
+    DataReadyEventQueue.Load++;
 
-    /* Evaluate the raw measurement results by calling the #Argus_EvaluateData function. */
-    status = Argus_EvaluateData(device, res);
-    HandleError(status, "Argus_EvaluateData failed!");
+    return STATUS_OK;
 }
 
 /*!***************************************************************************
@@ -189,7 +192,7 @@ static void PrintResults(argus_results_t const * res, uint32_t id)
      *       approximately 80 characters per frame at 115200 bps which limits
      *       the max. frame rate of 144 fps:
      *       115200 bps / 10 [bauds-per-byte] / 80 [bytes-per-frame] = 144 fps */
-    print("#%d:  %4d.%06d s; Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n",
+    print("#%06d:  %4d.%06d s; Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n",
           id,
           res->TimeStamp.sec,
           res->TimeStamp.usec,
@@ -240,7 +243,13 @@ void main(void)
 {
     HardwareInit(); // defined elsewhere
 
+    status_t status = STATUS_OK;
     const s2pi_slave_t slaves[] = { SPI_SLAVE1, SPI_SLAVE2, SPI_SLAVE3, SPI_SLAVE4 };
+
+    /* Initialize event queue */
+    DataReadyEventQueue.WrPtr = DataReadyEventQueue.Buffer;
+    DataReadyEventQueue.RdPtr = DataReadyEventQueue.Buffer;
+    DataReadyEventQueue.Load = 0;
 
     /* Instantiate and initialize the device handlers. */
     argus_hnd_t * devices[DEVICE_COUNT] = { 0 };
@@ -253,20 +262,42 @@ void main(void)
     /* Print a device information message. */
     PrintDeviceInfo(sizeof(devices) / sizeof(devices[0]), devices);
 
+    /* Start the measurement timers within the API module.
+     * The callback is invoked every time a measurement has been finished.
+     * The callback is used to schedule the data evaluation routine to the
+     * main thread by the user.
+     * Note that the timer based measurement is not implemented for multiple
+     * instance yet! */
+    for (uint8_t d = 0; d < DEVICE_COUNT; d++)
+    {
+        status = Argus_StartMeasurementTimer(devices[d], &MeasurementReadyCallback);
+        HandleError(status, true, "Argus_StartMeasurementTimer failed!");
+    }
+
     /* The program loop ... */
     for (;;)
     {
-        /* Run measurement alternately for each device. */
-        for (uint8_t d = 0; d < DEVICE_COUNT; d++)
+        /* Check if new measurement data is ready. */
+        if (DataReadyEventQueue.Load > 0)
         {
+            IRQ_LOCK();
+            argus_hnd_t * device = *DataReadyEventQueue.RdPtr;
+            DataReadyEventQueue.Load--;
+            DataReadyEventQueue.RdPtr++;
+            if (DataReadyEventQueue.RdPtr >= DataReadyEventQueue.Buffer + FIFO_SIZE)
+                DataReadyEventQueue.RdPtr = DataReadyEventQueue.Buffer;
+            IRQ_UNLOCK();
+
             /* The measurement data structure. */
             argus_results_t res;
 
-            /* Trigger a measurement for the current device. */
-            TriggerMeasurementBlocking(devices[d], &res);
+            /* Evaluate the raw measurement results. */
+            status = Argus_EvaluateData(device, &res);
+            HandleError(status, false, "Argus_EvaluateData failed!");
 
             /* Use the obtain results, e.g. print via UART. */
-            PrintResults(&res, d + 1);
+            uint32_t id = Argus_GetChipID(device);
+            PrintResults(&res, id);
         }
     }
 }

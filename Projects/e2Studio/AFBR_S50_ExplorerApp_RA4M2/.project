@@ -50,10 +50,5 @@
 			<type>2</type>
 			<locationURI>PARENT-3-PROJECT_LOC/Sources/Utility</locationURI>
 		</link>
-		<link>
-			<name>event_logger</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/Sources/event_logger</locationURI>
-		</link>
 	</linkedResources>
 </projectDescription>

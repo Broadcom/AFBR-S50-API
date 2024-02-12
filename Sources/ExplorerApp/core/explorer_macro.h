@@ -1,7 +1,7 @@
 /*************************************************************************//**
  * @file
- * @brief       This file is part of the AFBR-S50 Explorer example application.
- * @details     This file provides status definitions.
+ * @brief       This file is part of the AFBR-S50 Explorer Demo Application.
+ * @details     This file contains current Explorer Application version number.
  *
  * @copyright
  *
@@ -34,31 +34,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#ifndef TASK_STATUS_H
-#define TASK_STATUS_H
+#ifndef EXPLORER_MACRO_H
+#define EXPLORER_MACRO_H
 
 /*!***************************************************************************
- * @defgroup    scheduler_status Status Codes
- * @ingroup     scheduler
- * @brief       Status Codes Definitions for the Task Scheduler.
- * @details     Defines status codes for task scheduler specific functions.
- * @addtogroup  scheduler_status
+ * @defgroup    explorer_macro Explorer Macro Operations
+ * @ingroup     explorer_app
+ *
+ * @brief       Explorer Application Macro helper operations.
+ *
+ * @details     Provides quick macro helpers for the Explorer App.
+ *
+ * @addtogroup  explorer_app
  * @{
  *****************************************************************************/
 
-#include "utility/status.h"
-
-/*******************************************************************************
- * Definitions
- ******************************************************************************/
-
-/*! @brief Task scheduler status and error return codes. */
-enum StatusTask
-{
-    /*! Task queue is full. Event not queued. */
-    ERROR_TASK_QUEUE_FULL       = -231,
-};
-
+#define SET_BIT_U32(word, bit)  ((word) |= (uint32_t)(bit))
+#define CLR_BIT_U32(word, bit)  ((word) &= (uint32_t)(~(bit)))
+#define IS_BIT_U32(word, bit)   ((word) & (uint32_t)(bit))
 
 /*! @} */
-#endif /* TASK_STATUS_H */
+#endif /* EXPLORER_MACRO_H */

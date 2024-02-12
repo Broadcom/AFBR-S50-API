@@ -50,7 +50,7 @@
  *
  *              Note that the current implementation only features a single
  *              callback timer interval and does not yet support the feature
- *              of multiple intervalls at a time.
+ *              of multiple intervals at a time.
  *
  * @addtogroup  timer
  * @{
@@ -61,6 +61,14 @@
  ******************************************************************************/
 
 #include "platform/argus_timer.h"
+
+/*! Enable the PIT timer implementation.
+ *  - 0: The PIT timer implementation is disabled. The dummy functions
+ *       in the AFBR-S50 API are used.
+ *  - 1: The PIT timer implementation is enabled. */
+#ifndef TIMER_PIT_ENABLED
+#define TIMER_PIT_ENABLED 1
+#endif
 
 /*!***************************************************************************
  * @brief   Initializes the timer hardware.

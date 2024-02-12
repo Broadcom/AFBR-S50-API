@@ -76,7 +76,7 @@ static void Serialize_MeasurementData_Generic(sci_frame_t * frame, argus_results
 }
 static void Serialize_MeasurementData_FrameConfig(sci_frame_t * frame, argus_results_t const * res, sci_cmd_t type)
 {
-    SCI_Frame_Queue16u(frame, res->Frame.State);
+    SCI_Frame_Queue32u(frame, res->Frame.State);
 
     if (type != CMD_MEASUREMENT_DATA_1D || res->Debug != 0)
     {

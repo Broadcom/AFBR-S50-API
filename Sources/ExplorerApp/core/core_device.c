@@ -255,7 +255,16 @@ status_t ExplorerApp_InitExplorer(sci_device_t deviceID)
     status_t status;
 
     /* ensure the uninitialized device starts with a null mapping */
-    explorerIDMap[deviceID] = NULL;
+    assert(explorerIDMap[deviceID] == NULL);
+
+    /* Slaves 1,5 and 2,6 are connected to the same pins on some boards  (5 and
+    * 6 are legacy boards). Thus, we do not allow slaves 5 or 6 if slaves 1 or 2
+    * respectively are already initialized. */
+    if (deviceID > 4)
+    {
+        if (explorerIDMap[deviceID - 4] != NULL)
+            return ERROR_NOT_SUPPORTED;
+    }
 
     /* find an unused memory block and allocate it for that instance. */
     explorer_t * pExplorer = NULL;

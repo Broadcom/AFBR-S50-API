@@ -34,7 +34,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-
 /*******************************************************************************
  * Include Files
  ******************************************************************************/
@@ -42,6 +41,7 @@
 #include "core/core_device.h"
 #include "core/core_utils.h"
 #include "core/explorer_status.h"
+#include "core/explorer_macro.h"
 
 #include <assert.h>
 
@@ -63,42 +63,57 @@
 
 static void Serialize_Cal_P2PXtalk(sci_frame_t * frame, argus_cal_p2pxtalk_t const * cal)
 {
-    /* Pixel-To-Pixel Crosstalk */
-    SCI_Frame_Queue08u(frame, cal->Enabled);
-    SCI_Frame_Queue16s(frame, cal->KcFactorS);
-    SCI_Frame_Queue16s(frame, cal->KcFactorC);
-    SCI_Frame_Queue16s(frame, cal->KcFactorSRefPx);
-    SCI_Frame_Queue16s(frame, cal->KcFactorCRefPx);
-    SCI_Frame_Queue08u(frame, cal->RelativeThreshold);
-    SCI_Frame_Queue16u(frame, cal->AbsoluteTreshold);
+    /* Electrical Pixel-To-Pixel Crosstalk */
+    const argus_cal_electrical_p2pxtalk_t * ecal = &cal->Electrical;
+    SCI_Frame_Queue08u(frame, ecal->Enabled);
+    SCI_Frame_Queue16s(frame, ecal->KcFactorS);
+    SCI_Frame_Queue16s(frame, ecal->KcFactorC);
+    SCI_Frame_Queue16s(frame, ecal->KcFactorSRefPx);
+    SCI_Frame_Queue16s(frame, ecal->KcFactorCRefPx);
+    SCI_Frame_Queue08u(frame, ecal->RelativeThreshold);
+    SCI_Frame_Queue16u(frame, ecal->AbsoluteTreshold);
+
+    /* Optical Pixel-To-Pixel Crosstalk */
+    const argus_cal_optical_p2pxtalk_t * ocal = &cal->Optical;
+    SCI_Frame_Queue08u(frame, ocal->Enabled);
+    SCI_Frame_Queue16s(frame, ocal->CouplingCoeffS);
+    SCI_Frame_Queue16s(frame, ocal->CouplingCoeffC);
 }
 static void Deserialize_Cal_P2PXtalk(sci_frame_t * frame, argus_cal_p2pxtalk_t * cal)
 {
-    /* Pixel-To-Pixel Crosstalk */
-    cal->Enabled = SCI_Frame_Dequeue08u(frame);
-    cal->KcFactorS = SCI_Frame_Dequeue16s(frame);
-    cal->KcFactorC = SCI_Frame_Dequeue16s(frame);
-    cal->KcFactorSRefPx = SCI_Frame_Dequeue16s(frame);
-    cal->KcFactorCRefPx = SCI_Frame_Dequeue16s(frame);
-    cal->RelativeThreshold = SCI_Frame_Dequeue08u(frame);
-    cal->AbsoluteTreshold = SCI_Frame_Dequeue16u(frame);
-}
+    argus_cal_electrical_p2pxtalk_t * ecal = &cal->Electrical;
 
+    /* Electrical Pixel-To-Pixel Crosstalk */
+    ecal->Enabled = SCI_Frame_Dequeue08u(frame);
+    ecal->KcFactorS = SCI_Frame_Dequeue16s(frame);
+    ecal->KcFactorC = SCI_Frame_Dequeue16s(frame);
+    ecal->KcFactorSRefPx = SCI_Frame_Dequeue16s(frame);
+    ecal->KcFactorCRefPx = SCI_Frame_Dequeue16s(frame);
+    ecal->RelativeThreshold = SCI_Frame_Dequeue08u(frame);
+    ecal->AbsoluteTreshold = SCI_Frame_Dequeue16u(frame);
+
+    /* Optical Pixel-To-Pixel Crosstalk */
+    argus_cal_optical_p2pxtalk_t * ocal = &cal->Optical;
+    ocal->Enabled = SCI_Frame_Dequeue08u(frame);
+    ocal->CouplingCoeffS = SCI_Frame_Dequeue16s(frame);
+    ocal->CouplingCoeffC = SCI_Frame_Dequeue16s(frame);
+}
 
 /*******************************************************************************
  * Command Functions
  ******************************************************************************/
 
-static status_t RxCmd_CalGlobalRangeOffset(sci_device_t deviceID, sci_frame_t * frame)
+static status_t RxCmd_CalGlobalRangeOffsets(sci_device_t deviceID, sci_frame_t * frame)
 {
     if (SCI_Frame_BytesToRead(frame) > 1)
     {
         /* Master sending data... */
-        q0_15_t offset = SCI_Frame_Dequeue16s(frame);
+        q0_15_t offset_low = SCI_Frame_Dequeue16s(frame);
+        q0_15_t offset_high = SCI_Frame_Dequeue16s(frame);
         argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
         if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
         bool resume = ExplorerApp_SuspendTimerMeasurement(argus);
-        status_t status = Argus_SetCalibrationGlobalRangeOffset(argus, offset);
+        status_t status = Argus_SetCalibrationGlobalRangeOffsets(argus, offset_low, offset_high);
         if (resume) ExplorerApp_StartTimerMeasurement(argus);
         return status;
     }
@@ -108,17 +123,18 @@ static status_t RxCmd_CalGlobalRangeOffset(sci_device_t deviceID, sci_frame_t * 
         return SCI_SendCommand(deviceID, CMD_CALIBRATION_GLOBAL_RANGE_OFFSET, 0, 0);
     }
 }
-static status_t TxCmd_CalGlobalRangeOffset(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, sci_data_t data)
+static status_t TxCmd_CalGlobalRangeOffsets(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, sci_data_t data)
 {
-    (void) data;
-    (void) param;
+    (void)data;
+    (void)param;
 
     status_t status = STATUS_OK;
-    q0_15_t offset;
+    q0_15_t offset_high, offset_low;
     argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
     if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
-    status = Argus_GetCalibrationGlobalRangeOffset(argus, &offset);
-    SCI_Frame_Queue16s(frame, offset);
+    status = Argus_GetCalibrationGlobalRangeOffsets(argus, &offset_low, &offset_high);
+    SCI_Frame_Queue16s(frame, offset_low);
+    SCI_Frame_Queue16s(frame, offset_high);
     return status;
 }
 
@@ -128,11 +144,14 @@ static status_t RxCmd_CalPixelRangeOffsets(sci_device_t deviceID, sci_frame_t * 
     {
         /* Master sending data... */
         argus_cal_offset_table_t offsets;
-        for (uint_fast8_t x = 0; x < ARGUS_PIXELS_X; ++x)
+        for (uint_fast8_t p = 0; p < ARGUS_DCA_POWER_STAGE_COUNT; ++p)
         {
-            for (uint_fast8_t y = 0; y < ARGUS_PIXELS_Y; ++y)
+            for (uint_fast8_t x = 0; x < ARGUS_PIXELS_X; ++x)
             {
-                offsets.Table[x][y] = SCI_Frame_Dequeue16s(frame);
+                for (uint_fast8_t y = 0; y < ARGUS_PIXELS_Y; ++y)
+                {
+                    offsets.Table[p][x][y] = SCI_Frame_Dequeue16s(frame);
+                }
             }
         }
         argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
@@ -151,19 +170,22 @@ static status_t RxCmd_CalPixelRangeOffsets(sci_device_t deviceID, sci_frame_t * 
 }
 static status_t TxCmd_CalPixelRangeOffsets(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, sci_data_t data)
 {
-    (void) data;
-    (void) param;
+    (void)data;
+    (void)param;
 
     status_t status = STATUS_OK;
     argus_cal_offset_table_t offsets;
     argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
     if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
     status = Argus_GetCalibrationPixelRangeOffsets(argus, &offsets);
-    for (uint_fast8_t x = 0; x < ARGUS_PIXELS_X; ++x)
+    for (uint_fast8_t p = 0; p < ARGUS_DCA_POWER_STAGE_COUNT; ++p)
     {
-        for (uint_fast8_t y = 0; y < ARGUS_PIXELS_Y; ++y)
+        for (uint_fast8_t x = 0; x < ARGUS_PIXELS_X; ++x)
         {
-            SCI_Frame_Queue16s(frame, offsets.Table[x][y]);
+            for (uint_fast8_t y = 0; y < ARGUS_PIXELS_Y; ++y)
+            {
+                SCI_Frame_Queue16s(frame, offsets.Table[p][x][y]);
+            }
         }
     }
     return status;
@@ -171,7 +193,7 @@ static status_t TxCmd_CalPixelRangeOffsets(sci_device_t deviceID, sci_frame_t * 
 
 static status_t RxCmd_CalResetPixelRangeOffsets(sci_device_t deviceID, sci_frame_t * frame)
 {
-    (void) frame;
+    (void)frame;
     argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
     if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
     return Argus_ResetCalibrationPixelRangeOffsets(argus);
@@ -199,8 +221,8 @@ static status_t RxCmd_CalRangeOffsetSeqSampleTime(sci_device_t deviceID, sci_fra
 }
 static status_t TxCmd_CalRangeOffsetSeqSampleTime(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, sci_data_t data)
 {
-    (void) data;
-    (void) param;
+    (void)data;
+    (void)param;
 
     status_t status = STATUS_OK;
     uint16_t time;
@@ -233,8 +255,8 @@ static status_t RxCmd_CalXtalkPixel2Pixel(sci_device_t deviceID, sci_frame_t * f
 }
 static status_t TxCmd_CalXtalkPixel2Pixel(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, sci_data_t data)
 {
-    (void) data;
-    (void) param;
+    (void)data;
+    (void)param;
 
     status_t status = STATUS_OK;
     argus_cal_p2pxtalk_t cal = { 0 };
@@ -278,8 +300,8 @@ static status_t RxCmd_CalXtalkVectorTable(sci_device_t deviceID, sci_frame_t * f
 }
 static status_t TxCmd_CalXtalkVectorTable(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, sci_data_t data)
 {
-    (void) data;
-    (void) param;
+    (void)data;
+    (void)param;
 
     status_t status = STATUS_OK;
     argus_cal_xtalk_table_t xtalk;
@@ -302,7 +324,7 @@ static status_t TxCmd_CalXtalkVectorTable(sci_device_t deviceID, sci_frame_t * f
 
 static status_t RxCmd_CalXtalkResetVectorTable(sci_device_t deviceID, sci_frame_t * frame)
 {
-    (void) frame;
+    (void)frame;
     argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
     if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
     return Argus_ResetCalibrationCrosstalkVectorTable(argus);
@@ -330,8 +352,8 @@ static status_t RxCmd_CalXtalkSeqSampleTime(sci_device_t deviceID, sci_frame_t *
 }
 static status_t TxCmd_CalXtalkSeqSampleTime(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, sci_data_t data)
 {
-    (void) data;
-    (void) param;
+    (void)data;
+    (void)param;
 
     status_t status = STATUS_OK;
     uint16_t time;
@@ -363,8 +385,8 @@ static status_t RxCmd_CalXtalkSeqMaxAmplitude(sci_device_t deviceID, sci_frame_t
 }
 static status_t TxCmd_CalXtalkSeqMaxAmplitude(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, sci_data_t data)
 {
-    (void) data;
-    (void) param;
+    (void)data;
+    (void)param;
 
     status_t status = STATUS_OK;
     uq12_4_t ampl;
@@ -381,7 +403,7 @@ static status_t TxCmd_CalXtalkSeqMaxAmplitude(sci_device_t deviceID, sci_frame_t
 status_t ExplorerAPI_InitCal()
 {
     status_t status;
-    status = SCI_SetRxTxCommand(CMD_CALIBRATION_GLOBAL_RANGE_OFFSET, RxCmd_CalGlobalRangeOffset, TxCmd_CalGlobalRangeOffset);
+    status = SCI_SetRxTxCommand(CMD_CALIBRATION_GLOBAL_RANGE_OFFSET, RxCmd_CalGlobalRangeOffsets, TxCmd_CalGlobalRangeOffsets);
     if (status < STATUS_OK) return status;
     status = SCI_SetRxTxCommand(CMD_CALIBRATION_PIXEL_RANGE_OFFSETS, RxCmd_CalPixelRangeOffsets, TxCmd_CalPixelRangeOffsets);
     if (status < STATUS_OK) return status;
@@ -402,5 +424,4 @@ status_t ExplorerAPI_InitCal()
 
     return status;
 }
-
 
