@@ -157,8 +157,8 @@ can_bit_timing_cfg_t g_can0_bit_timing_cfg =
 #else
 can_bit_timing_cfg_t g_can0_bit_timing_cfg =
         {
-          /* Actual bitrate: 1000000 Hz. Actual Bit Time Ratio: 75 %. */.baud_rate_prescaler = 1 + 1 /* Division value of baud rate prescaler */,
-          .time_segment_1 = 11, .time_segment_2 = 4, .synchronization_jump_width = 4,
+          /* Actual bitrate: 1000000 Hz. Actual Bit Time Ratio: 70 %. */.baud_rate_prescaler = 1 + 4 /* Division value of baud rate prescaler */,
+          .time_segment_1 = 6, .time_segment_2 = 3, .synchronization_jump_width = 3,
         };
 #endif
 
@@ -547,8 +547,8 @@ const gpt_extended_cfg_t g_upt_extend =
 const timer_cfg_t g_upt_cfg =
         {
           .mode = TIMER_MODE_PERIODIC,
-          /* Actual period: 0.0001 seconds. Actual duty: 50%. */.period_counts = (uint32_t)0x1900, .duty_cycle_counts =
-                  0xc80,
+          /* Actual period: 0.0001 seconds. Actual duty: 50%. */.period_counts = (uint32_t)0x2710, .duty_cycle_counts =
+                  0x1388,
           .source_div = (timer_source_div_t)0,
           .channel = 2,
           .p_callback = usb_poll_callback,
@@ -653,8 +653,8 @@ const gpt_extended_cfg_t g_pit_extend =
 const timer_cfg_t g_pit_cfg =
         {
           .mode = TIMER_MODE_PERIODIC,
-          /* Actual period: 1 seconds. Actual duty: 50%. */.period_counts = (uint32_t)0x3d09000, .duty_cycle_counts =
-                  0x1e84800,
+          /* Actual period: 1 seconds. Actual duty: 50%. */.period_counts = (uint32_t)0x5f5e100, .duty_cycle_counts =
+                  0x2faf080,
           .source_div = (timer_source_div_t)0,
           .channel = 1,
           .p_callback = user_timer1_callback,
@@ -759,8 +759,8 @@ const gpt_extended_cfg_t g_ltc_extend =
 const timer_cfg_t g_ltc_cfg =
         {
           .mode = TIMER_MODE_PERIODIC,
-          /* Actual period: 4000 seconds. Actual duty: 50%. */.period_counts = (uint32_t)0xee6b2800,
-          .duty_cycle_counts = 0x77359400, .source_div = (timer_source_div_t)6,
+          /* Actual period: 4000 seconds. Actual duty: 50%. */.period_counts = (uint32_t)0x5d21dba0,
+          .duty_cycle_counts = 0x2e90edd0, .source_div = (timer_source_div_t)8,
           .channel = 0,
           .p_callback = NULL,
           /** If NULL then do not add & */
@@ -856,8 +856,8 @@ sci_uart_instance_ctrl_t g_uart0_ctrl;
 
 baud_setting_t g_uart0_baud_setting =
         {
-          /* Baud rate calculated with 2.124% error. */.semr_baudrate_bits_b.abcse = 0,
-          .semr_baudrate_bits_b.abcs = 0, .semr_baudrate_bits_b.bgdm = 1, .cks = 0, .brr = 33, .mddr = (uint8_t)256,
+          /* Baud rate calculated with 0.469% error. */.semr_baudrate_bits_b.abcse = 0,
+          .semr_baudrate_bits_b.abcs = 0, .semr_baudrate_bits_b.bgdm = 1, .cks = 0, .brr = 53, .mddr = (uint8_t)256,
           .semr_baudrate_bits_b.brme = false
         };
 
@@ -1050,7 +1050,7 @@ const spi_extended_cfg_t g_spi0_ext_cfg =
           .parity = SPI_PARITY_MODE_DISABLE,
           .byte_swap = SPI_BYTE_SWAP_DISABLE,
           .spck_div = {
-                        /* Actual calculated bitrate: 10666667. */.spbr = 2,
+                        /* Actual calculated bitrate: 25000000. */.spbr = 1,
                         .brdv = 0
           },
           .spck_delay = SPI_DELAY_COUNT_1,

@@ -120,10 +120,11 @@ void Timer_GetCounterValue(uint32_t * hct, uint32_t * lct)
     const uint32_t cnt = g_ltc_ctrl.p_reg->GTCNT;
     if (cnt < prev_cnt) offset_sec += 4000;
     prev_cnt = cnt;
-    IRQ_UNLOCK();
 
-    *lct = cnt % 1000000U;
-    *hct = cnt / 1000000U + offset_sec;
+    *lct = (uint32_t)((float)(cnt % 390625U) * 2.56f);
+    *hct = cnt / 390625U + offset_sec;
+
+    IRQ_UNLOCK();
 }
 
 status_t Timer_SetCallback(timer_cb_t f)

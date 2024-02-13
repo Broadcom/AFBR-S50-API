@@ -102,7 +102,7 @@
     <node id="board.clock.subclk.freq" option="board.clock.subclk.freq.32768"/>
     <node id="board.clock.pll.source" option="board.clock.pll.source.hoco"/>
     <node id="board.clock.pll.div" option="board.clock.pll.div.2"/>
-    <node id="board.clock.pll.mul" option="board.clock.pll.mul.160"/>
+    <node id="board.clock.pll.mul" option="board.clock.pll.mul.125"/>
     <node id="board.clock.pll.display" option="board.clock.pll.display.value"/>
     <node id="board.clock.pll2.source" option="board.clock.pll2.source.hoco"/>
     <node id="board.clock.pll2.div" option="board.clock.pll2.div.1"/>
@@ -111,12 +111,12 @@
     <node id="board.clock.clock.source" option="board.clock.clock.source.pll"/>
     <node id="board.clock.clkout.source" option="board.clock.clkout.source.subclk"/>
     <node id="board.clock.uclk.source" option="board.clock.uclk.source.pll2"/>
-    <node id="board.clock.iclk.div" option="board.clock.iclk.div.2"/>
-    <node id="board.clock.pclka.div" option="board.clock.pclka.div.2"/>
-    <node id="board.clock.pclkb.div" option="board.clock.pclkb.div.4"/>
-    <node id="board.clock.pclkc.div" option="board.clock.pclkc.div.4"/>
-    <node id="board.clock.pclkd.div" option="board.clock.pclkd.div.2"/>
-    <node id="board.clock.fclk.div" option="board.clock.fclk.div.4"/>
+    <node id="board.clock.iclk.div" option="board.clock.iclk.div.1"/>
+    <node id="board.clock.pclka.div" option="board.clock.pclka.div.1"/>
+    <node id="board.clock.pclkb.div" option="board.clock.pclkb.div.2"/>
+    <node id="board.clock.pclkc.div" option="board.clock.pclkc.div.2"/>
+    <node id="board.clock.pclkd.div" option="board.clock.pclkd.div.1"/>
+    <node id="board.clock.fclk.div" option="board.clock.fclk.div.2"/>
     <node id="board.clock.clkout.div" option="board.clock.clkout.div.1"/>
     <node id="board.clock.uclk.div" option="board.clock.uclk.div.4"/>
     <node id="board.clock.iclk.display" option="board.clock.iclk.display.value"/>
@@ -229,7 +229,7 @@
       <property id="module.driver.spi.mosi_idle_value_fixing" value="module.driver.spi.mosi_idle_value_fixing.high"/>
       <property id="module.driver.spi.parity" value="module.driver.spi.parity_mode.disable"/>
       <property id="module.driver.spi.byte_swap" value="module.driver.spi.byte_swap.disable"/>
-      <property id="module.driver.spi.bitrate" value="12000000"/>
+      <property id="module.driver.spi.bitrate" value="25000000"/>
       <property id="module.driver.spi.spck_delay" value="module.driver.spi.spck_delay.one"/>
       <property id="module.driver.spi.ssl_negation_delay" value="module.driver.spi.ssl_negation_delay.one"/>
       <property id="module.driver.spi.next_access_delay" value="module.driver.spi.next_access_delay.one"/>
