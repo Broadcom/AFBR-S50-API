@@ -17,5 +17,6 @@ var searchData=
   ['05_5f21_5fexplorer_5fcmd_5foverview_2emd_14',['05_21_explorer_cmd_overview.md',['../05__21__explorer__cmd__overview_8md.html',1,'']]],
   ['05_5f22_5fexplorer_5fcmd_5fdetails_2emd_15',['05_22_explorer_cmd_details.md',['../05__22__explorer__cmd__details_8md.html',1,'']]],
   ['05_5f30_5fcan_5fapp_2emd_16',['05_30_can_app.md',['../05__30__can__app_8md.html',1,'']]],
-  ['06_5freference_5fboard_2emd_17',['06_reference_board.md',['../06__reference__board_8md.html',1,'']]]
+  ['05_5fsimple_5fexample_5fdebug_2ec_17',['05_simple_example_debug.c',['../05__simple__example__debug_8c.html',1,'']]],
+  ['06_5freference_5fboard_2emd_18',['06_reference_board.md',['../06__reference__board_8md.html',1,'']]]
 ];

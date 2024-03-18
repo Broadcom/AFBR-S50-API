@@ -7,7 +7,7 @@ var searchData=
   ['can_20application_4',['CAN Application',['../group__can__app.html',1,'']]],
   ['can_20application_20version_5',['CAN Application Version',['../group__can__version.html',1,'']]],
   ['channel_20mapping_6',['Pixel Channel Mapping',['../group__argus__map.html',1,'']]],
-  ['cli_7',['Crosstalk Calibration CLI',['../group__argus__xtk__cli.html',1,'']]],
+  ['cli_7',['cli',['../group__argus__xtk__cli.html',1,'Crosstalk Calibration CLI'],['../group__argus__debug__cli.html',1,'Debugging CLI']]],
   ['codes_8',['codes',['../group__scheduler__status.html',1,'Status Codes'],['../group__argus__status.html',1,'Status Codes']]],
   ['command_20definitions_9',['SCI: Generic Command Definitions',['../group__sci__cmd.html',1,'']]],
   ['communication_20interface_10',['SCI: Systems Communication Interface',['../group__sci.html',1,'']]],

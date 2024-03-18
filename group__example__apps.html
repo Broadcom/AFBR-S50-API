@@ -148,6 +148,7 @@ Functions</h2></td></tr>
 <li><a class="el" href="02__advanced__example_8c.html" title="This file is part of the AFBR-S50 SDK example application.">02_advanced_example.c</a>: A more sophisticated example that utilizes a timer to trigger periodic measurements asynchronously from an interrupt service routine.</li>
 <li><a class="el" href="03__high__speed__example_8c.html" title="This file is part of the AFBR-S50 SDK example application.">03_high_speed_example.c</a>: Demonstrates the high speed configuration of the device that allows measurement rates up to 3000 frames per second (depending on hardware!!).</li>
 <li><a class="el" href="04__multi__device__example_8c.html" title="This file is part of the AFBR-S50 SDK example application.">04_multi_device_example.c</a>: Demonstrates the usage of multiple devices on a single MCU.</li>
+<li><a class="el" href="05__simple__example__debug_8c.html" title="This file is part of the AFBR-S50 SDK example application.">05_simple_example_debug.c</a>: Demonstrates how to obtain debug information.</li>
 </ul>
 <dl class="section warning"><dt>Warning</dt><dd>The example code provides is not intended to be used as a for production systems. It is intended to demonstrate the usage of the API and to provide a starting point for custom applications. </dd></dl>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -166,7 +167,8 @@ Functions</h2></td></tr>
 <li>1: <a class="el" href="01__simple__example_8c.html" title="This file is part of the AFBR-S50 SDK example application.">01_simple_example.c</a>: Runs measurements in simplest blocking manner.</li>
 <li>2: <a class="el" href="02__advanced__example_8c.html" title="This file is part of the AFBR-S50 SDK example application.">02_advanced_example.c</a>: Starts measurements automatically from timer interrupt.</li>
 <li>3: <a class="el" href="03__high__speed__example_8c.html" title="This file is part of the AFBR-S50 SDK example application.">03_high_speed_example.c</a>: Runs measurements with up to 3000 frames per second.</li>
-<li>4: <a class="el" href="04__multi__device__example_8c.html" title="This file is part of the AFBR-S50 SDK example application.">04_multi_device_example.c</a>: Demonstrates the usage of multiple devices per MCU. </li>
+<li>4: <a class="el" href="04__multi__device__example_8c.html" title="This file is part of the AFBR-S50 SDK example application.">04_multi_device_example.c</a>: Demonstrates the usage of multiple devices per MCU.</li>
+<li>5: <a class="el" href="05__simple__example__debug_8c.html" title="This file is part of the AFBR-S50 SDK example application.">05_simple_example_debug.c</a>: Demonstrates how to obtain debug information. </li>
 </ul>
 
 </div>
@@ -219,7 +221,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Define the SPI slave for device. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a28">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a29">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a25">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a26">02_advanced_example_with_hal_self_test.c</a>, and <a class="el" href="03_high_speed_example_8c-example.html#a24">03_high_speed_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a28">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a29">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a25">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a26">02_advanced_example_with_hal_self_test.c</a>, <a class="el" href="03_high_speed_example_8c-example.html#a24">03_high_speed_example.c</a>, and <a class="el" href="05_simple_example_debug_8c-example.html#a19">05_simple_example_debug.c</a>.</dd>
 </dl>
 
 </div>
@@ -295,7 +297,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a1">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a1">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a2">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a2">02_advanced_example_with_hal_self_test.c</a>, <a class="el" href="03_high_speed_example_8c-example.html#a2">03_high_speed_example.c</a>, and <a class="el" href="04_multi_device_example_8c-example.html#a1">04_multi_device_example.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a1">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a1">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a2">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a2">02_advanced_example_with_hal_self_test.c</a>, <a class="el" href="03_high_speed_example_8c-example.html#a2">03_high_speed_example.c</a>, <a class="el" href="04_multi_device_example_8c-example.html#a1">04_multi_device_example.c</a>, and <a class="el" href="05_simple_example_debug_8c-example.html#a1">05_simple_example_debug.c</a>.</dd>
 </dl>
 
 </div>

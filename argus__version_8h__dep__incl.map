@@ -1,143 +1,139 @@
 <map id="AFBR&#45;S50/Include/api/argus_version.h" name="AFBR&#45;S50/Include/api/argus_version.h">
-<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1960,5,2110,46"/>
-<area shape="rect" id="Node000002" href="$argus__def_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="1960,94,2110,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2037,62,2037,94,2032,94,2032,62"/>
-<area shape="rect" id="Node000003" href="$argus__api_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1613,449,1763,489"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1944,130,1836,152,1791,167,1762,185,1737,215,1719,249,1706,286,1697,324,1689,396,1689,448,1684,448,1684,395,1692,324,1701,285,1714,247,1733,212,1758,181,1789,162,1835,147,1943,125"/>
-<area shape="rect" id="Node000039" href="$argus__dca_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1785,183,1935,223"/>
-<area shape="poly" id="edge63_Node000002_Node000039" title=" " alt="" coords="1983,144,1901,185,1898,180,1980,140"/>
-<area shape="rect" id="Node000040" href="$argus__meas_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="1785,271,1935,312"/>
-<area shape="poly" id="edge67_Node000002_Node000040" title=" " alt="" coords="1945,130,1842,151,1801,166,1775,184,1770,195,1769,206,1780,229,1802,251,1827,269,1824,273,1798,255,1776,232,1764,207,1765,194,1771,181,1798,162,1841,146,1944,124"/>
-<area shape="rect" id="Node000041" href="$argus__res_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1960,360,2110,401"/>
-<area shape="poly" id="edge74_Node000002_Node000041" title=" " alt="" coords="2088,142,2108,159,2124,182,2129,203,2124,224,2110,264,2090,302,2052,361,2047,358,2086,300,2105,262,2119,223,2123,203,2119,184,2104,163,2085,146"/>
-<area shape="rect" id="Node000042" href="$argus__offset_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="1414,360,1565,401"/>
-<area shape="poly" id="edge68_Node000002_Node000042" title=" " alt="" coords="1944,122,1873,128,1793,140,1709,158,1628,185,1586,202,1553,217,1526,238,1501,273,1492,294,1488,317,1489,360,1484,360,1483,317,1487,293,1496,270,1522,234,1550,212,1583,197,1626,180,1707,153,1792,135,1873,123,1943,116"/>
-<area shape="rect" id="Node000043" href="$argus__pba_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1510,271,1661,312"/>
-<area shape="poly" id="edge70_Node000002_Node000043" title=" " alt="" coords="1944,119,1882,125,1814,136,1745,156,1680,185,1654,204,1631,227,1599,272,1594,269,1627,224,1650,200,1677,180,1743,151,1813,131,1882,119,1943,114"/>
-<area shape="rect" id="Node000044" href="$argus__px_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1960,183,2110,223"/>
-<area shape="poly" id="edge72_Node000002_Node000044" title=" " alt="" coords="2037,150,2037,182,2032,182,2032,150"/>
-<area shape="rect" id="Node000045" href="$argus__xtalk_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="2122,271,2273,312"/>
-<area shape="poly" id="edge75_Node000002_Node000045" title=" " alt="" coords="2112,139,2142,157,2167,181,2181,203,2190,227,2199,270,2193,271,2185,228,2176,205,2163,184,2138,162,2109,144"/>
-<area shape="rect" id="Node000046" href="$argus__nvm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="2321,449,2501,489"/>
-<area shape="poly" id="edge78_Node000002_Node000046" title=" " alt="" coords="2126,129,2188,149,2219,163,2248,180,2299,220,2333,257,2359,301,2388,359,2404,406,2411,448,2406,449,2399,407,2383,361,2355,304,2328,260,2295,224,2245,185,2217,168,2186,154,2124,134"/>
-<area shape="rect" id="Node000047" href="$argus__print_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="2371,611,2552,652"/>
-<area shape="poly" id="edge80_Node000002_Node000047" title=" " alt="" coords="2126,125,2251,148,2387,183,2447,204,2496,229,2529,258,2538,274,2541,290,2541,471,2535,512,2519,552,2499,586,2480,612,2476,609,2495,583,2514,549,2530,511,2536,470,2536,291,2533,275,2525,261,2493,234,2445,209,2385,188,2250,153,2125,131"/>
-<area shape="rect" id="Node000054" href="$argus__s2pi_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="2193,360,2373,401"/>
-<area shape="poly" id="edge90_Node000002_Node000054" title=" " alt="" coords="2121,138,2169,159,2216,187,2257,224,2274,246,2286,270,2293,294,2295,318,2290,360,2285,359,2289,318,2288,295,2282,272,2269,249,2253,227,2213,191,2166,163,2119,143"/>
-<area shape="rect" id="Node000004" href="$argus_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1586,537,1761,563"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1684,505,1678,537,1673,536,1679,504"/>
-<area shape="rect" id="Node000005" href="$argus__hal__test_8h.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="2096,611,2245,652"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1777,562,1923,582,2084,608,2096,611,2095,616,2084,614,1922,587,1776,567"/>
-<area shape="rect" id="Node000007" href="$argus__xtalk__cal__cli_8h.html" title="Provides an interactive crosstalk calibration CLI to the AFBR&#45;S50 API." alt="" coords="1926,611,2071,652"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="1739,565,1926,610,1925,615,1737,570"/>
-<area shape="rect" id="Node000009" href="$can__api_8h.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="96,611,245,652"/>
-<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="1570,556,903,575,530,592,375,602,258,614,246,615,245,610,257,608,375,597,530,586,903,569,1570,551"/>
-<area shape="rect" id="Node000012" href="$main_8h.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="269,619,435,644"/>
-<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="1570,554,1364,557,1085,565,768,583,607,597,448,614,407,620,406,615,448,608,606,591,768,578,1085,560,1364,551,1570,549"/>
-<area shape="rect" id="Node000014" href="$uart__api_8h.html" title="AFBR&#45;S50 UART Interface." alt="" coords="460,611,610,652"/>
-<area shape="poly" id="edge15_Node000004_Node000014" title=" " alt="" coords="1570,561,610,627,610,622,1570,556"/>
-<area shape="rect" id="Node000015" href="$explorer__types_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="981,611,1128,652"/>
-<area shape="poly" id="edge18_Node000004_Node000015" title=" " alt="" coords="1571,567,1129,623,1128,618,1570,562"/>
-<area shape="rect" id="Node000019" href="$explorer__tasks_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1668,892,1810,933"/>
-<area shape="poly" id="edge61_Node000004_Node000019" title=" " alt="" coords="1710,569,1763,603,1825,652,1884,714,1909,749,1929,787,1938,817,1937,831,1929,846,1905,870,1875,888,1843,900,1811,908,1810,903,1841,895,1873,883,1902,866,1925,842,1932,829,1933,817,1924,789,1905,752,1880,717,1821,656,1760,608,1707,574"/>
-<area shape="rect" id="Node000036" href="$explorer__app_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1584,700,1726,740"/>
-<area shape="poly" id="edge60_Node000004_Node000036" title=" " alt="" coords="1673,579,1659,700,1654,699,1668,578"/>
-<area shape="rect" id="Node000037" href="$explorer__tasks_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1749,796,1891,837"/>
-<area shape="poly" id="edge62_Node000004_Node000037" title=" " alt="" coords="1690,575,1811,794,1807,797,1685,578"/>
-<area shape="rect" id="Node000006" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="2233,700,2383,740"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="2216,658,2278,697,2276,701,2213,662"/>
-<area shape="rect" id="Node000008" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="2035,700,2181,740"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="2037,660,2085,697,2082,701,2034,664"/>
-<area shape="rect" id="Node000010" href="$can__api_8c.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="5,700,155,740"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="141,664,102,701,99,697,138,660"/>
-<area shape="rect" id="Node000011" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="178,707,345,733"/>
-<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="204,661,251,705,247,709,201,665"/>
-<area shape="poly" id="edge12_Node000012_Node000010" title=" " alt="" coords="300,652,143,702,141,697,298,647"/>
-<area shape="poly" id="edge13_Node000012_Node000011" title=" " alt="" coords="330,657,276,709,272,705,327,653"/>
-<area shape="rect" id="Node000013" href="$uart__api_8c.html" title="This file is part of the RA4M2 platform layer." alt="" coords="369,700,519,740"/>
-<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="378,653,425,697,421,701,374,657"/>
-<area shape="poly" id="edge16_Node000014_Node000011" title=" " alt="" coords="459,659,301,709,299,704,457,654"/>
-<area shape="poly" id="edge17_Node000014_Node000013" title=" " alt="" coords="505,664,466,701,463,697,502,660"/>
-<area shape="rect" id="Node000016" href="$explorer__api_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1416,796,1558,837"/>
-<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="1144,653,1209,673,1276,697,1376,746,1457,793,1454,798,1374,751,1274,702,1208,678,1143,658"/>
-<area shape="rect" id="Node000020" href="$explorer__api__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="188,796,337,837"/>
-<area shape="poly" id="edge23_Node000015_Node000020" title=" " alt="" coords="966,641,751,663,648,681,607,691,576,702,563,711,554,721,546,732,532,743,484,764,443,773,402,779,350,791,326,798,325,793,349,786,401,774,442,768,482,759,529,738,542,728,550,718,559,707,573,697,605,686,647,675,750,658,965,636"/>
-<area shape="rect" id="Node000022" href="$explorer__api__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="361,796,511,837"/>
-<area shape="poly" id="edge26_Node000015_Node000022" title=" " alt="" coords="966,639,894,646,811,658,724,676,640,702,607,720,576,743,475,798,473,793,573,738,604,716,638,697,722,671,810,652,893,641,965,634"/>
-<area shape="rect" id="Node000024" href="$explorer__api__data_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="695,700,852,740"/>
-<area shape="poly" id="edge29_Node000015_Node000024" title=" " alt="" coords="977,659,838,702,836,697,975,654"/>
-<area shape="rect" id="Node000026" href="$core__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1092,700,1234,740"/>
-<area shape="poly" id="edge32_Node000015_Node000026" title=" " alt="" coords="1093,660,1140,697,1137,701,1089,664"/>
-<area shape="rect" id="Node000028" href="$core__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1200,796,1342,837"/>
-<area shape="poly" id="edge34_Node000015_Node000028" title=" " alt="" coords="1144,642,1199,662,1225,678,1247,698,1262,721,1270,748,1274,795,1269,796,1265,749,1257,724,1243,701,1222,682,1197,667,1143,647"/>
-<area shape="rect" id="Node000032" href="$core__device_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="984,796,1126,837"/>
-<area shape="poly" id="edge38_Node000015_Node000032" title=" " alt="" coords="1057,667,1057,795,1052,795,1052,667"/>
-<area shape="rect" id="Node000033" href="$core__flash_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="876,700,1018,740"/>
-<area shape="poly" id="edge44_Node000015_Node000033" title=" " alt="" coords="1020,664,973,701,969,697,1017,660"/>
-<area shape="rect" id="Node000034" href="$core__utils_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="536,796,678,837"/>
-<area shape="poly" id="edge46_Node000015_Node000034" title=" " alt="" coords="966,643,806,665,734,682,684,702,660,723,641,748,616,797,611,794,637,745,657,719,681,697,732,677,805,660,965,638"/>
-<area shape="poly" id="edge52_Node000015_Node000036" title=" " alt="" coords="1144,643,1583,706,1583,711,1144,648"/>
-<area shape="rect" id="Node000017" href="$explorer__api_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1092,892,1234,933"/>
-<area shape="poly" id="edge20_Node000016_Node000017" title=" " alt="" coords="1407,844,1398,847,1233,894,1231,889,1397,841,1406,839"/>
-<area shape="rect" id="Node000018" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="877,892,1019,933"/>
-<area shape="poly" id="edge21_Node000016_Node000018" title=" " alt="" coords="1411,844,1398,847,1020,903,1019,898,1397,841,1409,838"/>
-<area shape="poly" id="edge22_Node000016_Node000019" title=" " alt="" coords="1555,840,1687,889,1685,894,1553,845"/>
-<area shape="poly" id="edge25_Node000020_Node000018" title=" " alt="" coords="336,838,350,841,427,855,493,863,606,868,720,873,864,889,877,891,876,897,864,895,719,878,606,874,493,868,426,860,349,847,335,844"/>
-<area shape="rect" id="Node000021" href="$explorer__api__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="529,892,679,933"/>
-<area shape="poly" id="edge24_Node000020_Node000021" title=" " alt="" coords="341,839,350,841,530,890,528,895,349,847,339,844"/>
-<area shape="poly" id="edge28_Node000022_Node000018" title=" " alt="" coords="512,838,525,841,619,859,694,867,769,875,864,889,877,892,876,897,864,895,768,880,693,873,619,864,523,847,511,844"/>
-<area shape="rect" id="Node000023" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="702,892,853,933"/>
-<area shape="poly" id="edge27_Node000022_Node000023" title=" " alt="" coords="516,839,525,841,702,889,701,894,523,847,514,844"/>
-<area shape="poly" id="edge31_Node000024_Node000018" title=" " alt="" coords="753,755,742,776,735,799,734,822,742,842,758,852,791,864,877,890,876,895,789,869,756,857,738,846,729,823,730,798,737,774,748,752"/>
-<area shape="rect" id="Node000025" href="$explorer__api__data_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="752,796,909,837"/>
-<area shape="poly" id="edge30_Node000024_Node000025" title=" " alt="" coords="796,752,821,794,817,797,791,755"/>
-<area shape="poly" id="edge33_Node000026_Node000017" title=" " alt="" coords="1165,756,1165,892,1160,892,1160,756"/>
-<area shape="poly" id="edge35_Node000028_Node000017" title=" " alt="" coords="1239,849,1187,894,1183,890,1235,844"/>
-<area shape="poly" id="edge37_Node000028_Node000019" title=" " alt="" coords="1358,832,1668,894,1667,899,1357,837"/>
-<area shape="poly" id="edge36_Node000028_Node000023" title=" " alt="" coords="1185,838,1138,847,866,895,854,897,853,892,865,889,1137,841,1184,832"/>
-<area shape="poly" id="edge39_Node000032_Node000017" title=" " alt="" coords="1090,844,1142,890,1139,894,1086,849"/>
-<area shape="poly" id="edge42_Node000032_Node000018" title=" " alt="" coords="1023,849,972,894,968,890,1019,845"/>
-<area shape="poly" id="edge43_Node000032_Node000019" title=" " alt="" coords="1142,833,1188,841,1667,900,1667,905,1188,847,1141,838"/>
-<area shape="poly" id="edge40_Node000032_Node000021" title=" " alt="" coords="969,837,691,895,680,897,679,892,690,889,968,832"/>
-<area shape="poly" id="edge41_Node000032_Node000023" title=" " alt="" coords="983,844,836,894,835,889,981,839"/>
-<area shape="poly" id="edge45_Node000033_Node000018" title=" " alt="" coords="950,756,951,892,945,892,944,756"/>
-<area shape="poly" id="edge47_Node000034_Node000017" title=" " alt="" coords="693,833,740,841,1092,898,1091,903,740,847,692,838"/>
-<area shape="poly" id="edge51_Node000034_Node000018" title=" " alt="" coords="687,839,697,841,877,890,876,895,695,847,686,844"/>
-<area shape="poly" id="edge48_Node000034_Node000021" title=" " alt="" coords="608,852,607,892,602,892,603,852"/>
-<area shape="poly" id="edge49_Node000034_Node000023" title=" " alt="" coords="657,842,743,889,740,894,654,847"/>
-<area shape="rect" id="Node000035" href="$core__utils_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1420,892,1562,933"/>
-<area shape="poly" id="edge50_Node000034_Node000035" title=" " alt="" coords="694,833,740,841,879,857,1068,875,1419,903,1419,908,1068,880,878,862,740,847,693,839"/>
-<area shape="poly" id="edge53_Node000036_Node000018" title=" " alt="" coords="1569,735,1487,755,1445,770,1405,791,1390,804,1381,818,1372,833,1354,846,1224,872,1020,903,1019,898,1223,866,1352,842,1368,829,1377,815,1386,800,1403,786,1443,766,1485,750,1568,729"/>
-<area shape="poly" id="edge54_Node000036_Node000019" title=" " alt="" coords="1742,731,1839,753,1879,768,1905,787,1913,801,1916,816,1913,830,1905,846,1886,867,1863,883,1811,903,1810,898,1860,878,1883,863,1900,842,1908,828,1911,816,1908,803,1901,790,1877,773,1838,758,1741,736"/>
-<area shape="poly" id="edge55_Node000036_Node000037" title=" " alt="" coords="1704,746,1787,793,1784,798,1701,751"/>
-<area shape="rect" id="Node000038" href="$_explorer_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="1582,796,1725,837"/>
-<area shape="poly" id="edge59_Node000036_Node000038" title=" " alt="" coords="1657,756,1656,796,1651,795,1652,756"/>
-<area shape="poly" id="edge57_Node000037_Node000018" title=" " alt="" coords="1750,844,1737,847,1638,863,1553,873,1409,879,1265,882,1180,886,1080,895,1020,902,1019,897,1080,889,1180,880,1265,876,1409,874,1553,868,1637,858,1735,841,1749,838"/>
-<area shape="poly" id="edge58_Node000037_Node000019" title=" " alt="" coords="1795,850,1758,893,1753,890,1791,846"/>
-<area shape="poly" id="edge56_Node000037_Node000035" title=" " alt="" coords="1745,844,1737,847,1563,895,1562,890,1735,841,1744,839"/>
-<area shape="poly" id="edge64_Node000039_Node000040" title=" " alt="" coords="1863,239,1863,271,1857,271,1857,239"/>
-<area shape="poly" id="edge65_Node000040_Node000041" title=" " alt="" coords="1914,317,1996,357,1994,362,1912,322"/>
-<area shape="poly" id="edge66_Node000041_Node000003" title=" " alt="" coords="1945,407,1764,452,1763,446,1944,401"/>
-<area shape="poly" id="edge69_Node000042_Node000003" title=" " alt="" coords="1549,405,1644,446,1642,451,1547,410"/>
-<area shape="poly" id="edge71_Node000043_Node000003" title=" " alt="" coords="1607,324,1679,447,1674,450,1602,327"/>
-<area shape="poly" id="edge73_Node000044_Node000041" title=" " alt="" coords="2037,239,2037,360,2032,360,2032,239"/>
-<area shape="poly" id="edge76_Node000045_Node000003" title=" " alt="" coords="2185,328,2160,368,2143,387,2123,403,2095,416,2057,427,1961,445,1857,458,1764,466,1763,460,1857,452,1961,440,2055,422,2093,411,2120,398,2139,383,2156,365,2180,325"/>
-<area shape="poly" id="edge77_Node000045_Node000041" title=" " alt="" coords="2148,322,2073,362,2070,357,2146,317"/>
-<area shape="poly" id="edge79_Node000046_Node000006" title=" " alt="" coords="2399,505,2318,700,2314,698,2394,503"/>
-<area shape="poly" id="edge81_Node000047_Node000006" title=" " alt="" coords="2415,662,2344,702,2341,697,2412,657"/>
-<area shape="poly" id="edge82_Node000047_Node000008" title=" " alt="" coords="2367,658,2182,703,2180,698,2365,653"/>
-<area shape="rect" id="Node000048" href="$examples_8h.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="2596,700,2745,740"/>
-<area shape="poly" id="edge83_Node000047_Node000048" title=" " alt="" coords="2524,656,2624,697,2622,702,2522,660"/>
-<area shape="rect" id="Node000053" href="$_example_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="2310,796,2455,837"/>
-<area shape="poly" id="edge89_Node000047_Node000053" title=" " alt="" coords="2449,667,2393,797,2389,794,2445,665"/>
-<area shape="rect" id="Node000049" href="$01__simple__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="2479,788,2625,844"/>
-<area shape="poly" id="edge84_Node000048_Node000049" title=" " alt="" coords="2636,752,2588,790,2585,786,2633,748"/>
-<area shape="rect" id="Node000050" href="$02__advanced__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="2649,788,2810,844"/>
-<area shape="poly" id="edge85_Node000048_Node000050" title=" " alt="" coords="2693,752,2715,786,2710,789,2689,755"/>
-<area shape="rect" id="Node000051" href="$03__high__speed__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="2834,788,3006,844"/>
-<area shape="poly" id="edge86_Node000048_Node000051" title=" " alt="" coords="2738,744,2849,785,2847,790,2736,749"/>
-<area shape="rect" id="Node000052" href="$04__multi__device__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="3030,788,3208,844"/>
-<area shape="poly" id="edge87_Node000048_Node000052" title=" " alt="" coords="2761,734,3018,786,3030,789,3029,794,3017,791,2760,740"/>
-<area shape="poly" id="edge88_Node000048_Node000053" title=" " alt="" coords="2597,748,2444,798,2442,793,2595,743"/>
-<area shape="poly" id="edge91_Node000054_Node000006" title=" " alt="" coords="2288,416,2309,699,2304,699,2283,417"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="2235,5,2385,46"/>
+<area shape="rect" id="Node000002" href="$argus__def_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="2235,94,2385,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2313,62,2313,94,2307,94,2307,62"/>
+<area shape="rect" id="Node000003" href="$argus__api_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1873,449,2024,489"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2220,126,2147,142,2071,169,2035,188,2002,211,1973,239,1951,273,1942,295,1936,319,1933,368,1938,413,1946,448,1940,449,1933,414,1928,368,1931,318,1936,293,1946,270,1969,236,1998,207,2032,183,2069,164,2146,136,2219,121"/>
+<area shape="rect" id="Node000041" href="$argus__dca_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="2407,183,2557,223"/>
+<area shape="poly" id="edge57_Node000002_Node000041" title=" " alt="" coords="2364,140,2444,180,2442,185,2361,144"/>
+<area shape="rect" id="Node000042" href="$argus__meas_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="2409,271,2560,312"/>
+<area shape="poly" id="edge61_Node000002_Node000042" title=" " alt="" coords="2334,146,2363,183,2397,221,2456,269,2453,273,2393,225,2358,187,2330,149"/>
+<area shape="rect" id="Node000043" href="$argus__res_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="2185,360,2336,401"/>
+<area shape="poly" id="edge68_Node000002_Node000043" title=" " alt="" coords="2288,148,2254,204,2238,237,2226,272,2222,292,2226,311,2236,336,2248,358,2244,361,2231,339,2221,313,2217,292,2221,271,2233,235,2249,202,2284,146"/>
+<area shape="rect" id="Node000044" href="$argus__offset_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="2011,360,2161,401"/>
+<area shape="poly" id="edge62_Node000002_Node000044" title=" " alt="" coords="2276,147,2237,184,2157,282,2101,361,2097,358,2153,279,2233,181,2273,143"/>
+<area shape="rect" id="Node000045" href="$argus__pba_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1736,183,1886,223"/>
+<area shape="poly" id="edge64_Node000002_Node000045" title=" " alt="" coords="2220,132,1905,185,1887,189,1886,183,1904,180,2219,127"/>
+<area shape="rect" id="Node000046" href="$argus__px_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="2235,271,2385,312"/>
+<area shape="poly" id="edge66_Node000002_Node000046" title=" " alt="" coords="2313,150,2313,271,2307,271,2307,150"/>
+<area shape="rect" id="Node000047" href="$argus__xtalk_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="1960,271,2110,312"/>
+<area shape="poly" id="edge69_Node000002_Node000047" title=" " alt="" coords="2221,141,2174,160,2130,185,2105,205,2083,229,2050,273,2045,269,2079,225,2102,201,2127,180,2172,155,2219,136"/>
+<area shape="rect" id="Node000048" href="$argus__nvm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="2449,537,2629,578"/>
+<area shape="poly" id="edge72_Node000002_Node000048" title=" " alt="" coords="2400,126,2500,149,2542,163,2570,181,2590,206,2598,231,2599,290,2599,382,2594,427,2582,471,2552,538,2548,536,2577,469,2589,426,2594,382,2594,290,2593,232,2585,209,2567,185,2540,168,2499,154,2399,132"/>
+<area shape="rect" id="Node000049" href="$argus__print_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="2474,626,2655,667"/>
+<area shape="poly" id="edge74_Node000002_Node000049" title=" " alt="" coords="2401,119,2488,134,2532,147,2575,164,2612,186,2643,214,2663,249,2670,290,2670,470,2667,527,2659,551,2644,579,2622,606,2597,628,2593,623,2618,603,2640,577,2654,549,2661,526,2665,470,2665,291,2658,250,2638,217,2609,190,2573,168,2531,152,2487,139,2400,124"/>
+<area shape="rect" id="Node000057" href="$argus__s2pi_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="2745,449,2925,489"/>
+<area shape="poly" id="edge86_Node000002_Node000057" title=" " alt="" coords="2401,120,2480,129,2563,141,2637,158,2666,169,2687,180,2720,210,2748,244,2772,282,2792,320,2819,393,2834,448,2829,449,2814,395,2787,323,2767,284,2744,247,2717,213,2684,185,2664,174,2635,163,2562,146,2479,134,2400,125"/>
+<area shape="rect" id="Node000004" href="$argus_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="1837,545,2012,571"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1942,505,1930,545,1925,544,1936,504"/>
+<area shape="rect" id="Node000005" href="$argus__hal__test_8h.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="2679,626,2829,667"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="2028,562,2317,582,2492,600,2668,623,2679,625,2678,631,2667,629,2491,605,2316,588,2027,567"/>
+<area shape="rect" id="Node000007" href="$argus__xtalk__cal__cli_8h.html" title="Provides an interactive crosstalk calibration CLI to the AFBR&#45;S50 API." alt="" coords="2305,626,2451,667"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="2011,571,2293,623,2305,626,2304,631,2292,629,2010,576"/>
+<area shape="rect" id="Node000009" href="$can__api_8h.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="461,626,610,667"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="1822,568,610,643,610,638,1821,563"/>
+<area shape="rect" id="Node000012" href="$main_8h.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="271,634,437,659"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="1821,561,1577,563,1236,571,845,592,645,608,449,629,407,636,406,630,448,623,644,602,845,586,1236,566,1577,557,1821,556"/>
+<area shape="rect" id="Node000014" href="$uart__api_8h.html" title="AFBR&#45;S50 UART Interface." alt="" coords="96,626,246,667"/>
+<area shape="poly" id="edge15_Node000004_Node000014" title=" " alt="" coords="1822,563,1037,584,588,603,401,615,259,629,247,630,246,625,259,623,401,610,587,598,1037,578,1821,558"/>
+<area shape="rect" id="Node000015" href="$argus__debug__cli_8h.html" title="Provides functions with debug information printed on a cli." alt="" coords="2112,626,2281,667"/>
+<area shape="poly" id="edge18_Node000004_Node000015" title=" " alt="" coords="1978,573,2136,623,2134,628,1977,578"/>
+<area shape="rect" id="Node000017" href="$explorer__types_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1227,626,1374,667"/>
+<area shape="poly" id="edge20_Node000004_Node000017" title=" " alt="" coords="1822,576,1375,637,1374,632,1821,571"/>
+<area shape="rect" id="Node000021" href="$explorer__tasks_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1784,907,1926,948"/>
+<area shape="poly" id="edge55_Node000004_Node000021" title=" " alt="" coords="1948,580,1990,633,2012,667,2032,705,2047,744,2054,784,2050,824,2033,860,2012,883,1986,901,1957,913,1927,921,1926,915,1955,908,1983,896,2009,879,2029,858,2045,822,2048,785,2042,746,2027,707,2008,670,1986,636,1944,584"/>
+<area shape="rect" id="Node000038" href="$explorer__app_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1716,715,1858,755"/>
+<area shape="poly" id="edge54_Node000004_Node000038" title=" " alt="" coords="1908,584,1804,716,1800,713,1904,581"/>
+<area shape="rect" id="Node000039" href="$explorer__tasks_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1853,811,1996,852"/>
+<area shape="poly" id="edge56_Node000004_Node000039" title=" " alt="" coords="1927,586,1927,810,1922,810,1922,586"/>
+<area shape="rect" id="Node000006" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="2773,715,2922,755"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="2788,675,2828,712,2824,716,2784,679"/>
+<area shape="rect" id="Node000008" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="2319,715,2464,755"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="2386,682,2391,714,2386,715,2381,683"/>
+<area shape="rect" id="Node000010" href="$can__api_8c.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="370,715,519,755"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="506,679,467,716,463,712,502,675"/>
+<area shape="rect" id="Node000011" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="180,722,346,748"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="460,674,302,724,301,719,458,669"/>
+<area shape="poly" id="edge12_Node000012_Node000010" title=" " alt="" coords="379,668,426,712,422,716,376,672"/>
+<area shape="poly" id="edge13_Node000012_Node000011" title=" " alt="" coords="332,672,278,724,274,720,328,668"/>
+<area shape="rect" id="Node000013" href="$uart__api_8c.html" title="This file is part of the RA4M2 platform layer." alt="" coords="5,715,156,755"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="302,667,143,717,142,712,300,662"/>
+<area shape="poly" id="edge16_Node000014_Node000011" title=" " alt="" coords="205,675,252,720,249,724,201,679"/>
+<area shape="poly" id="edge17_Node000014_Node000013" title=" " alt="" coords="142,679,103,716,99,712,138,675"/>
+<area shape="rect" id="Node000016" href="$argus__debug__cli_8c.html" title="Provides functions with debug information printed on a cli." alt="" coords="2124,715,2293,755"/>
+<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="2204,682,2208,714,2203,715,2199,683"/>
+<area shape="rect" id="Node000018" href="$explorer__api_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1137,811,1280,852"/>
+<area shape="poly" id="edge21_Node000017_Node000018" title=" " alt="" coords="1297,682,1286,719,1271,757,1251,787,1230,812,1226,809,1247,784,1266,754,1281,717,1291,681"/>
+<area shape="rect" id="Node000022" href="$explorer__api__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="543,715,693,755"/>
+<area shape="poly" id="edge25_Node000017_Node000022" title=" " alt="" coords="1211,657,981,680,843,697,705,717,693,719,692,714,704,712,842,692,981,675,1211,652"/>
+<area shape="rect" id="Node000024" href="$explorer__api__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="716,715,866,755"/>
+<area shape="poly" id="edge27_Node000017_Node000024" title=" " alt="" coords="1212,663,1056,687,878,717,867,719,866,714,877,712,1055,681,1211,658"/>
+<area shape="rect" id="Node000026" href="$explorer__api__data_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="890,715,1047,755"/>
+<area shape="poly" id="edge29_Node000017_Node000026" title=" " alt="" coords="1212,673,1045,717,1043,712,1211,668"/>
+<area shape="rect" id="Node000028" href="$core__cal_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1337,715,1480,755"/>
+<area shape="poly" id="edge31_Node000017_Node000028" title=" " alt="" coords="1339,675,1386,712,1382,716,1335,679"/>
+<area shape="rect" id="Node000030" href="$core__cfg_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1520,811,1662,852"/>
+<area shape="poly" id="edge33_Node000017_Node000030" title=" " alt="" coords="1390,659,1454,679,1486,694,1515,713,1539,735,1559,761,1586,809,1581,812,1555,764,1535,739,1512,717,1484,699,1452,684,1389,664"/>
+<area shape="rect" id="Node000034" href="$core__device_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1353,811,1496,852"/>
+<area shape="poly" id="edge36_Node000017_Node000034" title=" " alt="" coords="1390,654,1419,662,1447,674,1472,691,1493,713,1500,726,1501,740,1492,767,1473,792,1452,812,1448,809,1469,788,1487,765,1495,740,1494,728,1489,716,1469,695,1444,679,1417,667,1389,659"/>
+<area shape="rect" id="Node000035" href="$core__flash_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1071,715,1213,755"/>
+<area shape="poly" id="edge40_Node000017_Node000035" title=" " alt="" coords="1252,677,1179,717,1176,712,1250,672"/>
+<area shape="rect" id="Node000036" href="$core__utils_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="971,811,1113,852"/>
+<area shape="poly" id="edge42_Node000017_Node000036" title=" " alt="" coords="1287,681,1261,720,1226,757,1173,785,1100,813,1099,808,1170,780,1223,753,1257,717,1282,678"/>
+<area shape="poly" id="edge46_Node000017_Node000038" title=" " alt="" coords="1389,661,1716,718,1715,724,1389,666"/>
+<area shape="rect" id="Node000019" href="$explorer__api_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1245,907,1388,948"/>
+<area shape="poly" id="edge22_Node000018_Node000019" title=" " alt="" coords="1244,859,1296,905,1292,909,1240,864"/>
+<area shape="rect" id="Node000020" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="863,907,1005,948"/>
+<area shape="poly" id="edge23_Node000018_Node000020" title=" " alt="" coords="1138,859,992,909,990,904,1136,854"/>
+<area shape="poly" id="edge24_Node000018_Node000021" title=" " alt="" coords="1295,848,1342,856,1784,914,1783,920,1341,862,1295,853"/>
+<area shape="poly" id="edge26_Node000022_Node000020" title=" " alt="" coords="662,762,815,857,899,904,897,909,812,861,659,766"/>
+<area shape="poly" id="edge28_Node000024_Node000020" title=" " alt="" coords="805,769,825,813,853,857,878,883,905,904,902,908,875,887,849,861,821,815,801,771"/>
+<area shape="poly" id="edge30_Node000026_Node000020" title=" " alt="" coords="907,765,884,783,867,805,859,831,867,858,884,884,906,905,903,908,880,887,862,860,854,831,862,802,880,779,904,761"/>
+<area shape="poly" id="edge32_Node000028_Node000019" title=" " alt="" coords="1373,768,1357,785,1344,805,1333,831,1326,858,1320,907,1314,906,1321,857,1328,829,1339,802,1353,782,1369,764"/>
+<area shape="poly" id="edge34_Node000030_Node000019" title=" " alt="" coords="1520,859,1375,909,1373,904,1518,854"/>
+<area shape="poly" id="edge35_Node000030_Node000021" title=" " alt="" coords="1662,855,1801,904,1799,909,1660,860"/>
+<area shape="poly" id="edge37_Node000034_Node000019" title=" " alt="" coords="1393,864,1341,909,1337,905,1389,859"/>
+<area shape="poly" id="edge38_Node000034_Node000020" title=" " alt="" coords="1339,852,1292,862,1006,915,1005,910,1291,856,1338,847"/>
+<area shape="poly" id="edge39_Node000034_Node000021" title=" " alt="" coords="1499,854,1509,856,1655,889,1784,912,1783,917,1654,894,1508,862,1497,859"/>
+<area shape="poly" id="edge41_Node000035_Node000020" title=" " alt="" coords="1056,759,967,784,933,796,917,805,908,829,908,856,915,883,925,905,920,908,910,884,903,857,902,828,913,802,931,791,965,779,1055,754"/>
+<area shape="poly" id="edge43_Node000036_Node000019" title=" " alt="" coords="1115,854,1260,904,1258,909,1113,859"/>
+<area shape="poly" id="edge45_Node000036_Node000020" title=" " alt="" coords="1010,864,958,909,954,905,1007,859"/>
+<area shape="rect" id="Node000037" href="$core__utils_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1549,907,1692,948"/>
+<area shape="poly" id="edge44_Node000036_Node000037" title=" " alt="" coords="1115,854,1126,856,1241,879,1357,896,1549,918,1549,923,1356,901,1241,884,1125,862,1113,859"/>
+<area shape="poly" id="edge47_Node000038_Node000020" title=" " alt="" coords="1701,745,1256,776,1052,793,961,806,945,828,936,855,933,882,934,906,929,906,928,882,931,854,940,825,958,801,1051,788,1256,771,1700,739"/>
+<area shape="poly" id="edge48_Node000038_Node000021" title=" " alt="" coords="1874,736,1911,743,1948,756,1982,775,2009,802,2018,817,2020,831,2017,845,2009,860,1993,880,1973,895,1928,915,1926,910,1970,890,1989,876,2005,858,2012,843,2015,831,2013,818,2005,805,1979,779,1946,761,1910,748,1873,742"/>
+<area shape="poly" id="edge49_Node000038_Node000039" title=" " alt="" coords="1829,762,1898,808,1895,813,1826,766"/>
+<area shape="rect" id="Node000040" href="$_explorer_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 Explorer example application." alt="" coords="1687,811,1829,852"/>
+<area shape="poly" id="edge53_Node000038_Node000040" title=" " alt="" coords="1779,771,1766,811,1761,810,1774,769"/>
+<area shape="poly" id="edge51_Node000039_Node000020" title=" " alt="" coords="1855,859,1841,862,1485,890,1006,924,1005,919,1485,885,1840,856,1853,853"/>
+<area shape="poly" id="edge52_Node000039_Node000021" title=" " alt="" coords="1903,866,1872,908,1867,905,1899,862"/>
+<area shape="poly" id="edge50_Node000039_Node000037" title=" " alt="" coords="1849,859,1841,862,1686,909,1685,904,1840,856,1847,854"/>
+<area shape="poly" id="edge58_Node000041_Node000042" title=" " alt="" coords="2486,239,2487,271,2481,271,2480,239"/>
+<area shape="poly" id="edge59_Node000042_Node000043" title=" " alt="" coords="2420,320,2312,362,2311,357,2418,315"/>
+<area shape="poly" id="edge60_Node000043_Node000003" title=" " alt="" coords="2175,408,2020,451,2019,446,2174,403"/>
+<area shape="poly" id="edge63_Node000044_Node000003" title=" " alt="" coords="2043,411,1981,450,1978,446,2040,407"/>
+<area shape="poly" id="edge65_Node000045_Node000003" title=" " alt="" coords="1828,236,1862,312,1907,399,1937,447,1932,450,1902,402,1857,314,1823,239"/>
+<area shape="poly" id="edge67_Node000046_Node000043" title=" " alt="" coords="2293,327,2274,361,2269,358,2289,324"/>
+<area shape="poly" id="edge70_Node000047_Node000003" title=" " alt="" coords="2020,327,2002,361,1960,449,1955,447,1997,359,2015,324"/>
+<area shape="poly" id="edge71_Node000047_Node000043" title=" " alt="" coords="2102,315,2210,357,2208,362,2100,320"/>
+<area shape="poly" id="edge73_Node000048_Node000006" title=" " alt="" coords="2645,566,2705,575,2763,587,2811,604,2829,613,2843,624,2854,646,2859,670,2855,715,2850,714,2853,671,2849,648,2838,628,2826,618,2809,608,2761,593,2704,581,2645,572"/>
+<area shape="poly" id="edge75_Node000049_Node000006" title=" " alt="" coords="2644,669,2784,712,2782,717,2643,674"/>
+<area shape="poly" id="edge76_Node000049_Node000008" title=" " alt="" coords="2513,676,2432,717,2429,712,2510,672"/>
+<area shape="poly" id="edge77_Node000049_Node000016" title=" " alt="" coords="2469,673,2290,717,2289,712,2468,668"/>
+<area shape="rect" id="Node000050" href="$examples_8h.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="2490,715,2639,755"/>
+<area shape="poly" id="edge78_Node000049_Node000050" title=" " alt="" coords="2567,682,2567,714,2562,714,2562,682"/>
+<area shape="rect" id="Node000056" href="$_example_app_2main_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="3043,811,3188,852"/>
+<area shape="poly" id="edge85_Node000049_Node000056" title=" " alt="" coords="2607,673,2677,715,2761,753,2835,773,2895,781,2955,787,3032,801,3057,808,3056,813,3031,806,2955,792,2894,786,2834,778,2760,758,2675,720,2604,678"/>
+<area shape="rect" id="Node000051" href="$01__simple__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="2121,803,2267,859"/>
+<area shape="poly" id="edge79_Node000050_Node000051" title=" " alt="" coords="2475,759,2280,806,2268,809,2266,804,2278,801,2474,754"/>
+<area shape="rect" id="Node000052" href="$02__advanced__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="2291,803,2452,859"/>
+<area shape="poly" id="edge80_Node000050_Node000052" title=" " alt="" coords="2512,765,2428,805,2426,800,2509,760"/>
+<area shape="rect" id="Node000053" href="$03__high__speed__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="2476,803,2648,859"/>
+<area shape="poly" id="edge81_Node000050_Node000053" title=" " alt="" coords="2566,771,2565,803,2560,803,2561,771"/>
+<area shape="rect" id="Node000054" href="$04__multi__device__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="2671,803,2850,859"/>
+<area shape="poly" id="edge82_Node000050_Node000054" title=" " alt="" coords="2620,760,2705,800,2703,805,2618,765"/>
+<area shape="rect" id="Node000055" href="$05__simple__example__debug_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="2873,803,3019,859"/>
+<area shape="poly" id="edge83_Node000050_Node000055" title=" " alt="" coords="2655,752,2862,801,2873,804,2872,809,2861,806,2654,757"/>
+<area shape="poly" id="edge84_Node000050_Node000056" title=" " alt="" coords="2655,749,2678,753,2778,765,2856,773,2933,782,3032,801,3058,808,3057,813,3031,806,2932,787,2855,778,2777,771,2677,758,2654,754"/>
+<area shape="poly" id="edge87_Node000057_Node000006" title=" " alt="" coords="2849,504,2866,578,2870,623,2868,667,2857,715,2852,713,2863,666,2865,623,2861,579,2844,505"/>
 </map>
