@@ -250,3 +250,4 @@ See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
 \example 02_advanced_example.c
 \example 03_high_speed_example.c
 \example 04_multi_device_example.c
+\example 05_simple_example_debug.c

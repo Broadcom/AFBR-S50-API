@@ -4,7 +4,7 @@
  *
  * @copyright
  *
- * Copyright (c) 2023, Broadcom Inc.
+ * Copyright (c) 2024, Broadcom Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
 #include "argus.h"
  // additional #includes ...
 
-#include "argus_hal_test.h"
+#include "debug/argus_debug_cli.h" // extra debug output formatter
 
 #if RUN_XTALK_CALIBRATION
 #include "argus_xtalk_cal_cli.h"
@@ -87,13 +87,17 @@ static argus_hnd_t* InitializeDevice(s2pi_slave_t slave)
 /*!***************************************************************************
  * @brief   Triggers a measurement cycle in blocking manner.
  *
- * @param   device The pointer to the handle of the calling API instance. Used to
- *                identify the calling instance in case of multiple devices.
+ * @param   device The pointer to the handle of the calling API instance. Used
+ *                 to identify the calling instance in case of multiple devices.
  *
  * @param   res The pointer to the results data structure where the final
  *              measurement results are stored.
+ *
+ * @param   res_dbg The pointer to the debug results data structure where
+ *                  the debug data is stored. Note that this will be attached
+ *                  to the `res->Debug` member of the \p res structure!
  *****************************************************************************/
-static void TriggerMeasurementBlocking(argus_hnd_t * device, argus_results_t * res)
+static void TriggerMeasurementBlocking(argus_hnd_t * device, argus_results_t * res, argus_results_debug_t * res_dbg)
 {
     status_t status = STATUS_OK;
 
@@ -128,42 +132,8 @@ static void TriggerMeasurementBlocking(argus_hnd_t * device, argus_results_t * r
     HandleError(status, false, "Waiting for measurement data ready (Argus_GetStatus) failed!");
 
     /* Evaluate the raw measurement results by calling the #Argus_EvaluateData function. */
-    status = Argus_EvaluateData(device, res);
+    status = Argus_EvaluateDataDebug(device, res, res_dbg);
     HandleError(status, false, "Argus_EvaluateData failed!");
-}
-
-/*!***************************************************************************
- * @brief   Prints measurement results via UART.
- *
- * @details Prints some measurement data via UART in the following format:
- *
- *          ```
- *          123.456789 s; Range: 123456 mm;  Amplitude: 1234 LSB; Quality: 100;  Status: 0
- *          ```
- *
- * @param   res A pointer to the latest measurement results structure.
- *****************************************************************************/
-static void PrintResults(argus_results_t const * res)
-{
-    /* Print the recent measurement results:
-     * 1. Time stamp in seconds since the last MCU reset.
-     * 2. Range in mm (converting the Q9.22 value to mm).
-     * 3. Amplitude in LSB (converting the UQ12.4 value to LSB).
-     * 4. Signal Quality in % (100% = good signal).
-     * 5. Status (0: OK, <0: Error, >0: Warning.
-     *
-     * Note: Sending data via UART creates a large delay which might prevent
-     *       the API from reaching the full frame rate. This example sends
-     *       approximately 80 characters per frame at 115200 bps which limits
-     *       the max. frame rate of 144 fps:
-     *       115200 bps / 10 [bauds-per-byte] / 80 [bytes-per-frame] = 144 fps */
-    print("%4d.%06d s; Range: %5d mm;  Amplitude: %4d LSB;  Quality: %3d;  Status: %d\n",
-          res->TimeStamp.sec,
-          res->TimeStamp.usec,
-          res->Bin.Range / (Q9_22_ONE / 1000),
-          res->Bin.Amplitude / UQ12_4_ONE,
-          res->Bin.SignalQuality,
-          res->Status);
 }
 
 /*!***************************************************************************
@@ -201,10 +171,6 @@ void main(void)
 {
     HardwareInit(); // defined elsewhere
 
-    /* Running a sequence of test in order to verify the HAL implementation. */
-    status_t status = Argus_VerifyHALImplementation(SPI_SLAVE);
-    HandleError(status, true, "HAL Implementation verification failed on SPI_SLAVE!");
-
     /* Instantiate and initialize the device handlers. */
     argus_hnd_t * device = InitializeDevice(SPI_SLAVE);
 
@@ -218,16 +184,26 @@ void main(void)
     Argus_XtalkCalibration_CLI(device);
 #endif // RUN_XTALK_CALIBRATION
 
+    Print_DebugHeader();
+    uint32_t f_cnt = 1U;
+
     /* The program loop ... */
     for (;;)
     {
         /* The measurement data structure. */
-        argus_results_t res;
+        argus_results_t res = {0};
+
+        /* The measurement debugging data structure. Use this optional structure
+        * to obtain debug information. The data will be added by a pointer to
+        * the res->Debug member of the argus_results data structure. Thus, the
+        * lifetime of both, the argus_results_t as well as the
+        * argus_results_debug_t must be the same! */
+        argus_results_debug_t res_dbg;
 
         /* Trigger a measurement for the current device. */
-        TriggerMeasurementBlocking(device, &res);
+        TriggerMeasurementBlocking(device, &res, &res_dbg);
 
         /* Use the obtain results, e.g. print via UART. */
-        PrintResults(&res);
+        Print_DebugResults(f_cnt++, &res);
     }
 }

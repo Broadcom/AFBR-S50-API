@@ -62,6 +62,9 @@
  *              - 04_multi_device_example.c: Demonstrates the usage of multiple
  *                devices on a single MCU.
  *
+ *              - 05_simple_example_debug.c: Demonstrates how to obtain debug
+ *                information.
+ *
  * @warning     The example code provides is not intended to be used as a for
  *              production systems. It is intended to demonstrate the usage of
  *              the API and to provide a starting point for custom applications.
@@ -74,7 +77,8 @@
  *  - 1: 01_simple_example.c: Runs measurements in simplest blocking manner.
  *  - 2: 02_advanced_example.c: Starts measurements automatically from timer interrupt.
  *  - 3: 03_high_speed_example.c: Runs measurements with up to 3000 frames per second.
- *  - 4: 04_multi_device_example.c: Demonstrates the usage of multiple devices per MCU. */
+ *  - 4: 04_multi_device_example.c: Demonstrates the usage of multiple devices per MCU.
+ *  - 5: 05_simple_example_debug.c: Demonstrates how to obtain debug information. */
 #ifndef API_EXAMPLE
 #define API_EXAMPLE 1
 #endif
@@ -99,7 +103,7 @@
 #endif
 
 /*! Test example configuration! */
-#if API_EXAMPLE < 1 || API_EXAMPLE > 4
+#if API_EXAMPLE < 1 || API_EXAMPLE > 5
 #error The selected API_EXAMPLE is not available!
 #endif
 
