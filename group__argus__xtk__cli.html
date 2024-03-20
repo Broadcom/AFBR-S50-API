@@ -181,6 +181,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gad925f61e148752fbff72ffe00fe6b9e7" id="r_gad925f61e148752fbff72ffe00fe6b9e7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__xtk__cli.html#gad925f61e148752fbff72ffe00fe6b9e7">Print_XtalkVectorTable</a> (char *mode, <a class="el" href="unionargus__cal__xtalk__table__t.html">argus_cal_xtalk_table_t</a> *extXtalk)</td></tr>
 <tr class="memdesc:gad925f61e148752fbff72ffe00fe6b9e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the crosstalk values of each pixel in a table.  <br /></td></tr>
 <tr class="separator:gad925f61e148752fbff72ffe00fe6b9e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga34a4aee6919d75beaea0b51f4be19ba5" id="r_ga34a4aee6919d75beaea0b51f4be19ba5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__xtk__cli.html#ga34a4aee6919d75beaea0b51f4be19ba5">Print_FP_XtalkVectorTable</a> (char *mode, <a class="el" href="unionargus__cal__xtalk__table__t.html">argus_cal_xtalk_table_t</a> *extXtalk)</td></tr>
+<tr class="memdesc:ga34a4aee6919d75beaea0b51f4be19ba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the crosstalk fixed-point values of each pixel in a table.  <br /></td></tr>
+<tr class="separator:ga34a4aee6919d75beaea0b51f4be19ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf3c41a0ac508d7d23e0c27708eceae31" id="r_gaf3c41a0ac508d7d23e0c27708eceae31"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__xtk__cli.html#gaf3c41a0ac508d7d23e0c27708eceae31">Print_TotalXtalkMap</a> (<a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>)</td></tr>
 <tr class="memdesc:gaf3c41a0ac508d7d23e0c27708eceae31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates and prints the total crosstalk values of each pixel in an 8x4 matrix.  <br /></td></tr>
 <tr class="separator:gaf3c41a0ac508d7d23e0c27708eceae31"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -454,7 +457,7 @@ Variables</h2></td></tr>
 <hr  />
  <p>This interactive procedure guides through the steps needed to compensate the application specific crosstalk (xtalk) using the AFBR-S50 API.</p>
 <p>Please read application note <a href="https://docs.broadcom.com/docs/AFBR-S50-XTK-Crosstalk-Guide">AFBR-S50-XTK-Crosstalk-Guide</a> to get more information. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="01_simple_example_8c-example.html#a29">01_simple_example.c</a>, <a class="el" href="01_simple_example_with_hal_self_test_8c-example.html#a30">01_simple_example_with_hal_self_test.c</a>, <a class="el" href="02_advanced_example_8c-example.html#a26">02_advanced_example.c</a>, <a class="el" href="02_advanced_example_with_hal_self_test_8c-example.html#a27">02_advanced_example_with_hal_self_test.c</a>, <a class="el" href="03_high_speed_example_8c-example.html#a26">03_high_speed_example.c</a>, and <a class="el" href="05_simple_example_debug_8c-example.html#a20">05_simple_example_debug.c</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="05_simple_example_debug_8c-example.html#a20">05_simple_example_debug.c</a>.</dd>
 </dl>
 
 </div>
@@ -792,6 +795,53 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">res</td><td>A pointer to the results structure that will be populated with evaluated data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga34a4aee6919d75beaea0b51f4be19ba5" name="ga34a4aee6919d75beaea0b51f4be19ba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga34a4aee6919d75beaea0b51f4be19ba5">&#9670;&#160;</a></span>Print_FP_XtalkVectorTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Print_FP_XtalkVectorTable </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="unionargus__cal__xtalk__table__t.html">argus_cal_xtalk_table_t</a> *&#160;</td>
+          <td class="paramname"><em>extXtalk</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints the crosstalk fixed-point values of each pixel in a table. </p>
+<hr  />
+ <p>Supportive function to the xtalk calibration sequence.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extXtalk</td><td>A pointer to the <a class="el" href="unionargus__cal__xtalk__table__t.html" title="Pixel Crosstalk Vector Table.">argus_cal_xtalk_table_t</a> structure that will be populated with measured crosstalk calibration data. </td></tr>
+    <tr><td class="paramname">mode</td><td>A pointer to the char variable containing the current measurement mode. </td></tr>
   </table>
   </dd>
 </dl>

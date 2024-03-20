@@ -13,6 +13,7 @@ var argus__xtalk__cal__cli_8c =
     [ "Handle_Error", "group__argus__xtk__cli.html#gaed604b9e58dbcb564de55db6bce7e27b", null ],
     [ "Interpolate_ActivePixels", "group__argus__xtk__cli.html#ga094ac717ff04cbc41de66c61007ef733", null ],
     [ "Print_BinnedResults", "group__argus__xtk__cli.html#ga03205d9936e1c43d0eff1f99a4a24015", null ],
+    [ "Print_FP_XtalkVectorTable", "group__argus__xtk__cli.html#ga34a4aee6919d75beaea0b51f4be19ba5", null ],
     [ "Print_IntegrationEnergyInfo", "group__argus__xtk__cli.html#ga878e04ad94eb2367fd9f3dc947326be6", null ],
     [ "Print_PixelAmplResults", "group__argus__xtk__cli.html#ga74720aa6136125dc65490094230cdbac", null ],
     [ "Print_PixelMapCoordinates", "group__argus__xtk__cli.html#gaa494d93a4e4ebf78426749b97977970b", null ],

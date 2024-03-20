@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"structargus__cfg__pba__t.html#ac22b03530ed2079aab624a9ef351e304":[8,0,2,6,0,9],
 "structargus__cfg__pba__t.html#acb27de474ecec4e5a17f978e3ab810d9":[8,0,2,6,0,1],
 "structargus__cfg__pba__t.html#acfe797583a4ae005eff571e9867358d0":[8,0,2,6,0,14],
 "structargus__cfg__pba__t.html#ad30dbaa88237505f52a52d309e0d61e5":[8,0,2,6,0,3],

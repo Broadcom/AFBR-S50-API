@@ -108,10 +108,6 @@ $(document).ready(function(){initNavTree('02_advanced_example_8c-example.html','
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &quot;driver/irq.h&quot;</span> <span class="comment">// declaration of IRQ_LOCK/UNLOCK()</span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#if RUN_XTALK_CALIBRATION</span></div>
-<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="argus__xtalk__cal__cli_8h.html">argus_xtalk_cal_cli.h</a>&quot;</span></div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"> </div>
 <div class="line"><span class="comment">/*!***************************************************************************</span></div>
 <div class="line"><span class="comment"> *  Global measurement data ready event counter.</span></div>
 <div class="line"><span class="comment"> *</span></div>
@@ -290,20 +286,13 @@ $(document).ready(function(){initNavTree('02_advanced_example_8c-example.html','
 <div class="line">    <span class="comment">/* Print a device information message. */</span></div>
 <div class="line">    PrintDeviceInfo(device);</div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#if RUN_XTALK_CALIBRATION</span></div>
-<div class="line">    <span class="comment">/* Enter the CLI to perform a xtalk calibration interactively.</span></div>
-<div class="line"><span class="comment">     * It guides through all steps needed to compensate electrical</span></div>
-<div class="line"><span class="comment">     * as well as optical xtalk caused by an application design. */</span></div>
-<div class="line">    <a id="a26" name="a26"></a><a class="code hl_function" href="group__argus__xtk__cli.html#ga4111bd3a802e007dde1ad96451ad7511">Argus_XtalkCalibration_CLI</a>(device);</div>
-<div class="line"><span class="preprocessor">#endif </span><span class="comment">// RUN_XTALK_CALIBRATION</span></div>
-<div class="line"> </div>
 <div class="line">    <span class="comment">/* Start the measurement timers within the API module.</span></div>
 <div class="line"><span class="comment">     * The callback is invoked every time a measurement has been finished.</span></div>
 <div class="line"><span class="comment">     * The callback is used to schedule the data evaluation routine to the</span></div>
 <div class="line"><span class="comment">     * main thread by the user.</span></div>
 <div class="line"><span class="comment">     * Note that the timer based measurement is not implemented for multiple</span></div>
 <div class="line"><span class="comment">     * instance yet! */</span></div>
-<div class="line">    <a class="code hl_variable" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a> = <a id="a27" name="a27"></a><a class="code hl_function" href="group__argus__meas.html#gabe59a112f841d59e435510d3c17c9db1">Argus_StartMeasurementTimer</a>(device, &amp;<a class="code hl_function" href="core__utils_8c.html#ab10ecdb4ba8c7d5083cc3ec9a5733b19">MeasurementReadyCallback</a>);</div>
+<div class="line">    <a class="code hl_variable" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a> = <a id="a26" name="a26"></a><a class="code hl_function" href="group__argus__meas.html#gabe59a112f841d59e435510d3c17c9db1">Argus_StartMeasurementTimer</a>(device, &amp;<a class="code hl_function" href="core__utils_8c.html#ab10ecdb4ba8c7d5083cc3ec9a5733b19">MeasurementReadyCallback</a>);</div>
 <div class="line">    <a class="code hl_function" href="group__example__apps.html#ga09a1f92df8fe63ee58e8b8f69b9b5a5e">HandleError</a>(<a class="code hl_variable" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a>, <span class="keyword">true</span>, <span class="stringliteral">&quot;Argus_StartMeasurementTimer failed!&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* The program loop ... */</span></div>
@@ -312,15 +301,15 @@ $(document).ready(function(){initNavTree('02_advanced_example_8c-example.html','
 <div class="line">        <span class="comment">/* Check if new measurement data is ready. */</span></div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__can__app.html#gaf7335bf4f18928bdf815956a2a67152c">myDataReadyEvents</a>)</div>
 <div class="line">        {</div>
-<div class="line">            <a id="a28" name="a28"></a><a class="code hl_function" href="group__argus__irq.html#ga7eb2f9c9e40114afd7d079ace7c152e7">IRQ_LOCK</a>();</div>
+<div class="line">            <a id="a27" name="a27"></a><a class="code hl_function" href="group__argus__irq.html#ga7eb2f9c9e40114afd7d079ace7c152e7">IRQ_LOCK</a>();</div>
 <div class="line">            <a class="code hl_variable" href="group__can__app.html#gaf7335bf4f18928bdf815956a2a67152c">myDataReadyEvents</a>--;</div>
-<div class="line">            <a id="a29" name="a29"></a><a class="code hl_function" href="group__argus__irq.html#ga41f0d51315c5971183de8750606eab22">IRQ_UNLOCK</a>();</div>
+<div class="line">            <a id="a28" name="a28"></a><a class="code hl_function" href="group__argus__irq.html#ga41f0d51315c5971183de8750606eab22">IRQ_UNLOCK</a>();</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">/* The measurement data structure. */</span></div>
 <div class="line">            <a class="code hl_struct" href="structargus__results__t.html">argus_results_t</a> res;</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">/* Evaluate the raw measurement results. */</span></div>
-<div class="line">            <a class="code hl_variable" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a> = <a id="a30" name="a30"></a><a class="code hl_function" href="group__argus__meas.html#ga2f130afc115837409b99efaaaf5baedf">Argus_EvaluateData</a>(device, &amp;res);</div>
+<div class="line">            <a class="code hl_variable" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a> = <a id="a29" name="a29"></a><a class="code hl_function" href="group__argus__meas.html#ga2f130afc115837409b99efaaaf5baedf">Argus_EvaluateData</a>(device, &amp;res);</div>
 <div class="line">            <a class="code hl_function" href="group__example__apps.html#ga09a1f92df8fe63ee58e8b8f69b9b5a5e">HandleError</a>(<a class="code hl_variable" href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a>, <span class="keyword">false</span>, <span class="stringliteral">&quot;Argus_EvaluateData failed!&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line">            <span class="comment">/* Use the obtain results, e.g. print via UART. */</span></div>
@@ -330,7 +319,6 @@ $(document).ready(function(){initNavTree('02_advanced_example_8c-example.html','
 <div class="line">}</div>
 <div class="ttc" id="a_example_app_2main_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="_example_app_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdoc">Application entry point.</div><div class="ttdef"><b>Definition</b> main.c:48</div></div>
 <div class="ttc" id="aargus_8h_html"><div class="ttname"><a href="argus_8h.html">argus.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 API.</div></div>
-<div class="ttc" id="aargus__xtalk__cal__cli_8h_html"><div class="ttname"><a href="argus__xtalk__cal__cli_8h.html">argus_xtalk_cal_cli.h</a></div><div class="ttdoc">Provides an interactive crosstalk calibration CLI to the AFBR-S50 API.</div></div>
 <div class="ttc" id="acore__utils_8c_html_ab10ecdb4ba8c7d5083cc3ec9a5733b19"><div class="ttname"><a href="core__utils_8c.html#ab10ecdb4ba8c7d5083cc3ec9a5733b19">MeasurementReadyCallback</a></div><div class="ttdeci">status_t MeasurementReadyCallback(status_t status, argus_hnd_t *argus)</div></div>
 <div class="ttc" id="agroup__argus__api_html_ga6920f9aaa245e718cecce433d0efbf30"><div class="ttname"><a href="group__argus__api.html#ga6920f9aaa245e718cecce433d0efbf30">Argus_GetModuleName</a></div><div class="ttdeci">char const * Argus_GetModuleName(argus_hnd_t *hnd)</div><div class="ttdoc">Gets the name string of the module.</div></div>
 <div class="ttc" id="agroup__argus__api_html_ga7d724a6657138f112bff554f7db2a898"><div class="ttname"><a href="group__argus__api.html#ga7d724a6657138f112bff554f7db2a898">Argus_Init</a></div><div class="ttdeci">status_t Argus_Init(argus_hnd_t *hnd, s2pi_slave_t spi_slave)</div><div class="ttdoc">Initializes the device with default measurement mode.</div></div>
@@ -350,8 +338,7 @@ $(document).ready(function(){initNavTree('02_advanced_example_8c-example.html','
 <div class="ttc" id="agroup__argus__status_html_gaaabdaf7ee58ca7269bd4bf24efcde092"><div class="ttname"><a href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a></div><div class="ttdeci">int32_t status_t</div><div class="ttdoc">Type used for all status and error return values.</div><div class="ttdef"><b>Definition</b> argus_status.h:70</div></div>
 <div class="ttc" id="agroup__argus__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566"><div class="ttname"><a href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a></div><div class="ttdeci">@ STATUS_OK</div><div class="ttdef"><b>Definition</b> argus_status.h:80</div></div>
 <div class="ttc" id="agroup__argus__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70ba841c3e4e3ac94c0005f107140e184276"><div class="ttname"><a href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba841c3e4e3ac94c0005f107140e184276">ERROR_FAIL</a></div><div class="ttdeci">@ ERROR_FAIL</div><div class="ttdef"><b>Definition</b> argus_status.h:95</div></div>
-<div class="ttc" id="agroup__argus__xtk__cli_html_ga4111bd3a802e007dde1ad96451ad7511"><div class="ttname"><a href="group__argus__xtk__cli.html#ga4111bd3a802e007dde1ad96451ad7511">Argus_XtalkCalibration_CLI</a></div><div class="ttdeci">void Argus_XtalkCalibration_CLI(argus_hnd_t *hnd)</div><div class="ttdoc">Interactive Xtalk Calibration Procedure CLI.</div><div class="ttdef"><b>Definition</b> argus_xtalk_cal_cli.c:161</div></div>
-<div class="ttc" id="agroup__argus__xtk__cli_html_gaea26d52d2e16010e3e3e3ce0e8a1a0ce"><div class="ttname"><a href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a></div><div class="ttdeci">static status_t status</div><div class="ttdef"><b>Definition</b> argus_xtalk_cal_cli.c:139</div></div>
+<div class="ttc" id="agroup__argus__xtk__cli_html_gaea26d52d2e16010e3e3e3ce0e8a1a0ce"><div class="ttname"><a href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a></div><div class="ttdeci">static status_t status</div><div class="ttdef"><b>Definition</b> argus_xtalk_cal_cli.c:140</div></div>
 <div class="ttc" id="agroup__can__app_html_gaf7335bf4f18928bdf815956a2a67152c"><div class="ttname"><a href="group__can__app.html#gaf7335bf4f18928bdf815956a2a67152c">myDataReadyEvents</a></div><div class="ttdeci">static volatile uint8_t myDataReadyEvents</div><div class="ttdef"><b>Definition</b> main.c:96</div></div>
 <div class="ttc" id="agroup__example__apps_html_ga09a1f92df8fe63ee58e8b8f69b9b5a5e"><div class="ttname"><a href="group__example__apps.html#ga09a1f92df8fe63ee58e8b8f69b9b5a5e">HandleError</a></div><div class="ttdeci">void HandleError(status_t status, bool stop, char const *msg)</div><div class="ttdoc">A callback function from the example code whenever an error occurs.</div><div class="ttdef"><b>Definition</b> main.c:62</div></div>
 <div class="ttc" id="agroup__example__apps_html_ga943af7f8a98cf5a3f2107ed593215a4b"><div class="ttname"><a href="group__example__apps.html#ga943af7f8a98cf5a3f2107ed593215a4b">SPI_SLAVE</a></div><div class="ttdeci">#define SPI_SLAVE</div><div class="ttdef"><b>Definition</b> examples.h:102</div></div>
