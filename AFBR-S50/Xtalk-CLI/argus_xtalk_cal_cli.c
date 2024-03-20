@@ -97,6 +97,7 @@ static void Print_PixelSatResults(argus_results_t const * res);
 static void Print_PixelMapCoordinates(void);
 static void Print_XtalkMap(argus_cal_xtalk_table_t * extXtalk, uint8_t step);
 static void Print_XtalkVectorTable(char * mode, argus_cal_xtalk_table_t * extXtalk);
+static void Print_FP_XtalkVectorTable(char * mode, argus_cal_xtalk_table_t * extXtalk);
 static void Print_TotalXtalkMap(argus_hnd_t * hnd);
 static void Print_IntegrationEnergyInfo(argus_results_t const * res);
 //Misc functions
@@ -289,9 +290,16 @@ void Argus_XtalkCalibration_CLI(argus_hnd_t * hnd)
                     print("Device Info:\n"
                           "-----------------------------------------------\n"
                           "  Module:       %s\n"
-                          "  ChipID:       %d\n"
-                          "  Golden Pixel: %d/%d\n\n",
-                          Argus_GetModuleName(hnd), Argus_GetChipID(hnd), gp_x, gp_y);
+                          "  ChipID:       %d\n", Argus_GetModuleName(hnd), Argus_GetChipID(hnd));
+
+                    int mod = Argus_GetModuleVersion(hnd);
+                    Get_GoldenPixel(hnd);
+                    if (!((mod == AFBR_S50MV85I_V1) || (mod == AFBR_S50MX85I_V1)))
+                    {
+                        print("  Golden Pixel: %d/%d\n\n", gp_x, gp_y);
+                    }else{
+                        print("  Golden Pixel: n/a\n\n");
+                    }
 
                     /* API information. */
                     const uint32_t value = Argus_GetAPIVersion();
@@ -381,6 +389,7 @@ void Argus_XtalkCalibration_CLI(argus_hnd_t * hnd)
                           "Enter 's' - Start xtalk calibration step-by-step guide\n"
                           "Enter 'x' - Read xtalk calibration table from memory\n"
                           "Enter 'X' - Set total xtalk vector table from last calibration\n"
+                          "Enter 'y' - Get xtalk calibration table with FP instructions for callback\n"
                           "Enter 'q' - Exit the CLI and return to the calling application code\n\n"
                           "Note: Commands are case sensitive!");
                     print("\n#####################################################################################\n\n");
@@ -579,6 +588,55 @@ void Argus_XtalkCalibration_CLI(argus_hnd_t * hnd)
 
                     break;
 
+                case 'y':
+                    print("Print xtalk FP vector table stored in flash memory:\n");
+
+                    /*Retrieve External xtalk vector table and display values at prompt
+                     *Values are shown in fixed point arithmetic.*/
+                    status = Argus_GetCalibrationCrosstalkVectorTable(hnd, &myXtalk);
+                    Handle_Error(status, "Read xtalk vector table failed!");
+
+                    /* Get current measurement mode */
+                    status = Argus_GetMeasurementMode(hnd, &myMode);
+                    Handle_Error(status, "Argus_GetMeasurementMode failed!");
+
+                    char m_modeFP[23];
+                    switch (myMode)
+                    {
+                        case ARGUS_MODE_SHORT_RANGE:
+                            strcpy(m_modeFP, "Short Range");
+                            break;
+                        case ARGUS_MODE_LONG_RANGE:
+                            strcpy(m_modeFP, "Long Range");
+                            break;
+                        case ARGUS_MODE_HIGH_SPEED_SHORT_RANGE:
+                            strcpy(m_modeFP, "High Speed Short Range");
+                            break;
+                        case ARGUS_MODE_HIGH_SPEED_LONG_RANGE:
+                            strcpy(m_modeFP, "High Speed Long Range");
+                            break;
+                        default:
+                            strcpy(m_modeFP, "undefined");
+                            break;
+                    }
+
+                    Print_FP_XtalkVectorTable(m_modeFP, &myXtalk);
+
+                    print("\n\nNote(s):\n"
+                          "-----------------------------------------------\n"
+                          "- The table shows the last calibrated xtalk values which are still\n"
+                          "  present in the RAM memory of the MCU. The string instructions can be\n"
+                          "  directly copied & pasted to the callback function for xtalk hard-coding.\n"
+                          "  Read the application note 'https://docs.broadcom.com/docs/AFBR-S50-XTK-Crosstalk-Guide'\n"
+                          "  section 6.2 for more information.\n"
+                          "- The xtalk table is empty in case you didn't perform an xtalk\n"
+                          "  calibration in this session. Press 's' to do so.");
+                    print("\n\nTip(s):\n"
+                          "-----------------------------------------------\n"
+                          "- Press 'i' to get more information on your sensor settings.\n\n");
+
+                    break;
+
                 case 'q':
                     /*Quit xtalk calibration guide and return to calling example*/
                     quit = true;
@@ -679,7 +737,7 @@ static void Print_PixelSatResults(argus_results_t const * res)
           "----------------\n"
           "A cover glass calibration should not be performed with any saturated pixels!\n"
           "Try to either increase the distance to the low reflective target or/and change\n"
-          "the material of the target.\n",
+          "the material of the target.\n\n",
           sat_pixels_cnt);
 }
 
@@ -727,14 +785,60 @@ static void Print_XtalkMap(argus_cal_xtalk_table_t * extXtalk, uint8_t step)
             for (unsigned int x = 0; x < ARGUS_PIXELS_X; x++)
             {
                 /*Print single pixel statuses (excluding 1D binned flag)*/
-                print(" %6.2f/%4.2f", extXtalk->Table[f][x][y].dS / (float)(UQ11_4_ONE),
-                      extXtalk->Table[f][x][y].dC / (float)(UQ11_4_ONE));
+                print(" %6.2f/%4.2f", extXtalk->Table[f][x][y].dS / (float)(Q11_4_ONE),
+                      extXtalk->Table[f][x][y].dC / (float)(Q11_4_ONE));
             }
             print("\n");
         }
     }
     print("\n");
 }
+
+/*!***************************************************************************
+ * @brief   Prints the crosstalk fixed-point values of each pixel in a table.
+ *
+ * @details Supportive function to the xtalk calibration sequence.
+ *
+ * @param   extXtalk A pointer to the argus_cal_xtalk_table_t structure that will
+ *                   be populated with measured crosstalk calibration data.
+ * @param   mode     A pointer to the char variable containing the current
+ *                   measurement mode.
+ *****************************************************************************/
+static void Print_FP_XtalkVectorTable(char * mode, argus_cal_xtalk_table_t * extXtalk)
+{
+    print("\n-------------------------------------------------------------------------\n"
+          "\n-------------------------------------------------------------------------\n");
+    print("This is the xtalk table for the currently set '%s' mode:\n"
+          "\n-------------------------------------------------------------------------\n",
+          mode);
+
+    for (uint8_t f = 0; f < ARGUS_DFM_FRAME_COUNT; f++)
+    {
+        for (uint8_t x = 0; x < ARGUS_PIXELS_X; x++)
+        {
+            for (uint8_t y = 0; y < ARGUS_PIXELS_Y; y++)
+            {
+                print("xtalk->Frame%s[%d][%d].dS=%d\n",
+                      (f == 0) ? "A" : "B", x, y,
+                      extXtalk->Table[f][x][y].dS);
+            }
+        }
+    }
+    for (uint8_t f = 0; f < ARGUS_DFM_FRAME_COUNT; f++)
+    {
+        for (uint8_t x = 0; x < ARGUS_PIXELS_X; x++)
+        {
+            for (uint8_t y = 0; y < ARGUS_PIXELS_Y; y++)
+            {
+                print("xtalk->Frame%s[%d][%d].dC=%d\n",
+                      (f == 0) ? "A" : "B", x, y,
+                      extXtalk->Table[f][x][y].dC);
+            }
+        }
+    }
+    print("\n-------------------------------------------------------------------------\n");
+}
+
 
 /*!***************************************************************************
  * @brief   Prints the crosstalk values of each pixel in a table.
@@ -764,8 +868,8 @@ static void Print_XtalkVectorTable(char * mode, argus_cal_xtalk_table_t * extXta
             {
                 print("%5s%4d%4d%10.2f%10.2f\n",
                       (f == 0) ? "A" : "B", x, y,
-                      extXtalk->Table[f][x][y].dS / (float)(UQ11_4_ONE),
-                      extXtalk->Table[f][x][y].dC / (float)(UQ11_4_ONE));
+                      extXtalk->Table[f][x][y].dS / (float)(Q11_4_ONE),
+                      extXtalk->Table[f][x][y].dC / (float)(Q11_4_ONE));
             }
         }
     }
@@ -801,8 +905,8 @@ static void Print_TotalXtalkMap(argus_hnd_t * hnd)
                         - (fp_muls(T_GLASS, (oeXtalkNoCoverArr.Table[f][x][y].dC - eXtalkArr.Table[f][x][y].dC), 8));
 
                 /*Print single pixel amplitude in LSB (converting the UQ12.4 value to LSB)*/
-                print(" %6.2f/%4.2f", totalXtalk.Table[f][x][y].dS / (float)(UQ11_4_ONE),
-                      totalXtalk.Table[f][x][y].dC / (float)(UQ11_4_ONE));
+                print(" %6.2f/%4.2f", totalXtalk.Table[f][x][y].dS / (float)(Q11_4_ONE),
+                      totalXtalk.Table[f][x][y].dC / (float)(Q11_4_ONE));
             }
             print("\n");
         }
