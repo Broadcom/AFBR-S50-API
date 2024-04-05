@@ -163,7 +163,7 @@ void Print_DebugResults(uint32_t frame_cnt, argus_results_t const * res)
             /*------------------------------------------------------------------------*/
             for (uint_fast8_t p = 0; p < ARGUS_PHASECOUNT; ++p)
             {
-                uint32_t sample = (res_dbg->Data[p + (y + (x * ARGUS_PIXELS_Y) * ARGUS_PHASECOUNT)] & 0x3FFFFFU);
+                uint32_t sample = (res_dbg->Data[p + (y + (x * ARGUS_PIXELS_Y)) * ARGUS_PHASECOUNT] & 0x3FFFFFU);
                 print("%lu" SEP, sample / res->Frame.DigitalIntegrationDepth);
             }
             /*------------------------------------------------------------------------*/
