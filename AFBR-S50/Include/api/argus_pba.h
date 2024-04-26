@@ -381,21 +381,21 @@ typedef struct
      *
      *  Pixels, whose range is smaller than the minimum distance inclusion
      *  threshold (x_min + dx_incl) are added to the pixel binning. The
-     *  range must raise above the exclusion 
+     *  range must raise above the exclusion
      *  (#RelativeDistanceScopeExclusion) threshold to be removed
-     *  from the pixel binning again. The relative value is determined 
+     *  from the pixel binning again. The relative value is determined
      *  by multiplying the percentage with the minimum distance.
-     * 
+     *
      *  The distance scope determines an interval within that pixels
      *  are considered valid, originating at the minimum distance (x_min).
      *  The width of the interval is specified by the relative and absolute
      *  minimum distance scope thresholds. The actual values it the
-     *  maximum of both, the relative and absolute inclusion values 
+     *  maximum of both, the relative and absolute inclusion values
      *  (#AbsoluteDistanceScopeInclusion).
-     * 
+     *
      *  All available values from the 8-bit representation are valid.
      *  The actual percentage value is determined by 100%/256*x.
-     * 
+     *
      *  Must be smaller than or equal to the #RelativeDistanceScopeExclusion.
      *
      *  Use #RelativeDistanceScopeExclusion == #RelativeDistanceScopeInclusion to
@@ -406,21 +406,21 @@ typedef struct
      *
      *  Pixels, whose range is larger than the minimum distance exclusion
      *  threshold (x_min + dx_excl) are removed from the pixel binning. The
-     *  range must fall below the inclusion 
+     *  range must fall below the inclusion
      *  (#RelativeDistanceScopeInclusion) threshold to be added
-     *  to the pixel binning again. The relative value is determined 
+     *  to the pixel binning again. The relative value is determined
      *  by multiplying the percentage with the minimum distance.
-     * 
+     *
      *  The distance scope determines an interval within that pixels
      *  are considered valid, originating at the minimum distance (x_min).
      *  The width of the interval is specified by the relative and absolute
      *  minimum distance scope thresholds. The actual values it the
-     *  maximum of both, the relative and absolute exclusion values 
+     *  maximum of both, the relative and absolute exclusion values
      *  (#AbsoluteDistanceScopeExclusion).
-     * 
+     *
      *  All available values from the 8-bit representation are valid.
      *  The actual percentage value is determined by 100%/256*x.
-     * 
+     *
      *  Must be larger than or equal to the #RelativeDistanceScopeInclusion.
      *
      *  Use #RelativeDistanceScopeExclusion == #RelativeDistanceScopeInclusion to
@@ -431,20 +431,20 @@ typedef struct
      *
      *  Pixels, whose range is smaller than the minimum distance inclusion
      *  threshold (x_min + dx_incl) are added to the pixel binning. The
-     *  range must raise above the exclusion 
+     *  range must raise above the exclusion
      *  (#AbsoluteDistanceScopeExclusion) threshold to be added
      *  to the pixel binning again.
-     * 
+     *
      *  The distance scope determines an interval within that pixels
      *  are considered valid, originating at the minimum distance (x_min).
      *  The width of the interval is specified by the relative and absolute
      *  minimum distance scope thresholds. The actual values it the
-     *  maximum of both, the relative and absolute exclusion values 
+     *  maximum of both, the relative and absolute exclusion values
      *  (#RelativeDistanceScopeInclusion).
-     * 
+     *
      *  All available values from the 16-bit representation are valid.
      *  The actual LSB value is determined by x/2^15.
-     * 
+     *
      *  Must be smaller than or equal to the #AbsoluteDistanceScopeExclusion.
      *
      *  Use #AbsoluteDistanceScopeExclusion == #AbsoluteDistanceScopeInclusion to
@@ -455,20 +455,20 @@ typedef struct
      *
      *  Pixels, whose range is larger than the minimum distance exclusion
      *  threshold (x_min + dx_excl) are removed from the pixel binning. The
-     *  range must fall below the inclusion 
+     *  range must fall below the inclusion
      *  (#AbsoluteDistanceScopeInclusion) threshold to be added
      *  to the pixel binning again.
-     * 
+     *
      *  The distance scope determines an interval within that pixels
      *  are considered valid, originating at the minimum distance (x_min).
      *  The width of the interval is specified by the relative and absolute
      *  minimum distance scope thresholds. The actual values it the
-     *  maximum of both, the relative and absolute exclusion values 
+     *  maximum of both, the relative and absolute exclusion values
      *  (#RelativeDistanceScopeExclusion).
-     * 
+     *
      *  All available values from the 16-bit representation are valid.
      *  The actual LSB value is determined by x/2^15.
-     * 
+     *
      *  Must be larger than or equal to the #AbsoluteDistanceScopeInclusion.
      *
      *  Use #AbsoluteDistanceScopeExclusion == #AbsoluteDistanceScopeInclusion to
