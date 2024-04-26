@@ -149,10 +149,14 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Raw x-y-sorted ADC results from the device.<br  />
-Data is arranged as 32-bit values in following order: index &gt; phase; where index is pixel number n and auxiliary ADC channel.<br  />
-Note that disabled pixels are skipped.<br  />
-e.g. [n=0,p=0][n=0,p=1]..[n=0,p=3][n=1,p=0]...[n=1,p=3]...[n=31,p=3] </p>
+<p>Raw x-y-sorted ADC results from the device.</p>
+<p>The raw data contains the saturation flag which are the two MSBs which might need to be removed via the <code>0x3FFFFFU</code> mask:</p>
+<p><code>sample = Data[i] &amp; 0x3FFFFFU;</code>.</p>
+<p>Additionally, the values may need to be normalized to a single digital integration pattern by dividing with the digital integration depth (see <a class="el" href="structargus__meas__frame__t.html#a43faca48324c90f7aecf4bfe52aa4e21">argus_meas_frame_t.DigitalIntegrationDepth</a>):</p>
+<p><code>sample_normalized = Data[i] / res-&gt;Frame.DigitalIntegrationDepth;</code></p>
+<p>Data is arranged as 32-bit values in following order: index &gt; phase; where index is pixel number n and auxiliary ADC channel.</p>
+<p>Note that disabled pixels are skipped.</p>
+<p>e.g. [n=0,p=0][n=0,p=1]..[n=0,p=3][n=1,p=0]...[n=1,p=3]...[n=31,p=3] </p>
 
 </div>
 </div>
@@ -182,8 +186,8 @@ e.g. [n=0,p=0][n=0,p=1]..[n=0,p=3][n=1,p=0]...[n=1,p=3]...[n=31,p=3] </p>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The current crosstalk correction values as determined by the crosstalk monitor algorithm. This is a dynamic portion of the crosstalk correction that is determined by monitoring passive pixels.<br  />
-Note that the values are valid row-wise. </p>
+<p>The current crosstalk correction values as determined by the crosstalk monitor algorithm. This is a dynamic portion of the crosstalk correction that is determined by monitoring passive pixels.</p>
+<p>Note that the values are valid row-wise. </p>
 
 </div>
 </div>
@@ -198,8 +202,8 @@ Note that the values are valid row-wise. </p>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The current crosstalk correction values as determined by the crosstalk predictor algorithm. This is basically the temperature dependent portion of the crosstalk correction.<br  />
-Note that there are two values for the upper and lower two rows respectively. </p>
+<p>The current crosstalk correction values as determined by the crosstalk predictor algorithm. This is basically the temperature dependent portion of the crosstalk correction.</p>
+<p>Note that there are two values for the upper and lower two rows respectively. </p>
 
 </div>
 </div>

@@ -251,7 +251,7 @@ var searchData=
   ['start_5fmeasurements_248',['start_measurements',['../group__can__app.html#ga000633f7153a3163c112f9c8a4397f65',1,'main.c']]],
   ['started_249',['started',['../getting_started.html',1,'Getting Started'],['../reference_board.html#reference_board_getting_started',1,'Getting Started'],['../index.html#autotoc_md1',1,'Getting Started']]],
   ['state_250',['State',['../structargus__meas__frame__t.html#ae6b3817cf5561c10c83421c1ca9794c0',1,'argus_meas_frame_t']]],
-  ['status_251',['status',['../structargus__pixel__t.html#a1bab0aba97de4f50e10358c3cd2e3336',1,'argus_pixel_t::Status'],['../structargus__results__t.html#a94a5adbd578f9e837e084cdd79a142ca',1,'argus_results_t::Status'],['../group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce',1,'status:&#160;argus_xtalk_cal_cli.c'],['../group__argus__status.html#ga67a0db04d321a74b7e7fcfd3f1a3f70b',1,'Status:&#160;argus_status.h']]],
+  ['status_251',['status',['../structargus__pixel__t.html#a1bab0aba97de4f50e10358c3cd2e3336',1,'argus_pixel_t::Status'],['../structargus__results__t.html#a94a5adbd578f9e837e084cdd79a142ca',1,'argus_results_t::Status'],['../group__argus__status.html#ga67a0db04d321a74b7e7fcfd3f1a3f70b',1,'Status:&#160;argus_status.h'],['../group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce',1,'status:&#160;argus_xtalk_cal_cli.c']]],
   ['status_20codes_252',['status codes',['../group__scheduler__status.html',1,'Status Codes'],['../group__argus__status.html',1,'Status Codes']]],
   ['status_2eh_253',['status.h',['../status_8h.html',1,'']]],
   ['status_5fargus_5factive_254',['STATUS_ARGUS_ACTIVE',['../group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baa703a494dc5a157b719c2c2d67753298',1,'argus_status.h']]],

@@ -5,7 +5,7 @@ var searchData=
   ['tables_2',['Changed Data Types for Crosstalk and Offset Tables',['../migration_guide.html#autotoc_md68',1,'']]],
   ['task_20profiler_3',['Task Profiler',['../group__profiler.html',1,'']]],
   ['task_20scheduler_4',['Task Scheduler',['../group__scheduler.html',1,'']]],
-  ['task_5ferror_5',['task_error',['../explorer__tasks_8c.html#ad814a4cb76053d32c4fd1e160e891c54',1,'Task_Error(error_event_t *e):&#160;explorer_tasks.c'],['../group__explorer__tasks.html#ggac7a0d0b0bc05d09afb4355814f794a13aefbc99194d4bc3aecd78087cb3bffa18',1,'TASK_ERROR:&#160;explorer_tasks.h']]],
+  ['task_5ferror_5',['task_error',['../group__explorer__tasks.html#ggac7a0d0b0bc05d09afb4355814f794a13aefbc99194d4bc3aecd78087cb3bffa18',1,'TASK_ERROR:&#160;explorer_tasks.h'],['../explorer__tasks_8c.html#ad814a4cb76053d32c4fd1e160e891c54',1,'Task_Error(error_event_t *e):&#160;explorer_tasks.c']]],
   ['task_5feval_5fdat_6',['TASK_EVAL_DAT',['../group__explorer__tasks.html#ggac7a0d0b0bc05d09afb4355814f794a13a37776db9f4eaa51bf64872aea0690b0d',1,'explorer_tasks.h']]],
   ['task_5fevaluatemeasurementdata_7',['Task_EvaluateMeasurementData',['../explorer__tasks_8c.html#a633ec129c2e6fe9e8a1e29488fa21416',1,'explorer_tasks.c']]],
   ['task_5fevent_5ft_8',['task_event_t',['../group__scheduler.html#ga79cfd27ab44a4bc1947db0703f92414a',1,'task_scheduler.h']]],
