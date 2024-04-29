@@ -38,8 +38,6 @@ flag). The following GNU toolchain settings are used to compile the libraries:
     **AEABI** compliant.
 -   `-mfloat-abi=softfp`: Software floating-point Procedure Call Standard (PCS)
     and hardware floating point instructions.
--   `-fno-short-enums`: `enum` types are at least int width.
--   `-fno-short-wchar`: the `wchar_t` data type is 4-bytes wide.
 
 @note The **AFBR-S50** code does not use any floating-point nor `wchar_t` values
 at all.
@@ -61,10 +59,10 @@ The following API variants are available:
 | `afbrs50_m0_os`     | Cortex-M0/M0+ | none    | soft | memory size  |
 | `afbrs50_m3`        | Cortex-M3     | none    | soft | performance  |
 | `afbrs50_m3_os`     | Cortex-M3     | none    | soft | memory size  |
-| `afbrs50_m4`        | Cortex-M4     | none    | soft | performance  |
-| `afbrs50_m4_os`     | Cortex-M4     | none    | soft | memory size  |
-| `afbrs50_m4_fpu`    | Cortex-M4     | FPv4-SP | hard | performance  |
-| `afbrs50_m4_fpu_os` | Cortex-M4     | FPv4-SP | hard | memory size  |
+| `afbrs50_m4`        | Cortex-M4/M7  | none    | soft | performance  |
+| `afbrs50_m4_os`     | Cortex-M4/M7  | none    | soft | memory size  |
+| `afbrs50_m4_fpu`    | Cortex-M4/M7  | FPv4-SP | hard | performance  |
+| `afbrs50_m4_fpu_os` | Cortex-M4/M7  | FPv4-SP | hard | memory size  |
 
 Architecture:
 
