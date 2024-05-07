@@ -167,7 +167,7 @@ current version.
 
 ## How to get Support
 
-In oder to get support, please make sure the issue is related to the **AFBR-S50
+In order to get support, please make sure the issue is related to the **AFBR-S50
 API**. If the issue is related to the **AFBR-S50 Hardware**, contact the
 corresponding support via `support.tof[at]broadcom.com`.
 
@@ -194,7 +194,7 @@ Ideas for contributions could be:
 
 Please make sure your work fits well into the existing structure and coding
 style. Also, before you start your work, check if your planned contribution will
-be accepted by open a new issue that describes your planned changes. This will
+be accepted by opening a new issue that describes your planned changes. This will
 also help to gather information about the implementation.
 
 ## Acknowledgements
