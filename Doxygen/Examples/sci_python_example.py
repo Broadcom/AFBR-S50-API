@@ -187,7 +187,7 @@ class AFBR_S50:
         d["amplitude"] = a / 16.0  # convert from UQ12.4
 
         # Extract Signal Quality:
-        q = rx[19]
+        q = rx[20]
         d["signal quality"] = q
 
         return d
@@ -288,3 +288,4 @@ if __name__ == "__main__":
         # [CMD] = 0x12; command byte: stop timer based measurements
         print("stop measurements")
         s50.write(bytes.fromhex("02 12 F7 03"))
+
