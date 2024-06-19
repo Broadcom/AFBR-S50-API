@@ -179,15 +179,15 @@ class AFBR_S50:
         d["timestamp"] = t_sec + t_usec * 16.0 / 1.0e6
 
         # Extract Range:
-        r = (rx[13] << 16) + (rx[14] << 8) + rx[15]
+        r = (rx[15] << 16) + (rx[16] << 8) + rx[17]
         d["range"] = r / 16384.0  # convert from Q9.14
 
         # Extract Amplitude:
-        a = (rx[16] << 8) + rx[17]
+        a = (rx[18] << 8) + rx[19]
         d["amplitude"] = a / 16.0  # convert from UQ12.4
 
         # Extract Signal Quality:
-        q = rx[18]
+        q = rx[19]
         d["signal quality"] = q
 
         return d
