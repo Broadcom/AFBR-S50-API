@@ -283,15 +283,15 @@ $(document).ready(function(){initNavTree('sci_python_example_8py-example.html','
 <div class="line"><span class="lineno">  179</span>        d[<span class="stringliteral">&quot;timestamp&quot;</span>] = t_sec + t_usec * 16.0 / 1.0e6</div>
 <div class="line"><span class="lineno">  180</span> </div>
 <div class="line"><span class="lineno">  181</span>        <span class="comment"># Extract Range:</span></div>
-<div class="line"><span class="lineno">  182</span>        r = (rx[13] &lt;&lt; 16) + (rx[14] &lt;&lt; 8) + rx[15]</div>
+<div class="line"><span class="lineno">  182</span>        r = (rx[15] &lt;&lt; 16) + (rx[16] &lt;&lt; 8) + rx[17]</div>
 <div class="line"><span class="lineno">  183</span>        d[<span class="stringliteral">&quot;range&quot;</span>] = r / 16384.0  <span class="comment"># convert from Q9.14</span></div>
 <div class="line"><span class="lineno">  184</span> </div>
 <div class="line"><span class="lineno">  185</span>        <span class="comment"># Extract Amplitude:</span></div>
-<div class="line"><span class="lineno">  186</span>        a = (rx[16] &lt;&lt; 8) + rx[17]</div>
+<div class="line"><span class="lineno">  186</span>        a = (rx[18] &lt;&lt; 8) + rx[19]</div>
 <div class="line"><span class="lineno">  187</span>        d[<span class="stringliteral">&quot;amplitude&quot;</span>] = a / 16.0  <span class="comment"># convert from UQ12.4</span></div>
 <div class="line"><span class="lineno">  188</span> </div>
 <div class="line"><span class="lineno">  189</span>        <span class="comment"># Extract Signal Quality:</span></div>
-<div class="line"><span class="lineno">  190</span>        q = rx[18]</div>
+<div class="line"><span class="lineno">  190</span>        q = rx[20]</div>
 <div class="line"><span class="lineno">  191</span>        d[<span class="stringliteral">&quot;signal quality&quot;</span>] = q</div>
 <div class="line"><span class="lineno">  192</span> </div>
 <div class="line"><span class="lineno">  193</span>        <span class="keywordflow">return</span> d</div>
@@ -392,6 +392,7 @@ $(document).ready(function(){initNavTree('sci_python_example_8py-example.html','
 <div class="line"><span class="lineno">  288</span>        <span class="comment"># [CMD] = 0x12; command byte: stop timer based measurements</span></div>
 <div class="line"><span class="lineno">  289</span>        <a class="code hl_function" href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a>(<span class="stringliteral">&quot;stop measurements&quot;</span>)</div>
 <div class="line"><span class="lineno">  290</span>        s50.write(bytes.fromhex(<span class="stringliteral">&quot;02 12 F7 03&quot;</span>))</div>
+<div class="line"><span class="lineno">  291</span> </div>
 <div class="ttc" id="agroup__argus__log_html_gaf623b0ecc471d68c31c110c6f9abd7d2"><div class="ttname"><a href="group__argus__log.html#gaf623b0ecc471d68c31c110c6f9abd7d2">print</a></div><div class="ttdeci">status_t print(const char *fmt_s,...)</div><div class="ttdoc">A printf-like function to print formatted data to an debugging interface.</div><div class="ttdef"><b>Definition</b> sci_log.c:106</div></div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
