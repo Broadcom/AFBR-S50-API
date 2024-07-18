@@ -17,6 +17,8 @@ The **API Reference Manual** can be viewed
 [here](https://broadcom.github.io/AFBR-S50-API/).
 
 ## Overview
+![image](https://github.com/user-attachments/assets/11e45cb1-99b8-4e41-9a05-22e0e57470fc)
+
 
 ### File Structure
 
