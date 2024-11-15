@@ -103,7 +103,7 @@
 #endif
 
 /*! Test example configuration! */
-#if API_EXAMPLE < 1 || API_EXAMPLE > 5
+#if API_EXAMPLE < 1 || API_EXAMPLE > 6
 #error The selected API_EXAMPLE is not available!
 #endif
 
