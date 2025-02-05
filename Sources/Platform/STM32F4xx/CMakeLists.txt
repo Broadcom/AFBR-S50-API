@@ -1,0 +1,79 @@
+
+# message(STATUS "BUILD Platform Layer for F401RE")
+
+set(LIBRARY f401re)
+set(MCU_FAMILY STM32F4xx)
+set(MCU_MODEL STM32F401xE)
+set(CPU_TYPE m4)
+set(FPU_TYPE fpv4-sp-d16)
+set(FP_USE_HW_DIV 1)
+set(FP_USE_64BIT_MUL 1)
+set(EXPLORER_API_PRO 1)
+set(ARGUS_LOG_LEVEL 2)
+set(IDE STM32CubeIDE)
+
+set(PROJECT_DIR "${CMAKE_SOURCE_DIR}/Projects/${IDE}/AFBR_S50_ExplorerApp_F401RE")
+set(API_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/AFBR-S50/Include")
+set(APP_SOURCE_DIR "${CMAKE_SOURCE_DIR}/Sources/ExplorerApp")
+set(BSP_SOURCE_DIR "${CMAKE_SOURCE_DIR}/Sources/platform/${MCU_FAMILY}")
+set(UTIL_SOURCE_DIR "${CMAKE_SOURCE_DIR}/Sources/utility")
+set(STARTUP_FILE "${PROJECT_DIR}/Core/Startup/startup_stm32f401retx.s")
+
+set(COMPILE_DEFINITIONS
+    ${COMMON_COMPILE_DEFINITIONS}
+    ${MCU_MODEL}
+    FP_USE_HW_DIV=${FP_USE_HW_DIV}
+    FP_USE_64BIT_MUL=${FP_USE_64BIT_MUL}
+    EXPLORER_API_PRO=${EXPLORER_API_PRO}
+    USE_HAL_DRIVER)
+# message(STATUS "COMPILE_DEFINITIONS: ${COMPILE_DEFINITIONS}")
+
+set(CPU_COMPILE_OPTIONS
+    -mcpu=cortex-${CPU_TYPE}
+    -mfpu=${FPU_TYPE}
+    -mfloat-abi=hard)
+
+set(COMPILE_OPTIONS ${COMMON_COMPILE_OPTIONS} ${CPU_COMPILE_OPTIONS})
+# message(STATUS "COMPILE_OPTIONS: ${COMPILE_OPTIONS}")
+
+set(BSP_INCLUDE_DIRECTORIES_PRIVATE
+    ${PROJECT_DIR}/Core/Inc
+    ${PROJECT_DIR}/Drivers/CMSIS/Include
+    ${PROJECT_DIR}/Drivers/CMSIS/Device/ST/${MCU_FAMILY}/Include
+    ${PROJECT_DIR}/Drivers/${MCU_FAMILY}_HAL_Driver/Inc
+    ${PROJECT_DIR}/Drivers/${MCU_FAMILY}_HAL_Driver/Inc/Legacy
+    ${BSP_SOURCE_DIR}
+    ${BSP_SOURCE_DIR}/board
+    ${BSP_SOURCE_DIR}/driver
+    ${BSP_SOURCE_DIR}/usb
+    ${APP_SOURCE_DIR}
+    ${API_INCLUDE_DIR}
+    ${UTIL_SOURCE_DIR}/printf
+    ${UTIL_SOURCE_DIR})
+set(BSP_INCLUDE_DIRECTORIES_PUBLIC 
+    ${PROJECT_DIR}/Core/Inc
+    ${PROJECT_DIR}/Drivers/CMSIS/Include
+    ${PROJECT_DIR}/Drivers/CMSIS/Device/ST/${MCU_FAMILY}/Include
+    ${PROJECT_DIR}/Drivers/${MCU_FAMILY}_HAL_Driver/Inc
+    ${PROJECT_DIR}/Drivers/${MCU_FAMILY}_HAL_Driver/Inc/Legacy
+    ${BSP_SOURCE_DIR})
+
+# Sources
+file(GLOB_RECURSE STM32CUBEMX_SOURCES
+    ${PROJECT_DIR}/Core/*.c
+    ${PROJECT_DIR}/Drivers/*.c
+    ${STARTUP_FILE})
+# message(STATUS "STM32CUBEMX_SOURCES: ${STM32CUBEMX_SOURCES}")
+file(GLOB_RECURSE BSP_SOURCES FOLLOW_SYMLINKS ${BSP_SOURCE_DIR}/*.c)
+# message(STATUS "BSP_SOURCES: ${BSP_SOURCES}")
+
+# disable "unused parameter" warning for generated code
+set_source_files_properties(${STM32CUBEMX_SOURCES} PROPERTIES COMPILE_FLAGS -Wno-unused-parameter)
+
+add_library(${LIBRARY} OBJECT)
+target_sources(${LIBRARY} PRIVATE ${BSP_SOURCES} ${STM32CUBEMX_SOURCES})
+target_include_directories(${LIBRARY} PRIVATE ${BSP_INCLUDE_DIRECTORIES_PRIVATE})
+target_include_directories(${LIBRARY} PUBLIC ${BSP_INCLUDE_DIRECTORIES_PUBLIC})
+target_compile_definitions(${LIBRARY} PRIVATE ${COMPILE_DEFINITIONS})
+target_compile_options(${LIBRARY} PRIVATE ${COMPILE_OPTIONS})
+

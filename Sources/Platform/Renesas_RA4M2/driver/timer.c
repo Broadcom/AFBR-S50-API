@@ -82,7 +82,8 @@ void Timer_Init(void)
     err = R_GPT_Open(&g_pit_ctrl, &g_pit_cfg);
     assert(err == FSP_SUCCESS);
 
-#if AFBR_SCI_USB
+// #if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
+
     /********************************************************
      ***  Initialize timer 2 as USB polling timer.        ***
      ********************************************************/
@@ -91,7 +92,7 @@ void Timer_Init(void)
 
     err = R_GPT_Start(&g_upt_ctrl);
     assert(err == FSP_SUCCESS);
-#endif
+// #endif
 
 #ifdef DEBUG
     isInitialized = true;

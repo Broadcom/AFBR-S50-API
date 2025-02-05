@@ -42,6 +42,7 @@
 #include "core_cfg.h"
 #include "core_utils.h"
 
+
 #include <assert.h>
 
 /*******************************************************************************
@@ -63,6 +64,7 @@
 /*******************************************************************************
  * Functions
  ******************************************************************************/
+
 
 status_t ExplorerApp_ExecuteXtalkCalibrationSequence(argus_hnd_t * argus)
 {
@@ -109,3 +111,4 @@ status_t ExplorerApp_ExecuteOffsetsCalibrationSequence(argus_hnd_t * argus, q9_2
 
     return status;
 }
+

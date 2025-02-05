@@ -86,7 +86,7 @@ of the **J5** header (i.e. the **SWD** interface).
         @image latex 6_3_bootloader_new_project.jpg "Fig. 6.3: Setup a new project in Renesas Flash Bootloader." width=0.5\textwidth
 
     3. Click `Connect`.
-    4. Browse and select the binary file (`*.srec`, `*.bin`, `*.hex`, etc.) and Click `Start`.
+    4. Browse and select the binary file (`*.srec`, `*.hex`, etc.) and Click `Start`.
 
 6.  If flashing was successful, `operation completed` is displaying at the
     console.

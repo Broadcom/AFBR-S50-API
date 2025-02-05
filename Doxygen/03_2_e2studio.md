@@ -56,7 +56,7 @@ Import the project archive files:
       cloning/downloading the **GitHub repository**:
 
         1. Click on `Browse...` in the `Select root directory` section
-        2. Browse to `[REPOSITORY_ROOT]\Projects\e2studio\`
+        2. Browse to `[REPOSITORY_ROOT]\Projects\e2Studio\`
         3. Select the required project root folder (e.g.
            `AFBR_S50_Example_RA4M2`) and click `Select Folder`
         4. **IMPORTANT**: Click `Next`and disable the check at

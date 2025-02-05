@@ -92,6 +92,7 @@ void ExplorerApp_GetConfiguration(explorer_t * explorer, explorer_cfg_t * cfg);
  *****************************************************************************/
 status_t ExplorerApp_SetConfiguration(explorer_t * explorer, explorer_cfg_t * cfg);
 
+
 /*!***************************************************************************
  * @brief   Sets the device measurement mode and load default values.
  * @details The measurement mode is set to the specified mode and factory

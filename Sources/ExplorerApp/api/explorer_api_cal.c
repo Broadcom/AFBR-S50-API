@@ -43,6 +43,7 @@
 #include "core/explorer_status.h"
 #include "core/explorer_macro.h"
 
+
 #include <assert.h>
 
 /*******************************************************************************
@@ -98,6 +99,7 @@ static void Deserialize_Cal_P2PXtalk(sci_frame_t * frame, argus_cal_p2pxtalk_t *
     ocal->CouplingCoeffS = SCI_Frame_Dequeue16s(frame);
     ocal->CouplingCoeffC = SCI_Frame_Dequeue16s(frame);
 }
+
 
 /*******************************************************************************
  * Command Functions
@@ -403,6 +405,7 @@ static status_t TxCmd_CalXtalkSeqMaxAmplitude(sci_device_t deviceID, sci_frame_t
 status_t ExplorerAPI_InitCal()
 {
     status_t status;
+
     status = SCI_SetRxTxCommand(CMD_CALIBRATION_GLOBAL_RANGE_OFFSET, RxCmd_CalGlobalRangeOffsets, TxCmd_CalGlobalRangeOffsets);
     if (status < STATUS_OK) return status;
     status = SCI_SetRxTxCommand(CMD_CALIBRATION_PIXEL_RANGE_OFFSETS, RxCmd_CalPixelRangeOffsets, TxCmd_CalPixelRangeOffsets);

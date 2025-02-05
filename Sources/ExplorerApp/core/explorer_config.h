@@ -54,7 +54,7 @@
  *  The maximum number of instantiated time-of-flight sensor devices.
  *****************************************************************************/
 #ifndef EXPLORER_DEVICE_COUNT
-#define EXPLORER_DEVICE_COUNT    2
+#define EXPLORER_DEVICE_COUNT 1
 #endif
 
 /*!***************************************************************************
@@ -70,7 +70,7 @@
 #define EXPLORER_DEVICE_ID_MAX   S2PI_SLAVE_COUNT
 
 /*!***************************************************************************
- *  The default sensor that will be paired with the DEVICEID_DEFAULT.
+ *  The default sensor that will be paired with the SCI_DEVICE_ID_DEFAULT.
  *  Note: the Explorer index starts from 0 (C array) and the DEVICE ID
  *  starts from 1, according to the SCI specs.
  *****************************************************************************/

@@ -62,7 +62,7 @@
  ******************************************************************************/
 
 /*! Definitions of stack top/bottom addresses from the linker file. */
-#if defined(BSP_MCU_GROUP_RA4M2) && (BSP_MCU_GROUP_RA4M2 == 1)
+#if defined(_RENESAS_RA_)
 // The RA4M2 has a different naming scheme for the stack boundaries
 extern uint32_t __StackTop;
 extern uint32_t __StackLimit;
@@ -107,7 +107,7 @@ void Debug_ResetStackUsage(void)
      * The memory from top of the stack until the current stack pointer
      *  is cleared to a 0xAAA... pattern. */
 
-    uint32_t * sp = 0;
+    volatile uint32_t * sp = 0;
     __asm__ __volatile__ ("mov %0, sp" : "=r"(sp));
     uint32_t * base = (uint32_t*)&STACK_BASE;
 

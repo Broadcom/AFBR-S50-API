@@ -80,12 +80,6 @@
 #define SPI_MAX_BAUDRATE 21000000
 #endif
 
-/*! Define the current SPI baud rate (to be used in the SPI module).
- *  This is dependent of the available peripheral. */
-#ifndef SPI_BAUDRATE
-#define SPI_BAUDRATE SPI_MAX_BAUDRATE
-#endif
-
 /*! Define the default SPI slave for device.
  *  The slave is used for SPI initialization only! */
 #ifndef SPI_DEFAULT_SLAVE

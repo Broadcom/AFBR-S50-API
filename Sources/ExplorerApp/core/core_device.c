@@ -235,6 +235,7 @@ status_t ExplorerApp_InitDevice(explorer_t * explorer, argus_mode_t mode, bool r
     ExplorerApp_ResetDefaultDataStreamingMode(explorer);
     ExplorerApp_DisplayUnambiguousRange(explorer->Argus);
 
+
     return STATUS_OK;
 }
 

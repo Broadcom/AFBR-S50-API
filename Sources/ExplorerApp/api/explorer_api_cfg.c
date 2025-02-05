@@ -45,6 +45,7 @@
 #include "driver/uart.h"
 #include "core/explorer_status.h"
 
+
 #include <assert.h>
 
 /*******************************************************************************
@@ -63,10 +64,12 @@
  * Parsing Functions
  ******************************************************************************/
 
+
 static void Serialize_Cfg_DCA(sci_frame_t * frame, argus_cfg_dca_t const * dcacfg)
 {
     SCI_Frame_Queue08u(frame, (uint8_t)((dcacfg->Enabled > 0 ? 1U : 0U)
-                                      | (dcacfg->Enabled < 0 ? 2U : 0U)));
+                                      | (dcacfg->Enabled < 0 ? 2U : 0U)
+                                      | (dcacfg->DisablePowerSaveInLowPowerStage ? 4U : 0U)));
     SCI_Frame_Queue08u(frame, dcacfg->SatPxThLin);
     SCI_Frame_Queue08u(frame, dcacfg->SatPxThExp);
     SCI_Frame_Queue08u(frame, dcacfg->SatPxThRst);
@@ -75,7 +78,8 @@ static void Serialize_Cfg_DCA(sci_frame_t * frame, argus_cfg_dca_t const * dcacf
     SCI_Frame_Queue16u(frame, dcacfg->AthHigh);
     SCI_Frame_Queue08u(frame, dcacfg->AmplitudeMode);
     SCI_Frame_Queue16u(frame, dcacfg->DepthNom);
-    SCI_Frame_Queue16u(frame, dcacfg->DepthMin);
+    SCI_Frame_Queue16u(frame, dcacfg->DepthMin_LowPower);
+    SCI_Frame_Queue16u(frame, dcacfg->DepthMin_HighPower);
     SCI_Frame_Queue16u(frame, dcacfg->DepthMax);
     SCI_Frame_Queue08u(frame, dcacfg->Power);
     SCI_Frame_Queue08u(frame, dcacfg->GainNom);
@@ -88,6 +92,7 @@ static void Deserialize_Cfg_DCA(sci_frame_t * frame, argus_cfg_dca_t * dcacfg)
     /* Dynamic Configuration Adaption. */
     uint8_t tmp = SCI_Frame_Dequeue08u(frame);
     dcacfg->Enabled = (tmp & 1U) ? 1 : (tmp & 2U) ? -1 : 0;
+    dcacfg->DisablePowerSaveInLowPowerStage = (tmp & 4U) ? 1 : 0;
     dcacfg->SatPxThLin = SCI_Frame_Dequeue08u(frame);
     dcacfg->SatPxThExp = SCI_Frame_Dequeue08u(frame);
     dcacfg->SatPxThRst = SCI_Frame_Dequeue08u(frame);
@@ -96,7 +101,8 @@ static void Deserialize_Cfg_DCA(sci_frame_t * frame, argus_cfg_dca_t * dcacfg)
     dcacfg->AthHigh = SCI_Frame_Dequeue16u(frame);
     dcacfg->AmplitudeMode = SCI_Frame_Dequeue08u(frame);
     dcacfg->DepthNom = SCI_Frame_Dequeue16u(frame);
-    dcacfg->DepthMin = SCI_Frame_Dequeue16u(frame);
+    dcacfg->DepthMin_LowPower = SCI_Frame_Dequeue16u(frame);
+    dcacfg->DepthMin_HighPower = SCI_Frame_Dequeue16u(frame);
     dcacfg->DepthMax = SCI_Frame_Dequeue16u(frame);
     dcacfg->Power = SCI_Frame_Dequeue08u(frame);
     dcacfg->GainNom = SCI_Frame_Dequeue08u(frame);
@@ -156,6 +162,7 @@ static void Deserialize_Cfg_PBA(sci_frame_t * frame, argus_cfg_pba_t * pba)
     pba->GoldenPixelSaturationFilterPixelThreshold = SCI_Frame_Dequeue08u(frame);
     pba->GoldenPixelOutOfSyncAgeThreshold = SCI_Frame_Dequeue08u(frame);
 }
+
 
 
 /*******************************************************************************
@@ -506,7 +513,7 @@ static status_t TxCmd_CfgSpi(sci_device_t deviceID, sci_frame_t * frame, sci_par
 
 static status_t RxCmd_CfgUart(sci_device_t deviceID, sci_frame_t * frame)
 {
-#if AFBR_SCI_USB
+#if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
     (void) deviceID;
     (void) frame;
     return ERROR_NOT_SUPPORTED;
@@ -526,7 +533,7 @@ static status_t PrxCmd_CfgUart(sci_device_t deviceID, sci_frame_t *frame)
 {
     (void) deviceID;
 
-#if AFBR_SCI_USB
+#if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
     (void) frame;
     return ERROR_NOT_SUPPORTED;
 #else
@@ -548,7 +555,7 @@ static status_t TxCmd_CfgUart(sci_device_t deviceID, sci_frame_t * frame, sci_pa
     (void) deviceID;
     (void) param;
     (void) data;
-#if AFBR_SCI_USB
+#if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
     (void) frame;
     return ERROR_NOT_SUPPORTED;
 #else
@@ -564,6 +571,7 @@ static status_t TxCmd_CfgUart(sci_device_t deviceID, sci_frame_t * frame, sci_pa
 status_t ExplorerAPI_InitCfg(void)
 {
     status_t status;
+
     status = SCI_SetRxTxCommand(CMD_CONFIGURATION_DATA_OUTPUT_MODE, RxCmd_CfgDataOutputMode, TxCmd_CfgDataOutputMode);
     if (status < STATUS_OK) return status;
     status = SCI_SetRxTxCommand(CMD_CONFIGURATION_MEASUREMENT_MODE, RxCmd_CfgMeasurementMode, TxCmd_CfgMeasurementMode);
@@ -590,5 +598,3 @@ status_t ExplorerAPI_InitCfg(void)
 
     return status;
 }
-
-

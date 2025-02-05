@@ -78,7 +78,8 @@
  *  - 2: 02_advanced_example.c: Starts measurements automatically from timer interrupt.
  *  - 3: 03_high_speed_example.c: Runs measurements with up to 3000 frames per second.
  *  - 4: 04_multi_device_example.c: Demonstrates the usage of multiple devices per MCU.
- *  - 5: 05_simple_example_debug.c: Demonstrates how to obtain debug information. */
+ *  - 5: 05_simple_example_debug.c: Demonstrates how to obtain debug information.
+ *  - 6: 06_low_power_example.c: Demonstrates how to run measurements for a low power implementation.*/
 #ifndef API_EXAMPLE
 #define API_EXAMPLE 1
 #endif

@@ -36,13 +36,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-
-/*! Preprocessor flag to choose between USB and non-USB (UART) connection. */
-#ifndef AFBR_SCI_USB
-#define AFBR_SCI_USB 0
-#endif
-
-
 /*******************************************************************************
  * Include Files
  ******************************************************************************/
@@ -55,7 +48,7 @@
 #include "driver/irq.h"
 #include "debug.h"
 
-#if AFBR_SCI_USB
+#if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
 #include "usb/usb_sci.h"
 #else
 #include "driver/uart.h"
@@ -170,7 +163,7 @@ status_t SCI_DataLink_Init(void)
 
     SCI_CRC8_Init();
 
-#if AFBR_SCI_USB
+#if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
     USB_DeviceApplicationInit();
     USB_SetRxCallback(RxCallback);
     USB_SetErrorCallback(RaiseError);
@@ -447,7 +440,7 @@ sci_frame_t * SCI_DataLink_RequestTxFrame(bool queueStartByte)
 
     while ((frame = SCI_DataLink_RequestFrame(&SCI_TxFrameQueue)) == 0)
     {
-#if AFBR_SCI_USB
+#if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
         if (USB_CancelIfTimeOutElapsed())
         {
             /* USB send timeout occurred! */
@@ -527,7 +520,7 @@ static inline status_t SCI_DataLink_SendFrame(sci_frame_t * frame)
     assert(frame->Buffer == frame->RdPtr);
     assert(frame->RdPtr <= frame->WrPtr);
     assert(frame->WrPtr <= frame->Buffer + SCI_FRAME_SIZE);
-#if AFBR_SCI_USB
+#if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
     return USB_SendBuffer(frame->Buffer,
                           (size_t) (frame->WrPtr - frame->Buffer),
                           (usb_tx_callback_t) TxCallback,
@@ -542,7 +535,7 @@ static inline status_t SCI_DataLink_SendFrame(sci_frame_t * frame)
 
 bool SCI_DataLink_IsTxBusy(void)
 {
-#if AFBR_SCI_USB
+#if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
     return (SCI_CurrentTxFrame != 0) || USB_IsTxBusy();
 #else
     return (SCI_CurrentTxFrame != 0) || UART_IsTxBusy();

@@ -109,6 +109,20 @@ status_t ExplorerApp_SingleMeasurement(argus_hnd_t * argus)
     return status;
 }
 
+status_t ExplorerApp_StartTeachInMode(argus_hnd_t * argus)
+{
+    assert(argus != NULL);
+
+    return Argus_StartTeachInMode(argus);
+}
+
+status_t ExplorerApp_StopTeachInMode(argus_hnd_t * argus)
+{
+    assert(argus != NULL);
+
+    return Argus_StopTeachInMode(argus);
+}
+
 status_t ExplorerApp_DeviceAbort(argus_hnd_t * argus)
 {
     assert(argus != NULL);
@@ -139,3 +153,4 @@ void ExplorerApp_DisplayUnambiguousRange(argus_hnd_t * argus)
     (void) argus;
 #endif
 }
+

@@ -45,6 +45,7 @@
 #include "debug.h"
 #include "board/board_config.h"
 
+
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -75,6 +76,7 @@ status_t ExplorerApp_SetDebugMode(explorer_t * explorer, bool debugMode)
     assert(explorer != NULL);
     explorer->Configuration.DebugMode = debugMode;
 
+
     return STATUS_OK;
 }
 
@@ -82,7 +84,7 @@ void ExplorerApp_GetDefaultConfiguration(explorer_cfg_t * cfg)
 {
     assert(cfg != 0);
 
-    cfg->SPIBaudRate = SPI_BAUDRATE;
+    cfg->SPIBaudRate = SPI_MAX_BAUDRATE;
 
 #if defined(DEBUG)
     cfg->DebugMode = true;
@@ -156,6 +158,7 @@ status_t ExplorerApp_SetConfiguration(explorer_t * explorer, explorer_cfg_t * cf
 
     return ExplorerApp_SetDebugMode(explorer, cfg->DebugMode);
 }
+
 
 status_t ExplorerApp_SetDeviceMeasurementMode(explorer_t * explorer, argus_mode_t mode)
 {

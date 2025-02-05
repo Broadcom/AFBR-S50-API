@@ -45,3 +45,6 @@ to present its usage:
     and implements a basic **CAN Interface** that can be easily enhanced and
     adopted by the user.
 
+-   \subpage mavlink_app
+
+    TODO

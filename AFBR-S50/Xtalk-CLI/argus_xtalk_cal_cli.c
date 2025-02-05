@@ -248,7 +248,7 @@ void Argus_XtalkCalibration_CLI(argus_hnd_t * hnd)
                      * */
 
                     /*Check if DCA is still on MAX settings*/
-                    if (myDCA.DepthMin == 1U << 10U)
+                    if (myDCA.DepthMin_LowPower == myDCA.DepthMax)
                     {
                         print("\n Re-setting DCA settings...\n");
                         status = Argus_SetConfigurationDynamicAdaption(hnd, &myDCA);
@@ -1111,7 +1111,7 @@ static void Set_DCA_to_MaxState(argus_hnd_t * hnd)
 {
     /* Only read and save current DCA settings when empty
      *  -> After first call of function!*/
-    if (myDCA.DepthMin == 0 && myDCA.DepthMax == 0)
+    if (myDCA.DepthMin_HighPower == 0 && myDCA.DepthMax == 0)
     {
         Argus_GetConfigurationDynamicAdaption(hnd, &myDCA);
         Device_Query(hnd);
@@ -1119,7 +1119,8 @@ static void Set_DCA_to_MaxState(argus_hnd_t * hnd)
 
     argus_cfg_dca_t tempDCA = myDCA;
 
-    tempDCA.DepthMin = myDCA.DepthMax;
+    tempDCA.DepthMin_LowPower = myDCA.DepthMax;
+    tempDCA.DepthMin_HighPower = myDCA.DepthMax;
     tempDCA.DepthNom = myDCA.DepthMax;
     tempDCA.DepthMax = myDCA.DepthMax;
     tempDCA.Power = myDCA.Power = DCA_POWER_HIGH;

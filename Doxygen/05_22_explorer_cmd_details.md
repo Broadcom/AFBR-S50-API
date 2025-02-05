@@ -658,7 +658,8 @@ Gets or sets the shot noise monitor mode.
 | ----- | ---------------- | ---------------------------------------------------------------------- |
 | 0     | Static (Indoor)  | Static Shot Noise Monitoring Mode, optimized for indoor applications.  |
 | 1     | Static (Outdoor) | Static Shot Noise Monitoring Mode, optimized for outdoor applications. |
-| 2     | Dynamic          | Dynamic Shot Noise Monitoring Mode.                                    |
+| 2     | Dynamic          | Dynamic Shot Noise Monitoring Mode (amplitude noise figure).           |
+| 3     | Dynamic Plus     | Dynamic-Plus Shot Noise Monitoring Mode (uncorrelated noise figure).   |
 
 \see
 

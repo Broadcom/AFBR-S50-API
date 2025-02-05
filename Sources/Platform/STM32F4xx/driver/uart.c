@@ -84,10 +84,6 @@ status_t UART_Init(void)
     return STATUS_OK;
 }
 
-#if !NO_DIRECT_UART_PRINT
-#define UART_Print print
-#endif
-
 uart_baud_rates_t UART_GetBaudRate(void)
 {
     return huart2.Init.BaudRate;
@@ -181,7 +177,7 @@ bool UART_IsTxBusy(void)
  *
  * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
-status_t UART_Print(const char *fmt_s, ...)
+__attribute__((weak))  status_t print(const char * fmt_s, ...)
 {
     while (UART_IsTxBusy()) __asm("nop");
 
@@ -200,10 +196,6 @@ status_t UART_Print(const char *fmt_s, ...)
 
     return status;
 }
-
-#if !NO_DIRECT_UART_PRINT
-#undef UART_Print
-#endif
 
 /*!***************************************************************************
  * @brief   Writes several bytes to the UART connection.

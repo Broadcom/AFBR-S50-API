@@ -48,6 +48,7 @@
 
 #include "explorer_types.h"
 
+
 /*!***************************************************************************
  * @brief   Triggers a crosstalk calibration measurement sequence.
  * @param   argus The Argus device handler.
@@ -64,6 +65,7 @@ status_t ExplorerApp_ExecuteXtalkCalibrationSequence(argus_hnd_t * argus);
  * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
  *****************************************************************************/
 status_t ExplorerApp_ExecuteOffsetsCalibrationSequence(argus_hnd_t * argus, q9_22_t targetRange);
+
 
 
 /*! @} */
