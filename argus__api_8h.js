@@ -67,6 +67,8 @@ var argus__api_8h =
     [ "Argus_SetConfigurationSmartPowerSaveEnabled", "group__argus__cfg.html#gad53a4685f4843402584c556d7265cfa0", null ],
     [ "Argus_SetMeasurementMode", "group__argus__cfg.html#ga7a8b1f2d5ef7af38016e4cdf32bb864a", null ],
     [ "Argus_StartMeasurementTimer", "group__argus__meas.html#gabe59a112f841d59e435510d3c17c9db1", null ],
+    [ "Argus_StartTeachInMode", "group__argus__meas.html#gab78e29fcbd565cf4384c147ad4343684", null ],
     [ "Argus_StopMeasurementTimer", "group__argus__meas.html#ga4c9933c83ea073d73d6108f64ea32e86", null ],
+    [ "Argus_StopTeachInMode", "group__argus__meas.html#gad63ec7c9e10b71433d68181ef560a7c0", null ],
     [ "Argus_TriggerMeasurement", "group__argus__meas.html#ga4c115715544c1f66cf39f1a1f649f093", null ]
 ];

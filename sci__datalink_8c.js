@@ -1,6 +1,5 @@
 var sci__datalink_8c =
 [
-    [ "AFBR_SCI_USB", "sci__datalink_8c.html#ad1ef511cf90682c41c7b0924fef06c9f", null ],
     [ "RaiseError", "sci__datalink_8c.html#af54a32ad794b38b94514f34fa492a344", null ],
     [ "RxCallback", "sci__datalink_8c.html#ab067ecc05fa1e305e211864e38e6131d", null ],
     [ "SCI_DataLink_CalcCRC", "sci__datalink_8c.html#a17ae2af1c303428bcdc8f2ebd49c895b", null ],

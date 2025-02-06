@@ -1,0 +1,16 @@
+<launch>
+
+  <param name="Info." value="Broadcom" />
+  <param name="Port" value="/dev/ttyUSB1"/>
+  <param name="Baud" value="2000000"/>
+  <param name="CAN_ID" value="16-20"/>
+  <node pkg="raw_tof" name="raw_tof_node" type="raw_tof" output="screen">
+  </node> 
+
+  <param name="Rviz" value="map" />
+  <node pkg="pointcloud_tof" name="TOF_to_pointcloud2" type="pointcloud_tof.py" output="screen">
+  </node> 
+
+  <node name="map_to_tof_base" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map tof_sensor 100" />
+
+</launch>

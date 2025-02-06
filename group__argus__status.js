@@ -36,6 +36,7 @@ var group__argus__status =
       [ "ERROR_ARGUS_INVALID_SLAVE", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70badd42a056ea76d98b26031932fd273983", null ],
       [ "ERROR_ARGUS_INVALID_MODE", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba8b5a7a47229b1cc39215a33153a45abe", null ],
       [ "ERROR_ARGUS_BIAS_VOLTAGE_REINIT", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baf0e528520443a79c92959950049e7c4d", null ],
+      [ "ERROR_ARGUS_LASER_MONITOR_INACTIVE", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba8e8b772da432d14a3f5725d84d1fc271", null ],
       [ "ERROR_ARGUS_EEPROM_FAILURE", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba92cbdc0cd1fcb54b379782db56258663", null ],
       [ "ERROR_ARGUS_STALLED", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baf72aa2ea968f04e21b64f4ec3aa9f198", null ],
       [ "ERROR_ARGUS_BGL_EXCEEDANCE", "group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baa2429754ac63d4b4f1bec46af4bf4c40", null ],

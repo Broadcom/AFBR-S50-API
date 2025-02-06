@@ -6,7 +6,9 @@ var group__argus__res =
       [ "Phase", "structargus__pixel__t.html#a1ade498f949bc4bdbde43d6d16b782a2", null ],
       [ "Range", "structargus__pixel__t.html#a6498b19c7b89e59ebad243c16199f364", null ],
       [ "RangeWindow", "structargus__pixel__t.html#ac0816df3cf5b81397cd715919da1ce03", null ],
-      [ "Status", "structargus__pixel__t.html#a1bab0aba97de4f50e10358c3cd2e3336", null ]
+      [ "SNR", "structargus__pixel__t.html#a2546351f4aa69f297708d1713946324c", null ],
+      [ "Status", "structargus__pixel__t.html#a1bab0aba97de4f50e10358c3cd2e3336", null ],
+      [ "UncorrelatedNoise", "structargus__pixel__t.html#aa1053138badf0e895ca820c766ed8819", null ]
     ] ],
     [ "argus_vector_t", "structargus__vector__t.html", [
       [ "C", "structargus__vector__t.html#a709c335617e44b47d02304e7c393f883", null ],

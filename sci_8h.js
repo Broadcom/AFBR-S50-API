@@ -1,7 +1,7 @@
 var sci_8h =
 [
-    [ "DEVICEID_DEFAULT", "group__sci.html#gab39d523f783b44d1a6dce3bafcbf9bb8", null ],
-    [ "DEVICEID_FIRST_VALID", "group__sci.html#gaa16bb9e651be64c00815038d3a308fd1", null ],
+    [ "SCI_DEVICE_ID_DEFAULT", "group__sci.html#ga420ecc9ff03125348ec1f52392f9ea1d", null ],
+    [ "SCI_DEVICE_ID_FIRST_VALID", "group__sci.html#ga0f5f59e34b3a6fabcbeb1dd5ad331632", null ],
     [ "sci_cmd_t", "group__sci.html#gae0765ecea75b1c8c72f65e19e099ebe9", null ],
     [ "sci_data_t", "group__sci.html#gaf71636db1f647717026ffe3bb0fa15a3", null ],
     [ "sci_device_t", "group__sci.html#ga0e012ddfd289bcc3d60f1a8737e5bd9c", null ],

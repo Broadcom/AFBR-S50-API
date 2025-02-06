@@ -1,8 +1,8 @@
 <map id="Sources/CANApp/main.h" name="Sources/CANApp/main.h">
-<area shape="rect" id="Node000001" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="178,5,345,31"/>
+<area shape="rect" id="Node000001" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="178,5,344,31"/>
 <area shape="rect" id="Node000002" href="$can__api_8c.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="5,79,155,120"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,40,126,81,124,76,219,35"/>
-<area shape="rect" id="Node000003" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="178,87,345,112"/>
+<area shape="rect" id="Node000003" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="178,86,344,112"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="264,47,264,86,259,86,259,47"/>
 <area shape="rect" id="Node000004" href="$uart__api_8c.html" title="This file is part of the RA4M2 platform layer." alt="" coords="369,79,519,120"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="304,35,399,76,397,81,302,40"/>

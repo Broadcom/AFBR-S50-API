@@ -1,7 +1,7 @@
 <map id="Utility" name="Utility">
 <area shape="rect" id="Node000002" href="$group__argus.html" title="AFBR&#45;S50 API and Core Libraries." alt="" coords="5,55,119,80"/>
 <area shape="rect" id="Node000001" title="Utility library containing useful functions." alt="" coords="167,55,221,80"/>
-<area shape="rect" id="Node000004" href="$group__argus__fp.html" title="A basic math library for fixed point number in the Qx.y fomat." alt="" coords="279,5,396,31"/>
+<area shape="rect" id="Node000004" href="$group__argus__fp.html" title="A basic math library for fixed point number in the Qx.y fomat." alt="" coords="278,5,396,31"/>
 <area shape="rect" id="Node000003" href="$group__argus__misc.html" title="Miscellaneous math utility functions utilized within the API." alt="" coords="269,55,405,80"/>
 <area shape="rect" id="Node000005" href="$group__argus__time.html" title="Timer utilities for time measurement duties." alt="" coords="294,104,380,130"/>
 </map>

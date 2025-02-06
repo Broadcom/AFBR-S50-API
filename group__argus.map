@@ -2,9 +2,9 @@
 <area shape="rect" id="Node000001" title="AFBR&#45;S50 API and Core Libraries." alt="" coords="5,169,119,195"/>
 <area shape="rect" id="Node000004" href="$group__argus__api.html" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="195,5,303,31"/>
 <area shape="rect" id="Node000006" href="$group__argus__debug__cli.html" title="A CLI module to print debugging information on frame basis." alt="" coords="196,55,302,80"/>
-<area shape="rect" id="Node000003" href="$group__argus__hal.html" title="Collection of all interfaces for the Hardware Abstraction Layers (HAL)." alt="" coords="176,105,322,145"/>
-<area shape="rect" id="Node000005" href="$group__argus__status.html" title="Status and Error Code Definitions." alt="" coords="199,169,299,195"/>
-<area shape="rect" id="Node000007" href="$group__argus__test.html" title="A test module to verify implementation of the HAL." alt="" coords="197,219,301,244"/>
+<area shape="rect" id="Node000003" href="$group__argus__hal.html" title="Collection of all interfaces for the Hardware Abstraction Layers (HAL)." alt="" coords="176,104,322,145"/>
+<area shape="rect" id="Node000005" href="$group__argus__status.html" title="Status and Error Code Definitions." alt="" coords="199,169,298,195"/>
+<area shape="rect" id="Node000007" href="$group__argus__test.html" title="A test module to verify implementation of the HAL." alt="" coords="197,219,300,244"/>
 <area shape="rect" id="Node000002" href="$group__argus__util.html" title="Utility library containing useful functions." alt="" coords="222,268,276,294"/>
 <area shape="rect" id="Node000008" href="$group__argus__xtk__cli.html" title="A CLI module to interactively run crosstalk calibration." alt="" coords="167,317,331,343"/>
 </map>

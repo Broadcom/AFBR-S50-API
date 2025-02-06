@@ -26,13 +26,21 @@ var argus__def_8h =
     [ "argus_mode_flags_t", "group__argus__api.html#gaf66073d165e8d8700fe59f1082f84c27", [
       [ "ARGUS_MODE_FLAG_SHORT_RANGE", "group__argus__api.html#ggaf66073d165e8d8700fe59f1082f84c27a2d50160d2613938befc19c263797e3e2", null ],
       [ "ARGUS_MODE_FLAG_LONG_RANGE", "group__argus__api.html#ggaf66073d165e8d8700fe59f1082f84c27aa0f034eb5f782bf952f54659440a5844", null ],
-      [ "ARGUS_MODE_FLAG_HIGH_SPEED", "group__argus__api.html#ggaf66073d165e8d8700fe59f1082f84c27a550702e3bab4e08cae4ea9bfc712216f", null ]
+      [ "ARGUS_MODE_FLAG_HIGH_SPEED", "group__argus__api.html#ggaf66073d165e8d8700fe59f1082f84c27a550702e3bab4e08cae4ea9bfc712216f", null ],
+      [ "ARGUS_MODE_FLAG_HIGH_PRECISION", "group__argus__api.html#ggaf66073d165e8d8700fe59f1082f84c27a5158f04132077ebe19c872d9bf4d61d0", null ],
+      [ "ARGUS_MODE_FLAG_LASER_CLASS_2", "group__argus__api.html#ggaf66073d165e8d8700fe59f1082f84c27acd0b32fbf398e69a8da8ca4165892a3e", null ]
     ] ],
     [ "argus_mode_t", "group__argus__api.html#gabe8846d7abef63b75e8147f4f142708b", [
       [ "ARGUS_MODE_SHORT_RANGE", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708ba3f1cd051ab96ab58af154fa8c05b224d", null ],
       [ "ARGUS_MODE_LONG_RANGE", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708ba1231e50e905c1b8a0e8db8365b7f5b5e", null ],
       [ "ARGUS_MODE_HIGH_SPEED_SHORT_RANGE", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708bab179938ce318d56f13c3ceeb961f5a4f", null ],
-      [ "ARGUS_MODE_HIGH_SPEED_LONG_RANGE", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708ba02bc024bf73b356406314e887b455017", null ]
+      [ "ARGUS_MODE_HIGH_SPEED_LONG_RANGE", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708ba02bc024bf73b356406314e887b455017", null ],
+      [ "ARGUS_MODE_HIGH_PRECISION_SHORT_RANGE", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708bac96bcbd5894b4a11aedc0c30aa66b644", null ],
+      [ "ARGUS_MODE_SHORT_RANGE_LASER_CLASS_2", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708bab41171aed8adb9c08cf2489aff052427", null ],
+      [ "ARGUS_MODE_LONG_RANGE_LASER_CLASS_2", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708ba0f46ac109d750d3c4e0cb415dbdbe4a3", null ],
+      [ "ARGUS_MODE_HIGH_SPEED_SHORT_RANGE_LASER_CLASS_2", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708bab28f82d871e5a591cb7541ddd97268c5", null ],
+      [ "ARGUS_MODE_HIGH_SPEED_LONG_RANGE_LASER_CLASS_2", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708bade84bd79e37f9171f6a2c7ff27adf67f", null ],
+      [ "ARGUS_MODE_HIGH_PRECISION_SHORT_RANGE_LASER_CLASS_2", "group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708ba257bb825d75628478349161d2c260ea7", null ]
     ] ],
     [ "argus_module_version_t", "group__argus__api.html#ga46f240b890cd62efe83bf2d095277470", [
       [ "MODULE_NONE", "group__argus__api.html#gga46f240b890cd62efe83bf2d095277470aaa900f50762d9ace21be7cfdf0b175b4", null ],

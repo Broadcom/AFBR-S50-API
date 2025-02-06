@@ -28,6 +28,8 @@ var group__argus__meas =
     [ "Argus_IsTimerMeasurementActive", "group__argus__meas.html#gaceec994ca9c6a0f8a4efb63df00ab18c", null ],
     [ "Argus_Ping", "group__argus__meas.html#gaf836935be97ca13c1977ca32caf55d8a", null ],
     [ "Argus_StartMeasurementTimer", "group__argus__meas.html#gabe59a112f841d59e435510d3c17c9db1", null ],
+    [ "Argus_StartTeachInMode", "group__argus__meas.html#gab78e29fcbd565cf4384c147ad4343684", null ],
     [ "Argus_StopMeasurementTimer", "group__argus__meas.html#ga4c9933c83ea073d73d6108f64ea32e86", null ],
+    [ "Argus_StopTeachInMode", "group__argus__meas.html#gad63ec7c9e10b71433d68181ef560a7c0", null ],
     [ "Argus_TriggerMeasurement", "group__argus__meas.html#ga4c115715544c1f66cf39f1a1f649f093", null ]
 ];

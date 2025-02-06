@@ -1,5 +1,5 @@
 <map id="AFBR&#45;S50/Include/api/argus_api.h" name="AFBR&#45;S50/Include/api/argus_api.h">
-<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="622,5,773,46"/>
+<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="622,5,772,46"/>
 <area shape="rect" id="Node000002" href="$argus__def_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="425,315,514,341"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="722,45,766,88,810,145,825,177,833,209,831,240,815,269,796,284,767,296,692,313,606,323,529,328,529,322,606,318,691,308,766,291,793,279,811,265,826,238,828,209,820,179,805,148,762,91,719,48"/>
 <area shape="rect" id="Node000014" href="$argus__res_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="401,94,490,120"/>
@@ -7,7 +7,7 @@
 <area shape="rect" id="Node000018" href="$argus__xtalk_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="562,168,659,193"/>
 <area shape="poly" id="edge34_Node000001_Node000018" title=" " alt="" coords="689,48,627,155,623,153,684,45"/>
 <area shape="rect" id="Node000019" href="$argus__dfm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="583,241,676,267"/>
-<area shape="poly" id="edge32_Node000001_Node000019" title=" " alt="" coords="700,46,694,113,686,154,673,194,652,231,647,228,668,192,681,153,688,112,694,46"/>
+<area shape="poly" id="edge32_Node000001_Node000019" title=" " alt="" coords="700,46,695,113,687,154,674,194,652,231,648,228,670,192,682,153,689,112,695,46"/>
 <area shape="rect" id="Node000020" href="$argus__pba_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="514,94,606,120"/>
 <area shape="poly" id="edge30_Node000001_Node000020" title=" " alt="" coords="664,49,595,88,593,84,662,44"/>
 <area shape="rect" id="Node000021" href="$argus__snm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="876,94,972,120"/>

@@ -1,5 +1,5 @@
 <map id="Explorer Application" name="Explorer Application">
-<area shape="rect" id="Node000005" href="$group__core__calib.html" title="AFBR&#45;S50 Explorer &#45; Explorer calibration functions." alt="" coords="397,5,533,61"/>
+<area shape="rect" id="Node000005" href="$group__core__calib.html" title="AFBR&#45;S50 Explorer &#45; Explorer calibration functions." alt="" coords="396,5,533,61"/>
 <area shape="rect" id="Node000006" href="$group__core__cfg.html" title="AFBR&#45;S50 Explorer &#45; Explorer configuration functions." alt="" coords="390,85,540,141"/>
 <area shape="rect" id="Node000007" href="$group__core__device.html" title="AFBR&#45;S50 Explorer &#45; Explorer Device functions." alt="" coords="378,165,551,206"/>
 <area shape="rect" id="Node000008" href="$group__core__utils.html" title="AFBR&#45;S50 Explorer Application &#45; Util functions." alt="" coords="365,230,564,271"/>
@@ -7,10 +7,10 @@
 <area shape="rect" id="Node000001" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="183,435,317,461"/>
 <area shape="rect" id="Node000004" href="$group__explorer__api.html" title="AFBR&#45;S50 Explorer Application &#45; Serial Commands." alt="" coords="398,295,531,321"/>
 <area shape="rect" id="Node000009" href="$group__explorer__config.html" title="AFBR&#45;S50 Explorer Application &#45; Config." alt="" coords="365,345,564,386"/>
-<area shape="rect" id="Node000010" href="$group__explorer__macro.html" title="Explorer Application Macro helper operations." alt="" coords="379,410,551,435"/>
+<area shape="rect" id="Node000010" href="$group__explorer__macro.html" title="Explorer Application Macro helper operations." alt="" coords="378,410,551,435"/>
 <area shape="rect" id="Node000013" href="$group__explorer__main.html" title="AFBR&#45;S50 Explorer Application." alt="" coords="365,459,564,485"/>
 <area shape="rect" id="Node000014" href="$group__explorer__tasks.html" title="AFBR&#45;S50 Explorer Application &#45; Tasks." alt="" coords="365,509,564,550"/>
-<area shape="rect" id="Node000011" href="$group__explorer__types.html" title="AFBR&#45;S50 Explorer Application &#45; Data Types." alt="" coords="379,573,551,629"/>
+<area shape="rect" id="Node000011" href="$group__explorer__types.html" title="AFBR&#45;S50 Explorer Application &#45; Data Types." alt="" coords="378,573,551,629"/>
 <area shape="rect" id="Node000012" href="$group__explorer__version.html" title="Explorer Application Code Version." alt="" coords="408,654,522,679"/>
 <area shape="rect" id="Node000003" href="$group__platform.html" title="Platform Dependent Code." alt="" coords="430,703,500,729"/>
 <area shape="rect" id="Node000016" href="$group__scheduler.html" title="A simple cooperative task scheduler with prioritized tasks." alt="" coords="409,752,520,778"/>

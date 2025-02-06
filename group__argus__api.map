@@ -1,14 +1,14 @@
 <map id="AFBR&#45;S50 API" name="AFBR&#45;S50 API">
 <area shape="rect" id="Node000002" href="$group__argus.html" title="AFBR&#45;S50 API and Core Libraries." alt="" coords="5,248,119,274"/>
 <area shape="rect" id="Node000001" title="The main module of the API from the AFBR&#45;S50 SDK." alt="" coords="167,248,275,274"/>
-<area shape="rect" id="Node000004" href="$group__argus__cal.html" title="Device calibration parameter definitions and API functions." alt="" coords="359,5,441,31"/>
+<area shape="rect" id="Node000004" href="$group__argus__cal.html" title="Device calibration parameter definitions and API functions." alt="" coords="358,5,441,31"/>
 <area shape="rect" id="Node000003" href="$group__argus__cfg.html" title="Device configuration parameter definitions and API functions." alt="" coords="352,55,448,80"/>
-<area shape="rect" id="Node000005" href="$group__argus__dca.html" title="Dynamic Configuration Adaption (DCA) parameter definitions and API functions." alt="" coords="325,105,474,145"/>
+<area shape="rect" id="Node000005" href="$group__argus__dca.html" title="Dynamic Configuration Adaption (DCA) parameter definitions and API functions." alt="" coords="325,104,474,145"/>
 <area shape="rect" id="Node000006" href="$group__argus__dfm.html" title="Dual Frequency Mode (DFM) parameter definitions and API functions." alt="" coords="327,169,472,195"/>
 <area shape="rect" id="Node000007" href="$group__argus__map.html" title="Pixel Channel Mapping." alt="" coords="324,219,475,244"/>
-<area shape="rect" id="Node000008" href="$group__argus__meas.html" title="Measurement/Device control module." alt="" coords="328,269,472,309"/>
+<area shape="rect" id="Node000008" href="$group__argus__meas.html" title="Measurement/Device control module." alt="" coords="328,268,472,309"/>
 <area shape="rect" id="Node000009" href="$group__argus__pba.html" title="Pixel Binning Algorithm (PBA) parameter definitions and API functions." alt="" coords="323,333,476,359"/>
-<area shape="rect" id="Node000010" href="$group__argus__res.html" title="Measurement results data structures." alt="" coords="335,383,465,408"/>
+<area shape="rect" id="Node000010" href="$group__argus__res.html" title="Measurement results data structures." alt="" coords="334,383,465,408"/>
 <area shape="rect" id="Node000011" href="$group__argus__snm.html" title="Shot Noise Monitor (SNM) parameter definitions and API functions." alt="" coords="334,432,465,458"/>
-<area shape="rect" id="Node000012" href="$group__argus__version.html" title="API and library core version number." alt="" coords="355,481,445,507"/>
+<area shape="rect" id="Node000012" href="$group__argus__version.html" title="API and library core version number." alt="" coords="354,481,445,507"/>
 </map>

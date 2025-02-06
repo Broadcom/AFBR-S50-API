@@ -2,6 +2,6 @@
 <area shape="rect" id="Node000001" title="AFBR&#45;S50 CAN Interface." alt="" coords="96,5,245,46"/>
 <area shape="rect" id="Node000002" href="$can__api_8c.html" title="AFBR&#45;S50 CAN Interface." alt="" coords="5,94,155,135"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,59,102,95,99,92,138,55"/>
-<area shape="rect" id="Node000003" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="178,102,345,127"/>
+<area shape="rect" id="Node000003" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="178,102,344,127"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,55,251,99,247,103,201,59"/>
 </map>

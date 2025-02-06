@@ -1,0 +1,7 @@
+<launch>
+  <param name="Info." value="Broadcom" />
+  <param name="Port" value="/dev/ttyUSB1"/>
+  <param name="Baud_rate" value="2000000"/>
+  <node pkg="raw_tof" name="raw_tof_node" type="raw_tof" output="screen">
+  </node> 
+</launch>

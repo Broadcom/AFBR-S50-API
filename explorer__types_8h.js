@@ -24,6 +24,8 @@ var explorer__types_8h =
       [ "CMD_MEASUREMENT_SINGLE_SHOT", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa07748607ef401a59c6faac25a54c57e2", null ],
       [ "CMD_MEASUREMENT_START", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa3d7d5fe6689a6aff9f2f52731434ad23", null ],
       [ "CMD_MEASUREMENT_STOP", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa2336a4b2e954992c047a4b80cb30119e", null ],
+      [ "CMD_MEASUREMENT_START_TEACH_IN", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa8ae1d09bc7bf238dff083a1addb61b1d", null ],
+      [ "CMD_MEASUREMENT_STOP_TEACH_IN", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfafdd9d6af855d09d09fcaa4b4c2775871", null ],
       [ "CMD_DEVICE_ABORT", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa95406324fddb9a8832dea0e0044548e7", null ],
       [ "CMD_DEVICE_REINIT", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfabbbe5d705817e974f0457bb80bec0b0d", null ],
       [ "CMD_MEASUREMENT_CALIBRATION", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa76083bc5b30f547f65f25eb2ab81dea3", null ],

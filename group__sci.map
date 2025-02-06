@@ -1,10 +1,10 @@
 <map id="SCI: Systems Communication Interface" name="SCI: Systems Communication Interface">
 <area shape="rect" id="Node000002" href="$group__explorer__app.html" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="5,145,140,171"/>
-<area shape="rect" id="Node000001" title="Systems Communication Interface." alt="" coords="188,138,381,179"/>
-<area shape="rect" id="Node000003" href="$group__sci__bytestuffing.html" title="SCI byte stuffing definitions." alt="" coords="447,5,568,31"/>
+<area shape="rect" id="Node000001" title="Systems Communication Interface." alt="" coords="188,138,381,178"/>
+<area shape="rect" id="Node000003" href="$group__sci__bytestuffing.html" title="SCI byte stuffing definitions." alt="" coords="446,5,568,31"/>
 <area shape="rect" id="Node000004" href="$group__sci__cmd.html" title="Generic Command Definitions." alt="" coords="429,55,585,96"/>
 <area shape="rect" id="Node000005" href="$group__sci__crc.html" title="SCI CRC8 (Cyclic Redundancy Check)" alt="" coords="466,120,549,146"/>
 <area shape="rect" id="Node000006" href="$group__sci__datalink.html" title="SCI Data Link Layer." alt="" coords="438,169,577,195"/>
 <area shape="rect" id="Node000007" href="$group__sci__frame.html" title="SCI Data Frames." alt="" coords="446,219,569,244"/>
-<area shape="rect" id="Node000008" href="$group__sci__handshaking.html" title="SCI Handshaking Module." alt="" coords="445,268,570,294"/>
+<area shape="rect" id="Node000008" href="$group__sci__handshaking.html" title="SCI Handshaking Module." alt="" coords="444,268,570,294"/>
 </map>

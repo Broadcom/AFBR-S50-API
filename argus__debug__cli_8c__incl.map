@@ -2,11 +2,11 @@
 <area shape="rect" id="Node000001" title="Provides functions with debug information printed on a cli." alt="" coords="656,5,824,46"/>
 <area shape="rect" id="Node000002" href="$argus__debug__cli_8h.html" title="Provides functions with debug information printed on a cli." alt="" coords="628,94,753,120"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="730,48,709,82,704,79,726,45"/>
-<area shape="rect" id="Node000026" href="$argus__print_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="840,168,987,193"/>
+<area shape="rect" id="Node000026" href="$argus__print_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="840,168,986,193"/>
 <area shape="poly" id="edge40_Node000001_Node000026" title=" " alt="" coords="764,45,890,155,887,159,761,49"/>
 <area shape="rect" id="Node000003" href="$argus_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="644,168,708,193"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="691,120,684,153,679,152,686,119"/>
-<area shape="rect" id="Node000004" href="$argus__api_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="589,241,697,267"/>
+<area shape="rect" id="Node000004" href="$argus__api_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="588,241,697,267"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="673,195,657,228,652,226,668,192"/>
 <area shape="rect" id="Node000005" href="$argus__def_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="425,536,514,562"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="588,259,509,266,414,286,366,303,320,326,279,354,243,390,226,415,217,439,217,462,230,486,241,496,258,505,304,520,410,539,409,544,303,525,256,510,238,500,226,490,212,463,211,438,221,413,239,387,275,350,318,321,364,298,413,281,508,261,588,253"/>
@@ -65,5 +65,5 @@
 <area shape="poly" id="edge32_Node000021_Node000022" title=" " alt="" coords="624,417,580,454,577,450,620,413"/>
 <area shape="poly" id="edge34_Node000023_Node000005" title=" " alt="" coords="700,491,529,535,528,530,698,486"/>
 <area shape="poly" id="edge39_Node000025_Node000005" title=" " alt="" coords="861,341,858,371,850,412,833,454,820,473,804,490,784,502,756,513,683,529,602,540,529,547,529,541,601,535,682,524,754,508,782,498,801,486,816,470,828,452,844,410,853,371,856,341"/>
-<area shape="poly" id="edge41_Node000026_Node000005" title=" " alt="" coords="921,193,938,250,946,288,949,326,949,403,947,425,939,441,927,453,912,463,832,491,752,517,670,534,594,544,529,549,529,543,593,539,670,529,751,512,830,485,910,458,924,449,935,438,942,423,944,403,944,327,941,288,933,251,916,195"/>
+<area shape="poly" id="edge41_Node000026_Node000005" title=" " alt="" coords="921,193,938,250,946,288,949,326,949,403,947,424,939,441,927,453,912,462,833,491,753,517,671,535,593,544,529,549,528,544,593,539,670,529,752,512,831,485,910,458,924,449,935,438,942,423,944,403,944,327,941,288,933,251,916,195"/>
 </map>

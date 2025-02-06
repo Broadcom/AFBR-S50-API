@@ -18,8 +18,8 @@ var group__sci =
       [ "Load", "structsci__frame__queue__t.html#a90892d902a83f4c5d421b2c3b3b8aee2", null ],
       [ "Size", "structsci__frame__queue__t.html#a1c2cc44f0488c8095b45e44262b44d10", null ]
     ] ],
-    [ "DEVICEID_DEFAULT", "group__sci.html#gab39d523f783b44d1a6dce3bafcbf9bb8", null ],
-    [ "DEVICEID_FIRST_VALID", "group__sci.html#gaa16bb9e651be64c00815038d3a308fd1", null ],
+    [ "SCI_DEVICE_ID_DEFAULT", "group__sci.html#ga420ecc9ff03125348ec1f52392f9ea1d", null ],
+    [ "SCI_DEVICE_ID_FIRST_VALID", "group__sci.html#ga0f5f59e34b3a6fabcbeb1dd5ad331632", null ],
     [ "SCI_FRAME_BUF_CT", "group__sci.html#ga6d99e09015e65fef1189f46eb68e6ddb", null ],
     [ "SCI_FRAME_BUF_RX_CT", "group__sci.html#gaaa9dd0e7327897f577d8354dea056875", null ],
     [ "SCI_FRAME_BUF_TX_CT", "group__sci.html#gad9a546208a4f8ff1599cf0680b3b2575", null ],

@@ -1,5 +1,7 @@
 var group__argus__fp =
 [
+    [ "FP_USE_64BIT_MUL", "group__argus__fp.html#ga74884cf30094d82b2600636906f8a92a", null ],
+    [ "FP_USE_HW_DIV", "group__argus__fp.html#ga00523837fc3bcc5c4ac6772bb61a7bef", null ],
     [ "Q0_15_MAX", "group__argus__fp.html#gaeccdff75966511188d8497c661041f78", null ],
     [ "Q0_15_MIN", "group__argus__fp.html#ga7233e0fa0e201c3c100378f80d6c3bd7", null ],
     [ "Q11_4_MAX", "group__argus__fp.html#ga30d601b51bcfd26418405ccce4cd5de8", null ],
@@ -51,8 +53,6 @@ var group__argus__fp =
     [ "UQ4_4_ONE", "group__argus__fp.html#gae4881159987f1d9e20a3c8f904812592", null ],
     [ "UQ6_2_MAX", "group__argus__fp.html#ga35fe7f8361f126c16318f8c432c5b61d", null ],
     [ "UQ6_2_ONE", "group__argus__fp.html#ga5f056e76262d09ec9c2ede391f064f06", null ],
-    [ "USE_64BIT_MUL", "group__argus__fp.html#ga50ca969d3b1e1149be3813fbf2bac9f4", null ],
-    [ "USE_HW_DIV", "group__argus__fp.html#ga96544080e89132cef49989b12bc5c838", null ],
     [ "q0_15_t", "group__argus__fp.html#ga691a6a4ad9903499ab691c5c00095b42", null ],
     [ "q11_4_t", "group__argus__fp.html#gafffb45418d92d4d24e63a3fb2c999fa5", null ],
     [ "q15_16_t", "group__argus__fp.html#gad963efc4d2f99840d0652cea5db213e6", null ],
@@ -79,6 +79,7 @@ var group__argus__fp =
     [ "fp_ema15c", "group__argus__fp.html#ga085596f8b3b7b67e107599c40012073a", null ],
     [ "fp_ema16", "group__argus__fp.html#ga439145e1c0ced94dd0fd26dd0f53d737", null ],
     [ "fp_ema4", "group__argus__fp.html#gabc1d559e1a5881f90b33cc0f2701247d", null ],
+    [ "fp_ema4u", "group__argus__fp.html#gac2c20c9be8579323491d368d2dc9fb02", null ],
     [ "fp_ema8", "group__argus__fp.html#gae45f2075767ee37694045d076819f322", null ],
     [ "fp_exp16", "group__argus__fp.html#gad6671bdfe5ea04704eb13fef1865cde8", null ],
     [ "fp_log16", "group__argus__fp.html#ga20b63009bd4a31a88318257dd6c2b961", null ],

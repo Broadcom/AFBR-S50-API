@@ -1,5 +1,5 @@
 <map id="Sources/CANApp/main.h" name="Sources/CANApp/main.h">
-<area shape="rect" id="Node000001" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="658,5,825,31"/>
+<area shape="rect" id="Node000001" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="658,5,824,31"/>
 <area shape="rect" id="Node000002" href="$argus_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="666,79,729,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="736,33,715,67,711,64,732,30"/>
 <area shape="rect" id="Node000025" title=" " alt="" coords="754,79,820,105"/>
@@ -13,7 +13,7 @@
 <area shape="rect" id="Node000020" href="$argus__xtalk_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="562,300,659,326"/>
 <area shape="poly" id="edge36_Node000003_Node000020" title=" " alt="" coords="693,180,628,288,623,285,688,177"/>
 <area shape="rect" id="Node000021" href="$argus__dfm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="583,374,676,399"/>
-<area shape="poly" id="edge34_Node000003_Node000021" title=" " alt="" coords="700,179,694,243,686,285,673,327,652,363,647,360,668,325,681,284,689,243,694,179"/>
+<area shape="poly" id="edge34_Node000003_Node000021" title=" " alt="" coords="700,179,695,243,687,285,674,327,652,363,648,360,670,325,682,284,690,243,695,179"/>
 <area shape="rect" id="Node000022" href="$argus__pba_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="514,226,606,252"/>
 <area shape="poly" id="edge32_Node000003_Node000022" title=" " alt="" coords="675,181,598,221,596,216,673,177"/>
 <area shape="rect" id="Node000023" href="$argus__snm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="876,226,972,252"/>

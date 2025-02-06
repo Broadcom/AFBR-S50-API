@@ -11,6 +11,8 @@ var explorer__api_8c =
     [ "RxCmd_ModuleUID", "explorer__api_8c.html#a035acc9e0ccd1e4f27f330d21c2de63a", null ],
     [ "RxCmd_SoftwareInfo", "explorer__api_8c.html#a0244a2cee9d8ef8f220847d326df0122", null ],
     [ "RxCmd_SoftwareVersion", "explorer__api_8c.html#a5b914a5f215f6ced9d9b6b3d9e0f2a18", null ],
+    [ "RxCmd_TeachInStart", "explorer__api_8c.html#a8176577bc84de27bfefc0e1fa0568c0f", null ],
+    [ "RxCmd_TeachInStop", "explorer__api_8c.html#ac43bd7dc0149c31a3c65f46e8d3cb7c3", null ],
     [ "TxCmd_ModuleType", "explorer__api_8c.html#ab042bc7b13a115ccbee982278b2d4b69", null ],
     [ "TxCmd_ModuleUID", "explorer__api_8c.html#a9fa4d4a6a3a1fbf4b98396121fa24441", null ],
     [ "TxCmd_SoftwareInfo", "explorer__api_8c.html#aaaf2f36f69db9ece0df3151761bf9a41", null ],

@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="321,5,471,46"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="273,94,372,120"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="380,48,346,84,342,81,376,45"/>
-<area shape="rect" id="Node000003" href="$argus__print_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="396,94,543,120"/>
+<area shape="rect" id="Node000003" href="$argus__print_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="396,94,542,120"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="416,45,450,81,446,84,412,48"/>
 <area shape="rect" id="Node000004" href="$argus__def_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="415,168,524,193"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="472,120,472,152,467,152,467,120"/>
