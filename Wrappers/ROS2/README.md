@@ -7,7 +7,7 @@ This package contains ROS driver nodes for ToF Sensor AFBR-S50 with CAN and UART
 * OS / ROS
 	Ubuntu 16.04 / ROS Kinetic
 * USB TO UART module
-* AFBR-S50 mikroE
+* AFBR-S50 mikroE sensor board (https://www.mikroe.com/bdc-afbr-s50-tof-sensor-board#/279-tof_sensor_board-bdc_afbr_s50mv85i)
 
 # Quick Start
 
@@ -34,12 +34,12 @@ $ catkin_make
 $ source ~/s50_tof_driver/devel/setup.bash
 ```
 
-### Connecting Tof sensor ###
+### Connecting Tof sensors ###
 
-* Connect each tof sensor through the CAN interface to form a daisy chain
+* Connect a bunch tof sensors through the CAN interface (e.g. https://www.mikroe.com/bdc-afbr-s50-tof-sensor-board#/279-tof_sensor_board-bdc_afbr_s50mv85i) to form a daisy chain
 * Connect the Tof sensor to the USB port of your Ubuntu PC via USB TO UART module
 
-![connection](images/connection.png)
+![connection](media/daisychain.png)
 
 
 ### Launching Software ###
@@ -51,7 +51,6 @@ $ source ~/s50_tof_driver/devel/setup.bash
 $ chmod -R 777 ~/s50_tof_driver/
 $ roslaunch raw_tof raw_tof_c.launch
 ```
-![Rviz](images/Rviz.png)
 
 #### Option 2 : PointCloud in Rviz ####
 
@@ -62,3 +61,19 @@ $ source ~/s50_tof_driver/devel/setup.bash
 $ chmod -R 777 ~/s50_tof_driver/
 $ roslaunch pointcloud_tof pointcloud.launch
 ```
+
+For visualization and application tests an example implementation on a turtlebot using 5 x sensors boards is used.  
+(https://www.mikroe.com/bdc-afbr-s50-tof-sensor-board#/279-tof_sensor_board-bdc_afbr_s50mv85i)  
+
+![turtle](media/turtle.png)
+
+The next image shows the streamed sensor data via Rviz showing a pointcloud of 5 x 32 pixels into the 3D-space.  
+
+![Rviz](media/Rviz.png)
+
+Here is an application video showing the capability of AFBR-S50 sensor for cliff detection.  
+
+![cliff](media/cliff.gif)  
+
+The video above shows the capability of Broadcom ToF sensors to be used for cliff and void detection on AMRs/AGVs. While the LIDAR (red dots) just see the side walls,
+the downwards oriented ToF sensors (white point cloud) clearly detect the platform edges and initiates a direction change.
