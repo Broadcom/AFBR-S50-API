@@ -78,7 +78,7 @@ depending on your target. The following target/IDE combinations are provided:
 | NXP MKL46z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL46z` | Runs on **FRDM-KL46Z** evaluation board by **NXP**    |
 | NXP MKL17z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL17z` |                                                       |
 | STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_Example_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
-| Renesas RA4M2 | e² Studio     | `Projects/e2studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
+| Renesas RA4M2 | e² Studio     | `Projects/e2Studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
 
 See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
 
@@ -129,7 +129,7 @@ depending on your target. The following target/IDE combinations are provided:
 | NXP MKL46z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL46z` | Runs on **FRDM-KL46Z** evaluation board by **NXP**    |
 | NXP MKL17z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL17z` |                                                       |
 | STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_Example_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
-| Renesas RA4M2 | e² Studio     | `Projects/e2studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
+| Renesas RA4M2 | e² Studio     | `Projects/e2Studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
 
 See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
 
@@ -186,7 +186,7 @@ depending on your target. The following target/IDE combinations are provided:
 | NXP MKL46z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL46z` | Runs on **FRDM-KL46Z** evaluation board by **NXP**    |
 | NXP MKL17z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL17z` |                                                       |
 | STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_Example_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
-| Renesas RA4M2 | e² Studio     | `Projects/e2studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
+| Renesas RA4M2 | e² Studio     | `Projects/e2Studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
 
 See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
 
@@ -238,7 +238,7 @@ depending on your target. The following target/IDE combinations are provided:
 | NXP MKL46z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL46z` | Runs on **FRDM-KL46Z** evaluation board by **NXP**    |
 | NXP MKL17z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL17z` |                                                       |
 | STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_Example_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
-| Renesas RA4M2 | e² Studio     | `Projects/e2studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
+| Renesas RA4M2 | e² Studio     | `Projects/e2Studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
 
 See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
 

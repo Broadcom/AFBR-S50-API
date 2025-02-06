@@ -47,8 +47,6 @@
  *****************************************************************************/
 
 #include "api/argus_status.h"
-#include "bsp_mcu_device_pn_cfg.h"
-#include "bsp_mcu_family_cfg.h"
 
 /*!***************************************************************************
  * @brief   Initializes the board and its peripherals.

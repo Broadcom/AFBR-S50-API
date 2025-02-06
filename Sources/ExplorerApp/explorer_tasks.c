@@ -53,7 +53,7 @@
 #include "driver/gpio.h" // debug only
 #endif
 
-#if AFBR_SCI_USB
+#if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
 #include "usb/usb_sci.h" // status definitions
 #endif
 
@@ -349,7 +349,7 @@ static void Task_HandleCommand(sci_frame_t * frame)
 
 static void Task_Error(error_event_t * e)
 {
-#if AFBR_SCI_USB
+#if defined(EXPLORER_USE_USB) && EXPLORER_USE_USB
     if (e->Status == ERROR_USB_TIMEOUT) return;
 #endif
 
@@ -461,4 +461,3 @@ static status_t SCI_RxCommandCallbackHandler(sci_frame_t * cmd)
     }
     return status;
 }
-

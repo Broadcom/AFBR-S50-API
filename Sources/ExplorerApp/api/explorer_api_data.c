@@ -193,6 +193,7 @@ static void Serialize_MeasurementData_3D(sci_frame_t * frame, argus_results_t co
 
     if (res->Debug != 0) // if debug mode is enabled
     {
+        /* Phase values */
         for (uint_fast8_t x = 0; x < ARGUS_PIXELS_X; ++x)
         {
             for (uint_fast8_t y = 0; y < ARGUS_PIXELS_Y; ++y)
@@ -206,6 +207,30 @@ static void Serialize_MeasurementData_3D(sci_frame_t * frame, argus_results_t co
         if (!(res->PixelRef.Status & PIXEL_OFF))
         {
             SCI_Frame_Queue16u(frame, res->PixelRef.Phase);
+        }
+
+        /* SNR values */
+        for (uint_fast8_t x = 0; x < ARGUS_PIXELS_X; ++x)
+        {
+            for (uint_fast8_t y = 0; y < ARGUS_PIXELS_Y; ++y)
+            {
+                if (!(res->Pixel[x][y].Status & PIXEL_OFF))
+                {
+                    SCI_Frame_Queue16u(frame, res->Pixel[x][y].SNR);
+                }
+            }
+        }
+
+        /* Uncorrelated Noise values */
+        for (uint_fast8_t x = 0; x < ARGUS_PIXELS_X; ++x)
+        {
+            for (uint_fast8_t y = 0; y < ARGUS_PIXELS_Y; ++y)
+            {
+                if (!(res->Pixel[x][y].Status & PIXEL_OFF))
+                {
+                    SCI_Frame_Queue16u(frame, res->Pixel[x][y].UncorrelatedNoise);
+                }
+            }
         }
     }
 }
@@ -367,4 +392,3 @@ status_t ExplorerAPI_InitData(void)
 
     return status;
 }
-

@@ -63,7 +63,7 @@ extern int errno;
 extern int __io_putchar(int ch) __attribute__((weak));
 extern int __io_getchar(void) __attribute__((weak));
 
-register char * stack_ptr asm("sp");
+register char * stack_ptr __asm("sp");
 
 char *__env[1] = { 0 };
 char **environ = __env;

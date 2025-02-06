@@ -148,6 +148,7 @@ static s2pi_hnd_t myS2PIHnd = { .SpiAlternate = S2PI_FUNCTION,
                                            [ S2PI_MISO ] = { S2PI_MISO_GPIO, S2PI_MISO_GPIO_PIN },
                                            [ S2PI_IRQ  ] = { S2PI_IRQ1_GPIO, S2PI_IRQ1_GPIO_PIN } } };
 
+
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -677,6 +678,7 @@ status_t S2PI_Abort(s2pi_slave_t slave)
   */
 void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
 {
+    (void)hspi;
     S2PI_CompleteTransfer(ERROR_FAIL);
 }
 
@@ -749,3 +751,5 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         }
     }
 }
+
+

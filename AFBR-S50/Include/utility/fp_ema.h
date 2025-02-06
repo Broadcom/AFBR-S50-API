@@ -79,7 +79,7 @@ extern "C" {
  *
  * @param   mean The previous mean value in UQ1.15 format.
  * @param   x The current value to be added to the average UQ1.15 format.
- * @param   weight The EMA weight in UQ0.7 format.
+ * @param   weight The EMA weight in UQ0.8 format.
  * @return  The new mean value in UQ1.15 format.
  *****************************************************************************/
 inline uq1_15_t fp_ema15c(uq1_15_t mean, uq1_15_t x, uq0_8_t weight)
@@ -99,7 +99,7 @@ inline uq1_15_t fp_ema15c(uq1_15_t mean, uq1_15_t x, uq0_8_t weight)
  *
  * @param   mean The previous mean value in Q11.4 format.
  * @param   x The current value to be added to the average Q11.4 format.
- * @param   weight The EMA weight in UQ0.7 format.
+ * @param   weight The EMA weight in UQ0.8 format.
  * @return  The new mean value in Q11.4 format.
  *****************************************************************************/
 inline q11_4_t fp_ema4(q11_4_t mean, q11_4_t x, uq0_8_t weight)
@@ -111,6 +111,35 @@ inline q11_4_t fp_ema4(q11_4_t mean, q11_4_t x, uq0_8_t weight)
 }
 
 /*!***************************************************************************
+ * @brief   Exponentially weighted moving average using the UQ12.4 format.
+ *
+ * @details Evaluates the moving average (exponentially weighted) for data in
+ *          UQ12.4 format.
+ *
+ * @param   mean The previous mean value in UQ12.4 format.
+ * @param   x The current value to be added to the average UQ12.4 format.
+ * @param   weight The EMA weight in UQ0.8 format.
+ * @return  The new mean value in UQ12.4 format.
+ *****************************************************************************/
+inline uq12_4_t fp_ema4u(uq12_4_t mean, uq12_4_t x, uq0_8_t weight)
+{
+    if (weight == 0) return x;
+
+    if (x > mean)
+    {
+        const uq12_4_t dx = x - mean;
+        const uint32_t diff = weight * dx;
+        return (uq12_4_t)fp_rndu((mean << 8U) + diff, 8U);
+    }
+    else
+    {
+        const uq12_4_t dx = mean - x;
+        const uint32_t diff = weight * dx;
+        return (uq12_4_t)fp_rndu((mean << 8U) - diff, 8U);
+    }
+}
+
+/*!***************************************************************************
  * @brief   Exponentially weighted moving average using the Q7.8 format.
  *
  * @details Evaluates the moving average (exponentially weighted) for data in
@@ -118,7 +147,7 @@ inline q11_4_t fp_ema4(q11_4_t mean, q11_4_t x, uq0_8_t weight)
  *
  * @param   mean The previous mean value in Q7.8 format.
  * @param   x The current value to be added to the average Q7.8 format.
- * @param   weight The EMA weight in UQ0.7 format.
+ * @param   weight The EMA weight in UQ0.8 format.
  * @return  The new mean value in Q7.8 format.
  *****************************************************************************/
 inline q7_8_t fp_ema8(q7_8_t mean, q7_8_t x, uq0_8_t weight)
@@ -134,7 +163,7 @@ inline q7_8_t fp_ema8(q7_8_t mean, q7_8_t x, uq0_8_t weight)
  *
  * @param   mean The previous mean value in Q15.16 format.
  * @param   x The current value to be added to the average Q15.16 format.
- * @param   weight The EMA weight in UQ0.7 format.
+ * @param   weight The EMA weight in UQ0.8 format.
  * @return  The new mean value in Q15.16 format.
  *****************************************************************************/
 inline uint32_t uint_ema32(uint32_t mean, uint32_t x, uq0_8_t weight)
@@ -161,7 +190,7 @@ inline uint32_t uint_ema32(uint32_t mean, uint32_t x, uq0_8_t weight)
  *
  * @param   mean The previous mean value in Q15.16 format.
  * @param   x The current value to be added to the average Q15.16 format.
- * @param   weight The EMA weight in UQ0.7 format.
+ * @param   weight The EMA weight in UQ0.8 format.
  * @return  The new mean value in Q15.16 format.
  *****************************************************************************/
 inline int32_t int_ema32(int32_t mean, int32_t x, uq0_8_t weight)
@@ -189,7 +218,7 @@ inline int32_t int_ema32(int32_t mean, int32_t x, uq0_8_t weight)
  *
  * @param   mean The previous mean value in Q15.16 format.
  * @param   x The current value to be added to the average Q15.16 format.
- * @param   weight The EMA weight in UQ0.7 format.
+ * @param   weight The EMA weight in UQ0.8 format.
  * @return  The new mean value in Q15.16 format.
  *****************************************************************************/
 inline q15_16_t fp_ema16(q15_16_t mean, q15_16_t x, uq0_8_t weight)

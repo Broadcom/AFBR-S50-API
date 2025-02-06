@@ -43,6 +43,7 @@
 #include "core_cfg.h"
 #include "explorer_config.h"
 
+
 #include "driver/flash.h"
 #include "debug.h"
 #include <assert.h>
@@ -64,9 +65,11 @@
  * Local Functions
  ******************************************************************************/
 
+
 /*******************************************************************************
  * Functions
  ******************************************************************************/
+
 
 status_t ExplorerApp_ClearFlash(void)
 {

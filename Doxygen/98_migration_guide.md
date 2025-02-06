@@ -14,6 +14,271 @@ corresponding sections below and apply the changes iteratively.
 Please report any additional issues to the
 [AFBR-S50 GitHub repository](https://github.com/broadcom/afbr-s50-api/issues).
 
+# API Migration Guide (1.5.6 → 1.6.5) {#migration_guide_1_6}
+The following document describes the changes to the **AFBR-S50 API** interface
+from **v1.5.6** to **v1.6.5**.
+
+## Overview of Data & Function Changes / Extensions / new Items
+(bug fixes or typo corrections are excluded from this list)
+
+---Data types
+- argus_cfg_dca_t Struct Reference (Changed)
+- argus_pixel_t Struct Reference (Extended)
+- argus_mode_t (Extended)
+- argus_mode_flags_t (Extended)
+- argus_snm_mode_t (Extended)
+
+---Functions
+- Argus_StartTeachInMode(argus_hand_t *hnd) (new)
+- Argus_StopTeachInMode(argus_hand_t *hnd) (new)
+
+---Miscellaneous
+- New description for status -107
+- New description for status -110
+- New description for status -113
+- New status -108
+
+## Changes in more Detail
+
+To further improve the absolute failure at small distances below 50cm the
+DCA was extended by power stage differentions:
+
+```c
+// v1.5.6 measurement mode enumeration
+typedef struct argus_cfg_dca_t
+{
+    argus_dca_enable_t Enabled
+    uint8_t 	SatPxThLin
+    uint8_t 	SatPxThExp
+    uint8_t 	SatPxThRst
+    uq12_4_t    Atarget
+    uq12_4_t    AthLow
+    uq12_4_t    AthHigh
+    argus_dca_amplitude_mode_t  AmplitudeMode
+    argus_dca_power_t   Power
+    uq10_6_t    DepthNom
+    uq10_6_t    DepthMin
+    uq10_6_t    DepthMax
+    argus_dca_gain_t    GainNom
+    argus_dca_gain_t    GainMin
+    argus_dca_gain_t    GainMax
+    uq0_8_t PowerSavingRatio
+} argus_cfg_dca_t;
+
+// v1.6.5 measurement mode enumeration
+typedef struct argus_cfg_dca_t
+{
+    argus_dca_enable_t Enabled
+    uint8_t 	SatPxThLin
+    uint8_t 	SatPxThExp
+    uint8_t 	SatPxThRst
+    uq12_4_t    Atarget
+    uq12_4_t    AthLow
+    uq12_4_t    AthHigh
+    argus_dca_amplitude_mode_t  AmplitudeMode
+    argus_dca_power_t   Power
+    uq10_6_t    DepthNom
+    uq10_6_t    DepthMin_LowPower
+    uq10_6_t    DepthMin_HighPower
+    uq10_6_t    DepthMax
+    argus_dca_gain_t    GainNom
+    argus_dca_gain_t    GainMin
+    argus_dca_gain_t    GainMax
+    uq0_8_t PowerSavingRatio
+    uint8_t DisablePowerSaveInLowPowerStage
+} argus_cfg_dca_t;
+```
+## Extensions and new Items in more Detail
+
+The pixel struct got upgraded with uncorrelatedNoise figure and signa-to-noise ratio (SNR):
+
+```C
+// v1.5.6 measurement mode enumeration
+typedef struct argus_pixel_t
+{
+    q9_22_t Range;
+    uq1_15_t Phase;
+    uq12_4_t Amplitude;
+    argus_px_status_t Status;
+    int8_t RangeWindow;
+    uq12_4_t AmplitudeRaw;
+} argus_pixel_t;
+
+// v1.6.5 measurement mode enumeration
+typedef struct argus_pixel_t
+{
+    q9_22_t Range;
+    uq1_15_t Phase;
+    uq12_4_t Amplitude;
+    argus_px_status_t Status;
+    int8_t RangeWindow;
+    uq12_4_t AmplitudeRaw;
+    uq12_4_t UncorrelatedNoise;
+    uq12_4_t SNR;
+} argus_pixel_t;
+
+```
+
+New measurement modes were introduced:
+
+```c
+// v1.5.6 measurement mode enumeration
+typedef enum argus_mode_t
+{
+    /*! Measurement Mode: Short Range Mode. */
+    ARGUS_MODE_SHORT_RANGE =                                // = 0x01 = 0b0001
+            ARGUS_MODE_FLAG_SHORT_RANGE,
+
+    /*! Measurement Mode: Long Range Mode. */
+    ARGUS_MODE_LONG_RANGE =                                 // = 0x02 = 0b0010
+            ARGUS_MODE_FLAG_LONG_RANGE,
+
+    /*! Measurement Mode: High Speed Short Range Mode. */
+    ARGUS_MODE_HIGH_SPEED_SHORT_RANGE =                     // = 0x05 = 0b0101
+            ARGUS_MODE_FLAG_SHORT_RANGE | ARGUS_MODE_FLAG_HIGH_SPEED,
+
+    /*! Measurement Mode: High Speed Long Range Mode. */
+    ARGUS_MODE_HIGH_SPEED_LONG_RANGE =                      // = 0x06 = 0b0110
+            ARGUS_MODE_FLAG_LONG_RANGE | ARGUS_MODE_FLAG_HIGH_SPEED,
+
+} argus_mode_t;
+```
+
+The new measurement mode enumeration is as follows. Note that new modes were added which are
+    - High Precision Mode
+    - Laser Class 2 mode (only valid for AFBR-S50MV68B)
+
+```c
+// v1.6.5 measurement mode enumeration
+typedef enum argus_mode_t
+{
+    /*! Measurement Mode: Short Range Mode. */
+    ARGUS_MODE_SHORT_RANGE =
+            ARGUS_MODE_FLAG_SHORT_RANGE,
+
+    /*! Measurement Mode: Long Range Mode. */
+    ARGUS_MODE_LONG_RANGE =
+            ARGUS_MODE_FLAG_LONG_RANGE,
+
+    /*! Measurement Mode: High Speed Short Range Mode. */
+    ARGUS_MODE_HIGH_SPEED_SHORT_RANGE =
+            ARGUS_MODE_FLAG_SHORT_RANGE | ARGUS_MODE_FLAG_HIGH_SPEED,
+
+    /*! Measurement Mode: High Speed Long Range Mode. */
+    ARGUS_MODE_HIGH_SPEED_LONG_RANGE =
+            ARGUS_MODE_FLAG_LONG_RANGE | ARGUS_MODE_FLAG_HIGH_SPEED,
+
+    /*! Measurement Mode: High Speed Short Range Mode. */
+    ARGUS_MODE_HIGH_PRECISION_SHORT_RANGE =
+            ARGUS_MODE_FLAG_SHORT_RANGE | ARGUS_MODE_FLAG_HIGH_PRECISION,
+
+    /*! Measurement Mode: Short Range Mode (Laser Class 2). */
+    ARGUS_MODE_SHORT_RANGE_LASER_CLASS_2 =
+            ARGUS_MODE_FLAG_SHORT_RANGE | ARGUS_MODE_FLAG_LASER_CLASS_2,
+
+    /*! Measurement Mode: Long Range Mode (Laser Class 2). */
+    ARGUS_MODE_LONG_RANGE_LASER_CLASS_2 =
+            ARGUS_MODE_FLAG_LONG_RANGE | ARGUS_MODE_FLAG_LASER_CLASS_2,
+
+    /*! Measurement Mode: High Speed Short Range Mode (Laser Class 2). */
+    ARGUS_MODE_HIGH_SPEED_SHORT_RANGE_LASER_CLASS_2 =
+            ARGUS_MODE_FLAG_SHORT_RANGE | ARGUS_MODE_FLAG_HIGH_SPEED | ARGUS_MODE_FLAG_LASER_CLASS_2,
+
+    /*! Measurement Mode: High Speed Long Range Mode (Laser Class 2). */
+    ARGUS_MODE_HIGH_SPEED_LONG_RANGE_LASER_CLASS_2 =
+            ARGUS_MODE_FLAG_LONG_RANGE | ARGUS_MODE_FLAG_HIGH_SPEED | ARGUS_MODE_FLAG_LASER_CLASS_2,
+
+    /*! Measurement Mode: High Speed Short Range Mode (Laser Class 2). */
+    ARGUS_MODE_HIGH_PRECISION_SHORT_RANGE_LASER_CLASS_2 =
+           ARGUS_MODE_FLAG_SHORT_RANGE | ARGUS_MODE_FLAG_HIGH_PRECISION | ARGUS_MODE_FLAG_LASER_CLASS_2,
+
+} argus_mode_t;
+```
+Accordingly, new mode flags were added:
+```c
+// v1.5.6 mode flags enumeration
+typedef enum argus_mode_flags_t
+{
+    /*! Measurement Mode Flag for Short Range Base Mode. */
+    ARGUS_MODE_FLAG_SHORT_RANGE = 0x01 << 0,
+
+    /*! Measurement Mode Flag for Long Range Base Mode. */
+    ARGUS_MODE_FLAG_LONG_RANGE = 0x01 << 1,
+
+    /*! Measurement Mode Flag for High Speed Mode. */
+    ARGUS_MODE_FLAG_HIGH_SPEED = 0x01 << 2,
+
+} argus_mode_flags_t;
+
+// v1.6.5 mode flags enumeration
+typedef enum argus_mode_flags_t
+{
+    /*! Measurement Mode Flag for Short Range Base Mode. */
+    ARGUS_MODE_FLAG_SHORT_RANGE = 0x01 << 0,
+
+    /*! Measurement Mode Flag for Long Range Base Mode. */
+    ARGUS_MODE_FLAG_LONG_RANGE = 0x01 << 1,
+
+    /*! Measurement Mode Flag for High Speed Mode. */
+    ARGUS_MODE_FLAG_HIGH_SPEED = 0x01 << 2,
+
+    /*! Measurement Mode Flag for High Precision Mode. */
+    ARGUS_MODE_FLAG_HIGH_PRECISION = 0x01 << 3,
+
+    /*! Measurement Mode Flag for Laser Class 2. */
+    ARGUS_MODE_FLAG_LASER_CLASS_2 = 0x01 << 7,
+
+} argus_mode_flags_t;
+```
+The shot noise monitor was also extended by the new dynamic plus mode:
+
+```c
+// v1.5.6 Shot Noise Monitor modes enumeration
+typedef enum argus_snm_mode_t
+{
+    /*! Static Shot Noise Monitoring Mode, optimized for indoor applications.
+     *  Assumes the best case scenario, i.e. no bad influence from ambient conditions.
+     *  Thus it uses a fixed setting that will result in the best performance.
+     *  Equivalent to Shot Noise Monitoring disabled. */
+    SNM_MODE_STATIC_INDOOR = 0U,
+
+    /*! Static Shot Noise Monitoring Mode, optimized for outdoor applications.
+     *  Assumes the worst case scenario, i.e. it uses a fixed setting that will
+     *  work under all ambient conditions. */
+    SNM_MODE_STATIC_OUTDOOR = 1U,
+
+    /*! Dynamic Shot Noise Monitoring Mode.
+     *  Adopts the system performance dynamically to the current ambient conditions. */
+    SNM_MODE_DYNAMIC = 2U,
+
+} argus_snm_mode_t;
+
+// v1.6.5 Shot Noise Monitor modes enumeration
+typedef enum argus_snm_mode_t
+{
+    /*! Static Shot Noise Monitoring Mode, optimized for indoor applications.
+     *  Assumes the best case scenario, i.e. no bad influence from ambient conditions.
+     *  Thus it uses a fixed setting that will result in the best performance.
+     *  Equivalent to Shot Noise Monitoring disabled. */
+    SNM_MODE_STATIC_INDOOR = 0U,
+
+    /*! Static Shot Noise Monitoring Mode, optimized for outdoor applications.
+     *  Assumes the worst case scenario, i.e. it uses a fixed setting that will
+     *  work under all ambient conditions. */
+    SNM_MODE_STATIC_OUTDOOR = 1U,
+
+    /*! Dynamic Shot Noise Monitoring Mode.
+     *  Adopts the system performance dynamically to the current ambient conditions. */
+    SNM_MODE_DYNAMIC = 2U,
+
+    /*! Dynamic Plus Shot Noise Monitoring Mode.
+     *  Adopts the system performance dynamically to the current ambient conditions
+     *  with reference based on Uncorrelated Noise figure. */
+    SNM_MODE_DYNAMIC_PLUS = 3U,
+
+} argus_snm_mode_t;
+```
+
 # API Migration Guide (1.4.4 → 1.5.6) {#migration_guide_1_5}
 
 The following document describes the changes to the **AFBR-S50 API** interface

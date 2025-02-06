@@ -306,6 +306,7 @@ SECTIONS
         KEEP(*(.jcr*))
 
         . = ALIGN(4);
+        PROVIDE(end = .);
 
         /* All data end */
         __data_end__ = .;

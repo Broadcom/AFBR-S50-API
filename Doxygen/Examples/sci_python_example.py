@@ -37,7 +37,7 @@ import serial
 
 # input parameters
 port = "COM4"
-baudrate = 115200
+baudrate = 1_000_000 # bps
 
 
 class AFBR_S50:
@@ -288,4 +288,3 @@ if __name__ == "__main__":
         # [CMD] = 0x12; command byte: stop timer based measurements
         print("stop measurements")
         s50.write(bytes.fromhex("02 12 F7 03"))
-

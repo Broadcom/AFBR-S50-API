@@ -47,7 +47,7 @@
  *
  *              Example:
  * @code
- *                  UART_Printf("askldfjlsadf");
+ *                  print("hello world!");
  * @endcode
  * @code
  *                  UART_SendBuffer(txBuff, sizeof(txBuff), 0, 0);

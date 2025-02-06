@@ -1,0 +1,18 @@
+set(API_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/AFBR-S50/Include")
+message(STATUS "API include dir: ${API_INCLUDE_DIR}")
+file(GLOB_RECURSE LIB_FILES "Lib/lib*.a")
+foreach(LIB_FILE ${LIB_FILES})
+    get_filename_component(LIB_NAME ${LIB_FILE} NAME_WLE)
+    string(REPLACE "lib" "" LIB_NAME ${LIB_NAME})
+    message(STATUS "Adding ${LIB_NAME} library, Path: ${LIB_FILE}")
+    add_library(${LIB_NAME} STATIC IMPORTED GLOBAL)
+    set_target_properties(${LIB_NAME} PROPERTIES IMPORTED_LOCATION ${LIB_FILE})
+    target_include_directories(${LIB_NAME} INTERFACE ${API_INCLUDE_DIR})
+    # set_property(TARGET ${LIB_NAME} PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${API_INCLUDE_DIR})
+endforeach()
+
+    # set(LIB_NAME ${API_LIBRARY})
+    # add_library(${LIB_NAME} STATIC IMPORTED PUBLIC)
+    # set_target_properties(${LIB_NAME} PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/AFBR-S50/Lib/libafbrs50_m4_fpu.a)
+    # target_include_directories(${LIB_NAME} INTERFACE ${CMAKE_SOURCE_DIR}/AFBR-S50/Include)
+

@@ -143,5 +143,6 @@ status_t S2PI_SetBaudRate(s2pi_slave_t slave, uint32_t baudRate_Bps);
 status_t S2PI_SetSlave(s2pi_slave_t spi_slave);
 
 
+
 /*! @} */
 #endif // S2PI_H

@@ -213,6 +213,21 @@ static status_t RxCmd_MeasurementAuto(sci_device_t deviceID, sci_frame_t * frame
     if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
     return ExplorerApp_StartTimerMeasurement(argus);
 }
+static status_t RxCmd_TeachInStop(sci_device_t deviceID, sci_frame_t * frame)
+{
+    (void)frame; // unused parameter
+    argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
+    if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
+    return ExplorerApp_StopTeachInMode(argus);
+}
+static status_t RxCmd_TeachInStart(sci_device_t deviceID, sci_frame_t * frame)
+{
+    (void)frame; // unused parameter
+    argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
+    if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
+    (void)ExplorerApp_SuspendTimerMeasurement(argus);
+    return ExplorerApp_StartTeachInMode(argus);
+}
 static status_t RxCmd_MeasurementCalibration(sci_device_t deviceID, sci_frame_t * frame)
 {
     explorer_cal_sequence_t seq = (explorer_cal_sequence_t) SCI_Frame_Dequeue08u(frame);
@@ -256,6 +271,7 @@ static status_t RxCmd_DeviceAbort(sci_device_t deviceID, sci_frame_t * frame)
 }
 
 
+
 /*******************************************************************************
  * Init Code
  ******************************************************************************/
@@ -278,12 +294,17 @@ status_t ExplorerAPI_InitGeneral()
     if(status < STATUS_OK) return status;
     status = SCI_SetRxCommand(CMD_MEASUREMENT_START, RxCmd_MeasurementAuto);
     if(status < STATUS_OK) return status;
+    status = SCI_SetRxCommand(CMD_MEASUREMENT_STOP_TEACH_IN, RxCmd_TeachInStop);
+    if(status < STATUS_OK) return status;
+    status = SCI_SetRxCommand(CMD_MEASUREMENT_START_TEACH_IN, RxCmd_TeachInStart);
+    if(status < STATUS_OK) return status;
     status = SCI_SetRxCommand(CMD_MEASUREMENT_CALIBRATION, RxCmd_MeasurementCalibration);
     if(status < STATUS_OK) return status;
     status = SCI_SetRxCommand(CMD_DEVICE_REINIT, RxCmd_DeviceReinit);
     if(status < STATUS_OK) return status;
     status = SCI_SetRxCommand(CMD_DEVICE_ABORT, RxCmd_DeviceAbort);
     if(status < STATUS_OK) return status;
+
 
     return status;
 }

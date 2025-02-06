@@ -75,9 +75,5 @@
 #define IRQPRIO_GPIOCD      2U      /*!< Interrupt priority level of GPIOCD IRQ. */
 #define IRQPRIO_USB         0U      /*!< Interrupt priority level of USB IRQ. */
 
-#ifndef SPI_BAUDRATE
-#define SPI_BAUDRATE        SPI_MAX_BAUDRATE
-#endif
-
 /*! @} */
 #endif /* BOARD_CONFIG_H */

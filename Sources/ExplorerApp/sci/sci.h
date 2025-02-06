@@ -92,7 +92,7 @@ typedef uint32_t sci_param_t;
 typedef void const * sci_data_t;
 
 /*!***************************************************************************
- *  The SCI device ID type. A value of DEVICEID_DEFAULT will target the
+ *  The SCI device ID type. A value of SCI_DEVICE_ID_DEFAULT will target the
  *  device assigned as default by the ExplorerApp. Any other value >0 up
  *  to a maximum defined by the ExplorerApp is a valid device.
  *****************************************************************************/
@@ -101,12 +101,12 @@ typedef uint8_t sci_device_t;
 /*!***************************************************************************
  *  The Device ID of the default device (usually the first device).
  *****************************************************************************/
-#define DEVICEID_DEFAULT    0
+#define SCI_DEVICE_ID_DEFAULT    0
 
 /*!***************************************************************************
  *  The specific Device ID of the default device (the first device).
  *****************************************************************************/
-#define DEVICEID_FIRST_VALID    1
+#define SCI_DEVICE_ID_FIRST_VALID    1
 
 /*!***************************************************************************
  * @brief   Received command invocation function definition.

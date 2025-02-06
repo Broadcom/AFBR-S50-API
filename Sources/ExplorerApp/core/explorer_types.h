@@ -69,6 +69,10 @@ enum ExplorerApp_SerialCommandCodes
     CMD_MEASUREMENT_START = 0x11,
     /*! Stops the time-scheduled measurements (after the current frame finishes). */
     CMD_MEASUREMENT_STOP = 0x12,
+    /*! Starts the teach-in mode. */
+    CMD_MEASUREMENT_START_TEACH_IN = 0x20,
+    /*! Stops the teach-in mode. */
+    CMD_MEASUREMENT_STOP_TEACH_IN = 0x22,
     /*! Aborts all device activity. */
     CMD_DEVICE_ABORT = 0x13,
     /*! Reinitializes the device with default configuration. */
@@ -78,6 +82,7 @@ enum ExplorerApp_SerialCommandCodes
 
     /*! Executed a flash read/write/clear command. */
     CMD_FLASH = 0x19,
+
 
 //  /*! Gets a raw measurement data set containing the raw device readout samples. */
 //  CMD_MEASUREMENT_DATA_RAW = 0x30,
@@ -93,6 +98,7 @@ enum ExplorerApp_SerialCommandCodes
     CMD_MEASUREMENT_DATA_1D_DEBUG = 0x35,
     /*! Gets a 1D measurement data set including a single distance and amplitude value. */
     CMD_MEASUREMENT_DATA_1D = 0x36,
+
 
     /*! Gets or sets the configuration of the measurement data output mode   */
     CMD_CONFIGURATION_DATA_OUTPUT_MODE = 0x41,
@@ -117,6 +123,7 @@ enum ExplorerApp_SerialCommandCodes
     CMD_CONFIGURATION_SPI = 0x58,
     /*!< Gets or sets the UART configuration, i.e. the baud rate. */
     CMD_CONFIGURATION_UART = 0x59,
+
     /*! Gets or sets the global range offset. */
     CMD_CALIBRATION_GLOBAL_RANGE_OFFSET = 0x61,
     /*! Gets or sets the custom pixel range offsets. */
@@ -157,6 +164,7 @@ typedef enum explorer_cal_sequence_t
 
     /*! Crosstalk calibration sequence. */
     CALIBRATION_SEQUENCE_XTALK = 2,
+
 
     /*! Range offsets calibration sequence. */
     CALIBRATION_SEQUENCE_OFFSETS = 5,
@@ -214,6 +222,7 @@ typedef struct explorer_t
     argus_hnd_t * Argus;
 
 } explorer_t;
+
 
 
 /*! @} */

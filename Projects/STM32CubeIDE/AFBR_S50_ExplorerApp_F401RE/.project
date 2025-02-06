@@ -39,12 +39,12 @@
 		<link>
 			<name>Platform</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/Sources/Platform/STM32F4xx</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/Sources/platform/STM32F4xx</locationURI>
 		</link>
 		<link>
 			<name>Utility</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/Sources/Utility</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/Sources/utility</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

@@ -88,6 +88,20 @@ status_t ExplorerApp_StopTimerMeasurement(argus_hnd_t * argus);
 status_t ExplorerApp_SingleMeasurement(argus_hnd_t * argus);
 
 /*!***************************************************************************
+ * @brief   Starts the teach-in mode.
+ * @param   argus The Argus device handler.
+ * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
+ *****************************************************************************/
+status_t ExplorerApp_StartTeachInMode(argus_hnd_t * argus);
+
+/*!***************************************************************************
+ * @brief   Stops the teach-in mode and goes to idle state.
+ * @param   argus The Argus device handler.
+ * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
+ *****************************************************************************/
+status_t ExplorerApp_StopTeachInMode(argus_hnd_t * argus);
+
+/*!***************************************************************************
  * @brief   Aborts all device activity immediately.
  * @param   argus The Argus device handler.
  * @return  Returns the \link #status_t status\endlink (#STATUS_OK on success).
@@ -99,6 +113,8 @@ status_t ExplorerApp_DeviceAbort(argus_hnd_t * argus);
  * @param   argus The Argus device handler.
  *****************************************************************************/
 void ExplorerApp_DisplayUnambiguousRange(argus_hnd_t * argus);
+
+
 
 /*! @} */
 #endif /* CORE_UTILS_H */

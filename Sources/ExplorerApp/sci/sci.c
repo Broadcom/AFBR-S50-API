@@ -51,7 +51,7 @@
 
 /*! Max. number of commands. */
 #ifndef SCI_MAX_COMMANDS
-#define SCI_MAX_COMMANDS 128u
+#define SCI_MAX_COMMANDS 64u
 #endif
 
 /*! Command functions definition. */
@@ -215,7 +215,7 @@ status_t SCI_InvokeRxCommand(sci_frame_t * frame)
     /* Check whether it's an extended or basic command:
      * extended = with device ID, for multi-device addressing
      * basic = simple, just consider the default device */
-    sci_device_t deviceID = DEVICEID_DEFAULT;
+    sci_device_t deviceID = SCI_DEVICE_ID_DEFAULT;
     if (SCI_CMD_IS_EXTENDED_CMD(cmd))
     {
         /* New Protocol Mode:
@@ -225,8 +225,8 @@ status_t SCI_InvokeRxCommand(sci_frame_t * frame)
 
         /* If the device ID is 0 (default), use the first available device. This is required
          * to ensure proper DeviceID in all command/response packets from this point onwards */
-        if (deviceID == DEVICEID_DEFAULT)
-            deviceID = DEVICEID_FIRST_VALID;
+        if (deviceID == SCI_DEVICE_ID_DEFAULT)
+            deviceID = SCI_DEVICE_ID_FIRST_VALID;
     }
 
     /* There is no validity check for the DeviceID because the SCI layer doesn't

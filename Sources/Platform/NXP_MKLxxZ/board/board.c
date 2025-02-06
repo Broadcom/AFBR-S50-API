@@ -76,7 +76,7 @@ status_t Board_Init(void)
     }
 
     /* Initialize the S2PI hardware required by the API. */
-    status = S2PI_Init(SPI_DEFAULT_SLAVE, SPI_BAUDRATE);
+    status = S2PI_Init(SPI_DEFAULT_SLAVE, SPI_MAX_BAUDRATE);
     if (status < STATUS_OK)
     {
         error_log("S2PI initialization failed, error code: %d", status);

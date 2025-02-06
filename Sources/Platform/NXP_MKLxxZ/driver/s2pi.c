@@ -1363,3 +1363,4 @@ static void S2PI_RxDmaCallbackFunction(status_t status, void * param)
     s2pi_hnd_t * hnd = (s2pi_hnd_t*)param;
     S2PI_CompleteTransfer(hnd, status);
 }
+
