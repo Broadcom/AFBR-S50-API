@@ -1,17 +1,10 @@
-<map id="Sources/ExplorerApp/core/core_cfg.h" name="Sources/ExplorerApp/core/core_cfg.h">
-<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="513,5,656,46"/>
-<area shape="rect" id="Node000002" href="$explorer__api_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,94,148,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="498,42,341,65,161,97,148,99,147,94,160,91,340,60,498,36"/>
-<area shape="rect" id="Node000003" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="172,94,322,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="499,52,323,96,322,91,497,46"/>
-<area shape="rect" id="Node000004" href="$core__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="347,94,489,135"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="535,56,457,96,454,91,532,51"/>
-<area shape="rect" id="Node000005" href="$core__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="513,94,656,135"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="587,62,587,94,582,94,582,62"/>
-<area shape="rect" id="Node000006" href="$core__device_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="680,94,822,135"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="637,51,715,91,712,96,634,56"/>
-<area shape="rect" id="Node000007" href="$core__flash_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="847,94,989,135"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="671,47,847,92,846,97,670,52"/>
-<area shape="rect" id="Node000008" href="$explorer__tasks_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1013,94,1156,135"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="672,37,826,60,1001,91,1014,94,1013,99,1000,97,825,66,671,42"/>
+<map id="Sources/explorer_app/core/core_cfg.h" name="Sources/explorer_app/core/core_cfg.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="573,5,736,47"/>
+<area shape="rect" id="node2" href="$explorer__api_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,95,168,136"/>
+<area shape="rect" id="node3" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="193,95,362,136"/>
+<area shape="rect" id="node4" href="$core__cal_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="387,95,549,136"/>
+<area shape="rect" id="node5" href="$core__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="573,95,736,136"/>
+<area shape="rect" id="node6" href="$core__device_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="760,95,923,136"/>
+<area shape="rect" id="node7" href="$core__flash_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="947,95,1109,136"/>
+<area shape="rect" id="node8" href="$explorer__tasks_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="1133,95,1296,136"/>
 </map>

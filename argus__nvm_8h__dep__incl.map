@@ -1,5 +1,4 @@
-<map id="AFBR&#45;S50/Include/platform/argus_nvm.h" name="AFBR&#45;S50/Include/platform/argus_nvm.h">
-<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,5,186,46"/>
-<area shape="rect" id="Node000002" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="21,94,170,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,62,98,94,93,94,93,62"/>
+<map id="Sources/argus_api/include/platform/argus_nvm.h" name="Sources/argus_api/include/platform/argus_nvm.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,5,196,47"/>
+<area shape="rect" id="node2" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="15,95,187,136"/>
 </map>

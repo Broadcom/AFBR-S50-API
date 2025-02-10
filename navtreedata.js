@@ -1,31 +1,33 @@
 /*
- @licstart  The following is the entire license notice for the JavaScript code in this file.
+@licstart  The following is the entire license notice for the
+JavaScript code in this file.
 
- The MIT License (MIT)
+Copyright (C) 1997-2019 by Dimitri van Heesch
 
- Copyright (C) 1997-2020 by Dimitri van Heesch
+This program is free software; you can redistribute it and/or modify
+it under the terms of version 2 of the GNU General Public License as published by
+the Free Software Foundation
 
- Permission is hereby granted, free of charge, to any person obtaining a copy of this software
- and associated documentation files (the "Software"), to deal in the Software without restriction,
- including without limitation the rights to use, copy, modify, merge, publish, distribute,
- sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
 
- The above copyright notice and this permission notice shall be included in all copies or
- substantial portions of the Software.
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
- BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
- @licend  The above is the entire license notice for the JavaScript code in this file
+@licend  The above is the entire license notice
+for the JavaScript code in this file
 */
 var NAVTREE =
 [
   [ "AFBR-S50 API Reference Manual", "index.html", [
-    [ "Introduction", "index.html", "index" ],
+    [ "Introduction", "index.html", [
+      [ "API Overview", "index.html#autotoc_md0", null ],
+      [ "Getting Started", "index.html#autotoc_md1", null ],
+      [ "Copyright and License", "index.html#autotoc_md2", null ]
+    ] ],
     [ "Architectural Overview", "sw_api.html", [
       [ "Overview", "sw_api.html#sw_api_overview", null ],
       [ "Operation Principle", "sw_api.html#sw_api_principle", null ],
@@ -107,15 +109,15 @@ var NAVTREE =
       [ "Device Initialization Yields Device Not Connected (Error Code -101)", "faq.html#autotoc_md76", null ],
       [ "Decreased Device Performance or Accuracy", "faq.html#autotoc_md77", null ],
       [ "EEPROM Readout Fails (Error Code -109)", "faq.html#faq_eeprom", [
-        [ "How to Verify EEPROM Readout Sequence", "faq.html#autotoc_md78", null ],
-        [ "Further Tests on EEPROM Readout Sequence", "faq.html#autotoc_md79", null ]
+        [ "1. How to Verify EEPROM Readout Sequence", "faq.html#autotoc_md78", null ],
+        [ "2. Further Tests on EEPROM Readout Sequence", "faq.html#autotoc_md79", null ]
       ] ],
       [ "The Measurement Never Finishes or Yields Timeout Error (-6)", "faq.html#autotoc_md80", [
         [ "The Measurement Finished Callback is Never Invoked", "faq.html#autotoc_md81", null ],
         [ "The Measurement Finished Callback Yield a Timeout Error (Error Code -6)", "faq.html#autotoc_md82", null ]
       ] ]
     ] ],
-    [ "Topics", "topics.html", "topics" ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -143,12 +145,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "01__simple__example_8c.html",
-"explorer__tasks_8c.html#a283013b33ea94c3054713e68427315d6",
-"group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708ba257bb825d75628478349161d2c260ea7",
-"group__argus__map.html#gaa51a0ce9b1e5dd179fbeaedfc4dd80e6",
-"group__argus__xtk__cli.html#ga41ce3991e7acca3071e36d6c04dfb932",
-"group__sci.html#ga90d56fe3172b9b3b5c064919f1245646",
-"structargus__cfg__dca__t.html#a5622d96cdb5230d51e33e5b1a2bc4c17"
+"explorer__tasks_8c.html#a11b72623a9601834584c5ecf08dd6e27",
+"group__argus__api.html#gabe8846d7abef63b75e8147f4f142708b",
+"group__argus__dca.html#ggada1413643a68f3cd36f6c0a1d0b61e91a5c045d26a29f06cc32fc757b51578e25",
+"group__argus__irq.html#ga7eb2f9c9e40114afd7d079ace7c152e7",
+"group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba083e5907c8c528607783350b760ca0bb",
+"group__argus__version.html#ga118a521ea35e67d1d8b8daeabf4e0053",
+"group__core__device.html#gaf561d6507fa19ca607181d62e3217198",
+"group__profiler.html#ga8c097a59d344c89887c5f4cbdbcf493e",
+"group__sci__frame.html#gabd264bf8c72debf4020e9e681d655e71",
+"structargus__pixel__t.html#a288c43dbc8360f242babcc74f1746c52"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

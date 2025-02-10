@@ -1,5 +1,4 @@
-<map id="Sources/CANApp/can_app_version.h" name="Sources/CANApp/can_app_version.h">
-<area shape="rect" id="Node000001" title="AFBR&#45;S50 CAN Demo Application Version File." alt="" coords="14,5,163,46"/>
-<area shape="rect" id="Node000002" href="$_c_a_n_app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="5,94,172,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,62,91,93,86,93,86,62"/>
+<map id="Sources/can_app/can_app_version.h" name="Sources/can_app/can_app_version.h">
+<area shape="rect" id="node1" title="AFBR&#45;S50 CAN Demo Application Version File." alt="" coords="15,5,174,47"/>
+<area shape="rect" id="node2" href="$can__app_2main_8c.html" title="AFBR&#45;S50 CAN Demo Application." alt="" coords="5,95,184,121"/>
 </map>

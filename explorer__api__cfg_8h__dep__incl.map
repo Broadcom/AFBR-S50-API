@@ -1,7 +1,5 @@
-<map id="Sources/ExplorerApp/api/explorer_api_cfg.h" name="Sources/ExplorerApp/api/explorer_api_cfg.h">
-<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="91,5,241,46"/>
-<area shape="rect" id="Node000002" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,94,156,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,59,102,95,98,92,134,55"/>
-<area shape="rect" id="Node000003" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="180,94,322,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,55,234,92,230,95,194,59"/>
+<map id="Sources/explorer_app/api/explorer_api_cfg.h" name="Sources/explorer_app/api/explorer_api_cfg.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="99,5,270,47"/>
+<area shape="rect" id="node2" href="$explorer__api__cfg_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,95,175,136"/>
+<area shape="rect" id="node3" href="$explorer__app_8c.html" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="199,95,362,136"/>
 </map>

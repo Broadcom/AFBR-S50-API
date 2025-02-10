@@ -3,7 +3,7 @@ var sci_8h =
     [ "SCI_DEVICE_ID_DEFAULT", "group__sci.html#ga420ecc9ff03125348ec1f52392f9ea1d", null ],
     [ "SCI_DEVICE_ID_FIRST_VALID", "group__sci.html#ga0f5f59e34b3a6fabcbeb1dd5ad331632", null ],
     [ "sci_cmd_t", "group__sci.html#gae0765ecea75b1c8c72f65e19e099ebe9", null ],
-    [ "sci_data_t", "group__sci.html#gaf71636db1f647717026ffe3bb0fa15a3", null ],
+    [ "sci_data_t", "group__sci.html#gaf3489fe316676fa702e285a2b317d1d3", null ],
     [ "sci_device_t", "group__sci.html#ga0e012ddfd289bcc3d60f1a8737e5bd9c", null ],
     [ "sci_error_cb_t", "group__sci.html#ga517377a1118c16231427e0f2b7ee5bb9", null ],
     [ "sci_param_t", "group__sci.html#ga4574175116303c73fe4a57693e4cde4e", null ],

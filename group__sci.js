@@ -26,7 +26,7 @@ var group__sci =
     [ "SCI_FRAME_SIZE", "group__sci.html#gad09ca7448fe1e5ab5dac8e0033fc7167", null ],
     [ "SCI_TX_TIMEOUT_MSEC", "group__sci.html#ga90d56fe3172b9b3b5c064919f1245646", null ],
     [ "sci_cmd_t", "group__sci.html#gae0765ecea75b1c8c72f65e19e099ebe9", null ],
-    [ "sci_data_t", "group__sci.html#gaf71636db1f647717026ffe3bb0fa15a3", null ],
+    [ "sci_data_t", "group__sci.html#gaf3489fe316676fa702e285a2b317d1d3", null ],
     [ "sci_device_t", "group__sci.html#ga0e012ddfd289bcc3d60f1a8737e5bd9c", null ],
     [ "sci_error_cb_t", "group__sci.html#ga517377a1118c16231427e0f2b7ee5bb9", null ],
     [ "sci_param_t", "group__sci.html#ga4574175116303c73fe4a57693e4cde4e", null ],

@@ -1,5 +1,5 @@
 <map id="Platform" name="Platform">
-<area shape="rect" id="Node000003" href="$group__driver.html" title="Hardware Driver Module." alt="" coords="306,5,361,31"/>
-<area shape="rect" id="Node000002" href="$group__explorer__app.html" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="5,5,140,31"/>
-<area shape="rect" id="Node000001" title="Platform Dependent Code." alt="" coords="188,5,258,31"/>
+<area shape="rect" id="node1" href="$group__explorer__app.html" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="5,5,159,31"/>
+<area shape="rect" id="node3" title="Platform Dependent Code." alt="" coords="207,5,285,31"/>
+<area shape="rect" id="node2" href="$group__driver.html" title="Hardware Driver Module." alt="" coords="333,5,396,31"/>
 </map>

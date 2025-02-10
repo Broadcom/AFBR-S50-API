@@ -1,5 +1,4 @@
-<map id="Sources/ExplorerApp/core/explorer_config.h" name="Sources/ExplorerApp/core/explorer_config.h">
-<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,5,156,46"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="10,94,151,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,46,83,78,78,78,78,46"/>
+<map id="Sources/explorer_app/core/explorer_config.h" name="Sources/explorer_app/core/explorer_config.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer Demo Application." alt="" coords="5,5,176,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="11,95,170,121"/>
 </map>

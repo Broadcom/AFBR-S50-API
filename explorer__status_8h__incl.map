@@ -1,9 +1,6 @@
-<map id="Sources/ExplorerApp/core/explorer_status.h" name="Sources/ExplorerApp/core/explorer_status.h">
-<area shape="rect" id="Node000001" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="5,5,158,46"/>
-<area shape="rect" id="Node000002" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="31,94,132,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,46,84,78,79,78,79,46"/>
-<area shape="rect" id="Node000003" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="18,168,145,193"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,120,84,152,79,152,79,120"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="50,241,113,267"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="84,194,84,226,79,226,79,194"/>
+<map id="Sources/explorer_app/core/explorer_status.h" name="Sources/explorer_app/core/explorer_status.h">
+<area shape="rect" id="node1" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="5,5,176,47"/>
+<area shape="rect" id="node2" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="33,95,149,121"/>
+<area shape="rect" id="node3" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="20,169,161,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="55,244,126,271"/>
 </map>

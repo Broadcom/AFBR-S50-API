@@ -1,9 +1,6 @@
-<map id="Sources/ExplorerApp/sci/sci_internal_types.h" name="Sources/ExplorerApp/sci/sci_internal_types.h">
-<area shape="rect" id="Node000001" title="SCI: The internal type definitions." alt="" coords="48,5,208,46"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,73,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,48,66,86,62,82,104,44"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="97,94,160,120"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,46,131,78,126,78,126,46"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="184,94,257,120"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="153,44,196,82,193,86,149,48"/>
+<map id="Sources/explorer_app/sci/sci_internal_types.h" name="Sources/explorer_app/sci/sci_internal_types.h">
+<area shape="rect" id="node1" title="SCI: The internal type definitions." alt="" coords="51,5,229,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,80,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="105,95,175,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="200,95,283,121"/>
 </map>

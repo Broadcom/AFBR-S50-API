@@ -1,38 +1,18 @@
-<map id="Sources/ExplorerApp/sci/sci_log.c" name="Sources/ExplorerApp/sci/sci_log.c">
-<area shape="rect" id="Node000001" title="SCI: Command definitions for log messages in printf style." alt="" coords="206,5,349,46"/>
-<area shape="rect" id="Node000002" href="$sci__cmd_8h.html" title="SCI Layer 3: Command (Message) Interface." alt="" coords="125,94,206,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="251,49,197,87,194,82,248,44"/>
-<area shape="rect" id="Node000008" href="$sci__frame_8h.html" title="SCI Data Frame Interface." alt="" coords="199,241,287,267"/>
-<area shape="poly" id="edge18_Node000001_Node000008" title=" " alt="" coords="277,47,250,226,244,226,272,46"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="280,94,347,120"/>
-<area shape="poly" id="edge19_Node000001_Node000015" title=" " alt="" coords="289,45,304,78,299,81,284,48"/>
-<area shape="rect" id="Node000016" title=" " alt="" coords="371,94,464,120"/>
-<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="314,44,384,84,382,88,311,49"/>
-<area shape="rect" id="Node000003" href="$sci_8h.html" title="SCI: The main interface." alt="" coords="141,168,190,193"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="168,120,168,152,163,152,163,120"/>
-<area shape="rect" id="Node000004" href="$sci__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="39,241,130,267"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="154,196,111,233,107,229,150,192"/>
-<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="180,192,221,229,217,233,177,196"/>
-<area shape="rect" id="Node000005" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="144,462,246,488"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="73,269,48,297,22,334,13,355,9,375,10,394,18,413,41,435,69,451,99,462,130,468,129,473,98,467,66,456,37,439,14,416,5,396,3,374,8,353,18,332,44,294,69,266"/>
-<area shape="rect" id="Node000006" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="137,536,264,562"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="198,488,201,520,196,521,193,488"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="275,610,339,635"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="220,560,278,598,275,603,217,564"/>
-<area shape="rect" id="Node000009" href="$sci__internal__types_8h.html" title="SCI: The internal type definitions." alt="" coords="361,315,496,341"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="275,265,383,307,382,311,273,270"/>
-<area shape="rect" id="Node000012" href="$time_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="198,315,288,341"/>
-<area shape="poly" id="edge12_Node000008_Node000012" title=" " alt="" coords="246,267,246,299,240,299,240,267"/>
-<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="462,339,487,352,510,369,525,390,527,402,524,415,508,447,487,477,438,530,387,573,342,604,339,599,383,569,434,527,483,474,503,445,519,413,522,402,520,392,507,372,484,356,459,344"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="443,389,510,414"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="438,339,462,374,457,377,434,342"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="345,389,418,414"/>
-<area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="423,342,400,377,396,374,418,339"/>
-<area shape="poly" id="edge16_Node000012_Node000007" title=" " alt="" coords="255,339,271,361,284,388,299,444,307,501,311,594,305,594,302,502,294,445,279,390,266,364,251,343"/>
-<area shape="poly" id="edge17_Node000012_Node000011" title=" " alt="" coords="268,339,345,379,343,383,265,344"/>
-<area shape="rect" id="Node000013" href="$argus__timer_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="120,389,270,414"/>
-<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="237,342,214,377,209,374,233,339"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="28,389,95,414"/>
-<area shape="poly" id="edge15_Node000012_Node000014" title=" " alt="" coords="213,344,108,385,106,380,211,339"/>
-<area shape="poly" id="edge14_Node000013_Node000005" title=" " alt="" coords="198,415,198,447,192,447,192,415"/>
+<map id="Sources/explorer_app/sci/sci_log.c" name="Sources/explorer_app/sci/sci_log.c">
+<area shape="rect" id="node1" title="SCI: Command definitions for log messages in printf style." alt="" coords="218,5,381,47"/>
+<area shape="rect" id="node2" href="$sci__cmd_8h.html" title="SCI Layer 3: Command (Message) Interface." alt="" coords="137,95,224,121"/>
+<area shape="rect" id="node8" href="$sci__frame_8h.html" title="SCI Data Frame Interface." alt="" coords="213,244,311,271"/>
+<area shape="rect" id="node15" title=" " alt="" coords="299,95,374,121"/>
+<area shape="rect" id="node16" title=" " alt="" coords="398,95,505,121"/>
+<area shape="rect" id="node3" href="$sci_8h.html" title="SCI: The main interface." alt="" coords="155,169,207,196"/>
+<area shape="rect" id="node4" href="$sci__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="41,244,139,271"/>
+<area shape="rect" id="node5" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="155,468,271,495"/>
+<area shape="rect" id="node6" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="150,543,291,569"/>
+<area shape="rect" id="node7" title=" " alt="" coords="300,617,371,644"/>
+<area shape="rect" id="node9" href="$sci__internal__types_8h.html" title="SCI: The internal type definitions." alt="" coords="389,319,541,345"/>
+<area shape="rect" id="node12" href="$time_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="209,319,315,345"/>
+<area shape="rect" id="node10" title=" " alt="" coords="479,393,554,420"/>
+<area shape="rect" id="node11" title=" " alt="" coords="373,393,455,420"/>
+<area shape="rect" id="node13" href="$argus__timer_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="127,393,298,420"/>
+<area shape="rect" id="node14" title=" " alt="" coords="29,393,103,420"/>
 </map>

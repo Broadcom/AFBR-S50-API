@@ -1,5 +1,4 @@
-<map id="AFBR&#45;S50/Xtalk&#45;CLI/argus_xtalk_cal_cli.h" name="AFBR&#45;S50/Xtalk&#45;CLI/argus_xtalk_cal_cli.h">
-<area shape="rect" id="Node000001" title="Provides an interactive crosstalk calibration CLI to the AFBR&#45;S50 API." alt="" coords="5,5,151,46"/>
-<area shape="rect" id="Node000002" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="5,94,151,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,62,81,94,75,94,75,62"/>
+<map id="Sources/argus_xtalk_cal_cli/argus_xtalk_cal_cli.h" name="Sources/argus_xtalk_cal_cli/argus_xtalk_cal_cli.h">
+<area shape="rect" id="node1" title="Provides an interactive crosstalk calibration CLI to the AFBR&#45;S50 API." alt="" coords="5,5,159,61"/>
+<area shape="rect" id="node2" href="$argus__xtalk__cal__cli_8c.html" title="Provides a CLI to run crosstalk calibration with the AFBR&#45;S50 API." alt="" coords="5,109,159,165"/>
 </map>

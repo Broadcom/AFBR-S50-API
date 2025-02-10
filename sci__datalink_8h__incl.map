@@ -1,18 +1,10 @@
-<map id="Sources/ExplorerApp/sci/sci_datalink.h" name="Sources/ExplorerApp/sci/sci_datalink.h">
-<area shape="rect" id="Node000001" title="SCI Layer 2: Data Link Interface." alt="" coords="83,5,226,46"/>
-<area shape="rect" id="Node000002" href="$sci__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="41,94,132,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,48,109,84,105,80,136,45"/>
-<area shape="rect" id="Node000006" href="$sci__internal__types_8h.html" title="SCI: The internal type definitions." alt="" coords="161,94,297,120"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="175,45,209,81,205,84,171,48"/>
-<area shape="rect" id="Node000003" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="25,168,126,193"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,120,82,153,77,152,82,119"/>
-<area shape="rect" id="Node000004" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,241,133,267"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="77,194,74,226,69,226,72,193"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="88,315,151,341"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="80,266,105,301,100,304,75,269"/>
-<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="224,121,198,169,134,302,129,299,193,166,220,119"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="207,168,275,193"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="234,119,239,152,234,153,228,120"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="299,168,372,193"/>
-<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="249,118,306,156,303,161,246,122"/>
+<map id="Sources/explorer_app/sci/sci_datalink.h" name="Sources/explorer_app/sci/sci_datalink.h">
+<area shape="rect" id="node1" title="SCI Layer 2: Data Link Interface." alt="" coords="87,5,249,47"/>
+<area shape="rect" id="node2" href="$sci__status_8h.html" title="This file is part of the AFBR&#45;S50 Explorer Application." alt="" coords="44,95,143,121"/>
+<area shape="rect" id="node6" href="$sci__internal__types_8h.html" title="SCI: The internal type definitions." alt="" coords="172,95,324,121"/>
+<area shape="rect" id="node3" href="$status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="25,169,141,196"/>
+<area shape="rect" id="node4" href="$argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="5,244,147,271"/>
+<area shape="rect" id="node5" title=" " alt="" coords="94,319,165,345"/>
+<area shape="rect" id="node7" title=" " alt="" coords="221,169,296,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="320,169,403,196"/>
 </map>

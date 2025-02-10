@@ -1,5 +1,4 @@
 <map id="argus_results_debug_t" name="argus_results_debug_t">
-<area shape="rect" id="Node000001" title="The debug data of measurement results data structure." alt="" coords="5,109,158,135"/>
-<area shape="rect" id="Node000002" href="$structxtalk__t.html" title="Pixel Crosstalk Compensation Vector." alt="" coords="52,5,111,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,47,84,109,79,109,79,47"/>
+<area shape="rect" id="node1" title="The debug data of measurement results data structure." alt="" coords="5,109,173,136"/>
+<area shape="rect" id="node2" href="$structxtalk__t.html" title="Pixel Crosstalk Compensation Vector." alt="" coords="56,5,123,32"/>
 </map>

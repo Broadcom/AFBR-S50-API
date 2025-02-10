@@ -1,5 +1,5 @@
-<map id="AFBR&#45;S50/Test/argus_hal_test.h" name="AFBR&#45;S50/Test/argus_hal_test.h">
-<area shape="rect" id="Node000001" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="5,5,155,46"/>
-<area shape="rect" id="Node000002" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="5,94,155,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,62,83,94,77,94,77,62"/>
+<map id="Sources/argus_hal_test/argus_hal_test.h" name="Sources/argus_hal_test/argus_hal_test.h">
+<area shape="rect" id="node1" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="98,5,270,47"/>
+<area shape="rect" id="node2" href="$01__simple__example_8c.html" title="This file is part of the AFBR&#45;S50 SDK example application." alt="" coords="5,95,171,151"/>
+<area shape="rect" id="node3" href="$argus__hal__test_8c.html" title="Tests for the AFBR&#45;S50 API hardware abstraction layer." alt="" coords="195,102,367,143"/>
 </map>

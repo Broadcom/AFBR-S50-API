@@ -1,4 +1,4 @@
 <map id="AFBR&#45;S50 Explorer &#45; Explorer calibration functions" name="AFBR&#45;S50 Explorer &#45; Explorer calibration functions">
-<area shape="rect" id="Node000001" title="AFBR&#45;S50 Explorer &#45; Explorer calibration functions." alt="" coords="188,5,324,61"/>
-<area shape="rect" id="Node000002" href="$group__explorer__app.html" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="5,20,140,46"/>
+<area shape="rect" id="node1" href="$group__explorer__app.html" title="The AFBR&#45;S50 Explorer Application featuring the SCI interface." alt="" coords="5,20,159,45"/>
+<area shape="rect" id="node2" title="AFBR&#45;S50 Explorer &#45; Explorer calibration functions." alt="" coords="207,5,365,60"/>
 </map>

@@ -1,4 +1,4 @@
 <map id="CAN API interface" name="CAN API interface">
-<area shape="rect" id="Node000002" href="$group__can__app.html" title="AFBR&#45;S50 Reference Board CAN&#45;bus example application." alt="" coords="5,5,122,31"/>
-<area shape="rect" id="Node000001" title="CAN interface for the AFBR&#45;S50 Reference Board CAN application." alt="" coords="170,5,297,31"/>
+<area shape="rect" id="node1" href="$group__can__app.html" title="AFBR&#45;S50 Reference Board CAN&#45;bus example application." alt="" coords="5,5,132,31"/>
+<area shape="rect" id="node2" title="CAN interface for the AFBR&#45;S50 Reference Board CAN application." alt="" coords="180,5,317,31"/>
 </map>
