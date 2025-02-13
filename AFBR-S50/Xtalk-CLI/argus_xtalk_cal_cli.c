@@ -728,7 +728,7 @@ static void Print_PixelSatResults(argus_results_t const * res)
         {
             /*Print single pixel amplitude in LSB (converting the UQ12.4 value to LSB)*/
             print(" %8d", (res->Pixel[x][y].Status & PIXEL_SAT) ? 1 : 0);
-            sat_pixels_cnt += (res->Pixel[x][y].Status & PIXEL_SAT) * 0.5;
+            sat_pixels_cnt += (res->Pixel[x][y].Status & PIXEL_SAT) >> 1;
         }
         print("\n");
     }
@@ -1043,7 +1043,7 @@ static void Exec_XtalkMeasurement(argus_hnd_t * hnd, argus_cal_xtalk_table_t * x
             /* Set xtalk amplitude threshold according to maximum pixel
              * amplitude max_ampl and set threshold based on the formula
              * <trim * max_ampl> */
-            Set_Xtalk_AmplitudeThreshold(hnd, step, 2.5);
+            Set_Xtalk_AmplitudeThreshold(hnd, step, 3);
 
             /* Perform an xtalk measurement */
             print("Run xtalk calibration measurements ...\n");

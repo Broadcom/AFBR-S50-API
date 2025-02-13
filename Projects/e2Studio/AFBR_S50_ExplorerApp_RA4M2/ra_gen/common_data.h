@@ -16,7 +16,7 @@ extern icu_instance_ctrl_t g_external_irq0_ctrl;
 extern const external_irq_cfg_t g_external_irq0_cfg;
 
 #ifndef user_irq_callback
-void user_irq_callback(external_irq_callback_args_t * p_args);
+void user_irq_callback(external_irq_callback_args_t *p_args);
 #endif
 /* IOPORT Instance */
 extern const ioport_instance_t g_ioport;
