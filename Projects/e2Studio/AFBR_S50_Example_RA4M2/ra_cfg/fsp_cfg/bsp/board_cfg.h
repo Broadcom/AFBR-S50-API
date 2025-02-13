@@ -5,7 +5,7 @@
         extern "C" {
         #endif
 
-void bsp_init(void * p_args);
+void bsp_init(void *p_args);
 
 #ifdef __cplusplus
         }

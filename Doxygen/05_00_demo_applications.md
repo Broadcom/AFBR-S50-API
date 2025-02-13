@@ -20,13 +20,20 @@ to present its usage:
         triggers measurements from a periodic interrupt service routine outside
         of the scope of the main thread.
 
-    -   The \ref high_speed_example_app demonstration the high-framerate
+    -   The \ref high_speed_example_app demonstrates the high-framerate
         measurement modes of the AFBR-S50 API. Note that adequate hardware is
         required to achieve really high measurement rates.
 
-    -   The \ref multi_device_example_app demonstration of the usage of multiple
+    -   The \ref multi_device_example_app demonstrates of the usage of multiple
         devices from a single MCU. Note that adequate hardware is required to
         talk to multiple devices.
+
+    -   The \ref simple_example_debug_app demonstrates how to stream debugging
+ 	data into the terminal. It triggers new measurement cycles from the main thread.
+
+    -   The \ref low_power_example_app demonstrates how to invoke sleep and wake-up
+	modes with the AFBR-S50 API. Note that adequate hardware is required for this
+	example to work properly.
 
 -   \subpage explorer_app
 

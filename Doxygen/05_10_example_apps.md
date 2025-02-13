@@ -22,6 +22,13 @@ their purpose. Each example application shows different use cases of the
     devices from a single MCU. Note that adequate hardware is required to talk
     to multiple devices.
 
+-   The \ref simple_example_debug_app demonstrates how to stream debugging
+    data into the terminal. It triggers new measurement cycles from the main thread.
+
+-   The \ref low_power_example_app demonstrates how to invoke sleep and wake-up
+    modes with the AFBR-S50 API. Note that adequate hardware is required for this
+    example to work properly.
+
 \note All examples are combined into a single project
 (`AFBR_S50_Example_<TARGET>`) per IDE. In order to select a certain example, go
 to the `example.h` (within `Project > App > examples > example.h`) and select
@@ -244,10 +251,96 @@ See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
 
 \ref 04_multi_device_example.c
 
+## Simple Debug Example {#simple_example_debug_app}
 
+The **Simple Debug Example** demonstrates how to stream debugging
+data into the terminal. It triggers new measurement cycles from the main thread.
+
+Unlike the \ref 01_simple_example.c this example features a stream of debugging
+data which can be used to get a much more detailed parameter set per frame.
+
+	The data stream consists of four parts:
+	1. Frame & binned data
+	2. Single pixel data (incl. sat pixel count)
+	3. Integration data
+	4. Auxiliary & xtalk data
+
+**As the amount of data is heavily increased compared to the simple example,**
+**it is suggested to increase the UART baud rate to a sufficient large value**
+**(e.g. 2 Mbps) to avoid slow down of measurement rate due to a UART bottleneck.**
+
+
+In order to get started with the project, please read the \ref gs_build section.
+
+The example source files are located in `Sources/ExampleApp`. The actual example
+must be configured using the preprocessor constants in the main file. Refer the
+documentation in the source code for more information.
+
+The example projects are located in `Project/<IDE>/AFBR_S50_Example_<MCU>`,
+depending on your target. The following target/IDE combinations are provided:
+
+| MCU           | IDE           | Path                                            | Comment                                               |
+| ------------- | ------------- | ----------------------------------------------- | ----------------------------------------------------- |
+| NXP MKL46z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL46z` | Runs on **FRDM-KL46Z** evaluation board by **NXP**    |
+| NXP MKL17z    | MCUXpressoIDE | `Projects/MCUXpressoIDE/AFBR_S50_Example_KL17z` |                                                       |
+| STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_Example_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
+| Renesas RA4M2 | e² Studio     | `Projects/e2Studio/AFBR_S50_Example_RA4M2`      | Runs on @ref reference_board by **MikroElektronika**  |
+
+See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
+
+\ref 05_simple_example_debug.c
+
+## Low Power & Battery Example {#low_power_example_app}
+
+The **Low Power Example** demonstrates how to invoke sleep and wake-up
+modes with the AFBR-S50 API. Note that adequate hardware is required for this
+example to work properly.
+
+The code lets the user decide how many measurements shall be performed before going to sleep.
+This can be defined via parameter **no_of_measurements** in the main loop of the program.
+After the execution of N-measurements, the sleep function is called which first disables the
+SPI pins and then invokes a GPIO to transition from low to high or high to low depending
+on the actual implementation. See [Low power App note](https://docs.broadcom.com/docs/AFBR-S50-LP-Application-Note) for more details.
+After a defined period of time (HAL specific implementation, see example) the function wakeUp 
+releases the GPIO again and invokes the Argus_RestoreDeviceState function which re-writes
+all set register values before the sensor went to sleep.
+
+In order to observe the values, open a connection via a terminal (e.g.
+[Termite](https://www.compuphase.com/software_termite.htm)). Setup the
+connection using 115200 bps, 8N1, no handshake:
+
+| Baud rate  | Data Bits | Stop Bits | Parity | Flow Control |
+| ---------- | --------- | --------- | ------ | ------------ |
+| 115200 bps | 8         | 1         | none   | none         |
+
+Range values will start to occur on the terminal as soon as the program starts
+its execution.
+
+Note that the project will provide additional information via the serial stream
+upon program initialization. Especially the **HAL Self Test** might be executed
+optionally for each instance in oder to verify the current **HAL**
+implementation.
+
+In order to get started with the project, please read the \ref gs_build section.
+
+The example source files are located in `Sources/ExampleApp`. The actual example
+must be configured using the preprocessor constants in the main file. Refer the
+documentation in the source code for more information.
+
+The example projects are located in `Project/<IDE>/AFBR_S50_Example_<MCU>`,
+depending on your target. The following target/IDE combinations are provided:
+
+| MCU           | IDE           | Path                                            | Comment                                               |
+| ------------- | ------------- | ----------------------------------------------- | ----------------------------------------------------- |
+| STM32 F401RE  | STM32CubeIDE  | `Projects/STM32CubeIDE/AFBR_S50_Example_F401RE` | Runs on **NUCLEO-F401RE** evaluation board by **STM** |
+
+See also @ref gs_build for an overview of featured boards/MCUs/IDEs.
+
+\ref 04_multi_device_example.c
 
 \example 01_simple_example.c
 \example 02_advanced_example.c
 \example 03_high_speed_example.c
 \example 04_multi_device_example.c
 \example 05_simple_example_debug.c
+\example 06_low_power_example.c
