@@ -17,18 +17,18 @@ This package contains ROS driver nodes for ToF Sensor AFBR-S50 with CAN and UART
 
 Install "ROS Desktop Full" on Ubuntu PC.
 
-- ROS Kinetic for Ubuntu 16.04
-    - http://wiki.ros.org/kinetic/Installation/Ubuntu
+- ROS Humble for Ubuntu 22.04
+    - https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html
 
 ## Installation of tof_driver ##
 
 
 ```
-$ source /opt/ros/kinetic/setup.bash
+$ source /opt/ros/humble/setup.bash
 $ mkdir -p ~/s50_tof_driver/src
 $ cd s50_tof_driver/src/
 $ catkin_init_workspace
-$ git clone https://github.com/toffffffffff.git
+$ git clone https://github.com/Broadcom/AFBR-S50-API.git
 $ cd ~/s50_tof_driver
 $ catkin_make
 $ source ~/s50_tof_driver/devel/setup.bash
