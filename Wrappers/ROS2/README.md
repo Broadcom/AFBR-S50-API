@@ -5,7 +5,7 @@ This package contains ROS driver nodes for ToF Sensor AFBR-S50 with CAN and UART
 ### System Configurations ###
 
 * OS / ROS
-	Ubuntu 16.04 / ROS Kinetic
+	Ubuntu 22.04 / ROS Humble
 * USB TO UART module
 * AFBR-S50 mikroE sensor board (https://www.mikroe.com/bdc-afbr-s50-tof-sensor-board#/279-tof_sensor_board-bdc_afbr_s50mv85i)
 
