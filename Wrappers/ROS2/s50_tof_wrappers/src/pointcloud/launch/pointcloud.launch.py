@@ -15,7 +15,7 @@ def generate_launch_description():
         executable='static_transform_publisher',
         name='static_transform_publisher',
         output='screen',
-        arguments=['0', '0', '0', '0', '0', '0', 'map', 'tof_sensor']
+        arguments=['0', '0', '0', '0', '0', '0', 'tof_sensor', 'map']
         )
     launch_description = LaunchDescription(
         [robot_01, control_01, coor])

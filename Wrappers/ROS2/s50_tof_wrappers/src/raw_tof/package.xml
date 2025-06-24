@@ -4,7 +4,7 @@
   <name>raw_tof</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="abb@todo.todo">abb</maintainer>
+  <maintainer email="yajie.zhong@foxmail.com">abb</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

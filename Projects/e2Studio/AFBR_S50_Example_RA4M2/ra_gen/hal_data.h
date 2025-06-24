@@ -27,7 +27,7 @@ extern flash_hp_instance_ctrl_t g_flash0_ctrl;
 extern const flash_cfg_t g_flash0_cfg;
 
 #ifndef rm_vee_flash_callback
-void rm_vee_flash_callback(flash_callback_args_t *p_args);
+void rm_vee_flash_callback(flash_callback_args_t * p_args);
 #endif
 extern const rm_vee_instance_t g_vee0;
 extern rm_vee_flash_instance_ctrl_t g_vee0_ctrl;
@@ -35,7 +35,7 @@ extern const rm_vee_cfg_t g_vee0_cfg;
 
 /** Callback used by VEE Instance. */
 #ifndef Flash_callback
-void Flash_callback(rm_vee_callback_args_t *p_args);
+void Flash_callback(rm_vee_callback_args_t * p_args);
 #endif
 /* Basic on USB Instance. */
 extern const usb_instance_t g_basic0;
@@ -61,7 +61,7 @@ extern const can_cfg_t g_can0_cfg;
 extern const can_extended_cfg_t g_can0_extended_cfg;
 
 #ifndef can_callback
-void can_callback(can_callback_args_t *p_args);
+void can_callback(can_callback_args_t * p_args);
 #endif
 #define CAN_NO_OF_MAILBOXES_g_can0 (32)
 /** Timer on GPT Instance. */
@@ -72,7 +72,7 @@ extern gpt_instance_ctrl_t g_upt_ctrl;
 extern const timer_cfg_t g_upt_cfg;
 
 #ifndef usb_poll_callback
-void usb_poll_callback(timer_callback_args_t *p_args);
+void usb_poll_callback(timer_callback_args_t * p_args);
 #endif
 /** Timer on GPT Instance. */
 extern const timer_instance_t g_pit;
@@ -82,7 +82,7 @@ extern gpt_instance_ctrl_t g_pit_ctrl;
 extern const timer_cfg_t g_pit_cfg;
 
 #ifndef user_timer1_callback
-void user_timer1_callback(timer_callback_args_t *p_args);
+void user_timer1_callback(timer_callback_args_t * p_args);
 #endif
 /** Timer on GPT Instance. */
 extern const timer_instance_t g_ltc;
@@ -92,7 +92,7 @@ extern gpt_instance_ctrl_t g_ltc_ctrl;
 extern const timer_cfg_t g_ltc_cfg;
 
 #ifndef NULL
-void NULL(timer_callback_args_t *p_args);
+void NULL(timer_callback_args_t * p_args);
 #endif
 /* Transfer on DTC Instance. */
 extern const transfer_instance_t g_transfer3;
@@ -115,7 +115,7 @@ extern const uart_cfg_t g_uart0_cfg;
 extern const sci_uart_extended_cfg_t g_uart0_cfg_extend;
 
 #ifndef user_uart_callback
-void user_uart_callback(uart_callback_args_t *p_args);
+void user_uart_callback(uart_callback_args_t * p_args);
 #endif
 /* Transfer on DTC Instance. */
 extern const transfer_instance_t g_transfer1;
@@ -138,7 +138,7 @@ extern const spi_cfg_t g_spi0_cfg;
 
 /** Callback used by SPI Instance. */
 #ifndef user_spi_callback
-void user_spi_callback(spi_callback_args_t *p_args);
+void user_spi_callback(spi_callback_args_t * p_args);
 #endif
 
 #define RA_NOT_DEFINED (1)
