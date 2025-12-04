@@ -220,7 +220,7 @@ typedef struct argus_results_t
      *   - < 0 for errors and invalid measurement signal. */
     status_t Status;
 
-    /*! Time in milliseconds (measured since the last MCU startup/reset)
+    /*! Time in seconds and microseconds (measured since the last MCU startup/reset)
      *  when the measurement was triggered. */
     ltc_t TimeStamp;
 
