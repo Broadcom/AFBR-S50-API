@@ -1,5 +1,8 @@
 var NAVTREEINDEX5 =
 {
+"group__sci.html#ga6ce77452b5e5ad88806c55233fbb5425":[8,1,0,12,26],
+"group__sci.html#ga6d99e09015e65fef1189f46eb68e6ddb":[8,1,0,12,10],
+"group__sci.html#ga8dd0c11bb039dcff0f5a2e7a1b3b4c92":[8,1,0,12,36],
 "group__sci.html#ga90d56fe3172b9b3b5c064919f1245646":[8,1,0,12,14],
 "group__sci.html#ga9541c1bdd9799c358b94a817df7399f4":[8,1,0,12,32],
 "group__sci.html#gaa0919a66f6069581cfda87cf72fd2dd2":[8,1,0,12,28],
@@ -221,7 +224,7 @@ var NAVTREEINDEX5 =
 "sci__log_8c.html#a0682c24c996f9bd8941c8a541ba3716f":[10,0,2,2,2,14,2],
 "sci__status_8h.html":[10,0,2,2,2,15],
 "sci__status_8h_source.html":[10,0,2,2,2,15],
-"sci_python_example_8py-example.html":[11,7],
+"sci_python_example_8py-example.html":[11,8],
 "status_8h.html":[10,0,0,0,2,8],
 "status_8h_source.html":[10,0,0,0,2,8],
 "stm32cubeide.html":[2,4],
@@ -246,8 +249,5 @@ var NAVTREEINDEX5 =
 "structargus__cal__p2pxtalk__t.html":[8,0,2,1,5],
 "structargus__cal__p2pxtalk__t.html#ac162c65648727f695cfd10ed4728f0b2":[8,0,2,1,5,0],
 "structargus__cal__p2pxtalk__t.html#adef1bc3682c932cdb3cae10173f6a6ce":[8,0,2,1,5,1],
-"structargus__cfg__dca__t.html":[8,0,2,2,0],
-"structargus__cfg__dca__t.html#a089916ee1563d6d5b1161de79a97675a":[8,0,2,2,0,7],
-"structargus__cfg__dca__t.html#a0cf54b45b887f40451d8851d0faa8532":[8,0,2,2,0,5],
-"structargus__cfg__dca__t.html#a17c6d600a267ac7bf9eab091a430fd0f":[8,0,2,2,0,17]
+"structargus__cfg__dca__t.html":[8,0,2,2,0]
 };

@@ -4,7 +4,9 @@ var apps =
       [ "Simple Example", "example_app.html#simple_example_app", null ],
       [ "Advanced Example", "example_app.html#advanced_example_app", null ],
       [ "High-Speed Example", "example_app.html#high_speed_example_app", null ],
-      [ "Multi-Device Example", "example_app.html#multi_device_example_app", null ]
+      [ "Multi-Device Example", "example_app.html#multi_device_example_app", null ],
+      [ "Simple Debug Example", "example_app.html#simple_example_debug_app", null ],
+      [ "Low Power & Battery Example", "example_app.html#low_power_example_app", null ]
     ] ],
     [ "Explorer App", "explorer_app.html", "explorer_app" ],
     [ "CAN App (AFBR-S50 Ref. Board)", "can_app.html", [

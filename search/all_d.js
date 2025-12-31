@@ -74,7 +74,7 @@ var searchData=
   ['eventq_5fidle_71',['EventQ_Idle',['../explorer__tasks_8c.html#a2401cc55883777ed8794644127ab2a3c',1,'explorer_tasks.c']]],
   ['eventq_5fsendresults_72',['EventQ_SendResults',['../explorer__tasks_8c.html#a283013b33ea94c3054713e68427315d6',1,'explorer_tasks.c']]],
   ['eventq_5fsize_73',['EVENTQ_SIZE',['../explorer__tasks_8c.html#a9d2fd64fa51c1c2fe2f240a796fb32ff',1,'explorer_tasks.c']]],
-  ['example_74',['Example',['../example_app.html#advanced_example_app',1,'Advanced Example'],['../example_app.html#high_speed_example_app',1,'High-Speed Example'],['../example_app.html#multi_device_example_app',1,'Multi-Device Example'],['../example_app.html#simple_example_app',1,'Simple Example']]],
+  ['example_74',['Example',['../example_app.html#advanced_example_app',1,'Advanced Example'],['../example_app.html#high_speed_example_app',1,'High-Speed Example'],['../example_app.html#low_power_example_app',1,'Low Power &amp; Battery Example'],['../example_app.html#multi_device_example_app',1,'Multi-Device Example'],['../example_app.html#simple_example_debug_app',1,'Simple Debug Example'],['../example_app.html#simple_example_app',1,'Simple Example']]],
   ['example_20apps_75',['Example Apps',['../example_app.html',1,'apps']]],
   ['example_20on_20using_20the_20sci_20interface_76',['Python Example on Using the SCI Interface',['../explorer_app.html#explorer_app_python_example',1,'']]],
   ['examplemain_77',['ExampleMain',['../group__example__apps.html#gaf4be2df3a392ecf80fcab391b5bd727f',1,'examples.h']]],

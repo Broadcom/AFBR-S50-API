@@ -7,5 +7,6 @@ var examples =
     [ "03_high_speed_example.c", "03_high_speed_example_8c-example.html", null ],
     [ "04_multi_device_example.c", "04_multi_device_example_8c-example.html", null ],
     [ "05_simple_example_debug.c", "05_simple_example_debug_8c-example.html", null ],
+    [ "06_low_power_example.c", "06_low_power_example_8c-example.html", null ],
     [ "sci_python_example.py", "sci_python_example_8py-example.html", null ]
 ];
