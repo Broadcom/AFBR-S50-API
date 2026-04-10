@@ -59,9 +59,11 @@ configuration and calibration.
 | [Dual Frequency Mode](@ref cmd_cfg_dfm)            | 0x44 | set / get | Gets or sets the dual frequency mode.                                                 |
 | [Smart Power Save Mode](@ref cmd_cfg_sps)          | 0x45 | set / get | Gets or sets the smart power saving feature enabled flag.                             |
 | [Shot Noise Monitor Mode](@ref cmd_cfg_snm)        | 0x46 | set / get | Gets or sets the shot noise monitor mode.                                             |
-| [Crosstalk Monitor Mode](@ref cmd_cfg_xtm)         | 0x47 | set / get | Gets or sets the crosstalk monitor mode.                                              |
+| [Crosstalk Monitor Mode Enable](@ref cmd_cfg_xtme) | 0x47 | set / get | Gets or sets the crosstalk monitor mode enabled flag.                                 |
 | [Dynamic Configuration Adaption](@ref cmd_cfg_dca) | 0x52 | set / get | Gets or sets the full dynamic configuration adaption (DCA) feature configuration set. |
-| [Pixel Binning Algorithm](@ref cmd_cfg_pba)        | 0x54 | set / get | Gets or sets the pixel binning algorithm (PBA) feature configuration.                 |
+| [Pixel Binning Algorithm](@ref cmd_cfg_pba)        | 0x54 | set / get | Gets or sets the pixel binning algorithm (PBA) feature configuration set.             |
+| [Noise Detectors](@ref cmd_cfg_nd)                 | 0x56 | set / get | Gets or sets the noise detector (ND) feature configuration set.                       |
+| [Crosstalk Monitor](@ref cmd_cfg_xtm)              | 0x57 | set / get | Gets or sets the crosstalk monitor (XTM) feature configuration set.                   |
 | [SPI Configuration](@ref cmd_cfg_spi)              | 0x58 | set / get | Gets or sets the SPI configuration (e.g. baud rate).                                  |
 | [UART Configuration](@ref cmd_cfg_uart)            | 0x59 | set / get | Gets or sets the UART configuration (e.g. baud rate). Only for UART version.          |
 

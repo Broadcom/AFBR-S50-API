@@ -14,13 +14,15 @@ corresponding sections below and apply the changes iteratively.
 Please report any additional issues to the
 [AFBR-S50 GitHub repository](https://github.com/broadcom/afbr-s50-api/issues).
 
-# API Migration Guide (1.5.6 → 1.6.5) {#migration_guide_1_6}
+# API Migration Guide (1.5.6 → 1.6.6) {#migration_guide_1_6}
+
 The following document describes the changes to the **AFBR-S50 API** interface
-from **v1.5.6** to **v1.6.5**.
+from **v1.5.6** to **v1.6.5** or **v1.6.6**.
 
 ## Overview of Data & Function Changes / Extensions / new Items
-(bug fixes or typo corrections are excluded from this list)
 
+(bug fixes or typo corrections are excluded from this list)
+ 
 ---Data types
 - argus_cfg_dca_t Struct Reference (Changed)
 - argus_pixel_t Struct Reference (Extended)
@@ -90,7 +92,7 @@ typedef struct argus_cfg_dca_t
 ```
 ## Extensions and new Items in more Detail
 
-The pixel struct got upgraded with uncorrelatedNoise figure and signa-to-noise ratio (SNR):
+The pixel struct got upgraded with uncorrelatedNoise figure and sigma-to-noise ratio (SNR):
 
 ```C
 // v1.5.6 measurement mode enumeration

@@ -163,6 +163,58 @@ static void Deserialize_Cfg_PBA(sci_frame_t * frame, argus_cfg_pba_t * pba)
     pba->GoldenPixelOutOfSyncAgeThreshold = SCI_Frame_Dequeue08u(frame);
 }
 
+static void Serialize_Cfg_XTM(sci_frame_t * frame, argus_cfg_xtm_t const * xtm)
+{
+    assert(frame != 0);
+    assert(xtm != 0);
+
+    SCI_Frame_Queue08u(frame, xtm->Enabled);
+    SCI_Frame_Queue08u(frame, xtm->EMAWeight);
+    SCI_Frame_Queue08u(frame, xtm->MaxTemperatureOffset);
+    SCI_Frame_Queue16u(frame, xtm->HighAmplitudeThreshold);
+    SCI_Frame_Queue16u(frame, xtm->LowAmplitudeThreshold);
+    SCI_Frame_Queue16u(frame, xtm->PassiveAmplitudeThreshold);
+}
+static void Deserialize_Cfg_XTM(sci_frame_t * frame, argus_cfg_xtm_t * xtm)
+{
+    assert(frame != 0);
+    assert(xtm != 0);
+
+    xtm->Enabled = SCI_Frame_Dequeue08u(frame);
+    xtm->EMAWeight = SCI_Frame_Dequeue08u(frame);
+    xtm->MaxTemperatureOffset = SCI_Frame_Dequeue08u(frame);
+    xtm->HighAmplitudeThreshold = SCI_Frame_Dequeue16u(frame);
+    xtm->LowAmplitudeThreshold = SCI_Frame_Dequeue16u(frame);
+    xtm->PassiveAmplitudeThreshold= SCI_Frame_Dequeue16u(frame);
+}
+
+static void Serialize_Cfg_ND(sci_frame_t * frame, argus_cfg_nd_t const * nd)
+{
+    assert(frame != 0);
+    assert(nd != 0);
+
+    SCI_Frame_Queue16u(frame, nd->Saturation.AbsoluteNoiseThreshold);
+    SCI_Frame_Queue16u(frame, nd->Saturation.AmplitudeThreshold);
+    SCI_Frame_Queue08u(frame, nd->Saturation.UncorrelatedNoiseEMAWeight);
+    SCI_Frame_Queue08u(frame, nd->ODD.Enabled);
+    SCI_Frame_Queue16u(frame, nd->ODD.Activation);
+    SCI_Frame_Queue16u(frame, nd->ODD.Inclusion);
+    SCI_Frame_Queue16u(frame, nd->ODD.Exclusion);
+}
+static void Deserialize_Cfg_ND(sci_frame_t * frame, argus_cfg_nd_t * nd)
+{
+    assert(frame != 0);
+    assert(nd != 0);
+
+    nd->Saturation.AbsoluteNoiseThreshold = SCI_Frame_Dequeue16u(frame);
+    nd->Saturation.AmplitudeThreshold = SCI_Frame_Dequeue16u(frame);
+    nd->Saturation.UncorrelatedNoiseEMAWeight = SCI_Frame_Dequeue08u(frame);
+    nd->ODD.Enabled = SCI_Frame_Dequeue08u(frame);
+    nd->ODD.Activation = SCI_Frame_Dequeue16u(frame);
+    nd->ODD.Inclusion = SCI_Frame_Dequeue16u(frame);
+    nd->ODD.Exclusion = SCI_Frame_Dequeue16u(frame);
+}
+
 
 
 /*******************************************************************************
@@ -365,7 +417,7 @@ static status_t TxCmd_CfgShotNoiseMonitor(sci_device_t deviceID, sci_frame_t * f
     return status;
 }
 
-static status_t RxCmd_CfgXtalkMonitor(sci_device_t deviceID, sci_frame_t * frame)
+static status_t RxCmd_CfgXtmMode(sci_device_t deviceID, sci_frame_t * frame)
 {
     if (SCI_Frame_BytesToRead(frame) > 1)
     {
@@ -384,7 +436,7 @@ static status_t RxCmd_CfgXtalkMonitor(sci_device_t deviceID, sci_frame_t * frame
         return SCI_SendCommand(deviceID, CMD_CONFIGURATION_XTALK_MONITOR_MODE, 0, 0);
     }
 }
-static status_t TxCmd_CfgXtalkMonitor(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, sci_data_t data)
+static status_t TxCmd_CfgXtmMode(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, sci_data_t data)
 {
     (void) data;
     (void) param;
@@ -450,7 +502,6 @@ static status_t RxCmd_CfgPba(sci_device_t deviceID, sci_frame_t * frame)
         status_t status = Argus_SetConfigurationPixelBinning(argus, &pba);
         if (resume) ExplorerApp_StartTimerMeasurement(argus);
         return status;
-
     }
     else
     {
@@ -473,6 +524,89 @@ static status_t TxCmd_CfgPba(sci_device_t deviceID, sci_frame_t * frame, sci_par
     else
     {
         Serialize_Cfg_PBA(frame, (argus_cfg_pba_t*) data);
+    }
+
+    return status;
+}
+
+static status_t RxCmd_CfgXtm(sci_device_t deviceID, sci_frame_t * frame)
+{
+    if (SCI_Frame_BytesToRead(frame) > 1)
+    {
+        /* Master sending data... */
+        argus_cfg_xtm_t xtalk = { 0 };
+        Deserialize_Cfg_XTM(frame, &xtalk);
+        argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
+        if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
+        bool resume = ExplorerApp_SuspendTimerMeasurement(argus);
+        status_t status = Argus_SetConfigurationCrosstalkMonitor(argus, &xtalk);
+        if (resume) ExplorerApp_StartTimerMeasurement(argus);
+        return status;
+    }
+    else
+    {
+        /* Master is requesting data... */
+        return SCI_SendCommand(deviceID, CMD_CONFIGURATION_XTM, 0, 0);
+    }
+}
+static status_t TxCmd_CfgXtm(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, void const * data)
+{
+    (void) param;
+    status_t status = STATUS_OK;
+    if (data == 0)
+    {
+        argus_cfg_xtm_t xtalk = { 0 };
+        argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
+        if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
+        status = Argus_GetConfigurationCrosstalkMonitor(argus, &xtalk);
+        Serialize_Cfg_XTM(frame, &xtalk);
+    }
+    else
+    {
+        Serialize_Cfg_XTM(frame, (argus_cfg_xtm_t*) data);
+    }
+
+    return status;
+}
+
+static status_t RxCmd_CfgNd(sci_device_t deviceID, sci_frame_t * frame)
+{
+    if (SCI_Frame_BytesToRead(frame) > 1)
+    {
+        /* Master sending data... */
+        argus_cfg_nd_t nd = { 0 };
+        Deserialize_Cfg_ND(frame, &nd);
+        argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
+        if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
+        bool resume = ExplorerApp_SuspendTimerMeasurement(argus);
+
+        status_t status = Argus_SetConfigurationNoiseDetectors(argus, &nd);
+
+        if (resume) ExplorerApp_StartTimerMeasurement(argus);
+        return status;
+    }
+    else
+    {
+        /* Master is requesting data... */
+        return SCI_SendCommand(deviceID, CMD_CONFIGURATION_ND, 0, 0);
+    }
+}
+static status_t TxCmd_CfgNd(sci_device_t deviceID, sci_frame_t * frame, sci_param_t param, void const * data)
+{
+    (void) param;
+    status_t status = STATUS_OK;
+    if (data == 0)
+    {
+        argus_cfg_nd_t nd = { 0 };
+        argus_hnd_t * argus = ExplorerApp_GetArgusPtr(deviceID);
+        if (argus == NULL) return ERROR_EXPLORER_UNINITIALIZED_DEVICE_ADDRESS;
+
+        status = Argus_GetConfigurationNoiseDetectors(argus, &nd);
+        Serialize_Cfg_ND(frame, &nd);
+    }
+    else
+    {
+        Serialize_Cfg_ND(frame, (argus_cfg_nd_t*) data);
     }
 
     return status;
@@ -582,13 +716,17 @@ status_t ExplorerAPI_InitCfg(void)
     if (status < STATUS_OK) return status;
     status = SCI_SetRxTxCommand(CMD_CONFIGURATION_SHOT_NOISE_MONITOR_MODE, RxCmd_CfgShotNoiseMonitor, TxCmd_CfgShotNoiseMonitor);
     if (status < STATUS_OK) return status;
-    status = SCI_SetRxTxCommand(CMD_CONFIGURATION_XTALK_MONITOR_MODE, RxCmd_CfgXtalkMonitor, TxCmd_CfgXtalkMonitor);
+    status = SCI_SetRxTxCommand(CMD_CONFIGURATION_XTALK_MONITOR_MODE, RxCmd_CfgXtmMode, TxCmd_CfgXtmMode);
     if (status < STATUS_OK) return status;
     status = SCI_SetRxTxCommand(CMD_CONFIGURATION_SMART_POWER_SAVE, RxCmd_CfgSmartPowerSaveEnabled, TxCmd_CfgSmartPowerSaveEnabled);
     if (status < STATUS_OK) return status;
     status = SCI_SetRxTxCommand(CMD_CONFIGURATION_DCA, RxCmd_CfgDca, TxCmd_CfgDca);
     if (status < STATUS_OK) return status;
     status = SCI_SetRxTxCommand(CMD_CONFIGURATION_PBA, RxCmd_CfgPba, TxCmd_CfgPba);
+    if (status < STATUS_OK) return status;
+    status = SCI_SetRxTxCommand(CMD_CONFIGURATION_XTM, RxCmd_CfgXtm, TxCmd_CfgXtm);
+    if (status < STATUS_OK) return status;
+    status = SCI_SetRxTxCommand(CMD_CONFIGURATION_ND, RxCmd_CfgNd, TxCmd_CfgNd);
     if (status < STATUS_OK) return status;
     status = SCI_SetRxTxCommand(CMD_CONFIGURATION_SPI, RxCmd_CfgSpi, TxCmd_CfgSpi);
     if (status < STATUS_OK) return status;

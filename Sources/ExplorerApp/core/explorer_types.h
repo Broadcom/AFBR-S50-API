@@ -119,6 +119,10 @@ enum ExplorerApp_SerialCommandCodes
     CMD_CONFIGURATION_DCA = 0x52,
     /*! Gets or sets a full PBA (Pixel Binning Algorithm) configuration set. */
     CMD_CONFIGURATION_PBA = 0x54,
+    /*! Gets or sets a full NoiseDetectors configuration set. */
+    CMD_CONFIGURATION_ND = 0x56,
+    /*! Gets or sets a full XTM (XTalk Monitor) configuration set. */
+    CMD_CONFIGURATION_XTM = 0x57,
     /*! Gets or sets a full SPI configuration set. */
     CMD_CONFIGURATION_SPI = 0x58,
     /*!< Gets or sets the UART configuration, i.e. the baud rate. */

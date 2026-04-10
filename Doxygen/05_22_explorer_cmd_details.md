@@ -121,8 +121,8 @@ array.
 
 \see
 
--   #Argus_GetAPIVersion
--   #Argus_GetBuildNumber
+- #Argus_GetAPIVersion
+- #Argus_GetBuildNumber
 
 ### Module Type / Version {#cmd_module}
 
@@ -139,9 +139,9 @@ and laser type.
 
 \see
 
--   #Argus_GetModuleVersion
--   #Argus_GetChipVersion
--   #Argus_GetLaserType
+- #Argus_GetModuleVersion
+- #Argus_GetChipVersion
+- #Argus_GetLaserType
 
 ### Module UID {#cmd_uid}
 
@@ -155,7 +155,7 @@ Gets the chip/module unique identification number.
 
 \see
 
--   #Argus_GetChipID
+- #Argus_GetChipID
 
 ### Software Information / Identification {#cmd_info}
 
@@ -218,12 +218,12 @@ contain the information for all devices.
 
 \see
 
--   #Argus_GetAPIVersion
--   #Argus_GetBuildNumber
--   #Argus_GetModuleVersion
--   #Argus_GetLaserType
--   #Argus_GetChipVersion
--   #Argus_GetChipID
+- #Argus_GetAPIVersion
+- #Argus_GetBuildNumber
+- #Argus_GetModuleVersion
+- #Argus_GetLaserType
+- #Argus_GetChipVersion
+- #Argus_GetChipID
 
 ## Device Control Commands {#explorer_app_cmd_ctrl}
 
@@ -238,7 +238,7 @@ Executes a single shot measurement.
 
 \see
 
--   #Argus_TriggerMeasurement
+- #Argus_TriggerMeasurement
 
 ### Measurement: Start Auto {#cmd_ctrl_start}
 
@@ -251,7 +251,7 @@ Starts the automatic, time-scheduled measurements with given frame rate.
 
 \see
 
--   #Argus_StartMeasurementTimer
+- #Argus_StartMeasurementTimer
 
 ### Measurement: Stop {#cmd_ctrl_stop}
 
@@ -264,7 +264,7 @@ Stops the time-scheduled measurements (after the current frame finishes).
 
 \see
 
--   #Argus_StopMeasurementTimer
+- #Argus_StopMeasurementTimer
 
 ### Measurement: Abort {#cmd_ctrl_abort}
 
@@ -277,7 +277,7 @@ Aborts the current measurements immediately.
 
 \see
 
--   #Argus_Abort
+- #Argus_Abort
 
 ### Run Calibration {#cmd_ctrl_cal}
 
@@ -292,9 +292,9 @@ Command triggers a specified calibration sequence.
 
 \see
 
--   #Argus_ExecuteXtalkCalibrationSequence
--   #Argus_ExecuteAbsoluteRangeOffsetCalibrationSequence
--   #Argus_ExecuteRelativeRangeOffsetCalibrationSequence
+- #Argus_ExecuteXtalkCalibrationSequence
+- #Argus_ExecuteAbsoluteRangeOffsetCalibrationSequence
+- #Argus_ExecuteRelativeRangeOffsetCalibrationSequence
 
 #### Calibration Sequence Enumerator
 
@@ -305,7 +305,7 @@ Command triggers a specified calibration sequence.
 
 \see
 
--   #explorer_cal_sequence_t
+- #explorer_cal_sequence_t
 
 ### Device Reinitialize {#cmd_ctrl_reinit}
 
@@ -322,7 +322,7 @@ if a complete MCU reset is desired.
 
 \see
 
--   #Argus_Reinit
+- #Argus_Reinit
 
 ## Measurement Data Commands {#explorer_app_cmd_data}
 
@@ -376,12 +376,12 @@ Gets a measurement data set containing all the available data.
 | Crosstalk Predictor Vectors   | Q11.4[,]  | 8    | LSB         | The internal crosstalk predictor vector (used for debugging only). The first dS component is first, followed by its dC component. There are two vectors for upper/lower pixel rows.                                                                                                                                                                             |
 | Crosstalk Monitor Vectors     | Q11.4[,]  | 16   | LSB         | The internal crosstalk monitor vectors (used for debugging only). The first dS component is first, followed by its dC component. There are 4 vectors for each pixel row.                                                                                                                                                                                        |
 
--   [1] Note that values may be skipped if the dedicated pixel is not enabled.
-    Refer to the _Enabled Pixel Mask_ to determine which pixels are actually
-    enabled.
--   [2] Note that the reference pixel values may be skipped if the reference
-    pixel is not enabled. Refer to the _Enabled ADC Channel Mask_ to determine
-    if the reference pixel is actually enabled.
+- [1] Note that values may be skipped if the dedicated pixel is not enabled.
+  Refer to the _Enabled Pixel Mask_ to determine which pixels are actually
+  enabled.
+- [2] Note that the reference pixel values may be skipped if the reference pixel
+  is not enabled. Refer to the _Enabled ADC Channel Mask_ to determine if the
+  reference pixel is actually enabled.
 
 ### Measurement Data Set (1D + 3D) {#cmd_data_full}
 
@@ -420,12 +420,12 @@ Gets a measurement data set containing the essential data.
 | DCA Amplitude                 | UQ12.4    | 2    | LSB         | The internal amplitude used by the DCA algorithm to set up integration energy (used for debugging only).                                                                                                                                                                                 |
 | PLL Control Current           | UINT8     | 1    | LSB         | The internal register value of the PLL_CTRL_CUR register (used for debugging only).                                                                                                                                                                                                      |
 
--   [1] Note that values may be skipped if the dedicated pixel is not enabled.
-    Refer to the _Enabled Pixel Mask_ to determine which pixels are actually
-    enabled.
--   [2] Note that the reference pixel values may be skipped if the reference
-    pixel is not enabled. Refer to the _Enabled ADC Channel Mask_ to determine
-    if the reference pixel is actually enabled.
+- [1] Note that values may be skipped if the dedicated pixel is not enabled.
+  Refer to the _Enabled Pixel Mask_ to determine which pixels are actually
+  enabled.
+- [2] Note that the reference pixel values may be skipped if the reference pixel
+  is not enabled. Refer to the _Enabled ADC Channel Mask_ to determine if the
+  reference pixel is actually enabled.
 
 ### 3D Measurement Data Set - Debug {#cmd_data_3d_dbg}
 
@@ -460,12 +460,12 @@ Gets a 3D measurement data set containing all the available data per pixel.
 | Crosstalk Predictor Vectors   | Q11.4[,]  | 8    | LSB         | The internal crosstalk predictor vector (used for debugging only). The first dS component is first, followed by its dC component. There are two vectors for upper/lower pixel rows.                                                                                                      |
 | Crosstalk Monitor Vectors     | Q11.4[,]  | 16   | LSB         | The internal crosstalk monitor vectors (used for debugging only). The first dS component is first, followed by its dC component. There are 4 vectors for each pixel row.                                                                                                                 |
 
--   [1] Note that values may be skipped if the dedicated pixel is not enabled.
-    Refer to the _Enabled Pixel Mask_ to determine which pixels are actually
-    enabled.
--   [2] Note that the reference pixel values may be skipped if the reference
-    pixel is not enabled. Refer to the _Enabled ADC Channel Mask_ to determine
-    if the reference pixel is actually enabled.
+- [1] Note that values may be skipped if the dedicated pixel is not enabled.
+  Refer to the _Enabled Pixel Mask_ to determine which pixels are actually
+  enabled.
+- [2] Note that the reference pixel values may be skipped if the reference pixel
+  is not enabled. Refer to the _Enabled ADC Channel Mask_ to determine if the
+  reference pixel is actually enabled.
 
 ### 3D Measurement Data Set {#cmd_data_3d}
 
@@ -491,12 +491,12 @@ Gets a 3D measurement data set containing the essential data per pixel.
 | Amplitude (x, y) [1]          | UQ12.4[,] | 64   |             | Amplitude values for each enabled pixel. The values are ordered in increasing x and y indices (i.e. \f$n = 4 x + y\f$).<br>Note: Disabled pixels (see Enabled Pixel Mask) are skipped.                                                                                                   |
 | Amplitude (ref) [2]           | UQ12.4    | 2    |             | Amplitude value for the reference pixel<br>Note: This value is skipped if the reference pixel is disabled (see Enabled ADC Channel Mask).                                                                                                                                                |
 
--   [1] Note that values may be skipped if the dedicated pixel is not enabled.
-    Refer to the _Enabled Pixel Mask_ to determine which pixels are actually
-    enabled.
--   [2] Note that the reference pixel values may be skipped if the reference
-    pixel is not enabled. Refer to the _Enabled ADC Channel Mask_ to determine
-    if the reference pixel is actually enabled.
+- [1] Note that values may be skipped if the dedicated pixel is not enabled.
+  Refer to the _Enabled Pixel Mask_ to determine which pixels are actually
+  enabled.
+- [2] Note that the reference pixel values may be skipped if the reference pixel
+  is not enabled. Refer to the _Enabled ADC Channel Mask_ to determine if the
+  reference pixel is actually enabled.
 
 ### 1D Measurement Data Set - Debug {#cmd_data_1d_dbg}
 
@@ -580,9 +580,9 @@ Gets or sets the measurement mode.
 
 \see
 
--   #Argus_GetMeasurementMode
--   #Argus_SetMeasurementMode
--   #Argus_ResetMeasurementMode
+- #Argus_GetMeasurementMode
+- #Argus_SetMeasurementMode
+- #Argus_ResetMeasurementMode
 
 ### Frame Time {#cmd_cfg_frame_time}
 
@@ -596,8 +596,8 @@ Gets or sets the measurement frame time or the inverse measurement frame rate.
 
 \see
 
--   #Argus_GetConfigurationFrameTime
--   #Argus_SetConfigurationFrameTime
+- #Argus_GetConfigurationFrameTime
+- #Argus_SetConfigurationFrameTime
 
 ### Dual Frequency Mode {#cmd_cfg_dfm}
 
@@ -611,8 +611,8 @@ Gets or sets the Dual Frequency Mode configuration.
 
 \see
 
--   #Argus_GetConfigurationDFMMode
--   #Argus_SetConfigurationDFMMode
+- #Argus_GetConfigurationDFMMode
+- #Argus_SetConfigurationDFMMode
 
 #### Dual Frequency Mode Enumerator
 
@@ -634,8 +634,8 @@ Gets or sets the smart power saving feature enabled flag.
 
 \see
 
--   #Argus_GetConfigurationSmartPowerSaveEnabled
--   #Argus_SetConfigurationSmartPowerSaveEnabled
+- #Argus_GetConfigurationSmartPowerSaveEnabled
+- #Argus_SetConfigurationSmartPowerSaveEnabled
 
 ### Shot Noise Monitor Mode {#cmd_cfg_snm}
 
@@ -649,8 +649,8 @@ Gets or sets the shot noise monitor mode.
 
 \see
 
--   #Argus_GetConfigurationShotNoiseMonitorMode
--   #Argus_SetConfigurationShotNoiseMonitorMode
+- #Argus_GetConfigurationShotNoiseMonitorMode
+- #Argus_SetConfigurationShotNoiseMonitorMode
 
 #### Shot Noise Monitor Mode Enumerator
 
@@ -663,11 +663,11 @@ Gets or sets the shot noise monitor mode.
 
 \see
 
--   #argus_snm_mode_t
+- #argus_snm_mode_t
 
-### Crosstalk Monitor Mode {#cmd_cfg_xtm}
+### Crosstalk Monitor Enabled {#cmd_cfg_xtme}
 
-Gets or sets the crosstalk monitor mode.
+Gets or sets the crosstalk monitor enabled flag.
 
 | Caption / Name                 | Type  | Size | Unit | Comment                                                   |
 | ------------------------------ | ----- | ---- | ---- | --------------------------------------------------------- |
@@ -677,8 +677,8 @@ Gets or sets the crosstalk monitor mode.
 
 \see
 
--   #Argus_GetConfigurationCrosstalkMonitorMode
--   #Argus_SetConfigurationCrosstalkMonitorMode
+- #Argus_GetConfigurationCrosstalkMonitorMode
+- #Argus_SetConfigurationCrosstalkMonitorMode
 
 ### Dynamic Configuration Adaption {#cmd_cfg_dca}
 
@@ -708,9 +708,9 @@ algorithm.
 
 \see
 
--   #Argus_GetConfigurationDynamicAdaption
--   #Argus_SetConfigurationDynamicAdaption
--   #argus_cfg_dca_t
+- #Argus_GetConfigurationDynamicAdaption
+- #Argus_SetConfigurationDynamicAdaption
+- #argus_cfg_dca_t
 
 ### Pixel Binning {#cmd_cfg_pba}
 
@@ -730,8 +730,49 @@ Gets or sets the setting parameters of the Pixel Binning (PBA) algorithm.
 
 \see
 
--   #Argus_GetConfigurationPixelBinning
--   #Argus_SetConfigurationPixelBinning
+- #Argus_GetConfigurationPixelBinning
+- #Argus_SetConfigurationPixelBinning
+
+### Noise Detectors {#cmd_cfg_nd}
+
+Gets or sets the setting parameters of the Noise Detector (ND) algorithms.
+
+| Caption / Name                             | Type   | Size | Unit | Comment                                                                                                         |
+| ------------------------------------------ | ------ | ---- | ---- | --------------------------------------------------------------------------------------------------------------- |
+| Command                                    | UINT8  | 1    |      | 0x56 (basic); 0xD6 (extended)                                                                                   |
+| Address (extended mode only)               | UINT8  | 1    |      | Extended frame address byte. Skipped in basic frame mode.                                                       |
+| Saturation - Absolute Noise Threshold      | UQ12.4 | 2    | LSB  | Saturation Detector: Absolute uncorrelated noise threshold to saturate a pixel.                                 |
+| Saturation - Amplitude Threshold           | UQ12.4 | 2    | LSB  | Saturation Detector: Amplitude threshold to saturate a pixel.                                                   |
+| Saturation - Uncorrelated Noise EMA Weight | UQ0.8  | 1    | %    | Saturation Detector: Uncorrelated Noise (UCNoise) EMA Weight.                                                   |
+| Optical Noise Detector - Enabled           | BOOL8  | 1    | n/a  | Optical Noise Detector: Enables/disables the Optical Noise Detector (ODD).                                      |
+| Optical Noise Detector - Activation        | UQ12.4 | 2    | LSB  | Optical Noise Detector: Activation amplitude threshold (over which minimum pixel amplitude to apply the filter) |
+| Optical Noise Detector - Inclusion         | UQ12.4 | 2    | LSB  | Optical Noise Detector: Inclusion SNR threshold (over which SNR the pixel is marked valid)                      |
+| Optical Noise Detector - Exclusion         | UQ12.4 | 2    | LSB  | Optical Noise Detector: Exclusion SNR threshold (under which SNR the pixel is marked invalid)                   |
+
+\see
+
+- #Argus_GetConfigurationNoiseDetectors
+- #Argus_SetConfigurationNoiseDetectors
+
+### Crosstalk Monitor {#cmd_cfg_xtm}
+
+Gets or sets the setting parameters of the Crosstalk Monitor (XTM) algorithm.
+
+| Caption / Name                 | Type   | Size | Unit | Comment                                                                                                                                                             |
+| ------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Command                        | UINT8  | 1    |      | 0x57 (basic); 0xD7 (extended)                                                                                                                                       |
+| Address (extended mode only)   | UINT8  | 1    |      | Extended frame address byte. Skipped in basic frame mode.                                                                                                           |
+| Crosstalk Monitor Mode Enabled | BOOL8  | 1    | n/a  | Enables the Crosstalk-Monitor (XTM) mode.                                                                                                                           |
+| EMA Weight                     | UQ0.8  | 1    | n/a  | The weight for the exponentially moving average (EMA) that is used to smooth the crosstalk offset values.                                                           |
+| Max. Temperature Offset        | BOOL8  | 1    | K    | The maximum temperature offset (in Kelvin) that invalidates the last crosstalk offset calculation value.                                                            |
+| High Amplitude Threshold       | UQ12.4 | 1    | LSB  | The amplitude threshold that causes the crosstalk offset calculation to start if the maximum amplitude of all pixels falls below the specified threshold.           |
+| Low Amplitude Threshold        | UQ12.4 | 1    | LSB  | The amplitude threshold that causes the crosstalk offset calculation to stop if the maximum amplitude of all pixels grows above the specified threshold.            |
+| Passive Amplitude Threshold    | UQ12.4 | 1    | LSB  | The amplitude threshold that causes the crosstalk offset calculation to stop if the maximum pixel amplitude of all passive pixels is below the specified threshold. |
+
+\see
+
+- #Argus_GetConfigurationCrosstalkMonitor
+- #Argus_SetConfigurationCrosstalkMonitor
 
 ### SPI Configuration {#cmd_cfg_spi}
 
@@ -751,9 +792,9 @@ Thus, changing the SPI baud rate for one device may affect all other device too!
 
 Available Baud Rates:
 
--   NXP MKL46z Baud Rates: e.g. 12 MHz, 6 MHz, 3 MHz, 1.5 MHz, ...
--   NXP MKL17z Baud Rates: e.g. 6 MHz, 3 MHz, 1.5 MHz, ...
--   STM32F401RE Baud Rates: e.g. 21 MHz, 10.5 MHz, 5.25 MHz, ...
+- NXP MKL46z Baud Rates: e.g. 12 MHz, 6 MHz, 3 MHz, 1.5 MHz, ...
+- NXP MKL17z Baud Rates: e.g. 6 MHz, 3 MHz, 1.5 MHz, ...
+- STM32F401RE Baud Rates: e.g. 21 MHz, 10.5 MHz, 5.25 MHz, ...
 
 ### UART Configuration {#cmd_cfg_uart}
 
@@ -777,10 +818,10 @@ too!
 
 Available Baud Rates:
 
--   115200 bps
--   500000 bps
--   1000000 bps (1 Mbps), default after MCU reset/power on.
--   2000000 bps (2 Mbps)
+- 115200 bps
+- 500000 bps
+- 1000000 bps (1 Mbps), default after MCU reset/power on.
+- 2000000 bps (2 Mbps)
 
 ## Calibration Commands {#explorer_app_cmd_cal}
 
@@ -796,8 +837,8 @@ Gets or sets the global range offset.
 
 \see
 
--   #Argus_GetCalibrationGlobalRangeOffsets
--   #Argus_SetCalibrationGlobalRangeOffsets
+- #Argus_GetCalibrationGlobalRangeOffsets
+- #Argus_SetCalibrationGlobalRangeOffsets
 
 ### Pixel Range Offsets {#cmd_cal_offsets}
 
@@ -811,13 +852,13 @@ Gets or sets the pixel-to-pixel range offset table.
 
 Note on indices:
 
--   x: The pixel x-index (0-7)
--   y: The pixel y-index (0-3)
+- x: The pixel x-index (0-7)
+- y: The pixel y-index (0-3)
 
 \see
 
--   #Argus_GetCalibrationPixelRangeOffsets
--   #Argus_SetCalibrationPixelRangeOffsets
+- #Argus_GetCalibrationPixelRangeOffsets
+- #Argus_SetCalibrationPixelRangeOffsets
 
 ### Pixel Range Offsets - Reset Offset Table {#cmd_cal_offsets_rst}
 
@@ -831,7 +872,7 @@ values.
 
 \see
 
--   #Argus_ResetCalibrationPixelRangeOffsets
+- #Argus_ResetCalibrationPixelRangeOffsets
 
 ### Range Offsets Calibration Sequence - Sample Time {#cmd_cal_offsets_smpl_time}
 
@@ -845,8 +886,8 @@ Gets or sets the range offset calibration sequence sample time.
 
 \see
 
--   #Argus_GetCalibrationRangeOffsetSequenceSampleTime
--   #Argus_SetCalibrationRangeOffsetSequenceSampleTime
+- #Argus_GetCalibrationRangeOffsetSequenceSampleTime
+- #Argus_SetCalibrationRangeOffsetSequenceSampleTime
 
 ### Crosstalk Compensation - Vector Table {#cmd_cal_xtalk_vec}
 
@@ -860,15 +901,15 @@ Gets or sets the crosstalk compensation vector table.
 
 Note on indices:
 
--   f: The frequency index for A- and B-frames respectively (A = 0; B = 1)
--   x: The pixel x-index (0-7)
--   y: The pixel y-index (0-3)
--   a: The sin/cos index (sin = 0; cos = 1)
+- f: The frequency index for A- and B-frames respectively (A = 0; B = 1)
+- x: The pixel x-index (0-7)
+- y: The pixel y-index (0-3)
+- a: The sin/cos index (sin = 0; cos = 1)
 
 \see
 
--   #Argus_GetCalibrationCrosstalkVectorTable
--   #Argus_SetCalibrationCrosstalkVectorTable
+- #Argus_GetCalibrationCrosstalkVectorTable
+- #Argus_SetCalibrationCrosstalkVectorTable
 
 ### Crosstalk Compensation - Reset Vector Table {#cmd_cal_xtalk_rst}
 
@@ -882,7 +923,7 @@ values.
 
 \see
 
--   #Argus_ResetCalibrationCrosstalkVectorTable
+- #Argus_ResetCalibrationCrosstalkVectorTable
 
 ### Crosstalk Calibration Sequence - Sample Time {#cmd_cal_xtalk_smpl_time}
 
@@ -896,8 +937,8 @@ Gets or sets the crosstalk calibration sequence sample time.
 
 \see
 
--   #Argus_GetCalibrationCrosstalkSequenceSampleTime
--   #Argus_SetCalibrationCrosstalkSequenceSampleTime
+- #Argus_GetCalibrationCrosstalkSequenceSampleTime
+- #Argus_SetCalibrationCrosstalkSequenceSampleTime
 
 ### Crosstalk Calibration Sequence - Maximum Amplitude Threshold {#cmd_cal_xtalk_max_ampl}
 
@@ -911,8 +952,8 @@ Gets or sets the crosstalk calibration sequence maximum amplitude threshold.
 
 \see
 
--   #Argus_GetCalibrationCrosstalkSequenceAmplitudeThreshold
--   #Argus_SetCalibrationCrosstalkSequenceAmplitudeThreshold
+- #Argus_GetCalibrationCrosstalkSequenceAmplitudeThreshold
+- #Argus_SetCalibrationCrosstalkSequenceAmplitudeThreshold
 
 ### Pixel-2-Pixel Crosstalk Compensation Parameters {#cmd_cal_xtalk_p2p}
 
@@ -932,5 +973,5 @@ Gets or sets the pixel-2-pixel crosstalk calibration parameter values.
 
 \see
 
--   #Argus_GetCalibrationCrosstalkPixel2Pixel
--   #Argus_SetCalibrationCrosstalkPixel2Pixel
+- #Argus_GetCalibrationCrosstalkPixel2Pixel
+- #Argus_SetCalibrationCrosstalkPixel2Pixel
