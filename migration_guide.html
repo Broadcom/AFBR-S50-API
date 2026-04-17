@@ -36,7 +36,7 @@ MathJax.Hub.Config({
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">AFBR-S50 API Reference Manual<span id="projectnumber">&#160;v1.6.5</span>
+   <div id="projectname">AFBR-S50 API Reference Manual<span id="projectnumber">&#160;v1.6.6</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -115,8 +115,8 @@ $(function(){initNavTree('migration_guide.html',''); initResizable(true); });
 <p>If migration over multiple releases is required, please refer to each of the corresponding sections below and apply the changes iteratively.</p>
 <p>Please report any additional issues to the <a href="https://github.com/broadcom/afbr-s50-api/issues">AFBR-S50 GitHub repository</a>.</p>
 <h1><a class="anchor" id="migration_guide_1_6"></a>
-API Migration Guide (1.5.6 → 1.6.5)</h1>
-<p>The following document describes the changes to the <b>AFBR-S50 API</b> interface from <b>v1.5.6</b> to <b>v1.6.5</b>.</p>
+API Migration Guide (1.5.6 → 1.6.6)</h1>
+<p>The following document describes the changes to the <b>AFBR-S50 API</b> interface from <b>v1.5.6</b> to <b>v1.6.5</b> or <b>v1.6.6</b>.</p>
 <h2><a class="anchor" id="autotoc_md62"></a>
 Overview of Data &amp; Function Changes / Extensions / new Items</h2>
 <p>(bug fixes or typo corrections are excluded from this list)</p>
@@ -211,7 +211,7 @@ Changes in more Detail</h2>
 <div class="ttc" id="astructargus__cfg__dca__t_html_af366e7ba3e2c4a7ae80fdaef5f993aa3"><div class="ttname"><a href="structargus__cfg__dca__t.html#af366e7ba3e2c4a7ae80fdaef5f993aa3">argus_cfg_dca_t::Power</a></div><div class="ttdeci">argus_dca_power_t Power</div><div class="ttdef"><b>Definition</b> argus_dca.h:448</div></div>
 </div><!-- fragment --> <h2><a class="anchor" id="autotoc_md64"></a>
 Extensions and new Items in more Detail</h2>
-<p>The pixel struct got upgraded with uncorrelatedNoise figure and signa-to-noise ratio (SNR):</p>
+<p>The pixel struct got upgraded with uncorrelatedNoise figure and sigma-to-noise ratio (SNR):</p>
 <div class="fragment"><div class="line"><span class="comment">// v1.5.6 measurement mode enumeration</span></div>
 <div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structargus__pixel__t.html">argus_pixel_t</a></div>
 <div class="line">{</div>
@@ -620,7 +620,7 @@ Changed HAL Functions in the S2PI layer</h3>
 <div class="line">    (void)slave;</div>
 <div class="line">    <span class="comment">// previous implementation without slave ...</span></div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__argus__api_html_gaa236b64d7430965890e9c6834e24c317"><div class="ttname"><a href="group__argus__api.html#gaa236b64d7430965890e9c6834e24c317">s2pi_slave_t</a></div><div class="ttdeci">int32_t s2pi_slave_t</div><div class="ttdef"><b>Definition</b> argus_api.h:67</div></div>
+<div class="ttc" id="agroup__argus__api_html_gaa236b64d7430965890e9c6834e24c317"><div class="ttname"><a href="group__argus__api.html#gaa236b64d7430965890e9c6834e24c317">s2pi_slave_t</a></div><div class="ttdeci">int32_t s2pi_slave_t</div><div class="ttdef"><b>Definition</b> argus_api.h:68</div></div>
 <div class="ttc" id="agroup__argus__s2pi_html_ga0c25817265b19af4a9579b569774b171"><div class="ttname"><a href="group__argus__s2pi.html#ga0c25817265b19af4a9579b569774b171">S2PI_Abort</a></div><div class="ttdeci">status_t S2PI_Abort(s2pi_slave_t slave)</div><div class="ttdoc">Terminates a currently ongoing asynchronous SPI transfer.</div></div>
 <div class="ttc" id="agroup__argus__s2pi_html_ga35cc8f0eeec245733773f34bd5985772"><div class="ttname"><a href="group__argus__s2pi.html#ga35cc8f0eeec245733773f34bd5985772">S2PI_ReleaseGpioControl</a></div><div class="ttdeci">status_t S2PI_ReleaseGpioControl(s2pi_slave_t slave)</div><div class="ttdoc">Releases the S2PI pins from GPIO usage and switches back to SPI mode.</div></div>
 <div class="ttc" id="agroup__argus__s2pi_html_ga48abf1c772d2f89436cba9c32a1cdcaf"><div class="ttname"><a href="group__argus__s2pi.html#ga48abf1c772d2f89436cba9c32a1cdcaf">S2PI_CaptureGpioControl</a></div><div class="ttdeci">status_t S2PI_CaptureGpioControl(s2pi_slave_t slave)</div><div class="ttdoc">Captures the S2PI pins for GPIO usage.</div></div>

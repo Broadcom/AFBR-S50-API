@@ -36,7 +36,7 @@ MathJax.Hub.Config({
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">AFBR-S50 API Reference Manual<span id="projectnumber">&#160;v1.6.5</span>
+   <div id="projectname">AFBR-S50 API Reference Manual<span id="projectnumber">&#160;v1.6.6</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -119,6 +119,7 @@ $(function(){initNavTree('argus__api_8h.html',''); initResizable(true); });
 <code>#include &quot;<a class="el" href="argus__res_8h_source.html">argus_res.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="argus__pba_8h_source.html">argus_pba.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="argus__dfm_8h_source.html">argus_dfm.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="argus__nd_8h_source.html">argus_nd.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="argus__snm_8h_source.html">argus_snm.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="argus__xtalk_8h_source.html">argus_xtalk.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="argus__offset_8h_source.html">argus_offset.h</a>&quot;</code><br />
@@ -127,21 +128,23 @@ Include dependency graph for argus_api.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="argus__api_8h__incl.png" border="0" usemap="#a_a_f_b_r-_s50_2_include_2api_2argus__api_8h" alt=""/></div>
 <map name="a_a_f_b_r-_s50_2_include_2api_2argus__api_8h" id="a_a_f_b_r-_s50_2_include_2api_2argus__api_8h">
-<area shape="rect" title="This file is part of the AFBR&#45;S50 API." alt="" coords="622,5,772,46"/>
+<area shape="rect" title="This file is part of the AFBR&#45;S50 API." alt="" coords="608,5,758,46"/>
 <area shape="rect" href="argus__def_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="425,315,514,341"/>
-<area shape="poly" title=" " alt="" coords="722,45,766,88,810,145,825,177,833,209,831,240,815,269,796,284,767,296,692,313,606,323,529,328,529,322,606,318,691,308,766,291,793,279,811,265,826,238,828,209,820,179,805,148,762,91,719,48"/>
-<area shape="rect" href="argus__res_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="401,94,490,120"/>
-<area shape="poly" title=" " alt="" coords="635,49,500,91,498,86,634,44"/>
-<area shape="rect" href="argus__xtalk_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="562,168,659,193"/>
-<area shape="poly" title=" " alt="" coords="689,48,627,155,623,153,684,45"/>
-<area shape="rect" href="argus__dfm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="583,241,676,267"/>
-<area shape="poly" title=" " alt="" coords="700,46,695,113,687,154,674,194,652,231,648,228,670,192,682,153,689,112,695,46"/>
-<area shape="rect" href="argus__pba_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="514,94,606,120"/>
-<area shape="poly" title=" " alt="" coords="664,49,595,88,593,84,662,44"/>
-<area shape="rect" href="argus__snm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="876,94,972,120"/>
-<area shape="poly" title=" " alt="" coords="755,44,875,86,874,91,753,49"/>
-<area shape="rect" href="argus__offset_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="700,241,802,267"/>
-<area shape="poly" title=" " alt="" coords="706,46,719,93,748,226,743,227,713,95,700,47"/>
+<area shape="poly" title=" " alt="" coords="714,44,769,86,798,113,825,143,845,174,857,206,857,238,851,254,841,269,819,285,788,298,705,315,612,325,529,329,529,323,611,319,704,310,786,293,817,280,837,265,846,251,851,237,852,207,841,177,820,146,794,117,765,90,711,49"/>
+<area shape="rect" href="argus__res_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="346,94,435,120"/>
+<area shape="poly" title=" " alt="" coords="610,49,450,92,449,87,609,44"/>
+<area shape="rect" href="argus__xtalk_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="507,168,605,193"/>
+<area shape="poly" title=" " alt="" coords="668,48,626,96,576,157,572,154,622,92,663,44"/>
+<area shape="rect" href="argus__dfm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="558,241,650,267"/>
+<area shape="poly" title=" " alt="" coords="678,48,616,228,611,226,673,46"/>
+<area shape="rect" href="argus__pba_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="460,94,551,120"/>
+<area shape="poly" title=" " alt="" coords="639,49,548,90,545,85,637,44"/>
+<area shape="rect" href="argus__nd_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="680,168,765,193"/>
+<area shape="poly" title=" " alt="" coords="690,46,718,152,713,153,685,47"/>
+<area shape="rect" href="argus__snm_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="902,94,997,120"/>
+<area shape="poly" title=" " alt="" coords="750,44,894,86,893,92,749,49"/>
+<area shape="rect" href="argus__offset_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="725,241,827,267"/>
+<area shape="poly" title=" " alt="" coords="703,45,745,97,765,131,780,167,784,197,783,226,778,226,779,198,775,168,760,133,740,100,699,48"/>
 <area shape="rect" href="argus__status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="131,610,237,635"/>
 <area shape="poly" title=" " alt="" coords="425,339,371,354,309,378,278,394,249,414,224,437,202,464,188,496,181,531,180,565,182,594,177,595,175,565,176,531,183,494,198,461,220,433,246,409,276,389,307,373,370,349,424,334"/>
 <area shape="rect" title=" " alt="" coords="107,683,170,709"/>
@@ -170,21 +173,22 @@ Include dependency graph for argus_api.h:</div>
 <area shape="rect" href="status_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="231,536,332,562"/>
 <area shape="poly" title=" " alt="" coords="288,488,286,521,281,520,283,488"/>
 <area shape="poly" title=" " alt="" coords="266,564,214,603,211,598,263,560"/>
-<area shape="poly" title=" " alt="" coords="431,122,411,142,394,169,392,180,395,193,406,223,421,253,452,301,448,304,416,256,401,226,389,194,387,180,390,167,407,139,427,118"/>
-<area shape="rect" href="argus__px_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="404,168,487,193"/>
-<area shape="poly" title=" " alt="" coords="448,120,448,152,443,152,443,120"/>
-<area shape="rect" href="argus__meas_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="228,168,330,193"/>
-<area shape="poly" title=" " alt="" coords="418,123,322,164,320,159,416,118"/>
-<area shape="poly" title=" " alt="" coords="474,118,570,159,568,164,472,123"/>
-<area shape="poly" title=" " alt="" coords="450,193,467,299,462,300,445,194"/>
-<area shape="poly" title=" " alt="" coords="288,192,313,227,350,265,385,288,422,306,420,311,383,293,346,269,309,231,284,195"/>
-<area shape="rect" href="argus__dca_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="188,241,279,267"/>
-<area shape="poly" title=" " alt="" coords="273,195,251,230,247,227,269,192"/>
-<area shape="poly" title=" " alt="" coords="274,265,415,307,414,313,273,270"/>
-<area shape="poly" title=" " alt="" coords="601,196,493,306,490,302,597,192"/>
-<area shape="poly" title=" " alt="" coords="616,193,625,226,620,227,611,194"/>
-<area shape="poly" title=" " alt="" coords="558,121,482,302,478,300,553,119"/>
-<area shape="poly" title=" " alt="" coords="704,270,529,314,528,309,702,265"/>
+<area shape="poly" title=" " alt="" coords="382,122,361,149,340,187,333,207,330,227,332,247,340,266,354,282,371,295,411,313,409,318,368,300,350,286,335,268,327,248,325,227,328,206,336,185,357,147,378,119"/>
+<area shape="rect" href="argus__px_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="349,241,432,267"/>
+<area shape="poly" title=" " alt="" coords="393,120,393,226,388,226,388,120"/>
+<area shape="rect" href="argus__meas_8h.html" title="This file is part of the AFBR&#45;S50 hardware API." alt="" coords="173,168,275,193"/>
+<area shape="poly" title=" " alt="" coords="363,123,267,164,265,159,361,118"/>
+<area shape="poly" title=" " alt="" coords="420,118,515,159,513,164,418,123"/>
+<area shape="poly" title=" " alt="" coords="406,266,447,302,443,306,402,270"/>
+<area shape="poly" title=" " alt="" coords="209,196,192,211,176,229,169,248,170,257,174,265,189,277,212,288,273,304,344,315,410,321,410,326,344,320,272,309,210,293,186,282,170,269,164,258,164,247,172,226,188,207,206,192"/>
+<area shape="rect" href="argus__dca_8h.html" title="This file is part of the AFBR&#45;S50 API." alt="" coords="184,241,275,267"/>
+<area shape="poly" title=" " alt="" coords="228,193,230,226,225,226,222,194"/>
+<area shape="poly" title=" " alt="" coords="271,265,415,308,413,313,269,270"/>
+<area shape="poly" title=" " alt="" coords="551,195,486,303,482,300,547,192"/>
+<area shape="poly" title=" " alt="" coords="566,192,590,227,585,230,562,195"/>
+<area shape="poly" title=" " alt="" coords="506,120,476,301,471,300,501,119"/>
+<area shape="poly" title=" " alt="" coords="720,195,699,231,683,252,664,269,632,288,597,303,530,321,528,316,595,298,630,284,661,265,679,248,695,228,715,192"/>
+<area shape="poly" title=" " alt="" coords="725,270,529,315,528,310,724,265"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -459,12 +463,24 @@ Functions</h2></td></tr>
 <tr class="memitem:gacd861a39c31871e69c09cf36c9d84501" id="r_gacd861a39c31871e69c09cf36c9d84501"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__cfg.html#gacd861a39c31871e69c09cf36c9d84501">Argus_GetConfigurationDynamicAdaption</a> (<a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>, <a class="el" href="structargus__cfg__dca__t.html">argus_cfg_dca_t</a> *value)</td></tr>
 <tr class="memdesc:gacd861a39c31871e69c09cf36c9d84501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the # from a specified device.  <br /></td></tr>
 <tr class="separator:gacd861a39c31871e69c09cf36c9d84501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3b00210a31a1f467bd9c6a881c1a0df" id="r_gab3b00210a31a1f467bd9c6a881c1a0df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__cfg.html#gab3b00210a31a1f467bd9c6a881c1a0df">Argus_SetConfigurationNoiseDetectors</a> (<a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>, <a class="el" href="structargus__cfg__nd__t.html">argus_cfg_nd_t</a> const *value)</td></tr>
+<tr class="memdesc:gab3b00210a31a1f467bd9c6a881c1a0df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Noise Detectors feature configuration to a specified device.  <br /></td></tr>
+<tr class="separator:gab3b00210a31a1f467bd9c6a881c1a0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab1b6d7e8a58aa9ae40ddc89c77146cae" id="r_gab1b6d7e8a58aa9ae40ddc89c77146cae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__cfg.html#gab1b6d7e8a58aa9ae40ddc89c77146cae">Argus_GetConfigurationNoiseDetectors</a> (<a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>, <a class="el" href="structargus__cfg__nd__t.html">argus_cfg_nd_t</a> *value)</td></tr>
+<tr class="memdesc:gab1b6d7e8a58aa9ae40ddc89c77146cae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Noise Detectors feature configuration from a specified device.  <br /></td></tr>
+<tr class="separator:gab1b6d7e8a58aa9ae40ddc89c77146cae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae207428cb364326bb4118d3753f66ffb" id="r_gae207428cb364326bb4118d3753f66ffb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__cfg.html#gae207428cb364326bb4118d3753f66ffb">Argus_SetConfigurationPixelBinning</a> (<a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>, <a class="el" href="structargus__cfg__pba__t.html">argus_cfg_pba_t</a> const *value)</td></tr>
 <tr class="memdesc:gae207428cb364326bb4118d3753f66ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel binning configuration parameters to a specified device.  <br /></td></tr>
 <tr class="separator:gae207428cb364326bb4118d3753f66ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf6375ae359e99c324c8487a84011e540" id="r_gaf6375ae359e99c324c8487a84011e540"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__cfg.html#gaf6375ae359e99c324c8487a84011e540">Argus_GetConfigurationPixelBinning</a> (<a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>, <a class="el" href="structargus__cfg__pba__t.html">argus_cfg_pba_t</a> *value)</td></tr>
 <tr class="memdesc:gaf6375ae359e99c324c8487a84011e540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the pixel binning configuration parameters from a specified device.  <br /></td></tr>
 <tr class="separator:gaf6375ae359e99c324c8487a84011e540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5d65510b242f379f427542af41c3ce23" id="r_ga5d65510b242f379f427542af41c3ce23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__cfg.html#ga5d65510b242f379f427542af41c3ce23">Argus_SetConfigurationCrosstalkMonitor</a> (<a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>, <a class="el" href="structargus__cfg__xtm__t.html">argus_cfg_xtm_t</a> const *value)</td></tr>
+<tr class="memdesc:ga5d65510b242f379f427542af41c3ce23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the crosstalk monitor (XTM) configuration parameters to a specified device.  <br /></td></tr>
+<tr class="separator:ga5d65510b242f379f427542af41c3ce23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa383d8c075df096bc0e8fca7ac8b6129" id="r_gaa383d8c075df096bc0e8fca7ac8b6129"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__cfg.html#gaa383d8c075df096bc0e8fca7ac8b6129">Argus_GetConfigurationCrosstalkMonitor</a> (<a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>, <a class="el" href="structargus__cfg__xtm__t.html">argus_cfg_xtm_t</a> *value)</td></tr>
+<tr class="memdesc:gaa383d8c075df096bc0e8fca7ac8b6129"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the crosstalk monitor (XTM) configuration parameters from a specified device.  <br /></td></tr>
+<tr class="separator:gaa383d8c075df096bc0e8fca7ac8b6129"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0ed6d40acdf1c6f7ef06aa04b50e033a" id="r_ga0ed6d40acdf1c6f7ef06aa04b50e033a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__argus__status.html#gaaabdaf7ee58ca7269bd4bf24efcde092">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__argus__cfg.html#ga0ed6d40acdf1c6f7ef06aa04b50e033a">Argus_GetConfigurationUnambiguousRange</a> (<a class="el" href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a> *<a class="el" href="group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b">hnd</a>, uint32_t *range_mm)</td></tr>
 <tr class="memdesc:ga0ed6d40acdf1c6f7ef06aa04b50e033a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current unambiguous range in mm.  <br /></td></tr>
 <tr class="separator:ga0ed6d40acdf1c6f7ef06aa04b50e033a"><td class="memSeparator" colspan="2">&#160;</td></tr>

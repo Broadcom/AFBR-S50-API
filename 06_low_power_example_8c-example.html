@@ -36,7 +36,7 @@ MathJax.Hub.Config({
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">AFBR-S50 API Reference Manual<span id="projectnumber">&#160;v1.6.5</span>
+   <div id="projectname">AFBR-S50 API Reference Manual<span id="projectnumber">&#160;v1.6.6</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -113,10 +113,6 @@ $(function(){initNavTree('06_low_power_example_8c-example.html',''); initResizab
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="argus_8h.html">argus.h</a>&quot;</span></div>
 <div class="line"> <span class="comment">// additional #includes ...</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="main_8h.html">main.h</a>&quot;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="preprocessor">#if RUN_XTALK_CALIBRATION</span></div>
-<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="argus__xtalk__cal__cli_8h.html">argus_xtalk_cal_cli.h</a>&quot;</span></div>
-<div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*!***************************************************************************</span></div>
 <div class="line"><span class="comment"> * @brief   Creates and initializes a new device instance.</span></div>
@@ -365,13 +361,6 @@ $(function(){initNavTree('06_low_power_example_8c-example.html',''); initResizab
 <div class="line">  <span class="comment">/* Print a device information message. */</span></div>
 <div class="line">  PrintDeviceInfo(device);</div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#if RUN_XTALK_CALIBRATION</span></div>
-<div class="line">  <span class="comment">/* Enter the CLI to perform a xtalk calibration interactively.</span></div>
-<div class="line"><span class="comment">   * It guides through all steps needed to compensate electrical</span></div>
-<div class="line"><span class="comment">   * as well as optical xtalk caused by an application design. */</span></div>
-<div class="line">  <a id="a46" name="a46"></a><a class="code hl_function" href="group__argus__xtk__cli.html#ga4111bd3a802e007dde1ad96451ad7511">Argus_XtalkCalibration_CLI</a>(device);</div>
-<div class="line"><span class="preprocessor">#endif </span><span class="comment">// RUN_XTALK_CALIBRATION</span></div>
-<div class="line"> </div>
 <div class="line">  <span class="comment">/* The program loop ... */</span></div>
 <div class="line">  <span class="keywordflow">for</span> (;;)</div>
 <div class="line">  {</div>
@@ -411,14 +400,13 @@ $(function(){initNavTree('06_low_power_example_8c-example.html',''); initResizab
 <div class="line">}</div>
 <div class="ttc" id="a_example_app_2main_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="_example_app_2main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdoc">Application entry point.</div><div class="ttdef"><b>Definition</b> main.c:48</div></div>
 <div class="ttc" id="aargus_8h_html"><div class="ttname"><a href="argus_8h.html">argus.h</a></div><div class="ttdoc">This file is part of the AFBR-S50 API.</div></div>
-<div class="ttc" id="aargus__xtalk__cal__cli_8h_html"><div class="ttname"><a href="argus__xtalk__cal__cli_8h.html">argus_xtalk_cal_cli.h</a></div><div class="ttdoc">Provides an interactive crosstalk calibration CLI to the AFBR-S50 API.</div></div>
 <div class="ttc" id="agroup__argus__api_html_ga4862877c07b190ffb77af7b39419e2f9"><div class="ttname"><a href="group__argus__api.html#ga4862877c07b190ffb77af7b39419e2f9">Argus_RestoreDeviceState</a></div><div class="ttdeci">status_t Argus_RestoreDeviceState(argus_hnd_t *hnd)</div><div class="ttdoc">Restores the device state with a re-write of all register values.</div></div>
 <div class="ttc" id="agroup__argus__api_html_ga6920f9aaa245e718cecce433d0efbf30"><div class="ttname"><a href="group__argus__api.html#ga6920f9aaa245e718cecce433d0efbf30">Argus_GetModuleName</a></div><div class="ttdeci">char const * Argus_GetModuleName(argus_hnd_t *hnd)</div><div class="ttdoc">Gets the name string of the module.</div></div>
 <div class="ttc" id="agroup__argus__api_html_ga7d724a6657138f112bff554f7db2a898"><div class="ttname"><a href="group__argus__api.html#ga7d724a6657138f112bff554f7db2a898">Argus_Init</a></div><div class="ttdeci">status_t Argus_Init(argus_hnd_t *hnd, s2pi_slave_t spi_slave)</div><div class="ttdoc">Initializes the device with default measurement mode.</div></div>
 <div class="ttc" id="agroup__argus__api_html_ga809f5916407f49eebf87933cfed30e2d"><div class="ttname"><a href="group__argus__api.html#ga809f5916407f49eebf87933cfed30e2d">Argus_GetChipID</a></div><div class="ttdeci">uint32_t Argus_GetChipID(argus_hnd_t *hnd)</div><div class="ttdoc">Gets the unique identification number of the chip.</div></div>
 <div class="ttc" id="agroup__argus__api_html_ga9659d7e8259b5471873d04ef1e74b568"><div class="ttname"><a href="group__argus__api.html#ga9659d7e8259b5471873d04ef1e74b568">Argus_CreateHandle</a></div><div class="ttdeci">argus_hnd_t * Argus_CreateHandle(void)</div><div class="ttdoc">Creates a new device data handle object to store all internal states.</div></div>
 <div class="ttc" id="agroup__argus__api_html_ga9923866e2d4ec9891ae79e1baae01b92"><div class="ttname"><a href="group__argus__api.html#ga9923866e2d4ec9891ae79e1baae01b92">argus_hnd_t</a></div><div class="ttdeci">struct argus_hnd_t argus_hnd_t</div><div class="ttdef"><b>Definition</b> argus_def.h:320</div></div>
-<div class="ttc" id="agroup__argus__api_html_gaa236b64d7430965890e9c6834e24c317"><div class="ttname"><a href="group__argus__api.html#gaa236b64d7430965890e9c6834e24c317">s2pi_slave_t</a></div><div class="ttdeci">int32_t s2pi_slave_t</div><div class="ttdef"><b>Definition</b> argus_api.h:67</div></div>
+<div class="ttc" id="agroup__argus__api_html_gaa236b64d7430965890e9c6834e24c317"><div class="ttname"><a href="group__argus__api.html#gaa236b64d7430965890e9c6834e24c317">s2pi_slave_t</a></div><div class="ttdeci">int32_t s2pi_slave_t</div><div class="ttdef"><b>Definition</b> argus_api.h:68</div></div>
 <div class="ttc" id="agroup__argus__api_html_gabec8f8d2fd8e05e1b4dc6158bffe1f23"><div class="ttname"><a href="group__argus__api.html#gabec8f8d2fd8e05e1b4dc6158bffe1f23">Argus_GetAPIVersion</a></div><div class="ttdeci">uint32_t Argus_GetAPIVersion(void)</div><div class="ttdoc">Gets the version number of the current API library.</div></div>
 <div class="ttc" id="agroup__argus__cfg_html_ga4cbd36364ff0d30d7ab26de3cd70038d"><div class="ttname"><a href="group__argus__cfg.html#ga4cbd36364ff0d30d7ab26de3cd70038d">Argus_SetConfigurationDFMMode</a></div><div class="ttdeci">status_t Argus_SetConfigurationDFMMode(argus_hnd_t *hnd, argus_dfm_mode_t value)</div><div class="ttdoc">Sets the Dual Frequency Mode (DFM) to a specified device.</div></div>
 <div class="ttc" id="agroup__argus__cfg_html_gaa6d970c42ac21e56907247f58a029472"><div class="ttname"><a href="group__argus__cfg.html#gaa6d970c42ac21e56907247f58a029472">Argus_SetConfigurationFrameTime</a></div><div class="ttdeci">status_t Argus_SetConfigurationFrameTime(argus_hnd_t *hnd, uint32_t value)</div><div class="ttdoc">Sets the frame time to a specified device.</div></div>
@@ -444,7 +432,6 @@ $(function(){initNavTree('06_low_power_example_8c-example.html',''); initResizab
 <div class="ttc" id="agroup__argus__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566"><div class="ttname"><a href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba7e4a42e3b6dd63708c64cf3db6f69566">STATUS_OK</a></div><div class="ttdeci">@ STATUS_OK</div><div class="ttdef"><b>Definition</b> argus_status.h:80</div></div>
 <div class="ttc" id="agroup__argus__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70ba841c3e4e3ac94c0005f107140e184276"><div class="ttname"><a href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70ba841c3e4e3ac94c0005f107140e184276">ERROR_FAIL</a></div><div class="ttdeci">@ ERROR_FAIL</div><div class="ttdef"><b>Definition</b> argus_status.h:95</div></div>
 <div class="ttc" id="agroup__argus__status_html_gga67a0db04d321a74b7e7fcfd3f1a3f70baf72aa2ea968f04e21b64f4ec3aa9f198"><div class="ttname"><a href="group__argus__status.html#gga67a0db04d321a74b7e7fcfd3f1a3f70baf72aa2ea968f04e21b64f4ec3aa9f198">ERROR_ARGUS_STALLED</a></div><div class="ttdeci">@ ERROR_ARGUS_STALLED</div><div class="ttdef"><b>Definition</b> argus_status.h:231</div></div>
-<div class="ttc" id="agroup__argus__xtk__cli_html_ga4111bd3a802e007dde1ad96451ad7511"><div class="ttname"><a href="group__argus__xtk__cli.html#ga4111bd3a802e007dde1ad96451ad7511">Argus_XtalkCalibration_CLI</a></div><div class="ttdeci">void Argus_XtalkCalibration_CLI(argus_hnd_t *hnd)</div><div class="ttdoc">Interactive Xtalk Calibration Procedure CLI.</div><div class="ttdef"><b>Definition</b> argus_xtalk_cal_cli.c:162</div></div>
 <div class="ttc" id="agroup__argus__xtk__cli_html_gaea26d52d2e16010e3e3e3ce0e8a1a0ce"><div class="ttname"><a href="group__argus__xtk__cli.html#gaea26d52d2e16010e3e3e3ce0e8a1a0ce">status</a></div><div class="ttdeci">static status_t status</div><div class="ttdef"><b>Definition</b> argus_xtalk_cal_cli.c:140</div></div>
 <div class="ttc" id="agroup__example__apps_html_ga09a1f92df8fe63ee58e8b8f69b9b5a5e"><div class="ttname"><a href="group__example__apps.html#ga09a1f92df8fe63ee58e8b8f69b9b5a5e">HandleError</a></div><div class="ttdeci">void HandleError(status_t status, bool stop, char const *msg)</div><div class="ttdoc">A callback function from the example code whenever an error occurs.</div><div class="ttdef"><b>Definition</b> main.c:62</div></div>
 <div class="ttc" id="agroup__example__apps_html_ga943af7f8a98cf5a3f2107ed593215a4b"><div class="ttname"><a href="group__example__apps.html#ga943af7f8a98cf5a3f2107ed593215a4b">SPI_SLAVE</a></div><div class="ttdeci">#define SPI_SLAVE</div><div class="ttdef"><b>Definition</b> examples.h:103</div></div>

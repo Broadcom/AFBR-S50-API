@@ -28,5 +28,5 @@ var searchData=
   ['guide_25',['Guide',['../migration_guide.html',1,'API Migration Guide'],['../porting_guide.html',1,'MCU Porting Guide'],['../porting_guide.html#pg_guide',1,'Step-by-Step Porting Guide']]],
   ['guide_201_203_205_20→_201_204_204_26',['API Migration Guide (1.3.5 → 1.4.4)',['../migration_guide.html#migration_guide_1_4',1,'']]],
   ['guide_201_204_204_20→_201_205_206_27',['API Migration Guide (1.4.4 → 1.5.6)',['../migration_guide.html#migration_guide_1_5',1,'']]],
-  ['guide_201_205_206_20→_201_206_205_28',['API Migration Guide (1.5.6 → 1.6.5)',['../migration_guide.html#migration_guide_1_6',1,'']]]
+  ['guide_201_205_206_20→_201_206_206_28',['API Migration Guide (1.5.6 → 1.6.6)',['../migration_guide.html#migration_guide_1_6',1,'']]]
 ];

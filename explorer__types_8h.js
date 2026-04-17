@@ -45,6 +45,8 @@ var explorer__types_8h =
       [ "CMD_CONFIGURATION_XTALK_MONITOR_MODE", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa66716c59dc1516c2d3462519166249ea", null ],
       [ "CMD_CONFIGURATION_DCA", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa6f856c080c430418b0e1bf676596f346", null ],
       [ "CMD_CONFIGURATION_PBA", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfaa1be883e6535b405db07217031571cd0", null ],
+      [ "CMD_CONFIGURATION_ND", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa6d69dcd6ac8eac476d3e8781bbe3e99c", null ],
+      [ "CMD_CONFIGURATION_XTM", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa9d51cfe333c7682ad85c0a5d17655e3b", null ],
       [ "CMD_CONFIGURATION_SPI", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfac7d69ad4d02b2ebbbcc2f924425968ac", null ],
       [ "CMD_CONFIGURATION_UART", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfad94aac3a5785fb2fdd4b08354c146cf0", null ],
       [ "CMD_CALIBRATION_GLOBAL_RANGE_OFFSET", "group__explorer__types.html#gga5d992d6fb60532ae63da694fdbd671bfa204b846df61f79f93409b512ffedc71c", null ],

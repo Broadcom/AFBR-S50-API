@@ -84,9 +84,11 @@ var explorer_app =
         [ "Shot Noise Monitor Mode", "explorer_app_cmd_details.html#cmd_cfg_snm", [
           [ "Shot Noise Monitor Mode Enumerator", "explorer_app_cmd_details.html#autotoc_md48", null ]
         ] ],
-        [ "Crosstalk Monitor Mode", "explorer_app_cmd_details.html#cmd_cfg_xtm", null ],
+        [ "Crosstalk Monitor Enabled", "explorer_app_cmd_details.html#cmd_cfg_xtme", null ],
         [ "Dynamic Configuration Adaption", "explorer_app_cmd_details.html#cmd_cfg_dca", null ],
         [ "Pixel Binning", "explorer_app_cmd_details.html#cmd_cfg_pba", null ],
+        [ "Noise Detectors", "explorer_app_cmd_details.html#cmd_cfg_nd", null ],
+        [ "Crosstalk Monitor", "explorer_app_cmd_details.html#cmd_cfg_xtm", null ],
         [ "SPI Configuration", "explorer_app_cmd_details.html#cmd_cfg_spi", null ],
         [ "UART Configuration", "explorer_app_cmd_details.html#cmd_cfg_uart", null ]
       ] ],

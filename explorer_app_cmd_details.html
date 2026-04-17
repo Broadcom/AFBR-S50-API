@@ -36,7 +36,7 @@ MathJax.Hub.Config({
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="AFBR-S50.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">AFBR-S50 API Reference Manual<span id="projectnumber">&#160;v1.6.5</span>
+   <div id="projectname">AFBR-S50 API Reference Manual<span id="projectnumber">&#160;v1.6.6</span>
    </div>
    <div id="projectbrief">AFBR-S50 Time-of-Flight Sensor SDK for Embedded Software</div>
   </td>
@@ -1005,9 +1005,9 @@ Shot Noise Monitor Mode Enumerator</h3>
 <ul>
 <li><a class="el" href="group__argus__snm.html#gaeebf2186c1d70c697e08ed8d70d11ea4">argus_snm_mode_t</a></li>
 </ul>
-<h2><a class="anchor" id="cmd_cfg_xtm"></a>
-Crosstalk Monitor Mode</h2>
-<p>Gets or sets the crosstalk monitor mode.</p>
+<h2><a class="anchor" id="cmd_cfg_xtme"></a>
+Crosstalk Monitor Enabled</h2>
+<p>Gets or sets the crosstalk monitor enabled flag.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
@@ -1101,6 +1101,64 @@ Pixel Binning</h2>
 <ul>
 <li><a class="el" href="group__argus__cfg.html#gaf6375ae359e99c324c8487a84011e540" title="Gets the pixel binning configuration parameters from a specified device.">Argus_GetConfigurationPixelBinning</a></li>
 <li><a class="el" href="group__argus__cfg.html#gae207428cb364326bb4118d3753f66ffb" title="Sets the pixel binning configuration parameters to a specified device.">Argus_SetConfigurationPixelBinning</a></li>
+</ul>
+<h2><a class="anchor" id="cmd_cfg_nd"></a>
+Noise Detectors</h2>
+<p>Gets or sets the setting parameters of the Noise Detector (ND) algorithms.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x56 (basic); 0xD6 (extended)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Address (extended mode only)   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Extended frame address byte. Skipped in basic frame mode.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Saturation - Absolute Noise Threshold   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Saturation Detector: Absolute uncorrelated noise threshold to saturate a pixel.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Saturation - Amplitude Threshold   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Saturation Detector: Amplitude threshold to saturate a pixel.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Saturation - Uncorrelated Noise EMA Weight   </td><td class="markdownTableBodyNone">UQ0.8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">%   </td><td class="markdownTableBodyNone">Saturation Detector: Uncorrelated Noise (UCNoise) EMA Weight.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Optical Noise Detector - Enabled   </td><td class="markdownTableBodyNone">BOOL8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Optical Noise Detector: Enables/disables the Optical Noise Detector (ODD).    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Optical Noise Detector - Activation   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Optical Noise Detector: Activation amplitude threshold (over which minimum pixel amplitude to apply the filter)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Optical Noise Detector - Inclusion   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Optical Noise Detector: Inclusion SNR threshold (over which SNR the pixel is marked valid)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Optical Noise Detector - Exclusion   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">Optical Noise Detector: Exclusion SNR threshold (under which SNR the pixel is marked invalid)   </td></tr>
+</table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argus__cfg.html#gab1b6d7e8a58aa9ae40ddc89c77146cae" title="Gets the Noise Detectors feature configuration from a specified device.">Argus_GetConfigurationNoiseDetectors</a></li>
+<li><a class="el" href="group__argus__cfg.html#gab3b00210a31a1f467bd9c6a881c1a0df" title="Sets the Noise Detectors feature configuration to a specified device.">Argus_SetConfigurationNoiseDetectors</a></li>
+</ul>
+<h2><a class="anchor" id="cmd_cfg_xtm"></a>
+Crosstalk Monitor</h2>
+<p>Gets or sets the setting parameters of the Crosstalk Monitor (XTM) algorithm.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Caption / Name   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Size   </th><th class="markdownTableHeadNone">Unit   </th><th class="markdownTableHeadNone">Comment    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Command   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">0x57 (basic); 0xD7 (extended)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Address (extended mode only)   </td><td class="markdownTableBodyNone">UINT8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Extended frame address byte. Skipped in basic frame mode.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Crosstalk Monitor Mode Enabled   </td><td class="markdownTableBodyNone">BOOL8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">Enables the Crosstalk-Monitor (XTM) mode.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">EMA Weight   </td><td class="markdownTableBodyNone">UQ0.8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">n/a   </td><td class="markdownTableBodyNone">The weight for the exponentially moving average (EMA) that is used to smooth the crosstalk offset values.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Max. Temperature Offset   </td><td class="markdownTableBodyNone">BOOL8   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">K   </td><td class="markdownTableBodyNone">The maximum temperature offset (in Kelvin) that invalidates the last crosstalk offset calculation value.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">High Amplitude Threshold   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The amplitude threshold that causes the crosstalk offset calculation to start if the maximum amplitude of all pixels falls below the specified threshold.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Low Amplitude Threshold   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The amplitude threshold that causes the crosstalk offset calculation to stop if the maximum amplitude of all pixels grows above the specified threshold.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Passive Amplitude Threshold   </td><td class="markdownTableBodyNone">UQ12.4   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">LSB   </td><td class="markdownTableBodyNone">The amplitude threshold that causes the crosstalk offset calculation to stop if the maximum pixel amplitude of all passive pixels is below the specified threshold.   </td></tr>
+</table>
+<dl class="section see"><dt>See also</dt><dd></dd></dl>
+<ul>
+<li><a class="el" href="group__argus__cfg.html#gaa383d8c075df096bc0e8fca7ac8b6129" title="Gets the crosstalk monitor (XTM) configuration parameters from a specified device.">Argus_GetConfigurationCrosstalkMonitor</a></li>
+<li><a class="el" href="group__argus__cfg.html#ga5d65510b242f379f427542af41c3ce23" title="Sets the crosstalk monitor (XTM) configuration parameters to a specified device.">Argus_SetConfigurationCrosstalkMonitor</a></li>
 </ul>
 <h2><a class="anchor" id="cmd_cfg_spi"></a>
 SPI Configuration</h2>

@@ -14,6 +14,14 @@ var group__argus__cal =
       [ "FrameB", "unionargus__cal__xtalk__table__t.html#a3a732082be4050c14b7dfd4c07e8fd38", null ],
       [ "Table", "unionargus__cal__xtalk__table__t.html#a32842a4103aa3a9bd8f413df851990a2", null ]
     ] ],
+    [ "argus_cfg_xtm_t", "structargus__cfg__xtm__t.html", [
+      [ "EMAWeight", "structargus__cfg__xtm__t.html#ab605ea75f649da073672f1756f410502", null ],
+      [ "Enabled", "structargus__cfg__xtm__t.html#ad1ba3b9fa17ea5b58f59121552009377", null ],
+      [ "HighAmplitudeThreshold", "structargus__cfg__xtm__t.html#a9662c67ab4bd5ce05231591c0685eb87", null ],
+      [ "LowAmplitudeThreshold", "structargus__cfg__xtm__t.html#af66ec355e910bec09c32bb9cf4c9f902", null ],
+      [ "MaxTemperatureOffset", "structargus__cfg__xtm__t.html#a5f4c18aa046cd9bbf440543682c54619", null ],
+      [ "PassiveAmplitudeThreshold", "structargus__cfg__xtm__t.html#ab3e0d7683ba788e141d3d03fbaebc2f3", null ]
+    ] ],
     [ "argus_cal_electrical_p2pxtalk_t", "structargus__cal__electrical__p2pxtalk__t.html", [
       [ "AbsoluteTreshold", "structargus__cal__electrical__p2pxtalk__t.html#ad7385001a246a84a8a3e0caa1c778557", null ],
       [ "Enabled", "structargus__cal__electrical__p2pxtalk__t.html#a67eb75243b23bf433b3aa1c834f58990", null ],

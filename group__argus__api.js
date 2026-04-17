@@ -6,6 +6,7 @@ var group__argus__api =
     [ "Dual Frequency Mode", "group__argus__dfm.html", "group__argus__dfm" ],
     [ "Pixel Channel Mapping", "group__argus__map.html", "group__argus__map" ],
     [ "Measurement/Device Control", "group__argus__meas.html", "group__argus__meas" ],
+    [ "Noise Detectors", "group__argus__nd.html", "group__argus__nd" ],
     [ "Pixel Binning Algorithm", "group__argus__pba.html", "group__argus__pba" ],
     [ "Measurement Data", "group__argus__res.html", "group__argus__res" ],
     [ "Shot Noise Monitor", "group__argus__snm.html", "group__argus__snm" ],

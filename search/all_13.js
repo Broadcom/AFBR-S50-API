@@ -26,7 +26,8 @@ var searchData=
   ['loop_5fvar_23',['loop_var',['../group__argus__xtk__cli.html#gaa76ae277a349906750e24e028d445315',1,'argus_xtalk_cal_cli.c']]],
   ['low_20and_20high_20power_20stages_24',['Introduction of distinct global range offsets for low and high power stages',['../migration_guide.html#autotoc_md66',1,'']]],
   ['low_20power_20battery_20example_25',['Low Power &amp; Battery Example',['../example_app.html#low_power_example_app',1,'']]],
-  ['lowpower_26',['LowPower',['../unionargus__cal__offset__table__t.html#aefa526ad215b1a76300099e097746211',1,'argus_cal_offset_table_t']]],
-  ['ltc_27',['Lifetime Counter (LTC)',['../porting_guide.html#autotoc_md34',1,'']]],
-  ['ltc_5ft_28',['ltc_t',['../structltc__t.html',1,'']]]
+  ['lowamplitudethreshold_26',['LowAmplitudeThreshold',['../structargus__cfg__xtm__t.html#af66ec355e910bec09c32bb9cf4c9f902',1,'argus_cfg_xtm_t']]],
+  ['lowpower_27',['LowPower',['../unionargus__cal__offset__table__t.html#aefa526ad215b1a76300099e097746211',1,'argus_cal_offset_table_t']]],
+  ['ltc_28',['Lifetime Counter (LTC)',['../porting_guide.html#autotoc_md34',1,'']]],
+  ['ltc_5ft_29',['ltc_t',['../structltc__t.html',1,'']]]
 ];

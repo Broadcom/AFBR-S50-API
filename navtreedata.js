@@ -81,7 +81,7 @@ var NAVTREE =
       ] ]
     ] ],
     [ "API Migration Guide", "migration_guide.html", [
-      [ "API Migration Guide (1.5.6 → 1.6.5)", "migration_guide.html#migration_guide_1_6", [
+      [ "API Migration Guide (1.5.6 → 1.6.6)", "migration_guide.html#migration_guide_1_6", [
         [ "Overview of Data & Function Changes / Extensions / new Items", "migration_guide.html#autotoc_md62", null ],
         [ "Changes in more Detail", "migration_guide.html#autotoc_md63", null ],
         [ "Extensions and new Items in more Detail", "migration_guide.html#autotoc_md64", null ]
@@ -143,12 +143,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "01__simple__example_8c.html",
-"explorer__tasks_8c.html#a11b72623a9601834584c5ecf08dd6e27af9acb4f325d999bf07e35d770ef8d954",
-"group__argus__api.html#ggabe8846d7abef63b75e8147f4f142708ba02bc024bf73b356406314e887b455017",
-"group__argus__map.html#ga91c078d2261a261e89c5cc15f8d95ea9",
-"group__argus__xtk__cli.html#ga34a4aee6919d75beaea0b51f4be19ba5",
-"group__sci.html#ga6ce77452b5e5ad88806c55233fbb5425",
-"structargus__cfg__dca__t.html#a089916ee1563d6d5b1161de79a97675a"
+"explorer__macro_8h.html",
+"group__argus__api.html#gga46f240b890cd62efe83bf2d095277470aadb20086dac739d81b418ed885e13eac",
+"group__argus__map.html#ga1bf138d6fadff2f28dfd8792c51687da",
+"group__argus__version.html#ga118a521ea35e67d1d8b8daeabf4e0053",
+"group__scheduler.html#gaf12cab9399b7b23dbe9fe6037e633cc8",
+"stm32cubeide.html#autotoc_md23"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

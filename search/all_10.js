@@ -19,7 +19,8 @@ var searchData=
   ['head_16',['Head',['../structsci__frame__queue__t.html#a7761bc1e84fd500b8c0cc07d3c8ab1d2',1,'sci_frame_queue_t']]],
   ['high_20power_20stages_17',['Introduction of distinct global range offsets for low and high power stages',['../migration_guide.html#autotoc_md66',1,'']]],
   ['high_20speed_20example_18',['High-Speed Example',['../example_app.html#high_speed_example_app',1,'']]],
-  ['highpower_19',['HighPower',['../unionargus__cal__offset__table__t.html#ace36ec6cddc4a75ab2d31c9d7552ce9f',1,'argus_cal_offset_table_t']]],
-  ['hnd_20',['hnd',['../group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b',1,'main.c']]],
-  ['how_20to_20verify_20eeprom_20readout_20sequence_21',['1. How to Verify EEPROM Readout Sequence',['../faq.html#autotoc_md78',1,'']]]
+  ['highamplitudethreshold_19',['HighAmplitudeThreshold',['../structargus__cfg__xtm__t.html#a9662c67ab4bd5ce05231591c0685eb87',1,'argus_cfg_xtm_t']]],
+  ['highpower_20',['HighPower',['../unionargus__cal__offset__table__t.html#ace36ec6cddc4a75ab2d31c9d7552ce9f',1,'argus_cal_offset_table_t']]],
+  ['hnd_21',['hnd',['../group__can__app.html#ga2d27bf0fb9aa6adc91a167402541c03b',1,'main.c']]],
+  ['how_20to_20verify_20eeprom_20readout_20sequence_22',['1. How to Verify EEPROM Readout Sequence',['../faq.html#autotoc_md78',1,'']]]
 ];

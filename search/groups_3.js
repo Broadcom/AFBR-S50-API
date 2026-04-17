@@ -9,9 +9,10 @@ var searchData=
   ['definitions_6',['SCI: Generic Command Definitions',['../group__sci__cmd.html',1,'']]],
   ['demo_20application_7',['Data Types for the AFBR-S50 Explorer Demo Application',['../group__explorer__types.html',1,'']]],
   ['demo_20applications_8',['Demo Applications',['../group__demo__apps.html',1,'']]],
-  ['device_20control_9',['Measurement/Device Control',['../group__argus__meas.html',1,'']]],
-  ['device_20functions_10',['AFBR-S50 Explorer - Explorer Device functions',['../group__core__device.html',1,'']]],
-  ['driver_11',['Driver',['../group__driver.html',1,'']]],
-  ['dual_20frequency_20mode_12',['Dual Frequency Mode',['../group__argus__dfm.html',1,'']]],
-  ['dynamic_20configuration_20adaption_13',['Dynamic Configuration Adaption',['../group__argus__dca.html',1,'']]]
+  ['detectors_9',['Noise Detectors',['../group__argus__nd.html',1,'']]],
+  ['device_20control_10',['Measurement/Device Control',['../group__argus__meas.html',1,'']]],
+  ['device_20functions_11',['AFBR-S50 Explorer - Explorer Device functions',['../group__core__device.html',1,'']]],
+  ['driver_12',['Driver',['../group__driver.html',1,'']]],
+  ['dual_20frequency_20mode_13',['Dual Frequency Mode',['../group__argus__dfm.html',1,'']]],
+  ['dynamic_20configuration_20adaption_14',['Dynamic Configuration Adaption',['../group__argus__dca.html',1,'']]]
 ];
