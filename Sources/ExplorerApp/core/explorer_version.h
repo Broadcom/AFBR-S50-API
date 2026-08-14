@@ -59,7 +59,7 @@
 #define EXPLORER_VERSION_BUGFIX   6
 
 /*! Build version number of the AFBR-S50 API. */
-#define EXPLORER_VERSION_BUILD    "20260416134755"
+#define EXPLORER_VERSION_BUILD    "20260812171543"
 
 /*****************************************************************************/
 

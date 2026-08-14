@@ -62,7 +62,7 @@ extern "C" {
 #define ARGUS_API_VERSION_BUGFIX   6
 
 /*! Build version number of the AFBR-S50 API. */
-#define ARGUS_API_VERSION_BUILD    "20260416134755"
+#define ARGUS_API_VERSION_BUILD    "20260812171543"
 
 /*****************************************************************************/
 
